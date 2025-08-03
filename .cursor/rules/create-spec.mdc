@@ -1,0 +1,44 @@
+# Create Specification - TappsHA
+
+Use Agent OS to create detailed feature specifications for the TappsHA project.
+
+## Context
+This is the TappsHA project - create comprehensive specifications for new features or improvements.
+
+## Instructions
+1. Define feature requirements and goals
+2. Create technical specifications
+3. Define acceptance criteria
+4. Plan component structure
+5. Design API interfaces
+6. Plan testing strategy
+7. Consider accessibility requirements
+
+## Agent OS Standards
+- Mobile-first responsive design
+- Accessibility by default (WCAG 2.2 AA)
+- TypeScript-first development
+- Comprehensive testing (≥80% coverage)
+- Security-first approach (OWASP Top-10)
+
+## Specification Template
+- Feature overview and goals
+- Technical requirements
+- Component architecture
+- API design
+- Database schema changes
+- Testing strategy
+- Accessibility considerations
+- Performance requirements
+- Security considerations
+
+## Output
+- Detailed technical specification
+- Component structure
+- API documentation
+- Testing plan
+- Implementation roadmap
+description:
+globs:
+alwaysApply: false
+---

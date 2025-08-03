@@ -1,0 +1,47 @@
+# Execute Tasks - TappsHA
+
+Use Agent OS to implement features and build code for the TappsHA project.
+
+## Context
+This is the TappsHA project - implement features according to specifications and Agent OS standards.
+
+## Instructions
+1. Review specifications and requirements
+2. Implement features with TypeScript-first approach
+3. Follow mobile-first responsive design
+4. Ensure accessibility compliance (WCAG 2.2 AA)
+5. Write comprehensive tests (≥80% coverage)
+6. Implement security best practices
+7. Optimize for performance
+8. Document code and APIs
+
+## Agent OS Standards
+- Mobile-first responsive design
+- Accessibility by default (WCAG 2.2 AA)
+- TypeScript-first development
+- Comprehensive testing (≥80% coverage)
+- Security-first approach (OWASP Top-10)
+- Functional, immutable patterns
+- Cloud-native, container-first approach
+
+## Implementation Checklist
+- [ ] TypeScript types defined
+- [ ] Mobile-first responsive design
+- [ ] Accessibility compliance
+- [ ] Unit tests written
+- [ ] Integration tests added
+- [ ] Security considerations addressed
+- [ ] Performance optimized
+- [ ] Documentation updated
+- [ ] Code reviewed
+
+## Output
+- Working code implementation
+- Comprehensive tests
+- Updated documentation
+- Performance metrics
+- Security validation
+description:
+globs:
+alwaysApply: false
+---

@@ -1,0 +1,34 @@
+# Analyze Product - TappsHA
+
+Use Agent OS to analyze the existing TappsHA codebase for improvements and optimizations.
+
+## Context
+This is the TappsHA project - analyze the current implementation for quality, performance, and best practices.
+
+## Instructions
+1. Review current codebase structure
+2. Analyze code quality and patterns
+3. Identify technical debt and improvements
+4. Assess performance bottlenecks
+5. Review security practices
+6. Evaluate testing coverage
+7. Check accessibility compliance
+
+## Agent OS Standards
+- Mobile-first responsive design
+- Accessibility by default (WCAG 2.2 AA)
+- TypeScript-first development
+- Comprehensive testing (≥80% coverage)
+- Security-first approach (OWASP Top-10)
+
+## Output
+- Code quality assessment
+- Technical debt analysis
+- Performance recommendations
+- Security improvements
+- Testing strategy updates
+- Accessibility compliance report
+description:
+globs:
+alwaysApply: false
+---

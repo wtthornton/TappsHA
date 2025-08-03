@@ -1,0 +1,32 @@
+# Plan Product - TappsHA
+
+Use Agent OS to analyze this new codebase and create a comprehensive development plan.
+
+## Context
+This is the TappsHA project - a modern web application built with Agent OS best practices.
+
+## Instructions
+1. Analyze the current project structure
+2. Review existing implementation documents
+3. Create a comprehensive development plan
+4. Identify tech stack requirements
+5. Define architecture and component structure
+6. Set up development workflow
+
+## Agent OS Integration
+- Use Agent OS standards for consistent development
+- Follow mobile-first, accessible design principles
+- Implement TypeScript-first development
+- Set up comprehensive testing strategy
+
+## Output
+- Architecture plan
+- Tech stack recommendations
+- Development roadmap
+- Component structure
+- Testing strategy
+- Deployment plan
+description:
+globs:
+alwaysApply: false
+---
