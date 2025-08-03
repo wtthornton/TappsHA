@@ -1,0 +1,181 @@
+# Agent OS Standards Compliance
+
+## MANDATORY: Standards Compliance Reference
+
+**ALWAYS** reference and follow ALL Agent OS standards when implementing any feature or making technology decisions.
+
+### Core Standards Reference
+
+#### Technology Stack Standards
+**ALWAYS** check `@~/.agent-os/standards/tech-stack.md`:
+- Spring Boot 3.5.3 (Java 21 LTS)
+- React 19.1 with TypeScript 5.5
+- PostgreSQL 17.5 with pgvector 0.7
+- InfluxDB 3.3 Core
+- Docker 27.5 with Compose V2
+- Prometheus 3.5, Grafana 12.1, Loki 3
+
+#### Code Style Standards
+**ALWAYS** check `@~/.agent-os/standards/code-style.md`:
+- 2 spaces indentation
+- 100 chars max line length
+- PascalCase for components, camelCase for variables
+- Auto-sorted imports with absolute paths
+
+#### Code Style Subdirectories
+**ALWAYS** check specific code style rules:
+- **CSS/TailwindCSS:** `@~/.agent-os/standards/code-style/css-style.md`
+- **HTML:** `@~/.agent-os/standards/code-style/html-style.md`
+- **JavaScript/TypeScript:** `@~/.agent-os/standards/code-style/javascript-style.md`
+
+#### Best Practices Standards
+**ALWAYS** check `@~/.agent-os/standards/best-practices.md`:
+- Mobile-first & accessible by default (≤400px xs breakpoint)
+- Simple, stable & secure patterns
+- DRY, types first approach
+- Cloud-native, container-first
+- Observability with Spring Boot Actuator + Prometheus
+- ≥85% branch coverage requirement
+
+#### Security Standards
+**ALWAYS** check `@~/.agent-os/standards/security-compliance.md`:
+- Secure defaults & least privilege
+- Dependency & library scanning
+- Secrets management
+- Container hardening
+- Continuous monitoring
+
+#### CI/CD Standards
+**ALWAYS** check `@~/.agent-os/standards/ci-cd-strategy.md`:
+- Automated linting, testing, coverage enforcement
+- Docker build and security scanning
+- Vulnerability scanning and coverage gates
+- Preview environments for PRs
+
+#### Testing Standards
+**ALWAYS** check `@~/.agent-os/standards/testing-strategy.md`:
+- Shift-left testing with early unit & integration tests
+- Microservices testing pyramid
+- Performance and resilience testing
+- Security and compliance testing
+- AI-aware continuous testing
+- Risk-based test planning
+- ≥85% branch coverage requirement
+
+#### Enforcement Standards
+**ALWAYS** check `@~/.agent-os/standards/enforcement.md`:
+- Mandatory technology stack compliance
+- Code style enforcement
+- Architecture patterns
+- Security requirements
+- Performance standards
+
+### Implementation Standards
+
+#### Backend Code (Java/Spring Boot)
+**ALWAYS** follow these patterns:
+- Use Spring Boot 3.5.3 with Java 21 LTS
+- Implement Controller → Service → Repository pattern
+- Use Spring Security with OAuth 2.1 for authentication
+- Use JPA/Hibernate with PostgreSQL 17
+- Implement proper exception handling with @ControllerAdvice
+- Use Spring Boot Actuator for health checks and metrics
+- Follow REST API conventions with proper HTTP status codes
+- Use @Async for background processing
+- Implement proper logging with SLF4J
+
+#### Frontend Code (React/TypeScript)
+**ALWAYS** follow these patterns:
+- Use React 19.1 with TypeScript 5.5
+- Use functional components with hooks
+- Use TanStack Query 5 for data fetching
+- Use Context API for lightweight state management
+- Use TailwindCSS 4.1 + shadcn/ui for styling
+- Start with mobile-first design (≤400px xs breakpoint)
+- Use vitest + jsdom for unit tests
+- Use Cypress for e2e tests
+- Follow accessibility guidelines (WCAG 2.2 AA)
+
+#### Database Code
+**ALWAYS** follow these patterns:
+- Use PostgreSQL 17.5 with pgvector extension
+- Use JPA/Hibernate for ORM
+- Use InfluxDB 3.3 Core for time-series data
+- Implement proper database migrations
+- Use connection pooling
+- Implement proper indexing strategies
+
+#### AI/ML Code
+**ALWAYS** follow these patterns:
+- Use OpenAI GPT-4o for natural language processing
+- Use pgvector for vector embeddings
+- Use LangChain 0.3 for AI application development
+- Implement proper error handling for API calls
+- Use async/await patterns for AI operations
+
+### Quality Assurance Standards
+
+#### Code Quality
+- Follow consistent coding conventions from standards
+- Write comprehensive tests (≥85% branch coverage)
+- Ensure proper error handling and edge case coverage
+- Document all public APIs and interfaces
+- Maintain backward compatibility where required
+- Use static analysis tools (SonarQube, ESLint, Checkstyle)
+
+#### Architecture Principles
+- Design for scalability and maintainability
+- Follow separation of concerns (Controller → Service → Repository)
+- Implement proper logging and monitoring (SLF4J + Prometheus)
+- Consider security implications in all decisions (Spring Security)
+- Plan for performance from the start (connection pooling, caching)
+
+#### Testing Strategy
+- Write unit tests for all new functionality (vitest + jsdom)
+- Implement integration tests for critical paths
+- Perform security testing for new features
+- Conduct performance testing for scalability
+- Use Testcontainers for integration testing
+
+#### Deployment and Operations
+- Follow secure deployment practices (Docker 27.5, multi-stage builds)
+- Implement proper monitoring and alerting (Prometheus 3.5 + Grafana 12.1)
+- Plan for rollback procedures
+- Document operational procedures
+- Use GitHub Actions for CI/CD
+
+### Validation Checklist
+
+Before submitting any code, verify:
+- [ ] Technology stack matches `@~/.agent-os/standards/tech-stack.md`
+- [ ] Code style follows `@~/.agent-os/standards/code-style.md`
+- [ ] Best practices align with `@~/.agent-os/standards/best-practices.md`
+- [ ] Security standards follow `@~/.agent-os/standards/security-compliance.md`
+- [ ] CI/CD strategy follows `@~/.agent-os/standards/ci-cd-strategy.md`
+- [ ] Testing strategy follows `@~/.agent-os/standards/testing-strategy.md`
+- [ ] Architecture follows layered pattern (Controller → Service → Repository)
+- [ ] Tests meet ≥85% branch coverage requirement
+- [ ] Security measures are implemented
+- [ ] Performance requirements are met
+- [ ] Documentation is updated
+- [ ] All standards enforcement rules from `@~/.agent-os/standards/enforcement.md` are followed
+
+### Reference Links
+
+#### Core Standards
+- **Technology Stack:** `@~/.agent-os/standards/tech-stack.md`
+- **Code Style:** `@~/.agent-os/standards/code-style.md`
+- **Best Practices:** `@~/.agent-os/standards/best-practices.md`
+- **Security Compliance:** `@~/.agent-os/standards/security-compliance.md`
+- **CI/CD Strategy:** `@~/.agent-os/standards/ci-cd-strategy.md`
+- **Testing Strategy:** `@~/.agent-os/standards/testing-strategy.md`
+- **Enforcement:** `@~/.agent-os/standards/enforcement.md`
+
+#### Code Style Subdirectories
+- **CSS/TailwindCSS:** `@~/.agent-os/standards/code-style/css-style.md`
+- **HTML:** `@~/.agent-os/standards/code-style/html-style.md`
+- **JavaScript/TypeScript:** `@~/.agent-os/standards/code-style/javascript-style.md`
+description:
+globs:
+alwaysApply: false
+---

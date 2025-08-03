@@ -64,6 +64,46 @@ This project follows Agent OS standards and structured development approach with
 - Observability with Spring Boot Actuator + Prometheus
 - Unit ≥80% branch coverage, static analysis
 
+### Security Standards
+**ALWAYS** follow the security standards defined in `@~/.agent-os/standards/security-compliance.md`:
+- Secure defaults & least privilege
+- Dependency & library scanning
+- Secrets management
+- Container hardening
+- Continuous monitoring
+
+### CI/CD Standards
+**ALWAYS** follow the CI/CD strategy defined in `@~/.agent-os/standards/ci-cd-strategy.md`:
+- Automated linting, testing, coverage enforcement
+- Docker build and security scanning
+- Vulnerability scanning and coverage gates
+- Preview environments for PRs
+
+### Testing Standards
+**ALWAYS** follow the testing strategy defined in `@~/.agent-os/standards/testing-strategy.md`:
+- Shift-left testing with early unit & integration tests
+- Microservices testing pyramid
+- Performance and resilience testing
+- Security and compliance testing
+- AI-aware continuous testing
+- Risk-based test planning
+- ≥85% branch coverage requirement
+
+### Code Style Standards
+**ALWAYS** follow the code style rules defined in `@~/.agent-os/standards/code-style.md`:
+- TypeScript 5 for all runtime code
+- Functional components with hooks
+- 2 spaces indentation, 100 chars soft max
+- PascalCase for components, camelCase for variables/functions
+- Prettier + ESLint (airbnb + @typescript-eslint)
+- Vitest + jsdom for unit tests, Cypress for e2e
+
+### Code Style Subdirectories
+**ALWAYS** follow the specific code style rules:
+- **CSS/TailwindCSS:** `@~/.agent-os/standards/code-style/css-style.md`
+- **HTML:** `@~/.agent-os/standards/code-style/html-style.md`
+- **JavaScript/TypeScript:** `@~/.agent-os/standards/code-style/javascript-style.md`
+
 ### Architecture Standards
 **ALWAYS** follow the layered architecture pattern:
 - Controller → Service → Repository pattern
@@ -89,6 +129,10 @@ Reference: `.cursor/rules/create-spec.mdc`
 ### 4. Execute Tasks
 Use when implementing the next task in the development workflow.
 Reference: `.cursor/rules/execute-tasks.mdc`
+
+### 5. Standards Compliance
+Use when implementing any feature to ensure compliance with ALL Agent OS standards.
+Reference: `.cursor/rules/standards-compliance.mdc`
 
 ## Code Generation Rules
 
@@ -139,7 +183,11 @@ Reference: `.cursor/rules/execute-tasks.mdc`
 1. **ALWAYS** check `@~/.agent-os/standards/tech-stack.md` for technology choices
 2. **ALWAYS** check `@~/.agent-os/standards/code-style.md` for coding conventions
 3. **ALWAYS** check `@~/.agent-os/standards/best-practices.md` for architectural patterns
-4. **ALWAYS** verify compliance with Agent OS standards
+4. **ALWAYS** check `@~/.agent-os/standards/security-compliance.md` for security requirements
+5. **ALWAYS** check `@~/.agent-os/standards/ci-cd-strategy.md` for deployment requirements
+6. **ALWAYS** check `@~/.agent-os/standards/testing-strategy.md` for testing requirements
+7. **ALWAYS** check `@~/.agent-os/standards/enforcement.md` for mandatory compliance rules
+8. **ALWAYS** verify compliance with Agent OS standards
 
 ### Code Quality Standards
 - Follow consistent coding conventions from standards
@@ -214,8 +262,12 @@ Before submitting any code, verify:
 - [ ] Technology stack matches `@~/.agent-os/standards/tech-stack.md`
 - [ ] Code style follows `@~/.agent-os/standards/code-style.md`
 - [ ] Best practices align with `@~/.agent-os/standards/best-practices.md`
+- [ ] Security standards follow `@~/.agent-os/standards/security-compliance.md`
+- [ ] CI/CD strategy follows `@~/.agent-os/standards/ci-cd-strategy.md`
+- [ ] Testing strategy follows `@~/.agent-os/standards/testing-strategy.md`
 - [ ] Architecture follows layered pattern (Controller → Service → Repository)
-- [ ] Tests meet ≥80% branch coverage requirement
+- [ ] Tests meet ≥85% branch coverage requirement
 - [ ] Security measures are implemented
 - [ ] Performance requirements are met
-- [ ] Documentation is updated 
+- [ ] Documentation is updated
+- [ ] All standards enforcement rules from `@~/.agent-os/standards/enforcement.md` are followed 

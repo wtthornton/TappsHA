@@ -18,9 +18,9 @@
 ### Dependencies
 
 - Home Assistant installation with API access
-- Docker 24 environment for containerized deployment
-- PostgreSQL 17 and InfluxDB 3 Core servers
-- Spring Boot 3.3+ with Java 21 LTS
+- Docker 27.5 environment for containerized deployment
+- PostgreSQL 17.5 and InfluxDB 3.3 Core servers
+- Spring Boot 3.5.3 with Java 21 LTS
 
 ## Phase 2: Intelligence Engine
 
@@ -30,8 +30,8 @@
 ### Features
 
 - [ ] **Advanced Pattern Analysis** - Multi-dimensional analysis across different time intervals (1 day, 1 week, 1 month, 6 months, 1 year) using Spring Boot services `L`
-- [ ] **Behavioral Modeling** - AI models using OpenAI GPT-4o and pgvector to identify household routines and preferences `L`
-- [ ] **Automation Recommendation Engine** - Generate context-aware automation suggestions using LangChain 0.2 `M`
+- [ ] **Behavioral Modeling** - AI models using OpenAI GPT-4o and pgvector 0.7 to identify household routines and preferences `L`
+- [ ] **Automation Recommendation Engine** - Generate context-aware automation suggestions using LangChain 0.3 `M`
 - [ ] **Third-Party Tool Discovery** - Identify and recommend relevant Home Assistant integrations `S`
 - [ ] **Predictive Analytics** - Forecast usage patterns and automation opportunities using Spring Boot analytics services `M`
 - [ ] **User Feedback System** - Collect and incorporate user feedback on recommendations `S`
@@ -73,9 +73,9 @@
 
 - [ ] **Predictive Automation** - Anticipate user needs and household changes using OpenAI GPT-4o `L`
 - [ ] **Context-Aware Intelligence** - Consider environmental factors, schedules, and preferences using Spring Boot context services `L`
-- [ ] **Natural Language Processing** - Understand and process automation requests in natural language using LangChain 0.2 `M`
+- [ ] **Natural Language Processing** - Understand and process automation requests in natural language using LangChain 0.3 `M`
 - [ ] **Multi-Household Learning** - Learn from aggregated data while maintaining privacy using pgvector embeddings `XL`
-- [ ] **Advanced Analytics Dashboard** - Comprehensive insights and optimization recommendations using Grafana 11 `M`
+- [ ] **Advanced Analytics Dashboard** - Comprehensive insights and optimization recommendations using Grafana 12.1 `M`
 - [ ] **Integration Marketplace** - Curated recommendations for third-party tools and integrations `S`
 - [ ] **Mobile Application** - PWA with Workbox + Vite plugin for monitoring and control `L`
 
@@ -94,7 +94,7 @@
 
 - [ ] **Multi-Tenant Architecture** - Support multiple Home Assistant installations using Spring Boot multi-tenancy `L`
 - [ ] **Enterprise Security** - Advanced security features for enterprise deployments using Spring Security `M`
-- [ ] **Advanced Monitoring** - Comprehensive system monitoring and alerting using Prometheus v2.50 + Grafana 11 `M`
+- [ ] **Advanced Monitoring** - Comprehensive system monitoring and alerting using Prometheus 3.5 + Grafana 12.1 `M`
 - [ ] **API Management** - RESTful API for third-party integrations using Spring Boot REST controllers `S`
 - [ ] **White-Label Solutions** - Customizable branding for resellers `M`
 - [ ] **Advanced Reporting** - Comprehensive reporting and analytics for enterprise users `M`

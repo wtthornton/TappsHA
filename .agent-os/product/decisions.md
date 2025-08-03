@@ -13,11 +13,11 @@
 
 ### Decision
 
-TappHA will be developed using the Agent OS standards-compliant tech stack: Spring Boot 3.3+ (Java 21 LTS) for backend, React 19 with TypeScript 5 for frontend, and OpenAI GPT-4o with pgvector for AI capabilities, replacing the initially planned Python/FastAPI stack.
+TappHA will be developed using the Agent OS standards-compliant tech stack: Spring Boot 3.5.3 (Java 21 LTS) for backend, React 19.1 with TypeScript 5.5 for frontend, and OpenAI GPT-4o with pgvector 0.7 for AI capabilities, replacing the initially planned Python/FastAPI stack.
 
 ### Context
 
-The Agent OS standards define a specific technology stack that all projects must follow for consistency, maintainability, and best practices. The standards specify Spring Boot 3.3+ (Java 21 LTS) for backend services, React 19 with TypeScript 5 for frontend, and specific AI/ML technologies including OpenAI GPT-4o and pgvector.
+The Agent OS standards define a specific technology stack that all projects must follow for consistency, maintainability, and best practices. The standards specify Spring Boot 3.5.3 (Java 21 LTS) for backend services, React 19.1 with TypeScript 5.5 for frontend, and specific AI/ML technologies including OpenAI GPT-4o and pgvector 0.7.
 
 ### Alternatives Considered
 

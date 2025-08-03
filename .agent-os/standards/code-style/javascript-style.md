@@ -1,26 +1,23 @@
-# JavaScript / TypeScript Style Guide
+# Tech Stack
 
-## Language
-- **TypeScript 5** for all runtime code; JavaScript only for configs.
+## Context
+Default **Agent‑OS** stack aligned to 2025 best-practices.
 
-## React
-- Functional components with hooks.  
-- Co-locate component, test, and styles in same folder.  
-- Use **Suspense** + **lazy()** for code-splitting.  
-- Prefer **server-side rendering** only if hydration cost justified; default to CSR/PWA for Windows targets.
-
-## State Management
-- TanStack Query for async caching, Context for lightweight local state.  
-- Avoid Redux unless complex cross-slice orchestration needed.
-
-## Error Handling
-- Surface user-actionable messages; log stack traces to Loki via `@sentry/browser`.
-
-## Testing
-- **vitest** + **jsdom** for unit tests.  
-- **cypress** for e2e; run headless in Docker for CI.
-
-## Linting Rules Highlights
-- No `any`; use unknown or generics.  
-- Exhaustive deps for `useEffect`.  
-- Avoid default exports; named exports improve tree-shaking.
+| Layer | Technology | Version / Notes |
+|-------|------------|-----------------|
+| **Frontend** | React | **19.1** (stable July 2025) |
+|  | TypeScript | **5.5** |
+|  | Vite | 6.x |
+|  | TailwindCSS | **4.1** + shadcn/ui |
+|  | State | TanStack Query 5, Context API |
+| **Mobile** | PWA | Workbox 7 |
+| **Backend** | Spring Boot | **3.5.3** (Java 21 LTS) |
+|  | Build | Gradle 9, Testcontainers |
+|  | API | REST, gRPC, Kafka 4 |
+| **Data** | PostgreSQL | **17.5**, pgvector 0.7 |
+|  | InfluxDB | **3.3 Core** |
+| **AI** | OpenAI GPT‑4o, LangChain 0.3 |
+| **CI/CD** | GitHub Actions, Docker Buildx |
+| **Runtime** | Docker 27.5, Compose V2 (Windows + WSL2) |
+| **Observability** | Prometheus 3.5, Grafana 12.1, Loki 3 |
+| **Tracing** | OpenTelemetry 1.52 |

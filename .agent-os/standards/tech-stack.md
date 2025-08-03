@@ -1,21 +1,23 @@
 # Tech Stack
 
 ## Context
-Default stack for new Agent OS projects (overridable per product).
+Default **Agent‑OS** stack aligned to 2025 best-practices.
 
 | Layer | Technology | Version / Notes |
 |-------|------------|-----------------|
-| **Frontend** | React | 19 stable, **TypeScript 5** |
-|  | Vite | 5.x |
-|  | TailwindCSS | 4.x + shadcn/ui |
-|  | State | TanStack Query 5, Context API |
-| **Mobile** | PWA | Workbox + Vite plugin |
-| **Backend** | Spring Boot | 3.3+ (Java 21 LTS) |
-|  | Build | Gradle 8.x, Testcontainers |
-|  | API | REST + gRPC + async events (Kafka) |
-| **Data** | PostgreSQL | 17, pgvector extension |
-|  | InfluxDB | 3 Core (Docker) |
-| **AI** | OpenAI GPT-4o, pgvector, LangChain 0.2 |
+| **Frontend** | React | **19.1** (stable July 2025) |
+|  | TypeScript | **5.5** |
+|  | Vite | 6.x |
+|  | TailwindCSS | **4.1** + shadcn/ui |
+|  | State | TanStack Query 5, Context API |
+| **Mobile** | PWA | Workbox 7 |
+| **Backend** | Spring Boot | **3.5.3** (Java 21 LTS) |
+|  | Build | Gradle 9, Testcontainers |
+|  | API | REST, gRPC, Kafka 4 |
+| **Data** | PostgreSQL | **17.5**, pgvector 0.7 |
+|  | InfluxDB | **3.3 Core** |
+| **AI** | OpenAI GPT‑4o, LangChain 0.3 |
 | **CI/CD** | GitHub Actions, Docker Buildx |
-| **Runtime** | Docker 24, Compose V2 (Windows + WSL2) |
-| **Observability** | Prometheus v2.50, Grafana 11, Loki 3 |
+| **Runtime** | Docker 27.5, Compose V2 (Windows + WSL2) |
+| **Observability** | Prometheus 3.5, Grafana 12.1, Loki 3 |
+| **Tracing** | OpenTelemetry 1.52 |

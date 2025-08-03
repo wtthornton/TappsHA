@@ -1,31 +1,23 @@
-# CSS Style Guide (TailwindCSS 4)
+# Tech Stack
 
-### Multi-line Utility Layout
-Follow the custom multi-line convention to maximise diff clarity:
+## Context
+Default **Agent‑OS** stack aligned to 2025 best-practices.
 
-```html
-<button class="btn-primary text-white
-              focus:outline-none focus-visible:ring
-              xs:text-sm
-              sm:text-base
-              md:text-lg md:px-6
-              lg:text-xl lg:px-8 lg:rounded-lg
-              xl:text-2xl xl:px-10
-              2xl:text-3xl 2xl:px-12">
-  Buy now
-</button>
-```
-
-- Top line: no prefix (mobile).  
-- One line per breakpoint; align vertically.  
-- `hover:` & `focus:` on their own line.  
-- Custom `xs` breakpoint (400 px).  
-
-### Dark-Mode
-- Use Tailwind’s **`class`** strategy; dark utilities on separate lines.
-
-### Plugins
-- `@tailwindcss/typography`, `@tailwindcss/forms`, `tailwindcss-animate`.
-
-### Composition
-- Prefer **`@apply`** in `*.css` for frequently reused patterns.
+| Layer | Technology | Version / Notes |
+|-------|------------|-----------------|
+| **Frontend** | React | **19.1** (stable July 2025) |
+|  | TypeScript | **5.5** |
+|  | Vite | 6.x |
+|  | TailwindCSS | **4.1** + shadcn/ui |
+|  | State | TanStack Query 5, Context API |
+| **Mobile** | PWA | Workbox 7 |
+| **Backend** | Spring Boot | **3.5.3** (Java 21 LTS) |
+|  | Build | Gradle 9, Testcontainers |
+|  | API | REST, gRPC, Kafka 4 |
+| **Data** | PostgreSQL | **17.5**, pgvector 0.7 |
+|  | InfluxDB | **3.3 Core** |
+| **AI** | OpenAI GPT‑4o, LangChain 0.3 |
+| **CI/CD** | GitHub Actions, Docker Buildx |
+| **Runtime** | Docker 27.5, Compose V2 (Windows + WSL2) |
+| **Observability** | Prometheus 3.5, Grafana 12.1, Loki 3 |
+| **Tracing** | OpenTelemetry 1.52 |

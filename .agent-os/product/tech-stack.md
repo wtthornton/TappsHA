@@ -1,26 +1,26 @@
 # Technical Stack
 
 ## Application Framework
-- **Backend:** Spring Boot 3.3+ (Java 21 LTS) with REST + gRPC + async events (Kafka)
-- **Frontend:** React 19 stable with TypeScript 5
-- **AI/ML:** OpenAI GPT-4o, pgvector, LangChain 0.2
+- **Backend:** Spring Boot 3.5.3 (Java 21 LTS) with REST + gRPC + async events (Kafka 4)
+- **Frontend:** React 19.1 with TypeScript 5.5
+- **AI/ML:** OpenAI GPT-4o, pgvector 0.7, LangChain 0.3
 
 ## Database System
-- **Primary Database:** PostgreSQL 17 with pgvector extension for structured data
-- **Time Series Data:** InfluxDB 3 Core (Docker) for event streams and metrics
+- **Primary Database:** PostgreSQL 17.5 with pgvector 0.7 extension for structured data
+- **Time Series Data:** InfluxDB 3.3 Core (Docker) for event streams and metrics
 - **Cache:** Redis 7.2+ for session management and real-time data
 
 ## JavaScript Framework
-- **Frontend Framework:** React 19 with TypeScript 5
+- **Frontend Framework:** React 19.1 with TypeScript 5.5
 - **State Management:** TanStack Query 5, Context API
-- **Build Tool:** Vite 5.x
+- **Build Tool:** Vite 6.x
 
 ## Import Strategy
 - **Package Management:** npm with package.json
 - **Module System:** ES6 modules with TypeScript 5
 
 ## CSS Framework
-- **UI Framework:** TailwindCSS 4.x + shadcn/ui
+- **UI Framework:** TailwindCSS 4.1 + shadcn/ui
 - **Component Library:** shadcn/ui for accessible components
 - **Icons:** Heroicons 2.0+
 
@@ -38,13 +38,13 @@
 - **Custom Icons:** SVG-based custom icon system
 
 ## Application Hosting
-- **Container Platform:** Docker 24 with Docker Compose V2
+- **Container Platform:** Docker 27.5 with Docker Compose V2
 - **Orchestration:** Kubernetes for production deployments
 - **Platform:** Self-hosted or cloud (AWS, GCP, Azure)
 
 ## Database Hosting
-- **Primary:** Self-hosted PostgreSQL 17 on dedicated server
-- **Time Series:** Self-hosted InfluxDB 3 Core on dedicated server
+- **Primary:** Self-hosted PostgreSQL 17.5 on dedicated server
+- **Time Series:** Self-hosted InfluxDB 3.3 Core on dedicated server
 - **Cache:** Self-hosted Redis on dedicated server
 
 ## Asset Hosting
@@ -55,7 +55,7 @@
 ## Deployment Solution
 - **Containerization:** Docker Buildx with multi-stage builds
 - **CI/CD:** GitHub Actions with automated testing and deployment
-- **Monitoring:** Prometheus v2.50 + Grafana 11 for system monitoring
+- **Monitoring:** Prometheus 3.5 + Grafana 12.1 for system monitoring
 - **Logging:** Loki 3 for log aggregation
 
 ## Code Repository URL
@@ -67,8 +67,8 @@
 
 ### AI/ML Stack
 - **Machine Learning:** OpenAI GPT-4o for natural language processing
-- **Vector Database:** pgvector extension for PostgreSQL
-- **LangChain:** 0.2 for AI application development
+- **Vector Database:** pgvector 0.7 extension for PostgreSQL
+- **LangChain:** 0.3 for AI application development
 - **Time Series Analysis:** Prophet 1.1+ for forecasting
 
 ### Home Assistant Integration
@@ -89,6 +89,6 @@
 - **Load Balancing:** Nginx for load balancing and reverse proxy
 
 ### Observability
-- **Metrics:** Spring Boot Actuator with Prometheus
-- **Traces:** OpenTelemetry 1.28 + OTLP/HTTP exporter
-- **Dashboards:** Grafana 11 with exported JSON configurations 
+- **Metrics:** Spring Boot Actuator with Prometheus 3.5
+- **Traces:** OpenTelemetry 1.52 + OTLP/HTTP exporter
+- **Dashboards:** Grafana 12.1 with exported JSON configurations 
