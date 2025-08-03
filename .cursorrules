@@ -1,0 +1,192 @@
+# TappHA Project Rules
+
+## Project Overview
+This project follows Agent OS standards and structured development approach with specific rules for different phases of development.
+
+## Standards Compliance (MANDATORY)
+
+### Technology Stack Standards
+**ALWAYS** use the technology stack defined in `@~/.agent-os/standards/tech-stack.md`:
+- Backend: Spring Boot 3.3+ (Java 21 LTS) with REST + gRPC + async events (Kafka)
+- Frontend: React 19 stable with TypeScript 5
+- Database: PostgreSQL 17 with pgvector extension
+- Time Series: InfluxDB 3 Core (Docker)
+- AI/ML: OpenAI GPT-4o, pgvector, LangChain 0.2
+- Build: Vite 5.x, TailwindCSS 4.x + shadcn/ui
+- State: TanStack Query 5, Context API
+- Runtime: Docker 24, Compose V2
+- Observability: Prometheus v2.50, Grafana 11, Loki 3
+
+### Code Style Standards
+**ALWAYS** follow the code style rules defined in `@~/.agent-os/standards/code-style.md`:
+- TypeScript 5 for all runtime code
+- Functional components with hooks
+- 2 spaces indentation, 100 chars soft max
+- PascalCase for components, camelCase for variables/functions
+- Prettier + ESLint (airbnb + @typescript-eslint)
+- Vitest + jsdom for unit tests, Cypress for e2e
+
+### Best Practices Standards
+**ALWAYS** follow the best practices defined in `@~/.agent-os/standards/best-practices.md`:
+- Mobile-first & accessible by default (≤400px xs breakpoint)
+- Keep it simple, steady & secure
+- DRY, types first
+- Cloud-native, container-first
+- Observability with Spring Boot Actuator + Prometheus
+- Unit ≥80% branch coverage, static analysis
+
+### Architecture Standards
+**ALWAYS** follow the layered architecture pattern:
+- Controller → Service → Repository pattern
+- Clear separation of concerns
+- JPA/Hibernate with PostgreSQL
+- Spring Security with OAuth 2.1
+- OpenTelemetry 1.28 + OTLP/HTTP exporter
+
+## Available Rules
+
+### 1. Analyze Product
+Use when you need to analyze the current codebase and understand the project structure.
+Reference: `.cursor/rules/analyze-product.mdc`
+
+### 2. Plan Product
+Use when planning a new product or major feature from concept to implementation.
+Reference: `.cursor/rules/plan-product.mdc`
+
+### 3. Create Specification
+Use when creating detailed technical specifications for new features.
+Reference: `.cursor/rules/create-spec.mdc`
+
+### 4. Execute Tasks
+Use when implementing the next task in the development workflow.
+Reference: `.cursor/rules/execute-tasks.mdc`
+
+## Code Generation Rules
+
+### Backend Code (Java/Spring Boot)
+**ALWAYS** follow these patterns:
+- Use Spring Boot 3.3+ with Java 21 LTS
+- Implement Controller → Service → Repository pattern
+- Use Spring Security with OAuth 2.1 for authentication
+- Use JPA/Hibernate with PostgreSQL 17
+- Implement proper exception handling with @ControllerAdvice
+- Use Spring Boot Actuator for health checks and metrics
+- Follow REST API conventions with proper HTTP status codes
+- Use @Async for background processing
+- Implement proper logging with SLF4J
+
+### Frontend Code (React/TypeScript)
+**ALWAYS** follow these patterns:
+- Use React 19 with TypeScript 5
+- Use functional components with hooks
+- Use TanStack Query 5 for data fetching
+- Use Context API for lightweight state management
+- Use TailwindCSS 4.x + shadcn/ui for styling
+- Start with mobile-first design (≤400px xs breakpoint)
+- Use vitest + jsdom for unit tests
+- Use Cypress for e2e tests
+- Follow accessibility guidelines (WCAG 2.2 AA)
+
+### Database Code
+**ALWAYS** follow these patterns:
+- Use PostgreSQL 17 with pgvector extension
+- Use JPA/Hibernate for ORM
+- Use InfluxDB 3 Core for time-series data
+- Implement proper database migrations
+- Use connection pooling
+- Implement proper indexing strategies
+
+### AI/ML Code
+**ALWAYS** follow these patterns:
+- Use OpenAI GPT-4o for natural language processing
+- Use pgvector for vector embeddings
+- Use LangChain 0.2 for AI application development
+- Implement proper error handling for API calls
+- Use async/await patterns for AI operations
+
+## Development Process
+
+### Before Writing Code
+1. **ALWAYS** check `@~/.agent-os/standards/tech-stack.md` for technology choices
+2. **ALWAYS** check `@~/.agent-os/standards/code-style.md` for coding conventions
+3. **ALWAYS** check `@~/.agent-os/standards/best-practices.md` for architectural patterns
+4. **ALWAYS** verify compliance with Agent OS standards
+
+### Code Quality Standards
+- Follow consistent coding conventions from standards
+- Write comprehensive tests (≥80% branch coverage)
+- Ensure proper error handling and edge case coverage
+- Document all public APIs and interfaces
+- Maintain backward compatibility where required
+- Use static analysis tools (SonarQube, ESLint, Checkstyle)
+
+### Architecture Principles
+- Design for scalability and maintainability
+- Follow separation of concerns (Controller → Service → Repository)
+- Implement proper logging and monitoring (SLF4J + Prometheus)
+- Consider security implications in all decisions (Spring Security)
+- Plan for performance from the start (connection pooling, caching)
+
+### Testing Strategy
+- Write unit tests for all new functionality (vitest + jsdom)
+- Implement integration tests for critical paths
+- Perform security testing for new features
+- Conduct performance testing for scalability
+- Use Testcontainers for integration testing
+
+### Deployment and Operations
+- Follow secure deployment practices (Docker 24, multi-stage builds)
+- Implement proper monitoring and alerting (Prometheus + Grafana)
+- Plan for rollback procedures
+- Document operational procedures
+- Use GitHub Actions for CI/CD
+
+## Error Handling and Logging
+- Use consistent, detailed logging format (SLF4J)
+- Include all necessary details for debugging
+- Implement proper error handling throughout the application
+- Log security events and performance metrics
+- Use structured logging with proper log levels
+
+## Security Standards
+- Use Spring Security with OAuth 2.1
+- Implement proper input validation
+- Use HTTPS/TLS 1.3 for all communications
+- Follow OWASP Top-10 counter-measures
+- Use Helmet in React for security headers
+- Implement rate limiting and request validation
+
+## Performance Standards
+- TTI ≤ 2s on LTE for frontend
+- P95 backend ≤ 200ms
+- Use Redis for caching
+- Implement proper database indexing
+- Use connection pooling
+- Monitor with Prometheus v2.50 + Grafana 11
+
+## Documentation Requirements
+- Maintain current architecture documentation
+- Document all configuration and setup procedures
+- Create user guides and API documentation
+- Keep README files updated
+- Document deployment and operational procedures
+- Use JavaDoc for public APIs, TSDoc for exported TypeScript
+
+## Standards Enforcement
+
+### Mandatory Compliance
+- **NEVER** deviate from Agent OS standards without explicit approval
+- **ALWAYS** reference standards files when making technology decisions
+- **ALWAYS** follow the established patterns and conventions
+- **ALWAYS** use the specified versions and configurations
+
+### Validation Checklist
+Before submitting any code, verify:
+- [ ] Technology stack matches `@~/.agent-os/standards/tech-stack.md`
+- [ ] Code style follows `@~/.agent-os/standards/code-style.md`
+- [ ] Best practices align with `@~/.agent-os/standards/best-practices.md`
+- [ ] Architecture follows layered pattern (Controller → Service → Repository)
+- [ ] Tests meet ≥80% branch coverage requirement
+- [ ] Security measures are implemented
+- [ ] Performance requirements are met
+- [ ] Documentation is updated 

@@ -1,9 +1,13 @@
----
-alwaysApply: false
----
-
 # Execute Task
 
-Execute the next task.
+Execute the next task following Agent OS standards.
+
+**MANDATORY**: Before writing any code, ensure compliance with:
+- Technology stack: `@~/.agent-os/standards/tech-stack.md`
+- Code style: `@~/.agent-os/standards/code-style.md`
+- Best practices: `@~/.agent-os/standards/best-practices.md`
+
+Refer to the instructions located in @~/.agent-os/instructions/execute-tasks.md
+
 
 Refer to the instructions located in @~/.agent-os/instructions/execute-tasks.md
