@@ -10,6 +10,8 @@ This directory contains strategic questions designed to drive better product dev
 
 | Document | Focus Area | Status | Last Updated |
 |----------|------------|--------|--------------|
+| [prioritized-questions.md](./prioritized-questions.md) | **All questions scored and prioritized** | Active | 2025-01-03 |
+| [scoring-algorithm.md](./scoring-algorithm.md) | **Scoring algorithm and methodology** | Active | 2025-01-03 |
 | [roadmap-analysis-questions.md](./roadmap-analysis-questions.md) | Roadmap validation and improvement | Active | 2025-01-03 |
 | [qa-template.md](./qa-template.md) | Template for new Q&A documents | Active | 2025-01-03 |
 
@@ -23,6 +25,15 @@ This directory contains strategic questions designed to drive better product dev
 | `business-model-questions.md` | Monetization and go-to-market | Medium | 2025-01-25 |
 | `security-privacy-questions.md` | Security and privacy concerns | High | 2025-01-30 |
 | `competitive-analysis-questions.md` | Competitive landscape analysis | Medium | 2025-02-05 |
+
+### 📊 Priority Distribution
+
+| Priority Level | Count | Percentage | Action Required |
+|----------------|-------|------------|----------------|
+| **🔴 Critical (80-100)** | 5 | 21% | **Must address immediately** |
+| **🟡 High (60-79)** | 7 | 29% | Address in current phase |
+| **🟢 Medium (40-59)** | 6 | 25% | Address in next phase |
+| **🔵 Low (1-39)** | 6 | 25% | Address when resources permit |
 
 ## Usage Guidelines
 
