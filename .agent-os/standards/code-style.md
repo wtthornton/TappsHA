@@ -1,32 +1,17 @@
-# Code Style Guide
+# Code Style Guide (Java/Spring & React/TypeScript)
 
-## Context
-Unified rules for TypeScript/React & Java/Spring Boot.
+## General Formatting
+- Use Prettier and ESLint for JS/TS; Spotless and Checkstyle for Java.
+- Auto-format on save and enforce in CI.
 
-<conditional-block context-check="general-formatting">
-IF this section read:
-  SKIP
-ELSE:
-  READ:
+## Naming Conventions
+- **Java:** Packages lowercase, Classes PascalCase, methods camelCase, constants UPPER_SNAKE_CASE.
+- **TypeScript/JS:** Variables/functions camelCase, React components PascalCase.
 
-### Indentation
-- **2 spaces**
+## Import Organization
+- Avoid Java wildcard imports; explicit imports only.
+- Order: external libs → internal modules. Remove unused imports automatically.
 
-### Line Length
-- Max 100 chars
-
-### Naming Conventions
-| Artifact | Convention | Example |
-|----------|------------|---------|
-| React components | PascalCase | `UserAvatar` |
-| JS/TS | camelCase | `fetchUser` |
-| Java | PascalCase | `OrderService` |
-| Constants | UPPER_CASE | `MAX_RETRY` |
-
-### Imports
-- Auto‑sorted, absolute paths rooted at `src`.
-
-### Lint & Format
-- Prettier, ESLint (`airbnb`), Spotless, Checkstyle.
-
-</conditional-block>
+## Structure
+- Spring Boot: package by feature/domain; root @SpringBootApplication for scanning.
+- React: functional components with hooks, co-locate component, test, and style files.

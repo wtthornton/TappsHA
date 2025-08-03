@@ -1,30 +1,22 @@
 # Security & Compliance Standard
 
-## Context
-Aligns with OWASP, AWS Well-Architected Security, and Google's BeyondCorp (Zero Trust).
+## Secure Defaults & Hardening
+- Deny-by-default configs; enable TLS and security headers by default.
+- Run containers as non-root; drop unnecessary Linux capabilities.
 
-### 1. Secure Defaults & Least Privilege
-- Deny-by-default, explicit allow for APIs and networks
-- Enforce HTTPS, HSTS, CSP, secure cookies
-- Minimal database and cloud permissions
+## Dependency Management (SCA)
+- Use OWASP Dependency-Check, Snyk, Dependabot for vulnerability scanning.
+- Maintain SBOM and update base images regularly.
 
-### 2. Dependency & Library Scanning
-- Automate SCA scans (Dep Check, npm audit, Snyk)
-- Enable Dependabot and monitor GitHub advisories
-- Update Docker base images regularly
+## Container & Infra Security
+- Minimal base images (alpine/distroless) and regular scanning (Trivy).
+- Scan IaC for misconfigurations (Checkov, AWS Config).
 
-### 3. Secrets Management
-- No plaintext secrets in code
-- Use GitHub Secrets, AWS Secrets Manager, or Vault
-- Rotate and monitor secrets, enable secret scanning
+## Secret Management
+- Never commit secrets; use Vault, AWS Secrets Manager, or GitHub Secrets.
+- Rotate secrets regularly and monitor for leaks.
 
-### 4. Container Hardening
-- Minimal base images (alpine/distroless)
-- Run containers as non-root
-- Apply seccomp/AppArmor profiles
-- Drop unneeded Linux capabilities
-
-### 5. Continuous Monitoring
-- Enable logging, auditing, and CI/CD gates
-- Optional: CodeQL, OWASP ZAP baseline in CI
-- Incident response plan & automated alerting
+## OWASP Top 10 Compliance
+- Enforce robust authz checks; use parameterized queries & escaping.
+- Avoid cryptographic failures; use vetted libraries.
+- Monitor logs & alerts for suspicious activity.

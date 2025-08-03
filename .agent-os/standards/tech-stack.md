@@ -1,23 +1,23 @@
-# Tech Stack
+# Tech Stack (2025)
 
-## Context
-Default **Agent‑OS** stack aligned to 2025 best-practices.
+## Frontend
+- React 18.x + TypeScript 5.x
+- TailwindCSS 4.x with modern JIT engine
+- Vite or Webpack 5 for builds
 
-| Layer | Technology | Version / Notes |
-|-------|------------|-----------------|
-| **Frontend** | React | **19.1** (stable July 2025) |
-|  | TypeScript | **5.5** |
-|  | Vite | 6.x |
-|  | TailwindCSS | **4.1** + shadcn/ui |
-|  | State | TanStack Query 5, Context API |
-| **Mobile** | PWA | Workbox 7 |
-| **Backend** | Spring Boot | **3.5.3** (Java 21 LTS) |
-|  | Build | Gradle 9, Testcontainers |
-|  | API | REST, gRPC, Kafka 4 |
-| **Data** | PostgreSQL | **17.5**, pgvector 0.7 |
-|  | InfluxDB | **3.3 Core** |
-| **AI** | OpenAI GPT‑4o, LangChain 0.3 |
-| **CI/CD** | GitHub Actions, Docker Buildx |
-| **Runtime** | Docker 27.5, Compose V2 (Windows + WSL2) |
-| **Observability** | Prometheus 3.5, Grafana 12.1, Loki 3 |
-| **Tracing** | OpenTelemetry 1.52 |
+## Backend
+- Spring Boot 3.5.x (Java 17+)
+- Maven or Gradle for builds
+- Micrometer + OpenTelemetry for observability
+
+## Databases & Time Series
+- PostgreSQL 15/16 with pgvector support
+- InfluxDB 2.x (3.x for high-scale use)
+
+## Observability
+- Prometheus 3.x, Grafana 10.x
+- Alertmanager for notifications
+
+## CI/CD & Containers
+- Docker 24+ multi-stage builds
+- GitHub Actions for CI/CD pipelines
