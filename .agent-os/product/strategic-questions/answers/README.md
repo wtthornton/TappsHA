@@ -69,6 +69,7 @@ YYYY-MM-DD-HHMM-[priority-level]-questions-research.md
 - **Actionable Recommendations**: Specific next steps
 - **Risk Assessment**: Clear risk level and mitigations
 - **Documentation**: All sources and references cited
+- **AI Model Documentation**: Complete documentation of AI model used, capabilities, and research process
 
 ## 📈 Success Metrics
 
@@ -77,6 +78,7 @@ YYYY-MM-DD-HHMM-[priority-level]-questions-research.md
 - **Evidence Strength**: Quantitative data preferred
 - **Recommendation Clarity**: Actionable and specific
 - **Risk Coverage**: All risks identified and mitigated
+- **AI Model Documentation**: Complete documentation of model, capabilities, and process
 
 ### Progress Metrics
 - **Completion Rate**: Questions answered per priority level
