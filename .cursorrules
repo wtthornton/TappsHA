@@ -3,6 +3,35 @@
 ## Project Overview
 This project follows Agent OS standards and structured development approach with specific rules for different phases of development.
 
+## Home Assistant Integration Rules
+
+### MANDATORY: Home Assistant Documentation Reference
+**ALWAYS** reference Home Assistant documentation when implementing any Home Assistant integration features:
+
+#### Primary Documentation Sources
+- **Development Index:** https://developers.home-assistant.io/docs/development_index
+- **WebSocket API:** https://developers.home-assistant.io/docs/api/websocket/
+- **REST API:** https://developers.home-assistant.io/docs/api/rest/
+- **External APIs:** https://developers.home-assistant.io/docs/api/
+
+#### Implementation Standards
+- **ALWAYS** follow Home Assistant's layered architecture patterns
+- **ALWAYS** use official WebSocket API patterns from documentation
+- **ALWAYS** implement proper authentication flow (auth_required → auth → auth_ok)
+- **ALWAYS** use unique `id` fields for request/response correlation
+- **ALWAYS** subscribe to `state_changed` events using `subscribe_events` command
+- **ALWAYS** implement ping/pong heartbeat mechanism
+- **ALWAYS** enable `coalesce_messages` feature for bulk processing
+- **ALWAYS** handle Home Assistant specific error codes and messages
+- **ALWAYS** cite Home Assistant documentation URLs in comments
+- **ALWAYS** test against actual Home Assistant instances
+
+#### Reference Rules
+- **ALWAYS** check `.cursor/rules/home-assistant-documentation.mdc` for comprehensive documentation rules
+- **ALWAYS** check `.cursor/rules/home-assistant-websocket.mdc` for WebSocket API implementation standards
+- **ALWAYS** check `.agent-os/checklists/home-assistant-integration-checklist.md` for implementation checklist
+- **ALWAYS** check `.agent-os/documentation/home-assistant-docs-index.md` for complete documentation index
+
 ## Standards Compliance (MANDATORY)
 
 ### Technology Stack Standards
