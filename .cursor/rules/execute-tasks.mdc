@@ -6,8 +6,13 @@ Execute the next task following Agent OS standards.
 - Technology stack: `@~/.agent-os/standards/tech-stack.md`
 - Code style: `@~/.agent-os/standards/code-style.md`
 - Best practices: `@~/.agent-os/standards/best-practices.md`
+- Security compliance: `@~/.agent-os/standards/security-compliance.md`
+- Testing strategy: `@~/.agent-os/standards/testing-strategy.md`
 
-Refer to the instructions located in @~/.agent-os/instructions/execute-tasks.md
-
+**MANDATORY**: Lessons Learned Integration
+- **ALWAYS** capture lessons learned after each sub-task completion
+- **ALWAYS** include lessons learned sub-task in every task list
+- **ALWAYS** complete lessons learned sub-task after each main task
+- **ALWAYS** follow lessons learned framework: `@~/.agent-os/lessons-learned/README.md`
 
 Refer to the instructions located in @~/.agent-os/instructions/execute-tasks.md

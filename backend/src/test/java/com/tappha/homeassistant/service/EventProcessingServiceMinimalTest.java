@@ -135,7 +135,7 @@ class EventProcessingServiceMinimalTest {
         when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
 
         // Act
-        eventProcessingService.processEvent(eventJson, "homeassistant-events", 0L);
+        eventProcessingService.processEvent(eventJson);
 
         // Assert
         verify(eventRepository).save(testEvent);
@@ -153,7 +153,7 @@ class EventProcessingServiceMinimalTest {
         when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
 
         // Act
-        eventProcessingService.processEvent(eventJson, "homeassistant-events", 0L);
+        eventProcessingService.processEvent(eventJson);
 
         // Assert
         verify(eventRepository).save(testEvent);
@@ -170,7 +170,7 @@ class EventProcessingServiceMinimalTest {
         when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
 
         // Act
-        eventProcessingService.processEvent(eventJson, "homeassistant-events", 0L);
+        eventProcessingService.processEvent(eventJson);
 
         // Assert - Should be filtered out
         verifyNoInteractions(eventRepository);
@@ -185,7 +185,7 @@ class EventProcessingServiceMinimalTest {
 
         // Act & Assert - Should not throw exception
         assertDoesNotThrow(() -> {
-            eventProcessingService.processEvent(eventJson, "homeassistant-events", 0L);
+            eventProcessingService.processEvent(eventJson);
         });
 
         // Verify no interactions with repositories

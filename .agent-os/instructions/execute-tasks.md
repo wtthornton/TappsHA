@@ -98,7 +98,9 @@ Check for any running development server and ask user permission to shut it down
 
 ### Step 4: Git Branch Management
 
-**Note:** After completing significant tasks, capture lessons learned using `@~/.agent-os/lessons-learned/README.md`
+**MANDATORY:** After completing each sub-task, capture lessons learned using `@~/.agent-os/lessons-learned/README.md`
+
+**MANDATORY:** Every task list must include a lessons learned sub-task as the final sub-task of each main task.
 
 Use the git-workflow subagent to manage git branches to ensure proper isolation by creating or switching to the appropriate branch for the spec.
 
@@ -160,6 +162,18 @@ Execute all assigned parent tasks and their subtasks using @~/.agent-os/instruct
     ELSE:
       CONTINUE with next task
 </task_status_check>
+
+<lessons_learned_integration>
+  AFTER each sub-task completion:
+    CAPTURE lessons learned using appropriate template
+    CATEGORIZE lesson appropriately (development, testing, deployment, etc.)
+    INCLUDE actionable recommendations
+    TAG lesson for future reference
+  AFTER each main task completion:
+    COMPLETE lessons learned sub-task
+    UPDATE lessons learned document
+    IDENTIFY high-impact lessons for standards integration
+</lessons_learned_integration>
 
 <instructions>
   ACTION: Load execute-task.md instructions once at start

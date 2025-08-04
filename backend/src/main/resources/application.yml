@@ -123,4 +123,39 @@ spring:
     url: http://localhost:8086
     token: ${INFLUXDB_TOKEN}
     org: tappha
-    bucket: tappha-metrics 
+    bucket: tappha-metrics
+
+# OpenAI Configuration
+openai:
+  api:
+    key: ${OPENAI_API_KEY}
+    base-url: https://api.openai.com/v1
+  model: gpt-4o-mini
+  max-tokens: 1000
+  temperature: 0.7
+  timeout: 30000
+  max-retries: 3
+  rate-limit:
+    requests-per-minute: 60
+    tokens-per-minute: 150000
+    burst-size: 10
+
+# Spring AI Configuration
+spring:
+  ai:
+    openai:
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.7
+          max-tokens: 1000
+      embedding:
+        options:
+          model: text-embedding-3-small
+          dimensions: 1536
+    vectorstore:
+      pgvector:
+        dimensions: 1536
+        distance-type: cosine
+        index-type: ivfflat
+        lists: 100 

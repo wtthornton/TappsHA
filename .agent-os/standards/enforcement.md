@@ -356,6 +356,8 @@ Before generating any code, verify:
 
 **ALWAYS** capture lessons learned after completing any significant development task or milestone.
 
+**MANDATORY**: Every task list must include a lessons learned sub-task as the final sub-task of each main task.
+
 ### Lessons Learned Requirements
 
 #### 1. Capture Triggers
@@ -364,6 +366,7 @@ Before generating any code, verify:
 - **ALWAYS** capture lessons after incident resolution
 - **ALWAYS** capture lessons after performance optimizations
 - **ALWAYS** capture lessons after security implementations
+- **MANDATORY**: Include lessons learned sub-task in every task list
 
 #### 2. Capture Process
 ```markdown
@@ -389,6 +392,8 @@ Before completing any development session, verify:
 - [ ] Lessons include actionable recommendations
 - [ ] Lessons are properly categorized and tagged
 - [ ] High-impact lessons are identified for integration
+- [ ] Every task list includes lessons learned sub-tasks
+- [ ] Lessons learned sub-tasks are marked complete after task completion
 
 ### Lessons Learned File Structure Standards
 
@@ -415,6 +420,8 @@ Before completing any development session, verify:
 - **ALWAYS** include actionable recommendations
 - **ALWAYS** categorize lessons appropriately
 - **ALWAYS** link to related lessons and standards
+- **MANDATORY**: Include lessons learned sub-task in every task list
+- **MANDATORY**: Complete lessons learned sub-task after each main task
 
 #### Quality Standards
 - **ALWAYS** provide clear context and background

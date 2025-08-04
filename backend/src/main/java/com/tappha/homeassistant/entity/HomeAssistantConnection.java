@@ -122,6 +122,11 @@ public class HomeAssistantConnection {
         this.encryptedToken = encryptedToken;
     }
     
+    // Convenience method for tests
+    public void setToken(String token) {
+        this.encryptedToken = token;
+    }
+    
     public ConnectionStatus getStatus() {
         return status;
     }

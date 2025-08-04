@@ -111,6 +111,22 @@ public class EventProcessingService {
     public void processEvent(@Payload String eventJson, 
                            @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
                            @Header(KafkaHeaders.OFFSET) long offset) {
+        processEventInternal(eventJson);
+    }
+    
+    /**
+     * Public method for testing event processing without Kafka headers
+     * @param eventJson JSON string of the event
+     */
+    public void processEvent(String eventJson) {
+        processEventInternal(eventJson);
+    }
+    
+    /**
+     * Internal method for processing events
+     * @param eventJson JSON string of the event
+     */
+    private void processEventInternal(String eventJson) {
         
         long startTime = System.currentTimeMillis();
         

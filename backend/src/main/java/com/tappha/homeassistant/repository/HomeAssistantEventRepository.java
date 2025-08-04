@@ -266,4 +266,25 @@ public interface HomeAssistantEventRepository extends JpaRepository<HomeAssistan
      * @return count of events
      */
     long countByEntityId(String entityId);
+    
+    /**
+     * Find recent events by connection ID with limit
+     * @param connectionId the connection ID
+     * @param limit the maximum number of events to return
+     * @return list of recent events
+     */
+    @Query("SELECT e FROM HomeAssistantEvent e WHERE e.connection.id = :connectionId ORDER BY e.timestamp DESC")
+    List<HomeAssistantEvent> findRecentEventsByConnectionId(@Param("connectionId") UUID connectionId, @Param("limit") int limit);
+    
+    /**
+     * Find events by connection ID and timestamp range using Instant
+     * @param connectionId the connection ID
+     * @param startTime the start time as Instant
+     * @param endTime the end time as Instant
+     * @return list of events
+     */
+    @Query("SELECT e FROM HomeAssistantEvent e WHERE e.connection.id = :connectionId AND e.timestamp BETWEEN :startTime AND :endTime")
+    List<HomeAssistantEvent> findByConnectionIdAndTimestampBetween(@Param("connectionId") UUID connectionId, 
+                                                                  @Param("startTime") java.time.Instant startTime, 
+                                                                  @Param("endTime") java.time.Instant endTime);
 } 

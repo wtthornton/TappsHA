@@ -16,10 +16,13 @@ import org.springframework.util.concurrent.ListenableFuture;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doReturn;
 
 /**
  * Unit tests for EventProcessingService
@@ -41,7 +44,7 @@ class EventProcessingServiceTest {
     private HomeAssistantConnectionMetricsRepository metricsRepository;
 
     @Mock
-    private ListenableFuture<SendResult<String, String>> sendResultFuture;
+    private CompletableFuture<SendResult<String, String>> sendResultFuture;
 
     private EventProcessingService eventProcessingService;
 
@@ -79,7 +82,7 @@ class EventProcessingServiceTest {
         String eventJson = "{\"id\":\"" + testEvent.getId() + "\",\"eventType\":\"state_changed\"}";
         when(objectMapper.writeValueAsString(testEvent)).thenReturn(eventJson);
         when(kafkaTemplate.send(anyString(), anyString(), anyString())).thenReturn(sendResultFuture);
-        when(sendResultFuture.addCallback(any(), any())).thenReturn(sendResultFuture);
+        when(sendResultFuture).thenReturn(CompletableFuture.completedFuture(null));
 
         // Act
         eventProcessingService.sendEventToKafka(testEvent);
@@ -95,12 +98,7 @@ class EventProcessingServiceTest {
         String eventJson = "{\"id\":\"" + testEvent.getId() + "\",\"eventType\":\"state_changed\"}";
         when(objectMapper.writeValueAsString(testEvent)).thenReturn(eventJson);
         when(kafkaTemplate.send(anyString(), anyString(), anyString())).thenReturn(sendResultFuture);
-        when(sendResultFuture.addCallback(any(), any())).thenAnswer(invocation -> {
-            // Simulate failure by calling the error callback
-            Runnable errorCallback = invocation.getArgument(1);
-            errorCallback.run();
-            return sendResultFuture;
-        });
+        when(sendResultFuture).thenReturn(CompletableFuture.failedFuture(new RuntimeException("Kafka error")));
 
         // Act
         eventProcessingService.sendEventToKafka(testEvent);
@@ -129,11 +127,11 @@ class EventProcessingServiceTest {
         String eventJson = "{\"id\":\"" + testEvent.getId() + "\",\"eventType\":\"automation_triggered\"}";
         testEvent.setEventType("automation_triggered");
         
-        when(objectMapper.readTree(eventJson)).thenReturn(mock(com.fasterxml.jackson.databind.JsonNode.class));
-        when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
+        doReturn(mock(com.fasterxml.jackson.databind.JsonNode.class)).when(objectMapper).readTree(eventJson);
+        doReturn(testEvent).when(objectMapper).treeToValue(any(), eq(HomeAssistantEvent.class));
 
         // Act
-        eventProcessingService.processEvent(eventJson, "homeassistant-events", 0, 0L);
+        eventProcessingService.processEvent(eventJson);
 
         // Assert
         verify(eventRepository).save(testEvent);
@@ -151,7 +149,7 @@ class EventProcessingServiceTest {
         when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
 
         // Act
-        eventProcessingService.processEvent(eventJson, "homeassistant-events", 0, 0L);
+        eventProcessingService.processEvent(eventJson);
 
         // Assert
         verify(eventRepository).save(testEvent);
@@ -170,7 +168,7 @@ class EventProcessingServiceTest {
 
         // Act - Send the same event type multiple times to trigger frequency filtering
         for (int i = 0; i < 15; i++) {
-            eventProcessingService.processEvent(eventJson, "homeassistant-events", 0, 0L);
+            eventProcessingService.processEvent(eventJson);
         }
 
         // Assert - Should be filtered out after high frequency threshold
@@ -190,7 +188,7 @@ class EventProcessingServiceTest {
         when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
 
         // Act
-        eventProcessingService.processEvent(eventJson, "homeassistant-events", 0, 0L);
+        eventProcessingService.processEvent(eventJson);
 
         // Assert
         verify(eventRepository).save(testEvent);
@@ -208,7 +206,7 @@ class EventProcessingServiceTest {
         when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
 
         // Act
-        eventProcessingService.processEvent(eventJson, "homeassistant-events", 0, 0L);
+        eventProcessingService.processEvent(eventJson);
 
         // Assert - May be filtered based on random sampling
         // We can't predict the exact outcome due to random sampling, but we can verify the method doesn't throw
@@ -225,7 +223,7 @@ class EventProcessingServiceTest {
         when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
 
         // Act
-        eventProcessingService.processEvent(eventJson, "homeassistant-events", 0, 0L);
+        eventProcessingService.processEvent(eventJson);
         EventProcessingService.EventProcessingStats stats = eventProcessingService.getProcessingStats();
 
         // Assert
@@ -245,7 +243,7 @@ class EventProcessingServiceTest {
         when(objectMapper.readTree(eventJson)).thenReturn(mock(com.fasterxml.jackson.databind.JsonNode.class));
         when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
 
-        eventProcessingService.processEvent(eventJson, "homeassistant-events", 0, 0L);
+        eventProcessingService.processEvent(eventJson);
         
         // Verify stats are not zero
         EventProcessingService.EventProcessingStats statsBefore = eventProcessingService.getProcessingStats();
@@ -270,7 +268,7 @@ class EventProcessingServiceTest {
 
         // Act & Assert - Should not throw exception
         assertDoesNotThrow(() -> {
-            eventProcessingService.processEvent(eventJson, "homeassistant-events", 0, 0L);
+            eventProcessingService.processEvent(eventJson);
         });
 
         // Verify no interactions with repositories
@@ -288,7 +286,7 @@ class EventProcessingServiceTest {
         when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
 
         // Act
-        eventProcessingService.processEvent(eventJson, "homeassistant-events", 0, 0L);
+        eventProcessingService.processEvent(eventJson);
 
         // Assert - Should be filtered out
         verifyNoInteractions(eventRepository);
