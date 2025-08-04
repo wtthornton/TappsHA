@@ -3844,19 +3844,388 @@ class ComplianceChecker {
 
     return report;
   }
+
+  // Enhanced: Real-time monitoring capabilities
+  startRealTimeMonitoring() {
+    console.log('🚀 Starting real-time monitoring...');
+    
+    const chokidar = require('chokidar');
+    const watcher = chokidar.watch([
+      '**/*.java',
+      '**/*.ts',
+      '**/*.tsx', 
+      '**/*.js',
+      '**/*.jsx',
+      '**/*.xml',
+      '**/*.json',
+      '**/*.md'
+    ], {
+      ignored: ['node_modules/**', 'target/**', 'dist/**', '.git/**', '.agent-os/reports/**'],
+      persistent: true,
+      ignoreInitial: true
+    });
+
+    // Real-time violation tracking
+    this.realTimeViolations = [];
+    this.realTimeMetrics = {
+      startTime: Date.now(),
+      filesChanged: 0,
+      violationsDetected: 0,
+      criticalViolations: 0,
+      warnings: 0
+    };
+
+    watcher.on('change', (filePath) => {
+      this.handleRealTimeFileChange(filePath);
+    });
+
+    watcher.on('add', (filePath) => {
+      this.handleRealTimeFileChange(filePath, 'added');
+    });
+
+    watcher.on('unlink', (filePath) => {
+      this.handleRealTimeFileRemoval(filePath);
+    });
+
+    console.log('✅ Real-time monitoring active. Press Ctrl+C to stop.');
+    return watcher;
+  }
+
+  handleRealTimeFileChange(filePath, changeType = 'modified') {
+    const startTime = Date.now();
+    console.log(`\n📝 File ${changeType}: ${filePath}`);
+    
+    try {
+      const content = fs.readFileSync(filePath, 'utf8');
+      const violations = this.validateCode(filePath, content);
+      
+      // Update real-time metrics
+      this.realTimeMetrics.filesChanged++;
+      this.realTimeMetrics.violationsDetected += violations.length;
+      this.realTimeMetrics.criticalViolations += violations.filter(v => v.type === 'CRITICAL').length;
+      this.realTimeMetrics.warnings += violations.filter(v => v.type === 'WARNING').length;
+      
+      // Track real-time violations
+      const realTimeViolation = {
+        filePath,
+        changeType,
+        timestamp: new Date().toISOString(),
+        violations,
+        processingTime: Date.now() - startTime
+      };
+      
+      this.realTimeViolations.push(realTimeViolation);
+      
+      // Immediate feedback system
+      this.provideImmediateFeedback(realTimeViolation);
+      
+      // Update live dashboard
+      this.updateLiveDashboard();
+      
+    } catch (error) {
+      console.error(`❌ Error processing ${filePath}:`, error.message);
+    }
+  }
+
+  handleRealTimeFileRemoval(filePath) {
+    console.log(`🗑️  File removed: ${filePath}`);
+    
+    // Remove any tracked violations for this file
+    this.realTimeViolations = this.realTimeViolations.filter(
+      v => v.filePath !== filePath
+    );
+    
+    this.updateLiveDashboard();
+  }
+
+  provideImmediateFeedback(realTimeViolation) {
+    const { filePath, violations, processingTime } = realTimeViolation;
+    
+    if (violations.length === 0) {
+      console.log(`✅ ${filePath} - No violations detected (${processingTime}ms)`);
+      return;
+    }
+    
+    console.log(`⚠️  ${filePath} - ${violations.length} violation(s) detected (${processingTime}ms)`);
+    
+    violations.forEach(violation => {
+      const icon = violation.type === 'CRITICAL' ? '🚨' : '⚠️';
+      console.log(`  ${icon} ${violation.type}: ${violation.message}`);
+      
+      if (violation.suggestion) {
+        console.log(`     💡 Suggestion: ${violation.suggestion}`);
+      }
+    });
+    
+    // Provide quick fix suggestions
+    if (violations.length > 0) {
+      this.suggestQuickFixes(filePath, violations);
+    }
+  }
+
+  suggestQuickFixes(filePath, violations) {
+    console.log('\n🔧 Quick fix suggestions:');
+    
+    violations.forEach((violation, index) => {
+      console.log(`\n${index + 1}. ${violation.type} - ${violation.message}`);
+      
+      if (violation.rule) {
+        console.log(`   Rule: ${violation.rule}`);
+      }
+      
+      if (violation.suggestion) {
+        console.log(`   Fix: ${violation.suggestion}`);
+      }
+      
+      // Provide specific fix based on violation type
+      const specificFix = this.getSpecificFix(violation);
+      if (specificFix) {
+        console.log(`   Specific: ${specificFix}`);
+      }
+    });
+  }
+
+  getSpecificFix(violation) {
+    const fixes = {
+      'Code Style': {
+        'indentation': 'Use consistent 2-space indentation',
+        'naming': 'Follow camelCase for variables, PascalCase for classes',
+        'formatting': 'Add proper spacing around operators and brackets'
+      },
+      'Security': {
+        'authentication': 'Implement proper authentication checks',
+        'authorization': 'Add authorization validation',
+        'input_validation': 'Validate all user inputs'
+      },
+      'Architecture': {
+        'separation_of_concerns': 'Separate business logic from presentation',
+        'dependency_injection': 'Use dependency injection instead of direct instantiation',
+        'layered_architecture': 'Follow Controller → Service → Repository pattern'
+      }
+    };
+    
+    const category = violation.category || 'Code Style';
+    const rule = violation.rule || '';
+    
+    for (const [key, fix] of Object.entries(fixes[category] || {})) {
+      if (rule.toLowerCase().includes(key.toLowerCase())) {
+        return fix;
+      }
+    }
+    
+    return null;
+  }
+
+  updateLiveDashboard() {
+    // Generate live dashboard data
+    const liveData = {
+      timestamp: new Date().toISOString(),
+      metrics: this.realTimeMetrics,
+      recentViolations: this.realTimeViolations.slice(-10), // Last 10 violations
+      summary: {
+        totalFilesChanged: this.realTimeMetrics.filesChanged,
+        totalViolations: this.realTimeMetrics.violationsDetected,
+        criticalViolations: this.realTimeMetrics.criticalViolations,
+        warnings: this.realTimeMetrics.warnings,
+        averageProcessingTime: this.calculateAverageRealTimeProcessingTime()
+      }
+    };
+    
+    // Save live dashboard data
+    const liveDashboardPath = path.join(__dirname, '../reports/live-dashboard.json');
+    fs.writeFileSync(liveDashboardPath, JSON.stringify(liveData, null, 2));
+    
+    // Generate live HTML dashboard
+    this.generateLiveHtmlDashboard(liveData);
+  }
+
+  calculateAverageRealTimeProcessingTime() {
+    if (this.realTimeViolations.length === 0) return 0;
+    
+    const totalTime = this.realTimeViolations.reduce((sum, v) => sum + v.processingTime, 0);
+    return Math.round(totalTime / this.realTimeViolations.length);
+  }
+
+  generateLiveHtmlDashboard(liveData) {
+    const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Compliance Dashboard</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: #f5f5f5; 
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .live-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #28a745;
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .critical { color: #dc3545; }
+        .warning { color: #ffc107; }
+        .success { color: #28a745; }
+        .info { color: #17a2b8; }
+        .recent-violations {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .violation-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .violation-item:last-child {
+            border-bottom: none;
+        }
+        .auto-refresh {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="live-indicator"></span>
+            <h1>Live Compliance Dashboard</h1>
+            <p>Real-time monitoring active - Last updated: ${new Date().toLocaleString()}</p>
+        </div>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <h3>Files Changed</h3>
+                <div class="metric-value info">${liveData.summary.totalFilesChanged}</div>
+            </div>
+            <div class="metric-card">
+                <h3>Total Violations</h3>
+                <div class="metric-value warning">${liveData.summary.totalViolations}</div>
+            </div>
+            <div class="metric-card">
+                <h3>Critical Violations</h3>
+                <div class="metric-value critical">${liveData.summary.criticalViolations}</div>
+            </div>
+            <div class="metric-card">
+                <h3>Warnings</h3>
+                <div class="metric-value warning">${liveData.summary.warnings}</div>
+            </div>
+            <div class="metric-card">
+                <h3>Avg Processing Time</h3>
+                <div class="metric-value info">${liveData.summary.averageProcessingTime}ms</div>
+            </div>
+        </div>
+        
+        <div class="recent-violations">
+            <h2>Recent Violations</h2>
+            ${liveData.recentViolations.map(v => `
+                <div class="violation-item">
+                    <div>
+                        <strong>${v.filePath}</strong> (${v.changeType})
+                        <br>
+                        <small>${v.violations.length} violation(s) - ${v.processingTime}ms</small>
+                    </div>
+                    <div>
+                        ${v.violations.filter(v => v.type === 'CRITICAL').length} 🚨
+                        ${v.violations.filter(v => v.type === 'WARNING').length} ⚠️
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+        
+        <div class="auto-refresh">
+            <p>Dashboard auto-refreshes every 5 seconds</p>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-refresh dashboard
+        setInterval(() => {
+            location.reload();
+        }, 5000);
+    </script>
+</body>
+</html>`;
+    
+    const liveDashboardPath = path.join(__dirname, '../reports/live-dashboard.html');
+    fs.writeFileSync(liveDashboardPath, html);
+  }
 }
 
 // CLI execution
 if (require.main === module) {
   const checker = new ComplianceChecker();
-  const targetPath = process.argv[2] || '.';
+  const command = process.argv[2] || 'check';
+  const targetPath = process.argv[3] || '.';
   
-  const result = checker.validateCodebase(targetPath);
-  const report = checker.generateReport();
-  
-  // Exit with error code if critical violations found
-  const criticalViolations = report.violations.filter(v => v.type === 'CRITICAL');
-  process.exit(criticalViolations.length > 0 ? 1 : 0);
+  if (command === 'monitor') {
+    console.log('🚀 Starting real-time compliance monitoring...');
+    console.log('📊 Live dashboard will be available at: .agent-os/reports/live-dashboard.html');
+    console.log('📈 Real-time data will be saved to: .agent-os/reports/live-dashboard.json');
+    
+    const watcher = checker.startRealTimeMonitoring();
+    
+    // Handle graceful shutdown
+    process.on('SIGINT', () => {
+      console.log('\n🛑 Stopping real-time monitoring...');
+      watcher.close();
+      process.exit(0);
+    });
+  } else {
+    const result = checker.validateCodebase(targetPath);
+    const report = checker.generateReport();
+    
+    // Exit with error code if critical violations found
+    const criticalViolations = report.violations.filter(v => v.type === 'CRITICAL');
+    process.exit(criticalViolations.length > 0 ? 1 : 0);
+  }
 }
 
 module.exports = ComplianceChecker; 
