@@ -134,6 +134,12 @@ Reference: `.cursor/rules/execute-tasks.mdc`
 Use when implementing any feature to ensure compliance with ALL Agent OS standards.
 Reference: `.cursor/rules/standards-compliance.mdc`
 
+### 6. Strategic Questions Research
+Use when conducting deep research on strategic questions and creating comprehensive answer documents.
+Reference: `.agent-os/product/strategic-questions/phase1-enhancement-questions.md`
+Answer Template: `.agent-os/product/strategic-questions/answers/answer-template.md`
+Scoring Algorithm: `.agent-os/product/strategic-questions/scoring-algorithm.md`
+
 ## Code Generation Rules
 
 ### Backend Code (Java/Spring Boot)
@@ -249,6 +255,87 @@ Reference: `.cursor/rules/standards-compliance.mdc`
 - Document deployment and operational procedures
 - Use JavaDoc for public APIs, TSDoc for exported TypeScript
 
+### Strategic Questions Documentation Standards
+**ALWAYS** follow these rules when creating or saving strategic questions:
+
+#### MANDATORY: Strategic Questions Location and Format
+- **ALWAYS** save strategic questions in `.agent-os/product/strategic-questions/` directory
+- **ALWAYS** use the template format from `.agent-os/product/strategic-questions/qa-template.md`
+- **NEVER** create strategic questions in other locations or with different formats
+- **ALWAYS** include proper document metadata (Title, Created, Version, Status, Next Review, Owner)
+
+#### Strategic Questions Structure Requirements
+- **ALWAYS** organize questions by logical categories (Technical Architecture, User Experience, Performance, etc.)
+- **ALWAYS** include multiple specific sub-questions for each main question
+- **ALWAYS** identify critical priority questions clearly
+- **ALWAYS** include usage guidelines with when/how to use
+- **ALWAYS** specify expected outcomes
+- **ALWAYS** include related documents section with proper links
+
+#### Strategic Questions Content Standards
+- **ALWAYS** reference existing strategic questions in `.agent-os/product/strategic-questions/prioritized-questions.md`
+- **ALWAYS** follow the scoring algorithm from `.agent-os/product/strategic-questions/scoring-algorithm.md`
+- **ALWAYS** include implementation priority matrix with timelines
+- **ALWAYS** cross-reference related project documents
+- **ALWAYS** maintain consistency with existing strategic questions format
+
+#### Validation Checklist for Strategic Questions
+Before saving any strategic questions, verify:
+- [ ] Document is saved in `.agent-os/product/strategic-questions/` directory
+- [ ] Follows template format from `qa-template.md`
+- [ ] Includes proper document metadata
+- [ ] Questions organized by logical categories
+- [ ] Critical priority questions identified
+- [ ] Usage guidelines included
+- [ ] Expected outcomes specified
+- [ ] Related documents section included
+- [ ] Cross-references existing strategic questions
+- [ ] Maintains consistency with project standards
+
+### Strategic Questions Research and Answer Process
+**ALWAYS** follow these rules when conducting research and answering strategic questions:
+
+#### MANDATORY: Research Methodology Standards
+- **ALWAYS** conduct deep research using multiple data sources (documentation, standards, best practices)
+- **ALWAYS** follow the answer template format from `.agent-os/product/strategic-questions/answers/answer-template.md`
+- **ALWAYS** save answer documents in `.agent-os/product/strategic-questions/answers/` directory
+- **ALWAYS** use timestamped filenames (YYYY-MM-DD-HHMM-description.md)
+- **NEVER** create answer documents in other locations or with different formats
+
+#### Research Process Requirements
+- **ALWAYS** analyze questions using the scoring algorithm (Project Success Impact, Risk Mitigation, Resource Investment, Timeline Criticality)
+- **ALWAYS** provide comprehensive research findings with multiple categories
+- **ALWAYS** include technical evidence and implementation strategies
+- **ALWAYS** provide clear YES/NO/MAYBE answers with justification
+- **ALWAYS** include specific recommendations with actionable next steps
+
+#### Answer Documentation Standards
+- **ALWAYS** include AI model documentation (model used, capabilities, research process)
+- **ALWAYS** provide research artifacts (documents referenced, data sources, technical standards)
+- **ALWAYS** include risk assessment updates with mitigation strategies
+- **ALWAYS** provide implementation timeline and success metrics
+- **ALWAYS** cross-reference with existing strategic questions and project standards
+
+#### Answer Quality Requirements
+- **ALWAYS** provide evidence-based answers with supporting data
+- **ALWAYS** include technical feasibility assessment against current technology stack
+- **ALWAYS** address user perspective and privacy requirements
+- **ALWAYS** provide implementation-ready recommendations
+- **ALWAYS** include comprehensive risk analysis and mitigation strategies
+
+#### Validation Checklist for Answer Documents
+Before saving any answer documents, verify:
+- [ ] Document is saved in `.agent-os/product/strategic-questions/answers/` directory
+- [ ] Follows answer template format from `answer-template.md`
+- [ ] Includes proper document metadata and research period
+- [ ] Provides comprehensive research findings with multiple categories
+- [ ] Includes clear YES/NO/MAYBE answers with evidence
+- [ ] Provides specific recommendations and implementation strategies
+- [ ] Includes AI model documentation and research methodology
+- [ ] Cross-references existing strategic questions and project standards
+- [ ] Includes risk assessment and mitigation strategies
+- [ ] Provides implementation timeline and success metrics
+
 ## Standards Enforcement
 
 ### Mandatory Compliance
@@ -256,6 +343,12 @@ Reference: `.cursor/rules/standards-compliance.mdc`
 - **ALWAYS** reference standards files when making technology decisions
 - **ALWAYS** follow the established patterns and conventions
 - **ALWAYS** use the specified versions and configurations
+- **ALWAYS** save strategic questions in `.agent-os/product/strategic-questions/` with proper template format
+- **NEVER** create strategic questions in incorrect locations or formats
+- **ALWAYS** conduct deep research using multiple data sources for strategic questions
+- **ALWAYS** save answer documents in `.agent-os/product/strategic-questions/answers/` with proper template format
+- **NEVER** create answer documents in incorrect locations or formats
+- **ALWAYS** provide evidence-based answers with comprehensive research findings
 
 ### Validation Checklist
 Before submitting any code, verify:
@@ -270,4 +363,6 @@ Before submitting any code, verify:
 - [ ] Security measures are implemented
 - [ ] Performance requirements are met
 - [ ] Documentation is updated
+- [ ] Strategic questions follow proper format and location standards
+- [ ] Strategic question answers follow proper research methodology and documentation standards
 - [ ] All standards enforcement rules from `@~/.agent-os/standards/enforcement.md` are followed 
