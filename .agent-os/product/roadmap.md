@@ -22,6 +22,35 @@
 - **Next Milestone:** Successfully connect to Home Assistant API and WebSocket
 - **Timeline:** 6-8 weeks remaining for Phase 1 completion
 
+## Project Structure & Standards Compliance
+
+### 📁 **Monorepo Directory Structure**
+```
+TappHA/
+├── frontend/                 # React 19 + TypeScript 5.5
+│   ├── package.json
+│   ├── src/
+│   └── Dockerfile
+├── backend/                  # Spring Boot 3.5.3 + Java 21
+│   ├── pom.xml
+│   ├── src/main/java/com/tappha/...
+│   ├── src/main/resources/
+│   └── Dockerfile
+├── infrastructure/           # Infrastructure & observability
+│   ├── docker-compose.yml
+│   ├── prometheus/prometheus.yml
+│   └── grafana/dashboards/
+├── .github/workflows/        # CI/CD workflows
+└── .cursor/rules/            # Cursor AI rule files (*.mdc)
+```
+
+### 🔧 **Standards Integration**
+- **Technology Stack**: Spring Boot 3.5.3, React 19, PostgreSQL 17, InfluxDB 3.3 Core
+- **Security**: OAuth 2.1, secure defaults, dependency scanning, container hardening
+- **Testing**: 85% coverage target, AI-assisted testing, visual regression testing
+- **CI/CD**: GitHub Actions, automated testing, security scans, preview environments
+- **Observability**: Prometheus 3.5, Grafana 12.1, Loki 3, Spring Boot Actuator
+
 ## Phase 1: Core Foundation (MVP)
 
 **Goal:** Establish the foundational infrastructure and basic Home Assistant integration capabilities  
@@ -41,6 +70,8 @@
 - [ ] **User Consent Workflow** - Explicit approval system for all AI-generated changes `S`
 - [ ] **Version Compatibility Layer** - Multi-version Home Assistant API support with automated migration tools `M`
 - [ ] **User Control Framework** - Granular control preferences with approval workflows and safety limits `M`
+- [ ] **Observability Foundation** - Spring Boot Actuator + Micrometer + OpenTelemetry integration `S`
+- [ ] **Security Hardening** - Container hardening, dependency scanning, OWASP Top 10 compliance `S`
 
 ### Dependencies
 
@@ -69,6 +100,8 @@
 - [ ] **Safety Mechanisms** - Comprehensive safety checks and rollback capabilities `M`
 - [ ] **Competitive Differentiation Engine** - Specialized Home Assistant AI optimization with privacy-first approach `L`
 - [ ] **User Segmentation System** - Adaptive AI behavior based on user control preferences (23% early adopters, 45% cautious, 25% skeptical, 7% resistant) `M`
+- [ ] **AI-Assisted Governance** - Automated PR reviews, smart testing generation, knowledge capture `M`
+- [ ] **Advanced Testing Framework** - Mutation testing with Stryker/PIT, AI gap detection for test coverage `M`
 
 ### Dependencies
 
@@ -95,6 +128,8 @@
 - [ ] **Audit Trail System** - Comprehensive logging of all AI actions with explanations `M`
 - [ ] **Granular Control System** - User-defined safety limits and approval requirements based on control preferences `M`
 - [ ] **Performance Validation System** - Automated validation of AI recommendations against user preferences and safety limits `M`
+- [ ] **Visual Regression Testing** - Playwright + Percy/Chromatic for visual diffs, snapshot testing for React components `M`
+- [ ] **Comprehensive Monitoring** - Enhanced observability with custom metrics, alerts, and performance dashboards `M`
 
 ### Dependencies
 
@@ -120,6 +155,8 @@
 - [ ] **Federated Learning** - Privacy-preserving learning across multiple households `L`
 - [ ] **Advanced User Segmentation** - Personalized AI behavior based on detailed user profiles and preferences `M`
 - [ ] **Competitive Moat Enhancement** - Continuous improvement of unique value propositions and differentiation `M`
+- [ ] **Advanced Observability** - Custom metrics, distributed tracing, performance optimization dashboards `M`
+- [ ] **Enterprise-Grade Testing** - Comprehensive test suite with visual regression, mutation testing, and AI-assisted test generation `L`
 
 ### Dependencies
 
@@ -180,12 +217,14 @@
 - **Time Series**: InfluxDB 3.3 Core
 - **Message Queue**: Apache Kafka for event streaming
 - **Security**: Spring Security with OAuth 2.1
+- **Observability**: Spring Boot Actuator + Micrometer + OpenTelemetry
 
 ### Frontend
 - **Framework**: React 19.1 with TypeScript 5.5
 - **Styling**: TailwindCSS 4.1 + shadcn/ui
 - **State Management**: TanStack Query 5 + Context API
 - **Build Tool**: Vite 5.x
+- **Testing**: Vitest + jsdom, Cypress for e2e
 
 ### AI/ML
 - **Primary Model**: OpenAI GPT-4o Mini (cost-effective operations)
@@ -199,6 +238,14 @@
 - **Observability**: Prometheus 3.5, Grafana 12.1, Loki 3
 - **CI/CD**: GitHub Actions with automated testing
 - **Monitoring**: Spring Boot Actuator + Micrometer
+- **Security**: OWASP Top 10 compliance, dependency scanning, container hardening
+
+### Testing & Quality
+- **Backend Testing**: JUnit 5, Mockito, Testcontainers, Jacoco (85% coverage target)
+- **Frontend Testing**: Vitest + jsdom, Cypress for e2e
+- **Visual Testing**: Playwright + Percy/Chromatic for visual regression
+- **Mutation Testing**: Stryker or PIT for test effectiveness validation
+- **AI-Assisted Testing**: Automated test generation and gap detection
 
 ## Success Criteria
 
@@ -210,6 +257,8 @@
 - [ ] Deploy functional web interface
 - [ ] Achieve 80-90% time savings for automation management
 - [ ] Maintain 4.0+ user satisfaction rating
+- [ ] Achieve 85% test coverage
+- [ ] Pass all security scans (OWASP, Trivy, dependency checks)
 
 ### Overall Project Success Metrics
 - [ ] 60% user adoption of AI suggestions within 3 months
@@ -217,6 +266,8 @@
 - [ ] 80%+ user retention after 6 months
 - [ ] 80-90% reduction in manual automation management time
 - [ ] 4.0+ rating on user satisfaction surveys
+- [ ] Zero critical security vulnerabilities
+- [ ] 99.9% system uptime
 
 ## Risk Assessment
 
