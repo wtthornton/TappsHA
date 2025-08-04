@@ -14,6 +14,7 @@ This directory contains strategic questions designed to drive better product dev
 | [scoring-algorithm.md](./scoring-algorithm.md) | **Scoring algorithm and methodology** | Active | 2025-01-03 |
 | [roadmap-analysis-questions.md](./roadmap-analysis-questions.md) | Roadmap validation and improvement | Active | 2025-01-03 |
 | [qa-template.md](./qa-template.md) | Template for new Q&A documents | Active | 2025-01-03 |
+| [lessons-learned-process.md](./lessons-learned-process.md) | **Lessons learned capture and application** | Active | 2025-01-27 |
 
 ### 🔄 Planned Q&A Documents
 
@@ -95,6 +96,12 @@ This directory contains strategic questions designed to drive better product dev
 - Data requirements
 - Ethics and bias
 - Performance metrics
+
+### 📚 Lessons Learned
+- Knowledge capture
+- Process improvement
+- Continuous learning
+- Best practices documentation
 
 ## Maintenance
 

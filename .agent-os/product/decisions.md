@@ -66,6 +66,67 @@ The comprehensive research validates TappHA's approach and provides clear implem
 - Follow 10-12 month timeline with contingency buffers
 - Maintain strong differentiation and positioning strategies
 
+## 2025-01-27: Lessons Learned Framework Integration
+
+**ID:** DEC-005
+**Status:** Accepted
+**Category:** Process
+**Stakeholders:** Product Owner, Tech Lead, Team
+
+### Decision
+
+TappHA will implement a comprehensive lessons learned framework that systematically captures, analyzes, and applies insights across all software development lifecycle phases. This framework will be integrated into all Agent OS standards and development workflows to drive continuous improvement.
+
+### Context
+
+The lessons learned framework was developed to address the need for systematic knowledge capture and application across all development phases. This ensures that valuable insights from development, testing, deployment, and operations are captured and applied to improve future development efforts.
+
+### Framework Components
+
+**Process Integration:**
+- **Capture Process**: Systematic documentation of insights after significant tasks and milestones
+- **Review Process**: Regular analysis of captured lessons to identify patterns and trends
+- **Integration Process**: Application of lessons to update standards, processes, and Cursor AI rules
+- **Application Process**: Systematic use of lessons in future development work
+
+**Categories Covered:**
+- **Design**: Architecture decisions, user experience insights, design patterns
+- **Development**: Coding practices, technology choices, implementation strategies
+- **Testing**: Test strategies, coverage insights, quality assurance approaches
+- **Deployment**: CI/CD insights, infrastructure decisions, deployment patterns
+- **Operations**: Performance insights, monitoring strategies, operational excellence
+- **User Experience**: User feedback, interface improvements, usability insights
+
+**Integration Points:**
+- **Agent OS Standards**: All standards files updated to reference lessons learned
+- **Cursor AI Integration**: Lessons influence AI code generation and validation
+- **Task Tracking**: Lessons capture integrated into task completion workflows
+- **Development Workflow**: Lessons review integrated into development process
+
+### Rationale
+
+The lessons learned framework provides:
+- **Continuous Improvement**: Systematic capture and application of insights
+- **Knowledge Retention**: Prevents loss of valuable development insights
+- **Quality Enhancement**: Applies lessons to improve code quality and processes
+- **AI Enhancement**: Improves Cursor AI effectiveness through lesson integration
+- **Team Learning**: Shared knowledge base for team development
+
+### Consequences
+
+**Positive:**
+- Systematic approach to continuous improvement
+- Enhanced code quality through lesson application
+- Improved AI-assisted development effectiveness
+- Better knowledge retention and sharing
+- Structured approach to process improvement
+
+**Implementation:**
+- Mandatory lessons capture after significant tasks
+- Regular lessons review and integration
+- Updates to standards based on lessons
+- Integration with Cursor AI for better code generation
+
 ## 2025-08-03: AI Model Strategy and Performance Optimization
 
 **ID:** DEC-003
