@@ -70,6 +70,43 @@
 - Security requirements
 - Performance standards
 
+### NEW: Advanced Governance Standards
+
+#### AI-Assisted Governance
+**ALWAYS** check `@~/.agent-os/standards/ai-assisted-governance.md`:
+- Automated PR reviews with compliance scoring
+- Smart testing generation and gap detection
+- Knowledge capture and traceability
+- AI-driven architectural documentation
+
+#### Cursor Rule Hierarchy
+**ALWAYS** check `@~/.agent-os/standards/cursor-rule-hierarchy.md`:
+- **Always**: Non-negotiable rules (security, SBOM, forbidden imports)
+- **Auto**: Default recommendations (performance, lint fixes, refactoring)
+- **Agent**: AI-assisted optimizations (PRD generation, doc linking, test generation)
+- Policy tags: SECURITY, QUALITY, OBSERVABILITY
+
+#### Policy-as-Code
+**ALWAYS** check `@~/.agent-os/standards/policy-as-code.md`:
+- OPA/Rego policies for infrastructure & security
+- Cursor rules integration with CI/CD
+- Sigstore & SLSA for supply-chain security
+- Automated policy validation in GitHub Actions
+
+#### Service-Specific Rules
+**ALWAYS** check `@~/.agent-os/standards/service-specific-rules.md`:
+- Domain-specific rules for each service
+- Payment processing (idempotency, PCI compliance)
+- Frontend optimization (ISR, SEO, analytics)
+- Database optimization (N+1 detection, indexing)
+
+#### Visual Regression Testing
+**ALWAYS** check `@~/.agent-os/standards/visual-regression-testing.md`:
+- Playwright + Percy/Chromatic for visual diffs
+- Snapshot testing for React components
+- Mutation testing with Stryker/PIT
+- AI gap detection for test coverage
+
 ### Implementation Standards
 
 #### Backend Code (Java/Spring Boot)
@@ -144,6 +181,25 @@
 - Document operational procedures
 - Use GitHub Actions for CI/CD
 
+### Governance Integration
+
+#### AI-Assisted Development
+- **Automated Compliance**: Use AI to scan code for standards violations
+- **Smart Testing**: Generate missing tests based on code coverage gaps
+- **Knowledge Management**: Auto-link commits to PRDs and tasks
+- **Architectural Documentation**: Generate docs from code changes
+
+#### Policy Enforcement
+- **Always Rules**: Fail builds on critical violations (security, SBOM)
+- **Auto Rules**: Suggest improvements (performance, refactoring)
+- **Agent Rules**: AI-assisted enhancements (documentation, test generation)
+
+#### Service-Specific Governance
+- **Payment Services**: Enforce idempotency and PCI compliance
+- **Frontend Services**: Ensure ISR, SEO, and analytics integration
+- **Database Services**: Detect N+1 queries and suggest indexing
+- **AI Services**: Validate model usage and cost optimization
+
 ### Validation Checklist
 
 Before submitting any code, verify:
@@ -159,6 +215,11 @@ Before submitting any code, verify:
 - [ ] Performance requirements are met
 - [ ] Documentation is updated
 - [ ] All standards enforcement rules from `@~/.agent-os/standards/enforcement.md` are followed
+- [ ] AI-assisted governance rules from `@~/.agent-os/standards/ai-assisted-governance.md` are applied
+- [ ] Cursor rule hierarchy from `@~/.agent-os/standards/cursor-rule-hierarchy.md` is followed
+- [ ] Policy-as-code standards from `@~/.agent-os/standards/policy-as-code.md` are enforced
+- [ ] Service-specific rules from `@~/.agent-os/standards/service-specific-rules.md` are applied
+- [ ] Visual regression testing from `@~/.agent-os/standards/visual-regression-testing.md` is implemented
 
 ### Reference Links
 
@@ -175,6 +236,14 @@ Before submitting any code, verify:
 - **CSS/TailwindCSS:** `@~/.agent-os/standards/code-style/css-style.md`
 - **HTML:** `@~/.agent-os/standards/code-style/html-style.md`
 - **JavaScript/TypeScript:** `@~/.agent-os/standards/code-style/javascript-style.md`
+
+#### Advanced Governance Standards
+- **AI-Assisted Governance:** `@~/.agent-os/standards/ai-assisted-governance.md`
+- **Cursor Rule Hierarchy:** `@~/.agent-os/standards/cursor-rule-hierarchy.md`
+- **Policy-as-Code:** `@~/.agent-os/standards/policy-as-code.md`
+- **Service-Specific Rules:** `@~/.agent-os/standards/service-specific-rules.md`
+- **Visual Regression Testing:** `@~/.agent-os/standards/visual-regression-testing.md`
+
 description:
 globs:
 alwaysApply: false
