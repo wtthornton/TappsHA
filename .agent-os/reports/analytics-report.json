@@ -1,37 +1,23 @@
 {
-  "timestamp": "2025-08-04T15:55:59.660Z",
-  "executionTime": 147,
+  "timestamp": "2025-08-04T16:57:03.081Z",
+  "executionTime": 29,
   "averageFileProcessingTime": {
-    "overallAverage": 0.19,
-    "totalFiles": 72,
-    "totalTime": 14,
+    "overallAverage": 1,
+    "totalFiles": 6,
+    "totalTime": 6,
     "fileTypePerformance": {
-      ".java": {
-        "averageTime": 0.21,
-        "count": 62,
-        "totalSize": 409476,
-        "averageSize": 6604,
+      ".js": {
+        "averageTime": 1,
+        "count": 4,
+        "totalSize": 233590,
+        "averageSize": 58398,
         "efficiency": 0
       },
-      ".tsx": {
-        "averageTime": 0,
-        "count": 3,
-        "totalSize": 28283,
-        "averageSize": 9428,
-        "efficiency": 0
-      },
-      ".xml": {
-        "averageTime": 0,
-        "count": 1,
-        "totalSize": 6630,
-        "averageSize": 6630,
-        "efficiency": 0
-      },
-      ".yml": {
-        "averageTime": 0.17,
-        "count": 6,
-        "totalSize": 16938,
-        "averageSize": 2823,
+      ".json": {
+        "averageTime": 1,
+        "count": 2,
+        "totalSize": 67713,
+        "averageSize": 33857,
         "efficiency": 0
       }
     }
@@ -40,31 +26,31 @@
     "technology-stack": {
       "averageTime": 0,
       "totalTime": 0,
-      "count": 72,
+      "count": 6,
       "minTime": 0,
       "maxTime": 0,
       "efficiency": 0
     },
     "code-style": {
-      "averageTime": 0.01,
+      "averageTime": 0.17,
       "totalTime": 1,
-      "count": 72,
+      "count": 6,
       "minTime": 0,
       "maxTime": 1,
-      "efficiency": 0.01
+      "efficiency": 0.17
     },
     "security": {
-      "averageTime": 0.1,
-      "totalTime": 7,
-      "count": 72,
+      "averageTime": 0.5,
+      "totalTime": 3,
+      "count": 6,
       "minTime": 0,
       "maxTime": 1,
-      "efficiency": 0.1
+      "efficiency": 0.5
     },
     "architecture": {
       "averageTime": 0,
       "totalTime": 0,
-      "count": 72,
+      "count": 6,
       "minTime": 0,
       "maxTime": 0,
       "efficiency": 0
@@ -72,108 +58,265 @@
     "testing": {
       "averageTime": 0,
       "totalTime": 0,
-      "count": 72,
+      "count": 6,
       "minTime": 0,
       "maxTime": 0,
       "efficiency": 0
     }
   },
   "violationTrends": {
-    "trend": "stable",
-    "recentAverage": 54,
+    "trend": "declining",
+    "recentAverage": 32,
     "olderAverage": 54,
-    "change": 0
+    "change": -22
   },
   "standardsEffectiveness": {
     "effectiveness": {
       "tech-stack": {
         "violationRate": 0,
-        "totalChecks": 72,
+        "totalChecks": 6,
         "totalViolations": 0,
         "priority": "LOW",
         "lastViolation": null,
         "complianceTrend": "stable",
-        "status": "GOOD"
+        "status": "GOOD",
+        "referenceCount": 6,
+        "lastReferenced": "2025-08-04T16:57:03.072Z",
+        "usageFrequency": "LOW"
       },
       "code-style": {
-        "violationRate": 46,
-        "totalChecks": 72,
-        "totalViolations": 33,
+        "violationRate": 100,
+        "totalChecks": 6,
+        "totalViolations": 6,
         "priority": "HIGH",
-        "lastViolation": "2025-08-04T15:55:59.584Z",
+        "lastViolation": "2025-08-04T16:57:03.072Z",
         "complianceTrend": "stable",
-        "status": "CRITICAL"
+        "status": "CRITICAL",
+        "referenceCount": 6,
+        "lastReferenced": "2025-08-04T16:57:03.072Z",
+        "usageFrequency": "LOW"
       },
       "security-compliance": {
-        "violationRate": 1,
-        "totalChecks": 72,
-        "totalViolations": 1,
+        "violationRate": 0,
+        "totalChecks": 6,
+        "totalViolations": 0,
         "priority": "LOW",
-        "lastViolation": "2025-08-04T15:55:59.554Z",
+        "lastViolation": null,
         "complianceTrend": "stable",
-        "status": "GOOD"
+        "status": "GOOD",
+        "referenceCount": 6,
+        "lastReferenced": "2025-08-04T16:57:03.073Z",
+        "usageFrequency": "LOW"
       },
       "best-practices": {
         "violationRate": 0,
-        "totalChecks": 72,
+        "totalChecks": 6,
         "totalViolations": 0,
         "priority": "LOW",
         "lastViolation": null,
         "complianceTrend": "stable",
-        "status": "GOOD"
+        "status": "GOOD",
+        "referenceCount": 6,
+        "lastReferenced": "2025-08-04T16:57:03.073Z",
+        "usageFrequency": "LOW"
       },
       "testing-strategy": {
         "violationRate": 0,
-        "totalChecks": 72,
+        "totalChecks": 6,
         "totalViolations": 0,
         "priority": "LOW",
         "lastViolation": null,
         "complianceTrend": "stable",
-        "status": "GOOD"
+        "status": "GOOD",
+        "referenceCount": 6,
+        "lastReferenced": "2025-08-04T16:57:03.073Z",
+        "usageFrequency": "LOW"
       }
     },
     "ranking": [
       {
         "name": "code-style",
-        "violationRate": 45.83333333333333,
-        "totalChecks": 72,
-        "totalViolations": 33,
+        "violationRate": 100,
+        "totalChecks": 6,
+        "totalViolations": 6,
         "priority": "HIGH",
-        "status": "CRITICAL"
-      },
-      {
-        "name": "security-compliance",
-        "violationRate": 1.3888888888888888,
-        "totalChecks": 72,
-        "totalViolations": 1,
-        "priority": "LOW",
-        "status": "GOOD"
+        "status": "CRITICAL",
+        "referenceCount": 6,
+        "usageFrequency": "LOW"
       },
       {
         "name": "tech-stack",
         "violationRate": 0,
-        "totalChecks": 72,
+        "totalChecks": 6,
         "totalViolations": 0,
         "priority": "LOW",
-        "status": "GOOD"
+        "status": "GOOD",
+        "referenceCount": 6,
+        "usageFrequency": "LOW"
+      },
+      {
+        "name": "security-compliance",
+        "violationRate": 0,
+        "totalChecks": 6,
+        "totalViolations": 0,
+        "priority": "LOW",
+        "status": "GOOD",
+        "referenceCount": 6,
+        "usageFrequency": "LOW"
       },
       {
         "name": "best-practices",
         "violationRate": 0,
-        "totalChecks": 72,
+        "totalChecks": 6,
         "totalViolations": 0,
         "priority": "LOW",
-        "status": "GOOD"
+        "status": "GOOD",
+        "referenceCount": 6,
+        "usageFrequency": "LOW"
       },
       {
         "name": "testing-strategy",
         "violationRate": 0,
-        "totalChecks": 72,
+        "totalChecks": 6,
         "totalViolations": 0,
         "priority": "LOW",
-        "status": "GOOD"
+        "status": "GOOD",
+        "referenceCount": 6,
+        "usageFrequency": "LOW"
       }
     ],
+    "referenceTracking": {
+      "mostReferenced": [
+        {
+          "name": "tech-stack",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.072Z"
+        },
+        {
+          "name": "code-style",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.072Z"
+        },
+        {
+          "name": "security-compliance",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.073Z"
+        },
+        {
+          "name": "best-practices",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.073Z"
+        },
+        {
+          "name": "testing-strategy",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.073Z"
+        }
+      ],
+      "leastReferenced": [
+        {
+          "name": "testing-strategy",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.073Z"
+        },
+        {
+          "name": "best-practices",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.073Z"
+        },
+        {
+          "name": "security-compliance",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.073Z"
+        },
+        {
+          "name": "code-style",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.072Z"
+        },
+        {
+          "name": "tech-stack",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.072Z"
+        }
+      ],
+      "highUsage": [],
+      "mediumUsage": [],
+      "lowUsage": [
+        {
+          "name": "tech-stack",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.072Z"
+        },
+        {
+          "name": "code-style",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.072Z"
+        },
+        {
+          "name": "security-compliance",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.073Z"
+        },
+        {
+          "name": "best-practices",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.073Z"
+        },
+        {
+          "name": "testing-strategy",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.073Z"
+        }
+      ]
+    },
+    "standardsClarification": {
+      "standardsNeedingClarification": [
+        {
+          "standard": "code-style",
+          "factors": [
+            {
+              "type": "HIGH_VIOLATION_LOW_USAGE",
+              "description": "High violation rate with low adoption",
+              "recommendation": "Improve standards clarity and provide training"
+            },
+            {
+              "type": "LOW_USAGE_HIGH_PRIORITY",
+              "description": "Low usage of high-priority standards",
+              "recommendation": "Improve standards documentation and accessibility"
+            }
+          ],
+          "priority": "MEDIUM",
+          "totalFactors": 2,
+          "recommendations": [
+            "Improve standards clarity and provide training",
+            "Improve standards documentation and accessibility"
+          ]
+        }
+      ],
+      "summary": {
+        "totalNeedingClarification": 1,
+        "criticalClarification": 0,
+        "highClarification": 0,
+        "mediumClarification": 1,
+        "lowClarification": 0
+      }
+    },
     "summary": {
       "totalStandards": 5,
       "criticalStandards": 1,
@@ -182,62 +325,95 @@
       "mostViolated": [
         {
           "name": "code-style",
-          "violationRate": 45.83333333333333,
-          "totalChecks": 72,
-          "totalViolations": 33,
+          "violationRate": 100,
+          "totalChecks": 6,
+          "totalViolations": 6,
           "priority": "HIGH",
-          "status": "CRITICAL"
-        },
-        {
-          "name": "security-compliance",
-          "violationRate": 1.3888888888888888,
-          "totalChecks": 72,
-          "totalViolations": 1,
-          "priority": "LOW",
-          "status": "GOOD"
+          "status": "CRITICAL",
+          "referenceCount": 6,
+          "usageFrequency": "LOW"
         },
         {
           "name": "tech-stack",
           "violationRate": 0,
-          "totalChecks": 72,
+          "totalChecks": 6,
           "totalViolations": 0,
           "priority": "LOW",
-          "status": "GOOD"
+          "status": "GOOD",
+          "referenceCount": 6,
+          "usageFrequency": "LOW"
+        },
+        {
+          "name": "security-compliance",
+          "violationRate": 0,
+          "totalChecks": 6,
+          "totalViolations": 0,
+          "priority": "LOW",
+          "status": "GOOD",
+          "referenceCount": 6,
+          "usageFrequency": "LOW"
         }
       ],
       "leastViolated": [
         {
           "name": "testing-strategy",
           "violationRate": 0,
-          "totalChecks": 72,
+          "totalChecks": 6,
           "totalViolations": 0,
           "priority": "LOW",
-          "status": "GOOD"
+          "status": "GOOD",
+          "referenceCount": 6,
+          "usageFrequency": "LOW"
         },
         {
           "name": "best-practices",
           "violationRate": 0,
-          "totalChecks": 72,
+          "totalChecks": 6,
           "totalViolations": 0,
           "priority": "LOW",
-          "status": "GOOD"
+          "status": "GOOD",
+          "referenceCount": 6,
+          "usageFrequency": "LOW"
         },
         {
-          "name": "tech-stack",
+          "name": "security-compliance",
           "violationRate": 0,
-          "totalChecks": 72,
+          "totalChecks": 6,
           "totalViolations": 0,
           "priority": "LOW",
-          "status": "GOOD"
+          "status": "GOOD",
+          "referenceCount": 6,
+          "usageFrequency": "LOW"
         }
-      ]
+      ],
+      "mostReferenced": [
+        {
+          "name": "tech-stack",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.072Z"
+        },
+        {
+          "name": "code-style",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.072Z"
+        },
+        {
+          "name": "security-compliance",
+          "referenceCount": 6,
+          "usageFrequency": "LOW",
+          "lastReferenced": "2025-08-04T16:57:03.073Z"
+        }
+      ],
+      "totalReferences": 30
     }
   },
   "improvementSuggestions": [
     {
       "priority": "HIGH",
       "category": "Standards",
-      "message": "🚨 code-style has critical violation rate (46%)",
+      "message": "🚨 code-style has critical violation rate (100%)",
       "action": "Urgently review and rewrite code-style documentation with clear examples",
       "impact": "HIGH",
       "effort": "HIGH"
@@ -245,23 +421,15 @@
     {
       "priority": "HIGH",
       "category": "Compliance",
-      "message": "📊 Low compliance score (54%)",
+      "message": "📊 Low compliance score (0%)",
       "action": "Implement comprehensive compliance improvement plan",
       "impact": "HIGH",
       "effort": "HIGH"
     },
     {
       "priority": "HIGH",
-      "category": "Security",
-      "message": "🚨 Critical violations detected (2 critical, 285 warnings)",
-      "action": "Immediately address all critical violations",
-      "impact": "HIGH",
-      "effort": "MEDIUM"
-    },
-    {
-      "priority": "HIGH",
       "category": "Code Style",
-      "message": "⚠️ High volume of code style violations (285 total)",
+      "message": "⚠️ High volume of code style violations (369 total)",
       "action": "Implement systematic approach to reduce code style violations",
       "impact": "MEDIUM",
       "effort": "HIGH"
@@ -269,56 +437,60 @@
     {
       "priority": "MEDIUM",
       "category": "File Types",
-      "message": "📁 High violations in .java files (273 violations)",
-      "action": "Review and improve .java file standards",
+      "message": "📁 High violations in .js files (210 violations)",
+      "action": "Review and improve .js file standards",
       "impact": "MEDIUM",
       "effort": "MEDIUM"
     },
     {
       "priority": "MEDIUM",
       "category": "File Types",
-      "message": "📁 High violations in .tsx files (14 violations)",
-      "action": "Review and improve .tsx file standards",
+      "message": "📁 High violations in .json files (159 violations)",
+      "action": "Review and improve .json file standards",
       "impact": "MEDIUM",
       "effort": "MEDIUM"
     }
   ],
   "ruleBasedSuggestions": [
     {
-      "type": "RULE_BASED",
+      "type": "PATTERN_BASED",
       "category": "Code Style",
       "priority": "HIGH",
-      "message": "High volume of code style violations detected",
-      "suggestion": "Implement automated code formatting with Prettier/ESLint",
-      "action": "Configure IDE with code style rules and enable auto-format on save",
+      "message": "Code style violations dominate (100% of all violations)",
+      "suggestion": "Implement comprehensive code style automation",
+      "action": "Configure Prettier + ESLint with strict rules, enable auto-format on save, and add pre-commit hooks",
       "impact": "HIGH",
-      "effort": "MEDIUM"
+      "effort": "MEDIUM",
+      "pattern": "DOMINANT_VIOLATION_CATEGORY",
+      "confidence": "HIGH"
     },
     {
-      "type": "RULE_BASED",
-      "category": "Security",
-      "priority": "CRITICAL",
-      "message": "Security violations detected",
-      "suggestion": "Implement secrets management with environment variables",
-      "action": "Replace all hardcoded secrets with environment variables and use .env files",
-      "impact": "CRITICAL",
-      "effort": "HIGH"
+      "type": "PATTERN_BASED",
+      "category": "Recurring Issues",
+      "priority": "HIGH",
+      "message": "1 recurring violation patterns detected",
+      "suggestion": "Address systemic compliance issues",
+      "action": "Review and update standards documentation, implement preventive measures, and conduct team training",
+      "impact": "HIGH",
+      "effort": "HIGH",
+      "pattern": "RECURRING_PATTERNS",
+      "confidence": "HIGH"
     }
   ],
   "statisticalAnalysis": {
     "violationFrequency": {
-      "trend": 0,
-      "averageViolations": 287,
-      "pattern": "stable",
-      "outliers": 0,
-      "totalEntries": 16
+      "trend": 3.435500515995872,
+      "averageViolations": 299,
+      "pattern": "increasing",
+      "outliers": 2,
+      "totalEntries": 18
     },
     "complianceTrends": {
-      "trend": 2.223529411764706,
-      "averageScore": 47,
-      "improvement": 0,
-      "volatility": 18,
-      "currentScore": 54
+      "trend": 0,
+      "averageScore": 42,
+      "improvement": -22,
+      "volatility": 22,
+      "currentScore": 0
     },
     "standardsEffectiveness": {
       "mostEffective": [
@@ -334,27 +506,27 @@
         "tech-stack": {
           "averageViolationRate": 0,
           "trend": 0,
-          "totalChecks": 1152
+          "totalChecks": 1164
         },
         "code-style": {
-          "averageViolationRate": 46,
-          "trend": 0,
-          "totalChecks": 1152
+          "averageViolationRate": 52,
+          "trend": 1.7887856897144823,
+          "totalChecks": 1164
         },
         "security-compliance": {
           "averageViolationRate": 1,
-          "trend": -8.359326303060002e-17,
-          "totalChecks": 1152
+          "trend": -0.04586629973626883,
+          "totalChecks": 1164
         },
         "best-practices": {
           "averageViolationRate": 0,
           "trend": 0,
-          "totalChecks": 1152
+          "totalChecks": 1164
         },
         "testing-strategy": {
           "averageViolationRate": 0,
           "trend": 0,
-          "totalChecks": 1152
+          "totalChecks": 1164
         }
       }
     },
@@ -362,26 +534,34 @@
       "overallRisk": null,
       "factors": [
         "Low average compliance score",
-        "High score volatility"
+        "High score volatility",
+        "Increasing violation trend",
+        "Recent score decline"
       ],
       "metrics": {
-        "averageScore": 47,
-        "volatility": 18,
-        "violationTrend": 0
+        "averageScore": 42,
+        "volatility": 22,
+        "violationTrend": 3.44
       }
     },
     "predictions": {
-      "prediction": 70,
-      "confidence": 100,
-      "trend": 2.223529411764706,
-      "currentScore": 54
+      "prediction": 0,
+      "confidence": 47,
+      "trend": 0,
+      "currentScore": 0
     },
     "insights": [
       {
         "type": "violation_pattern",
+        "priority": "HIGH",
+        "message": "Violation pattern is increasing (299 avg)",
+        "action": "Focus on reducing violations immediately"
+      },
+      {
+        "type": "compliance_trend",
         "priority": "MEDIUM",
-        "message": "Violation pattern is stable (287 avg)",
-        "action": "Monitor for improvement opportunities"
+        "message": "Compliance declining by 22%",
+        "action": "Review and improve compliance practices"
       },
       {
         "type": "standards_effectiveness",
@@ -395,45 +575,67 @@
         {
           "type": "DOMINANT_CATEGORY",
           "category": "Code Style",
-          "frequency": 2850,
+          "frequency": 3065,
           "criticalRate": 0,
-          "description": "Code Style violations are consistently high (2850 total)"
+          "description": "Code Style violations are consistently high (3065 total)"
         },
         {
           "type": "DOMINANT_CATEGORY",
           "category": "Security",
-          "frequency": 20,
+          "frequency": 16,
           "criticalRate": 1,
-          "description": "Security violations are consistently high (20 total)"
+          "description": "Security violations are consistently high (16 total)"
+        },
+        {
+          "type": "SCORE_TREND",
+          "direction": "DECLINING",
+          "magnitude": 5.236363636363636,
+          "description": "Compliance score is declining by 5.2% per run"
         }
       ],
-      "totalPatterns": 2,
+      "totalPatterns": 3,
       "dominantCategory": "Code Style",
-      "trendDirection": "stable"
+      "trendDirection": "DECLINING"
     },
     "recurringIssues": {
       "recurringIssues": [
         {
           "type": "PERSISTENT_LOW_COMPLIANCE",
-          "averageScore": 54,
+          "averageScore": 32.4,
           "threshold": 70,
-          "severity": "HIGH",
-          "description": "Consistently low compliance scores (avg: 54.0%)",
+          "severity": "CRITICAL",
+          "description": "Consistently low compliance scores (avg: 32.4%)",
           "recommendation": "Review and update coding standards, provide team training"
+        },
+        {
+          "type": "INCREASING_VIOLATIONS",
+          "trend": 29.3,
+          "severity": "HIGH",
+          "description": "Violations are increasing by 29.3 per run",
+          "recommendation": "Implement stricter code review process, add automated checks"
+        },
+        {
+          "type": "VOLATILE_COMPLIANCE",
+          "volatility": 0.8164965809277263,
+          "averageScore": 32.4,
+          "stdDev": 26.454489222058328,
+          "severity": "HIGH",
+          "description": "High compliance score volatility (81.6% variation)",
+          "recommendation": "Standardize development practices, implement consistent code review"
         },
         {
           "type": "PERSISTENT_CATEGORY_VIOLATIONS",
           "category": "Code Style",
-          "averagePerRun": 285,
+          "averagePerRun": 328,
           "totalRuns": 5,
           "severity": "HIGH",
-          "description": "Persistent Code Style violations (285.0 avg per run)",
+          "description": "Persistent Code Style violations (328.0 avg per run)",
           "recommendation": "Focus on Code Style standards, provide specific training"
         }
       ],
-      "totalIssues": 2,
-      "criticalIssues": 0,
-      "highIssues": 2,
+      "totalIssues": 4,
+      "criticalIssues": 1,
+      "highIssues": 3,
       "mediumIssues": 0
     },
     "violationClustering": {
@@ -441,24 +643,64 @@
         {
           "type": "SEVERITY_CLUSTER",
           "category": "WARNING",
-          "ratio": 0.9930313588850174,
-          "count": 2850,
+          "ratio": 0.9948068808828302,
+          "count": 3065,
           "severity": "MEDIUM",
-          "description": "High ratio of warning violations (99.3%)",
+          "description": "High ratio of warning violations (99.5%)",
           "recommendation": "Review warning patterns, improve code quality standards"
+        },
+        {
+          "type": "COMPLIANCE_CLUSTER",
+          "category": "VOLATILE",
+          "averageScore": 43.2,
+          "stdDev": 21.6,
+          "severity": "HIGH",
+          "description": "High compliance score volatility (std dev: 21.6)",
+          "recommendation": "Standardize development practices, implement consistent review process"
         }
       ],
-      "patterns": [],
-      "insights": [],
-      "totalClusters": 1,
-      "totalPatterns": 0,
-      "totalInsights": 0,
-      "highSeverityClusters": 0,
+      "patterns": [
+        {
+          "type": "TIME_BASED_PATTERN",
+          "trend": "DECREASING",
+          "magnitude": 9.945454545454545,
+          "description": "Violations are decreasing over time",
+          "recommendation": "Continue current improvement practices"
+        }
+      ],
+      "insights": [
+        {
+          "type": "HIGH_SEVERITY_CLUSTERS",
+          "priority": "HIGH",
+          "message": "1 high-severity violation clusters detected",
+          "action": "Address high-severity clusters immediately"
+        }
+      ],
+      "totalClusters": 2,
+      "totalPatterns": 1,
+      "totalInsights": 1,
+      "highSeverityClusters": 1,
       "fileTypeClusters": 0,
       "severityClusters": 1
     },
     "issuePredictions": {
       "predictions": [
+        {
+          "type": "COMPLIANCE_SCORE_PREDICTION",
+          "issue": "LOW_COMPLIANCE_RISK",
+          "probability": "HIGH",
+          "confidence": 57,
+          "description": "Compliance score predicted to be -16% in 3 runs",
+          "recommendation": "Implement immediate compliance improvement measures"
+        },
+        {
+          "type": "VIOLATION_COUNT_PREDICTION",
+          "issue": "DECREASING_VIOLATIONS",
+          "probability": "MEDIUM",
+          "confidence": 13,
+          "description": "Violations predicted to be 399 in 3 runs",
+          "recommendation": "Continue current improvement practices"
+        },
         {
           "type": "STANDARDS_EFFECTIVENESS_PREDICTION",
           "issue": "STANDARDS_DETERIORATION",
@@ -468,12 +710,559 @@
           "recommendation": "Review and update standards documentation, provide team training"
         }
       ],
-      "totalPredictions": 1,
-      "highProbabilityPredictions": 1,
-      "mediumProbabilityPredictions": 0,
+      "totalPredictions": 3,
+      "highProbabilityPredictions": 2,
+      "mediumProbabilityPredictions": 1,
       "lowProbabilityPredictions": 0,
-      "confidence": 85,
+      "confidence": 52,
       "criticalPredictions": 0
+    },
+    "forecasts": {
+      "forecasts": [
+        {
+          "type": "COMPLIANCE_SCORE_FORECAST",
+          "metric": "Compliance Score",
+          "currentValue": 0,
+          "forecast": [
+            14,
+            9,
+            4
+          ],
+          "trend": -5.236363636363636,
+          "confidence": "LOW",
+          "recommendation": "Forecast shows improvement in compliance score. Continue current practices."
+        },
+        {
+          "type": "VIOLATION_COUNT_FORECAST",
+          "metric": "Violation Count",
+          "currentValue": 369,
+          "forecast": [
+            363,
+            373,
+            383
+          ],
+          "trend": 9.945454545454545,
+          "confidence": "MEDIUM",
+          "recommendation": "Forecast shows potential degradation in violation count. Consider preventive measures."
+        },
+        {
+          "type": "CRITICAL_VIOLATION_FORECAST",
+          "metric": "Critical Violations",
+          "currentValue": 0,
+          "forecast": [
+            1,
+            0,
+            0
+          ],
+          "trend": -0.19393939393939394,
+          "confidence": "LOW",
+          "recommendation": "Forecast shows improvement in critical violations. Continue current practices."
+        },
+        {
+          "type": "EXECUTION_TIME_FORECAST",
+          "metric": "Execution Time (ms)",
+          "currentValue": 29,
+          "forecast": [
+            62,
+            57,
+            52
+          ],
+          "trend": -5,
+          "confidence": "LOW",
+          "recommendation": "Forecast shows improvement in execution time. Continue current practices."
+        },
+        {
+          "type": "FILE_PROCESSING_FORECAST",
+          "metric": "Average File Processing Time (ms)",
+          "currentValue": {
+            "overallAverage": 1,
+            "totalFiles": 6,
+            "totalTime": 6,
+            "fileTypePerformance": {
+              ".js": {
+                "averageTime": 1,
+                "count": 4,
+                "totalSize": 233590,
+                "averageSize": 58398,
+                "efficiency": 0
+              },
+              ".json": {
+                "averageTime": 1,
+                "count": 2,
+                "totalSize": 67713,
+                "averageSize": 33857,
+                "efficiency": 0
+              }
+            }
+          },
+          "forecast": [
+            null,
+            null,
+            null
+          ],
+          "trend": null,
+          "confidence": "LOW",
+          "recommendation": "Forecast shows potential degradation in file processing time. Consider preventive measures."
+        }
+      ],
+      "confidence": "LOW",
+      "message": "Generated 5 forecasts for 3 periods ahead",
+      "dataPoints": 10,
+      "forecastPeriods": 3
+    },
+    "trendBasedRiskAssessment": {
+      "riskAssessment": {
+        "overallRisk": {
+          "level": "HIGH",
+          "score": 67,
+          "trendAnalysis": {
+            "complianceScore": {
+              "trend": -5.236363636363636,
+              "trendDirection": "DECLINING",
+              "volatility": 50,
+              "riskLevel": "HIGH"
+            },
+            "violationCount": {
+              "trend": 9.945454545454545,
+              "trendDirection": "INCREASING",
+              "volatility": 14,
+              "riskLevel": "LOW"
+            },
+            "criticalViolations": {
+              "trend": -0.19393939393939394,
+              "trendDirection": "DECREASING",
+              "volatility": 50,
+              "riskLevel": "HIGH"
+            }
+          },
+          "riskPredictions": [
+            {
+              "type": "COMPLIANCE_SCORE_RISK",
+              "risk": "HIGH",
+              "probability": "HIGH",
+              "description": "Compliance score showing declining trend with high volatility",
+              "impact": "CRITICAL",
+              "timeframe": "IMMEDIATE",
+              "mitigation": "Implement comprehensive compliance review and team training"
+            },
+            {
+              "type": "CRITICAL_VIOLATION_RISK",
+              "risk": "CRITICAL",
+              "probability": "HIGH",
+              "description": "Critical violations showing increasing trend",
+              "impact": "CRITICAL",
+              "timeframe": "IMMEDIATE",
+              "mitigation": "Immediate security review and critical issue prioritization required"
+            }
+          ],
+          "mitigationStrategies": [
+            {
+              "priority": "IMMEDIATE",
+              "strategy": "Comprehensive Risk Mitigation",
+              "actions": [
+                "Implement immediate compliance review",
+                "Establish stricter code review process",
+                "Add automated compliance checks to CI/CD",
+                "Provide team training on standards",
+                "Set up monitoring for risk indicators"
+              ],
+              "expectedOutcome": "Reduce risk levels within 2-4 weeks",
+              "successMetrics": [
+                "Reduced violation count",
+                "Improved compliance score",
+                "Decreased critical violations"
+              ]
+            }
+          ]
+        }
+      },
+      "trendAnalysis": {
+        "complianceScore": {
+          "trend": -5.236363636363636,
+          "trendDirection": "DECLINING",
+          "volatility": 50,
+          "riskLevel": "HIGH"
+        },
+        "violationCount": {
+          "trend": 9.945454545454545,
+          "trendDirection": "INCREASING",
+          "volatility": 14,
+          "riskLevel": "LOW"
+        },
+        "criticalViolations": {
+          "trend": -0.19393939393939394,
+          "trendDirection": "DECREASING",
+          "volatility": 50,
+          "riskLevel": "HIGH"
+        }
+      },
+      "riskPredictions": [
+        {
+          "type": "COMPLIANCE_SCORE_RISK",
+          "risk": "HIGH",
+          "probability": "HIGH",
+          "description": "Compliance score showing declining trend with high volatility",
+          "impact": "CRITICAL",
+          "timeframe": "IMMEDIATE",
+          "mitigation": "Implement comprehensive compliance review and team training"
+        },
+        {
+          "type": "CRITICAL_VIOLATION_RISK",
+          "risk": "CRITICAL",
+          "probability": "HIGH",
+          "description": "Critical violations showing increasing trend",
+          "impact": "CRITICAL",
+          "timeframe": "IMMEDIATE",
+          "mitigation": "Immediate security review and critical issue prioritization required"
+        }
+      ],
+      "mitigationStrategies": [
+        {
+          "priority": "IMMEDIATE",
+          "strategy": "Comprehensive Risk Mitigation",
+          "actions": [
+            "Implement immediate compliance review",
+            "Establish stricter code review process",
+            "Add automated compliance checks to CI/CD",
+            "Provide team training on standards",
+            "Set up monitoring for risk indicators"
+          ],
+          "expectedOutcome": "Reduce risk levels within 2-4 weeks",
+          "successMetrics": [
+            "Reduced violation count",
+            "Improved compliance score",
+            "Decreased critical violations"
+          ]
+        }
+      ],
+      "dataPoints": 10,
+      "confidence": "HIGH"
+    },
+    "confidenceScoring": {
+      "confidenceScores": {
+        "complianceScore": {
+          "confidence": "LOW",
+          "score": 55,
+          "factors": [
+            "Moderate data volatility",
+            "Sufficient data points",
+            "Inconsistent trends",
+            "Moderate outlier presence"
+          ],
+          "reliability": "UNRELIABLE"
+        },
+        "violationCount": {
+          "confidence": "MEDIUM",
+          "score": 70,
+          "factors": [
+            "Low data volatility",
+            "Sufficient data points",
+            "Inconsistent trends",
+            "Moderate outlier presence"
+          ],
+          "reliability": "MODERATELY_RELIABLE"
+        },
+        "criticalViolations": {
+          "confidence": "LOW",
+          "score": 55,
+          "factors": [
+            "Moderate data volatility",
+            "Sufficient data points",
+            "Inconsistent trends",
+            "Moderate outlier presence"
+          ],
+          "reliability": "UNRELIABLE"
+        },
+        "executionTime": {
+          "confidence": "LOW",
+          "score": 55,
+          "factors": [
+            "Moderate data volatility",
+            "Sufficient data points",
+            "Inconsistent trends",
+            "Moderate outlier presence"
+          ],
+          "reliability": "UNRELIABLE"
+        }
+      },
+      "predictionReliability": "LOW",
+      "recommendations": [
+        "Low confidence in complianceScore predictions - collect more data",
+        "Medium confidence in violationCount predictions - consider with caution",
+        "Low confidence in criticalViolations predictions - collect more data",
+        "Low confidence in executionTime predictions - collect more data"
+      ],
+      "dataPoints": 10,
+      "overallConfidenceScore": 59
+    },
+    "patternBasedSuggestions": {
+      "suggestions": [
+        {
+          "type": "COMPLIANCE_DECLINE_MITIGATION",
+          "title": "Address Declining Compliance Score",
+          "description": "Compliance score has been declining over recent checks",
+          "impact": "HIGH",
+          "urgency": "IMMEDIATE",
+          "actions": [
+            "Review recent code changes for compliance violations",
+            "Implement stricter code review process",
+            "Provide team training on standards",
+            "Add automated compliance checks to CI/CD pipeline"
+          ],
+          "expectedOutcome": "Improve compliance score within 1-2 weeks",
+          "successMetrics": [
+            "Increased compliance score",
+            "Reduced violation count"
+          ]
+        },
+        {
+          "type": "TREND_REVERSAL_STRATEGY",
+          "title": "Reverse Declining Trend",
+          "description": "Compliance trend is declining and needs immediate attention",
+          "impact": "HIGH",
+          "urgency": "IMMEDIATE",
+          "actions": [
+            "Implement comprehensive compliance review",
+            "Establish daily compliance monitoring",
+            "Provide immediate team training",
+            "Set up compliance improvement milestones"
+          ],
+          "expectedOutcome": "Reverse declining trend within 2-3 weeks",
+          "successMetrics": [
+            "Positive trend direction",
+            "Improved compliance score"
+          ]
+        },
+        {
+          "type": "CYCLICAL_PATTERN_MANAGEMENT",
+          "title": "Manage Cyclical Compliance Patterns",
+          "description": "Compliance shows cyclical patterns that need management",
+          "impact": "MEDIUM",
+          "urgency": "SHORT_TERM",
+          "actions": [
+            "Implement consistent compliance practices",
+            "Establish regular compliance reviews",
+            "Create compliance maintenance schedule",
+            "Monitor for pattern triggers"
+          ],
+          "expectedOutcome": "Stabilize compliance patterns",
+          "successMetrics": [
+            "Reduced volatility",
+            "More consistent compliance"
+          ]
+        },
+        {
+          "type": "CRITICAL_ISSUE_RESOLUTION",
+          "title": "Resolve Critical Issues Immediately",
+          "description": "Critical violations detected that require immediate attention",
+          "impact": "CRITICAL",
+          "urgency": "IMMEDIATE",
+          "actions": [
+            "Prioritize critical issue resolution",
+            "Implement immediate fixes",
+            "Establish critical issue monitoring",
+            "Review security and compliance procedures"
+          ],
+          "expectedOutcome": "Eliminate all critical violations",
+          "successMetrics": [
+            "Zero critical violations",
+            "Improved security posture"
+          ]
+        },
+        {
+          "type": "HIGH_SEVERITY_ISSUE_MANAGEMENT",
+          "title": "Manage High Severity Issues",
+          "description": "High severity violations need attention",
+          "impact": "HIGH",
+          "urgency": "SHORT_TERM",
+          "actions": [
+            "Review high severity violations",
+            "Implement fixes for high priority issues",
+            "Establish severity-based prioritization",
+            "Monitor high severity issue trends"
+          ],
+          "expectedOutcome": "Reduce high severity violations",
+          "successMetrics": [
+            "Reduced high severity violations",
+            "Improved code quality"
+          ]
+        },
+        {
+          "type": "RECURRING_CRITICAL_ISSUE_PREVENTION",
+          "title": "Prevent Recurring Critical Issues",
+          "description": "Critical issues are recurring frequently",
+          "impact": "CRITICAL",
+          "urgency": "IMMEDIATE",
+          "actions": [
+            "Implement critical issue prevention",
+            "Add critical issue monitoring",
+            "Establish emergency response procedures",
+            "Review and improve security measures"
+          ],
+          "expectedOutcome": "Eliminate recurring critical issues",
+          "successMetrics": [
+            "Zero recurring critical issues",
+            "Improved security measures"
+          ]
+        }
+      ],
+      "patternAnalysis": {
+        "contextPatterns": {
+          "complianceDecline": true,
+          "violationSpikes": false,
+          "criticalIssueTrends": false,
+          "performanceDegradation": false,
+          "standardsAdoption": false
+        },
+        "trendPatterns": {
+          "improvingTrend": false,
+          "decliningTrend": true,
+          "stableTrend": false,
+          "cyclicalPattern": true,
+          "seasonalPattern": false
+        },
+        "fileTypePatterns": {
+          "javaFileIssues": false,
+          "typescriptFileIssues": false,
+          "markdownFileIssues": false,
+          "configurationFileIssues": false,
+          "testFileIssues": false
+        },
+        "severityPatterns": {
+          "highSeverityIssues": true,
+          "mediumSeverityIssues": false,
+          "lowSeverityIssues": false,
+          "criticalIssues": true,
+          "mixedSeverityIssues": false
+        },
+        "recurringPatterns": {
+          "recurringViolations": false,
+          "recurringPerformanceIssues": false,
+          "recurringComplianceIssues": true,
+          "recurringCriticalIssues": true,
+          "recurringFileTypeIssues": false
+        }
+      },
+      "priorityLevels": {
+        "HIGH": [
+          {
+            "type": "COMPLIANCE_DECLINE_MITIGATION",
+            "title": "Address Declining Compliance Score",
+            "description": "Compliance score has been declining over recent checks",
+            "impact": "HIGH",
+            "urgency": "IMMEDIATE",
+            "actions": [
+              "Review recent code changes for compliance violations",
+              "Implement stricter code review process",
+              "Provide team training on standards",
+              "Add automated compliance checks to CI/CD pipeline"
+            ],
+            "expectedOutcome": "Improve compliance score within 1-2 weeks",
+            "successMetrics": [
+              "Increased compliance score",
+              "Reduced violation count"
+            ]
+          },
+          {
+            "type": "TREND_REVERSAL_STRATEGY",
+            "title": "Reverse Declining Trend",
+            "description": "Compliance trend is declining and needs immediate attention",
+            "impact": "HIGH",
+            "urgency": "IMMEDIATE",
+            "actions": [
+              "Implement comprehensive compliance review",
+              "Establish daily compliance monitoring",
+              "Provide immediate team training",
+              "Set up compliance improvement milestones"
+            ],
+            "expectedOutcome": "Reverse declining trend within 2-3 weeks",
+            "successMetrics": [
+              "Positive trend direction",
+              "Improved compliance score"
+            ]
+          },
+          {
+            "type": "CRITICAL_ISSUE_RESOLUTION",
+            "title": "Resolve Critical Issues Immediately",
+            "description": "Critical violations detected that require immediate attention",
+            "impact": "CRITICAL",
+            "urgency": "IMMEDIATE",
+            "actions": [
+              "Prioritize critical issue resolution",
+              "Implement immediate fixes",
+              "Establish critical issue monitoring",
+              "Review security and compliance procedures"
+            ],
+            "expectedOutcome": "Eliminate all critical violations",
+            "successMetrics": [
+              "Zero critical violations",
+              "Improved security posture"
+            ]
+          },
+          {
+            "type": "HIGH_SEVERITY_ISSUE_MANAGEMENT",
+            "title": "Manage High Severity Issues",
+            "description": "High severity violations need attention",
+            "impact": "HIGH",
+            "urgency": "SHORT_TERM",
+            "actions": [
+              "Review high severity violations",
+              "Implement fixes for high priority issues",
+              "Establish severity-based prioritization",
+              "Monitor high severity issue trends"
+            ],
+            "expectedOutcome": "Reduce high severity violations",
+            "successMetrics": [
+              "Reduced high severity violations",
+              "Improved code quality"
+            ]
+          },
+          {
+            "type": "RECURRING_CRITICAL_ISSUE_PREVENTION",
+            "title": "Prevent Recurring Critical Issues",
+            "description": "Critical issues are recurring frequently",
+            "impact": "CRITICAL",
+            "urgency": "IMMEDIATE",
+            "actions": [
+              "Implement critical issue prevention",
+              "Add critical issue monitoring",
+              "Establish emergency response procedures",
+              "Review and improve security measures"
+            ],
+            "expectedOutcome": "Eliminate recurring critical issues",
+            "successMetrics": [
+              "Zero recurring critical issues",
+              "Improved security measures"
+            ]
+          }
+        ],
+        "MEDIUM": [
+          {
+            "type": "CYCLICAL_PATTERN_MANAGEMENT",
+            "title": "Manage Cyclical Compliance Patterns",
+            "description": "Compliance shows cyclical patterns that need management",
+            "impact": "MEDIUM",
+            "urgency": "SHORT_TERM",
+            "actions": [
+              "Implement consistent compliance practices",
+              "Establish regular compliance reviews",
+              "Create compliance maintenance schedule",
+              "Monitor for pattern triggers"
+            ],
+            "expectedOutcome": "Stabilize compliance patterns",
+            "successMetrics": [
+              "Reduced volatility",
+              "More consistent compliance"
+            ]
+          }
+        ],
+        "LOW": []
+      },
+      "totalSuggestions": 6,
+      "highPriorityCount": 5,
+      "mediumPriorityCount": 1,
+      "lowPriorityCount": 0,
+      "dataPoints": 15
     }
   }
 }

@@ -1357,6 +1357,583 @@ class StatisticalAnalysis {
     const trendSimilarity = 1 - Math.abs(firstTrend - secondTrend) / Math.max(Math.abs(firstTrend), Math.abs(secondTrend), 1);
     return Math.max(0, trendSimilarity);
   }
+
+  // Enhanced: Implement pattern-based suggestions
+  implementPatternBasedSuggestions(historicalData) {
+    if (!historicalData || historicalData.length < 3) {
+      return {
+        message: 'Insufficient data for pattern-based suggestions (minimum 3 data points required)',
+        suggestions: [],
+        patternAnalysis: {},
+        priorityLevels: {}
+      };
+    }
+
+    const recentData = historicalData.slice(-Math.min(15, historicalData.length));
+    const suggestions = [];
+    const patternAnalysis = {};
+    const priorityLevels = { HIGH: [], MEDIUM: [], LOW: [] };
+
+    // Analyze context-aware patterns
+    const contextPatterns = this.analyzeContextAwarePatterns(recentData);
+    patternAnalysis.contextPatterns = contextPatterns;
+
+    // Analyze historical trend patterns
+    const trendPatterns = this.analyzeHistoricalTrendPatterns(recentData);
+    patternAnalysis.trendPatterns = trendPatterns;
+
+    // Analyze file type patterns
+    const fileTypePatterns = this.analyzeFileTypePatterns(recentData);
+    patternAnalysis.fileTypePatterns = fileTypePatterns;
+
+    // Analyze severity patterns
+    const severityPatterns = this.analyzeSeverityPatterns(recentData);
+    patternAnalysis.severityPatterns = severityPatterns;
+
+    // Analyze recurring pattern detection
+    const recurringPatterns = this.analyzeRecurringPatterns(recentData);
+    patternAnalysis.recurringPatterns = recurringPatterns;
+
+    // Generate suggestions based on patterns
+    suggestions.push(...this.generateContextBasedSuggestions(contextPatterns));
+    suggestions.push(...this.generateTrendBasedSuggestions(trendPatterns));
+    suggestions.push(...this.generateFileTypeBasedSuggestions(fileTypePatterns));
+    suggestions.push(...this.generateSeverityBasedSuggestions(severityPatterns));
+    suggestions.push(...this.generateRecurringPatternSuggestions(recurringPatterns));
+
+    // Categorize suggestions by priority
+    suggestions.forEach(suggestion => {
+      if (suggestion.impact === 'HIGH' || suggestion.urgency === 'IMMEDIATE') {
+        priorityLevels.HIGH.push(suggestion);
+      } else if (suggestion.impact === 'MEDIUM' || suggestion.urgency === 'SHORT_TERM') {
+        priorityLevels.MEDIUM.push(suggestion);
+      } else {
+        priorityLevels.LOW.push(suggestion);
+      }
+    });
+
+    return {
+      suggestions,
+      patternAnalysis,
+      priorityLevels,
+      totalSuggestions: suggestions.length,
+      highPriorityCount: priorityLevels.HIGH.length,
+      mediumPriorityCount: priorityLevels.MEDIUM.length,
+      lowPriorityCount: priorityLevels.LOW.length,
+      dataPoints: recentData.length
+    };
+  }
+
+  // Analyze context-aware patterns
+  analyzeContextAwarePatterns(data) {
+    const patterns = {
+      complianceDecline: false,
+      violationSpikes: false,
+      criticalIssueTrends: false,
+      performanceDegradation: false,
+      standardsAdoption: false
+    };
+
+    const complianceScores = data.map(entry => entry.complianceScore);
+    const violationCounts = data.map(entry => entry.violations);
+    const criticalViolations = data.map(entry => entry.criticalViolations);
+
+    // Detect compliance decline patterns
+    const recentScores = complianceScores.slice(-3);
+    if (recentScores.length >= 3 && recentScores[0] > recentScores[2]) {
+      patterns.complianceDecline = true;
+    }
+
+    // Detect violation spikes
+    const avgViolations = this.calculateMean(violationCounts);
+    const recentViolations = violationCounts.slice(-2);
+    if (recentViolations.some(v => v > avgViolations * 1.5)) {
+      patterns.violationSpikes = true;
+    }
+
+    // Detect critical issue trends
+    const criticalTrend = this.calculateTrend(criticalViolations);
+    if (criticalTrend > 0) {
+      patterns.criticalIssueTrends = true;
+    }
+
+    // Detect performance degradation
+    const executionTimes = data.map(entry => entry.metrics?.executionTime || 0);
+    const avgExecutionTime = this.calculateMean(executionTimes);
+    const recentExecutionTimes = executionTimes.slice(-2);
+    if (recentExecutionTimes.some(t => t > avgExecutionTime * 1.3)) {
+      patterns.performanceDegradation = true;
+    }
+
+    return patterns;
+  }
+
+  // Analyze historical trend patterns
+  analyzeHistoricalTrendPatterns(data) {
+    const patterns = {
+      improvingTrend: false,
+      decliningTrend: false,
+      stableTrend: false,
+      cyclicalPattern: false,
+      seasonalPattern: false
+    };
+
+    const complianceScores = data.map(entry => entry.complianceScore);
+    const trend = this.calculateTrend(complianceScores);
+    const volatility = this.calculateStandardDeviation(complianceScores) / this.calculateMean(complianceScores);
+
+    if (trend > 0.5) {
+      patterns.improvingTrend = true;
+    } else if (trend < -0.5) {
+      patterns.decliningTrend = true;
+    } else {
+      patterns.stableTrend = true;
+    }
+
+    // Detect cyclical patterns (simplified)
+    if (volatility > 0.2 && data.length >= 6) {
+      patterns.cyclicalPattern = true;
+    }
+
+    return patterns;
+  }
+
+  // Analyze file type patterns
+  analyzeFileTypePatterns(data) {
+    const patterns = {
+      javaFileIssues: false,
+      typescriptFileIssues: false,
+      markdownFileIssues: false,
+      configurationFileIssues: false,
+      testFileIssues: false
+    };
+
+    // Analyze based on file processing metrics if available
+    data.forEach(entry => {
+      if (entry.metrics?.fileTypeMetrics) {
+        const fileMetrics = entry.metrics.fileTypeMetrics;
+        
+        if (fileMetrics.java && fileMetrics.java.violations > 0) {
+          patterns.javaFileIssues = true;
+        }
+        if (fileMetrics.typescript && fileMetrics.typescript.violations > 0) {
+          patterns.typescriptFileIssues = true;
+        }
+        if (fileMetrics.markdown && fileMetrics.markdown.violations > 0) {
+          patterns.markdownFileIssues = true;
+        }
+      }
+    });
+
+    return patterns;
+  }
+
+  // Analyze severity patterns
+  analyzeSeverityPatterns(data) {
+    const patterns = {
+      highSeverityIssues: false,
+      mediumSeverityIssues: false,
+      lowSeverityIssues: false,
+      criticalIssues: false,
+      mixedSeverityIssues: false
+    };
+
+    data.forEach(entry => {
+      if (entry.criticalViolations > 0) {
+        patterns.criticalIssues = true;
+      }
+      if (entry.violations > 10) {
+        patterns.highSeverityIssues = true;
+      } else if (entry.violations > 5) {
+        patterns.mediumSeverityIssues = true;
+      } else if (entry.violations > 0) {
+        patterns.lowSeverityIssues = true;
+      }
+    });
+
+    const severityCounts = [
+      patterns.criticalIssues,
+      patterns.highSeverityIssues,
+      patterns.mediumSeverityIssues,
+      patterns.lowSeverityIssues
+    ].filter(Boolean).length;
+
+    if (severityCounts > 2) {
+      patterns.mixedSeverityIssues = true;
+    }
+
+    return patterns;
+  }
+
+  // Analyze recurring patterns
+  analyzeRecurringPatterns(data) {
+    const patterns = {
+      recurringViolations: false,
+      recurringPerformanceIssues: false,
+      recurringComplianceIssues: false,
+      recurringCriticalIssues: false,
+      recurringFileTypeIssues: false
+    };
+
+    // Detect recurring violations
+    const violationCounts = data.map(entry => entry.violations);
+    const avgViolations = this.calculateMean(violationCounts);
+    const highViolationCount = violationCounts.filter(v => v > avgViolations).length;
+    
+    if (highViolationCount >= Math.ceil(data.length * 0.6)) {
+      patterns.recurringViolations = true;
+    }
+
+    // Detect recurring performance issues
+    const executionTimes = data.map(entry => entry.metrics?.executionTime || 0);
+    const avgExecutionTime = this.calculateMean(executionTimes);
+    const slowExecutionCount = executionTimes.filter(t => t > avgExecutionTime * 1.2).length;
+    
+    if (slowExecutionCount >= Math.ceil(data.length * 0.5)) {
+      patterns.recurringPerformanceIssues = true;
+    }
+
+    // Detect recurring compliance issues
+    const complianceScores = data.map(entry => entry.complianceScore);
+    const lowComplianceCount = complianceScores.filter(s => s < 80).length;
+    
+    if (lowComplianceCount >= Math.ceil(data.length * 0.5)) {
+      patterns.recurringComplianceIssues = true;
+    }
+
+    // Detect recurring critical issues
+    const criticalViolations = data.map(entry => entry.criticalViolations);
+    const criticalIssueCount = criticalViolations.filter(c => c > 0).length;
+    
+    if (criticalIssueCount >= Math.ceil(data.length * 0.3)) {
+      patterns.recurringCriticalIssues = true;
+    }
+
+    return patterns;
+  }
+
+  // Generate context-based suggestions
+  generateContextBasedSuggestions(contextPatterns) {
+    const suggestions = [];
+
+    if (contextPatterns.complianceDecline) {
+      suggestions.push({
+        type: 'COMPLIANCE_DECLINE_MITIGATION',
+        title: 'Address Declining Compliance Score',
+        description: 'Compliance score has been declining over recent checks',
+        impact: 'HIGH',
+        urgency: 'IMMEDIATE',
+        actions: [
+          'Review recent code changes for compliance violations',
+          'Implement stricter code review process',
+          'Provide team training on standards',
+          'Add automated compliance checks to CI/CD pipeline'
+        ],
+        expectedOutcome: 'Improve compliance score within 1-2 weeks',
+        successMetrics: ['Increased compliance score', 'Reduced violation count']
+      });
+    }
+
+    if (contextPatterns.violationSpikes) {
+      suggestions.push({
+        type: 'VIOLATION_SPIKE_RESPONSE',
+        title: 'Address Violation Spike',
+        description: 'Unusual increase in violations detected',
+        impact: 'HIGH',
+        urgency: 'IMMEDIATE',
+        actions: [
+          'Investigate recent code changes',
+          'Review violation types and patterns',
+          'Implement immediate fixes for critical violations',
+          'Establish violation monitoring alerts'
+        ],
+        expectedOutcome: 'Reduce violations to normal levels',
+        successMetrics: ['Reduced violation count', 'Stable violation trend']
+      });
+    }
+
+    if (contextPatterns.criticalIssueTrends) {
+      suggestions.push({
+        type: 'CRITICAL_ISSUE_MITIGATION',
+        title: 'Address Critical Issue Trend',
+        description: 'Critical violations showing increasing trend',
+        impact: 'CRITICAL',
+        urgency: 'IMMEDIATE',
+        actions: [
+          'Prioritize critical issue resolution',
+          'Implement security review process',
+          'Add critical issue monitoring',
+          'Establish emergency response procedures'
+        ],
+        expectedOutcome: 'Eliminate all critical violations',
+        successMetrics: ['Zero critical violations', 'Improved security posture']
+      });
+    }
+
+    if (contextPatterns.performanceDegradation) {
+      suggestions.push({
+        type: 'PERFORMANCE_OPTIMIZATION',
+        title: 'Optimize Performance',
+        description: 'Performance degradation detected in compliance checks',
+        impact: 'MEDIUM',
+        urgency: 'SHORT_TERM',
+        actions: [
+          'Optimize compliance check algorithms',
+          'Implement caching for repeated checks',
+          'Review file processing efficiency',
+          'Consider parallel processing for large codebases'
+        ],
+        expectedOutcome: 'Improve execution time by 20-30%',
+        successMetrics: ['Reduced execution time', 'Improved processing efficiency']
+      });
+    }
+
+    return suggestions;
+  }
+
+  // Generate trend-based suggestions
+  generateTrendBasedSuggestions(trendPatterns) {
+    const suggestions = [];
+
+    if (trendPatterns.decliningTrend) {
+      suggestions.push({
+        type: 'TREND_REVERSAL_STRATEGY',
+        title: 'Reverse Declining Trend',
+        description: 'Compliance trend is declining and needs immediate attention',
+        impact: 'HIGH',
+        urgency: 'IMMEDIATE',
+        actions: [
+          'Implement comprehensive compliance review',
+          'Establish daily compliance monitoring',
+          'Provide immediate team training',
+          'Set up compliance improvement milestones'
+        ],
+        expectedOutcome: 'Reverse declining trend within 2-3 weeks',
+        successMetrics: ['Positive trend direction', 'Improved compliance score']
+      });
+    }
+
+    if (trendPatterns.cyclicalPattern) {
+      suggestions.push({
+        type: 'CYCLICAL_PATTERN_MANAGEMENT',
+        title: 'Manage Cyclical Compliance Patterns',
+        description: 'Compliance shows cyclical patterns that need management',
+        impact: 'MEDIUM',
+        urgency: 'SHORT_TERM',
+        actions: [
+          'Implement consistent compliance practices',
+          'Establish regular compliance reviews',
+          'Create compliance maintenance schedule',
+          'Monitor for pattern triggers'
+        ],
+        expectedOutcome: 'Stabilize compliance patterns',
+        successMetrics: ['Reduced volatility', 'More consistent compliance']
+      });
+    }
+
+    if (trendPatterns.improvingTrend) {
+      suggestions.push({
+        type: 'TREND_MAINTENANCE',
+        title: 'Maintain Improving Trend',
+        description: 'Compliance is improving - maintain momentum',
+        impact: 'MEDIUM',
+        urgency: 'ONGOING',
+        actions: [
+          'Continue current improvement practices',
+          'Document successful strategies',
+          'Share best practices across team',
+          'Set higher compliance targets'
+        ],
+        expectedOutcome: 'Maintain and accelerate improvement',
+        successMetrics: ['Continued improvement', 'Higher compliance targets']
+      });
+    }
+
+    return suggestions;
+  }
+
+  // Generate file type-based suggestions
+  generateFileTypeBasedSuggestions(fileTypePatterns) {
+    const suggestions = [];
+
+    if (fileTypePatterns.javaFileIssues) {
+      suggestions.push({
+        type: 'JAVA_FILE_OPTIMIZATION',
+        title: 'Address Java File Compliance Issues',
+        description: 'Java files showing compliance violations',
+        impact: 'MEDIUM',
+        urgency: 'SHORT_TERM',
+        actions: [
+          'Review Java coding standards',
+          'Implement Java-specific linting rules',
+          'Add Java code quality checks',
+          'Provide Java development best practices training'
+        ],
+        expectedOutcome: 'Improve Java file compliance',
+        successMetrics: ['Reduced Java violations', 'Improved Java code quality']
+      });
+    }
+
+    if (fileTypePatterns.typescriptFileIssues) {
+      suggestions.push({
+        type: 'TYPESCRIPT_FILE_OPTIMIZATION',
+        title: 'Address TypeScript File Compliance Issues',
+        description: 'TypeScript files showing compliance violations',
+        impact: 'MEDIUM',
+        urgency: 'SHORT_TERM',
+        actions: [
+          'Review TypeScript coding standards',
+          'Implement TypeScript-specific linting',
+          'Add TypeScript type checking',
+          'Provide TypeScript best practices training'
+        ],
+        expectedOutcome: 'Improve TypeScript file compliance',
+        successMetrics: ['Reduced TypeScript violations', 'Improved type safety']
+      });
+    }
+
+    if (fileTypePatterns.markdownFileIssues) {
+      suggestions.push({
+        type: 'MARKDOWN_FILE_OPTIMIZATION',
+        title: 'Address Markdown File Compliance Issues',
+        description: 'Markdown files showing compliance violations',
+        impact: 'LOW',
+        urgency: 'ONGOING',
+        actions: [
+          'Review documentation standards',
+          'Implement markdown linting rules',
+          'Add documentation quality checks',
+          'Provide documentation best practices training'
+        ],
+        expectedOutcome: 'Improve documentation quality',
+        successMetrics: ['Reduced documentation violations', 'Improved documentation quality']
+      });
+    }
+
+    return suggestions;
+  }
+
+  // Generate severity-based suggestions
+  generateSeverityBasedSuggestions(severityPatterns) {
+    const suggestions = [];
+
+    if (severityPatterns.criticalIssues) {
+      suggestions.push({
+        type: 'CRITICAL_ISSUE_RESOLUTION',
+        title: 'Resolve Critical Issues Immediately',
+        description: 'Critical violations detected that require immediate attention',
+        impact: 'CRITICAL',
+        urgency: 'IMMEDIATE',
+        actions: [
+          'Prioritize critical issue resolution',
+          'Implement immediate fixes',
+          'Establish critical issue monitoring',
+          'Review security and compliance procedures'
+        ],
+        expectedOutcome: 'Eliminate all critical violations',
+        successMetrics: ['Zero critical violations', 'Improved security posture']
+      });
+    }
+
+    if (severityPatterns.highSeverityIssues) {
+      suggestions.push({
+        type: 'HIGH_SEVERITY_ISSUE_MANAGEMENT',
+        title: 'Manage High Severity Issues',
+        description: 'High severity violations need attention',
+        impact: 'HIGH',
+        urgency: 'SHORT_TERM',
+        actions: [
+          'Review high severity violations',
+          'Implement fixes for high priority issues',
+          'Establish severity-based prioritization',
+          'Monitor high severity issue trends'
+        ],
+        expectedOutcome: 'Reduce high severity violations',
+        successMetrics: ['Reduced high severity violations', 'Improved code quality']
+      });
+    }
+
+    if (severityPatterns.mixedSeverityIssues) {
+      suggestions.push({
+        type: 'MIXED_SEVERITY_ISSUE_MANAGEMENT',
+        title: 'Manage Mixed Severity Issues',
+        description: 'Multiple severity levels of violations detected',
+        impact: 'MEDIUM',
+        urgency: 'SHORT_TERM',
+        actions: [
+          'Implement severity-based prioritization',
+          'Address critical and high severity first',
+          'Establish systematic issue resolution process',
+          'Monitor severity distribution trends'
+        ],
+        expectedOutcome: 'Systematic resolution of all severity levels',
+        successMetrics: ['Reduced overall violations', 'Balanced severity distribution']
+      });
+    }
+
+    return suggestions;
+  }
+
+  // Generate recurring pattern suggestions
+  generateRecurringPatternSuggestions(recurringPatterns) {
+    const suggestions = [];
+
+    if (recurringPatterns.recurringViolations) {
+      suggestions.push({
+        type: 'RECURRING_VIOLATION_PREVENTION',
+        title: 'Prevent Recurring Violations',
+        description: 'Violations are recurring frequently',
+        impact: 'HIGH',
+        urgency: 'SHORT_TERM',
+        actions: [
+          'Analyze violation root causes',
+          'Implement preventive measures',
+          'Add automated violation detection',
+          'Establish violation prevention training'
+        ],
+        expectedOutcome: 'Reduce recurring violations',
+        successMetrics: ['Reduced violation frequency', 'Improved prevention measures']
+      });
+    }
+
+    if (recurringPatterns.recurringPerformanceIssues) {
+      suggestions.push({
+        type: 'RECURRING_PERFORMANCE_OPTIMIZATION',
+        title: 'Optimize Recurring Performance Issues',
+        description: 'Performance issues are recurring frequently',
+        impact: 'MEDIUM',
+        urgency: 'SHORT_TERM',
+        actions: [
+          'Identify performance bottlenecks',
+          'Implement performance optimizations',
+          'Add performance monitoring',
+          'Establish performance best practices'
+        ],
+        expectedOutcome: 'Improve consistent performance',
+        successMetrics: ['Improved performance consistency', 'Reduced performance issues']
+      });
+    }
+
+    if (recurringPatterns.recurringCriticalIssues) {
+      suggestions.push({
+        type: 'RECURRING_CRITICAL_ISSUE_PREVENTION',
+        title: 'Prevent Recurring Critical Issues',
+        description: 'Critical issues are recurring frequently',
+        impact: 'CRITICAL',
+        urgency: 'IMMEDIATE',
+        actions: [
+          'Implement critical issue prevention',
+          'Add critical issue monitoring',
+          'Establish emergency response procedures',
+          'Review and improve security measures'
+        ],
+        expectedOutcome: 'Eliminate recurring critical issues',
+        successMetrics: ['Zero recurring critical issues', 'Improved security measures']
+      });
+    }
+
+    return suggestions;
+  }
 }
 
 module.exports = StatisticalAnalysis; 

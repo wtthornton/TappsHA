@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,6 +97,7 @@
         .severity-critical { border-left-color: #dc3545; }
         .severity-high { border-left-color: #fd7e14; }
         .severity-medium { border-left-color: #ffc107; }
+        .severity-low { border-left-color: #28a745; }
         
         .file-type-stats {
             display: grid;
@@ -123,1372 +123,757 @@
         
         .trend-improving { background: #d4edda; color: #155724; }
         .trend-declining { background: #f8d7da; color: #721c24; }
-        .trend-stable { background: #fff3cd; color: #856404; }
+        .trend-stable { background: #d1ecf1; color: #0c5460; }
         
         @media (max-width: 768px) {
             .metrics-grid { grid-template-columns: 1fr; }
             .file-type-stats { grid-template-columns: 1fr; }
+        }
+        
+        .trend-chart {
+            width: 100%;
+            height: 300px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .forecast-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .forecast-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .confidence-indicator {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .confidence-high { background: #28a745; color: white; }
+        .confidence-medium { background: #ffc107; color: #212529; }
+        .confidence-low { background: #dc3545; color: white; }
+        
+        .timeline-container {
+            position: relative;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 4px;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            min-width: 120px;
+            color: #495057;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            margin-left: 15px;
+        }
+        
+        .progress-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            transition: width 0.3s ease;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-chart {
+            width: 100%;
+            height: 200px;
+            margin: 15px 0;
+        }
+        
+        .period-selector {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .period-btn {
+            padding: 8px 16px;
+            border: 1px solid #007bff;
+            background: white;
+            color: #007bff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .period-btn.active {
+            background: #007bff;
+            color: white;
+        }
+        
+        .period-btn:hover {
+            background: #0056b3;
+            color: white;
+        }
+        
+        .insights-panel {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .insight-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .priority-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .priority-high { background: #dc3545; color: white; }
+        .priority-medium { background: #ffc107; color: #212529; }
+        .priority-low { background: #28a745; color: white; }
+        
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            .period-selector {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 Enhanced Compliance Dashboard</h1>
-            <div class="score critical">
-                54%
-            </div>
-            <p style="text-align: center; margin: 0;">Overall Compliance Score</p>
+            <h1>Enhanced Compliance Dashboard</h1>
+            <p>Real-time analytics and trend analysis for Agent OS framework compliance</p>
         </div>
+
+        <!-- Enhanced Trend Analysis Section -->
+        <div class="analytics-section">
+            <h2>📈 Trend Analysis & Forecasting</h2>
+            
+            <!-- Trend Charts -->
+            <div class="chart-container">
+                <h3>Compliance Score Trends</h3>
+                <div class="trend-chart">
+                    <canvas id="complianceTrendChart"></canvas>
+                </div>
+                <div class="trend-indicator" id="complianceTrendIndicator"></div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Violation Count Trends</h3>
+                <div class="trend-chart">
+                    <canvas id="violationTrendChart"></canvas>
+                </div>
+                <div class="trend-indicator" id="violationTrendIndicator"></div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Performance Metrics Trends</h3>
+                <div class="trend-chart">
+                    <canvas id="performanceTrendChart"></canvas>
+                </div>
+                <div class="trend-indicator" id="performanceTrendIndicator"></div>
+            </div>
+        </div>
+
+        <!-- Enhanced Forecast Section -->
+        <div class="forecast-section">
+            <h2>🔮 Predictive Analytics & Forecasting</h2>
+            <div id="forecastContainer"></div>
+        </div>
+
+        <!-- Enhanced Timeline Visualization -->
+        <div class="timeline-container">
+            <h2>📅 Violation Timeline & Historical Analysis</h2>
+            <div id="timelineContainer"></div>
+        </div>
+
+        <!-- Enhanced Progress Tracking -->
+        <div class="progress-section">
+            <h2>📊 Progress Tracking & Improvement Metrics</h2>
+            <div id="progressContainer"></div>
+        </div>
+
+        <!-- Enhanced Trend Comparison -->
+        <div class="comparison-grid">
+            <div class="comparison-card">
+                <h3>Period-to-Period Comparison</h3>
+                <div class="period-selector">
+                    <button class="period-btn active" data-period="7">Last 7 Days</button>
+                    <button class="period-btn" data-period="14">Last 14 Days</button>
+                    <button class="period-btn" data-period="30">Last 30 Days</button>
+                </div>
+                <div class="comparison-chart">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="comparison-card">
+                <h3>Trend Indicators & Analysis</h3>
+                <div id="trendIndicators"></div>
+            </div>
+        </div>
+
+        <!-- Enhanced Insights Panel -->
+        <div class="insights-panel">
+            <h2>💡 Smart Insights & Recommendations</h2>
+            <div id="insightsContainer"></div>
+        </div>
+
+        <!-- Original Dashboard Content -->
+        <div id="complianceScore" class="score"></div>
         
         <div class="metrics-grid">
             <div class="metric-card">
-                <div class="metric-title">📁 Files Checked</div>
-                <div class="metric-value">72</div>
+                <div class="metric-title">Total Violations</div>
+                <div class="metric-value" id="totalViolations"></div>
             </div>
             <div class="metric-card">
-                <div class="metric-title">🚨 Critical Issues</div>
-                <div class="metric-value critical">2</div>
+                <div class="metric-title">Critical Violations</div>
+                <div class="metric-value" id="criticalViolations"></div>
             </div>
             <div class="metric-card">
-                <div class="metric-title">⚠️ Warnings</div>
-                <div class="metric-value warning">285</div>
+                <div class="metric-title">Execution Time</div>
+                <div class="metric-value" id="executionTime"></div>
             </div>
             <div class="metric-card">
-                <div class="metric-title">⚡ Execution Time</div>
-                <div class="metric-value info">99ms</div>
+                <div class="metric-title">Files Processed</div>
+                <div class="metric-value" id="filesProcessed"></div>
             </div>
         </div>
-        
-        
-        <div class="analytics-section">
-            <h2>📊 File Processing Performance</h2>
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-title">Overall Average</div>
-                    <div class="metric-value">0.08ms</div>
-                    <div>72 files processed</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-title">Total Processing Time</div>
-                    <div class="metric-value">6ms</div>
-                </div>
-            </div>
-            
-            
-            <h3>📈 Performance by File Type</h3>
-            <div class="file-type-stats">
-                
-                <div class="file-type-card">
-                    <div style="font-weight: bold; font-size: 1.2em;">.java</div>
-                    <div>0.08ms avg</div>
-                    <div>62 files</div>
-                    <div>6604 bytes avg</div>
-                </div>
-                
-                <div class="file-type-card">
-                    <div style="font-weight: bold; font-size: 1.2em;">.tsx</div>
-                    <div>0.33ms avg</div>
-                    <div>3 files</div>
-                    <div>9428 bytes avg</div>
-                </div>
-                
-                <div class="file-type-card">
-                    <div style="font-weight: bold; font-size: 1.2em;">.xml</div>
-                    <div>0ms avg</div>
-                    <div>1 files</div>
-                    <div>6630 bytes avg</div>
-                </div>
-                
-                <div class="file-type-card">
-                    <div style="font-weight: bold; font-size: 1.2em;">.yml</div>
-                    <div>0ms avg</div>
-                    <div>6 files</div>
-                    <div>2823 bytes avg</div>
-                </div>
-                
-            </div>
-            
-        </div>
-        
-        
-        
-        <div class="analytics-section">
-            <h2>🔍 Violation Patterns Detected</h2>
-            
-            <div class="issue-item">
-                <strong>DOMINANT_CATEGORY</strong><br>
-                Code Style violations are consistently high (2280 total)
-            </div>
-            
-            <div class="issue-item">
-                <strong>DOMINANT_CATEGORY</strong><br>
-                Security violations are consistently high (16 total)
-            </div>
-            
-            <div class="issue-item">
-                <strong>SCORE_TREND</strong><br>
-                Compliance score is improving by 7.7% per run
-            </div>
-            
-        </div>
-        
-        
-        
-        <div class="analytics-section">
-            <h2>⚠️ Recurring Compliance Issues</h2>
-            
-            <div class="issue-item severity-high">
-                <strong>[HIGH] PERSISTENT_LOW_COMPLIANCE</strong><br>
-                Consistently low compliance scores (avg: 54.0%)<br>
-                <em>Recommendation: Review and update coding standards, provide team training</em>
-            </div>
-            
-            <div class="issue-item severity-high">
-                <strong>[HIGH] PERSISTENT_CATEGORY_VIOLATIONS</strong><br>
-                Persistent Code Style violations (285.0 avg per run)<br>
-                <em>Recommendation: Focus on Code Style standards, provide specific training</em>
-            </div>
-            
-            
-            <div style="margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 4px;">
-                <strong>Summary:</strong> 2 recurring issues detected
-                
-                <br>⚠️ High: 2
-                
-            </div>
-        </div>
-        
-        
-        
-        <div class="analytics-section">
-            <h2>⚡ Validation Performance</h2>
-            <div class="file-type-stats">
-                
-                <div class="file-type-card">
-                    <div style="font-weight: bold; font-size: 1.2em;">technology-stack</div>
-                    <div>0ms avg</div>
-                    <div>72 checks</div>
-                </div>
-                
-                <div class="file-type-card">
-                    <div style="font-weight: bold; font-size: 1.2em;">code-style</div>
-                    <div>0.03ms avg</div>
-                    <div>72 checks</div>
-                </div>
-                
-                <div class="file-type-card">
-                    <div style="font-weight: bold; font-size: 1.2em;">security</div>
-                    <div>0.06ms avg</div>
-                    <div>72 checks</div>
-                </div>
-                
-                <div class="file-type-card">
-                    <div style="font-weight: bold; font-size: 1.2em;">architecture</div>
-                    <div>0ms avg</div>
-                    <div>72 checks</div>
-                </div>
-                
-                <div class="file-type-card">
-                    <div style="font-weight: bold; font-size: 1.2em;">testing</div>
-                    <div>0ms avg</div>
-                    <div>72 checks</div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        
-        <div class="analytics-section">
-            <h2>📈 Compliance Trends</h2>
-            <div class="trend-indicator trend-improving">
-                IMPROVING
-            </div>
-            
-            <div style="margin-top: 10px;">
-                Score Change: +36%
-            </div>
-            
-        </div>
-        
-        
-        
-        <div class="analytics-section">
-            <h2>🚨 Violations</h2>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\PatternAnalysisServiceTest.java:74</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\PatternAnalysisServiceTest.java:92</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\PatternAnalysisServiceTest.java:118</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\PatternAnalysisServiceTest.java:155</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\PatternAnalysisServiceTest.java:209</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\PatternAnalysisServiceTest.java:221</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\OpenAIClientTest.java:59</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\OpenAIClientTest.java:79</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\OpenAIClientTest.java:83</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\OpenAIClientTest.java:103</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\OpenAIClientTest.java:124</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\OpenAIClientTest.java:145</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\OpenAIClientTest.java:180</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\OpenAIClientTest.java:196</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:82</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:84</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:98</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:100</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:101</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:114</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:127</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:130</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:144</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:148</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:162</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:166</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:181</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:187</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:201</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:205</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:212</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:219</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:222</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:227</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:240</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:243</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:249</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:254</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:267</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceTest.java:285</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceMinimalTest.java:74</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceMinimalTest.java:89</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceMinimalTest.java:103</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceMinimalTest.java:118</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceMinimalTest.java:131</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceMinimalTest.java:134</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceMinimalTest.java:148</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceMinimalTest.java:152</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceMinimalTest.java:169</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\EventProcessingServiceMinimalTest.java:184</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\BehavioralAnalysisServiceTest.java:70</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\BehavioralAnalysisServiceTest.java:73</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\BehavioralAnalysisServiceTest.java:96</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\BehavioralAnalysisServiceTest.java:99</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\BehavioralAnalysisServiceTest.java:114</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\BehavioralAnalysisServiceTest.java:117</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\BehavioralAnalysisServiceTest.java:148</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\service\BehavioralAnalysisServiceTest.java:151</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\WebSocketIntegrationTest.java:38</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\WebSocketIntegrationTest.java:98</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\WebSocketIntegrationTest.java:103</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\WebSocketIntegrationTest.java:118</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\WebSocketIntegrationTest.java:183</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EventProcessingIntegrationTest.java:38</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EventProcessingIntegrationTest.java:101</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EventProcessingIntegrationTest.java:139</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EventProcessingIntegrationTest.java:144</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EventProcessingIntegrationTest.java:180</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EventProcessingIntegrationTest.java:218</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EventProcessingIntegrationTest.java:250</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EventProcessingIntegrationTest.java:315</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EventProcessingIntegrationTest.java:341</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:42</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:103</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:123</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:130</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:143</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:182</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:219</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:273</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:308</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:311</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:315</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:332</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:362</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:381</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:397</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\integration\EndToEndIntegrationTest.java:399</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\entity\HomeAssistantConnectionTest.java:47</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\entity\HomeAssistantConnectionTest.java:53</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation critical">
-                <strong>backend\src\test\java\com\tappha\homeassistant\entity\HomeAssistantConnectionTest.java:23</strong> - Hardcoded secret detected - use environment variables
-            </div>
-            
-            <div class="violation critical">
-                <strong>backend\src\test\java\com\tappha\homeassistant\entity\HomeAssistantConnectionTest.java:24</strong> - Hardcoded secret detected - use environment variables
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\test\java\com\tappha\homeassistant\controller\AISuggestionControllerTest.java:163</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\PatternAnalysisService.java:61</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\PatternAnalysisService.java:260</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\PatternAnalysisService.java:330</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\PatternAnalysisService.java:366</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\PatternAnalysisService.java:374</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\PatternAnalysisService.java:376</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\PatternAnalysisService.java:393</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\PatternAnalysisService.java:416</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\PatternAnalysisService.java:482</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\PatternAnalysisService.java:494</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\PatternAnalysisService.java:499</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\OpenAIClient.java:373</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\OpenAIClient.java:381</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:37</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:55</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:89</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:93</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:109</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:115</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:136</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:168</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:174</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:175</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:194</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:234</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:258</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:262</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:267</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:268</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:275</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantWebSocketClient.java:276</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:35</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:45</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:65</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:76</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:84</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:131</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:137</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:149</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:181</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:185</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:235</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:239</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:249</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:250</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:261</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:262</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:272</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantConnectionService.java:274</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantApiClient.java:241</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\HomeAssistantApiClient.java:242</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\EventProcessingService.java:94</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\EventProcessingService.java:136</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\EventProcessingService.java:180</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\EventProcessingService.java:181</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:92</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:243</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:247</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:248</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:275</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:282</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:296</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:333</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:551</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:581</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:595</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:598</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:612</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:631</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:639</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:642</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:645</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:670</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:733</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:754</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:784</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:821</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:898</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:952</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\BehavioralAnalysisService.java:957</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\AIService.java:114</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\service\AIErrorHandler.java:52</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:58</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:67</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:68</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:69</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:70</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:79</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:92</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:93</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:95</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:96</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:108</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:111</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:112</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:113</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:158</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:159</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:174</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:181</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:182</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:190</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:191</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:200</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:202</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:211</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:213</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:223</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:225</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:243</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:244</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:260</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:261</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:276</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:277</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:286</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:287</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:288</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantEventRepository.java:289</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionRepository.java:17</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionRepository.java:55</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionRepository.java:70</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionRepository.java:110</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionRepository.java:121</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionRepository.java:130</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionRepository.java:138</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:14</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:23</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:24</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:25</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:26</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:35</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:36</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:37</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:38</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:45</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:46</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantConnectionMetricsRepository.java:55</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:15</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:39</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:40</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:41</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:42</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:56</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:57</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:58</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:65</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:66</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:96</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\repository\HomeAssistantAuditLogRepository.java:97</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\entity\HomeAssistantEvent.java:57</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\entity\HomeAssistantConnectionMetrics.java:51</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\PatternAnalysisController.java:65</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\PatternAnalysisController.java:69</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:30</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:54</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:69</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:91</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:94</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:117</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:118</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:147</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:157</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:183</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:219</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:228</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\HomeAssistantConnectionController.java:243</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\EventMonitoringController.java:44</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\EventMonitoringController.java:148</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\EventMonitoringController.java:166</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\EventMonitoringController.java:192</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\BehavioralAnalysisController.java:44</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\BehavioralAnalysisController.java:94</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\BehavioralAnalysisController.java:122</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\BehavioralAnalysisController.java:143</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\BehavioralAnalysisController.java:192</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\BehavioralAnalysisController.java:194</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\AISuggestionController.java:51</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\AISuggestionController.java:65</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>backend\src\main\java\com\tappha\homeassistant\controller\AISuggestionController.java:79</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\HomeAssistantConnectionForm.tsx:116</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\HomeAssistantConnectionForm.tsx:132</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\HomeAssistantConnectionForm.tsx:136</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\HomeAssistantConnectionForm.tsx:151</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\HomeAssistantConnectionForm.tsx:170</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\EventMonitoringDashboard.tsx:233</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\ConnectionStatusDashboard.tsx:165</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\ConnectionStatusDashboard.tsx:172</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\ConnectionStatusDashboard.tsx:182</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\ConnectionStatusDashboard.tsx:189</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\ConnectionStatusDashboard.tsx:203</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\ConnectionStatusDashboard.tsx:210</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\ConnectionStatusDashboard.tsx:214</strong> - Line exceeds 100 character limit
-            </div>
-            
-            <div class="violation warning">
-                <strong>frontend\src\components\ConnectionStatusDashboard.tsx:218</strong> - Line exceeds 100 character limit
-            </div>
-            
-        </div>
-        
-        
-        
-        <div class="analytics-section">
-            <h2>💡 Improvement Suggestions</h2>
-            
-            <div class="issue-item">
-                <strong>[MEDIUM] Code Style</strong><br>
-                Focus on reducing code style violations (285 total)<br>
-                <em>Action: Review and update code style standards</em>
-            </div>
-            
-            <div class="issue-item">
-                <strong>[MEDIUM] Standards</strong><br>
-                code-style has high violation rate (46%)<br>
-                <em>Action: Review and clarify code-style documentation</em>
-            </div>
-            
-        </div>
-        
+
+        <div id="violations"></div>
+        <div id="analytics"></div>
+        <div id="issues"></div>
     </div>
-    
+
     <script>
+        // Enhanced Trend Analysis and Visualization
+        class EnhancedTrendVisualization {
+            constructor() {
+                this.charts = {};
+                this.currentData = null;
+                this.initializeCharts();
+            }
+
+            initializeCharts() {
+                this.createComplianceTrendChart();
+                this.createViolationTrendChart();
+                this.createPerformanceTrendChart();
+                this.createComparisonChart();
+            }
+
+            createComplianceTrendChart() {
+                const canvas = document.getElementById('complianceTrendChart');
+                const ctx = canvas.getContext('2d');
+                
+                // Set canvas size
+                canvas.width = canvas.offsetWidth;
+                canvas.height = 300;
+                
+                this.charts.compliance = { canvas, ctx };
+            }
+
+            createViolationTrendChart() {
+                const canvas = document.getElementById('violationTrendChart');
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = canvas.offsetWidth;
+                canvas.height = 300;
+                
+                this.charts.violations = { canvas, ctx };
+            }
+
+            createPerformanceTrendChart() {
+                const canvas = document.getElementById('performanceTrendChart');
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = canvas.offsetWidth;
+                canvas.height = 300;
+                
+                this.charts.performance = { canvas, ctx };
+            }
+
+            createComparisonChart() {
+                const canvas = document.getElementById('comparisonChart');
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = canvas.offsetWidth;
+                canvas.height = 200;
+                
+                this.charts.comparison = { canvas, ctx };
+            }
+
+            drawTrendChart(chartData, chartType) {
+                const chart = this.charts[chartType];
+                if (!chart) return;
+
+                const { canvas, ctx } = chart;
+                const width = canvas.width;
+                const height = canvas.height;
+                const padding = 40;
+
+                // Clear canvas
+                ctx.clearRect(0, 0, width, height);
+
+                if (!chartData || chartData.length < 2) {
+                    this.drawNoDataMessage(ctx, width, height);
+                    return;
+                }
+
+                // Calculate scales
+                const dataWidth = width - 2 * padding;
+                const dataHeight = height - 2 * padding;
+                
+                const minValue = Math.min(...chartData.map(d => d.value));
+                const maxValue = Math.max(...chartData.map(d => d.value));
+                const valueRange = maxValue - minValue || 1;
+
+                // Draw grid
+                this.drawGrid(ctx, width, height, padding, chartData.length, minValue, maxValue);
+
+                // Draw trend line
+                this.drawTrendLine(ctx, chartData, padding, dataWidth, dataHeight, minValue, valueRange);
+
+                // Draw data points
+                this.drawDataPoints(ctx, chartData, padding, dataWidth, dataHeight, minValue, valueRange);
+
+                // Draw labels
+                this.drawLabels(ctx, width, height, padding, chartData, minValue, maxValue);
+            }
+
+            drawGrid(ctx, width, height, padding, dataPoints, minValue, maxValue) {
+                ctx.strokeStyle = '#e0e0e0';
+                ctx.lineWidth = 1;
+
+                // Vertical grid lines
+                for (let i = 0; i <= dataPoints; i++) {
+                    const x = padding + (i / dataPoints) * (width - 2 * padding);
+                    ctx.beginPath();
+                    ctx.moveTo(x, padding);
+                    ctx.lineTo(x, height - padding);
+                    ctx.stroke();
+                }
+
+                // Horizontal grid lines
+                const gridLines = 5;
+                for (let i = 0; i <= gridLines; i++) {
+                    const y = padding + (i / gridLines) * (height - 2 * padding);
+                    ctx.beginPath();
+                    ctx.moveTo(padding, y);
+                    ctx.lineTo(width - padding, y);
+                    ctx.stroke();
+                }
+            }
+
+            drawTrendLine(ctx, data, padding, dataWidth, dataHeight, minValue, valueRange) {
+                ctx.strokeStyle = '#007bff';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+
+                data.forEach((point, index) => {
+                    const x = padding + (index / (data.length - 1)) * dataWidth;
+                    const y = padding + dataHeight - ((point.value - minValue) / valueRange) * dataHeight;
+                    
+                    if (index === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                });
+
+                ctx.stroke();
+            }
+
+            drawDataPoints(ctx, data, padding, dataWidth, dataHeight, minValue, valueRange) {
+                ctx.fillStyle = '#007bff';
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 2;
+
+                data.forEach((point, index) => {
+                    const x = padding + (index / (data.length - 1)) * dataWidth;
+                    const y = padding + dataHeight - ((point.value - minValue) / valueRange) * dataHeight;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, 6, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.stroke();
+                });
+            }
+
+            drawLabels(ctx, width, height, padding, data, minValue, maxValue) {
+                ctx.fillStyle = '#333';
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'center';
+
+                // X-axis labels
+                data.forEach((point, index) => {
+                    const x = padding + (index / (data.length - 1)) * (width - 2 * padding);
+                    const y = height - 10;
+                    ctx.fillText(point.label || index.toString(), x, y);
+                });
+
+                // Y-axis labels
+                ctx.textAlign = 'right';
+                const gridLines = 5;
+                for (let i = 0; i <= gridLines; i++) {
+                    const y = padding + (i / gridLines) * (height - 2 * padding);
+                    const value = minValue + (i / gridLines) * (maxValue - minValue);
+                    ctx.fillText(value.toFixed(1), padding - 10, y + 4);
+                }
+            }
+
+            drawNoDataMessage(ctx, width, height) {
+                ctx.fillStyle = '#999';
+                ctx.font = '16px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('No data available', width / 2, height / 2);
+            }
+
+            updateTrendIndicators(data) {
+                if (!data || !data.trendAnalysis) return;
+
+                const indicators = {
+                    compliance: document.getElementById('complianceTrendIndicator'),
+                    violations: document.getElementById('violationTrendIndicator'),
+                    performance: document.getElementById('performanceTrendIndicator')
+                };
+
+                Object.entries(indicators).forEach(([type, element]) => {
+                    if (element && data.trendAnalysis[type]) {
+                        const trend = data.trendAnalysis[type];
+                        element.textContent = `${trend.trendDirection} (${trend.trend.toFixed(2)})`;
+                        element.className = `trend-indicator trend-${trend.trendDirection.toLowerCase()}`;
+                    }
+                });
+            }
+
+            updateForecastVisualization(forecastData) {
+                const container = document.getElementById('forecastContainer');
+                if (!container || !forecastData) return;
+
+                let html = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">';
+                
+                forecastData.forecasts.forEach(forecast => {
+                    html += `
+                        <div class="forecast-item">
+                            <h4>${forecast.metric}</h4>
+                            <p><strong>Current:</strong> ${forecast.currentValue}</p>
+                            <p><strong>Forecast:</strong> ${forecast.forecast.join(' → ')}</p>
+                            <p><strong>Trend:</strong> ${forecast.trend > 0 ? '↗' : forecast.trend < 0 ? '↘' : '→'} ${forecast.trend.toFixed(2)}</p>
+                            <span class="confidence-indicator confidence-${forecast.confidence.toLowerCase()}">${forecast.confidence} Confidence</span>
+                            <p><small>${forecast.recommendation}</small></p>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+                container.innerHTML = html;
+            }
+
+            updateTimelineVisualization(timelineData) {
+                const container = document.getElementById('timelineContainer');
+                if (!container || !timelineData) return;
+
+                let html = '';
+                timelineData.forEach(item => {
+                    html += `
+                        <div class="timeline-item">
+                            <div class="timeline-date">${item.date}</div>
+                            <div class="timeline-content">
+                                <strong>${item.title}</strong>
+                                <p>${item.description}</p>
+                                <span class="priority-badge priority-${item.priority.toLowerCase()}">${item.priority}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+            }
+
+            updateProgressTracking(progressData) {
+                const container = document.getElementById('progressContainer');
+                if (!container || !progressData) return;
+
+                let html = `
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div class="metric-card">
+                            <h4>Overall Compliance Progress</h4>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progressData.overallProgress}%"></div>
+                            </div>
+                            <p>${progressData.overallProgress}% Complete</p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Standards Compliance</h4>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progressData.standardsProgress}%"></div>
+                            </div>
+                            <p>${progressData.standardsProgress}% Complete</p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Performance Optimization</h4>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progressData.performanceProgress}%"></div>
+                            </div>
+                            <p>${progressData.performanceProgress}% Complete</p>
+                        </div>
+                    </div>
+                `;
+                
+                container.innerHTML = html;
+            }
+
+            updateTrendComparison(comparisonData) {
+                const container = document.getElementById('trendIndicators');
+                if (!container || !comparisonData) return;
+
+                let html = '';
+                Object.entries(comparisonData).forEach(([metric, data]) => {
+                    html += `
+                        <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 4px;">
+                            <h5>${metric}</h5>
+                            <p><strong>Current Period:</strong> ${data.current}</p>
+                            <p><strong>Previous Period:</strong> ${data.previous}</p>
+                            <p><strong>Change:</strong> <span class="trend-indicator trend-${data.change > 0 ? 'improving' : data.change < 0 ? 'declining' : 'stable'}">${data.change > 0 ? '+' : ''}${data.change}%</span></p>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+            }
+
+            updateInsightsPanel(insightsData) {
+                const container = document.getElementById('insightsContainer');
+                if (!container || !insightsData) return;
+
+                let html = '';
+                insightsData.forEach(insight => {
+                    html += `
+                        <div class="insight-item">
+                            <h4>${insight.title}</h4>
+                            <p>${insight.description}</p>
+                            <span class="priority-badge priority-${insight.priority.toLowerCase()}">${insight.priority}</span>
+                            <ul style="margin-top: 10px;">
+                                ${insight.actions.map(action => `<li>${action}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+            }
+
+            loadAndVisualizeData() {
+                // Simulate loading data from the statistical analysis
+                this.loadHistoricalData().then(data => {
+                    this.currentData = data;
+                    this.updateAllVisualizations(data);
+                });
+            }
+
+            async loadHistoricalData() {
+                // This would normally load from the statistical analysis module
+                // For now, we'll create sample data
+                return {
+                    complianceScores: [
+                        { date: '2024-01-01', value: 75, label: 'Day 1' },
+                        { date: '2024-01-02', value: 78, label: 'Day 2' },
+                        { date: '2024-01-03', value: 82, label: 'Day 3' },
+                        { date: '2024-01-04', value: 85, label: 'Day 4' },
+                        { date: '2024-01-05', value: 88, label: 'Day 5' }
+                    ],
+                    violationCounts: [
+                        { date: '2024-01-01', value: 15, label: 'Day 1' },
+                        { date: '2024-01-02', value: 12, label: 'Day 2' },
+                        { date: '2024-01-03', value: 10, label: 'Day 3' },
+                        { date: '2024-01-04', value: 8, label: 'Day 4' },
+                        { date: '2024-01-05', value: 6, label: 'Day 5' }
+                    ],
+                    performanceMetrics: [
+                        { date: '2024-01-01', value: 1200, label: 'Day 1' },
+                        { date: '2024-01-02', value: 1150, label: 'Day 2' },
+                        { date: '2024-01-03', value: 1100, label: 'Day 3' },
+                        { date: '2024-01-04', value: 1050, label: 'Day 4' },
+                        { date: '2024-01-05', value: 1000, label: 'Day 5' }
+                    ],
+                    trendAnalysis: {
+                        compliance: { trendDirection: 'IMPROVING', trend: 3.25 },
+                        violations: { trendDirection: 'DECLINING', trend: -2.25 },
+                        performance: { trendDirection: 'IMPROVING', trend: -50 }
+                    },
+                    forecastData: {
+                        forecasts: [
+                            {
+                                metric: 'Compliance Score',
+                                currentValue: 88,
+                                forecast: [90, 92, 94],
+                                trend: 3.25,
+                                confidence: 'HIGH',
+                                recommendation: 'Continue current improvement practices'
+                            },
+                            {
+                                metric: 'Violation Count',
+                                currentValue: 6,
+                                forecast: [5, 4, 3],
+                                trend: -2.25,
+                                confidence: 'HIGH',
+                                recommendation: 'Maintain current violation reduction strategies'
+                            }
+                        ]
+                    },
+                    timelineData: [
+                        {
+                            date: '2024-01-05',
+                            title: 'Compliance Score Improved',
+                            description: 'Compliance score increased to 88%',
+                            priority: 'HIGH'
+                        },
+                        {
+                            date: '2024-01-04',
+                            title: 'Violation Count Reduced',
+                            description: 'Total violations reduced to 8',
+                            priority: 'MEDIUM'
+                        }
+                    ],
+                    progressData: {
+                        overallProgress: 85,
+                        standardsProgress: 90,
+                        performanceProgress: 80
+                    },
+                    comparisonData: {
+                        'Compliance Score': { current: 88, previous: 85, change: 3.5 },
+                        'Violation Count': { current: 6, previous: 8, change: -25 },
+                        'Performance': { current: 1000, previous: 1050, change: -4.8 }
+                    },
+                    insightsData: [
+                        {
+                            title: 'Maintain Improvement Momentum',
+                            description: 'Compliance is showing consistent improvement',
+                            priority: 'HIGH',
+                            actions: [
+                                'Continue current improvement practices',
+                                'Document successful strategies',
+                                'Share best practices across team'
+                            ]
+                        },
+                        {
+                            title: 'Optimize Performance Further',
+                            description: 'Performance metrics are improving but can be optimized',
+                            priority: 'MEDIUM',
+                            actions: [
+                                'Review performance bottlenecks',
+                                'Implement additional optimizations',
+                                'Monitor performance trends'
+                            ]
+                        }
+                    ]
+                };
+            }
+
+            updateAllVisualizations(data) {
+                // Update trend charts
+                this.drawTrendChart(data.complianceScores, 'compliance');
+                this.drawTrendChart(data.violationCounts, 'violations');
+                this.drawTrendChart(data.performanceMetrics, 'performance');
+                
+                // Update indicators
+                this.updateTrendIndicators(data);
+                
+                // Update other visualizations
+                this.updateForecastVisualization(data.forecastData);
+                this.updateTimelineVisualization(data.timelineData);
+                this.updateProgressTracking(data.progressData);
+                this.updateTrendComparison(data.comparisonData);
+                this.updateInsightsPanel(data.insightsData);
+            }
+        }
+
+        // Initialize enhanced visualization
+        const enhancedViz = new EnhancedTrendVisualization();
+        enhancedViz.loadAndVisualizeData();
+
+        // Period selector functionality
+        document.querySelectorAll('.period-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update comparison chart based on selected period
+                const period = this.dataset.period;
+                enhancedViz.updateComparisonForPeriod(period);
+            });
+        });
+
         // Auto-refresh dashboard every 30 seconds
         setTimeout(() => {
             window.location.reload();
