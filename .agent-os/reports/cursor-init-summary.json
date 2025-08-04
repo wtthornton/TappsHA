@@ -1,0 +1,845 @@
+{
+  "generatedAt": "2025-08-04T20:01:01.727Z",
+  "totalRules": 208,
+  "rulesByType": {
+    "general": 105,
+    "standard": 47,
+    "rule": 23,
+    "lesson": 30,
+    "template": 3
+  },
+  "rules": [
+    {
+      "filename": "purpose.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "capabilities.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "pipeline-integration.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "development-best-practices-enhanced-for-cursor-agent-os.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "1-mobile-first-responsive-design.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "2-observability-by-design.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "3-dry-kiss-12-factor-principles.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "4-performance-fail-fast.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "5-devops-agile-embedded.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "6-lessons-learned-integration.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "goals.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "key-practices.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "code-style-guide-enhanced-for-cursor-agent-os.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "general-formatting.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "naming-conventions.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "import-structure.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "code-style-lessons-learned.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "purpose.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "tiers.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "key-practices.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "notes.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "backend-java-spring-boot.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "frontend-react-typescript.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "database.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ai-ml.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "infrastructure.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "java-spring-boot.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "typescript-react.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "css-tailwindcss.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "layered-architecture.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "security-patterns.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "error-handling.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "unit-tests-java.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "unit-tests-typescript.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "backend-performance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "frontend-performance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "authentication-authorization.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "data-protection.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "metrics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "logging.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "tracing.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "validation-checklist.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technology-stack.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "code-style.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "architecture.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "testing.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "performance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "security.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "strict-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "code-review-requirements.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "documentation-requirements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "references.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "mandatory-lessons-learned-protocol.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "1-capture-triggers.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "lesson-capture-process.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "3-integration-process.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "4-validation-checklist-for-lessons-learned.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "lesson-template.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "strict-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "quality-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "mandatory-task-update-protocol.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "1-immediate-updates.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "2-progress-documentation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "completed-in-this-session.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "next-priority-tasks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "progress-update.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "4-validation-checklist-for-task-updates.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "tasks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "completed-in-latest-session-yyyy-mm-dd.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "next-priority-tasks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "overall-progress-x-complete.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "strict-compliance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "quality-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "integration-with-development-workflow.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "purpose.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "components.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "best-practice-stack.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "secure-defaults-hardening.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "dependency-management-sca.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "container-infra-security.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "secret-management.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "owasp-top-10-compliance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "security-lessons-learned.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "purpose.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "examples.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "frontend.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "backend.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "databases-time-series.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ai-ml.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "observability.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ci-cd-containers.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technology-lessons-learned.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "testing-strategy-quality-standards-enhanced.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "testing-trophy-approach.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "tools.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "coverage-targets.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ai-assisted-testing.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ci-integration.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "lessons-learned-in-testing.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "purpose.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "components.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ci-cd-integration.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "project-project-name.mdc",
+      "type": "template"
+    },
+    {
+      "filename": "task-structure-template.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "mandatory-lessons-learned-integration.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "capture-triggers-per-agent-os-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "lessons-learned-process.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "validation-checklist.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "immediate-updates.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "progress-documentation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "example-task-structure.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "standards-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "lessons-learned-integration.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "1-source-file-discovery.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "2-content-analysis.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "3-rule-generation.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "4-rule-validation.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "source-files-md.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "generated-files-mdc.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "usr-bin-env-node.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "run-cursor-init-process.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "run-with-specific-options.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "package-json-script.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "cursor-init-json.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "with-existing-tools.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "github-workflows-cursor-init-yml.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "implementation-goals.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "quality-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "lessons-learned-framework-improvements-agent-os.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "project-lessons-learned-framework-improvements.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "mission-alignment.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "technology-constraints.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "1-enhanced-cursor-rule-generation-critical.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "2-cursor-init-process-critical.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "3-basic-cursor-analytics-dashboard-high.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "4-simple-cursor-rule-optimization-high.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "5-enhanced-lesson-capture-process-high.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "6-simple-analytics-integration-high.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "7-enhanced-documentation-analysis-medium.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "8-simple-validation-engine-medium.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "completed-in-latest-session-2025-01-27.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "next-priority-tasks.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "overall-progress-8-complete.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "node-js-implementation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "vanilla-javascript-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "markdown-integration.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "cursor-ai-integration.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "implementation-goals.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "performance-targets.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "quality-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "simple-analytics-enhancements-agent-os-framework.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "mission-alignment.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technology-constraints.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "1-enhanced-metrics-collection-system.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "2-simple-trend-analysis-engine.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "3-smart-documentation-analysis.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "4-enhanced-reporting-and-insights.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "5-simple-predictive-capabilities.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "6-integration-and-optimization.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "7-lessons-learned-integration.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "completed-in-latest-session-2025-01-27.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "current-focus-remaining-high-impact-tasks-1-remaining-work.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "task-1-improvement-forecasting.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "task-2-success-prediction-implementation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "execution-priority-order.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "expected-impact.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "next-priority-tasks.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "overall-progress-99-complete.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "success-metrics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "risk-assessment.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technology-requirements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "implementation-principles.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "references.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "agent-os-framework-technology-stack-agent-improvements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "runtime-environment.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "file-system-structure.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "development-tools.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "data-storage.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "validation-and-compliance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "reporting-and-analytics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "cursor-specific-tools.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "cursor-rule-management.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "cursor-integration-points.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "mandatory-simplicity.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "portability-requirements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "performance-requirements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "core-tools.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "utility-tools.mdc",
+      "type": "template"
+    },
+    {
+      "filename": "cursor-specific-tools.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "markdown-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "javascript-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "cursor-rule-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "configuration-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "cursor-ai-integration.mdc",
+      "type": "template"
+    },
+    {
+      "filename": "git-integration.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "ci-cd-integration.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "optimization-strategies.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "monitoring-and-observability.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "framework-security.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "data-security.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "version-management.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "quality-assurance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "planned-improvements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technology-evolution.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "documentation.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "external-resources.mdc",
+      "type": "standard"
+    }
+  ]
+}

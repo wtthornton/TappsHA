@@ -1,60 +1,32 @@
 {
-  "name": "agent-os-compliance-tools",
+  "name": "agent-os-tools",
   "version": "1.0.0",
-  "description": "Automated compliance checking tools for Agent OS standards",
+  "description": "Simple tools for Agent OS standards and lessons learned",
   "main": "compliance-checker.js",
   "scripts": {
     "check": "node compliance-checker.js",
-    "check:file": "node compliance-checker.js",
-    "check:refactored": "node compliance-checker-refactored.js",
     "watch": "node cursor-integration.js watch",
     "validate": "node cursor-integration.js check",
     "report": "node cursor-integration.js check && open .agent-os/dashboard/compliance-dashboard.html",
-    "install:tools": "npm install -g glob chokidar",
-    "test": "vitest",
-    "test:watch": "vitest --watch",
-    "test:coverage": "vitest --coverage",
-    "test:ui": "vitest --ui",
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "lint": "eslint . --ext .js,.ts",
-    "lint:fix": "eslint . --ext .js,.ts --fix",
-    "format": "prettier --write .",
-    "type-check": "tsc --noEmit"
+    "lint": "node -c",
+    "format": "prettier --write ."
   },
   "keywords": [
-    "compliance",
     "standards",
-    "validation",
+    "lessons-learned",
     "cursor",
     "agent-os"
   ],
   "author": "Agent OS Team",
   "license": "MIT",
   "dependencies": {
-    "glob": "^10.3.10",
-    "chokidar": "^3.5.3"
+    "chokidar": "^3.5.3",
+    "glob": "^10.3.10"
   },
   "devDependencies": {
-    "@types/node": "^20.10.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.55.0",
-    "prettier": "^3.1.0",
-    "typescript": "^5.0.0",
-    "vitest": "^1.0.0",
-    "@vitest/coverage-v8": "^1.0.0",
-    "@vitest/ui": "^1.0.0"
+    "prettier": "^3.6.2"
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/your-org/tappha.git"
-  },
-  "bugs": {
-    "url": "https://github.com/your-org/tappha/issues"
-  },
-  "homepage": "https://github.com/your-org/tappha#readme"
-} 
+  }
+}

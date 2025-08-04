@@ -47,7 +47,7 @@ class ComplianceCheckerRefactored {
       'security-compliance.md',
       'ci-cd-strategy.md',
       'testing-strategy.md',
-      'enforcement.md'
+      'enforcement.md',
     ];
 
     standardFiles.forEach(file => {
@@ -93,7 +93,7 @@ class ComplianceCheckerRefactored {
         category: 'VALIDATION_ERROR',
         message: `Validation error: ${error.message}`,
         standard: 'GENERAL',
-        severity: 'CRITICAL'
+        severity: 'CRITICAL',
       }];
     }
   }
@@ -122,7 +122,7 @@ class ComplianceCheckerRefactored {
         filePath,
         violations,
         success: true,
-        processingTime
+        processingTime,
       };
     } catch (error) {
       const processingTime = Date.now() - startTime;
@@ -133,7 +133,7 @@ class ComplianceCheckerRefactored {
         violations: [],
         success: false,
         processingTime,
-        error: error.message
+        error: error.message,
       };
     }
   }
@@ -155,7 +155,7 @@ class ComplianceCheckerRefactored {
         complianceScore: 100,
         totalChecks: 0,
         passedChecks: 0,
-        filesProcessed: 0
+        filesProcessed: 0,
       };
     }
     
@@ -166,7 +166,7 @@ class ComplianceCheckerRefactored {
     const results = await this.fileProcessor.processFilesParallel(
       allFiles,
       (filePath, content) => this.validateFile(filePath, content),
-      4 // max concurrency
+      4, // max concurrency
     );
     
     const totalTime = Date.now() - startTime;
@@ -199,7 +199,7 @@ class ComplianceCheckerRefactored {
       complianceScore: this.complianceScore,
       totalChecks: this.totalChecks,
       passedChecks: this.passedChecks,
-      violations: this.violations
+      violations: this.violations,
     });
     
     return {
@@ -208,7 +208,7 @@ class ComplianceCheckerRefactored {
       totalChecks: this.totalChecks,
       passedChecks: this.passedChecks,
       filesProcessed: results.length,
-      processingTime: totalTime
+      processingTime: totalTime,
     };
   }
 
@@ -227,17 +227,17 @@ class ComplianceCheckerRefactored {
         totalViolations: validationResults.violations.length,
         totalChecks: validationResults.totalChecks,
         passedChecks: validationResults.passedChecks,
-        processingTime: validationResults.processingTime
+        processingTime: validationResults.processingTime,
       },
       violations: {
         total: validationResults.violations.length,
         bySeverity: this.analyzeViolationsBySeverity(validationResults.violations),
         byCategory: this.analyzeViolationsByCategory(validationResults.violations),
         byStandard: this.analyzeViolationsByStandard(validationResults.violations),
-        list: validationResults.violations
+        list: validationResults.violations,
       },
       analytics: analyticsReport,
-      recommendations: this.generateRecommendations(validationResults)
+      recommendations: this.generateRecommendations(validationResults),
     };
     
     return report;
@@ -298,7 +298,7 @@ class ComplianceCheckerRefactored {
         type: 'CRITICAL',
         category: 'COMPLIANCE',
         message: 'Compliance score is below 80%. Focus on addressing critical violations first.',
-        priority: 'HIGH'
+        priority: 'HIGH',
       });
     }
     
@@ -308,7 +308,7 @@ class ComplianceCheckerRefactored {
         type: 'WARNING',
         category: 'PERFORMANCE',
         message: 'Processing time is high. Consider optimizing validation algorithms.',
-        priority: 'MEDIUM'
+        priority: 'MEDIUM',
       });
     }
     
@@ -319,7 +319,7 @@ class ComplianceCheckerRefactored {
         type: 'CRITICAL',
         category: 'SECURITY',
         message: `${criticalViolations.length} critical violations found. Address these immediately.`,
-        priority: 'HIGH'
+        priority: 'HIGH',
       });
     }
     
@@ -335,14 +335,14 @@ class ComplianceCheckerRefactored {
     console.log('=' .repeat(50));
     
     // Summary
-    console.log(`\n📈 Summary:`);
+    console.log('\n📈 Summary:');
     console.log(`  Compliance Score: ${report.summary.complianceScore.toFixed(1)}%`);
     console.log(`  Files Processed: ${report.summary.totalFiles}`);
     console.log(`  Total Violations: ${report.summary.totalViolations}`);
     console.log(`  Processing Time: ${(report.summary.processingTime / 1000).toFixed(2)}s`);
     
     // Violations by severity
-    console.log(`\n🚨 Violations by Severity:`);
+    console.log('\n🚨 Violations by Severity:');
     Object.entries(report.violations.bySeverity).forEach(([severity, count]) => {
       if (count > 0) {
         console.log(`  ${severity}: ${count}`);
@@ -350,7 +350,7 @@ class ComplianceCheckerRefactored {
     });
     
     // Violations by category
-    console.log(`\n📂 Violations by Category:`);
+    console.log('\n📂 Violations by Category:');
     Object.entries(report.violations.byCategory).forEach(([category, count]) => {
       if (count > 0) {
         console.log(`  ${category}: ${count}`);
@@ -359,7 +359,7 @@ class ComplianceCheckerRefactored {
     
     // Recommendations
     if (report.recommendations.length > 0) {
-      console.log(`\n💡 Recommendations:`);
+      console.log('\n💡 Recommendations:');
       report.recommendations.forEach((rec, index) => {
         console.log(`  ${index + 1}. [${rec.type}] ${rec.message}`);
       });

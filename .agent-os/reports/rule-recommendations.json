@@ -1,0 +1,17 @@
+{
+  "optimizedRules": [],
+  "suggestions": [
+    {
+      "rule": "ai-ml.mdc",
+      "title": "AI/ML",
+      "type": "general",
+      "action": "Simplify rule complexity",
+      "description": "Break down complex concepts into simpler, more digestible parts",
+      "priority": 10,
+      "issues": [
+        "High complexity"
+      ]
+    }
+  ],
+  "priorityActions": []
+}

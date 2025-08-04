@@ -35,7 +35,7 @@ class DocumentationAnalyzer {
             markdownFiles.push({
               path: fullPath,
               relativePath: path.relative(this.agentOsPath, fullPath),
-              filename: item
+              filename: item,
             });
           }
         });
@@ -69,7 +69,7 @@ class DocumentationAnalyzer {
           lists: 0,
           tables: 0,
           emptyLines: 0,
-          wordCount: 0
+          wordCount: 0,
         },
         quality: {
           hasTitle: false,
@@ -77,9 +77,9 @@ class DocumentationAnalyzer {
           hasLastModified: false,
           hasVersion: false,
           hasAuthor: false,
-          completeness: 0
+          completeness: 0,
         },
-        issues: []
+        issues: [],
       };
 
       let inCodeBlock = false;
@@ -173,7 +173,7 @@ class DocumentationAnalyzer {
       return {
         filename: fileInfo.filename,
         relativePath: fileInfo.relativePath,
-        error: error.message
+        error: error.message,
       };
     }
   }
@@ -192,10 +192,10 @@ class DocumentationAnalyzer {
         excellent: 0, // 90-100%
         good: 0,      // 70-89%
         fair: 0,      // 50-69%
-        poor: 0       // <50%
+        poor: 0,       // <50%
       },
       issues: [],
-      recommendations: []
+      recommendations: [],
     };
 
     let totalCompleteness = 0;
@@ -241,7 +241,7 @@ class DocumentationAnalyzer {
     this.analysisResults = {
       files: analyses,
       summary: summary,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     return this.analysisResults;
@@ -255,7 +255,7 @@ class DocumentationAnalyzer {
 
     const suggestions = [];
     const lowQualityFiles = this.analysisResults.files.filter(f => 
-      !f.error && f.quality.completeness < 60
+      !f.error && f.quality.completeness < 60,
     );
 
     lowQualityFiles.forEach(file => {
@@ -264,7 +264,7 @@ class DocumentationAnalyzer {
         file: file.relativePath,
         completeness: file.quality.completeness,
         issues: file.issues,
-        recommendations: this.generateFileRecommendations(file)
+        recommendations: this.generateFileRecommendations(file),
       });
     });
 
@@ -310,7 +310,7 @@ class DocumentationAnalyzer {
     const report = {
       ...analysis,
       suggestions: suggestions,
-      generatedAt: new Date().toISOString()
+      generatedAt: new Date().toISOString(),
     };
 
     const reportPath = path.join(__dirname, '../reports/documentation-analysis.json');
@@ -365,7 +365,7 @@ class DocumentationAnalyzer {
         referenceCounts: {},
         mostReferenced: [],
         leastReferenced: [],
-        recommendations: []
+        recommendations: [],
       };
     }
 
@@ -384,7 +384,7 @@ class DocumentationAnalyzer {
       'CI/CD': ['CI/CD', 'continuous integration', 'deployment', 'pipeline', 'automation', 'DevOps'],
       'Monitoring': ['monitoring', 'logging', 'observability', 'metrics', 'alerting', 'health checks'],
       'Compliance': ['compliance', 'standards', 'regulations', 'audit', 'governance', 'policies'],
-      'Best Practices': ['best practices', 'guidelines', 'recommendations', 'patterns', 'principles']
+      'Best Practices': ['best practices', 'guidelines', 'recommendations', 'patterns', 'principles'],
     };
 
     // Analyze each file for standards references
@@ -412,14 +412,14 @@ class DocumentationAnalyzer {
               totalReferences: 0,
               filesReferenced: [],
               averageReferencesPerFile: 0,
-              usageFrequency: 'LOW'
+              usageFrequency: 'LOW',
             };
           }
 
           standardsTracking[standard].totalReferences += count;
           standardsTracking[standard].filesReferenced.push({
             file: file.relativePath,
-            references: count
+            references: count,
           });
         }
       });
@@ -450,13 +450,13 @@ class DocumentationAnalyzer {
     const mostReferenced = sortedStandards.slice(0, 5).map(([standard, count]) => ({
       standard,
       references: count,
-      frequency: standardsTracking[standard]?.usageFrequency || 'LOW'
+      frequency: standardsTracking[standard]?.usageFrequency || 'LOW',
     }));
 
     const leastReferenced = sortedStandards.slice(-5).map(([standard, count]) => ({
       standard,
       references: count,
-      frequency: standardsTracking[standard]?.usageFrequency || 'LOW'
+      frequency: standardsTracking[standard]?.usageFrequency || 'LOW',
     }));
 
     // Generate recommendations
@@ -468,9 +468,9 @@ class DocumentationAnalyzer {
         actions: [
           'Review and update documentation for under-utilized standards',
           'Consider if standards are still relevant',
-          'Add references to important standards in key documentation'
+          'Add references to important standards in key documentation',
         ],
-        standards: leastReferenced.map(s => s.standard)
+        standards: leastReferenced.map(s => s.standard),
       });
     }
 
@@ -482,9 +482,9 @@ class DocumentationAnalyzer {
         actions: [
           'Maintain current standards documentation',
           'Ensure standards remain up-to-date',
-          'Share best practices for well-utilized standards'
+          'Share best practices for well-utilized standards',
         ],
-        standards: mostReferenced.map(s => s.standard)
+        standards: mostReferenced.map(s => s.standard),
       });
     }
 
@@ -495,7 +495,7 @@ class DocumentationAnalyzer {
       leastReferenced,
       recommendations,
       totalStandards: Object.keys(standardsPatterns).length,
-      totalReferences: Object.values(referenceCounts).reduce((sum, count) => sum + count, 0)
+      totalReferences: Object.values(referenceCounts).reduce((sum, count) => sum + count, 0),
     };
   }
 
@@ -506,7 +506,7 @@ class DocumentationAnalyzer {
         message: 'No documentation analysis available',
         clarificationNeeds: {},
         priorityStandards: [],
-        recommendations: []
+        recommendations: [],
       };
     }
 
@@ -518,28 +518,28 @@ class DocumentationAnalyzer {
       'Code Style': {
         patterns: ['code style', 'coding standards', 'style guide'],
         clarificationIndicators: ['unclear', 'confusing', 'unclear', 'ambiguous', 'vague', 'needs clarification'],
-        priority: 'HIGH'
+        priority: 'HIGH',
       },
       'Security': {
         patterns: ['security', 'authentication', 'authorization'],
         clarificationIndicators: ['security risk', 'vulnerability', 'security concern', 'needs review'],
-        priority: 'CRITICAL'
+        priority: 'CRITICAL',
       },
       'Architecture': {
         patterns: ['architecture', 'design patterns', 'system design'],
         clarificationIndicators: ['architectural decision', 'design choice', 'needs explanation'],
-        priority: 'HIGH'
+        priority: 'HIGH',
       },
       'Testing': {
         patterns: ['testing', 'test strategy', 'test coverage'],
         clarificationIndicators: ['test requirement', 'testing approach', 'coverage target'],
-        priority: 'MEDIUM'
+        priority: 'MEDIUM',
       },
       'Performance': {
         patterns: ['performance', 'optimization', 'scalability'],
         clarificationIndicators: ['performance target', 'optimization goal', 'scalability requirement'],
-        priority: 'MEDIUM'
-      }
+        priority: 'MEDIUM',
+      },
     };
 
     // Analyze each file for clarification needs
@@ -552,7 +552,7 @@ class DocumentationAnalyzer {
       Object.entries(standardsToCheck).forEach(([standard, config]) => {
         let hasStandardReference = false;
         let hasClarificationNeed = false;
-        let clarificationIssues = [];
+        const clarificationIssues = [];
 
         // Check for standard references
         config.patterns.forEach(pattern => {
@@ -578,14 +578,14 @@ class DocumentationAnalyzer {
               priority: config.priority,
               filesWithIssues: [],
               totalIssues: 0,
-              clarificationScore: 0
+              clarificationScore: 0,
             };
           }
 
           clarificationNeeds[standard].filesWithIssues.push({
             file: file.relativePath,
             issues: clarificationIssues,
-            issueCount: clarificationIssues.length
+            issueCount: clarificationIssues.length,
           });
 
           clarificationNeeds[standard].totalIssues += clarificationIssues.length;
@@ -611,7 +611,7 @@ class DocumentationAnalyzer {
         priority: data.priority,
         clarificationScore: data.clarificationScore,
         filesWithIssues: data.filesWithIssues.length,
-        totalIssues: data.totalIssues
+        totalIssues: data.totalIssues,
       }));
 
     // Generate recommendations
@@ -623,12 +623,12 @@ class DocumentationAnalyzer {
         description: `${standard.standard} needs clarification in ${standard.filesWithIssues} files`,
         actions: [
           `Review and clarify ${standard.standard} documentation`,
-          `Add specific examples and guidelines`,
-          `Create clear implementation instructions`,
-          `Establish review process for ${standard.standard} compliance`
+          'Add specific examples and guidelines',
+          'Create clear implementation instructions',
+          `Establish review process for ${standard.standard} compliance`,
         ],
         urgency: standard.priority === 'CRITICAL' ? 'IMMEDIATE' : 
-                standard.priority === 'HIGH' ? 'SHORT_TERM' : 'ONGOING'
+          standard.priority === 'HIGH' ? 'SHORT_TERM' : 'ONGOING',
       });
     });
 
@@ -640,8 +640,8 @@ class DocumentationAnalyzer {
         actions: [
           'Maintain current standards documentation quality',
           'Continue regular standards review process',
-          'Monitor for emerging clarification needs'
-        ]
+          'Monitor for emerging clarification needs',
+        ],
       });
     }
 
@@ -651,7 +651,7 @@ class DocumentationAnalyzer {
       recommendations,
       totalStandardsNeedingClarification: priorityStandards.length,
       averageClarificationScore: priorityStandards.length > 0 ? 
-        Math.round(priorityStandards.reduce((sum, s) => sum + s.clarificationScore, 0) / priorityStandards.length) : 0
+        Math.round(priorityStandards.reduce((sum, s) => sum + s.clarificationScore, 0) / priorityStandards.length) : 0,
     };
   }
 
@@ -667,9 +667,9 @@ class DocumentationAnalyzer {
         totalStandards: referenceTracking.totalStandards,
         totalReferences: referenceTracking.totalReferences,
         standardsNeedingClarification: clarificationAnalysis.totalStandardsNeedingClarification,
-        averageClarificationScore: clarificationAnalysis.averageClarificationScore
+        averageClarificationScore: clarificationAnalysis.averageClarificationScore,
       },
-      generatedAt: new Date().toISOString()
+      generatedAt: new Date().toISOString(),
     };
 
     const reportPath = path.join(__dirname, '../reports/standards-analysis.json');

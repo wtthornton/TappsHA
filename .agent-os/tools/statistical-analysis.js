@@ -56,7 +56,7 @@ class StatisticalAnalysis {
     if (!data || data.length < 2) return 0;
     
     const n = data.length;
-    const xValues = Array.from({length: n}, (_, i) => i);
+    const xValues = Array.from({ length: n }, (_, i) => i);
     
     const sumX = xValues.reduce((acc, val) => acc + val, 0);
     const sumY = data.reduce((acc, val) => acc + val, 0);
@@ -129,7 +129,7 @@ class StatisticalAnalysis {
       averageViolations: Math.round(mean),
       pattern: pattern,
       outliers: outliers.length,
-      totalEntries: violationCounts.length
+      totalEntries: violationCounts.length,
     };
   }
 
@@ -156,7 +156,7 @@ class StatisticalAnalysis {
       averageScore: Math.round(mean),
       improvement: Math.round(improvement),
       volatility: Math.round(stdDev),
-      currentScore: scores[scores.length - 1] || 0
+      currentScore: scores[scores.length - 1] || 0,
     };
   }
 
@@ -182,7 +182,7 @@ class StatisticalAnalysis {
       prediction: Math.max(0, Math.min(100, Math.round(predictedScore))),
       confidence: Math.round(confidence),
       trend: trend,
-      currentScore: currentScore
+      currentScore: currentScore,
     };
   }
 
@@ -214,7 +214,7 @@ class StatisticalAnalysis {
     const results = {
       mostEffective: [],
       needsImprovement: [],
-      trends: {}
+      trends: {},
     };
 
     Object.entries(standardsAnalysis).forEach(([standard, data]) => {
@@ -225,7 +225,7 @@ class StatisticalAnalysis {
         results.trends[standard] = {
           averageViolationRate: Math.round(avgViolationRate),
           trend: trend,
-          totalChecks: data.checks.reduce((sum, val) => sum + val, 0)
+          totalChecks: data.checks.reduce((sum, val) => sum + val, 0),
         };
 
         if (avgViolationRate < 10) {
@@ -252,7 +252,7 @@ class StatisticalAnalysis {
         message: `Violation pattern is ${violationAnalysis.pattern} (${violationAnalysis.averageViolations} avg)`,
         action: violationAnalysis.pattern === 'increasing' 
           ? 'Focus on reducing violations immediately' 
-          : 'Monitor for improvement opportunities'
+          : 'Monitor for improvement opportunities',
       });
     }
 
@@ -265,7 +265,7 @@ class StatisticalAnalysis {
         message: `Compliance ${complianceAnalysis.improvement > 0 ? 'improving' : 'declining'} by ${Math.abs(complianceAnalysis.improvement)}%`,
         action: complianceAnalysis.improvement > 0 
           ? 'Continue current practices' 
-          : 'Review and improve compliance practices'
+          : 'Review and improve compliance practices',
       });
     }
 
@@ -276,7 +276,7 @@ class StatisticalAnalysis {
         type: 'standards_effectiveness',
         priority: 'HIGH',
         message: `Standards needing improvement: ${standardsAnalysis.needsImprovement.join(', ')}`,
-        action: 'Review and update standards documentation'
+        action: 'Review and update standards documentation',
       });
     }
 
@@ -332,8 +332,8 @@ class StatisticalAnalysis {
       metrics: {
         averageScore: Math.round(avgScore),
         volatility: Math.round(scoreVolatility),
-        violationTrend: Math.round(violationTrend * 100) / 100
-      }
+        violationTrend: Math.round(violationTrend * 100) / 100,
+      },
     };
   }
 
@@ -342,7 +342,7 @@ class StatisticalAnalysis {
     if (!historicalData || historicalData.length === 0) {
       return {
         patterns: [],
-        message: 'Insufficient data for pattern analysis'
+        message: 'Insufficient data for pattern analysis',
       };
     }
 
@@ -372,7 +372,7 @@ class StatisticalAnalysis {
           category: category,
           frequency: counts.total,
           criticalRate: counts.CRITICAL / counts.total,
-          description: `${category} violations are consistently high (${counts.total} total)`
+          description: `${category} violations are consistently high (${counts.total} total)`,
         });
       }
     });
@@ -386,7 +386,7 @@ class StatisticalAnalysis {
         type: 'SCORE_TREND',
         direction: trend > 0 ? 'IMPROVING' : 'DECLINING',
         magnitude: Math.abs(trend),
-        description: `Compliance score is ${trend > 0 ? 'improving' : 'declining'} by ${Math.abs(trend).toFixed(1)}% per run`
+        description: `Compliance score is ${trend > 0 ? 'improving' : 'declining'} by ${Math.abs(trend).toFixed(1)}% per run`,
       });
     }
 
@@ -400,7 +400,7 @@ class StatisticalAnalysis {
         type: 'VOLATILE_VIOLATIONS',
         average: avgViolations,
         volatility: violationStdDev,
-        description: `High volatility in violation counts (avg: ${avgViolations.toFixed(1)}, std dev: ${violationStdDev.toFixed(1)})`
+        description: `High volatility in violation counts (avg: ${avgViolations.toFixed(1)}, std dev: ${violationStdDev.toFixed(1)})`,
       });
     }
 
@@ -420,7 +420,7 @@ class StatisticalAnalysis {
         ratio: criticalRatio,
         criticalCount: totalCritical,
         warningCount: totalWarnings,
-        description: `High ratio of critical violations (${(criticalRatio * 100).toFixed(1)}%)`
+        description: `High ratio of critical violations (${(criticalRatio * 100).toFixed(1)}%)`,
       });
     }
 
@@ -428,7 +428,7 @@ class StatisticalAnalysis {
       patterns: patterns,
       totalPatterns: patterns.length,
       dominantCategory: patterns.find(p => p.type === 'DOMINANT_CATEGORY')?.category || 'none',
-      trendDirection: patterns.find(p => p.type === 'SCORE_TREND')?.direction || 'stable'
+      trendDirection: patterns.find(p => p.type === 'SCORE_TREND')?.direction || 'stable',
     };
   }
 
@@ -437,7 +437,7 @@ class StatisticalAnalysis {
     if (!historicalData || historicalData.length < 3) {
       return {
         recurringIssues: [],
-        message: 'Insufficient data for recurring issue analysis (need at least 3 runs)'
+        message: 'Insufficient data for recurring issue analysis (need at least 3 runs)',
       };
     }
 
@@ -456,7 +456,7 @@ class StatisticalAnalysis {
         threshold: lowComplianceThreshold,
         severity: avgCompliance < 50 ? 'CRITICAL' : avgCompliance < 60 ? 'HIGH' : 'MEDIUM',
         description: `Consistently low compliance scores (avg: ${avgCompliance.toFixed(1)}%)`,
-        recommendation: 'Review and update coding standards, provide team training'
+        recommendation: 'Review and update coding standards, provide team training',
       });
     }
 
@@ -470,7 +470,7 @@ class StatisticalAnalysis {
         trend: violationTrend,
         severity: violationTrend > 10 ? 'HIGH' : 'MEDIUM',
         description: `Violations are increasing by ${violationTrend.toFixed(1)} per run`,
-        recommendation: 'Implement stricter code review process, add automated checks'
+        recommendation: 'Implement stricter code review process, add automated checks',
       });
     }
 
@@ -492,7 +492,7 @@ class StatisticalAnalysis {
         totalViolations: totalViolations,
         severity: criticalRatio > 0.25 ? 'CRITICAL' : 'HIGH',
         description: `High ratio of critical violations (${(criticalRatio * 100).toFixed(1)}%)`,
-        recommendation: 'Prioritize fixing critical issues, implement security training'
+        recommendation: 'Prioritize fixing critical issues, implement security training',
       });
     }
 
@@ -508,7 +508,7 @@ class StatisticalAnalysis {
         stdDev: complianceStdDev,
         severity: complianceVolatility > 0.3 ? 'HIGH' : 'MEDIUM',
         description: `High compliance score volatility (${(complianceVolatility * 100).toFixed(1)}% variation)`,
-        recommendation: 'Standardize development practices, implement consistent code review'
+        recommendation: 'Standardize development practices, implement consistent code review',
       });
     }
 
@@ -536,7 +536,7 @@ class StatisticalAnalysis {
           totalRuns: data.runs,
           severity: avgViolationsPerRun > 20 ? 'HIGH' : 'MEDIUM',
           description: `Persistent ${category} violations (${avgViolationsPerRun.toFixed(1)} avg per run)`,
-          recommendation: `Focus on ${category} standards, provide specific training`
+          recommendation: `Focus on ${category} standards, provide specific training`,
         });
       }
     });
@@ -546,7 +546,7 @@ class StatisticalAnalysis {
       totalIssues: recurringIssues.length,
       criticalIssues: recurringIssues.filter(issue => issue.severity === 'CRITICAL').length,
       highIssues: recurringIssues.filter(issue => issue.severity === 'HIGH').length,
-      mediumIssues: recurringIssues.filter(issue => issue.severity === 'MEDIUM').length
+      mediumIssues: recurringIssues.filter(issue => issue.severity === 'MEDIUM').length,
     };
   }
 
@@ -557,7 +557,7 @@ class StatisticalAnalysis {
         clusters: [],
         patterns: [],
         insights: [],
-        message: 'Insufficient data for clustering analysis (need at least 3 runs)'
+        message: 'Insufficient data for clustering analysis (need at least 3 runs)',
       };
     }
 
@@ -594,7 +594,7 @@ class StatisticalAnalysis {
           totalViolations: data.total,
           severity: data.avgViolations > 15 ? 'HIGH' : 'MEDIUM',
           description: `${fileType} files have high violation rates (${data.avgViolations.toFixed(1)} avg per file)`,
-          recommendation: `Focus on ${fileType} file standards, provide specific linting rules`
+          recommendation: `Focus on ${fileType} file standards, provide specific linting rules`,
         });
       }
     });
@@ -617,7 +617,7 @@ class StatisticalAnalysis {
         description: `Violations are ${violationTrend > 0 ? 'increasing' : 'decreasing'} over time`,
         recommendation: violationTrend > 0 
           ? 'Implement stricter review process' 
-          : 'Continue current improvement practices'
+          : 'Continue current improvement practices',
       });
     }
 
@@ -643,7 +643,7 @@ class StatisticalAnalysis {
         count: totalCritical,
         severity: criticalRatio > 0.2 ? 'CRITICAL' : 'HIGH',
         description: `High ratio of critical violations (${(criticalRatio * 100).toFixed(1)}%)`,
-        recommendation: 'Prioritize critical issue fixes, implement security training'
+        recommendation: 'Prioritize critical issue fixes, implement security training',
       });
     }
 
@@ -655,7 +655,7 @@ class StatisticalAnalysis {
         count: totalWarnings,
         severity: 'MEDIUM',
         description: `High ratio of warning violations (${(warningRatio * 100).toFixed(1)}%)`,
-        recommendation: 'Review warning patterns, improve code quality standards'
+        recommendation: 'Review warning patterns, improve code quality standards',
       });
     }
 
@@ -672,7 +672,7 @@ class StatisticalAnalysis {
         stdDev: complianceStdDev,
         severity: complianceStdDev > 20 ? 'HIGH' : 'MEDIUM',
         description: `High compliance score volatility (std dev: ${complianceStdDev.toFixed(1)})`,
-        recommendation: 'Standardize development practices, implement consistent review process'
+        recommendation: 'Standardize development practices, implement consistent review process',
       });
     }
 
@@ -684,7 +684,7 @@ class StatisticalAnalysis {
           type: 'HIGH_SEVERITY_CLUSTERS',
           priority: 'HIGH',
           message: `${highSeverityClusters.length} high-severity violation clusters detected`,
-          action: 'Address high-severity clusters immediately'
+          action: 'Address high-severity clusters immediately',
         });
       }
 
@@ -694,7 +694,7 @@ class StatisticalAnalysis {
           type: 'FILE_TYPE_INSIGHT',
           priority: 'MEDIUM',
           message: `${fileTypeClusters.length} file types with high violation rates`,
-          action: 'Focus on improving standards for problematic file types'
+          action: 'Focus on improving standards for problematic file types',
         });
       }
     }
@@ -707,7 +707,7 @@ class StatisticalAnalysis {
           type: 'TREND_INSIGHT',
           priority: 'HIGH',
           message: 'Detected increasing violation trends',
-          action: 'Implement immediate intervention strategies'
+          action: 'Implement immediate intervention strategies',
         });
       }
     }
@@ -721,7 +721,7 @@ class StatisticalAnalysis {
       totalInsights: insights.length,
       highSeverityClusters: clusters.filter(c => c.severity === 'HIGH' || c.severity === 'CRITICAL').length,
       fileTypeClusters: clusters.filter(c => c.type === 'FILE_TYPE_CLUSTER').length,
-      severityClusters: clusters.filter(c => c.type === 'SEVERITY_CLUSTER').length
+      severityClusters: clusters.filter(c => c.type === 'SEVERITY_CLUSTER').length,
     };
   }
 
@@ -731,7 +731,7 @@ class StatisticalAnalysis {
       return {
         predictions: [],
         confidence: 0,
-        message: 'Insufficient data for issue prediction (need at least 5 runs)'
+        message: 'Insufficient data for issue prediction (need at least 5 runs)',
       };
     }
 
@@ -758,7 +758,7 @@ class StatisticalAnalysis {
         description: `Compliance score predicted to be ${Math.round(predictedScore)}% in 3 runs`,
         recommendation: predictedScore < 70 
           ? 'Implement immediate compliance improvement measures' 
-          : 'Continue current practices'
+          : 'Continue current practices',
       });
     }
 
@@ -779,7 +779,7 @@ class StatisticalAnalysis {
         description: `Violations predicted to be ${Math.round(predictedViolations)} in 3 runs`,
         recommendation: predictedViolations > currentViolations * 1.2
           ? 'Implement stricter code review and automated checks'
-          : 'Continue current improvement practices'
+          : 'Continue current improvement practices',
       });
     }
 
@@ -800,7 +800,7 @@ class StatisticalAnalysis {
         description: `Critical violations predicted to be ${Math.round(predictedCritical)} in 3 runs`,
         recommendation: predictedCritical > 10
           ? 'Immediate security review and critical issue prioritization required'
-          : 'Monitor critical violations and implement preventive measures'
+          : 'Monitor critical violations and implement preventive measures',
       });
     }
 
@@ -833,7 +833,7 @@ class StatisticalAnalysis {
             probability: 'MEDIUM',
             confidence: 75,
             description: `${fileType} files predicted to have ${Math.round(predictedViolations)} violations in 3 runs`,
-            recommendation: `Focus on ${fileType} file standards and provide specific training`
+            recommendation: `Focus on ${fileType} file standards and provide specific training`,
           });
         }
       }
@@ -848,7 +848,7 @@ class StatisticalAnalysis {
         probability: 'HIGH',
         confidence: 85,
         description: `${standardsAnalysis.needsImprovement.length} standards showing deterioration`,
-        recommendation: 'Review and update standards documentation, provide team training'
+        recommendation: 'Review and update standards documentation, provide team training',
       });
     }
 
@@ -863,7 +863,7 @@ class StatisticalAnalysis {
       mediumProbabilityPredictions: predictions.filter(p => p.probability === 'MEDIUM').length,
       lowProbabilityPredictions: predictions.filter(p => p.probability === 'LOW').length,
       confidence: overallConfidence,
-      criticalPredictions: predictions.filter(p => p.issue.includes('CRITICAL') || p.issue.includes('HIGH')).length
+      criticalPredictions: predictions.filter(p => p.issue.includes('CRITICAL') || p.issue.includes('HIGH')).length,
     };
   }
   
@@ -873,7 +873,7 @@ class StatisticalAnalysis {
       return {
         forecasts: [],
         confidence: 'LOW',
-        message: 'Insufficient historical data for forecasting (minimum 5 data points required)'
+        message: 'Insufficient historical data for forecasting (minimum 5 data points required)',
       };
     }
 
@@ -891,7 +891,7 @@ class StatisticalAnalysis {
       forecast: scoreForecast,
       trend: this.calculateTrend(complianceScores),
       confidence: this.calculateForecastConfidence(complianceScores),
-      recommendation: this.generateForecastRecommendation(scoreForecast, 'compliance score')
+      recommendation: this.generateForecastRecommendation(scoreForecast, 'compliance score'),
     });
 
     // Forecast violation counts
@@ -905,7 +905,7 @@ class StatisticalAnalysis {
       forecast: violationForecast,
       trend: this.calculateTrend(violationCounts),
       confidence: this.calculateForecastConfidence(violationCounts),
-      recommendation: this.generateForecastRecommendation(violationForecast, 'violation count')
+      recommendation: this.generateForecastRecommendation(violationForecast, 'violation count'),
     });
 
     // Forecast critical violations
@@ -919,7 +919,7 @@ class StatisticalAnalysis {
       forecast: criticalForecast,
       trend: this.calculateTrend(criticalViolations),
       confidence: this.calculateForecastConfidence(criticalViolations),
-      recommendation: this.generateForecastRecommendation(criticalForecast, 'critical violations')
+      recommendation: this.generateForecastRecommendation(criticalForecast, 'critical violations'),
     });
 
     // Forecast execution time
@@ -933,7 +933,7 @@ class StatisticalAnalysis {
       forecast: executionForecast,
       trend: this.calculateTrend(executionTimes),
       confidence: this.calculateForecastConfidence(executionTimes),
-      recommendation: this.generateForecastRecommendation(executionForecast, 'execution time')
+      recommendation: this.generateForecastRecommendation(executionForecast, 'execution time'),
     });
 
     // Forecast file processing performance
@@ -947,7 +947,7 @@ class StatisticalAnalysis {
       forecast: fileProcessingForecast,
       trend: this.calculateTrend(fileProcessingTimes),
       confidence: this.calculateForecastConfidence(fileProcessingTimes),
-      recommendation: this.generateForecastRecommendation(fileProcessingForecast, 'file processing time')
+      recommendation: this.generateForecastRecommendation(fileProcessingForecast, 'file processing time'),
     });
 
     return {
@@ -955,7 +955,7 @@ class StatisticalAnalysis {
       confidence: this.calculateOverallForecastConfidence(forecasts),
       message: `Generated ${forecasts.length} forecasts for ${forecastPeriods} periods ahead`,
       dataPoints: recentData.length,
-      forecastPeriods
+      forecastPeriods,
     };
   }
   
@@ -964,7 +964,7 @@ class StatisticalAnalysis {
     if (data.length < 2) return [];
     
     const n = data.length;
-    const xValues = Array.from({length: n}, (_, i) => i);
+    const xValues = Array.from({ length: n }, (_, i) => i);
     
     // Calculate linear regression parameters
     const sumX = xValues.reduce((acc, val) => acc + val, 0);
@@ -1029,7 +1029,7 @@ class StatisticalAnalysis {
         riskAssessment: {},
         trendAnalysis: {},
         riskPredictions: [],
-        mitigationStrategies: []
+        mitigationStrategies: [],
       };
     }
 
@@ -1048,7 +1048,7 @@ class StatisticalAnalysis {
       trend: scoreTrend,
       trendDirection: scoreTrend > 0 ? 'IMPROVING' : scoreTrend < 0 ? 'DECLINING' : 'STABLE',
       volatility: Math.round(scoreVolatility * 100),
-      riskLevel: this.calculateTrendBasedRisk(scoreTrend, scoreVolatility, complianceScores[complianceScores.length - 1])
+      riskLevel: this.calculateTrendBasedRisk(scoreTrend, scoreVolatility, complianceScores[complianceScores.length - 1]),
     };
 
     // Analyze violation count trends and risks
@@ -1060,7 +1060,7 @@ class StatisticalAnalysis {
       trend: violationTrend,
       trendDirection: violationTrend > 0 ? 'INCREASING' : violationTrend < 0 ? 'DECREASING' : 'STABLE',
       volatility: Math.round(violationVolatility * 100),
-      riskLevel: this.calculateTrendBasedRisk(violationTrend, violationVolatility, violationCounts[violationCounts.length - 1])
+      riskLevel: this.calculateTrendBasedRisk(violationTrend, violationVolatility, violationCounts[violationCounts.length - 1]),
     };
 
     // Analyze critical violation trends and risks
@@ -1072,7 +1072,7 @@ class StatisticalAnalysis {
       trend: criticalTrend,
       trendDirection: criticalTrend > 0 ? 'INCREASING' : criticalTrend < 0 ? 'DECREASING' : 'STABLE',
       volatility: Math.round(criticalVolatility * 100),
-      riskLevel: this.calculateTrendBasedRisk(criticalTrend, criticalVolatility, criticalViolations[criticalViolations.length - 1])
+      riskLevel: this.calculateTrendBasedRisk(criticalTrend, criticalVolatility, criticalViolations[criticalViolations.length - 1]),
     };
 
     // Generate risk predictions based on trends
@@ -1084,7 +1084,7 @@ class StatisticalAnalysis {
         description: 'Compliance score showing declining trend with high volatility',
         impact: 'CRITICAL',
         timeframe: 'IMMEDIATE',
-        mitigation: 'Implement comprehensive compliance review and team training'
+        mitigation: 'Implement comprehensive compliance review and team training',
       });
     }
 
@@ -1096,7 +1096,7 @@ class StatisticalAnalysis {
         description: 'Violation count showing increasing trend',
         impact: 'HIGH',
         timeframe: 'SHORT_TERM',
-        mitigation: 'Implement stricter code review and automated compliance checks'
+        mitigation: 'Implement stricter code review and automated compliance checks',
       });
     }
 
@@ -1108,7 +1108,7 @@ class StatisticalAnalysis {
         description: 'Critical violations showing increasing trend',
         impact: 'CRITICAL',
         timeframe: 'IMMEDIATE',
-        mitigation: 'Immediate security review and critical issue prioritization required'
+        mitigation: 'Immediate security review and critical issue prioritization required',
       });
     }
 
@@ -1124,10 +1124,10 @@ class StatisticalAnalysis {
           'Establish stricter code review process',
           'Add automated compliance checks to CI/CD',
           'Provide team training on standards',
-          'Set up monitoring for risk indicators'
+          'Set up monitoring for risk indicators',
         ],
         expectedOutcome: 'Reduce risk levels within 2-4 weeks',
-        successMetrics: ['Reduced violation count', 'Improved compliance score', 'Decreased critical violations']
+        successMetrics: ['Reduced violation count', 'Improved compliance score', 'Decreased critical violations'],
       });
     }
 
@@ -1141,7 +1141,7 @@ class StatisticalAnalysis {
       score: Math.round((highRiskCount / riskLevels.length) * 100),
       trendAnalysis: trendAnalysis,
       riskPredictions: riskPredictions,
-      mitigationStrategies: mitigationStrategies
+      mitigationStrategies: mitigationStrategies,
     };
 
     return {
@@ -1150,7 +1150,7 @@ class StatisticalAnalysis {
       riskPredictions,
       mitigationStrategies,
       dataPoints: recentData.length,
-      confidence: this.calculateRiskAssessmentConfidence(recentData)
+      confidence: this.calculateRiskAssessmentConfidence(recentData),
     };
   }
   
@@ -1181,7 +1181,7 @@ class StatisticalAnalysis {
         message: 'Insufficient data for confidence scoring (minimum 3 data points required)',
         confidenceScores: {},
         predictionReliability: 'LOW',
-        recommendations: []
+        recommendations: [],
       };
     }
 
@@ -1197,7 +1197,7 @@ class StatisticalAnalysis {
       confidence: scoreConfidence.level,
       score: scoreConfidence.score,
       factors: scoreConfidence.factors,
-      reliability: scoreConfidence.reliability
+      reliability: scoreConfidence.reliability,
     };
 
     // Calculate confidence for violation count predictions
@@ -1208,7 +1208,7 @@ class StatisticalAnalysis {
       confidence: violationConfidence.level,
       score: violationConfidence.score,
       factors: violationConfidence.factors,
-      reliability: violationConfidence.reliability
+      reliability: violationConfidence.reliability,
     };
 
     // Calculate confidence for critical violation predictions
@@ -1219,7 +1219,7 @@ class StatisticalAnalysis {
       confidence: criticalConfidence.level,
       score: criticalConfidence.score,
       factors: criticalConfidence.factors,
-      reliability: criticalConfidence.reliability
+      reliability: criticalConfidence.reliability,
     };
 
     // Calculate confidence for execution time predictions
@@ -1230,7 +1230,7 @@ class StatisticalAnalysis {
       confidence: executionConfidence.level,
       score: executionConfidence.score,
       factors: executionConfidence.factors,
-      reliability: executionConfidence.reliability
+      reliability: executionConfidence.reliability,
     };
 
     // Generate recommendations based on confidence levels
@@ -1248,14 +1248,14 @@ class StatisticalAnalysis {
     const confidenceLevels = Object.values(confidenceScores).map(data => data.confidence);
     const highConfidenceCount = confidenceLevels.filter(level => level === 'HIGH').length;
     const overallReliability = highConfidenceCount >= confidenceLevels.length * 0.7 ? 'HIGH' : 
-                              highConfidenceCount >= confidenceLevels.length * 0.4 ? 'MEDIUM' : 'LOW';
+      highConfidenceCount >= confidenceLevels.length * 0.4 ? 'MEDIUM' : 'LOW';
 
     return {
       confidenceScores,
       predictionReliability: overallReliability,
       recommendations,
       dataPoints: recentData.length,
-      overallConfidenceScore: Math.round(this.calculateMean(Object.values(confidenceScores).map(c => c.score)))
+      overallConfidenceScore: Math.round(this.calculateMean(Object.values(confidenceScores).map(c => c.score))),
     };
   }
   
@@ -1266,7 +1266,7 @@ class StatisticalAnalysis {
         level: 'LOW',
         score: 0,
         factors: ['Insufficient data points'],
-        reliability: 'UNRELIABLE'
+        reliability: 'UNRELIABLE',
       };
     }
 
@@ -1338,7 +1338,7 @@ class StatisticalAnalysis {
       level: confidenceLevel,
       score: Math.max(0, confidenceScore),
       factors,
-      reliability
+      reliability,
     };
   }
   
@@ -1365,7 +1365,7 @@ class StatisticalAnalysis {
         message: 'Insufficient data for pattern-based suggestions (minimum 3 data points required)',
         suggestions: [],
         patternAnalysis: {},
-        priorityLevels: {}
+        priorityLevels: {},
       };
     }
 
@@ -1420,7 +1420,7 @@ class StatisticalAnalysis {
       highPriorityCount: priorityLevels.HIGH.length,
       mediumPriorityCount: priorityLevels.MEDIUM.length,
       lowPriorityCount: priorityLevels.LOW.length,
-      dataPoints: recentData.length
+      dataPoints: recentData.length,
     };
   }
 
@@ -1431,7 +1431,7 @@ class StatisticalAnalysis {
       violationSpikes: false,
       criticalIssueTrends: false,
       performanceDegradation: false,
-      standardsAdoption: false
+      standardsAdoption: false,
     };
 
     const complianceScores = data.map(entry => entry.complianceScore);
@@ -1475,7 +1475,7 @@ class StatisticalAnalysis {
       decliningTrend: false,
       stableTrend: false,
       cyclicalPattern: false,
-      seasonalPattern: false
+      seasonalPattern: false,
     };
 
     const complianceScores = data.map(entry => entry.complianceScore);
@@ -1505,7 +1505,7 @@ class StatisticalAnalysis {
       typescriptFileIssues: false,
       markdownFileIssues: false,
       configurationFileIssues: false,
-      testFileIssues: false
+      testFileIssues: false,
     };
 
     // Analyze based on file processing metrics if available
@@ -1535,7 +1535,7 @@ class StatisticalAnalysis {
       mediumSeverityIssues: false,
       lowSeverityIssues: false,
       criticalIssues: false,
-      mixedSeverityIssues: false
+      mixedSeverityIssues: false,
     };
 
     data.forEach(entry => {
@@ -1555,7 +1555,7 @@ class StatisticalAnalysis {
       patterns.criticalIssues,
       patterns.highSeverityIssues,
       patterns.mediumSeverityIssues,
-      patterns.lowSeverityIssues
+      patterns.lowSeverityIssues,
     ].filter(Boolean).length;
 
     if (severityCounts > 2) {
@@ -1572,7 +1572,7 @@ class StatisticalAnalysis {
       recurringPerformanceIssues: false,
       recurringComplianceIssues: false,
       recurringCriticalIssues: false,
-      recurringFileTypeIssues: false
+      recurringFileTypeIssues: false,
     };
 
     // Detect recurring violations
@@ -1627,10 +1627,10 @@ class StatisticalAnalysis {
           'Review recent code changes for compliance violations',
           'Implement stricter code review process',
           'Provide team training on standards',
-          'Add automated compliance checks to CI/CD pipeline'
+          'Add automated compliance checks to CI/CD pipeline',
         ],
         expectedOutcome: 'Improve compliance score within 1-2 weeks',
-        successMetrics: ['Increased compliance score', 'Reduced violation count']
+        successMetrics: ['Increased compliance score', 'Reduced violation count'],
       });
     }
 
@@ -1645,10 +1645,10 @@ class StatisticalAnalysis {
           'Investigate recent code changes',
           'Review violation types and patterns',
           'Implement immediate fixes for critical violations',
-          'Establish violation monitoring alerts'
+          'Establish violation monitoring alerts',
         ],
         expectedOutcome: 'Reduce violations to normal levels',
-        successMetrics: ['Reduced violation count', 'Stable violation trend']
+        successMetrics: ['Reduced violation count', 'Stable violation trend'],
       });
     }
 
@@ -1663,10 +1663,10 @@ class StatisticalAnalysis {
           'Prioritize critical issue resolution',
           'Implement security review process',
           'Add critical issue monitoring',
-          'Establish emergency response procedures'
+          'Establish emergency response procedures',
         ],
         expectedOutcome: 'Eliminate all critical violations',
-        successMetrics: ['Zero critical violations', 'Improved security posture']
+        successMetrics: ['Zero critical violations', 'Improved security posture'],
       });
     }
 
@@ -1681,10 +1681,10 @@ class StatisticalAnalysis {
           'Optimize compliance check algorithms',
           'Implement caching for repeated checks',
           'Review file processing efficiency',
-          'Consider parallel processing for large codebases'
+          'Consider parallel processing for large codebases',
         ],
         expectedOutcome: 'Improve execution time by 20-30%',
-        successMetrics: ['Reduced execution time', 'Improved processing efficiency']
+        successMetrics: ['Reduced execution time', 'Improved processing efficiency'],
       });
     }
 
@@ -1706,10 +1706,10 @@ class StatisticalAnalysis {
           'Implement comprehensive compliance review',
           'Establish daily compliance monitoring',
           'Provide immediate team training',
-          'Set up compliance improvement milestones'
+          'Set up compliance improvement milestones',
         ],
         expectedOutcome: 'Reverse declining trend within 2-3 weeks',
-        successMetrics: ['Positive trend direction', 'Improved compliance score']
+        successMetrics: ['Positive trend direction', 'Improved compliance score'],
       });
     }
 
@@ -1724,10 +1724,10 @@ class StatisticalAnalysis {
           'Implement consistent compliance practices',
           'Establish regular compliance reviews',
           'Create compliance maintenance schedule',
-          'Monitor for pattern triggers'
+          'Monitor for pattern triggers',
         ],
         expectedOutcome: 'Stabilize compliance patterns',
-        successMetrics: ['Reduced volatility', 'More consistent compliance']
+        successMetrics: ['Reduced volatility', 'More consistent compliance'],
       });
     }
 
@@ -1742,10 +1742,10 @@ class StatisticalAnalysis {
           'Continue current improvement practices',
           'Document successful strategies',
           'Share best practices across team',
-          'Set higher compliance targets'
+          'Set higher compliance targets',
         ],
         expectedOutcome: 'Maintain and accelerate improvement',
-        successMetrics: ['Continued improvement', 'Higher compliance targets']
+        successMetrics: ['Continued improvement', 'Higher compliance targets'],
       });
     }
 
@@ -1767,10 +1767,10 @@ class StatisticalAnalysis {
           'Review Java coding standards',
           'Implement Java-specific linting rules',
           'Add Java code quality checks',
-          'Provide Java development best practices training'
+          'Provide Java development best practices training',
         ],
         expectedOutcome: 'Improve Java file compliance',
-        successMetrics: ['Reduced Java violations', 'Improved Java code quality']
+        successMetrics: ['Reduced Java violations', 'Improved Java code quality'],
       });
     }
 
@@ -1785,10 +1785,10 @@ class StatisticalAnalysis {
           'Review TypeScript coding standards',
           'Implement TypeScript-specific linting',
           'Add TypeScript type checking',
-          'Provide TypeScript best practices training'
+          'Provide TypeScript best practices training',
         ],
         expectedOutcome: 'Improve TypeScript file compliance',
-        successMetrics: ['Reduced TypeScript violations', 'Improved type safety']
+        successMetrics: ['Reduced TypeScript violations', 'Improved type safety'],
       });
     }
 
@@ -1803,10 +1803,10 @@ class StatisticalAnalysis {
           'Review documentation standards',
           'Implement markdown linting rules',
           'Add documentation quality checks',
-          'Provide documentation best practices training'
+          'Provide documentation best practices training',
         ],
         expectedOutcome: 'Improve documentation quality',
-        successMetrics: ['Reduced documentation violations', 'Improved documentation quality']
+        successMetrics: ['Reduced documentation violations', 'Improved documentation quality'],
       });
     }
 
@@ -1828,10 +1828,10 @@ class StatisticalAnalysis {
           'Prioritize critical issue resolution',
           'Implement immediate fixes',
           'Establish critical issue monitoring',
-          'Review security and compliance procedures'
+          'Review security and compliance procedures',
         ],
         expectedOutcome: 'Eliminate all critical violations',
-        successMetrics: ['Zero critical violations', 'Improved security posture']
+        successMetrics: ['Zero critical violations', 'Improved security posture'],
       });
     }
 
@@ -1846,10 +1846,10 @@ class StatisticalAnalysis {
           'Review high severity violations',
           'Implement fixes for high priority issues',
           'Establish severity-based prioritization',
-          'Monitor high severity issue trends'
+          'Monitor high severity issue trends',
         ],
         expectedOutcome: 'Reduce high severity violations',
-        successMetrics: ['Reduced high severity violations', 'Improved code quality']
+        successMetrics: ['Reduced high severity violations', 'Improved code quality'],
       });
     }
 
@@ -1864,10 +1864,10 @@ class StatisticalAnalysis {
           'Implement severity-based prioritization',
           'Address critical and high severity first',
           'Establish systematic issue resolution process',
-          'Monitor severity distribution trends'
+          'Monitor severity distribution trends',
         ],
         expectedOutcome: 'Systematic resolution of all severity levels',
-        successMetrics: ['Reduced overall violations', 'Balanced severity distribution']
+        successMetrics: ['Reduced overall violations', 'Balanced severity distribution'],
       });
     }
 
@@ -1889,10 +1889,10 @@ class StatisticalAnalysis {
           'Analyze violation root causes',
           'Implement preventive measures',
           'Add automated violation detection',
-          'Establish violation prevention training'
+          'Establish violation prevention training',
         ],
         expectedOutcome: 'Reduce recurring violations',
-        successMetrics: ['Reduced violation frequency', 'Improved prevention measures']
+        successMetrics: ['Reduced violation frequency', 'Improved prevention measures'],
       });
     }
 
@@ -1907,10 +1907,10 @@ class StatisticalAnalysis {
           'Identify performance bottlenecks',
           'Implement performance optimizations',
           'Add performance monitoring',
-          'Establish performance best practices'
+          'Establish performance best practices',
         ],
         expectedOutcome: 'Improve consistent performance',
-        successMetrics: ['Improved performance consistency', 'Reduced performance issues']
+        successMetrics: ['Improved performance consistency', 'Reduced performance issues'],
       });
     }
 
@@ -1925,10 +1925,10 @@ class StatisticalAnalysis {
           'Implement critical issue prevention',
           'Add critical issue monitoring',
           'Establish emergency response procedures',
-          'Review and improve security measures'
+          'Review and improve security measures',
         ],
         expectedOutcome: 'Eliminate recurring critical issues',
-        successMetrics: ['Zero recurring critical issues', 'Improved security measures']
+        successMetrics: ['Zero recurring critical issues', 'Improved security measures'],
       });
     }
 

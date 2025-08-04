@@ -1144,7 +1144,7 @@ class CursorIntegration {
             // X-axis labels
             for (let i = 0; i <= maxForecasts; i++) {
                 const x = 60 + i * barWidth;
-                ctx.fillText(`T+${i}`, x, canvas.height - 50);
+                ctx.fillText('T+' + i, x, canvas.height - 50);
             }
             
             // Y-axis label
@@ -1366,9 +1366,9 @@ class CursorIntegration {
                                 period2Avg.critical > period1Avg.critical ? '↘️ Declining' : '→ Stable';
             
             ctx.font = '12px Arial';
-            ctx.fillText(`Compliance: ${complianceTrend}`, canvas.width / 2, 50);
-            ctx.fillText(`Violations: ${violationTrend}`, canvas.width / 2, 65);
-            ctx.fillText(`Critical: ${criticalTrend}`, canvas.width / 2, 80);
+            ctx.fillText('Compliance: ' + complianceTrend, canvas.width / 2, 50);
+            ctx.fillText('Violations: ' + violationTrend, canvas.width / 2, 65);
+            ctx.fillText('Critical: ' + criticalTrend, canvas.width / 2, 80);
             
             updateLegend([
                 { label: 'Period 1', color: '#007bff' },
@@ -1430,6 +1430,338 @@ class CursorIntegration {
     fs.writeFileSync('.agent-os/dashboard/compliance-dashboard.html', html);
     console.log('📄 Enhanced HTML dashboard with interactive charts saved to: .agent-os/dashboard/compliance-dashboard.html');
   }
+
+  /**
+   * Generate Cursor rules from .md lessons learned files
+   */
+  generateRulesFromLessons() {
+    console.log('📚 Generating Cursor rules from lessons learned...');
+    
+    const lessonsDir = path.join(__dirname, '..', 'lessons-learned');
+    const rulesDir = path.join(__dirname, '..', 'cursor-rules');
+    
+    console.log(`📁 Lessons directory: ${lessonsDir}`);
+    console.log(`📁 Rules directory: ${rulesDir}`);
+    
+    // Ensure rules directory exists
+    if (!fs.existsSync(rulesDir)) {
+      fs.mkdirSync(rulesDir, { recursive: true });
+      console.log(`📁 Created rules directory: ${rulesDir}`);
+    }
+    
+    const generatedRules = [];
+    const processedFiles = [];
+    
+    try {
+      // Process all .md files in lessons-learned directory
+      this.processLessonsDirectory(lessonsDir, rulesDir, generatedRules, processedFiles);
+      
+      // Generate summary report
+      const summary = {
+        timestamp: new Date().toISOString(),
+        totalLessonsProcessed: processedFiles.length,
+        totalRulesGenerated: generatedRules.length,
+        rulesByCategory: this.categorizeRules(generatedRules),
+        processedFiles: processedFiles
+      };
+      
+      // Save summary to JSON
+      const summaryPath = path.join(__dirname, '..', 'reports', 'rule-generation-summary.json');
+      fs.writeFileSync(summaryPath, JSON.stringify(summary, null, 2));
+      
+      console.log(`✅ Generated ${generatedRules.length} rules from ${processedFiles.length} lesson files`);
+      console.log('📄 Rule generation summary saved to:', summaryPath);
+      
+      return summary;
+      
+    } catch (error) {
+      console.error('❌ Error generating rules from lessons:', error.message);
+      return null;
+    }
+  }
+
+  /**
+   * Process lessons directory recursively
+   */
+  processLessonsDirectory(dirPath, rulesDir, generatedRules, processedFiles) {
+    console.log(`📁 Processing directory: ${dirPath}`);
+    
+    if (!fs.existsSync(dirPath)) {
+      console.log(`❌ Directory does not exist: ${dirPath}`);
+      return;
+    }
+    
+    const items = fs.readdirSync(dirPath);
+    console.log(`📄 Found ${items.length} items in directory`);
+    
+    for (const item of items) {
+      const fullPath = path.join(dirPath, item);
+      const stat = fs.statSync(fullPath);
+      
+      if (stat.isDirectory()) {
+        console.log(`📁 Processing subdirectory: ${item}`);
+        // Recursively process subdirectories
+        this.processLessonsDirectory(fullPath, rulesDir, generatedRules, processedFiles);
+      } else if (item.endsWith('.md') && !item.startsWith('README')) {
+        console.log(`📖 Found lesson file: ${item}`);
+        // Process .md files (excluding README files)
+        this.processLessonFile(fullPath, rulesDir, generatedRules, processedFiles);
+      } else {
+        console.log(`⏭️  Skipping file: ${item}`);
+      }
+    }
+  }
+
+  /**
+   * Process individual lesson file and generate rules
+   */
+  processLessonFile(filePath, rulesDir, generatedRules, processedFiles) {
+    try {
+      const content = fs.readFileSync(filePath, 'utf8');
+      const fileName = path.basename(filePath, '.md');
+      
+      console.log(`📖 Processing lesson: ${fileName}`);
+      
+      // Extract lesson metadata
+      const metadata = this.extractLessonMetadata(content);
+      
+      // Generate rules based on lesson content
+      const rules = this.generateRulesFromContent(content, metadata);
+      
+      if (rules.length > 0) {
+        // Save rules to file
+        const ruleFileName = `${fileName}-rules.mdc`;
+        const ruleFilePath = path.join(rulesDir, ruleFileName);
+        
+        const ruleContent = this.formatRulesForCursor(rules, metadata);
+        fs.writeFileSync(ruleFilePath, ruleContent);
+        
+        generatedRules.push(...rules);
+        processedFiles.push({
+          file: fileName,
+          rulesGenerated: rules.length,
+          ruleFile: ruleFileName
+        });
+        
+        console.log(`  ✅ Generated ${rules.length} rules for ${fileName}`);
+      } else {
+        processedFiles.push({
+          file: fileName,
+          rulesGenerated: 0,
+          ruleFile: null
+        });
+        console.log(`  ⚠️  No rules generated for ${fileName}`);
+      }
+      
+    } catch (error) {
+      console.error(`❌ Error processing ${filePath}:`, error.message);
+    }
+  }
+
+  /**
+   * Extract metadata from lesson content
+   */
+  extractLessonMetadata(content) {
+    const metadata = {
+      title: '',
+      date: '',
+      project: '',
+      phase: '',
+      priority: '',
+      tags: [],
+      keyInsights: [],
+      recommendations: []
+    };
+    
+    // Extract title
+    const titleMatch = content.match(/^# (.+)$/m);
+    if (titleMatch) {
+      metadata.title = titleMatch[1];
+    }
+    
+    // Extract date from filename or content
+    const dateMatch = content.match(/(\d{4}-\d{2}-\d{2})/);
+    if (dateMatch) {
+      metadata.date = dateMatch[1];
+    }
+    
+    // Extract project (default to Agent OS)
+    metadata.project = 'Agent OS';
+    
+    // Extract phase from content
+    if (content.includes('Development') || content.includes('development')) {
+      metadata.phase = 'Development';
+    } else if (content.includes('Testing') || content.includes('testing')) {
+      metadata.phase = 'Testing';
+    } else if (content.includes('Architecture') || content.includes('architecture')) {
+      metadata.phase = 'Architecture';
+    } else {
+      metadata.phase = 'General';
+    }
+    
+    // Extract priority based on content
+    if (content.includes('CRITICAL') || content.includes('critical')) {
+      metadata.priority = 'High';
+    } else if (content.includes('HIGH') || content.includes('high')) {
+      metadata.priority = 'High';
+    } else if (content.includes('MEDIUM') || content.includes('medium')) {
+      metadata.priority = 'Medium';
+    } else {
+      metadata.priority = 'Medium';
+    }
+    
+    // Extract tags from content
+    const tagPatterns = [
+      /#([a-zA-Z0-9-]+)/g,
+      /`([a-zA-Z0-9-]+)`/g
+    ];
+    
+    tagPatterns.forEach(pattern => {
+      const matches = content.match(pattern);
+      if (matches) {
+        metadata.tags.push(...matches.map(tag => tag.replace(/[`#]/g, '')));
+      }
+    });
+    
+    // Extract key insights from various sections
+    const insightSections = [
+      /### Key Insights?\n([\s\S]*?)(?=###|$)/i,
+      /### Technical Insights?\n([\s\S]*?)(?=###|$)/i,
+      /### Lessons Learned?\n([\s\S]*?)(?=###|$)/i,
+      /### Insights?\n([\s\S]*?)(?=###|$)/i
+    ];
+    
+    insightSections.forEach(pattern => {
+      const match = content.match(pattern);
+      if (match) {
+        const insights = match[1].match(/- (.+?)(?=\n|$)/g);
+        if (insights) {
+          metadata.keyInsights.push(...insights.map(insight => insight.replace(/- /, '')));
+        }
+      }
+    });
+    
+    // Extract recommendations from various sections
+    const recommendationSections = [
+      /### Immediate Actions?\n([\s\S]*?)(?=###|$)/i,
+      /### Recommendations?\n([\s\S]*?)(?=###|$)/i,
+      /### Next Steps?\n([\s\S]*?)(?=###|$)/i,
+      /### Actions?\n([\s\S]*?)(?=###|$)/i
+    ];
+    
+    recommendationSections.forEach(pattern => {
+      const match = content.match(pattern);
+      if (match) {
+        const recommendations = match[1].match(/- \[?\]? \[?([^\]]+)\]?/g);
+        if (recommendations) {
+          metadata.recommendations.push(...recommendations.map(rec => rec.replace(/- \[?\]? \[?|\]?/g, '')));
+        }
+      }
+    });
+    
+    return metadata;
+  }
+
+  /**
+   * Generate rules from lesson content
+   */
+  generateRulesFromContent(content, metadata) {
+    const rules = [];
+    
+    // Rule 1: Always follow lesson recommendations
+    if (metadata.recommendations.length > 0) {
+      rules.push({
+        type: 'recommendation',
+        title: `Follow ${metadata.title} Recommendations`,
+        description: `Always implement the recommendations from lesson: ${metadata.title}`,
+        content: `**ALWAYS** follow these recommendations from lesson "${metadata.title}":\n${metadata.recommendations.map(rec => `- ${rec}`).join('\n')}`,
+        priority: metadata.priority || 'Medium',
+        tags: metadata.tags
+      });
+    }
+    
+    // Rule 2: Apply key insights
+    if (metadata.keyInsights.length > 0) {
+      rules.push({
+        type: 'insight',
+        title: `Apply ${metadata.title} Insights`,
+        description: `Apply key insights from lesson: ${metadata.title}`,
+        content: `**ALWAYS** apply these insights from lesson "${metadata.title}":\n${metadata.keyInsights.map(insight => `- ${insight}`).join('\n')}`,
+        priority: metadata.priority || 'Medium',
+        tags: metadata.tags
+      });
+    }
+    
+    // Rule 3: Technology stack compliance
+    if (metadata.tags.some(tag => tag.includes('tech') || tag.includes('stack'))) {
+      rules.push({
+        type: 'technology',
+        title: `Technology Stack Compliance - ${metadata.title}`,
+        description: `Ensure technology stack compliance based on lesson: ${metadata.title}`,
+        content: `**ALWAYS** ensure technology stack compliance based on lesson "${metadata.title}":\n- Use only approved technologies from .agent-os standards\n- Follow established patterns and conventions\n- Maintain consistency across the project`,
+        priority: metadata.priority || 'Medium',
+        tags: metadata.tags
+      });
+    }
+    
+    // Rule 4: Code quality standards
+    if (metadata.tags.some(tag => tag.includes('code') || tag.includes('quality'))) {
+      rules.push({
+        type: 'quality',
+        title: `Code Quality Standards - ${metadata.title}`,
+        description: `Maintain code quality standards based on lesson: ${metadata.title}`,
+        content: `**ALWAYS** maintain code quality standards based on lesson "${metadata.title}":\n- Follow established coding conventions\n- Ensure proper error handling\n- Maintain code readability and maintainability`,
+        priority: metadata.priority || 'Medium',
+        tags: metadata.tags
+      });
+    }
+    
+    return rules;
+  }
+
+  /**
+   * Format rules for Cursor .mdc files
+   */
+  formatRulesForCursor(rules, metadata) {
+    let content = `# Cursor Rules Generated from Lesson: ${metadata.title}\n\n`;
+    content += `**Source**: ${metadata.project || 'Agent OS'} - ${metadata.date || 'Unknown Date'}\n`;
+    content += `**Priority**: ${metadata.priority || 'Medium'}\n`;
+    content += `**Tags**: ${metadata.tags.join(', ')}\n\n`;
+    
+    content += `## Generated Rules\n\n`;
+    
+    rules.forEach((rule, index) => {
+      content += `### ${index + 1}. ${rule.title}\n\n`;
+      content += `**Type**: ${rule.type}\n`;
+      content += `**Priority**: ${rule.priority}\n`;
+      content += `**Description**: ${rule.description}\n\n`;
+      content += `${rule.content}\n\n`;
+    });
+    
+    content += `## Usage Guidelines\n\n`;
+    content += `- These rules were automatically generated from lesson: ${metadata.title}\n`;
+    content += `- Apply these rules consistently across the project\n`;
+    content += `- Review and update rules as needed based on new lessons\n`;
+    content += `- Report rule effectiveness to improve future generation\n\n`;
+    
+    return content;
+  }
+
+  /**
+   * Categorize rules by type
+   */
+  categorizeRules(rules) {
+    const categories = {};
+    
+    rules.forEach(rule => {
+      if (!categories[rule.type]) {
+        categories[rule.type] = [];
+      }
+      categories[rule.type].push(rule.title);
+    });
+    
+    return categories;
+  }
 }
 
 // CLI execution
@@ -1452,10 +1784,15 @@ if (require.main === module) {
       integration.startWatchMode();
       break;
       
+    case 'generate-rules':
+      integration.generateRulesFromLessons();
+      break;
+      
     default:
       console.log('Usage:');
       console.log('  node cursor-integration.js check [file-path]  - Check specific file or entire codebase');
       console.log('  node cursor-integration.js watch              - Start file watching mode');
+      console.log('  node cursor-integration.js generate-rules     - Generate Cursor rules from lessons learned');
       break;
   }
 }

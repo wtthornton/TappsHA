@@ -20,7 +20,7 @@ import {
   ConfigurationError, 
   StandardsError, 
   ERROR_CODES, 
-  ERROR_SEVERITY 
+  ERROR_SEVERITY, 
 } from './modules/ErrorHandler';
 
 class ComplianceCheckerRefactored {
@@ -59,7 +59,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'COMPLIANCE_CHECKER_INIT',
-        ERROR_SEVERITY.CRITICAL
+        ERROR_SEVERITY.CRITICAL,
       );
       throw error;
     }
@@ -79,7 +79,7 @@ class ComplianceCheckerRefactored {
           StandardsError,
           `Standards directory not found: ${standardsPath}`,
           ERROR_CODES.STANDARDS_NOT_FOUND,
-          { file: standardsPath, category: 'STANDARDS' }
+          { file: standardsPath, category: 'STANDARDS' },
         );
       }
 
@@ -90,7 +90,7 @@ class ComplianceCheckerRefactored {
         'security-compliance.md',
         'ci-cd-strategy.md',
         'testing-strategy.md',
-        'enforcement.md'
+        'enforcement.md',
       ];
 
       standardFiles.forEach(file => {
@@ -106,7 +106,7 @@ class ComplianceCheckerRefactored {
           errorHandler.handleError(
             error as Error,
             'STANDARD_FILE_LOAD',
-            ERROR_SEVERITY.MEDIUM
+            ERROR_SEVERITY.MEDIUM,
           );
         }
       });
@@ -116,7 +116,7 @@ class ComplianceCheckerRefactored {
           StandardsError,
           'No standards files could be loaded',
           ERROR_CODES.STANDARDS_NOT_FOUND,
-          { category: 'STANDARDS' }
+          { category: 'STANDARDS' },
         );
       }
 
@@ -126,7 +126,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'STANDARDS_LOAD',
-        ERROR_SEVERITY.HIGH
+        ERROR_SEVERITY.HIGH,
       );
       return {};
     }
@@ -160,7 +160,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'FILE_VALIDATION',
-        ERROR_SEVERITY.MEDIUM
+        ERROR_SEVERITY.MEDIUM,
       );
       
       return [{
@@ -170,7 +170,7 @@ class ComplianceCheckerRefactored {
         category: 'VALIDATION_ERROR',
         message: `Validation error: ${error instanceof Error ? error.message : String(error)}`,
         standard: 'GENERAL',
-        severity: 'CRITICAL'
+        severity: 'CRITICAL',
       }];
     }
   }
@@ -196,7 +196,7 @@ class ComplianceCheckerRefactored {
           filePath, 
           violations: [], 
           success: false,
-          error: 'Failed to read file content'
+          error: 'Failed to read file content',
         };
       }
       
@@ -210,7 +210,7 @@ class ComplianceCheckerRefactored {
         filePath,
         violations,
         success: true,
-        processingTime
+        processingTime,
       };
     } catch (error) {
       const processingTime = Date.now() - startTime;
@@ -218,7 +218,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'FILE_PROCESSING',
-        ERROR_SEVERITY.MEDIUM
+        ERROR_SEVERITY.MEDIUM,
       );
       
       return {
@@ -226,7 +226,7 @@ class ComplianceCheckerRefactored {
         violations: [],
         success: false,
         processingTime,
-        error: error instanceof Error ? error.message : String(error)
+        error: error instanceof Error ? error.message : String(error),
       };
     }
   }
@@ -257,7 +257,7 @@ class ComplianceCheckerRefactored {
           ConfigurationError,
           'No files found to process',
           ERROR_CODES.MISSING_CONFIG,
-          { category: 'VALIDATION' }
+          { category: 'VALIDATION' },
         );
       }
       
@@ -265,7 +265,7 @@ class ComplianceCheckerRefactored {
       const results = await this.fileProcessor.processFilesParallel(
         allFiles,
         (filePath: string, content: string) => this.validateFile(filePath, content),
-        4 // max concurrency
+        4, // max concurrency
       );
       
       // Collect all violations
@@ -303,13 +303,13 @@ class ComplianceCheckerRefactored {
         complianceScore,
         totalChecks,
         passedChecks,
-        processingStats
+        processingStats,
       };
     } catch (error) {
       errorHandler.handleError(
         error as Error,
         'CODEBASE_VALIDATION',
-        ERROR_SEVERITY.HIGH
+        ERROR_SEVERITY.HIGH,
       );
       
       return {
@@ -317,7 +317,7 @@ class ComplianceCheckerRefactored {
         complianceScore: 0,
         totalChecks: 0,
         passedChecks: 0,
-        processingStats: { totalFiles: 0, successfulFiles: 0, failedFiles: 0 }
+        processingStats: { totalFiles: 0, successfulFiles: 0, failedFiles: 0 },
       };
     }
   }
@@ -342,7 +342,7 @@ class ComplianceCheckerRefactored {
         violations,
         complianceScore,
         totalChecks,
-        passedChecks
+        passedChecks,
       });
       
       // Create comprehensive report
@@ -353,17 +353,17 @@ class ComplianceCheckerRefactored {
           totalViolations: violations.length,
           totalChecks,
           passedChecks,
-          processingTime: this.analytics.getMetrics().executionTime
+          processingTime: this.analytics.getMetrics().executionTime,
         },
         violations: {
           total: violations.length,
           bySeverity: this.analyzeViolationsBySeverity(violations),
           byCategory: this.analyzeViolationsByCategory(violations),
           byStandard: this.analyzeViolationsByStandard(violations),
-          list: violations
+          list: violations,
         },
         analytics: analyticsReport,
-        recommendations: this.generateRecommendations(validationResults)
+        recommendations: this.generateRecommendations(validationResults),
       };
       
       return report;
@@ -371,7 +371,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'REPORT_GENERATION',
-        ERROR_SEVERITY.MEDIUM
+        ERROR_SEVERITY.MEDIUM,
       );
       
       // Return minimal report
@@ -382,23 +382,23 @@ class ComplianceCheckerRefactored {
           totalViolations: 0,
           totalChecks: 0,
           passedChecks: 0,
-          processingTime: 0
+          processingTime: 0,
         },
         violations: {
           total: 0,
           bySeverity: {},
           byCategory: {},
           byStandard: {},
-          list: []
+          list: [],
         },
         analytics: {
           summary: { complianceScore: 0, totalFiles: 0, totalViolations: 0, executionTime: 0, averageProcessingTime: 0 },
           violations: { byCategory: {}, bySeverity: {}, byStandard: {} },
           performance: { fileProcessing: { averageTime: 0, maxTime: 0, minTime: 0, averageSize: 0, totalFiles: 0 }, validation: {}, baselines: {} },
           trends: { message: 'Analysis failed' },
-          recommendations: []
+          recommendations: [],
         },
-        recommendations: []
+        recommendations: [],
       };
     }
   }
@@ -421,7 +421,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'VIOLATION_ANALYSIS',
-        ERROR_SEVERITY.LOW
+        ERROR_SEVERITY.LOW,
       );
       return {};
     }
@@ -445,7 +445,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'VIOLATION_ANALYSIS',
-        ERROR_SEVERITY.LOW
+        ERROR_SEVERITY.LOW,
       );
       return {};
     }
@@ -469,7 +469,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'VIOLATION_ANALYSIS',
-        ERROR_SEVERITY.LOW
+        ERROR_SEVERITY.LOW,
       );
       return {};
     }
@@ -498,7 +498,7 @@ class ComplianceCheckerRefactored {
           type: 'CRITICAL',
           category: 'SECURITY',
           message: `Address ${criticalViolations.length} critical violations immediately`,
-          priority: 'HIGH'
+          priority: 'HIGH',
         });
       }
       
@@ -508,7 +508,7 @@ class ComplianceCheckerRefactored {
           type: 'WARNING',
           category: 'COMPLIANCE',
           message: `Compliance score (${complianceScore.toFixed(1)}%) is below target (80%)`,
-          priority: 'HIGH'
+          priority: 'HIGH',
         });
       }
       
@@ -519,7 +519,7 @@ class ComplianceCheckerRefactored {
           type: 'WARNING',
           category: 'PERFORMANCE',
           message: 'File processing is taking longer than expected',
-          priority: 'MEDIUM'
+          priority: 'MEDIUM',
         });
       }
       
@@ -528,7 +528,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'RECOMMENDATIONS',
-        ERROR_SEVERITY.LOW
+        ERROR_SEVERITY.LOW,
       );
       return [];
     }
@@ -545,7 +545,7 @@ class ComplianceCheckerRefactored {
       console.log('='.repeat(60));
       
       // Summary
-      console.log(`\n📊 SUMMARY:`);
+      console.log('\n📊 SUMMARY:');
       console.log(`   Compliance Score: ${report.summary.complianceScore.toFixed(1)}%`);
       console.log(`   Total Files: ${report.summary.totalFiles}`);
       console.log(`   Total Violations: ${report.summary.totalViolations}`);
@@ -554,21 +554,21 @@ class ComplianceCheckerRefactored {
       console.log(`   Processing Time: ${report.summary.processingTime}ms`);
       
       // Violations by severity
-      console.log(`\n🚨 VIOLATIONS BY SEVERITY:`);
+      console.log('\n🚨 VIOLATIONS BY SEVERITY:');
       Object.entries(report.violations.bySeverity).forEach(([severity, count]) => {
         const icon = severity === 'CRITICAL' ? '💥' : severity === 'HIGH' ? '🚨' : '⚠️';
         console.log(`   ${icon} ${severity}: ${count}`);
       });
       
       // Violations by category
-      console.log(`\n📂 VIOLATIONS BY CATEGORY:`);
+      console.log('\n📂 VIOLATIONS BY CATEGORY:');
       Object.entries(report.violations.byCategory).forEach(([category, count]) => {
         console.log(`   📁 ${category}: ${count}`);
       });
       
       // Recommendations
       if (report.recommendations.length > 0) {
-        console.log(`\n💡 RECOMMENDATIONS:`);
+        console.log('\n💡 RECOMMENDATIONS:');
         report.recommendations.forEach((rec, index) => {
           const icon = rec.type === 'CRITICAL' ? '💥' : '⚠️';
           console.log(`   ${index + 1}. ${icon} ${rec.message} (${rec.priority} priority)`);
@@ -580,7 +580,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'REPORT_PRINT',
-        ERROR_SEVERITY.LOW
+        ERROR_SEVERITY.LOW,
       );
     }
   }
@@ -610,7 +610,7 @@ class ComplianceCheckerRefactored {
         complianceScore: validationResults.complianceScore,
         totalChecks: validationResults.totalChecks,
         passedChecks: validationResults.passedChecks,
-        violations: validationResults.violations
+        violations: validationResults.violations,
       });
       
       console.log('✅ Compliance check completed successfully');
@@ -618,7 +618,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'COMPLIANCE_CHECK_RUN',
-        ERROR_SEVERITY.CRITICAL
+        ERROR_SEVERITY.CRITICAL,
       );
       
       console.error('❌ Compliance check failed');
@@ -645,7 +645,7 @@ class ComplianceCheckerRefactored {
       errorHandler.handleError(
         error as Error,
         'REPORT_SAVE',
-        ERROR_SEVERITY.MEDIUM
+        ERROR_SEVERITY.MEDIUM,
       );
     }
   }
