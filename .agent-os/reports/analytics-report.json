@@ -1,0 +1,143 @@
+{
+  "timestamp": "2025-08-04T15:08:40.584Z",
+  "executionTime": 112,
+  "averageFileProcessingTime": 0.1111111111111111,
+  "violationTrends": {
+    "trend": "stable",
+    "recentAverage": 18,
+    "olderAverage": null,
+    "change": null
+  },
+  "standardsEffectiveness": {
+    "tech-stack": {
+      "violationRate": 0,
+      "totalChecks": 72,
+      "totalViolations": 0
+    },
+    "code-style": {
+      "violationRate": 46,
+      "totalChecks": 72,
+      "totalViolations": 33
+    },
+    "security-compliance": {
+      "violationRate": 1,
+      "totalChecks": 72,
+      "totalViolations": 1
+    },
+    "best-practices": {
+      "violationRate": 0,
+      "totalChecks": 72,
+      "totalViolations": 0
+    },
+    "testing-strategy": {
+      "violationRate": 0,
+      "totalChecks": 72,
+      "totalViolations": 0
+    }
+  },
+  "improvementSuggestions": [
+    {
+      "priority": "MEDIUM",
+      "category": "Code Style",
+      "message": "Focus on reducing code style violations (285 total)",
+      "action": "Review and update code style standards"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "Standards",
+      "message": "code-style has high violation rate (46%)",
+      "action": "Review and clarify code-style documentation"
+    }
+  ],
+  "statisticalAnalysis": {
+    "violationFrequency": {
+      "trend": 0,
+      "averageViolations": 287,
+      "pattern": "stable",
+      "outliers": 0,
+      "totalEntries": 3
+    },
+    "complianceTrends": {
+      "trend": 27,
+      "averageScore": 18,
+      "improvement": 18,
+      "volatility": 25,
+      "currentScore": 54
+    },
+    "standardsEffectiveness": {
+      "mostEffective": [
+        "tech-stack",
+        "security-compliance",
+        "best-practices",
+        "testing-strategy"
+      ],
+      "needsImprovement": [
+        "code-style"
+      ],
+      "trends": {
+        "tech-stack": {
+          "averageViolationRate": 0,
+          "trend": 0,
+          "totalChecks": 216
+        },
+        "code-style": {
+          "averageViolationRate": 46,
+          "trend": 0,
+          "totalChecks": 216
+        },
+        "security-compliance": {
+          "averageViolationRate": 1,
+          "trend": 0,
+          "totalChecks": 216
+        },
+        "best-practices": {
+          "averageViolationRate": 0,
+          "trend": 0,
+          "totalChecks": 216
+        },
+        "testing-strategy": {
+          "averageViolationRate": 0,
+          "trend": 0,
+          "totalChecks": 216
+        }
+      }
+    },
+    "riskAssessment": {
+      "overallRisk": null,
+      "factors": [
+        "Low average compliance score",
+        "High score volatility",
+        "Recent score decline"
+      ],
+      "metrics": {
+        "averageScore": 18,
+        "volatility": 25,
+        "violationTrend": 0
+      }
+    },
+    "predictions": {
+      "prediction": "insufficient_data",
+      "confidence": 0
+    },
+    "insights": [
+      {
+        "type": "violation_pattern",
+        "priority": "MEDIUM",
+        "message": "Violation pattern is stable (287 avg)",
+        "action": "Monitor for improvement opportunities"
+      },
+      {
+        "type": "compliance_trend",
+        "priority": "LOW",
+        "message": "Compliance improving by 18%",
+        "action": "Continue current practices"
+      },
+      {
+        "type": "standards_effectiveness",
+        "priority": "HIGH",
+        "message": "Standards needing improvement: code-style",
+        "action": "Review and update standards documentation"
+      }
+    ]
+  }
+}

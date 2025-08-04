@@ -1,3246 +1,2451 @@
 {
-  "timestamp": "2025-08-04T14:04:00.330Z",
-  "complianceScore": 0,
+  "timestamp": "2025-08-04T15:08:40.613Z",
+  "complianceScore": 54,
   "totalChecks": 72,
-  "passedChecks": -390,
+  "passedChecks": 39,
   "violations": [
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 22 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
-      "line": 22
+      "line": 74,
+      "timestamp": "2025-08-04T15:08:40.498Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 23 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
-      "line": 23
+      "line": 92,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 24 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
-      "line": 24
+      "line": 118,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 25 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
-      "line": 25
+      "line": 155,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 26 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
-      "line": 26
+      "line": 209,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 74 exceeds 100 character limit (102 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
-      "line": 74
+      "line": 221,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 92 exceeds 100 character limit (101 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
-      "line": 92
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 118 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
-      "line": 118
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 155 exceeds 100 character limit (106 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
-      "line": 155
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 209 exceeds 100 character limit (116 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
-      "line": 209
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 221 exceeds 100 character limit (116 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
-      "line": 221
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 24 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 24
+      "line": 59,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 25 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 25
+      "line": 79,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 26 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 26
+      "line": 83,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 27 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 27
+      "line": 103,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 59 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 59
+      "line": 124,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 79 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 79
+      "line": 145,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 83 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 83
+      "line": 180,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 103 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 103
+      "line": 196,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 124 exceeds 100 character limit (104 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 124
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 145 exceeds 100 character limit (104 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 145
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 180 exceeds 100 character limit (109 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 180
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 196 exceeds 100 character limit (104 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
-      "line": 196
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 28 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 28
+      "line": 82,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 29 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 29
+      "line": 84,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 30 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 30
+      "line": 98,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 82 exceeds 100 character limit (101 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 82
+      "line": 100,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 84 exceeds 100 character limit (102 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 84
+      "line": 101,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 98 exceeds 100 character limit (101 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 98
+      "line": 114,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 100 exceeds 100 character limit (102 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 100
+      "line": 127,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 101 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 101
+      "line": 130,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 114 exceeds 100 character limit (118 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 114
+      "line": 144,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 127 exceeds 100 character limit (108 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 127
+      "line": 148,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 130 exceeds 100 character limit (110 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 130
+      "line": 162,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 144 exceeds 100 character limit (107 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 144
+      "line": 166,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 148 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 148
+      "line": 181,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 162 exceeds 100 character limit (101 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 162
+      "line": 187,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 166 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 166
+      "line": 201,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 181 exceeds 100 character limit (110 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 181
+      "line": 205,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 187 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 187
+      "line": 212,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 201 exceeds 100 character limit (101 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 201
+      "line": 219,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 205 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 205
+      "line": 222,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 212 exceeds 100 character limit (113 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 212
+      "line": 227,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 219 exceeds 100 character limit (108 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 219
+      "line": 240,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 222 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 222
+      "line": 243,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 227 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 227
+      "line": 249,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 240 exceeds 100 character limit (108 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 240
+      "line": 254,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 243 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 243
+      "line": 267,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 249 exceeds 100 character limit (111 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 249
+      "line": 285,
+      "timestamp": "2025-08-04T15:08:40.499Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 254 exceeds 100 character limit (110 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 254
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 267 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 267
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 285 exceeds 100 character limit (112 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
-      "line": 285
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 23 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 23
+      "line": 74,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 24 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 24
+      "line": 89,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 25 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 25
+      "line": 103,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 74 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 74
+      "line": 118,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 89 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 89
+      "line": 131,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 103 exceeds 100 character limit (101 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 103
+      "line": 134,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 118 exceeds 100 character limit (118 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 118
+      "line": 148,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 131 exceeds 100 character limit (108 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 131
+      "line": 152,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 134 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 134
+      "line": 169,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 148 exceeds 100 character limit (107 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 148
+      "line": 184,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 152 exceeds 100 character limit (112 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 152
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 169 exceeds 100 character limit (112 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 169
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 184 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
-      "line": 184
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 26 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 26
+      "line": 70,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 27 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 27
+      "line": 73,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 28 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 28
+      "line": 96,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 29 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 29
+      "line": 99,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 30 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 30
+      "line": 114,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 70 exceeds 100 character limit (141 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 70
+      "line": 117,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 73 exceeds 100 character limit (102 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 73
+      "line": 148,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 96 exceeds 100 character limit (141 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 96
+      "line": 151,
+      "timestamp": "2025-08-04T15:08:40.500Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 99 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 99
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 114 exceeds 100 character limit (141 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 114
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 117 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 117
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 148 exceeds 100 character limit (141 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 148
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 151 exceeds 100 character limit (110 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
-      "line": 151
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 26 should use 2-space indentation",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\AIServiceTest.java",
-      "line": 26
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 27 should use 2-space indentation",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\AIServiceTest.java",
-      "line": 27
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 28 should use 2-space indentation",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\AIServiceTest.java",
-      "line": 28
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 29 should use 2-space indentation",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\AIServiceTest.java",
-      "line": 29
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 33 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
-      "line": 33
+      "line": 38,
+      "timestamp": "2025-08-04T15:08:40.501Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 34 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
-      "line": 34
+      "line": 98,
+      "timestamp": "2025-08-04T15:08:40.501Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 35 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
-      "line": 35
+      "line": 103,
+      "timestamp": "2025-08-04T15:08:40.501Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 38 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
-      "line": 38
+      "line": 118,
+      "timestamp": "2025-08-04T15:08:40.501Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 98 exceeds 100 character limit (101 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
-      "line": 98
+      "line": 183,
+      "timestamp": "2025-08-04T15:08:40.501Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 103 exceeds 100 character limit (118 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
-      "line": 103
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 118 exceeds 100 character limit (110 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
-      "line": 118
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 183 exceeds 100 character limit (105 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
-      "line": 183
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 33 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 33
+      "line": 38,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 34 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 34
+      "line": 101,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 35 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 35
+      "line": 139,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 38 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 38
+      "line": 144,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 101 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 101
+      "line": 180,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 139 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 139
+      "line": 218,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 144 exceeds 100 character limit (103 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 144
+      "line": 250,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 180 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 180
+      "line": 315,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 218 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 218
+      "line": 341,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 250 exceeds 100 character limit (105 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 250
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 315 exceeds 100 character limit (105 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 315
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 341 exceeds 100 character limit (104 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
-      "line": 341
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 37 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 37
+      "line": 42,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 38 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 38
+      "line": 103,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 39 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 39
+      "line": 123,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 42 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 42
+      "line": 130,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 103 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 103
+      "line": 143,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 123 exceeds 100 character limit (110 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 123
+      "line": 182,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 130 exceeds 100 character limit (117 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 130
+      "line": 219,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 143 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 143
+      "line": 273,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 182 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 182
+      "line": 308,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 219 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 219
+      "line": 311,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 273 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 273
+      "line": 315,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 308 exceeds 100 character limit (103 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 308
+      "line": 332,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 311 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 311
+      "line": 362,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 315 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 315
+      "line": 381,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 332 exceeds 100 character limit (113 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 332
+      "line": 397,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 362 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 362
+      "line": 399,
+      "timestamp": "2025-08-04T15:08:40.502Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 381 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 381
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 397 exceeds 100 character limit (105 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 397
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 399 exceeds 100 character limit (107 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
-      "line": 399
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 47 exceeds 100 character limit (122 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantConnectionTest.java",
-      "line": 47
+      "line": 47,
+      "timestamp": "2025-08-04T15:08:40.503Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 53 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantConnectionTest.java",
-      "line": 53
+      "line": 53,
+      "timestamp": "2025-08-04T15:08:40.503Z"
+    },
+    {
+      "type": "CRITICAL",
+      "category": "Security",
+      "message": "Hardcoded secret detected - use environment variables",
+      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantConnectionTest.java",
+      "line": 23,
+      "timestamp": "2025-08-04T15:08:40.503Z"
+    },
+    {
+      "type": "CRITICAL",
+      "category": "Security",
+      "message": "Hardcoded secret detected - use environment variables",
+      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantConnectionTest.java",
+      "line": 24,
+      "timestamp": "2025-08-04T15:08:40.503Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 27 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionControllerTest.java",
-      "line": 27
+      "line": 163,
+      "timestamp": "2025-08-04T15:08:40.504Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 28 should use 2-space indentation",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionControllerTest.java",
-      "line": 28
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 29 should use 2-space indentation",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionControllerTest.java",
-      "line": 29
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 30 should use 2-space indentation",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionControllerTest.java",
-      "line": 30
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 163 exceeds 100 character limit (103 chars)",
-      "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionControllerTest.java",
-      "line": 163
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 10 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\TappHaApplication.java",
-      "line": 10
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\TappHaApplication.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\TappHaApplication.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 13 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\TappHaApplication.java",
-      "line": 13
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 14 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\TappHaApplication.java",
-      "line": 14
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 15 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\TappHaApplication.java",
-      "line": 15
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 15 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\TokenBucketRateLimiter.java",
-      "line": 15
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 16 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\TokenBucketRateLimiter.java",
-      "line": 16
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 17 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\TokenBucketRateLimiter.java",
-      "line": 17
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 6 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\RateLimiter.java",
-      "line": 6
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 7 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\RateLimiter.java",
-      "line": 7
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 8 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\RateLimiter.java",
-      "line": 8
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 16 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 16
+      "line": 61,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 17 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 17
+      "line": 260,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 18 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 18
+      "line": 330,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 19 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 19
+      "line": 366,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 20 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 20
+      "line": 374,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 21 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 21
+      "line": 376,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 22 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 22
+      "line": 393,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 61 exceeds 100 character limit (107 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 61
+      "line": 416,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 260 exceeds 100 character limit (111 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 260
+      "line": 482,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 330 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 330
+      "line": 494,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 366 exceeds 100 character limit (102 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 366
+      "line": 499,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 374 exceeds 100 character limit (104 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 374
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 376 exceeds 100 character limit (115 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 376
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 393 exceeds 100 character limit (101 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 393
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 416 exceeds 100 character limit (112 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 416
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 482 exceeds 100 character limit (107 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 482
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 494 exceeds 100 character limit (109 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 494
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 499 exceeds 100 character limit (118 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
-      "line": 499
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 33 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\OpenAIClient.java",
-      "line": 33
+      "line": 373,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 34 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\OpenAIClient.java",
-      "line": 34
+      "line": 381,
+      "timestamp": "2025-08-04T15:08:40.506Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 35 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\OpenAIClient.java",
-      "line": 35
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 36 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\OpenAIClient.java",
-      "line": 36
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 373 exceeds 100 character limit (108 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\OpenAIClient.java",
-      "line": 373
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 381 exceeds 100 character limit (104 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\OpenAIClient.java",
-      "line": 381
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 31 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 31
+      "line": 37,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 32 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 32
+      "line": 55,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 33 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 33
+      "line": 89,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 37 exceeds 100 character limit (102 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 37
+      "line": 93,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 55 exceeds 100 character limit (116 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 55
+      "line": 109,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 89 exceeds 100 character limit (118 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 89
+      "line": 115,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 93 exceeds 100 character limit (117 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 93
+      "line": 136,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 109 exceeds 100 character limit (108 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 109
+      "line": 168,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 115 exceeds 100 character limit (115 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 115
+      "line": 174,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 136 exceeds 100 character limit (115 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 136
+      "line": 175,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 168 exceeds 100 character limit (125 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 168
+      "line": 194,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 174 exceeds 100 character limit (108 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 174
+      "line": 234,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 175 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 175
+      "line": 258,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 194 exceeds 100 character limit (106 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 194
+      "line": 262,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 234 exceeds 100 character limit (107 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 234
+      "line": 267,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 258 exceeds 100 character limit (127 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 258
+      "line": 268,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 262 exceeds 100 character limit (108 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 262
+      "line": 275,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 267 exceeds 100 character limit (107 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 267
+      "line": 276,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 268 exceeds 100 character limit (119 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 268
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 275 exceeds 100 character limit (107 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 275
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 276 exceeds 100 character limit (105 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
-      "line": 276
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 29 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 29
+      "line": 35,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 30 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 30
+      "line": 45,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 35 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 35
+      "line": 65,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 45 exceeds 100 character limit (109 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 45
+      "line": 76,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 65 exceeds 100 character limit (130 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 65
+      "line": 84,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 76 exceeds 100 character limit (118 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 76
+      "line": 131,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 84 exceeds 100 character limit (115 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 84
+      "line": 137,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 131 exceeds 100 character limit (115 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 131
+      "line": 149,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 137 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 137
+      "line": 181,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 149 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 149
+      "line": 185,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 181 exceeds 100 character limit (116 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 181
+      "line": 235,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 185 exceeds 100 character limit (103 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 185
+      "line": 239,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 235 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 235
+      "line": 249,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 239 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 239
+      "line": 250,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 249 exceeds 100 character limit (107 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 249
+      "line": 261,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 250 exceeds 100 character limit (117 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 250
+      "line": 262,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 261 exceeds 100 character limit (114 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 261
+      "line": 272,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 262 exceeds 100 character limit (116 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 262
+      "line": 274,
+      "timestamp": "2025-08-04T15:08:40.507Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 272 exceeds 100 character limit (111 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 272
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 274 exceeds 100 character limit (116 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
-      "line": 274
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 22 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantApiClient.java",
-      "line": 22
+      "line": 241,
+      "timestamp": "2025-08-04T15:08:40.508Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 23 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantApiClient.java",
-      "line": 23
+      "line": 242,
+      "timestamp": "2025-08-04T15:08:40.508Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 24 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantApiClient.java",
-      "line": 24
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 241 exceeds 100 character limit (107 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantApiClient.java",
-      "line": 241
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 242 exceeds 100 character limit (109 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantApiClient.java",
-      "line": 242
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 30 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
-      "line": 30
+      "line": 94,
+      "timestamp": "2025-08-04T15:08:40.508Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 31 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
-      "line": 31
+      "line": 136,
+      "timestamp": "2025-08-04T15:08:40.508Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 32 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
-      "line": 32
+      "line": 180,
+      "timestamp": "2025-08-04T15:08:40.508Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 33 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
-      "line": 33
+      "line": 181,
+      "timestamp": "2025-08-04T15:08:40.508Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 34 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
-      "line": 34
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 94 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
-      "line": 94
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 136 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
-      "line": 136
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 180 exceeds 100 character limit (114 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
-      "line": 180
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 181 exceeds 100 character limit (111 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
-      "line": 181
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 4 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\ErrorHandler.java",
-      "line": 4
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 5 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\ErrorHandler.java",
-      "line": 5
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 6 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\ErrorHandler.java",
-      "line": 6
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 22 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 22
+      "line": 92,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 23 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 23
+      "line": 243,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 24 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 24
+      "line": 247,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 25 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 25
+      "line": 248,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 26 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 26
+      "line": 275,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 27 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 27
+      "line": 282,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 28 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 28
+      "line": 296,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 92 exceeds 100 character limit (106 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 92
+      "line": 333,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 243 exceeds 100 character limit (109 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 243
+      "line": 551,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 247 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 247
+      "line": 581,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 248 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 248
+      "line": 595,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 275 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 275
+      "line": 598,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 282 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 282
+      "line": 612,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 296 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 296
+      "line": 631,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 333 exceeds 100 character limit (111 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 333
+      "line": 639,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 551 exceeds 100 character limit (111 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 551
+      "line": 642,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 581 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 581
+      "line": 645,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 595 exceeds 100 character limit (109 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 595
+      "line": 670,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 598 exceeds 100 character limit (110 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 598
+      "line": 733,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 612 exceeds 100 character limit (103 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 612
+      "line": 754,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 631 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 631
+      "line": 784,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 639 exceeds 100 character limit (107 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 639
+      "line": 821,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 642 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 642
+      "line": 898,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 645 exceeds 100 character limit (106 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 645
+      "line": 952,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 670 exceeds 100 character limit (107 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 670
+      "line": 957,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 733 exceeds 100 character limit (109 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 733
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 754 exceeds 100 character limit (101 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 754
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 784 exceeds 100 character limit (110 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 784
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 821 exceeds 100 character limit (101 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 821
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 898 exceeds 100 character limit (105 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 898
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 952 exceeds 100 character limit (105 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 952
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 957 exceeds 100 character limit (106 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
-      "line": 957
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 17 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIService.java",
-      "line": 17
+      "line": 114,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 18 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIService.java",
-      "line": 18
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 19 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIService.java",
-      "line": 19
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 20 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIService.java",
-      "line": 20
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 21 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIService.java",
-      "line": 21
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 22 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIService.java",
-      "line": 22
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 114 exceeds 100 character limit (108 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIService.java",
-      "line": 114
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 13 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIErrorHandler.java",
-      "line": 13
+      "line": 52,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 14 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIErrorHandler.java",
-      "line": 14
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 15 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIErrorHandler.java",
-      "line": 15
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 52 exceeds 100 character limit (110 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIErrorHandler.java",
-      "line": 52
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 58 exceeds 100 character limit (137 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 58
+      "line": 58,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 67 exceeds 100 character limit (135 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 67
+      "line": 67,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 68 exceeds 100 character limit (110 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 68
+      "line": 68,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 69 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 69
+      "line": 69,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 70 exceeds 100 character limit (108 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 70
+      "line": 70,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 79 exceeds 100 character limit (142 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 79
+      "line": 79,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 92 exceeds 100 character limit (171 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 92
+      "line": 92,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 93 exceeds 100 character limit (103 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 93
+      "line": 93,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 95 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 95
+      "line": 95,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 96 exceeds 100 character limit (101 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 96
+      "line": 96,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 108 exceeds 100 character limit (102 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 108
+      "line": 108,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 111 exceeds 100 character limit (115 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 111
+      "line": 111,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 112 exceeds 100 character limit (118 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 112
+      "line": 112,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 113 exceeds 100 character limit (114 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 113
+      "line": 113,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 158 exceeds 100 character limit (113 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 158
+      "line": 158,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 159 exceeds 100 character limit (116 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 159
+      "line": 159,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 174 exceeds 100 character limit (120 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 174
+      "line": 174,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 181 exceeds 100 character limit (121 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 181
+      "line": 181,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 182 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 182
+      "line": 182,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 190 exceeds 100 character limit (113 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 190
+      "line": 190,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 191 exceeds 100 character limit (130 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 191
+      "line": 191,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 200 exceeds 100 character limit (142 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 200
+      "line": 200,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 202 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 202
+      "line": 202,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 211 exceeds 100 character limit (140 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 211
+      "line": 211,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 213 exceeds 100 character limit (110 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 213
+      "line": 213,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 223 exceeds 100 character limit (169 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 223
+      "line": 223,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 225 exceeds 100 character limit (148 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 225
+      "line": 225,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 243 exceeds 100 character limit (106 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 243
+      "line": 243,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 244 exceeds 100 character limit (134 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 244
+      "line": 244,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 260 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 260
+      "line": 260,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 261 exceeds 100 character limit (131 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 261
+      "line": 261,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 276 exceeds 100 character limit (113 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 276
+      "line": 276,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 277 exceeds 100 character limit (130 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 277
+      "line": 277,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 286 exceeds 100 character limit (135 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 286
+      "line": 286,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 287 exceeds 100 character limit (110 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 287
+      "line": 287,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 288 exceeds 100 character limit (116 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 288
+      "line": 288,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 289 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
-      "line": 289
+      "line": 289,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 17 exceeds 100 character limit (106 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
-      "line": 17
+      "line": 17,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 55 exceeds 100 character limit (119 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
-      "line": 55
+      "line": 55,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 70 exceeds 100 character limit (111 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
-      "line": 70
+      "line": 70,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 110 exceeds 100 character limit (110 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
-      "line": 110
+      "line": 110,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 121 exceeds 100 character limit (108 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
-      "line": 121
+      "line": 121,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 130 exceeds 100 character limit (108 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
-      "line": 130
+      "line": 130,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 138 exceeds 100 character limit (111 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
-      "line": 138
+      "line": 138,
+      "timestamp": "2025-08-04T15:08:40.509Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 14 exceeds 100 character limit (120 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 14
+      "line": 14,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 23 exceeds 100 character limit (160 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 23
+      "line": 23,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 24 exceeds 100 character limit (116 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 24
+      "line": 24,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 25 exceeds 100 character limit (118 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 25
+      "line": 25,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 26 exceeds 100 character limit (114 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 26
+      "line": 26,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 35 exceeds 100 character limit (173 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 35
+      "line": 35,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 36 exceeds 100 character limit (132 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 36
+      "line": 36,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 37 exceeds 100 character limit (134 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 37
+      "line": 37,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 38 exceeds 100 character limit (130 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 38
+      "line": 38,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 45 exceeds 100 character limit (125 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 45
+      "line": 45,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 46 exceeds 100 character limit (113 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 46
+      "line": 46,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 55 exceeds 100 character limit (120 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
-      "line": 55
+      "line": 55,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 15 exceeds 100 character limit (102 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 15
+      "line": 15,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 39 exceeds 100 character limit (164 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 39
+      "line": 39,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 40 exceeds 100 character limit (113 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 40
+      "line": 40,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 41 exceeds 100 character limit (115 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 41
+      "line": 41,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 42 exceeds 100 character limit (111 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 42
+      "line": 42,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 56 exceeds 100 character limit (115 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 56
+      "line": 56,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 57 exceeds 100 character limit (118 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 57
+      "line": 57,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 58 exceeds 100 character limit (114 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 58
+      "line": 58,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 65 exceeds 100 character limit (116 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 65
+      "line": 65,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 66 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 66
+      "line": 66,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 96 exceeds 100 character limit (128 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 96
+      "line": 96,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 97 exceeds 100 character limit (101 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
-      "line": 97
+      "line": 97,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 4 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\exception\\RateLimitException.java",
-      "line": 4
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 5 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\exception\\RateLimitException.java",
-      "line": 5
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 6 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\exception\\RateLimitException.java",
-      "line": 6
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 4 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\exception\\OpenAIException.java",
-      "line": 4
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 5 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\exception\\OpenAIException.java",
-      "line": 5
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 6 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\exception\\OpenAIException.java",
-      "line": 6
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 7 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\exception\\OpenAIException.java",
-      "line": 7
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 4 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\exception\\HomeAssistantWebSocketException.java",
-      "line": 4
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 5 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\exception\\HomeAssistantWebSocketException.java",
-      "line": 5
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 4 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\exception\\HomeAssistantApiException.java",
-      "line": 4
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 5 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\exception\\HomeAssistantApiException.java",
-      "line": 5
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 57 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantEvent.java",
-      "line": 57
+      "line": 57,
+      "timestamp": "2025-08-04T15:08:40.510Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 51 exceeds 100 character limit (103 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantConnectionMetrics.java",
-      "line": 51
+      "line": 51,
+      "timestamp": "2025-08-04T15:08:40.511Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 9 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\UserPreferences.java",
-      "line": 9
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 10 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\UserPreferences.java",
-      "line": 10
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\UserPreferences.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 7 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\RateLimitStatus.java",
-      "line": 7
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 8 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\RateLimitStatus.java",
-      "line": 8
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 9 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\RateLimitStatus.java",
-      "line": 9
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\MetricsResponse.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\MetricsResponse.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\EventsResponse.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 13 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\EventsResponse.java",
-      "line": 13
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\DisconnectResponse.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\DisconnectResponse.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectRequest.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectRequest.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectionTestResponse.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectionTestResponse.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectionStatusResponse.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 13 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectionStatusResponse.java",
-      "line": 13
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectionsResponse.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectionsResponse.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectionResponse.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 13 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectionResponse.java",
-      "line": 13
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectionDto.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 13 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\ConnectionDto.java",
-      "line": 13
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\BehavioralPattern.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\BehavioralPattern.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 13 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\BehavioralPattern.java",
-      "line": 13
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\BehavioralAnalysisResponse.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\BehavioralAnalysisResponse.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 13 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\BehavioralAnalysisResponse.java",
-      "line": 13
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\BehavioralAnalysisRequest.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\BehavioralAnalysisRequest.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 13 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\BehavioralAnalysisRequest.java",
-      "line": 13
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 7 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\AutomationContext.java",
-      "line": 7
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 8 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\AutomationContext.java",
-      "line": 8
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 9 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\AutomationContext.java",
-      "line": 9
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 10 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\AISuggestion.java",
-      "line": 10
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\AISuggestion.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\dto\\AISuggestion.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 14 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\PatternAnalysisController.java",
-      "line": 14
+      "line": 65,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 15 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\PatternAnalysisController.java",
-      "line": 15
+      "line": 69,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 16 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\PatternAnalysisController.java",
-      "line": 16
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 17 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\PatternAnalysisController.java",
-      "line": 17
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 18 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\PatternAnalysisController.java",
-      "line": 18
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 19 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\PatternAnalysisController.java",
-      "line": 19
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 20 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\PatternAnalysisController.java",
-      "line": 20
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 65 exceeds 100 character limit (106 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\PatternAnalysisController.java",
-      "line": 65
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 69 exceeds 100 character limit (103 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\PatternAnalysisController.java",
-      "line": 69
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 24 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 24
+      "line": 30,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 25 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 25
+      "line": 54,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 30 exceeds 100 character limit (107 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 30
+      "line": 69,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 54 exceeds 100 character limit (133 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 54
+      "line": 91,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 69 exceeds 100 character limit (118 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 69
+      "line": 94,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 91 exceeds 100 character limit (109 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 91
+      "line": 117,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 94 exceeds 100 character limit (111 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 94
+      "line": 118,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 117 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 117
+      "line": 147,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 118 exceeds 100 character limit (118 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 118
+      "line": 157,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 147 exceeds 100 character limit (111 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 147
+      "line": 183,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 157 exceeds 100 character limit (148 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 157
+      "line": 219,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 183 exceeds 100 character limit (103 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 183
+      "line": 228,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 219 exceeds 100 character limit (101 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 219
+      "line": 243,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 228 exceeds 100 character limit (117 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 228
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 243 exceeds 100 character limit (107 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
-      "line": 243
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 18 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\EventMonitoringController.java",
-      "line": 18
+      "line": 44,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 19 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\EventMonitoringController.java",
-      "line": 19
+      "line": 148,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 20 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\EventMonitoringController.java",
-      "line": 20
+      "line": 166,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 44 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\EventMonitoringController.java",
-      "line": 44
+      "line": 192,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 148 exceeds 100 character limit (104 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\EventMonitoringController.java",
-      "line": 148
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 166 exceeds 100 character limit (105 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\EventMonitoringController.java",
-      "line": 166
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 192 exceeds 100 character limit (105 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\EventMonitoringController.java",
-      "line": 192
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 16 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 16
+      "line": 44,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 17 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 17
+      "line": 94,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 18 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 18
+      "line": 122,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 19 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 19
+      "line": 143,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 20 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 20
+      "line": 192,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 21 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 21
+      "line": 194,
+      "timestamp": "2025-08-04T15:08:40.513Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 44 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 44
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 94 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 94
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 122 exceeds 100 character limit (104 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 122
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 143 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 143
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 192 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 192
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 194 exceeds 100 character limit (102 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
-      "line": 194
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 17 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
-      "line": 17
+      "line": 51,
+      "timestamp": "2025-08-04T15:08:40.514Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 18 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
-      "line": 18
+      "line": 65,
+      "timestamp": "2025-08-04T15:08:40.514Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 19 should use 2-space indentation",
+      "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
-      "line": 19
+      "line": 79,
+      "timestamp": "2025-08-04T15:08:40.514Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 20 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
-      "line": 20
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 21 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
-      "line": 21
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 22 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
-      "line": 22
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 51 exceeds 100 character limit (166 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
-      "line": 51
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 65 exceeds 100 character limit (112 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
-      "line": 65
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 79 exceeds 100 character limit (115 chars)",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
-      "line": 79
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 18 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\config\\KafkaConfig.java",
-      "line": 18
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 19 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\config\\KafkaConfig.java",
-      "line": 19
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 20 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\config\\KafkaConfig.java",
-      "line": 20
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 9 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\config\\AIConfig.java",
-      "line": 9
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 10 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\config\\AIConfig.java",
-      "line": 10
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 11 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\config\\AIConfig.java",
-      "line": 11
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 12 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\config\\AIConfig.java",
-      "line": 12
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 13 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\config\\AIConfig.java",
-      "line": 13
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 14 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\config\\AIConfig.java",
-      "line": 14
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 15 should use 2-space indentation",
-      "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\config\\AIConfig.java",
-      "line": 15
-    },
-    {
-      "type": "WARNING",
-      "category": "Code Style",
-      "message": "Line 116 exceeds 100 character limit (152 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\HomeAssistantConnectionForm.tsx",
-      "line": 116
+      "line": 116,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 132 exceeds 100 character limit (152 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\HomeAssistantConnectionForm.tsx",
-      "line": 132
+      "line": 132,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 136 exceeds 100 character limit (112 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\HomeAssistantConnectionForm.tsx",
-      "line": 136
+      "line": 136,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 151 exceeds 100 character limit (152 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\HomeAssistantConnectionForm.tsx",
-      "line": 151
+      "line": 151,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 170 exceeds 100 character limit (211 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\HomeAssistantConnectionForm.tsx",
-      "line": 170
+      "line": 170,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 233 exceeds 100 character limit (106 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\EventMonitoringDashboard.tsx",
-      "line": 233
+      "line": 233,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 165 exceeds 100 character limit (123 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
-      "line": 165
+      "line": 165,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 172 exceeds 100 character limit (120 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
-      "line": 172
+      "line": 172,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 182 exceeds 100 character limit (105 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
-      "line": 182
+      "line": 182,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 189 exceeds 100 character limit (123 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
-      "line": 189
+      "line": 189,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 203 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
-      "line": 203
+      "line": 203,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 210 exceeds 100 character limit (104 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
-      "line": 210
+      "line": 210,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 214 exceeds 100 character limit (113 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
-      "line": 214
+      "line": 214,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     },
     {
       "type": "WARNING",
       "category": "Code Style",
-      "message": "Line 218 exceeds 100 character limit (116 chars)",
+      "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
-      "line": 218
-    },
-    {
-      "type": "WARNING",
-      "category": "Testing",
-      "message": "Test coverage should be ≥85%",
-      "file": "backend\\pom.xml",
-      "line": 1
+      "line": 218,
+      "timestamp": "2025-08-04T15:08:40.531Z"
     }
   ],
   "summary": {
-    "critical": 0,
-    "warnings": 462
+    "critical": 2,
+    "warnings": 285
+  },
+  "analytics": {
+    "timestamp": "2025-08-04T15:08:40.584Z",
+    "executionTime": 112,
+    "averageFileProcessingTime": 0.1111111111111111,
+    "violationTrends": {
+      "trend": "stable",
+      "recentAverage": 18,
+      "olderAverage": null,
+      "change": null
+    },
+    "standardsEffectiveness": {
+      "tech-stack": {
+        "violationRate": 0,
+        "totalChecks": 72,
+        "totalViolations": 0
+      },
+      "code-style": {
+        "violationRate": 46,
+        "totalChecks": 72,
+        "totalViolations": 33
+      },
+      "security-compliance": {
+        "violationRate": 1,
+        "totalChecks": 72,
+        "totalViolations": 1
+      },
+      "best-practices": {
+        "violationRate": 0,
+        "totalChecks": 72,
+        "totalViolations": 0
+      },
+      "testing-strategy": {
+        "violationRate": 0,
+        "totalChecks": 72,
+        "totalViolations": 0
+      }
+    },
+    "improvementSuggestions": [
+      {
+        "priority": "MEDIUM",
+        "category": "Code Style",
+        "message": "Focus on reducing code style violations (285 total)",
+        "action": "Review and update code style standards"
+      },
+      {
+        "priority": "MEDIUM",
+        "category": "Standards",
+        "message": "code-style has high violation rate (46%)",
+        "action": "Review and clarify code-style documentation"
+      }
+    ],
+    "statisticalAnalysis": {
+      "violationFrequency": {
+        "trend": 0,
+        "averageViolations": 287,
+        "pattern": "stable",
+        "outliers": 0,
+        "totalEntries": 3
+      },
+      "complianceTrends": {
+        "trend": 27,
+        "averageScore": 18,
+        "improvement": 18,
+        "volatility": 25,
+        "currentScore": 54
+      },
+      "standardsEffectiveness": {
+        "mostEffective": [
+          "tech-stack",
+          "security-compliance",
+          "best-practices",
+          "testing-strategy"
+        ],
+        "needsImprovement": [
+          "code-style"
+        ],
+        "trends": {
+          "tech-stack": {
+            "averageViolationRate": 0,
+            "trend": 0,
+            "totalChecks": 216
+          },
+          "code-style": {
+            "averageViolationRate": 46,
+            "trend": 0,
+            "totalChecks": 216
+          },
+          "security-compliance": {
+            "averageViolationRate": 1,
+            "trend": 0,
+            "totalChecks": 216
+          },
+          "best-practices": {
+            "averageViolationRate": 0,
+            "trend": 0,
+            "totalChecks": 216
+          },
+          "testing-strategy": {
+            "averageViolationRate": 0,
+            "trend": 0,
+            "totalChecks": 216
+          }
+        }
+      },
+      "riskAssessment": {
+        "overallRisk": null,
+        "factors": [
+          "Low average compliance score",
+          "High score volatility",
+          "Recent score decline"
+        ],
+        "metrics": {
+          "averageScore": 18,
+          "volatility": 25,
+          "violationTrend": 0
+        }
+      },
+      "predictions": {
+        "prediction": "insufficient_data",
+        "confidence": 0
+      },
+      "insights": [
+        {
+          "type": "violation_pattern",
+          "priority": "MEDIUM",
+          "message": "Violation pattern is stable (287 avg)",
+          "action": "Monitor for improvement opportunities"
+        },
+        {
+          "type": "compliance_trend",
+          "priority": "LOW",
+          "message": "Compliance improving by 18%",
+          "action": "Continue current practices"
+        },
+        {
+          "type": "standards_effectiveness",
+          "priority": "HIGH",
+          "message": "Standards needing improvement: code-style",
+          "action": "Review and update standards documentation"
+        }
+      ]
+    }
   }
 }

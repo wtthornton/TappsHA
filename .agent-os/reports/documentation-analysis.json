@@ -1,0 +1,4160 @@
+{
+  "files": [
+    {
+      "filename": "simple-analytics-enhancements.md",
+      "relativePath": "agent-improvements\\simple-analytics-enhancements.md",
+      "totalLines": 262,
+      "totalCharacters": 12269,
+      "lastModified": "2025-08-04T15:01:54.304Z",
+      "metrics": {
+        "headings": 21,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 197,
+        "tables": 0,
+        "emptyLines": 38,
+        "wordCount": 1731
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "compliance-checklist.md",
+      "relativePath": "checklists\\compliance-checklist.md",
+      "totalLines": 264,
+      "totalCharacters": 8363,
+      "lastModified": "2025-08-04T13:44:53.777Z",
+      "metrics": {
+        "headings": 50,
+        "codeBlocks": 2,
+        "links": 0,
+        "images": 0,
+        "lists": 158,
+        "tables": 0,
+        "emptyLines": 47,
+        "wordCount": 1239
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 60
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "home-assistant-integration-checklist.md",
+      "relativePath": "checklists\\home-assistant-integration-checklist.md",
+      "totalLines": 197,
+      "totalCharacters": 8614,
+      "lastModified": "2025-08-03T22:09:17.748Z",
+      "metrics": {
+        "headings": 34,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 130,
+        "tables": 0,
+        "emptyLines": 33,
+        "wordCount": 1107
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "task-tracking-checklist.md",
+      "relativePath": "checklists\\task-tracking-checklist.md",
+      "totalLines": 155,
+      "totalCharacters": 5784,
+      "lastModified": "2025-08-04T02:44:04.874Z",
+      "metrics": {
+        "headings": 30,
+        "codeBlocks": 2,
+        "links": 0,
+        "images": 0,
+        "lists": 89,
+        "tables": 0,
+        "emptyLines": 30,
+        "wordCount": 733
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "home-assistant-docs-index.md",
+      "relativePath": "documentation\\home-assistant-docs-index.md",
+      "totalLines": 174,
+      "totalCharacters": 8815,
+      "lastModified": "2025-08-03T22:08:24.181Z",
+      "metrics": {
+        "headings": 42,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 91,
+        "tables": 0,
+        "emptyLines": 41,
+        "wordCount": 492
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "standards-integration-summary.md",
+      "relativePath": "documentation\\standards-integration-summary.md",
+      "totalLines": 176,
+      "totalCharacters": 9044,
+      "lastModified": "2025-08-04T02:44:31.779Z",
+      "metrics": {
+        "headings": 21,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 53,
+        "tables": 37,
+        "emptyLines": 42,
+        "wordCount": 1056
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "analyze-product.md",
+      "relativePath": "instructions\\analyze-product.md",
+      "totalLines": 251,
+      "totalCharacters": 7663,
+      "lastModified": "2025-08-02T17:49:02.752Z",
+      "metrics": {
+        "headings": 15,
+        "codeBlocks": 1,
+        "links": 0,
+        "images": 0,
+        "lists": 50,
+        "tables": 0,
+        "emptyLines": 68,
+        "wordCount": 809
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 60
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "analyze-product.md",
+      "relativePath": "instructions\\core\\analyze-product.md",
+      "totalLines": 251,
+      "totalCharacters": 7663,
+      "lastModified": "2025-08-02T17:49:02.752Z",
+      "metrics": {
+        "headings": 15,
+        "codeBlocks": 1,
+        "links": 0,
+        "images": 0,
+        "lists": 50,
+        "tables": 0,
+        "emptyLines": 68,
+        "wordCount": 809
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 60
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "create-spec.md",
+      "relativePath": "instructions\\core\\create-spec.md",
+      "totalLines": 623,
+      "totalCharacters": 16847,
+      "lastModified": "2025-08-02T17:49:02.753Z",
+      "metrics": {
+        "headings": 38,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 120,
+        "tables": 0,
+        "emptyLines": 140,
+        "wordCount": 1715
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "execute-task.md",
+      "relativePath": "instructions\\core\\execute-task.md",
+      "totalLines": 260,
+      "totalCharacters": 7759,
+      "lastModified": "2025-08-02T17:49:02.754Z",
+      "metrics": {
+        "headings": 9,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 53,
+        "tables": 0,
+        "emptyLines": 56,
+        "wordCount": 844
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "execute-tasks.md",
+      "relativePath": "instructions\\core\\execute-tasks.md",
+      "totalLines": 378,
+      "totalCharacters": 10263,
+      "lastModified": "2025-08-02T17:49:02.754Z",
+      "metrics": {
+        "headings": 17,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 49,
+        "tables": 0,
+        "emptyLines": 86,
+        "wordCount": 1112
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "plan-product.md",
+      "relativePath": "instructions\\core\\plan-product.md",
+      "totalLines": 408,
+      "totalCharacters": 10399,
+      "lastModified": "2025-08-02T17:49:02.755Z",
+      "metrics": {
+        "headings": 35,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 79,
+        "tables": 0,
+        "emptyLines": 102,
+        "wordCount": 1034
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "create-spec.md",
+      "relativePath": "instructions\\create-spec.md",
+      "totalLines": 623,
+      "totalCharacters": 16847,
+      "lastModified": "2025-08-02T17:49:02.753Z",
+      "metrics": {
+        "headings": 38,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 120,
+        "tables": 0,
+        "emptyLines": 140,
+        "wordCount": 1715
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "execute-task.md",
+      "relativePath": "instructions\\execute-task.md",
+      "totalLines": 260,
+      "totalCharacters": 7759,
+      "lastModified": "2025-08-02T17:49:02.754Z",
+      "metrics": {
+        "headings": 9,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 53,
+        "tables": 0,
+        "emptyLines": 56,
+        "wordCount": 844
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "execute-tasks.md",
+      "relativePath": "instructions\\execute-tasks.md",
+      "totalLines": 394,
+      "totalCharacters": 10982,
+      "lastModified": "2025-08-04T04:21:03.008Z",
+      "metrics": {
+        "headings": 17,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 49,
+        "tables": 0,
+        "emptyLines": 89,
+        "wordCount": 1186
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "pre-flight.md",
+      "relativePath": "instructions\\meta\\pre-flight.md",
+      "totalLines": 16,
+      "totalCharacters": 396,
+      "lastModified": "2025-08-02T17:49:02.755Z",
+      "metrics": {
+        "headings": 1,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 3,
+        "tables": 0,
+        "emptyLines": 5,
+        "wordCount": 58
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 30
+      },
+      "issues": [
+        "Limited structure - consider adding more headings",
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "plan-product.md",
+      "relativePath": "instructions\\plan-product.md",
+      "totalLines": 408,
+      "totalCharacters": 10399,
+      "lastModified": "2025-08-02T17:49:02.755Z",
+      "metrics": {
+        "headings": 35,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 79,
+        "tables": 0,
+        "emptyLines": 102,
+        "wordCount": 1034
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "README.md",
+      "relativePath": "lessons-learned\\categories\\deployment\\README.md",
+      "totalLines": 35,
+      "totalCharacters": 1566,
+      "lastModified": "2025-08-04T02:41:02.030Z",
+      "metrics": {
+        "headings": 7,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 20,
+        "tables": 0,
+        "emptyLines": 6,
+        "wordCount": 180
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "README.md",
+      "relativePath": "lessons-learned\\categories\\design\\README.md",
+      "totalLines": 35,
+      "totalCharacters": 1457,
+      "lastModified": "2025-08-04T02:41:02.026Z",
+      "metrics": {
+        "headings": 7,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 20,
+        "tables": 0,
+        "emptyLines": 6,
+        "wordCount": 175
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "README.md",
+      "relativePath": "lessons-learned\\categories\\development\\README.md",
+      "totalLines": 35,
+      "totalCharacters": 1459,
+      "lastModified": "2025-08-04T02:41:02.032Z",
+      "metrics": {
+        "headings": 7,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 20,
+        "tables": 0,
+        "emptyLines": 6,
+        "wordCount": 162
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "README.md",
+      "relativePath": "lessons-learned\\categories\\operations\\README.md",
+      "totalLines": 35,
+      "totalCharacters": 1585,
+      "lastModified": "2025-08-04T02:41:02.030Z",
+      "metrics": {
+        "headings": 7,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 20,
+        "tables": 0,
+        "emptyLines": 6,
+        "wordCount": 178
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "README.md",
+      "relativePath": "lessons-learned\\categories\\testing\\README.md",
+      "totalLines": 35,
+      "totalCharacters": 1435,
+      "lastModified": "2025-08-04T02:41:02.030Z",
+      "metrics": {
+        "headings": 7,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 20,
+        "tables": 0,
+        "emptyLines": 6,
+        "wordCount": 171
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "README.md",
+      "relativePath": "lessons-learned\\categories\\user-experience\\README.md",
+      "totalLines": 35,
+      "totalCharacters": 1441,
+      "lastModified": "2025-08-04T02:41:02.032Z",
+      "metrics": {
+        "headings": 7,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 20,
+        "tables": 0,
+        "emptyLines": 6,
+        "wordCount": 172
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "cursor-integration.md",
+      "relativePath": "lessons-learned\\integration\\cursor-integration.md",
+      "totalLines": 240,
+      "totalCharacters": 7165,
+      "lastModified": "2025-08-04T02:41:02.026Z",
+      "metrics": {
+        "headings": 35,
+        "codeBlocks": 4,
+        "links": 0,
+        "images": 0,
+        "lists": 86,
+        "tables": 0,
+        "emptyLines": 40,
+        "wordCount": 618
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "sdlc-integration.md",
+      "relativePath": "lessons-learned\\integration\\sdlc-integration.md",
+      "totalLines": 277,
+      "totalCharacters": 8724,
+      "lastModified": "2025-08-04T02:41:02.025Z",
+      "metrics": {
+        "headings": 46,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 162,
+        "tables": 0,
+        "emptyLines": 46,
+        "wordCount": 1347
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "standards-update-process.md",
+      "relativePath": "lessons-learned\\integration\\standards-update-process.md",
+      "totalLines": 267,
+      "totalCharacters": 8152,
+      "lastModified": "2025-08-04T02:41:02.027Z",
+      "metrics": {
+        "headings": 51,
+        "codeBlocks": 4,
+        "links": 0,
+        "images": 0,
+        "lists": 116,
+        "tables": 0,
+        "emptyLines": 52,
+        "wordCount": 810
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "ai-enhanced-analysis.md",
+      "relativePath": "lessons-learned\\process\\ai-enhanced-analysis.md",
+      "totalLines": 483,
+      "totalCharacters": 14367,
+      "lastModified": "2025-08-04T04:34:43.345Z",
+      "metrics": {
+        "headings": 162,
+        "codeBlocks": 20,
+        "links": 0,
+        "images": 0,
+        "lists": 136,
+        "tables": 0,
+        "emptyLines": 76,
+        "wordCount": 470
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "automation-integration.md",
+      "relativePath": "lessons-learned\\process\\automation-integration.md",
+      "totalLines": 262,
+      "totalCharacters": 8263,
+      "lastModified": "2025-08-04T04:33:13.253Z",
+      "metrics": {
+        "headings": 54,
+        "codeBlocks": 8,
+        "links": 0,
+        "images": 0,
+        "lists": 108,
+        "tables": 0,
+        "emptyLines": 47,
+        "wordCount": 608
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "capture-template.md",
+      "relativePath": "lessons-learned\\process\\capture-template.md",
+      "totalLines": 106,
+      "totalCharacters": 2253,
+      "lastModified": "2025-08-04T02:41:02.025Z",
+      "metrics": {
+        "headings": 22,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 47,
+        "tables": 0,
+        "emptyLines": 26,
+        "wordCount": 331
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "improvement-roadmap.md",
+      "relativePath": "lessons-learned\\process\\improvement-roadmap.md",
+      "totalLines": 348,
+      "totalCharacters": 13063,
+      "lastModified": "2025-08-04T04:35:27.415Z",
+      "metrics": {
+        "headings": 50,
+        "codeBlocks": 7,
+        "links": 0,
+        "images": 0,
+        "lists": 183,
+        "tables": 0,
+        "emptyLines": 64,
+        "wordCount": 1071
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "integration-checklist.md",
+      "relativePath": "lessons-learned\\process\\integration-checklist.md",
+      "totalLines": 144,
+      "totalCharacters": 4312,
+      "lastModified": "2025-08-04T02:41:02.025Z",
+      "metrics": {
+        "headings": 25,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 95,
+        "tables": 0,
+        "emptyLines": 24,
+        "wordCount": 715
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "lessons-learned-process.md",
+      "relativePath": "lessons-learned\\process\\lessons-learned-process.md",
+      "totalLines": 143,
+      "totalCharacters": 4236,
+      "lastModified": "2025-08-04T02:41:02.025Z",
+      "metrics": {
+        "headings": 29,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 80,
+        "tables": 0,
+        "emptyLines": 29,
+        "wordCount": 571
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "metrics-dashboard.md",
+      "relativePath": "lessons-learned\\process\\metrics-dashboard.md",
+      "totalLines": 397,
+      "totalCharacters": 11440,
+      "lastModified": "2025-08-04T04:33:54.647Z",
+      "metrics": {
+        "headings": 57,
+        "codeBlocks": 17,
+        "links": 0,
+        "images": 0,
+        "lists": 221,
+        "tables": 0,
+        "emptyLines": 67,
+        "wordCount": 430
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": true,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 60
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "review-template.md",
+      "relativePath": "lessons-learned\\process\\review-template.md",
+      "totalLines": 135,
+      "totalCharacters": 3471,
+      "lastModified": "2025-08-04T02:41:02.009Z",
+      "metrics": {
+        "headings": 27,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 69,
+        "tables": 0,
+        "emptyLines": 29,
+        "wordCount": 529
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "README.md",
+      "relativePath": "lessons-learned\\README.md",
+      "totalLines": 266,
+      "totalCharacters": 12357,
+      "lastModified": "2025-08-04T04:36:07.092Z",
+      "metrics": {
+        "headings": 53,
+        "codeBlocks": 4,
+        "links": 0,
+        "images": 0,
+        "lists": 132,
+        "tables": 0,
+        "emptyLines": 49,
+        "wordCount": 1440
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "action-item-template.md",
+      "relativePath": "lessons-learned\\templates\\action-item-template.md",
+      "totalLines": 127,
+      "totalCharacters": 2917,
+      "lastModified": "2025-08-04T02:41:02.040Z",
+      "metrics": {
+        "headings": 27,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 57,
+        "tables": 0,
+        "emptyLines": 30,
+        "wordCount": 420
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "improvement-template.md",
+      "relativePath": "lessons-learned\\templates\\improvement-template.md",
+      "totalLines": 113,
+      "totalCharacters": 2621,
+      "lastModified": "2025-08-04T02:41:02.034Z",
+      "metrics": {
+        "headings": 24,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 51,
+        "tables": 0,
+        "emptyLines": 27,
+        "wordCount": 376
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "lesson-template.md",
+      "relativePath": "lessons-learned\\templates\\lesson-template.md",
+      "totalLines": 106,
+      "totalCharacters": 2236,
+      "lastModified": "2025-08-04T02:41:02.034Z",
+      "metrics": {
+        "headings": 22,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 47,
+        "tables": 0,
+        "emptyLines": 26,
+        "wordCount": 329
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "tasks.md",
+      "relativePath": "product\\2025-01-27-intelligence-engine\\tasks.md",
+      "totalLines": 235,
+      "totalCharacters": 12310,
+      "lastModified": "2025-08-04T14:21:11.817Z",
+      "metrics": {
+        "headings": 27,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 144,
+        "tables": 0,
+        "emptyLines": 40,
+        "wordCount": 1525
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "decisions.md",
+      "relativePath": "product\\decisions.md",
+      "totalLines": 305,
+      "totalCharacters": 14446,
+      "lastModified": "2025-08-04T02:47:02.482Z",
+      "metrics": {
+        "headings": 34,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 130,
+        "tables": 0,
+        "emptyLines": 81,
+        "wordCount": 1781
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "mission-lite.md",
+      "relativePath": "product\\mission-lite.md",
+      "totalLines": 13,
+      "totalCharacters": 1180,
+      "lastModified": "2025-08-04T01:03:56.049Z",
+      "metrics": {
+        "headings": 1,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 6,
+        "tables": 0,
+        "emptyLines": 3,
+        "wordCount": 144
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 25
+      },
+      "issues": [
+        "Limited structure - consider adding more headings",
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "mission.md",
+      "relativePath": "product\\mission.md",
+      "totalLines": 142,
+      "totalCharacters": 9268,
+      "lastModified": "2025-08-04T02:46:31.162Z",
+      "metrics": {
+        "headings": 27,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 50,
+        "tables": 0,
+        "emptyLines": 49,
+        "wordCount": 1157
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "phase1-enhancement-questions.md",
+      "relativePath": "product\\phase1-enhancement-questions.md",
+      "totalLines": 217,
+      "totalCharacters": 9409,
+      "lastModified": "2025-08-04T01:08:05.107Z",
+      "metrics": {
+        "headings": 19,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 67,
+        "tables": 12,
+        "emptyLines": 51,
+        "wordCount": 1215
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "roadmap-status.md",
+      "relativePath": "product\\roadmap-status.md",
+      "totalLines": 279,
+      "totalCharacters": 17177,
+      "lastModified": "2025-08-04T00:59:26.380Z",
+      "metrics": {
+        "headings": 26,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 151,
+        "tables": 0,
+        "emptyLines": 48,
+        "wordCount": 2142
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "roadmap.md",
+      "relativePath": "product\\roadmap.md",
+      "totalLines": 382,
+      "totalCharacters": 24363,
+      "lastModified": "2025-08-04T03:10:39.464Z",
+      "metrics": {
+        "headings": 58,
+        "codeBlocks": 1,
+        "links": 0,
+        "images": 0,
+        "lists": 208,
+        "tables": 0,
+        "emptyLines": 73,
+        "wordCount": 3219
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "standards-compliance.md",
+      "relativePath": "product\\standards-compliance.md",
+      "totalLines": 222,
+      "totalCharacters": 9536,
+      "lastModified": "2025-08-04T02:47:33.181Z",
+      "metrics": {
+        "headings": 44,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 104,
+        "tables": 15,
+        "emptyLines": 48,
+        "wordCount": 1257
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "2025-01-27-1430-phase1-enhancement-questions-research.md",
+      "relativePath": "product\\strategic-questions\\answers\\2025-01-27-1430-phase1-enhancement-questions-research.md",
+      "totalLines": 467,
+      "totalCharacters": 25121,
+      "lastModified": "2025-08-04T01:15:34.260Z",
+      "metrics": {
+        "headings": 71,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 200,
+        "tables": 0,
+        "emptyLines": 132,
+        "wordCount": 3215
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "2025-01-27-1500-phase2-enhancement-questions-research.md",
+      "relativePath": "product\\strategic-questions\\answers\\2025-01-27-1500-phase2-enhancement-questions-research.md",
+      "totalLines": 813,
+      "totalCharacters": 44262,
+      "lastModified": "2025-08-04T01:28:45.487Z",
+      "metrics": {
+        "headings": 131,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 376,
+        "tables": 0,
+        "emptyLines": 211,
+        "wordCount": 5569
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "2025-01-27-1600-cross-roadmap-enhancement-questions-research.md",
+      "relativePath": "product\\strategic-questions\\answers\\2025-01-27-1600-cross-roadmap-enhancement-questions-research.md",
+      "totalLines": 813,
+      "totalCharacters": 43159,
+      "lastModified": "2025-08-04T01:36:03.321Z",
+      "metrics": {
+        "headings": 130,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 378,
+        "tables": 0,
+        "emptyLines": 210,
+        "wordCount": 5258
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "2025-08-03-1650-critical-questions-research.md",
+      "relativePath": "product\\strategic-questions\\answers\\2025-08-03-1650-critical-questions-research.md",
+      "totalLines": 556,
+      "totalCharacters": 22807,
+      "lastModified": "2025-08-04T00:34:30.969Z",
+      "metrics": {
+        "headings": 48,
+        "codeBlocks": 2,
+        "links": 0,
+        "images": 0,
+        "lists": 200,
+        "tables": 0,
+        "emptyLines": 138,
+        "wordCount": 2829
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "2025-08-03-1723-high-priority-questions-research.md",
+      "relativePath": "product\\strategic-questions\\answers\\2025-08-03-1723-high-priority-questions-research.md",
+      "totalLines": 884,
+      "totalCharacters": 39724,
+      "lastModified": "2025-08-04T00:34:30.969Z",
+      "metrics": {
+        "headings": 63,
+        "codeBlocks": 7,
+        "links": 0,
+        "images": 0,
+        "lists": 198,
+        "tables": 11,
+        "emptyLines": 188,
+        "wordCount": 4252
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 60
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "2025-08-03-1747-medium-priority-questions-research.md",
+      "relativePath": "product\\strategic-questions\\answers\\2025-08-03-1747-medium-priority-questions-research.md",
+      "totalLines": 830,
+      "totalCharacters": 36597,
+      "lastModified": "2025-08-04T00:50:40.253Z",
+      "metrics": {
+        "headings": 59,
+        "codeBlocks": 3,
+        "links": 0,
+        "images": 0,
+        "lists": 337,
+        "tables": 3,
+        "emptyLines": 196,
+        "wordCount": 4353
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "2025-08-03-1750-low-priority-questions-research.md",
+      "relativePath": "product\\strategic-questions\\answers\\2025-08-03-1750-low-priority-questions-research.md",
+      "totalLines": 902,
+      "totalCharacters": 42108,
+      "lastModified": "2025-08-04T00:54:37.144Z",
+      "metrics": {
+        "headings": 66,
+        "codeBlocks": 2,
+        "links": 0,
+        "images": 0,
+        "lists": 339,
+        "tables": 0,
+        "emptyLines": 195,
+        "wordCount": 4966
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "answer-template.md",
+      "relativePath": "product\\strategic-questions\\answers\\answer-template.md",
+      "totalLines": 180,
+      "totalCharacters": 5452,
+      "lastModified": "2025-08-03T23:54:28.659Z",
+      "metrics": {
+        "headings": 26,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 80,
+        "tables": 0,
+        "emptyLines": 51,
+        "wordCount": 683
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "README.md",
+      "relativePath": "product\\strategic-questions\\answers\\README.md",
+      "totalLines": 101,
+      "totalCharacters": 4199,
+      "lastModified": "2025-08-04T00:55:01.618Z",
+      "metrics": {
+        "headings": 15,
+        "codeBlocks": 2,
+        "links": 5,
+        "images": 0,
+        "lists": 34,
+        "tables": 13,
+        "emptyLines": 26,
+        "wordCount": 497
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 60
+      },
+      "issues": []
+    },
+    {
+      "filename": "cross-roadmap-enhancement-questions.md",
+      "relativePath": "product\\strategic-questions\\cross-roadmap-enhancement-questions.md",
+      "totalLines": 314,
+      "totalCharacters": 16414,
+      "lastModified": "2025-08-04T01:33:16.880Z",
+      "metrics": {
+        "headings": 39,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 98,
+        "tables": 0,
+        "emptyLines": 75,
+        "wordCount": 1980
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "phase-enhancement-process.md",
+      "relativePath": "product\\strategic-questions\\phase-enhancement-process.md",
+      "totalLines": 255,
+      "totalCharacters": 11215,
+      "lastModified": "2025-08-04T01:32:32.113Z",
+      "metrics": {
+        "headings": 38,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 129,
+        "tables": 0,
+        "emptyLines": 57,
+        "wordCount": 1392
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "phase1-enhancement-questions.md",
+      "relativePath": "product\\strategic-questions\\phase1-enhancement-questions.md",
+      "totalLines": 174,
+      "totalCharacters": 8569,
+      "lastModified": "2025-08-04T01:10:31.216Z",
+      "metrics": {
+        "headings": 29,
+        "codeBlocks": 0,
+        "links": 4,
+        "images": 0,
+        "lists": 73,
+        "tables": 12,
+        "emptyLines": 45,
+        "wordCount": 1194
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": []
+    },
+    {
+      "filename": "phase2-enhancement-questions.md",
+      "relativePath": "product\\strategic-questions\\phase2-enhancement-questions.md",
+      "totalLines": 315,
+      "totalCharacters": 16800,
+      "lastModified": "2025-08-04T01:24:35.604Z",
+      "metrics": {
+        "headings": 40,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 97,
+        "tables": 0,
+        "emptyLines": 76,
+        "wordCount": 2113
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "prioritized-questions.md",
+      "relativePath": "product\\strategic-questions\\prioritized-questions.md",
+      "totalLines": 304,
+      "totalCharacters": 20635,
+      "lastModified": "2025-08-04T01:03:10.607Z",
+      "metrics": {
+        "headings": 39,
+        "codeBlocks": 0,
+        "links": 30,
+        "images": 0,
+        "lists": 116,
+        "tables": 0,
+        "emptyLines": 46,
+        "wordCount": 2378
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": []
+    },
+    {
+      "filename": "qa-template.md",
+      "relativePath": "product\\strategic-questions\\qa-template.md",
+      "totalLines": 74,
+      "totalCharacters": 1820,
+      "lastModified": "2025-08-03T23:32:51.619Z",
+      "metrics": {
+        "headings": 16,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 26,
+        "tables": 0,
+        "emptyLines": 23,
+        "wordCount": 271
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "README.md",
+      "relativePath": "product\\strategic-questions\\README.md",
+      "totalLines": 145,
+      "totalCharacters": 5112,
+      "lastModified": "2025-08-04T02:47:17.357Z",
+      "metrics": {
+        "headings": 26,
+        "codeBlocks": 0,
+        "links": 5,
+        "images": 0,
+        "lists": 51,
+        "tables": 21,
+        "emptyLines": 31,
+        "wordCount": 698
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": []
+    },
+    {
+      "filename": "roadmap-analysis-questions.md",
+      "relativePath": "product\\strategic-questions\\roadmap-analysis-questions.md",
+      "totalLines": 137,
+      "totalCharacters": 6650,
+      "lastModified": "2025-08-03T23:32:42.755Z",
+      "metrics": {
+        "headings": 30,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 58,
+        "tables": 0,
+        "emptyLines": 38,
+        "wordCount": 966
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "scoring-algorithm.md",
+      "relativePath": "product\\strategic-questions\\scoring-algorithm.md",
+      "totalLines": 180,
+      "totalCharacters": 6439,
+      "lastModified": "2025-08-03T23:37:38.738Z",
+      "metrics": {
+        "headings": 38,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 89,
+        "tables": 0,
+        "emptyLines": 42,
+        "wordCount": 906
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "user-research-questions.md",
+      "relativePath": "product\\strategic-questions\\user-research-questions.md",
+      "totalLines": 120,
+      "totalCharacters": 4983,
+      "lastModified": "2025-08-03T23:33:22.933Z",
+      "metrics": {
+        "headings": 23,
+        "codeBlocks": 0,
+        "links": 3,
+        "images": 0,
+        "lists": 54,
+        "tables": 0,
+        "emptyLines": 32,
+        "wordCount": 720
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": []
+    },
+    {
+      "filename": "tech-stack.md",
+      "relativePath": "product\\tech-stack.md",
+      "totalLines": 140,
+      "totalCharacters": 6742,
+      "lastModified": "2025-08-04T02:47:25.434Z",
+      "metrics": {
+        "headings": 25,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 91,
+        "tables": 0,
+        "emptyLines": 24,
+        "wordCount": 866
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "spec-lite.md",
+      "relativePath": "specs\\2025-01-27-event-monitoring-system\\spec-lite.md",
+      "totalLines": 3,
+      "totalCharacters": 455,
+      "lastModified": "2025-08-04T02:14:14.393Z",
+      "metrics": {
+        "headings": 1,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 0,
+        "tables": 0,
+        "emptyLines": 1,
+        "wordCount": 57
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 20
+      },
+      "issues": [
+        "Limited structure - consider adding more headings",
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "spec.md",
+      "relativePath": "specs\\2025-01-27-event-monitoring-system\\spec.md",
+      "totalLines": 54,
+      "totalCharacters": 3514,
+      "lastModified": "2025-08-04T02:14:23.551Z",
+      "metrics": {
+        "headings": 9,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 8,
+        "tables": 0,
+        "emptyLines": 19,
+        "wordCount": 473
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "api-spec.md",
+      "relativePath": "specs\\2025-01-27-event-monitoring-system\\sub-specs\\api-spec.md",
+      "totalLines": 264,
+      "totalCharacters": 6838,
+      "lastModified": "2025-08-04T02:14:14.400Z",
+      "metrics": {
+        "headings": 14,
+        "codeBlocks": 10,
+        "links": 0,
+        "images": 0,
+        "lists": 46,
+        "tables": 0,
+        "emptyLines": 27,
+        "wordCount": 513
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "database-schema.md",
+      "relativePath": "specs\\2025-01-27-event-monitoring-system\\sub-specs\\database-schema.md",
+      "totalLines": 121,
+      "totalCharacters": 5072,
+      "lastModified": "2025-08-04T02:14:14.394Z",
+      "metrics": {
+        "headings": 11,
+        "codeBlocks": 5,
+        "links": 0,
+        "images": 0,
+        "lists": 3,
+        "tables": 0,
+        "emptyLines": 23,
+        "wordCount": 245
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "technical-spec.md",
+      "relativePath": "specs\\2025-01-27-event-monitoring-system\\sub-specs\\technical-spec.md",
+      "totalLines": 64,
+      "totalCharacters": 3762,
+      "lastModified": "2025-08-04T02:14:14.394Z",
+      "metrics": {
+        "headings": 7,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 39,
+        "tables": 0,
+        "emptyLines": 17,
+        "wordCount": 457
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "tasks.md",
+      "relativePath": "specs\\2025-01-27-event-monitoring-system\\tasks.md",
+      "totalLines": 151,
+      "totalCharacters": 7437,
+      "lastModified": "2025-08-04T03:10:04.745Z",
+      "metrics": {
+        "headings": 6,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 106,
+        "tables": 0,
+        "emptyLines": 24,
+        "wordCount": 976
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "behavioral-modeling-lessons-learned.md",
+      "relativePath": "specs\\2025-01-27-intelligence-engine\\behavioral-modeling-lessons-learned.md",
+      "totalLines": 237,
+      "totalCharacters": 10826,
+      "lastModified": "2025-08-04T04:46:40.563Z",
+      "metrics": {
+        "headings": 33,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 108,
+        "tables": 0,
+        "emptyLines": 59,
+        "wordCount": 1360
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "lessons-learned.md",
+      "relativePath": "specs\\2025-01-27-intelligence-engine\\lessons-learned.md",
+      "totalLines": 530,
+      "totalCharacters": 20010,
+      "lastModified": "2025-08-04T04:21:05.668Z",
+      "metrics": {
+        "headings": 88,
+        "codeBlocks": 19,
+        "links": 0,
+        "images": 0,
+        "lists": 150,
+        "tables": 0,
+        "emptyLines": 97,
+        "wordCount": 1798
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "spec.md",
+      "relativePath": "specs\\2025-01-27-intelligence-engine\\spec.md",
+      "totalLines": 319,
+      "totalCharacters": 11482,
+      "lastModified": "2025-08-04T03:12:43.283Z",
+      "metrics": {
+        "headings": 43,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 160,
+        "tables": 0,
+        "emptyLines": 67,
+        "wordCount": 1492
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "tasks.md",
+      "relativePath": "specs\\2025-01-27-intelligence-engine\\tasks.md",
+      "totalLines": 184,
+      "totalCharacters": 10980,
+      "lastModified": "2025-08-04T14:06:12.506Z",
+      "metrics": {
+        "headings": 7,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 136,
+        "tables": 0,
+        "emptyLines": 25,
+        "wordCount": 1538
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "technical-design.md",
+      "relativePath": "specs\\2025-01-27-intelligence-engine\\technical-design.md",
+      "totalLines": 592,
+      "totalCharacters": 20136,
+      "lastModified": "2025-08-04T03:14:20.420Z",
+      "metrics": {
+        "headings": 37,
+        "codeBlocks": 19,
+        "links": 0,
+        "images": 0,
+        "lists": 18,
+        "tables": 0,
+        "emptyLines": 104,
+        "wordCount": 314
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "spec-lite.md",
+      "relativePath": "specs\\2025-08-03-home-assistant-integration\\spec-lite.md",
+      "totalLines": 3,
+      "totalCharacters": 397,
+      "lastModified": "2025-08-04T01:46:37.220Z",
+      "metrics": {
+        "headings": 1,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 0,
+        "tables": 0,
+        "emptyLines": 1,
+        "wordCount": 50
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 20
+      },
+      "issues": [
+        "Limited structure - consider adding more headings",
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "spec.md",
+      "relativePath": "specs\\2025-08-03-home-assistant-integration\\spec.md",
+      "totalLines": 53,
+      "totalCharacters": 3307,
+      "lastModified": "2025-08-04T01:46:37.220Z",
+      "metrics": {
+        "headings": 9,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 8,
+        "tables": 0,
+        "emptyLines": 19,
+        "wordCount": 442
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "api-spec.md",
+      "relativePath": "specs\\2025-08-03-home-assistant-integration\\sub-specs\\api-spec.md",
+      "totalLines": 257,
+      "totalCharacters": 6581,
+      "lastModified": "2025-08-04T01:46:37.233Z",
+      "metrics": {
+        "headings": 15,
+        "codeBlocks": 11,
+        "links": 0,
+        "images": 0,
+        "lists": 22,
+        "tables": 0,
+        "emptyLines": 29,
+        "wordCount": 392
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "database-schema.md",
+      "relativePath": "specs\\2025-08-03-home-assistant-integration\\sub-specs\\database-schema.md",
+      "totalLines": 237,
+      "totalCharacters": 10776,
+      "lastModified": "2025-08-04T01:46:37.232Z",
+      "metrics": {
+        "headings": 11,
+        "codeBlocks": 5,
+        "links": 0,
+        "images": 0,
+        "lists": 3,
+        "tables": 0,
+        "emptyLines": 38,
+        "wordCount": 272
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "technical-spec.md",
+      "relativePath": "specs\\2025-08-03-home-assistant-integration\\sub-specs\\technical-spec.md",
+      "totalLines": 70,
+      "totalCharacters": 4214,
+      "lastModified": "2025-08-04T01:47:08.149Z",
+      "metrics": {
+        "headings": 9,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 44,
+        "tables": 0,
+        "emptyLines": 16,
+        "wordCount": 528
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "tasks.md",
+      "relativePath": "specs\\2025-08-03-home-assistant-integration\\tasks.md",
+      "totalLines": 80,
+      "totalCharacters": 4382,
+      "lastModified": "2025-08-04T01:46:37.220Z",
+      "metrics": {
+        "headings": 2,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 69,
+        "tables": 0,
+        "emptyLines": 9,
+        "wordCount": 703
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 25
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "ai-assisted-governance.md",
+      "relativePath": "standards\\ai-assisted-governance.md",
+      "totalLines": 20,
+      "totalCharacters": 665,
+      "lastModified": "2025-08-04T00:33:29.124Z",
+      "metrics": {
+        "headings": 4,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 9,
+        "tables": 0,
+        "emptyLines": 4,
+        "wordCount": 90
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 35
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "best-practices.md",
+      "relativePath": "standards\\best-practices.md",
+      "totalLines": 33,
+      "totalCharacters": 1795,
+      "lastModified": "2025-08-04T02:43:28.055Z",
+      "metrics": {
+        "headings": 7,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 19,
+        "tables": 0,
+        "emptyLines": 7,
+        "wordCount": 230
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "ci-cd-strategy.md",
+      "relativePath": "standards\\ci-cd-strategy.md",
+      "totalLines": 26,
+      "totalCharacters": 1211,
+      "lastModified": "2025-08-04T02:43:37.841Z",
+      "metrics": {
+        "headings": 4,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 8,
+        "tables": 0,
+        "emptyLines": 5,
+        "wordCount": 161
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "css-style.md",
+      "relativePath": "standards\\code-style\\css-style.md",
+      "totalLines": 24,
+      "totalCharacters": 843,
+      "lastModified": "2025-08-03T22:24:50.987Z",
+      "metrics": {
+        "headings": 2,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 0,
+        "tables": 18,
+        "emptyLines": 3,
+        "wordCount": 157
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 25
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "html-style.md",
+      "relativePath": "standards\\code-style\\html-style.md",
+      "totalLines": 24,
+      "totalCharacters": 843,
+      "lastModified": "2025-08-04T00:06:55.983Z",
+      "metrics": {
+        "headings": 2,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 0,
+        "tables": 18,
+        "emptyLines": 3,
+        "wordCount": 157
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 25
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "javascript-style.md",
+      "relativePath": "standards\\code-style\\javascript-style.md",
+      "totalLines": 22,
+      "totalCharacters": 805,
+      "lastModified": "2025-08-04T00:06:47.747Z",
+      "metrics": {
+        "headings": 6,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 8,
+        "tables": 0,
+        "emptyLines": 7,
+        "wordCount": 114
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "code-style.md",
+      "relativePath": "standards\\code-style.md",
+      "totalLines": 22,
+      "totalCharacters": 1054,
+      "lastModified": "2025-08-04T02:43:49.752Z",
+      "metrics": {
+        "headings": 5,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 10,
+        "tables": 0,
+        "emptyLines": 6,
+        "wordCount": 130
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references",
+        "Code-related file has no code examples"
+      ]
+    },
+    {
+      "filename": "cursor-rule-hierarchy.md",
+      "relativePath": "standards\\cursor-rule-hierarchy.md",
+      "totalLines": 21,
+      "totalCharacters": 864,
+      "lastModified": "2025-08-04T00:33:29.217Z",
+      "metrics": {
+        "headings": 4,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 10,
+        "tables": 0,
+        "emptyLines": 4,
+        "wordCount": 115
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "directory-structure.md",
+      "relativePath": "standards\\directory-structure.md",
+      "totalLines": 29,
+      "totalCharacters": 847,
+      "lastModified": "2025-08-03T22:53:40.571Z",
+      "metrics": {
+        "headings": 3,
+        "codeBlocks": 1,
+        "links": 0,
+        "images": 0,
+        "lists": 3,
+        "tables": 0,
+        "emptyLines": 4,
+        "wordCount": 43
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 45
+      },
+      "issues": [
+        "Very short content - may need expansion",
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "enforcement.md",
+      "relativePath": "standards\\enforcement.md",
+      "totalLines": 525,
+      "totalCharacters": 15450,
+      "lastModified": "2025-08-04T04:21:03.008Z",
+      "metrics": {
+        "headings": 78,
+        "codeBlocks": 16,
+        "links": 0,
+        "images": 0,
+        "lists": 178,
+        "tables": 0,
+        "emptyLines": 97,
+        "wordCount": 1343
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 60
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "policy-as-code.md",
+      "relativePath": "standards\\policy-as-code.md",
+      "totalLines": 18,
+      "totalCharacters": 604,
+      "lastModified": "2025-08-04T00:33:29.170Z",
+      "metrics": {
+        "headings": 4,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 9,
+        "tables": 0,
+        "emptyLines": 4,
+        "wordCount": 86
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 35
+      },
+      "issues": [
+        "No links found - consider adding references",
+        "Code-related file has no code examples"
+      ]
+    },
+    {
+      "filename": "security-compliance.md",
+      "relativePath": "standards\\security-compliance.md",
+      "totalLines": 28,
+      "totalCharacters": 1090,
+      "lastModified": "2025-08-04T02:43:43.027Z",
+      "metrics": {
+        "headings": 7,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 12,
+        "tables": 0,
+        "emptyLines": 8,
+        "wordCount": 144
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "service-specific-rules.md",
+      "relativePath": "standards\\service-specific-rules.md",
+      "totalLines": 16,
+      "totalCharacters": 456,
+      "lastModified": "2025-08-04T00:33:29.031Z",
+      "metrics": {
+        "headings": 3,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 9,
+        "tables": 0,
+        "emptyLines": 3,
+        "wordCount": 59
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 35
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "tech-stack.md",
+      "relativePath": "standards\\tech-stack.md",
+      "totalLines": 38,
+      "totalCharacters": 1245,
+      "lastModified": "2025-08-04T02:43:54.749Z",
+      "metrics": {
+        "headings": 8,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 20,
+        "tables": 0,
+        "emptyLines": 9,
+        "wordCount": 179
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "testing-strategy.md",
+      "relativePath": "standards\\testing-strategy.md",
+      "totalLines": 25,
+      "totalCharacters": 882,
+      "lastModified": "2025-08-04T02:43:33.242Z",
+      "metrics": {
+        "headings": 7,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 9,
+        "tables": 0,
+        "emptyLines": 8,
+        "wordCount": 123
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 40
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "visual-regression-testing.md",
+      "relativePath": "standards\\visual-regression-testing.md",
+      "totalLines": 17,
+      "totalCharacters": 593,
+      "lastModified": "2025-08-04T00:33:29.077Z",
+      "metrics": {
+        "headings": 4,
+        "codeBlocks": 0,
+        "links": 0,
+        "images": 0,
+        "lists": 8,
+        "tables": 0,
+        "emptyLines": 4,
+        "wordCount": 81
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 35
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "task-list-template.md",
+      "relativePath": "templates\\task-list-template.md",
+      "totalLines": 119,
+      "totalCharacters": 4628,
+      "lastModified": "2025-08-04T04:21:03.008Z",
+      "metrics": {
+        "headings": 16,
+        "codeBlocks": 4,
+        "links": 0,
+        "images": 0,
+        "lists": 56,
+        "tables": 0,
+        "emptyLines": 23,
+        "wordCount": 390
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": false,
+        "hasAuthor": false,
+        "completeness": 50
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    },
+    {
+      "filename": "README.md",
+      "relativePath": "tools\\README.md",
+      "totalLines": 324,
+      "totalCharacters": 8784,
+      "lastModified": "2025-08-04T13:44:53.777Z",
+      "metrics": {
+        "headings": 72,
+        "codeBlocks": 12,
+        "links": 0,
+        "images": 0,
+        "lists": 94,
+        "tables": 0,
+        "emptyLines": 72,
+        "wordCount": 810
+      },
+      "quality": {
+        "hasTitle": true,
+        "hasTableOfContents": false,
+        "hasLastModified": false,
+        "hasVersion": true,
+        "hasAuthor": false,
+        "completeness": 60
+      },
+      "issues": [
+        "No links found - consider adding references"
+      ]
+    }
+  ],
+  "summary": {
+    "totalFiles": 101,
+    "totalLines": 22773,
+    "totalWords": 102189,
+    "averageCompleteness": 43,
+    "qualityDistribution": {
+      "excellent": 0,
+      "good": 0,
+      "fair": 38,
+      "poor": 63
+    },
+    "issues": [
+      "agent-improvements\\simple-analytics-enhancements.md: No links found - consider adding references",
+      "checklists\\compliance-checklist.md: No links found - consider adding references",
+      "checklists\\home-assistant-integration-checklist.md: No links found - consider adding references",
+      "checklists\\task-tracking-checklist.md: No links found - consider adding references",
+      "documentation\\home-assistant-docs-index.md: No links found - consider adding references",
+      "documentation\\standards-integration-summary.md: No links found - consider adding references",
+      "instructions\\analyze-product.md: No links found - consider adding references",
+      "instructions\\core\\analyze-product.md: No links found - consider adding references",
+      "instructions\\core\\create-spec.md: No links found - consider adding references",
+      "instructions\\core\\execute-task.md: No links found - consider adding references",
+      "instructions\\core\\execute-tasks.md: No links found - consider adding references",
+      "instructions\\core\\plan-product.md: No links found - consider adding references",
+      "instructions\\create-spec.md: No links found - consider adding references",
+      "instructions\\execute-task.md: No links found - consider adding references",
+      "instructions\\execute-tasks.md: No links found - consider adding references",
+      "instructions\\meta\\pre-flight.md: Limited structure - consider adding more headings",
+      "instructions\\meta\\pre-flight.md: No links found - consider adding references",
+      "instructions\\plan-product.md: No links found - consider adding references",
+      "lessons-learned\\categories\\deployment\\README.md: No links found - consider adding references",
+      "lessons-learned\\categories\\design\\README.md: No links found - consider adding references",
+      "lessons-learned\\categories\\development\\README.md: No links found - consider adding references",
+      "lessons-learned\\categories\\operations\\README.md: No links found - consider adding references",
+      "lessons-learned\\categories\\testing\\README.md: No links found - consider adding references",
+      "lessons-learned\\categories\\user-experience\\README.md: No links found - consider adding references",
+      "lessons-learned\\integration\\cursor-integration.md: No links found - consider adding references",
+      "lessons-learned\\integration\\sdlc-integration.md: No links found - consider adding references",
+      "lessons-learned\\integration\\standards-update-process.md: No links found - consider adding references",
+      "lessons-learned\\process\\ai-enhanced-analysis.md: No links found - consider adding references",
+      "lessons-learned\\process\\automation-integration.md: No links found - consider adding references",
+      "lessons-learned\\process\\capture-template.md: No links found - consider adding references",
+      "lessons-learned\\process\\improvement-roadmap.md: No links found - consider adding references",
+      "lessons-learned\\process\\integration-checklist.md: No links found - consider adding references",
+      "lessons-learned\\process\\lessons-learned-process.md: No links found - consider adding references",
+      "lessons-learned\\process\\metrics-dashboard.md: No links found - consider adding references",
+      "lessons-learned\\process\\review-template.md: No links found - consider adding references",
+      "lessons-learned\\README.md: No links found - consider adding references",
+      "lessons-learned\\templates\\action-item-template.md: No links found - consider adding references",
+      "lessons-learned\\templates\\improvement-template.md: No links found - consider adding references",
+      "lessons-learned\\templates\\lesson-template.md: No links found - consider adding references",
+      "product\\2025-01-27-intelligence-engine\\tasks.md: No links found - consider adding references",
+      "product\\decisions.md: No links found - consider adding references",
+      "product\\mission-lite.md: Limited structure - consider adding more headings",
+      "product\\mission-lite.md: No links found - consider adding references",
+      "product\\mission.md: No links found - consider adding references",
+      "product\\phase1-enhancement-questions.md: No links found - consider adding references",
+      "product\\roadmap-status.md: No links found - consider adding references",
+      "product\\roadmap.md: No links found - consider adding references",
+      "product\\standards-compliance.md: No links found - consider adding references",
+      "product\\strategic-questions\\answers\\2025-01-27-1430-phase1-enhancement-questions-research.md: No links found - consider adding references",
+      "product\\strategic-questions\\answers\\2025-01-27-1500-phase2-enhancement-questions-research.md: No links found - consider adding references",
+      "product\\strategic-questions\\answers\\2025-01-27-1600-cross-roadmap-enhancement-questions-research.md: No links found - consider adding references",
+      "product\\strategic-questions\\answers\\2025-08-03-1650-critical-questions-research.md: No links found - consider adding references",
+      "product\\strategic-questions\\answers\\2025-08-03-1723-high-priority-questions-research.md: No links found - consider adding references",
+      "product\\strategic-questions\\answers\\2025-08-03-1747-medium-priority-questions-research.md: No links found - consider adding references",
+      "product\\strategic-questions\\answers\\2025-08-03-1750-low-priority-questions-research.md: No links found - consider adding references",
+      "product\\strategic-questions\\answers\\answer-template.md: No links found - consider adding references",
+      "product\\strategic-questions\\cross-roadmap-enhancement-questions.md: No links found - consider adding references",
+      "product\\strategic-questions\\phase-enhancement-process.md: No links found - consider adding references",
+      "product\\strategic-questions\\phase2-enhancement-questions.md: No links found - consider adding references",
+      "product\\strategic-questions\\qa-template.md: No links found - consider adding references",
+      "product\\strategic-questions\\roadmap-analysis-questions.md: No links found - consider adding references",
+      "product\\strategic-questions\\scoring-algorithm.md: No links found - consider adding references",
+      "product\\tech-stack.md: No links found - consider adding references",
+      "specs\\2025-01-27-event-monitoring-system\\spec-lite.md: Limited structure - consider adding more headings",
+      "specs\\2025-01-27-event-monitoring-system\\spec-lite.md: No links found - consider adding references",
+      "specs\\2025-01-27-event-monitoring-system\\spec.md: No links found - consider adding references",
+      "specs\\2025-01-27-event-monitoring-system\\sub-specs\\api-spec.md: No links found - consider adding references",
+      "specs\\2025-01-27-event-monitoring-system\\sub-specs\\database-schema.md: No links found - consider adding references",
+      "specs\\2025-01-27-event-monitoring-system\\sub-specs\\technical-spec.md: No links found - consider adding references",
+      "specs\\2025-01-27-event-monitoring-system\\tasks.md: No links found - consider adding references",
+      "specs\\2025-01-27-intelligence-engine\\behavioral-modeling-lessons-learned.md: No links found - consider adding references",
+      "specs\\2025-01-27-intelligence-engine\\lessons-learned.md: No links found - consider adding references",
+      "specs\\2025-01-27-intelligence-engine\\spec.md: No links found - consider adding references",
+      "specs\\2025-01-27-intelligence-engine\\tasks.md: No links found - consider adding references",
+      "specs\\2025-01-27-intelligence-engine\\technical-design.md: No links found - consider adding references",
+      "specs\\2025-08-03-home-assistant-integration\\spec-lite.md: Limited structure - consider adding more headings",
+      "specs\\2025-08-03-home-assistant-integration\\spec-lite.md: No links found - consider adding references",
+      "specs\\2025-08-03-home-assistant-integration\\spec.md: No links found - consider adding references",
+      "specs\\2025-08-03-home-assistant-integration\\sub-specs\\api-spec.md: No links found - consider adding references",
+      "specs\\2025-08-03-home-assistant-integration\\sub-specs\\database-schema.md: No links found - consider adding references",
+      "specs\\2025-08-03-home-assistant-integration\\sub-specs\\technical-spec.md: No links found - consider adding references",
+      "specs\\2025-08-03-home-assistant-integration\\tasks.md: No links found - consider adding references",
+      "standards\\ai-assisted-governance.md: No links found - consider adding references",
+      "standards\\best-practices.md: No links found - consider adding references",
+      "standards\\ci-cd-strategy.md: No links found - consider adding references",
+      "standards\\code-style\\css-style.md: No links found - consider adding references",
+      "standards\\code-style\\html-style.md: No links found - consider adding references",
+      "standards\\code-style\\javascript-style.md: No links found - consider adding references",
+      "standards\\code-style.md: No links found - consider adding references",
+      "standards\\code-style.md: Code-related file has no code examples",
+      "standards\\cursor-rule-hierarchy.md: No links found - consider adding references",
+      "standards\\directory-structure.md: Very short content - may need expansion",
+      "standards\\directory-structure.md: No links found - consider adding references",
+      "standards\\enforcement.md: No links found - consider adding references",
+      "standards\\policy-as-code.md: No links found - consider adding references",
+      "standards\\policy-as-code.md: Code-related file has no code examples",
+      "standards\\security-compliance.md: No links found - consider adding references",
+      "standards\\service-specific-rules.md: No links found - consider adding references",
+      "standards\\tech-stack.md: No links found - consider adding references",
+      "standards\\testing-strategy.md: No links found - consider adding references",
+      "standards\\visual-regression-testing.md: No links found - consider adding references",
+      "templates\\task-list-template.md: No links found - consider adding references",
+      "tools\\README.md: No links found - consider adding references"
+    ],
+    "recommendations": [
+      "Focus on improving poor quality documentation first",
+      "Overall documentation completeness needs improvement",
+      "Many documentation issues detected - prioritize fixes"
+    ]
+  },
+  "timestamp": "2025-08-04T15:02:54.764Z",
+  "suggestions": [
+    {
+      "priority": "MEDIUM",
+      "file": "agent-improvements\\simple-analytics-enhancements.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "checklists\\home-assistant-integration-checklist.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "checklists\\task-tracking-checklist.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "documentation\\home-assistant-docs-index.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "documentation\\standards-integration-summary.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "instructions\\core\\create-spec.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "instructions\\core\\execute-task.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "instructions\\core\\execute-tasks.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "instructions\\core\\plan-product.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "instructions\\create-spec.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "instructions\\execute-task.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "instructions\\execute-tasks.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "instructions\\meta\\pre-flight.md",
+      "completeness": 30,
+      "issues": [
+        "Limited structure - consider adding more headings",
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Expand content with more detailed explanations",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "instructions\\plan-product.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\categories\\deployment\\README.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\categories\\design\\README.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\categories\\development\\README.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\categories\\operations\\README.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\categories\\testing\\README.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\categories\\user-experience\\README.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\integration\\cursor-integration.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\integration\\sdlc-integration.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\integration\\standards-update-process.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\process\\ai-enhanced-analysis.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\process\\automation-integration.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\process\\capture-template.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\process\\improvement-roadmap.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\process\\integration-checklist.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\process\\lessons-learned-process.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\process\\review-template.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\README.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\templates\\action-item-template.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\templates\\improvement-template.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "lessons-learned\\templates\\lesson-template.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\2025-01-27-intelligence-engine\\tasks.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\decisions.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "HIGH",
+      "file": "product\\mission-lite.md",
+      "completeness": 25,
+      "issues": [
+        "Limited structure - consider adding more headings",
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\mission.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\phase1-enhancement-questions.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\roadmap-status.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\roadmap.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\standards-compliance.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\answers\\2025-01-27-1430-phase1-enhancement-questions-research.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\answers\\2025-01-27-1500-phase2-enhancement-questions-research.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\answers\\2025-01-27-1600-cross-roadmap-enhancement-questions-research.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\answers\\2025-08-03-1650-critical-questions-research.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\answers\\2025-08-03-1747-medium-priority-questions-research.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\answers\\2025-08-03-1750-low-priority-questions-research.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\answers\\answer-template.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\cross-roadmap-enhancement-questions.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\phase-enhancement-process.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\phase1-enhancement-questions.md",
+      "completeness": 50,
+      "issues": [],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\phase2-enhancement-questions.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\prioritized-questions.md",
+      "completeness": 50,
+      "issues": [],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\qa-template.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\README.md",
+      "completeness": 50,
+      "issues": [],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\roadmap-analysis-questions.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\scoring-algorithm.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\strategic-questions\\user-research-questions.md",
+      "completeness": 50,
+      "issues": [],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "product\\tech-stack.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "HIGH",
+      "file": "specs\\2025-01-27-event-monitoring-system\\spec-lite.md",
+      "completeness": 20,
+      "issues": [
+        "Limited structure - consider adding more headings",
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Expand content with more detailed explanations",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-01-27-event-monitoring-system\\spec.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-01-27-event-monitoring-system\\sub-specs\\api-spec.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-01-27-event-monitoring-system\\sub-specs\\database-schema.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-01-27-event-monitoring-system\\sub-specs\\technical-spec.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-01-27-event-monitoring-system\\tasks.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-01-27-intelligence-engine\\behavioral-modeling-lessons-learned.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-01-27-intelligence-engine\\lessons-learned.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-01-27-intelligence-engine\\spec.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-01-27-intelligence-engine\\tasks.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-01-27-intelligence-engine\\technical-design.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "HIGH",
+      "file": "specs\\2025-08-03-home-assistant-integration\\spec-lite.md",
+      "completeness": 20,
+      "issues": [
+        "Limited structure - consider adding more headings",
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Expand content with more detailed explanations",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-08-03-home-assistant-integration\\spec.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-08-03-home-assistant-integration\\sub-specs\\api-spec.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-08-03-home-assistant-integration\\sub-specs\\database-schema.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "specs\\2025-08-03-home-assistant-integration\\sub-specs\\technical-spec.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "HIGH",
+      "file": "specs\\2025-08-03-home-assistant-integration\\tasks.md",
+      "completeness": 25,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\ai-assisted-governance.md",
+      "completeness": 35,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Expand content with more detailed explanations",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\best-practices.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\ci-cd-strategy.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "HIGH",
+      "file": "standards\\code-style\\css-style.md",
+      "completeness": 25,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "HIGH",
+      "file": "standards\\code-style\\html-style.md",
+      "completeness": 25,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\code-style\\javascript-style.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\code-style.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references",
+        "Code-related file has no code examples"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add code examples to illustrate concepts",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\cursor-rule-hierarchy.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\directory-structure.md",
+      "completeness": 45,
+      "issues": [
+        "Very short content - may need expansion",
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Expand content with more detailed explanations",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\policy-as-code.md",
+      "completeness": 35,
+      "issues": [
+        "No links found - consider adding references",
+        "Code-related file has no code examples"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Expand content with more detailed explanations",
+        "Add relevant links to related documentation",
+        "Add code examples to illustrate concepts",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\security-compliance.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\service-specific-rules.md",
+      "completeness": 35,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Expand content with more detailed explanations",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\tech-stack.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\testing-strategy.md",
+      "completeness": 40,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "standards\\visual-regression-testing.md",
+      "completeness": 35,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Expand content with more detailed explanations",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "file": "templates\\task-list-template.md",
+      "completeness": 50,
+      "issues": [
+        "No links found - consider adding references"
+      ],
+      "recommendations": [
+        "Add a table of contents for better navigation",
+        "Add relevant links to related documentation",
+        "Add last modified date for maintenance tracking"
+      ]
+    }
+  ],
+  "generatedAt": "2025-08-04T15:02:54.766Z"
+}

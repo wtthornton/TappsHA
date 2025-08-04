@@ -1,0 +1,138 @@
+[
+  {
+    "timestamp": "2025-08-04T14:59:10.390Z",
+    "complianceScore": 0,
+    "totalChecks": 72,
+    "passedChecks": -215,
+    "violations": 287,
+    "metrics": {
+      "executionTime": 83,
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:01:35.948Z",
+    "complianceScore": 0,
+    "totalChecks": 72,
+    "passedChecks": -215,
+    "violations": 287,
+    "metrics": {
+      "executionTime": 102,
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:08:40.580Z",
+    "runId": "run_1754320120580_j8ci4by2t",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 112,
+      "averageFileProcessingTime": 0.1111111111111111,
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72
+        }
+      },
+      "filesProcessed": 72
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  }
+]
