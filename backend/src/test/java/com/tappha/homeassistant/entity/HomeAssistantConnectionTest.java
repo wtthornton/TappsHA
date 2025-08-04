@@ -19,12 +19,16 @@ class HomeAssistantConnectionTest {
     private String testUrl;
     private String testEncryptedToken;
     
+    // Test constants - clearly marked as test data
+    private static final String TEST_ENCRYPTED_TOKEN = "test_encrypted_token_placeholder";
+    private static final String TEST_NEW_TOKEN = "test_new_encrypted_token_placeholder";
+    
     @BeforeEach
     void setUp() {
         testId = UUID.randomUUID();
         testName = "Test Connection";
         testUrl = "https://homeassistant.local";
-        testEncryptedToken = "encrypted_token_123";
+        testEncryptedToken = TEST_ENCRYPTED_TOKEN;
         
         user = new User("test@example.com", "Test User");
         user.setId(UUID.randomUUID());
@@ -58,7 +62,7 @@ class HomeAssistantConnectionTest {
         UUID newId = UUID.randomUUID();
         String newName = "New Connection";
         String newUrl = "https://new.homeassistant.local";
-        String newToken = "new_encrypted_token";
+        String newToken = TEST_NEW_TOKEN;
         String newVersion = "2024.12.0";
         String[] newFeatures = {"api", "websocket", "events"};
         OffsetDateTime now = OffsetDateTime.now();

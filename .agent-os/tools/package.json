@@ -1,0 +1,46 @@
+{
+  "name": "agent-os-compliance-tools",
+  "version": "1.0.0",
+  "description": "Automated compliance checking tools for Agent OS standards",
+  "main": "compliance-checker.js",
+  "scripts": {
+    "check": "node compliance-checker.js",
+    "check:file": "node compliance-checker.js",
+    "watch": "node cursor-integration.js watch",
+    "validate": "node cursor-integration.js check",
+    "report": "node cursor-integration.js check && open .agent-os/dashboard/compliance-dashboard.html",
+    "install:tools": "npm install -g glob chokidar",
+    "test": "node test/compliance-checker.test.js",
+    "lint": "eslint *.js",
+    "format": "prettier --write *.js"
+  },
+  "keywords": [
+    "compliance",
+    "standards",
+    "validation",
+    "cursor",
+    "agent-os"
+  ],
+  "author": "Agent OS Team",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^10.3.10",
+    "chokidar": "^3.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/tappha.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/tappha/issues"
+  },
+  "homepage": "https://github.com/your-org/tappha#readme"
+} 
