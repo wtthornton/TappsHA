@@ -820,6 +820,13 @@ graph TD
 - **Simple Tasks**: GPT-3.5 Turbo for cost optimization
 - **Fallback**: Automatic fallback to lower-cost models if needed
 
+**Model Configuration Strategy**:
+- **Configurable Model Selection**: Users can configure which OpenAI model to use for different strategies
+- **Strategy-Based Configuration**: Different automation strategies can use different models based on complexity
+- **Cost Optimization**: Automatic model selection based on task complexity and cost requirements
+- **Performance Tuning**: Users can adjust model selection based on performance vs. cost preferences
+- **Dynamic Configuration**: Model selection can be changed without restarting the system
+
 ### AI Research Process
 
 1. **Data Collection**: AI analyzed multiple data sources including:
