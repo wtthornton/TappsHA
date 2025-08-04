@@ -696,6 +696,26 @@ class ComplianceChecker {
 
   // Enhanced: Generate analytics report
   generateAnalyticsReport() {
+    // NEW: Generate documentation quality metrics
+    const documentationQuality = this.measureDocumentationClarityAndCompleteness();
+    const documentationUpdates = this.trackDocumentationUpdateFrequency();
+    const documentationGaps = this.identifyDocumentationGaps();
+    const documentationImprovementPlans = this.createDocumentationImprovementPlans(
+      documentationQuality.clarityScores,
+      documentationQuality.completenessScores,
+      documentationUpdates.updateMetrics,
+      documentationGaps.gaps
+    );
+
+    // NEW: Generate smart documentation suggestions
+    const smartDocumentationSuggestions = this.suggestDocumentationUpdatesBasedOnUsage(
+      this.calculateStandardsEffectiveness(),
+      documentationQuality
+    );
+    const missingDocumentationSections = this.identifyMissingDocumentationSections();
+    const documentationTemplates = this.createDocumentationTemplatesBasedOnPatterns();
+    const documentationValidation = this.implementDocumentationValidation();
+
     const analytics = {
       timestamp: new Date().toISOString(),
       executionTime: this.metrics.executionTime,
@@ -705,8 +725,28 @@ class ComplianceChecker {
       standardsEffectiveness: this.calculateStandardsEffectiveness(),
       improvementSuggestions: this.generateImprovementSuggestions(),
       ruleBasedSuggestions: this.generateRuleBasedSuggestions(),
-      statisticalAnalysis: this.generateStatisticalAnalysis()
+      statisticalAnalysis: this.generateStatisticalAnalysis(),
+      // NEW: Documentation quality analytics
+      documentationQuality: documentationQuality,
+      documentationUpdates: documentationUpdates,
+      documentationGaps: documentationGaps,
+      documentationImprovementPlans: documentationImprovementPlans,
+      // NEW: Smart documentation suggestions
+      smartDocumentationSuggestions: smartDocumentationSuggestions,
+      missingDocumentationSections: missingDocumentationSections,
+      documentationTemplates: documentationTemplates,
+      documentationValidation: documentationValidation
     };
+
+    // NEW: Enhanced reporting capabilities
+    analytics.drillDownCapabilities = this.implementDrillDownCapabilities(analytics);
+    analytics.exportableReports = this.createExportableReports(analytics);
+
+    // NEW: Enhanced actionable insights
+    const prioritizedActionItems = this.createPrioritizedActionItems();
+    analytics.prioritizedActionItems = prioritizedActionItems;
+    analytics.impactAssessment = this.implementImpactAssessmentForSuggestions(prioritizedActionItems.actionItems);
+    analytics.suggestionValidation = this.buildSuggestionValidationSystem(prioritizedActionItems.actionItems);
 
     const analyticsPath = path.join(__dirname, '../reports/analytics-report.json');
     fs.writeFileSync(analyticsPath, JSON.stringify(analytics, null, 2));
@@ -860,6 +900,23 @@ class ComplianceChecker {
     // Sort by reference count (most referenced first)
     const mostReferenced = [...referenceTracking].sort((a, b) => b.referenceCount - a.referenceCount);
     
+    // NEW: Enhanced standards effectiveness analysis
+    const unusedOrObsolete = this.identifyUnusedOrObsoleteStandards(standardsRanking, mostReferenced);
+    const clarityAndUsability = this.measureStandardsClarityAndUsability(standardsRanking, mostReferenced);
+    const effectivenessAnalysis = this.measureStandardsEffectiveness(standardsRanking, mostReferenced);
+    const improvementSuggestions = this.createStandardsImprovementSuggestions(
+      standardsRanking, 
+      mostReferenced, 
+      unusedOrObsolete.unusedStandards, 
+      unusedOrObsolete.obsoleteStandards, 
+      clarityAndUsability.clarityMetrics, 
+      clarityAndUsability.usabilityMetrics
+    );
+    const optimizationSuggestions = this.createStandardsOptimizationSuggestions(
+      effectivenessAnalysis.effectivenessMetrics,
+      effectivenessAnalysis.optimizationOpportunities
+    );
+
     return {
       effectiveness: effectiveness,
       ranking: standardsRanking,
@@ -871,6 +928,11 @@ class ComplianceChecker {
         lowUsage: mostReferenced.filter(s => s.usageFrequency === 'LOW')
       },
       standardsClarification: this.identifyStandardsNeedingClarification(standardsRanking, mostReferenced),
+      unusedOrObsolete: unusedOrObsolete,
+      clarityAndUsability: clarityAndUsability,
+      effectivenessAnalysis: effectivenessAnalysis,
+      improvementSuggestions: improvementSuggestions,
+      optimizationSuggestions: optimizationSuggestions,
       summary: {
         totalStandards: standardsRanking.length,
         criticalStandards: standardsRanking.filter(s => s.status === 'CRITICAL').length,
@@ -879,7 +941,23 @@ class ComplianceChecker {
         mostViolated: standardsRanking.slice(0, 3),
         leastViolated: standardsRanking.slice(-3).reverse(),
         mostReferenced: mostReferenced.slice(0, 3),
-        totalReferences: mostReferenced.reduce((sum, s) => sum + s.referenceCount, 0)
+        totalReferences: mostReferenced.reduce((sum, s) => sum + s.referenceCount, 0),
+        // NEW: Enhanced summary metrics
+        totalUnused: unusedOrObsolete.summary.totalUnused,
+        totalObsolete: unusedOrObsolete.summary.totalObsolete,
+        clearStandards: clarityAndUsability.summary.clearStandards,
+        unclearStandards: clarityAndUsability.summary.unclearStandards,
+        usableStandards: clarityAndUsability.summary.usableStandards,
+        poorUsabilityStandards: clarityAndUsability.summary.poorUsabilityStandards,
+        totalImprovementSuggestions: improvementSuggestions.summary.totalSuggestions,
+        // NEW: Enhanced effectiveness metrics
+        highlyEffective: effectivenessAnalysis.summary.highlyEffective,
+        effective: effectivenessAnalysis.summary.effective,
+        needsImprovement: effectivenessAnalysis.summary.needsImprovement,
+        ineffective: effectivenessAnalysis.summary.ineffective,
+        totalOptimizationOpportunities: effectivenessAnalysis.summary.totalOptimizationOpportunities,
+        averageEffectivenessScore: effectivenessAnalysis.summary.averageEffectivenessScore,
+        totalOptimizationSuggestions: optimizationSuggestions.summary.totalSuggestions
       }
     };
   }
@@ -989,6 +1067,1978 @@ class ComplianceChecker {
     }
     
     return priority;
+  }
+
+  // NEW: Identify unused or obsolete standards
+  identifyUnusedOrObsoleteStandards(standardsRanking, referenceTracking) {
+    const unusedStandards = [];
+    const obsoleteStandards = [];
+    const standardsToReview = [];
+    
+    // Get all available standards from the standards directory
+    const availableStandards = this.getAvailableStandards();
+    
+    // Analyze each available standard
+    availableStandards.forEach(standardName => {
+      const referenceData = referenceTracking.find(ref => ref.name === standardName);
+      const rankingData = standardsRanking.find(rank => rank.name === standardName);
+      
+      // Check for unused standards (no references in 30+ days)
+      if (!referenceData || referenceData.referenceCount === 0) {
+        const lastReferenced = referenceData ? new Date(referenceData.lastReferenced) : null;
+        const daysSinceLastReference = lastReferenced ? Math.floor((Date.now() - lastReferenced.getTime()) / (1000 * 60 * 60 * 24)) : 999;
+        
+        if (daysSinceLastReference > 30) {
+          unusedStandards.push({
+            name: standardName,
+            type: 'UNUSED',
+            daysSinceLastReference: daysSinceLastReference,
+            reason: 'No references in over 30 days',
+            recommendation: 'Consider removing or updating this standard',
+            priority: daysSinceLastReference > 90 ? 'HIGH' : daysSinceLastReference > 60 ? 'MEDIUM' : 'LOW'
+          });
+        }
+      }
+      
+      // Check for obsolete standards (high violation rate with low usage)
+      if (rankingData && referenceData) {
+        const violationRate = rankingData.violationRate;
+        const usageFrequency = referenceData.usageFrequency;
+        
+        if (violationRate > 50 && usageFrequency === 'LOW') {
+          obsoleteStandards.push({
+            name: standardName,
+            type: 'OBSOLETE',
+            violationRate: violationRate,
+            usageFrequency: usageFrequency,
+            reason: 'High violation rate with low adoption suggests outdated standard',
+            recommendation: 'Review and update or deprecate this standard',
+            priority: violationRate > 70 ? 'HIGH' : 'MEDIUM'
+          });
+        }
+      }
+      
+      // Check for standards needing review (inconsistent patterns)
+      if (rankingData && referenceData) {
+        const violationRate = rankingData.violationRate;
+        const usageFrequency = referenceData.usageFrequency;
+        
+        // High violation rate with medium usage suggests unclear standards
+        if (violationRate > 35 && usageFrequency === 'MEDIUM') {
+          standardsToReview.push({
+            name: standardName,
+            type: 'NEEDS_REVIEW',
+            violationRate: violationRate,
+            usageFrequency: usageFrequency,
+            reason: 'High violation rate with moderate usage suggests unclear standards',
+            recommendation: 'Clarify and improve this standard',
+            priority: violationRate > 50 ? 'HIGH' : 'MEDIUM'
+          });
+        }
+      }
+    });
+    
+    return {
+      unusedStandards: unusedStandards,
+      obsoleteStandards: obsoleteStandards,
+      standardsToReview: standardsToReview,
+      summary: {
+        totalUnused: unusedStandards.length,
+        totalObsolete: obsoleteStandards.length,
+        totalToReview: standardsToReview.length,
+        highPriorityUnused: unusedStandards.filter(s => s.priority === 'HIGH').length,
+        highPriorityObsolete: obsoleteStandards.filter(s => s.priority === 'HIGH').length,
+        highPriorityReview: standardsToReview.filter(s => s.priority === 'HIGH').length
+      }
+    };
+  }
+
+  // NEW: Get available standards from the standards directory
+  getAvailableStandards() {
+    const standardsPath = path.join(__dirname, '../standards');
+    const standards = [];
+    
+    try {
+      const files = fs.readdirSync(standardsPath);
+      files.forEach(file => {
+        if (file.endsWith('.md')) {
+          standards.push(file.replace('.md', ''));
+        }
+      });
+    } catch (error) {
+      console.warn('⚠️ Could not read standards directory:', error.message);
+    }
+    
+    return standards;
+  }
+
+  // NEW: Measure standards clarity and usability
+  measureStandardsClarityAndUsability(standardsRanking, referenceTracking) {
+    const clarityMetrics = {};
+    const usabilityMetrics = {};
+    
+    // Analyze clarity based on violation patterns
+    standardsRanking.forEach(standard => {
+      const referenceData = referenceTracking.find(ref => ref.name === standard.name);
+      
+      if (referenceData) {
+        // Clarity score based on violation rate vs usage
+        let clarityScore = 100;
+        let clarityFactors = [];
+        
+        // High violation rate with high usage suggests unclear standards
+        if (standard.violationRate > 25 && referenceData.usageFrequency === 'HIGH') {
+          clarityScore -= 30;
+          clarityFactors.push('High violation rate despite frequent usage');
+        }
+        
+        // High violation rate with low usage suggests unclear standards
+        if (standard.violationRate > 30 && referenceData.usageFrequency === 'LOW') {
+          clarityScore -= 25;
+          clarityFactors.push('High violation rate with low adoption');
+        }
+        
+        // Usability score based on adoption and effectiveness
+        let usabilityScore = 100;
+        let usabilityFactors = [];
+        
+        // Low usage suggests poor usability
+        if (referenceData.usageFrequency === 'LOW') {
+          usabilityScore -= 40;
+          usabilityFactors.push('Low adoption rate');
+        }
+        
+        // High violation rate suggests poor usability
+        if (standard.violationRate > 30) {
+          usabilityScore -= 30;
+          usabilityFactors.push('High violation rate');
+        }
+        
+        // Low reference count suggests poor usability
+        if (referenceData.referenceCount < 5) {
+          usabilityScore -= 20;
+          usabilityFactors.push('Low reference count');
+        }
+        
+        clarityMetrics[standard.name] = {
+          score: Math.max(0, clarityScore),
+          factors: clarityFactors,
+          status: clarityScore > 80 ? 'CLEAR' : clarityScore > 60 ? 'NEEDS_IMPROVEMENT' : 'UNCLEAR',
+          recommendation: clarityScore > 80 ? 'Standard is clear' : 
+                        clarityScore > 60 ? 'Clarify documentation' : 'Rewrite standard'
+        };
+        
+        usabilityMetrics[standard.name] = {
+          score: Math.max(0, usabilityScore),
+          factors: usabilityFactors,
+          status: usabilityScore > 80 ? 'USABLE' : usabilityScore > 60 ? 'NEEDS_IMPROVEMENT' : 'POOR_USABILITY',
+          recommendation: usabilityScore > 80 ? 'Standard is usable' : 
+                        usabilityScore > 60 ? 'Improve usability' : 'Redesign standard'
+        };
+      }
+    });
+    
+    return {
+      clarityMetrics: clarityMetrics,
+      usabilityMetrics: usabilityMetrics,
+      summary: {
+        clearStandards: Object.values(clarityMetrics).filter(m => m.status === 'CLEAR').length,
+        unclearStandards: Object.values(clarityMetrics).filter(m => m.status === 'UNCLEAR').length,
+        usableStandards: Object.values(usabilityMetrics).filter(m => m.status === 'USABLE').length,
+        poorUsabilityStandards: Object.values(usabilityMetrics).filter(m => m.status === 'POOR_USABILITY').length
+      }
+    };
+  }
+
+  // NEW: Create standards improvement suggestions
+  createStandardsImprovementSuggestions(standardsRanking, referenceTracking, unusedStandards, obsoleteStandards, clarityMetrics, usabilityMetrics) {
+    const suggestions = [];
+    
+    // Suggestions for unused standards
+    unusedStandards.forEach(standard => {
+      suggestions.push({
+        type: 'REMOVE_OR_UPDATE',
+        standard: standard.name,
+        priority: standard.priority,
+        reason: standard.reason,
+        action: standard.recommendation,
+        impact: 'MEDIUM',
+        effort: 'LOW'
+      });
+    });
+    
+    // Suggestions for obsolete standards
+    obsoleteStandards.forEach(standard => {
+      suggestions.push({
+        type: 'UPDATE_OR_DEPRECATE',
+        standard: standard.name,
+        priority: standard.priority,
+        reason: standard.reason,
+        action: standard.recommendation,
+        impact: 'HIGH',
+        effort: 'MEDIUM'
+      });
+    });
+    
+    // Suggestions for unclear standards
+    Object.entries(clarityMetrics).forEach(([standardName, metrics]) => {
+      if (metrics.status === 'UNCLEAR') {
+        suggestions.push({
+          type: 'CLARIFY_STANDARD',
+          standard: standardName,
+          priority: 'HIGH',
+          reason: 'Standard is unclear based on violation patterns',
+          action: 'Rewrite standard with clear examples and guidelines',
+          impact: 'HIGH',
+          effort: 'MEDIUM'
+        });
+      }
+    });
+    
+    // Suggestions for poor usability standards
+    Object.entries(usabilityMetrics).forEach(([standardName, metrics]) => {
+      if (metrics.status === 'POOR_USABILITY') {
+        suggestions.push({
+          type: 'IMPROVE_USABILITY',
+          standard: standardName,
+          priority: 'MEDIUM',
+          reason: 'Standard has poor usability based on adoption patterns',
+          action: 'Redesign standard for better adoption and effectiveness',
+          impact: 'MEDIUM',
+          effort: 'HIGH'
+        });
+      }
+    });
+    
+    return {
+      suggestions: suggestions,
+      summary: {
+        totalSuggestions: suggestions.length,
+        highPriority: suggestions.filter(s => s.priority === 'HIGH').length,
+        mediumPriority: suggestions.filter(s => s.priority === 'MEDIUM').length,
+        lowPriority: suggestions.filter(s => s.priority === 'LOW').length,
+        removeOrUpdate: suggestions.filter(s => s.type === 'REMOVE_OR_UPDATE').length,
+        updateOrDeprecate: suggestions.filter(s => s.type === 'UPDATE_OR_DEPRECATE').length,
+        clarifyStandard: suggestions.filter(s => s.type === 'CLARIFY_STANDARD').length,
+        improveUsability: suggestions.filter(s => s.type === 'IMPROVE_USABILITY').length
+      }
+    };
+  }
+
+  // NEW: Measure standards effectiveness with detailed analysis
+  measureStandardsEffectiveness(standardsRanking, referenceTracking) {
+    const effectivenessMetrics = {};
+    const optimizationOpportunities = [];
+    
+    standardsRanking.forEach(standard => {
+      const referenceData = referenceTracking.find(ref => ref.name === standard.name);
+      
+      if (referenceData) {
+        // Calculate effectiveness score based on multiple factors
+        let effectivenessScore = 100;
+        let effectivenessFactors = [];
+        
+        // Factor 1: Violation rate impact
+        if (standard.violationRate > 30) {
+          effectivenessScore -= 40;
+          effectivenessFactors.push(`High violation rate (${standard.violationRate}%)`);
+        } else if (standard.violationRate > 20) {
+          effectivenessScore -= 20;
+          effectivenessFactors.push(`Moderate violation rate (${standard.violationRate}%)`);
+        }
+        
+        // Factor 2: Usage frequency impact
+        if (referenceData.usageFrequency === 'LOW') {
+          effectivenessScore -= 30;
+          effectivenessFactors.push('Low adoption rate');
+        } else if (referenceData.usageFrequency === 'MEDIUM') {
+          effectivenessScore -= 10;
+          effectivenessFactors.push('Moderate adoption rate');
+        }
+        
+        // Factor 3: Reference count impact
+        if (referenceData.referenceCount < 3) {
+          effectivenessScore -= 20;
+          effectivenessFactors.push('Low reference count');
+        } else if (referenceData.referenceCount < 10) {
+          effectivenessScore -= 10;
+          effectivenessFactors.push('Moderate reference count');
+        }
+        
+        // Factor 4: Recent usage impact
+        const lastReferenced = new Date(referenceData.lastReferenced);
+        const daysSinceLastReference = Math.floor((Date.now() - lastReferenced.getTime()) / (1000 * 60 * 60 * 24));
+        
+        if (daysSinceLastReference > 30) {
+          effectivenessScore -= 15;
+          effectivenessFactors.push(`Not referenced recently (${daysSinceLastReference} days ago)`);
+        }
+        
+        effectivenessMetrics[standard.name] = {
+          score: Math.max(0, effectivenessScore),
+          factors: effectivenessFactors,
+          status: effectivenessScore > 80 ? 'HIGHLY_EFFECTIVE' : 
+                  effectivenessScore > 60 ? 'EFFECTIVE' : 
+                  effectivenessScore > 40 ? 'NEEDS_IMPROVEMENT' : 'INEFFECTIVE',
+          violationRate: standard.violationRate,
+          usageFrequency: referenceData.usageFrequency,
+          referenceCount: referenceData.referenceCount,
+          daysSinceLastReference: daysSinceLastReference,
+          recommendation: effectivenessScore > 80 ? 'Standard is highly effective' :
+                        effectivenessScore > 60 ? 'Standard is effective but could be improved' :
+                        effectivenessScore > 40 ? 'Standard needs significant improvement' : 'Standard is ineffective and needs redesign'
+        };
+        
+        // Identify optimization opportunities
+        if (effectivenessScore < 60) {
+          optimizationOpportunities.push({
+            standard: standard.name,
+            currentScore: effectivenessScore,
+            factors: effectivenessFactors,
+            priority: effectivenessScore < 30 ? 'HIGH' : effectivenessScore < 50 ? 'MEDIUM' : 'LOW',
+            optimizationType: effectivenessScore < 30 ? 'REDESIGN' : effectivenessScore < 50 ? 'IMPROVE' : 'ENHANCE',
+            estimatedImpact: effectivenessScore < 30 ? 'HIGH' : effectivenessScore < 50 ? 'MEDIUM' : 'LOW',
+            estimatedEffort: effectivenessScore < 30 ? 'HIGH' : effectivenessScore < 50 ? 'MEDIUM' : 'LOW'
+          });
+        }
+      }
+    });
+    
+    return {
+      effectivenessMetrics: effectivenessMetrics,
+      optimizationOpportunities: optimizationOpportunities,
+      summary: {
+        highlyEffective: Object.values(effectivenessMetrics).filter(m => m.status === 'HIGHLY_EFFECTIVE').length,
+        effective: Object.values(effectivenessMetrics).filter(m => m.status === 'EFFECTIVE').length,
+        needsImprovement: Object.values(effectivenessMetrics).filter(m => m.status === 'NEEDS_IMPROVEMENT').length,
+        ineffective: Object.values(effectivenessMetrics).filter(m => m.status === 'INEFFECTIVE').length,
+        totalOptimizationOpportunities: optimizationOpportunities.length,
+        highPriorityOptimizations: optimizationOpportunities.filter(o => o.priority === 'HIGH').length,
+        averageEffectivenessScore: Math.round(
+          Object.values(effectivenessMetrics).reduce((sum, m) => sum + m.score, 0) / Object.values(effectivenessMetrics).length
+        )
+      }
+    };
+  }
+
+  // NEW: Create standards optimization suggestions
+  createStandardsOptimizationSuggestions(effectivenessMetrics, optimizationOpportunities) {
+    const suggestions = [];
+    
+    // High-priority optimization suggestions
+    optimizationOpportunities.filter(o => o.priority === 'HIGH').forEach(opportunity => {
+      suggestions.push({
+        type: 'URGENT_OPTIMIZATION',
+        standard: opportunity.standard,
+        priority: 'CRITICAL',
+        reason: `Standard is highly ineffective (score: ${opportunity.currentScore})`,
+        action: `Redesign ${opportunity.standard} for better effectiveness`,
+        impact: 'HIGH',
+        effort: 'HIGH',
+        estimatedImprovement: Math.min(100, opportunity.currentScore + 40)
+      });
+    });
+    
+    // Medium-priority optimization suggestions
+    optimizationOpportunities.filter(o => o.priority === 'MEDIUM').forEach(opportunity => {
+      suggestions.push({
+        type: 'IMPROVE_STANDARD',
+        standard: opportunity.standard,
+        priority: 'HIGH',
+        reason: `Standard needs improvement (score: ${opportunity.currentScore})`,
+        action: `Improve ${opportunity.standard} documentation and clarity`,
+        impact: 'MEDIUM',
+        effort: 'MEDIUM',
+        estimatedImprovement: Math.min(100, opportunity.currentScore + 25)
+      });
+    });
+    
+    // Low-priority enhancement suggestions
+    optimizationOpportunities.filter(o => o.priority === 'LOW').forEach(opportunity => {
+      suggestions.push({
+        type: 'ENHANCE_STANDARD',
+        standard: opportunity.standard,
+        priority: 'MEDIUM',
+        reason: `Standard could be enhanced (score: ${opportunity.currentScore})`,
+        action: `Enhance ${opportunity.standard} with better examples and guidelines`,
+        impact: 'LOW',
+        effort: 'LOW',
+        estimatedImprovement: Math.min(100, opportunity.currentScore + 15)
+      });
+    });
+    
+    // Effectiveness-based suggestions
+    Object.entries(effectivenessMetrics).forEach(([standardName, metrics]) => {
+      if (metrics.status === 'INEFFECTIVE') {
+        suggestions.push({
+          type: 'REDESIGN_STANDARD',
+          standard: standardName,
+          priority: 'HIGH',
+          reason: `Standard is ineffective (${metrics.violationRate}% violation rate, ${metrics.usageFrequency} usage)`,
+          action: `Completely redesign ${standardName} for better adoption and compliance`,
+          impact: 'HIGH',
+          effort: 'HIGH',
+          estimatedImprovement: Math.min(100, metrics.score + 50)
+        });
+      } else if (metrics.status === 'NEEDS_IMPROVEMENT') {
+        suggestions.push({
+          type: 'IMPROVE_STANDARD',
+          standard: standardName,
+          priority: 'MEDIUM',
+          reason: `Standard needs improvement (${metrics.violationRate}% violation rate)`,
+          action: `Improve ${standardName} documentation and provide training`,
+          impact: 'MEDIUM',
+          effort: 'MEDIUM',
+          estimatedImprovement: Math.min(100, metrics.score + 30)
+        });
+      }
+    });
+    
+    return {
+      suggestions: suggestions,
+      summary: {
+        totalSuggestions: suggestions.length,
+        criticalPriority: suggestions.filter(s => s.priority === 'CRITICAL').length,
+        highPriority: suggestions.filter(s => s.priority === 'HIGH').length,
+        mediumPriority: suggestions.filter(s => s.priority === 'MEDIUM').length,
+        urgentOptimizations: suggestions.filter(s => s.type === 'URGENT_OPTIMIZATION').length,
+        redesignStandards: suggestions.filter(s => s.type === 'REDESIGN_STANDARD').length,
+        improveStandards: suggestions.filter(s => s.type === 'IMPROVE_STANDARD').length,
+        enhanceStandards: suggestions.filter(s => s.type === 'ENHANCE_STANDARD').length
+      }
+    };
+  }
+
+  // NEW: Measure documentation clarity and completeness
+  measureDocumentationClarityAndCompleteness() {
+    const documentationMetrics = {};
+    const clarityScores = {};
+    const completenessScores = {};
+    
+    // Analyze all documentation files in .agent-os
+    const documentationFiles = this.getDocumentationFiles();
+    
+    documentationFiles.forEach(filePath => {
+      try {
+        const content = fs.readFileSync(filePath, 'utf8');
+        const fileName = path.basename(filePath, '.md');
+        
+        // Calculate clarity score based on content analysis
+        let clarityScore = 100;
+        let clarityFactors = [];
+        
+        // Factor 1: Section structure (headers)
+        const headers = content.match(/^#{1,6}\s+.+$/gm) || [];
+        if (headers.length < 3) {
+          clarityScore -= 20;
+          clarityFactors.push('Poor section structure');
+        } else if (headers.length < 5) {
+          clarityScore -= 10;
+          clarityFactors.push('Limited section structure');
+        }
+        
+        // Factor 2: Code examples
+        const codeBlocks = content.match(/```[\s\S]*?```/g) || [];
+        if (codeBlocks.length === 0) {
+          clarityScore -= 25;
+          clarityFactors.push('No code examples');
+        } else if (codeBlocks.length < 2) {
+          clarityScore -= 10;
+          clarityFactors.push('Limited code examples');
+        }
+        
+        // Factor 3: Lists and bullet points
+        const lists = content.match(/^[\s]*[-*+]\s+.+$/gm) || [];
+        if (lists.length < 5) {
+          clarityScore -= 15;
+          clarityFactors.push('Limited structured content');
+        }
+        
+        // Factor 4: Links and references
+        const links = content.match(/\[([^\]]+)\]\(([^)]+)\)/g) || [];
+        if (links.length === 0) {
+          clarityScore -= 10;
+          clarityFactors.push('No external references');
+        }
+        
+        // Calculate completeness score
+        let completenessScore = 100;
+        let completenessFactors = [];
+        
+        // Factor 1: File size (content length)
+        const contentLength = content.length;
+        if (contentLength < 500) {
+          completenessScore -= 40;
+          completenessFactors.push('Very short content');
+        } else if (contentLength < 1000) {
+          completenessScore -= 20;
+          completenessFactors.push('Short content');
+        }
+        
+        // Factor 2: Required sections
+        const requiredSections = ['overview', 'requirements', 'implementation', 'examples'];
+        const hasRequiredSections = requiredSections.some(section => 
+          content.toLowerCase().includes(section)
+        );
+        if (!hasRequiredSections) {
+          completenessScore -= 30;
+          completenessFactors.push('Missing required sections');
+        }
+        
+        // Factor 3: Last update
+        const stats = fs.statSync(filePath);
+        const daysSinceUpdate = Math.floor((Date.now() - stats.mtime.getTime()) / (1000 * 60 * 60 * 24));
+        if (daysSinceUpdate > 90) {
+          completenessScore -= 20;
+          completenessFactors.push('Outdated content');
+        } else if (daysSinceUpdate > 30) {
+          completenessScore -= 10;
+          completenessFactors.push('Content may be outdated');
+        }
+        
+        clarityScores[fileName] = {
+          score: Math.max(0, clarityScore),
+          factors: clarityFactors,
+          status: clarityScore > 80 ? 'CLEAR' : clarityScore > 60 ? 'NEEDS_IMPROVEMENT' : 'UNCLEAR',
+          recommendation: clarityScore > 80 ? 'Documentation is clear' : 
+                        clarityScore > 60 ? 'Improve clarity with better structure and examples' : 'Rewrite documentation'
+        };
+        
+        completenessScores[fileName] = {
+          score: Math.max(0, completenessScore),
+          factors: completenessFactors,
+          status: completenessScore > 80 ? 'COMPLETE' : completenessScore > 60 ? 'NEEDS_IMPROVEMENT' : 'INCOMPLETE',
+          recommendation: completenessScore > 80 ? 'Documentation is complete' : 
+                        completenessScore > 60 ? 'Add missing sections and content' : 'Significantly expand documentation',
+          lastUpdated: daysSinceUpdate,
+          contentLength: contentLength
+        };
+        
+      } catch (error) {
+        console.warn(`⚠️ Could not analyze documentation file: ${filePath}`, error.message);
+      }
+    });
+    
+    return {
+      clarityScores: clarityScores,
+      completenessScores: completenessScores,
+      summary: {
+        clearDocumentation: Object.values(clarityScores).filter(s => s.status === 'CLEAR').length,
+        unclearDocumentation: Object.values(clarityScores).filter(s => s.status === 'UNCLEAR').length,
+        completeDocumentation: Object.values(completenessScores).filter(s => s.status === 'COMPLETE').length,
+        incompleteDocumentation: Object.values(completenessScores).filter(s => s.status === 'INCOMPLETE').length,
+        averageClarityScore: Math.round(
+          Object.values(clarityScores).reduce((sum, s) => sum + s.score, 0) / Object.values(clarityScores).length
+        ),
+        averageCompletenessScore: Math.round(
+          Object.values(completenessScores).reduce((sum, s) => sum + s.score, 0) / Object.values(completenessScores).length
+        )
+      }
+    };
+  }
+
+  // NEW: Track documentation update frequency
+  trackDocumentationUpdateFrequency() {
+    const updateMetrics = {};
+    const documentationFiles = this.getDocumentationFiles();
+    
+    documentationFiles.forEach(filePath => {
+      try {
+        const stats = fs.statSync(filePath);
+        const fileName = path.basename(filePath, '.md');
+        const daysSinceUpdate = Math.floor((Date.now() - stats.mtime.getTime()) / (1000 * 60 * 60 * 24));
+        
+        let updateFrequency = 'RECENT';
+        let updateStatus = 'GOOD';
+        let recommendation = 'Documentation is up to date';
+        
+        if (daysSinceUpdate > 90) {
+          updateFrequency = 'STALE';
+          updateStatus = 'CRITICAL';
+          recommendation = 'Documentation is outdated and needs immediate update';
+        } else if (daysSinceUpdate > 60) {
+          updateFrequency = 'AGING';
+          updateStatus = 'WARNING';
+          recommendation = 'Documentation should be updated soon';
+        } else if (daysSinceUpdate > 30) {
+          updateFrequency = 'MODERATE';
+          updateStatus = 'GOOD';
+          recommendation = 'Documentation is reasonably current';
+        }
+        
+        updateMetrics[fileName] = {
+          daysSinceUpdate: daysSinceUpdate,
+          updateFrequency: updateFrequency,
+          updateStatus: updateStatus,
+          recommendation: recommendation,
+          lastModified: stats.mtime.toISOString()
+        };
+        
+      } catch (error) {
+        console.warn(`⚠️ Could not track update frequency for: ${filePath}`, error.message);
+      }
+    });
+    
+    return {
+      updateMetrics: updateMetrics,
+      summary: {
+        recentUpdates: Object.values(updateMetrics).filter(m => m.updateFrequency === 'RECENT').length,
+        moderateUpdates: Object.values(updateMetrics).filter(m => m.updateFrequency === 'MODERATE').length,
+        agingUpdates: Object.values(updateMetrics).filter(m => m.updateFrequency === 'AGING').length,
+        staleUpdates: Object.values(updateMetrics).filter(m => m.updateFrequency === 'STALE').length,
+        criticalUpdates: Object.values(updateMetrics).filter(m => m.updateStatus === 'CRITICAL').length,
+        averageDaysSinceUpdate: Math.round(
+          Object.values(updateMetrics).reduce((sum, m) => sum + m.daysSinceUpdate, 0) / Object.values(updateMetrics).length
+        )
+      }
+    };
+  }
+
+  // NEW: Identify documentation gaps
+  identifyDocumentationGaps() {
+    const gaps = [];
+    const documentationFiles = this.getDocumentationFiles();
+    const existingDocs = documentationFiles.map(f => path.basename(f, '.md'));
+    
+    // Define expected documentation based on standards
+    const expectedDocs = [
+      'tech-stack', 'code-style', 'best-practices', 'security-compliance',
+      'ci-cd-strategy', 'testing-strategy', 'enforcement', 'mission',
+      'architecture', 'deployment', 'monitoring', 'troubleshooting'
+    ];
+    
+    // Find missing documentation
+    expectedDocs.forEach(expectedDoc => {
+      if (!existingDocs.includes(expectedDoc)) {
+        gaps.push({
+          type: 'MISSING_DOCUMENTATION',
+          document: expectedDoc,
+          priority: 'HIGH',
+          reason: 'Expected documentation is missing',
+          action: `Create ${expectedDoc}.md documentation`,
+          impact: 'HIGH',
+          effort: 'MEDIUM'
+        });
+      }
+    });
+    
+    // Check for incomplete documentation
+    documentationFiles.forEach(filePath => {
+      try {
+        const content = fs.readFileSync(filePath, 'utf8');
+        const fileName = path.basename(filePath, '.md');
+        
+        // Check for minimal content
+        if (content.length < 500) {
+          gaps.push({
+            type: 'INCOMPLETE_DOCUMENTATION',
+            document: fileName,
+            priority: 'MEDIUM',
+            reason: 'Documentation is too short',
+            action: `Expand ${fileName}.md with more detailed content`,
+            impact: 'MEDIUM',
+            effort: 'LOW'
+          });
+        }
+        
+        // Check for missing sections
+        const requiredSections = ['overview', 'requirements', 'implementation'];
+        const missingSections = requiredSections.filter(section => 
+          !content.toLowerCase().includes(section)
+        );
+        
+        if (missingSections.length > 0) {
+          gaps.push({
+            type: 'MISSING_SECTIONS',
+            document: fileName,
+            priority: 'MEDIUM',
+            reason: `Missing sections: ${missingSections.join(', ')}`,
+            action: `Add missing sections to ${fileName}.md`,
+            impact: 'MEDIUM',
+            effort: 'LOW'
+          });
+        }
+        
+      } catch (error) {
+        console.warn(`⚠️ Could not analyze documentation gaps for: ${filePath}`, error.message);
+      }
+    });
+    
+    return {
+      gaps: gaps,
+      summary: {
+        totalGaps: gaps.length,
+        missingDocumentation: gaps.filter(g => g.type === 'MISSING_DOCUMENTATION').length,
+        incompleteDocumentation: gaps.filter(g => g.type === 'INCOMPLETE_DOCUMENTATION').length,
+        missingSections: gaps.filter(g => g.type === 'MISSING_SECTIONS').length,
+        highPriorityGaps: gaps.filter(g => g.priority === 'HIGH').length,
+        mediumPriorityGaps: gaps.filter(g => g.priority === 'MEDIUM').length
+      }
+    };
+  }
+
+  // NEW: Create documentation improvement plans
+  createDocumentationImprovementPlans(clarityScores, completenessScores, updateMetrics, gaps) {
+    const improvementPlans = [];
+    
+    // Plans for unclear documentation
+    Object.entries(clarityScores).forEach(([docName, scores]) => {
+      if (scores.status === 'UNCLEAR') {
+        improvementPlans.push({
+          type: 'IMPROVE_CLARITY',
+          document: docName,
+          priority: 'HIGH',
+          reason: `Documentation is unclear (score: ${scores.score})`,
+          action: 'Rewrite documentation with better structure and examples',
+          impact: 'HIGH',
+          effort: 'MEDIUM',
+          estimatedImprovement: Math.min(100, scores.score + 40)
+        });
+      }
+    });
+    
+    // Plans for incomplete documentation
+    Object.entries(completenessScores).forEach(([docName, scores]) => {
+      if (scores.status === 'INCOMPLETE') {
+        improvementPlans.push({
+          type: 'COMPLETE_DOCUMENTATION',
+          document: docName,
+          priority: 'MEDIUM',
+          reason: `Documentation is incomplete (score: ${scores.score})`,
+          action: 'Add missing sections and expand content',
+          impact: 'MEDIUM',
+          effort: 'LOW',
+          estimatedImprovement: Math.min(100, scores.score + 30)
+        });
+      }
+    });
+    
+    // Plans for outdated documentation
+    Object.entries(updateMetrics).forEach(([docName, metrics]) => {
+      if (metrics.updateStatus === 'CRITICAL') {
+        improvementPlans.push({
+          type: 'UPDATE_DOCUMENTATION',
+          document: docName,
+          priority: 'HIGH',
+          reason: `Documentation is outdated (${metrics.daysSinceUpdate} days old)`,
+          action: 'Update documentation with current information',
+          impact: 'HIGH',
+          effort: 'MEDIUM',
+          estimatedImprovement: 85
+        });
+      }
+    });
+    
+    // Plans for missing documentation
+    gaps.filter(g => g.type === 'MISSING_DOCUMENTATION').forEach(gap => {
+      improvementPlans.push({
+        type: 'CREATE_DOCUMENTATION',
+        document: gap.document,
+        priority: 'HIGH',
+        reason: gap.reason,
+        action: gap.action,
+        impact: 'HIGH',
+        effort: 'MEDIUM',
+        estimatedImprovement: 90
+      });
+    });
+    
+    return {
+      plans: improvementPlans,
+      summary: {
+        totalPlans: improvementPlans.length,
+        highPriority: improvementPlans.filter(p => p.priority === 'HIGH').length,
+        mediumPriority: improvementPlans.filter(p => p.priority === 'MEDIUM').length,
+        improveClarity: improvementPlans.filter(p => p.type === 'IMPROVE_CLARITY').length,
+        completeDocumentation: improvementPlans.filter(p => p.type === 'COMPLETE_DOCUMENTATION').length,
+        updateDocumentation: improvementPlans.filter(p => p.type === 'UPDATE_DOCUMENTATION').length,
+        createDocumentation: improvementPlans.filter(p => p.type === 'CREATE_DOCUMENTATION').length
+      }
+    };
+  }
+
+  // NEW: Get documentation files from .agent-os directory
+  getDocumentationFiles() {
+    const agentOsPath = path.join(__dirname, '..');
+    const documentationFiles = [];
+    
+    try {
+      const files = glob.sync('**/*.md', { cwd: agentOsPath, ignore: ['node_modules/**'] });
+      files.forEach(file => {
+        const fullPath = path.join(agentOsPath, file);
+        documentationFiles.push(fullPath);
+      });
+    } catch (error) {
+      console.warn('⚠️ Could not read documentation files:', error.message);
+    }
+    
+    return documentationFiles;
+  }
+
+  // NEW: Suggest documentation updates based on usage
+  suggestDocumentationUpdatesBasedOnUsage(standardsEffectiveness, documentationQuality) {
+    const suggestions = [];
+    
+    // Analyze standards effectiveness to suggest documentation updates
+    if (standardsEffectiveness.effectivenessAnalysis) {
+      Object.entries(standardsEffectiveness.effectivenessAnalysis.effectivenessMetrics).forEach(([standardName, metrics]) => {
+        if (metrics.status === 'INEFFECTIVE' || metrics.status === 'NEEDS_IMPROVEMENT') {
+          suggestions.push({
+            type: 'UPDATE_DOCUMENTATION_BASED_ON_USAGE',
+            document: `${standardName}.md`,
+            priority: metrics.status === 'INEFFECTIVE' ? 'HIGH' : 'MEDIUM',
+            reason: `Standard has ${metrics.violationRate}% violation rate and ${metrics.usageFrequency} usage`,
+            action: `Update ${standardName}.md to address compliance issues and improve clarity`,
+            impact: 'HIGH',
+            effort: 'MEDIUM',
+            estimatedImprovement: Math.min(100, metrics.score + 30)
+          });
+        }
+      });
+    }
+    
+    // Analyze documentation quality to suggest updates
+    Object.entries(documentationQuality.clarityScores).forEach(([docName, scores]) => {
+      if (scores.status === 'UNCLEAR') {
+        suggestions.push({
+          type: 'IMPROVE_DOCUMENTATION_CLARITY',
+          document: `${docName}.md`,
+          priority: 'HIGH',
+          reason: `Documentation is unclear (score: ${scores.score})`,
+          action: `Rewrite ${docName}.md with better structure and examples`,
+          impact: 'HIGH',
+          effort: 'MEDIUM',
+          estimatedImprovement: Math.min(100, scores.score + 40)
+        });
+      }
+    });
+    
+    Object.entries(documentationQuality.completenessScores).forEach(([docName, scores]) => {
+      if (scores.status === 'INCOMPLETE') {
+        suggestions.push({
+          type: 'COMPLETE_DOCUMENTATION',
+          document: `${docName}.md`,
+          priority: 'MEDIUM',
+          reason: `Documentation is incomplete (score: ${scores.score})`,
+          action: `Add missing sections and expand content in ${docName}.md`,
+          impact: 'MEDIUM',
+          effort: 'LOW',
+          estimatedImprovement: Math.min(100, scores.score + 30)
+        });
+      }
+    });
+    
+    return {
+      suggestions: suggestions,
+      summary: {
+        totalSuggestions: suggestions.length,
+        highPriority: suggestions.filter(s => s.priority === 'HIGH').length,
+        mediumPriority: suggestions.filter(s => s.priority === 'MEDIUM').length,
+        updateBasedOnUsage: suggestions.filter(s => s.type === 'UPDATE_DOCUMENTATION_BASED_ON_USAGE').length,
+        improveClarity: suggestions.filter(s => s.type === 'IMPROVE_DOCUMENTATION_CLARITY').length,
+        completeDocumentation: suggestions.filter(s => s.type === 'COMPLETE_DOCUMENTATION').length
+      }
+    };
+  }
+
+  // NEW: Identify missing documentation sections
+  identifyMissingDocumentationSections() {
+    const missingSections = [];
+    const documentationFiles = this.getDocumentationFiles();
+    
+    // Define standard sections that should be present in documentation
+    const standardSections = [
+      'overview', 'requirements', 'implementation', 'examples', 'configuration',
+      'troubleshooting', 'references', 'changelog', 'contributing'
+    ];
+    
+    documentationFiles.forEach(filePath => {
+      try {
+        const content = fs.readFileSync(filePath, 'utf8');
+        const fileName = path.basename(filePath, '.md');
+        
+        // Check for missing standard sections
+        const missingSectionsForFile = standardSections.filter(section => 
+          !content.toLowerCase().includes(section)
+        );
+        
+        if (missingSectionsForFile.length > 0) {
+          missingSections.push({
+            document: fileName,
+            missingSections: missingSectionsForFile,
+            priority: missingSectionsForFile.length > 3 ? 'HIGH' : 'MEDIUM',
+            reason: `Missing sections: ${missingSectionsForFile.join(', ')}`,
+            action: `Add missing sections to ${fileName}.md`,
+            impact: 'MEDIUM',
+            effort: 'LOW'
+          });
+        }
+        
+        // Check for minimal content
+        if (content.length < 500) {
+          missingSections.push({
+            document: fileName,
+            missingSections: ['general_content'],
+            priority: 'MEDIUM',
+            reason: 'Documentation is too short',
+            action: `Expand ${fileName}.md with more detailed content`,
+            impact: 'MEDIUM',
+            effort: 'LOW'
+          });
+        }
+        
+      } catch (error) {
+        console.warn(`⚠️ Could not analyze missing sections for: ${filePath}`, error.message);
+      }
+    });
+    
+    return {
+      missingSections: missingSections,
+      summary: {
+        totalDocumentsWithMissingSections: missingSections.length,
+        highPriority: missingSections.filter(s => s.priority === 'HIGH').length,
+        mediumPriority: missingSections.filter(s => s.priority === 'MEDIUM').length,
+        averageMissingSections: Math.round(
+          missingSections.reduce((sum, s) => sum + s.missingSections.length, 0) / Math.max(missingSections.length, 1)
+        )
+      }
+    };
+  }
+
+  // NEW: Create documentation templates based on patterns
+  createDocumentationTemplatesBasedOnPatterns() {
+    const templates = {};
+    const documentationFiles = this.getDocumentationFiles();
+    
+    // Analyze existing documentation to identify patterns
+    const sectionPatterns = {};
+    const contentPatterns = {};
+    
+    documentationFiles.forEach(filePath => {
+      try {
+        const content = fs.readFileSync(filePath, 'utf8');
+        const fileName = path.basename(filePath, '.md');
+        
+        // Extract section patterns
+        const headers = content.match(/^#{1,6}\s+(.+)$/gm) || [];
+        const sections = headers.map(header => header.replace(/^#{1,6}\s+/, '').toLowerCase());
+        
+        if (sections.length > 0) {
+          sectionPatterns[fileName] = sections;
+        }
+        
+        // Extract content patterns
+        const codeBlocks = content.match(/```[\s\S]*?```/g) || [];
+        const lists = content.match(/^[\s]*[-*+]\s+.+$/gm) || [];
+        const links = content.match(/\[([^\]]+)\]\(([^)]+)\)/g) || [];
+        
+        contentPatterns[fileName] = {
+          codeBlocks: codeBlocks.length,
+          lists: lists.length,
+          links: links.length,
+          totalLength: content.length
+        };
+        
+      } catch (error) {
+        console.warn(`⚠️ Could not analyze patterns for: ${filePath}`, error.message);
+      }
+    });
+    
+    // Generate templates based on successful patterns
+    const successfulDocs = Object.entries(contentPatterns)
+      .filter(([doc, patterns]) => patterns.codeBlocks > 0 && patterns.lists > 5 && patterns.totalLength > 1000)
+      .sort((a, b) => b[1].totalLength - a[1].totalLength);
+    
+    if (successfulDocs.length > 0) {
+      const bestDoc = successfulDocs[0][0];
+      const bestSections = sectionPatterns[bestDoc] || [];
+      
+      templates.standardTemplate = {
+        name: 'Standard Documentation Template',
+        basedOn: bestDoc,
+        sections: bestSections,
+        recommendedStructure: [
+          '# Overview',
+          '# Requirements', 
+          '# Implementation',
+          '# Examples',
+          '# Configuration',
+          '# Troubleshooting',
+          '# References'
+        ],
+        contentGuidelines: {
+          minCodeBlocks: 2,
+          minLists: 5,
+          minLength: 1000,
+          includeLinks: true
+        }
+      };
+    }
+    
+    // Generate specialized templates
+    templates.technicalTemplate = {
+      name: 'Technical Documentation Template',
+      sections: [
+        '# Overview',
+        '# Architecture',
+        '# Implementation',
+        '# Configuration',
+        '# API Reference',
+        '# Examples',
+        '# Troubleshooting'
+      ],
+      contentGuidelines: {
+        minCodeBlocks: 3,
+        minLists: 8,
+        minLength: 1500,
+        includeLinks: true
+      }
+    };
+    
+    templates.userGuideTemplate = {
+      name: 'User Guide Template',
+      sections: [
+        '# Overview',
+        '# Getting Started',
+        '# Features',
+        '# Usage Examples',
+        '# Configuration',
+        '# Troubleshooting',
+        '# FAQ'
+      ],
+      contentGuidelines: {
+        minCodeBlocks: 1,
+        minLists: 10,
+        minLength: 800,
+        includeLinks: true
+      }
+    };
+    
+    return {
+      templates: templates,
+      patterns: {
+        sectionPatterns: sectionPatterns,
+        contentPatterns: contentPatterns
+      },
+      summary: {
+        totalTemplates: Object.keys(templates).length,
+        successfulPatterns: successfulDocs.length,
+        averageCodeBlocks: Math.round(
+          Object.values(contentPatterns).reduce((sum, p) => sum + p.codeBlocks, 0) / Object.values(contentPatterns).length
+        ),
+        averageLists: Math.round(
+          Object.values(contentPatterns).reduce((sum, p) => sum + p.lists, 0) / Object.values(contentPatterns).length
+        )
+      }
+    };
+  }
+
+  // NEW: Implement documentation validation
+  implementDocumentationValidation() {
+    const validationResults = {};
+    const documentationFiles = this.getDocumentationFiles();
+    
+    // Define validation rules
+    const validationRules = {
+      minLength: 500,
+      minSections: 3,
+      minCodeBlocks: 1,
+      minLists: 3,
+      requireOverview: true,
+      requireExamples: true,
+      maxDaysSinceUpdate: 90
+    };
+    
+    documentationFiles.forEach(filePath => {
+      try {
+        const content = fs.readFileSync(filePath, 'utf8');
+        const fileName = path.basename(filePath, '.md');
+        const stats = fs.statSync(filePath);
+        const daysSinceUpdate = Math.floor((Date.now() - stats.mtime.getTime()) / (1000 * 60 * 60 * 24));
+        
+        const validation = {
+          passed: true,
+          errors: [],
+          warnings: [],
+          score: 100
+        };
+        
+        // Validate content length
+        if (content.length < validationRules.minLength) {
+          validation.passed = false;
+          validation.errors.push(`Content too short (${content.length} chars, minimum ${validationRules.minLength})`);
+          validation.score -= 20;
+        }
+        
+        // Validate sections
+        const headers = content.match(/^#{1,6}\s+(.+)$/gm) || [];
+        if (headers.length < validationRules.minSections) {
+          validation.warnings.push(`Few sections (${headers.length}, recommended ${validationRules.minSections})`);
+          validation.score -= 10;
+        }
+        
+        // Validate code blocks
+        const codeBlocks = content.match(/```[\s\S]*?```/g) || [];
+        if (codeBlocks.length < validationRules.minCodeBlocks) {
+          validation.warnings.push(`Few code examples (${codeBlocks.length}, recommended ${validationRules.minCodeBlocks})`);
+          validation.score -= 10;
+        }
+        
+        // Validate lists
+        const lists = content.match(/^[\s]*[-*+]\s+.+$/gm) || [];
+        if (lists.length < validationRules.minLists) {
+          validation.warnings.push(`Few structured lists (${lists.length}, recommended ${validationRules.minLists})`);
+          validation.score -= 5;
+        }
+        
+        // Validate required sections
+        if (validationRules.requireOverview && !content.toLowerCase().includes('overview')) {
+          validation.warnings.push('Missing overview section');
+          validation.score -= 5;
+        }
+        
+        if (validationRules.requireExamples && !content.toLowerCase().includes('example')) {
+          validation.warnings.push('Missing examples section');
+          validation.score -= 5;
+        }
+        
+        // Validate update frequency
+        if (daysSinceUpdate > validationRules.maxDaysSinceUpdate) {
+          validation.warnings.push(`Documentation outdated (${daysSinceUpdate} days old)`);
+          validation.score -= 15;
+        }
+        
+        validation.score = Math.max(0, validation.score);
+        validation.status = validation.score > 80 ? 'VALID' : validation.score > 60 ? 'NEEDS_IMPROVEMENT' : 'INVALID';
+        
+        validationResults[fileName] = validation;
+        
+      } catch (error) {
+        console.warn(`⚠️ Could not validate documentation: ${filePath}`, error.message);
+      }
+    });
+    
+    return {
+      validationResults: validationResults,
+      summary: {
+        totalDocuments: Object.keys(validationResults).length,
+        validDocuments: Object.values(validationResults).filter(v => v.status === 'VALID').length,
+        needsImprovement: Object.values(validationResults).filter(v => v.status === 'NEEDS_IMPROVEMENT').length,
+        invalidDocuments: Object.values(validationResults).filter(v => v.status === 'INVALID').length,
+        averageScore: Math.round(
+          Object.values(validationResults).reduce((sum, v) => sum + v.score, 0) / Object.values(validationResults).length
+        )
+      }
+    };
+  }
+
+  // NEW: Implement drill-down capabilities
+  implementDrillDownCapabilities(analyticsData) {
+    const drillDownData = {
+      violations: {
+        byFile: this.drillDownViolationsByFile(),
+        byType: this.drillDownViolationsByType(),
+        bySeverity: this.drillDownViolationsBySeverity(),
+        byStandard: this.drillDownViolationsByStandard()
+      },
+      performance: {
+        byFileType: this.drillDownPerformanceByFileType(),
+        byValidationType: this.drillDownPerformanceByValidationType(),
+        byTimeRange: this.drillDownPerformanceByTimeRange()
+      },
+      standards: {
+        byEffectiveness: this.drillDownStandardsByEffectiveness(),
+        byUsage: this.drillDownStandardsByUsage(),
+        byViolationRate: this.drillDownStandardsByViolationRate()
+      },
+      documentation: {
+        byQuality: this.drillDownDocumentationByQuality(),
+        byUpdateFrequency: this.drillDownDocumentationByUpdateFrequency(),
+        byCompleteness: this.drillDownDocumentationByCompleteness()
+      }
+    };
+    
+    return drillDownData;
+  }
+
+  // Drill-down helper methods
+  drillDownViolationsByFile() {
+    const violationsByFile = {};
+    
+    this.violations.forEach(violation => {
+      if (!violationsByFile[violation.file]) {
+        violationsByFile[violation.file] = {
+          totalViolations: 0,
+          criticalViolations: 0,
+          warningViolations: 0,
+          violations: []
+        };
+      }
+      
+      violationsByFile[violation.file].totalViolations++;
+      violationsByFile[violation.file].violations.push(violation);
+      
+      if (violation.severity === 'CRITICAL') {
+        violationsByFile[violation.file].criticalViolations++;
+      } else {
+        violationsByFile[violation.file].warningViolations++;
+      }
+    });
+    
+    return violationsByFile;
+  }
+
+  drillDownViolationsByType() {
+    const violationsByType = {};
+    
+    this.violations.forEach(violation => {
+      const type = violation.type || 'UNKNOWN';
+      if (!violationsByType[type]) {
+        violationsByType[type] = {
+          count: 0,
+          files: new Set(),
+          severity: { CRITICAL: 0, WARNING: 0 }
+        };
+      }
+      
+      violationsByType[type].count++;
+      violationsByType[type].files.add(violation.file);
+      violationsByType[type].severity[violation.severity]++;
+    });
+    
+    // Convert Sets to arrays for JSON serialization
+    Object.values(violationsByType).forEach(type => {
+      type.files = Array.from(type.files);
+    });
+    
+    return violationsByType;
+  }
+
+  drillDownViolationsBySeverity() {
+    const violationsBySeverity = {
+      CRITICAL: { count: 0, files: new Set(), types: {} },
+      WARNING: { count: 0, files: new Set(), types: {} }
+    };
+    
+    this.violations.forEach(violation => {
+      const severity = violation.severity;
+      violationsBySeverity[severity].count++;
+      violationsBySeverity[severity].files.add(violation.file);
+      
+      const type = violation.type || 'UNKNOWN';
+      if (!violationsBySeverity[severity].types[type]) {
+        violationsBySeverity[severity].types[type] = 0;
+      }
+      violationsBySeverity[severity].types[type]++;
+    });
+    
+    // Convert Sets to arrays
+    Object.values(violationsBySeverity).forEach(severity => {
+      severity.files = Array.from(severity.files);
+    });
+    
+    return violationsBySeverity;
+  }
+
+  drillDownViolationsByStandard() {
+    const violationsByStandard = {};
+    
+    this.violations.forEach(violation => {
+      const standard = violation.standard || 'UNKNOWN';
+      if (!violationsByStandard[standard]) {
+        violationsByStandard[standard] = {
+          count: 0,
+          files: new Set(),
+          severity: { CRITICAL: 0, WARNING: 0 }
+        };
+      }
+      
+      violationsByStandard[standard].count++;
+      violationsByStandard[standard].files.add(violation.file);
+      violationsByStandard[standard].severity[violation.severity]++;
+    });
+    
+    // Convert Sets to arrays
+    Object.values(violationsByStandard).forEach(standard => {
+      standard.files = Array.from(standard.files);
+    });
+    
+    return violationsByStandard;
+  }
+
+  drillDownPerformanceByFileType() {
+    const performanceByFileType = {};
+    
+    Object.entries(this.metrics.fileProcessingTimes).forEach(([filePath, data]) => {
+      if (filePath !== 'fileTypes') {
+        const fileExt = path.extname(filePath);
+        const fileType = fileExt || 'NO_EXTENSION';
+        
+        if (!performanceByFileType[fileType]) {
+          performanceByFileType[fileType] = {
+            totalTime: 0,
+            count: 0,
+            averageTime: 0,
+            minTime: Infinity,
+            maxTime: 0
+          };
+        }
+        
+        performanceByFileType[fileType].totalTime += data.processingTime;
+        performanceByFileType[fileType].count++;
+        performanceByFileType[fileType].minTime = Math.min(performanceByFileType[fileType].minTime, data.processingTime);
+        performanceByFileType[fileType].maxTime = Math.max(performanceByFileType[fileType].maxTime, data.processingTime);
+      }
+    });
+    
+    // Calculate averages
+    Object.values(performanceByFileType).forEach(type => {
+      type.averageTime = type.count > 0 ? type.totalTime / type.count : 0;
+      type.minTime = type.minTime === Infinity ? 0 : type.minTime;
+    });
+    
+    return performanceByFileType;
+  }
+
+  drillDownPerformanceByValidationType() {
+    return this.metrics.validationExecutionTimes;
+  }
+
+  drillDownPerformanceByTimeRange() {
+    const timeRanges = {
+      '0-100ms': { count: 0, totalTime: 0 },
+      '100-500ms': { count: 0, totalTime: 0 },
+      '500ms-1s': { count: 0, totalTime: 0 },
+      '1s+': { count: 0, totalTime: 0 }
+    };
+    
+    Object.entries(this.metrics.validationExecutionTimes).forEach(([type, stats]) => {
+      const avgTime = stats.averageTime;
+      
+      if (avgTime <= 100) {
+        timeRanges['0-100ms'].count += stats.count;
+        timeRanges['0-100ms'].totalTime += stats.totalTime;
+      } else if (avgTime <= 500) {
+        timeRanges['100-500ms'].count += stats.count;
+        timeRanges['100-500ms'].totalTime += stats.totalTime;
+      } else if (avgTime <= 1000) {
+        timeRanges['500ms-1s'].count += stats.count;
+        timeRanges['500ms-1s'].totalTime += stats.totalTime;
+      } else {
+        timeRanges['1s+'].count += stats.count;
+        timeRanges['1s+'].totalTime += stats.totalTime;
+      }
+    });
+    
+    return timeRanges;
+  }
+
+  drillDownStandardsByEffectiveness() {
+    const standardsEffectiveness = this.calculateStandardsEffectiveness();
+    return standardsEffectiveness.effectivenessAnalysis?.effectivenessMetrics || {};
+  }
+
+  drillDownStandardsByUsage() {
+    const standardsEffectiveness = this.calculateStandardsEffectiveness();
+    return standardsEffectiveness.referenceTracking || {};
+  }
+
+  drillDownStandardsByViolationRate() {
+    const standardsEffectiveness = this.calculateStandardsEffectiveness();
+    return standardsEffectiveness.ranking || [];
+  }
+
+  drillDownDocumentationByQuality() {
+    const documentationQuality = this.measureDocumentationClarityAndCompleteness();
+    return {
+      clarity: documentationQuality.clarityScores,
+      completeness: documentationQuality.completenessScores
+    };
+  }
+
+  drillDownDocumentationByUpdateFrequency() {
+    return this.trackDocumentationUpdateFrequency();
+  }
+
+  drillDownDocumentationByCompleteness() {
+    const documentationQuality = this.measureDocumentationClarityAndCompleteness();
+    return documentationQuality.completenessScores;
+  }
+
+  // NEW: Create exportable reports
+  createExportableReports(analyticsData) {
+    const reports = {
+      csv: this.createCSVReports(analyticsData),
+      json: this.createJSONReports(analyticsData),
+      html: this.createHTMLReports(analyticsData),
+      markdown: this.createMarkdownReports(analyticsData)
+    };
+    
+    return reports;
+  }
+
+  createCSVReports(analyticsData) {
+    const csvReports = {};
+    
+    // Violations CSV
+    let violationsCSV = 'File,Type,Severity,Message,Line,Standard\n';
+    this.violations.forEach(violation => {
+      violationsCSV += `"${violation.file}","${violation.type}","${violation.severity}","${violation.message}","${violation.line}","${violation.standard}"\n`;
+    });
+    csvReports.violations = violationsCSV;
+    
+    // Performance CSV
+    let performanceCSV = 'File,ProcessingTime,FileSize,FileType\n';
+    Object.entries(this.metrics.fileProcessingTimes).forEach(([filePath, data]) => {
+      if (filePath !== 'fileTypes') {
+        performanceCSV += `"${filePath}","${data.processingTime}","${data.fileSize}","${path.extname(filePath)}"\n`;
+      }
+    });
+    csvReports.performance = performanceCSV;
+    
+    // Standards CSV
+    const standardsEffectiveness = this.calculateStandardsEffectiveness();
+    let standardsCSV = 'Standard,ViolationRate,TotalChecks,TotalViolations,Status\n';
+    standardsEffectiveness.ranking.forEach(standard => {
+      standardsCSV += `"${standard.name}","${standard.violationRate}","${standard.totalChecks}","${standard.totalViolations}","${standard.status}"\n`;
+    });
+    csvReports.standards = standardsCSV;
+    
+    return csvReports;
+  }
+
+  createJSONReports(analyticsData) {
+    return {
+      summary: {
+        timestamp: new Date().toISOString(),
+        totalFiles: this.totalChecks,
+        totalViolations: this.violations.length,
+        complianceScore: this.complianceScore,
+        executionTime: this.metrics.executionTime
+      },
+      violations: this.violations,
+      performance: this.metrics.fileProcessingTimes,
+      standards: this.calculateStandardsEffectiveness(),
+      documentation: analyticsData.documentationQuality
+    };
+  }
+
+  createHTMLReports(analyticsData) {
+    const htmlTemplate = `
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compliance Analytics Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .summary { background: #f5f5f5; padding: 20px; border-radius: 5px; }
+        .section { margin: 20px 0; }
+        .metric { display: inline-block; margin: 10px; padding: 10px; background: #fff; border: 1px solid #ddd; }
+        .critical { color: #d32f2f; }
+        .warning { color: #f57c00; }
+        .success { color: #388e3c; }
+    </style>
+</head>
+<body>
+    <h1>Compliance Analytics Report</h1>
+    <div class="summary">
+        <h2>Summary</h2>
+        <div class="metric">Total Files: ${this.totalChecks}</div>
+        <div class="metric">Total Violations: ${this.violations.length}</div>
+        <div class="metric">Compliance Score: ${this.complianceScore}%</div>
+        <div class="metric">Execution Time: ${this.metrics.executionTime}ms</div>
+    </div>
+    
+    <div class="section">
+        <h2>Violations by Type</h2>
+        ${this.generateViolationsHTML()}
+    </div>
+    
+    <div class="section">
+        <h2>Performance Metrics</h2>
+        ${this.generatePerformanceHTML()}
+    </div>
+    
+    <div class="section">
+        <h2>Standards Effectiveness</h2>
+        ${this.generateStandardsHTML()}
+    </div>
+</body>
+</html>`;
+    
+    return {
+      main: htmlTemplate,
+      violations: this.generateViolationsHTML(),
+      performance: this.generatePerformanceHTML(),
+      standards: this.generateStandardsHTML()
+    };
+  }
+
+  createMarkdownReports(analyticsData) {
+    let markdown = `# Compliance Analytics Report\n\n`;
+    markdown += `**Generated:** ${new Date().toISOString()}\n\n`;
+    
+    // Summary
+    markdown += `## Summary\n\n`;
+    markdown += `- **Total Files:** ${this.totalChecks}\n`;
+    markdown += `- **Total Violations:** ${this.violations.length}\n`;
+    markdown += `- **Compliance Score:** ${this.complianceScore}%\n`;
+    markdown += `- **Execution Time:** ${this.metrics.executionTime}ms\n\n`;
+    
+    // Violations
+    markdown += `## Violations\n\n`;
+    this.violations.forEach(violation => {
+      markdown += `- **${violation.file}** (${violation.severity}): ${violation.message}\n`;
+    });
+    markdown += `\n`;
+    
+    // Performance
+    markdown += `## Performance\n\n`;
+    const avgProcessingTime = this.calculateAverageProcessingTime();
+    markdown += `- **Average Processing Time:** ${avgProcessingTime.overallAverage}ms\n`;
+    markdown += `- **Total Processing Time:** ${avgProcessingTime.totalTime}ms\n\n`;
+    
+    // Standards
+    markdown += `## Standards Effectiveness\n\n`;
+    const standardsEffectiveness = this.calculateStandardsEffectiveness();
+    standardsEffectiveness.ranking.slice(0, 5).forEach(standard => {
+      markdown += `- **${standard.name}:** ${standard.violationRate}% violation rate\n`;
+    });
+    
+    return {
+      main: markdown,
+      summary: markdown.split('##')[0],
+      violations: markdown.split('## Violations')[1]?.split('##')[0] || '',
+      performance: markdown.split('## Performance')[1]?.split('##')[0] || '',
+      standards: markdown.split('## Standards')[1] || ''
+    };
+  }
+
+  // Helper methods for HTML generation
+  generateViolationsHTML() {
+    const violationsByType = this.drillDownViolationsByType();
+    let html = '<table border="1"><tr><th>Type</th><th>Count</th><th>Files</th><th>Critical</th><th>Warning</th></tr>';
+    
+    Object.entries(violationsByType).forEach(([type, data]) => {
+      html += `<tr><td>${type}</td><td>${data.count}</td><td>${data.files.length}</td><td class="critical">${data.severity.CRITICAL}</td><td class="warning">${data.severity.WARNING}</td></tr>`;
+    });
+    
+    html += '</table>';
+    return html;
+  }
+
+  generatePerformanceHTML() {
+    const performanceByFileType = this.drillDownPerformanceByFileType();
+    let html = '<table border="1"><tr><th>File Type</th><th>Count</th><th>Avg Time (ms)</th><th>Total Time (ms)</th></tr>';
+    
+    Object.entries(performanceByFileType).forEach(([fileType, data]) => {
+      html += `<tr><td>${fileType}</td><td>${data.count}</td><td>${Math.round(data.averageTime)}</td><td>${Math.round(data.totalTime)}</td></tr>`;
+    });
+    
+    html += '</table>';
+    return html;
+  }
+
+  generateStandardsHTML() {
+    const standardsEffectiveness = this.calculateStandardsEffectiveness();
+    let html = '<table border="1"><tr><th>Standard</th><th>Violation Rate</th><th>Status</th><th>Total Checks</th></tr>';
+    
+    standardsEffectiveness.ranking.slice(0, 10).forEach(standard => {
+      const statusClass = standard.status === 'CRITICAL' ? 'critical' : standard.status === 'WARNING' ? 'warning' : 'success';
+      html += `<tr><td>${standard.name}</td><td>${standard.violationRate}%</td><td class="${statusClass}">${standard.status}</td><td>${standard.totalChecks}</td></tr>`;
+    });
+    
+    html += '</table>';
+    return html;
+  }
+
+  // NEW: Create prioritized action items
+  createPrioritizedActionItems() {
+    const actionItems = [];
+    
+    // Collect all suggestions from various sources
+    const improvementSuggestions = this.generateImprovementSuggestions();
+    const ruleBasedSuggestions = this.generateRuleBasedSuggestions();
+    const standardsEffectiveness = this.calculateStandardsEffectiveness();
+    const documentationQuality = this.measureDocumentationClarityAndCompleteness();
+    
+    // Add improvement suggestions
+    improvementSuggestions.forEach(suggestion => {
+      actionItems.push({
+        id: `improvement_${actionItems.length}`,
+        type: 'IMPROVEMENT',
+        source: 'violation_analysis',
+        priority: suggestion.priority,
+        category: suggestion.category,
+        message: suggestion.message,
+        action: suggestion.action,
+        impact: suggestion.impact,
+        effort: suggestion.effort,
+        estimatedTime: this.estimateActionTime(suggestion.effort),
+        estimatedImpact: this.estimateActionImpact(suggestion.impact)
+      });
+    });
+    
+    // Add rule-based suggestions
+    ruleBasedSuggestions.forEach(suggestion => {
+      actionItems.push({
+        id: `rule_${actionItems.length}`,
+        type: 'RULE_BASED',
+        source: 'pattern_analysis',
+        priority: suggestion.priority,
+        category: suggestion.category,
+        message: suggestion.message,
+        action: suggestion.action,
+        impact: suggestion.impact,
+        effort: suggestion.effort,
+        estimatedTime: this.estimateActionTime(suggestion.effort),
+        estimatedImpact: this.estimateActionImpact(suggestion.impact)
+      });
+    });
+    
+    // Add standards effectiveness suggestions
+    if (standardsEffectiveness.improvementSuggestions) {
+      standardsEffectiveness.improvementSuggestions.suggestions.forEach(suggestion => {
+        actionItems.push({
+          id: `standards_${actionItems.length}`,
+          type: 'STANDARDS_IMPROVEMENT',
+          source: 'standards_analysis',
+          priority: suggestion.priority,
+          category: 'Standards',
+          message: suggestion.reason,
+          action: suggestion.action,
+          impact: suggestion.impact,
+          effort: suggestion.effort,
+          estimatedTime: this.estimateActionTime(suggestion.effort),
+          estimatedImpact: this.estimateActionImpact(suggestion.impact)
+        });
+      });
+    }
+    
+    // Add documentation suggestions
+    Object.entries(documentationQuality.clarityScores).forEach(([docName, scores]) => {
+      if (scores.status === 'UNCLEAR') {
+        actionItems.push({
+          id: `doc_clarity_${actionItems.length}`,
+          type: 'DOCUMENTATION',
+          source: 'documentation_analysis',
+          priority: 'HIGH',
+          category: 'Documentation',
+          message: `Documentation ${docName} is unclear (score: ${scores.score})`,
+          action: `Rewrite ${docName} documentation with better structure and examples`,
+          impact: 'HIGH',
+          effort: 'MEDIUM',
+          estimatedTime: this.estimateActionTime('MEDIUM'),
+          estimatedImpact: this.estimateActionImpact('HIGH')
+        });
+      }
+    });
+    
+    // Sort by priority and impact
+    actionItems.sort((a, b) => {
+      const priorityOrder = { 'CRITICAL': 4, 'HIGH': 3, 'MEDIUM': 2, 'LOW': 1 };
+      const impactOrder = { 'HIGH': 3, 'MEDIUM': 2, 'LOW': 1 };
+      
+      if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
+        return priorityOrder[b.priority] - priorityOrder[a.priority];
+      }
+      
+      return impactOrder[b.impact] - impactOrder[a.impact];
+    });
+    
+    return {
+      actionItems: actionItems,
+      summary: {
+        totalItems: actionItems.length,
+        criticalPriority: actionItems.filter(item => item.priority === 'CRITICAL').length,
+        highPriority: actionItems.filter(item => item.priority === 'HIGH').length,
+        mediumPriority: actionItems.filter(item => item.priority === 'MEDIUM').length,
+        lowPriority: actionItems.filter(item => item.priority === 'LOW').length,
+        highImpact: actionItems.filter(item => item.impact === 'HIGH').length,
+        estimatedTotalTime: actionItems.reduce((sum, item) => sum + item.estimatedTime, 0),
+        estimatedTotalImpact: actionItems.reduce((sum, item) => sum + item.estimatedImpact, 0)
+      }
+    };
+  }
+
+  // NEW: Implement impact assessment for suggestions
+  implementImpactAssessmentForSuggestions(actionItems) {
+    const impactAssessment = {
+      overallImpact: {
+        complianceScore: this.assessComplianceScoreImpact(actionItems),
+        performanceImpact: this.assessPerformanceImpact(actionItems),
+        standardsImpact: this.assessStandardsImpact(actionItems),
+        documentationImpact: this.assessDocumentationImpact(actionItems)
+      },
+      individualAssessments: actionItems.map(item => ({
+        id: item.id,
+        impact: this.assessIndividualImpact(item),
+        riskAssessment: this.assessRiskForAction(item),
+        successProbability: this.assessSuccessProbability(item),
+        dependencies: this.identifyDependencies(item)
+      }))
+    };
+    
+    return impactAssessment;
+  }
+
+  // NEW: Build suggestion validation system
+  buildSuggestionValidationSystem(actionItems) {
+    const validationResults = {
+      validatedSuggestions: [],
+      rejectedSuggestions: [],
+      needsReview: [],
+      summary: {
+        totalValidated: 0,
+        totalRejected: 0,
+        totalNeedsReview: 0,
+        validationScore: 0
+      }
+    };
+    
+    actionItems.forEach(item => {
+      const validation = this.validateSuggestion(item);
+      
+      if (validation.isValid) {
+        validationResults.validatedSuggestions.push({
+          ...item,
+          validationScore: validation.score,
+          validationNotes: validation.notes
+        });
+        validationResults.summary.totalValidated++;
+      } else if (validation.needsReview) {
+        validationResults.needsReview.push({
+          ...item,
+          validationScore: validation.score,
+          validationNotes: validation.notes,
+          reviewReason: validation.reviewReason
+        });
+        validationResults.summary.totalNeedsReview++;
+      } else {
+        validationResults.rejectedSuggestions.push({
+          ...item,
+          validationScore: validation.score,
+          validationNotes: validation.notes,
+          rejectionReason: validation.rejectionReason
+        });
+        validationResults.summary.totalRejected++;
+      }
+    });
+    
+    // Calculate overall validation score
+    const totalItems = actionItems.length;
+    validationResults.summary.validationScore = totalItems > 0 ? 
+      Math.round((validationResults.summary.totalValidated / totalItems) * 100) : 0;
+    
+    return validationResults;
+  }
+
+  // Helper methods for action items
+  estimateActionTime(effort) {
+    const timeEstimates = {
+      'LOW': 1,      // 1 hour
+      'MEDIUM': 4,   // 4 hours
+      'HIGH': 16     // 16 hours (2 days)
+    };
+    return timeEstimates[effort] || 4;
+  }
+
+  estimateActionImpact(impact) {
+    const impactScores = {
+      'LOW': 10,     // 10% improvement
+      'MEDIUM': 25,  // 25% improvement
+      'HIGH': 50     // 50% improvement
+    };
+    return impactScores[impact] || 25;
+  }
+
+  assessComplianceScoreImpact(actionItems) {
+    const highImpactItems = actionItems.filter(item => item.impact === 'HIGH');
+    const mediumImpactItems = actionItems.filter(item => item.impact === 'MEDIUM');
+    
+    const estimatedImprovement = (highImpactItems.length * 50) + (mediumImpactItems.length * 25);
+    const currentScore = this.complianceScore;
+    const potentialScore = Math.min(100, currentScore + estimatedImprovement);
+    
+    return {
+      currentScore: currentScore,
+      potentialScore: potentialScore,
+      estimatedImprovement: estimatedImprovement,
+      improvementPercentage: Math.round((estimatedImprovement / currentScore) * 100)
+    };
+  }
+
+  assessPerformanceImpact(actionItems) {
+    const performanceItems = actionItems.filter(item => 
+      item.category === 'Performance' || item.message.includes('performance')
+    );
+    
+    const totalEstimatedTime = performanceItems.reduce((sum, item) => sum + item.estimatedTime, 0);
+    const totalEstimatedImpact = performanceItems.reduce((sum, item) => sum + item.estimatedImpact, 0);
+    
+    return {
+      itemsCount: performanceItems.length,
+      estimatedTimeInvestment: totalEstimatedTime,
+      estimatedPerformanceGain: totalEstimatedImpact,
+      roi: totalEstimatedTime > 0 ? Math.round(totalEstimatedImpact / totalEstimatedTime * 100) / 100 : 0
+    };
+  }
+
+  assessStandardsImpact(actionItems) {
+    const standardsItems = actionItems.filter(item => 
+      item.type === 'STANDARDS_IMPROVEMENT' || item.category === 'Standards'
+    );
+    
+    return {
+      itemsCount: standardsItems.length,
+      criticalStandards: standardsItems.filter(item => item.priority === 'CRITICAL').length,
+      highPriorityStandards: standardsItems.filter(item => item.priority === 'HIGH').length,
+      estimatedComplianceImprovement: standardsItems.reduce((sum, item) => sum + item.estimatedImpact, 0)
+    };
+  }
+
+  assessDocumentationImpact(actionItems) {
+    const documentationItems = actionItems.filter(item => 
+      item.type === 'DOCUMENTATION' || item.category === 'Documentation'
+    );
+    
+    return {
+      itemsCount: documentationItems.length,
+      clarityImprovements: documentationItems.filter(item => item.message.includes('clarity')).length,
+      completenessImprovements: documentationItems.filter(item => item.message.includes('complete')).length,
+      estimatedQualityImprovement: documentationItems.reduce((sum, item) => sum + item.estimatedImpact, 0)
+    };
+  }
+
+  assessIndividualImpact(item) {
+    const impactFactors = {
+      priority: { 'CRITICAL': 3, 'HIGH': 2, 'MEDIUM': 1, 'LOW': 0.5 },
+      impact: { 'HIGH': 3, 'MEDIUM': 2, 'LOW': 1 },
+      effort: { 'LOW': 1, 'MEDIUM': 0.8, 'HIGH': 0.6 }
+    };
+    
+    const priorityScore = impactFactors.priority[item.priority] || 1;
+    const impactScore = impactFactors.impact[item.impact] || 1;
+    const effortScore = impactFactors.effort[item.effort] || 1;
+    
+    return Math.round((priorityScore * impactScore * effortScore) * 100) / 100;
+  }
+
+  assessRiskForAction(item) {
+    const riskFactors = {
+      'CRITICAL': 'HIGH',
+      'HIGH': 'MEDIUM',
+      'MEDIUM': 'LOW',
+      'LOW': 'LOW'
+    };
+    
+    return {
+      level: riskFactors[item.priority] || 'LOW',
+      factors: [
+        `Priority: ${item.priority}`,
+        `Impact: ${item.impact}`,
+        `Effort: ${item.effort}`
+      ],
+      mitigation: this.suggestRiskMitigation(item)
+    };
+  }
+
+  assessSuccessProbability(item) {
+    const baseProbability = {
+      'LOW': 0.9,    // 90% success rate for low effort
+      'MEDIUM': 0.7, // 70% success rate for medium effort
+      'HIGH': 0.5    // 50% success rate for high effort
+    };
+    
+    const effortProbability = baseProbability[item.effort] || 0.7;
+    const priorityBonus = item.priority === 'CRITICAL' ? 0.1 : 0;
+    const impactBonus = item.impact === 'HIGH' ? 0.05 : 0;
+    
+    return Math.min(0.95, effortProbability + priorityBonus + impactBonus);
+  }
+
+  identifyDependencies(item) {
+    const dependencies = [];
+    
+    // Identify common dependencies based on item type
+    if (item.type === 'DOCUMENTATION') {
+      dependencies.push('Documentation review process');
+      dependencies.push('Content approval workflow');
+    }
+    
+    if (item.type === 'STANDARDS_IMPROVEMENT') {
+      dependencies.push('Standards review committee');
+      dependencies.push('Team training schedule');
+    }
+    
+    if (item.category === 'Performance') {
+      dependencies.push('Performance testing environment');
+      dependencies.push('Monitoring tools setup');
+    }
+    
+    return dependencies;
+  }
+
+  suggestRiskMitigation(item) {
+    const mitigations = {
+      'HIGH': [
+        'Implement in phases',
+        'Create rollback plan',
+        'Monitor closely during implementation'
+      ],
+      'MEDIUM': [
+        'Test in staging environment',
+        'Have backup plan ready'
+      ],
+      'LOW': [
+        'Standard implementation process'
+      ]
+    };
+    
+    const riskLevel = this.assessRiskForAction(item).level;
+    return mitigations[riskLevel] || mitigations['LOW'];
+  }
+
+  validateSuggestion(item) {
+    const validation = {
+      isValid: true,
+      score: 100,
+      notes: [],
+      needsReview: false,
+      reviewReason: null,
+      rejectionReason: null
+    };
+    
+    // Validation rules
+    if (item.estimatedTime > 40) {
+      validation.isValid = false;
+      validation.score -= 30;
+      validation.notes.push('Estimated time too high');
+      validation.rejectionReason = 'Exceeds maximum time allocation';
+    }
+    
+    if (item.impact === 'LOW' && item.effort === 'HIGH') {
+      validation.score -= 20;
+      validation.notes.push('Low impact for high effort');
+      validation.needsReview = true;
+      validation.reviewReason = 'ROI may not justify effort';
+    }
+    
+    if (item.priority === 'CRITICAL' && item.successProbability < 0.6) {
+      validation.score -= 25;
+      validation.notes.push('Critical priority with low success probability');
+      validation.needsReview = true;
+      validation.reviewReason = 'High risk for critical item';
+    }
+    
+    if (item.estimatedImpact < 10) {
+      validation.score -= 15;
+      validation.notes.push('Very low estimated impact');
+    }
+    
+    validation.score = Math.max(0, validation.score);
+    
+    return validation;
   }
 
   // Enhanced: Generate improvement suggestions
