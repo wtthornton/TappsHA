@@ -336,6 +336,536 @@ class StatisticalAnalysis {
       }
     };
   }
+
+  // Identify common violation patterns
+  identifyViolationPatterns(historicalData) {
+    if (!historicalData || historicalData.length === 0) {
+      return {
+        patterns: [],
+        message: 'Insufficient data for pattern analysis'
+      };
+    }
+
+    const patterns = [];
+    const recentData = historicalData.slice(-10); // Analyze last 10 entries
+    
+    // Pattern 1: Consistent violation types
+    const violationCategories = {};
+    recentData.forEach(entry => {
+      if (entry.metrics && entry.metrics.violationCategories) {
+        Object.entries(entry.metrics.violationCategories).forEach(([category, counts]) => {
+          if (!violationCategories[category]) {
+            violationCategories[category] = { CRITICAL: 0, WARNING: 0, total: 0 };
+          }
+          violationCategories[category].CRITICAL += counts.CRITICAL || 0;
+          violationCategories[category].WARNING += counts.WARNING || 0;
+          violationCategories[category].total += (counts.CRITICAL || 0) + (counts.WARNING || 0);
+        });
+      }
+    });
+
+    // Identify dominant violation categories
+    Object.entries(violationCategories).forEach(([category, counts]) => {
+      if (counts.total > 10) { // Threshold for pattern recognition
+        patterns.push({
+          type: 'DOMINANT_CATEGORY',
+          category: category,
+          frequency: counts.total,
+          criticalRate: counts.CRITICAL / counts.total,
+          description: `${category} violations are consistently high (${counts.total} total)`
+        });
+      }
+    });
+
+    // Pattern 2: Compliance score trends
+    const complianceScores = recentData.map(entry => entry.complianceScore);
+    const trend = this.calculateTrend(complianceScores);
+    
+    if (Math.abs(trend) > 5) {
+      patterns.push({
+        type: 'SCORE_TREND',
+        direction: trend > 0 ? 'IMPROVING' : 'DECLINING',
+        magnitude: Math.abs(trend),
+        description: `Compliance score is ${trend > 0 ? 'improving' : 'declining'} by ${Math.abs(trend).toFixed(1)}% per run`
+      });
+    }
+
+    // Pattern 3: Violation count patterns
+    const violationCounts = recentData.map(entry => entry.violations);
+    const avgViolations = this.calculateMean(violationCounts);
+    const violationStdDev = this.calculateStandardDeviation(violationCounts);
+    
+    if (violationStdDev > avgViolations * 0.5) {
+      patterns.push({
+        type: 'VOLATILE_VIOLATIONS',
+        average: avgViolations,
+        volatility: violationStdDev,
+        description: `High volatility in violation counts (avg: ${avgViolations.toFixed(1)}, std dev: ${violationStdDev.toFixed(1)})`
+      });
+    }
+
+    // Pattern 4: Critical vs Warning ratio
+    let totalCritical = 0;
+    let totalWarnings = 0;
+    
+    recentData.forEach(entry => {
+      if (entry.criticalViolations) totalCritical += entry.criticalViolations;
+      if (entry.warnings) totalWarnings += entry.warnings;
+    });
+    
+    const criticalRatio = totalCritical / (totalCritical + totalWarnings);
+    if (criticalRatio > 0.1) { // More than 10% are critical
+      patterns.push({
+        type: 'HIGH_CRITICAL_RATIO',
+        ratio: criticalRatio,
+        criticalCount: totalCritical,
+        warningCount: totalWarnings,
+        description: `High ratio of critical violations (${(criticalRatio * 100).toFixed(1)}%)`
+      });
+    }
+
+    return {
+      patterns: patterns,
+      totalPatterns: patterns.length,
+      dominantCategory: patterns.find(p => p.type === 'DOMINANT_CATEGORY')?.category || 'none',
+      trendDirection: patterns.find(p => p.type === 'SCORE_TREND')?.direction || 'stable'
+    };
+  }
+
+  // Enhanced: Detect recurring compliance issues
+  detectRecurringComplianceIssues(historicalData) {
+    if (!historicalData || historicalData.length < 3) {
+      return {
+        recurringIssues: [],
+        message: 'Insufficient data for recurring issue analysis (need at least 3 runs)'
+      };
+    }
+
+    const recurringIssues = [];
+    const recentData = historicalData.slice(-5); // Analyze last 5 runs
+    
+    // Issue 1: Persistent low compliance scores
+    const complianceScores = recentData.map(entry => entry.complianceScore);
+    const avgCompliance = this.calculateMean(complianceScores);
+    const lowComplianceThreshold = 70; // Below 70% is concerning
+    
+    if (avgCompliance < lowComplianceThreshold) {
+      recurringIssues.push({
+        type: 'PERSISTENT_LOW_COMPLIANCE',
+        averageScore: avgCompliance,
+        threshold: lowComplianceThreshold,
+        severity: avgCompliance < 50 ? 'CRITICAL' : avgCompliance < 60 ? 'HIGH' : 'MEDIUM',
+        description: `Consistently low compliance scores (avg: ${avgCompliance.toFixed(1)}%)`,
+        recommendation: 'Review and update coding standards, provide team training'
+      });
+    }
+
+    // Issue 2: Increasing violation trends
+    const violationCounts = recentData.map(entry => entry.violations);
+    const violationTrend = this.calculateTrend(violationCounts);
+    
+    if (violationTrend > 5) { // Increasing by more than 5 violations per run
+      recurringIssues.push({
+        type: 'INCREASING_VIOLATIONS',
+        trend: violationTrend,
+        severity: violationTrend > 10 ? 'HIGH' : 'MEDIUM',
+        description: `Violations are increasing by ${violationTrend.toFixed(1)} per run`,
+        recommendation: 'Implement stricter code review process, add automated checks'
+      });
+    }
+
+    // Issue 3: High critical violation ratio
+    let totalCritical = 0;
+    let totalViolations = 0;
+    
+    recentData.forEach(entry => {
+      if (entry.criticalViolations) totalCritical += entry.criticalViolations;
+      if (entry.violations) totalViolations += entry.violations;
+    });
+    
+    const criticalRatio = totalViolations > 0 ? totalCritical / totalViolations : 0;
+    if (criticalRatio > 0.15) { // More than 15% are critical
+      recurringIssues.push({
+        type: 'HIGH_CRITICAL_RATIO',
+        ratio: criticalRatio,
+        criticalCount: totalCritical,
+        totalViolations: totalViolations,
+        severity: criticalRatio > 0.25 ? 'CRITICAL' : 'HIGH',
+        description: `High ratio of critical violations (${(criticalRatio * 100).toFixed(1)}%)`,
+        recommendation: 'Prioritize fixing critical issues, implement security training'
+      });
+    }
+
+    // Issue 4: Volatile compliance scores
+    const complianceStdDev = this.calculateStandardDeviation(complianceScores);
+    const complianceVolatility = complianceStdDev / avgCompliance;
+    
+    if (complianceVolatility > 0.2) { // More than 20% volatility
+      recurringIssues.push({
+        type: 'VOLATILE_COMPLIANCE',
+        volatility: complianceVolatility,
+        averageScore: avgCompliance,
+        stdDev: complianceStdDev,
+        severity: complianceVolatility > 0.3 ? 'HIGH' : 'MEDIUM',
+        description: `High compliance score volatility (${(complianceVolatility * 100).toFixed(1)}% variation)`,
+        recommendation: 'Standardize development practices, implement consistent code review'
+      });
+    }
+
+    // Issue 5: Specific violation category persistence
+    const violationCategories = {};
+    recentData.forEach(entry => {
+      if (entry.metrics && entry.metrics.violationCategories) {
+        Object.entries(entry.metrics.violationCategories).forEach(([category, counts]) => {
+          if (!violationCategories[category]) {
+            violationCategories[category] = { total: 0, runs: 0 };
+          }
+          violationCategories[category].total += (counts.CRITICAL || 0) + (counts.WARNING || 0);
+          violationCategories[category].runs++;
+        });
+      }
+    });
+
+    Object.entries(violationCategories).forEach(([category, data]) => {
+      const avgViolationsPerRun = data.total / data.runs;
+      if (avgViolationsPerRun > 10 && data.runs >= 3) { // More than 10 violations per run on average
+        recurringIssues.push({
+          type: 'PERSISTENT_CATEGORY_VIOLATIONS',
+          category: category,
+          averagePerRun: avgViolationsPerRun,
+          totalRuns: data.runs,
+          severity: avgViolationsPerRun > 20 ? 'HIGH' : 'MEDIUM',
+          description: `Persistent ${category} violations (${avgViolationsPerRun.toFixed(1)} avg per run)`,
+          recommendation: `Focus on ${category} standards, provide specific training`
+        });
+      }
+    });
+
+    return {
+      recurringIssues: recurringIssues,
+      totalIssues: recurringIssues.length,
+      criticalIssues: recurringIssues.filter(issue => issue.severity === 'CRITICAL').length,
+      highIssues: recurringIssues.filter(issue => issue.severity === 'HIGH').length,
+      mediumIssues: recurringIssues.filter(issue => issue.severity === 'MEDIUM').length
+    };
+  }
+
+  // Build violation clustering analysis
+  buildViolationClusteringAnalysis(historicalData) {
+    if (!historicalData || historicalData.length < 3) {
+      return {
+        clusters: [],
+        patterns: [],
+        insights: [],
+        message: 'Insufficient data for clustering analysis (need at least 3 runs)'
+      };
+    }
+
+    const clusters = [];
+    const patterns = [];
+    const insights = [];
+    const recentData = historicalData.slice(-10); // Analyze last 10 runs
+
+    // Cluster 1: File-based violations
+    const fileViolations = {};
+    recentData.forEach(entry => {
+      if (entry.metrics && entry.metrics.fileProcessingTimes) {
+        Object.entries(entry.metrics.fileProcessingTimes).forEach(([filePath, data]) => {
+          if (data.violations && data.violations > 0) {
+            const fileType = filePath.split('.').pop() || 'unknown';
+            if (!fileViolations[fileType]) {
+              fileViolations[fileType] = { total: 0, files: 0, avgViolations: 0 };
+            }
+            fileViolations[fileType].total += data.violations;
+            fileViolations[fileType].files++;
+          }
+        });
+      }
+    });
+
+    Object.entries(fileViolations).forEach(([fileType, data]) => {
+      data.avgViolations = data.total / data.files;
+      if (data.avgViolations > 5) { // More than 5 violations per file on average
+        clusters.push({
+          type: 'FILE_TYPE_CLUSTER',
+          category: fileType,
+          averageViolations: data.avgViolations,
+          totalFiles: data.files,
+          totalViolations: data.total,
+          severity: data.avgViolations > 15 ? 'HIGH' : 'MEDIUM',
+          description: `${fileType} files have high violation rates (${data.avgViolations.toFixed(1)} avg per file)`,
+          recommendation: `Focus on ${fileType} file standards, provide specific linting rules`
+        });
+      }
+    });
+
+    // Cluster 2: Time-based violation patterns
+    const timePatterns = {};
+    recentData.forEach((entry, index) => {
+      const runNumber = recentData.length - index; // Most recent = 1
+      if (entry.violations) {
+        timePatterns[runNumber] = entry.violations;
+      }
+    });
+
+    const violationTrend = this.calculateTrend(Object.values(timePatterns));
+    if (Math.abs(violationTrend) > 2) {
+      patterns.push({
+        type: 'TIME_BASED_PATTERN',
+        trend: violationTrend > 0 ? 'INCREASING' : 'DECREASING',
+        magnitude: Math.abs(violationTrend),
+        description: `Violations are ${violationTrend > 0 ? 'increasing' : 'decreasing'} over time`,
+        recommendation: violationTrend > 0 
+          ? 'Implement stricter review process' 
+          : 'Continue current improvement practices'
+      });
+    }
+
+    // Cluster 3: Severity-based clustering
+    let totalCritical = 0;
+    let totalWarnings = 0;
+    let totalViolations = 0;
+
+    recentData.forEach(entry => {
+      if (entry.criticalViolations) totalCritical += entry.criticalViolations;
+      if (entry.warnings) totalWarnings += entry.warnings;
+      if (entry.violations) totalViolations += entry.violations;
+    });
+
+    const criticalRatio = totalViolations > 0 ? totalCritical / totalViolations : 0;
+    const warningRatio = totalViolations > 0 ? totalWarnings / totalViolations : 0;
+
+    if (criticalRatio > 0.1) {
+      clusters.push({
+        type: 'SEVERITY_CLUSTER',
+        category: 'CRITICAL',
+        ratio: criticalRatio,
+        count: totalCritical,
+        severity: criticalRatio > 0.2 ? 'CRITICAL' : 'HIGH',
+        description: `High ratio of critical violations (${(criticalRatio * 100).toFixed(1)}%)`,
+        recommendation: 'Prioritize critical issue fixes, implement security training'
+      });
+    }
+
+    if (warningRatio > 0.5) {
+      clusters.push({
+        type: 'SEVERITY_CLUSTER',
+        category: 'WARNING',
+        ratio: warningRatio,
+        count: totalWarnings,
+        severity: 'MEDIUM',
+        description: `High ratio of warning violations (${(warningRatio * 100).toFixed(1)}%)`,
+        recommendation: 'Review warning patterns, improve code quality standards'
+      });
+    }
+
+    // Cluster 4: Compliance score clustering
+    const complianceScores = recentData.map(entry => entry.complianceScore);
+    const avgCompliance = this.calculateMean(complianceScores);
+    const complianceStdDev = this.calculateStandardDeviation(complianceScores);
+
+    if (complianceStdDev > 10) {
+      clusters.push({
+        type: 'COMPLIANCE_CLUSTER',
+        category: 'VOLATILE',
+        averageScore: avgCompliance,
+        stdDev: complianceStdDev,
+        severity: complianceStdDev > 20 ? 'HIGH' : 'MEDIUM',
+        description: `High compliance score volatility (std dev: ${complianceStdDev.toFixed(1)})`,
+        recommendation: 'Standardize development practices, implement consistent review process'
+      });
+    }
+
+    // Generate insights from clusters
+    if (clusters.length > 0) {
+      const highSeverityClusters = clusters.filter(c => c.severity === 'HIGH' || c.severity === 'CRITICAL');
+      if (highSeverityClusters.length > 0) {
+        insights.push({
+          type: 'HIGH_SEVERITY_CLUSTERS',
+          priority: 'HIGH',
+          message: `${highSeverityClusters.length} high-severity violation clusters detected`,
+          action: 'Address high-severity clusters immediately'
+        });
+      }
+
+      const fileTypeClusters = clusters.filter(c => c.type === 'FILE_TYPE_CLUSTER');
+      if (fileTypeClusters.length > 0) {
+        insights.push({
+          type: 'FILE_TYPE_INSIGHT',
+          priority: 'MEDIUM',
+          message: `${fileTypeClusters.length} file types with high violation rates`,
+          action: 'Focus on improving standards for problematic file types'
+        });
+      }
+    }
+
+    // Pattern insights
+    if (patterns.length > 0) {
+      const increasingPatterns = patterns.filter(p => p.trend === 'INCREASING');
+      if (increasingPatterns.length > 0) {
+        insights.push({
+          type: 'TREND_INSIGHT',
+          priority: 'HIGH',
+          message: 'Detected increasing violation trends',
+          action: 'Implement immediate intervention strategies'
+        });
+      }
+    }
+
+    return {
+      clusters: clusters,
+      patterns: patterns,
+      insights: insights,
+      totalClusters: clusters.length,
+      totalPatterns: patterns.length,
+      totalInsights: insights.length,
+      highSeverityClusters: clusters.filter(c => c.severity === 'HIGH' || c.severity === 'CRITICAL').length,
+      fileTypeClusters: clusters.filter(c => c.type === 'FILE_TYPE_CLUSTER').length,
+      severityClusters: clusters.filter(c => c.type === 'SEVERITY_CLUSTER').length
+    };
+  }
+
+  // Predict compliance issues based on patterns
+  predictComplianceIssues(historicalData) {
+    if (!historicalData || historicalData.length < 5) {
+      return {
+        predictions: [],
+        confidence: 0,
+        message: 'Insufficient data for issue prediction (need at least 5 runs)'
+      };
+    }
+
+    const predictions = [];
+    const recentData = historicalData.slice(-10); // Analyze last 10 runs
+    const complianceScores = recentData.map(entry => entry.complianceScore);
+    const violationCounts = recentData.map(entry => entry.violations || 0);
+    const criticalViolations = recentData.map(entry => entry.criticalViolations || 0);
+
+    // Prediction 1: Compliance score trend prediction
+    const scoreTrend = this.calculateTrend(complianceScores);
+    const currentScore = complianceScores[complianceScores.length - 1];
+    const scoreStdDev = this.calculateStandardDeviation(complianceScores);
+    
+    if (Math.abs(scoreTrend) > 2) {
+      const predictedScore = currentScore + (scoreTrend * 3); // Predict 3 runs ahead
+      const confidence = Math.max(0, 100 - (scoreStdDev * 2));
+      
+      predictions.push({
+        type: 'COMPLIANCE_SCORE_PREDICTION',
+        issue: predictedScore < 70 ? 'LOW_COMPLIANCE_RISK' : 'STABLE_COMPLIANCE',
+        probability: predictedScore < 70 ? 'HIGH' : 'LOW',
+        confidence: Math.round(confidence),
+        description: `Compliance score predicted to be ${Math.round(predictedScore)}% in 3 runs`,
+        recommendation: predictedScore < 70 
+          ? 'Implement immediate compliance improvement measures' 
+          : 'Continue current practices'
+      });
+    }
+
+    // Prediction 2: Violation count trend prediction
+    const violationTrend = this.calculateTrend(violationCounts);
+    const currentViolations = violationCounts[violationCounts.length - 1];
+    const violationStdDev = this.calculateStandardDeviation(violationCounts);
+    
+    if (Math.abs(violationTrend) > 5) {
+      const predictedViolations = currentViolations + (violationTrend * 3);
+      const confidence = Math.max(0, 100 - (violationStdDev * 2));
+      
+      predictions.push({
+        type: 'VIOLATION_COUNT_PREDICTION',
+        issue: predictedViolations > currentViolations * 1.2 ? 'INCREASING_VIOLATIONS' : 'DECREASING_VIOLATIONS',
+        probability: predictedViolations > currentViolations * 1.2 ? 'HIGH' : 'MEDIUM',
+        confidence: Math.round(confidence),
+        description: `Violations predicted to be ${Math.round(predictedViolations)} in 3 runs`,
+        recommendation: predictedViolations > currentViolations * 1.2
+          ? 'Implement stricter code review and automated checks'
+          : 'Continue current improvement practices'
+      });
+    }
+
+    // Prediction 3: Critical violation risk prediction
+    const criticalTrend = this.calculateTrend(criticalViolations);
+    const currentCritical = criticalViolations[criticalViolations.length - 1];
+    const criticalStdDev = this.calculateStandardDeviation(criticalViolations);
+    
+    if (criticalTrend > 0 || currentCritical > 5) {
+      const predictedCritical = currentCritical + (criticalTrend * 3);
+      const confidence = Math.max(0, 100 - (criticalStdDev * 3));
+      
+      predictions.push({
+        type: 'CRITICAL_VIOLATION_PREDICTION',
+        issue: predictedCritical > 10 ? 'HIGH_CRITICAL_RISK' : 'MODERATE_CRITICAL_RISK',
+        probability: predictedCritical > 10 ? 'HIGH' : 'MEDIUM',
+        confidence: Math.round(confidence),
+        description: `Critical violations predicted to be ${Math.round(predictedCritical)} in 3 runs`,
+        recommendation: predictedCritical > 10
+          ? 'Immediate security review and critical issue prioritization required'
+          : 'Monitor critical violations and implement preventive measures'
+      });
+    }
+
+    // Prediction 4: File type violation prediction
+    const fileTypeViolations = {};
+    recentData.forEach(entry => {
+      if (entry.metrics && entry.metrics.fileProcessingTimes) {
+        Object.entries(entry.metrics.fileProcessingTimes).forEach(([filePath, data]) => {
+          if (data.violations && data.violations > 0) {
+            const fileType = filePath.split('.').pop() || 'unknown';
+            if (!fileTypeViolations[fileType]) {
+              fileTypeViolations[fileType] = [];
+            }
+            fileTypeViolations[fileType].push(data.violations);
+          }
+        });
+      }
+    });
+
+    Object.entries(fileTypeViolations).forEach(([fileType, violations]) => {
+      if (violations.length >= 3) {
+        const trend = this.calculateTrend(violations);
+        const avgViolations = this.calculateMean(violations);
+        const predictedViolations = avgViolations + (trend * 3);
+        
+        if (predictedViolations > avgViolations * 1.3) {
+          predictions.push({
+            type: 'FILE_TYPE_VIOLATION_PREDICTION',
+            issue: 'INCREASING_FILE_TYPE_VIOLATIONS',
+            probability: 'MEDIUM',
+            confidence: 75,
+            description: `${fileType} files predicted to have ${Math.round(predictedViolations)} violations in 3 runs`,
+            recommendation: `Focus on ${fileType} file standards and provide specific training`
+          });
+        }
+      }
+    });
+
+    // Prediction 5: Standards effectiveness prediction
+    const standardsAnalysis = this.analyzeStandardsEffectiveness(historicalData);
+    if (standardsAnalysis.needsImprovement.length > 0) {
+      predictions.push({
+        type: 'STANDARDS_EFFECTIVENESS_PREDICTION',
+        issue: 'STANDARDS_DETERIORATION',
+        probability: 'HIGH',
+        confidence: 85,
+        description: `${standardsAnalysis.needsImprovement.length} standards showing deterioration`,
+        recommendation: 'Review and update standards documentation, provide team training'
+      });
+    }
+
+    // Calculate overall confidence
+    const totalConfidence = predictions.reduce((sum, pred) => sum + pred.confidence, 0);
+    const overallConfidence = predictions.length > 0 ? Math.round(totalConfidence / predictions.length) : 0;
+
+    return {
+      predictions: predictions,
+      totalPredictions: predictions.length,
+      highProbabilityPredictions: predictions.filter(p => p.probability === 'HIGH').length,
+      mediumProbabilityPredictions: predictions.filter(p => p.probability === 'MEDIUM').length,
+      lowProbabilityPredictions: predictions.filter(p => p.probability === 'LOW').length,
+      confidence: overallConfidence,
+      criticalPredictions: predictions.filter(p => p.issue.includes('CRITICAL') || p.issue.includes('HIGH')).length
+    };
+  }
 }
 
 module.exports = StatisticalAnalysis; 

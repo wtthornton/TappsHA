@@ -134,5 +134,1175 @@
       "version": "1.0",
       "validated": true
     }
+  },
+  {
+    "timestamp": "2025-08-04T15:12:39.132Z",
+    "runId": "run_1754320359132_57q4l42b5",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 91,
+      "averageFileProcessingTime": 0.1111111111111111,
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72
+        }
+      },
+      "filesProcessed": 72
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:14:27.266Z",
+    "runId": "run_1754320467266_7bq5t9b0j",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 90,
+      "averageFileProcessingTime": 0.06944444444444445,
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72
+        }
+      },
+      "filesProcessed": 72
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:18:30.235Z",
+    "runId": "run_1754320710235_l37q7z1h5",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 98,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.11,
+        "totalFiles": 72,
+        "totalTime": 8,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.1,
+            "count": 62,
+            "totalSize": 409476,
+            "averageSize": 6604,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0,
+            "count": 3,
+            "totalSize": 28283,
+            "averageSize": 9428,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0,
+            "count": 1,
+            "totalSize": 6630,
+            "averageSize": 6630,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0.33,
+            "count": 6,
+            "totalSize": 16938,
+            "averageSize": 2823,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72
+        }
+      },
+      "filesProcessed": 73
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:19:59.292Z",
+    "runId": "run_1754320799292_bnzbwu8ts",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 105,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.1,
+        "totalFiles": 72,
+        "totalTime": 7,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.08,
+            "count": 62,
+            "totalSize": 409476,
+            "averageSize": 6604,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.33,
+            "count": 3,
+            "totalSize": 28283,
+            "averageSize": 9428,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 1,
+            "count": 1,
+            "totalSize": 6630,
+            "averageSize": 6630,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 6,
+            "totalSize": 16938,
+            "averageSize": 2823,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72
+        }
+      },
+      "filesProcessed": 73
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:24:42.481Z",
+    "runId": "run_1754321082481_w2elzvg0y",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 99,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.08,
+        "totalFiles": 72,
+        "totalTime": 6,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.08,
+            "count": 62,
+            "totalSize": 409476,
+            "averageSize": 6604,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.33,
+            "count": 3,
+            "totalSize": 28283,
+            "averageSize": 9428,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0,
+            "count": 1,
+            "totalSize": 6630,
+            "averageSize": 6630,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 6,
+            "totalSize": 16938,
+            "averageSize": 2823,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72
+        }
+      },
+      "filesProcessed": 73
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:36:09.315Z",
+    "runId": "run_1754321769315_6weao9wob",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 93,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.13,
+        "totalFiles": 72,
+        "totalTime": 9,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.11,
+            "count": 62,
+            "totalSize": 409476,
+            "averageSize": 6604,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0,
+            "count": 3,
+            "totalSize": 28283,
+            "averageSize": 9428,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 1,
+            "count": 1,
+            "totalSize": 6630,
+            "averageSize": 6630,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0.17,
+            "count": 6,
+            "totalSize": 16938,
+            "averageSize": 2823,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72
+        }
+      },
+      "filesProcessed": 73
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:38:12.842Z",
+    "runId": "run_1754321892842_8h3lujdau",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 93,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.13,
+        "totalFiles": 72,
+        "totalTime": 9,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.11,
+            "count": 62,
+            "totalSize": 409476,
+            "averageSize": 6604,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.33,
+            "count": 3,
+            "totalSize": 28283,
+            "averageSize": 9428,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0,
+            "count": 1,
+            "totalSize": 6630,
+            "averageSize": 6630,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0.17,
+            "count": 6,
+            "totalSize": 16938,
+            "averageSize": 2823,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72
+        }
+      },
+      "filesProcessed": 73
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:39:16.839Z",
+    "runId": "run_1754321956839_e1ersc5b9",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 103,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.13,
+        "totalFiles": 72,
+        "totalTime": 9,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.15,
+            "count": 62,
+            "totalSize": 409476,
+            "averageSize": 6604,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0,
+            "count": 3,
+            "totalSize": 28283,
+            "averageSize": 9428,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0,
+            "count": 1,
+            "totalSize": 6630,
+            "averageSize": 6630,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 6,
+            "totalSize": 16938,
+            "averageSize": 2823,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72,
+          "violationRate": 45.83333333333333,
+          "lastViolation": "2025-08-04T15:39:16.793Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72,
+          "violationRate": 1.3888888888888888,
+          "lastViolation": "2025-08-04T15:39:16.766Z",
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        }
+      },
+      "filesProcessed": 73
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:43:43.320Z",
+    "runId": "run_1754322223320_9l8l5v8tk",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 97,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.14,
+        "totalFiles": 72,
+        "totalTime": 10,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.16,
+            "count": 62,
+            "totalSize": 409476,
+            "averageSize": 6604,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0,
+            "count": 3,
+            "totalSize": 28283,
+            "averageSize": 9428,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0,
+            "count": 1,
+            "totalSize": 6630,
+            "averageSize": 6630,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 6,
+            "totalSize": 16938,
+            "averageSize": 2823,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72,
+          "violationRate": 45.83333333333333,
+          "lastViolation": "2025-08-04T15:43:43.277Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72,
+          "violationRate": 1.3888888888888888,
+          "lastViolation": "2025-08-04T15:43:43.251Z",
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        }
+      },
+      "filesProcessed": 73
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:45:57.484Z",
+    "runId": "run_1754322357484_liv4whem1",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 116,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.11,
+        "totalFiles": 72,
+        "totalTime": 8,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.11,
+            "count": 62,
+            "totalSize": 409476,
+            "averageSize": 6604,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0,
+            "count": 3,
+            "totalSize": 28283,
+            "averageSize": 9428,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0,
+            "count": 1,
+            "totalSize": 6630,
+            "averageSize": 6630,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0.17,
+            "count": 6,
+            "totalSize": 16938,
+            "averageSize": 2823,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72,
+          "violationRate": 45.83333333333333,
+          "lastViolation": "2025-08-04T15:45:57.430Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72,
+          "violationRate": 1.3888888888888888,
+          "lastViolation": "2025-08-04T15:45:57.401Z",
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        }
+      },
+      "filesProcessed": 73
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:51:48.954Z",
+    "runId": "run_1754322708954_i3iv5bw1y",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 97,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.15,
+        "totalFiles": 72,
+        "totalTime": 11,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.16,
+            "count": 62,
+            "totalSize": 409476,
+            "averageSize": 6604,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0,
+            "count": 3,
+            "totalSize": 28283,
+            "averageSize": 9428,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 1,
+            "count": 1,
+            "totalSize": 6630,
+            "averageSize": 6630,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 6,
+            "totalSize": 16938,
+            "averageSize": 2823,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72,
+          "violationRate": 45.83333333333333,
+          "lastViolation": "2025-08-04T15:51:48.909Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72,
+          "violationRate": 1.3888888888888888,
+          "lastViolation": "2025-08-04T15:51:48.885Z",
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        }
+      },
+      "filesProcessed": 73
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:53:32.211Z",
+    "runId": "run_1754322812211_msq2e0xwc",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 87,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 72,
+        "totalTime": 5,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.05,
+            "count": 62,
+            "totalSize": 409476,
+            "averageSize": 6604,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0,
+            "count": 3,
+            "totalSize": 28283,
+            "averageSize": 9428,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0,
+            "count": 1,
+            "totalSize": 6630,
+            "averageSize": 6630,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0.33,
+            "count": 6,
+            "totalSize": 16938,
+            "averageSize": 2823,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72,
+          "violationRate": 45.83333333333333,
+          "lastViolation": "2025-08-04T15:53:32.174Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72,
+          "violationRate": 1.3888888888888888,
+          "lastViolation": "2025-08-04T15:53:32.151Z",
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        }
+      },
+      "filesProcessed": 73
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T15:55:59.655Z",
+    "runId": "run_1754322959655_o2z1lrbkw",
+    "complianceScore": 54,
+    "totalChecks": 72,
+    "passedChecks": 39,
+    "violations": 287,
+    "criticalViolations": 2,
+    "warnings": 285,
+    "metrics": {
+      "executionTime": 147,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.19,
+        "totalFiles": 72,
+        "totalTime": 14,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.21,
+            "count": 62,
+            "totalSize": 409476,
+            "averageSize": 6604,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0,
+            "count": 3,
+            "totalSize": 28283,
+            "averageSize": 9428,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0,
+            "count": 1,
+            "totalSize": 6630,
+            "averageSize": 6630,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0.17,
+            "count": 6,
+            "totalSize": 16938,
+            "averageSize": 2823,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 285
+        },
+        "Security": {
+          "CRITICAL": 2,
+          "WARNING": 0
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "code-style": {
+          "violations": 33,
+          "checks": 72,
+          "violationRate": 45.83333333333333,
+          "lastViolation": "2025-08-04T15:55:59.584Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 1,
+          "checks": 72,
+          "violationRate": 1.3888888888888888,
+          "lastViolation": "2025-08-04T15:55:59.554Z",
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 72,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW"
+        }
+      },
+      "filesProcessed": 73
+    },
+    "dataIntegrity": {
+      "checksum": "-49744933",
+      "version": "1.0",
+      "validated": true
+    }
   }
 ]

@@ -1,52 +1,308 @@
 {
-  "timestamp": "2025-08-04T15:08:40.584Z",
-  "executionTime": 112,
-  "averageFileProcessingTime": 0.1111111111111111,
-  "violationTrends": {
-    "trend": "stable",
-    "recentAverage": 18,
-    "olderAverage": null,
-    "change": null
+  "timestamp": "2025-08-04T15:55:59.660Z",
+  "executionTime": 147,
+  "averageFileProcessingTime": {
+    "overallAverage": 0.19,
+    "totalFiles": 72,
+    "totalTime": 14,
+    "fileTypePerformance": {
+      ".java": {
+        "averageTime": 0.21,
+        "count": 62,
+        "totalSize": 409476,
+        "averageSize": 6604,
+        "efficiency": 0
+      },
+      ".tsx": {
+        "averageTime": 0,
+        "count": 3,
+        "totalSize": 28283,
+        "averageSize": 9428,
+        "efficiency": 0
+      },
+      ".xml": {
+        "averageTime": 0,
+        "count": 1,
+        "totalSize": 6630,
+        "averageSize": 6630,
+        "efficiency": 0
+      },
+      ".yml": {
+        "averageTime": 0.17,
+        "count": 6,
+        "totalSize": 16938,
+        "averageSize": 2823,
+        "efficiency": 0
+      }
+    }
   },
-  "standardsEffectiveness": {
-    "tech-stack": {
-      "violationRate": 0,
-      "totalChecks": 72,
-      "totalViolations": 0
+  "validationPerformance": {
+    "technology-stack": {
+      "averageTime": 0,
+      "totalTime": 0,
+      "count": 72,
+      "minTime": 0,
+      "maxTime": 0,
+      "efficiency": 0
     },
     "code-style": {
-      "violationRate": 46,
-      "totalChecks": 72,
-      "totalViolations": 33
+      "averageTime": 0.01,
+      "totalTime": 1,
+      "count": 72,
+      "minTime": 0,
+      "maxTime": 1,
+      "efficiency": 0.01
     },
-    "security-compliance": {
-      "violationRate": 1,
-      "totalChecks": 72,
-      "totalViolations": 1
+    "security": {
+      "averageTime": 0.1,
+      "totalTime": 7,
+      "count": 72,
+      "minTime": 0,
+      "maxTime": 1,
+      "efficiency": 0.1
     },
-    "best-practices": {
-      "violationRate": 0,
-      "totalChecks": 72,
-      "totalViolations": 0
+    "architecture": {
+      "averageTime": 0,
+      "totalTime": 0,
+      "count": 72,
+      "minTime": 0,
+      "maxTime": 0,
+      "efficiency": 0
     },
-    "testing-strategy": {
-      "violationRate": 0,
-      "totalChecks": 72,
-      "totalViolations": 0
+    "testing": {
+      "averageTime": 0,
+      "totalTime": 0,
+      "count": 72,
+      "minTime": 0,
+      "maxTime": 0,
+      "efficiency": 0
+    }
+  },
+  "violationTrends": {
+    "trend": "stable",
+    "recentAverage": 54,
+    "olderAverage": 54,
+    "change": 0
+  },
+  "standardsEffectiveness": {
+    "effectiveness": {
+      "tech-stack": {
+        "violationRate": 0,
+        "totalChecks": 72,
+        "totalViolations": 0,
+        "priority": "LOW",
+        "lastViolation": null,
+        "complianceTrend": "stable",
+        "status": "GOOD"
+      },
+      "code-style": {
+        "violationRate": 46,
+        "totalChecks": 72,
+        "totalViolations": 33,
+        "priority": "HIGH",
+        "lastViolation": "2025-08-04T15:55:59.584Z",
+        "complianceTrend": "stable",
+        "status": "CRITICAL"
+      },
+      "security-compliance": {
+        "violationRate": 1,
+        "totalChecks": 72,
+        "totalViolations": 1,
+        "priority": "LOW",
+        "lastViolation": "2025-08-04T15:55:59.554Z",
+        "complianceTrend": "stable",
+        "status": "GOOD"
+      },
+      "best-practices": {
+        "violationRate": 0,
+        "totalChecks": 72,
+        "totalViolations": 0,
+        "priority": "LOW",
+        "lastViolation": null,
+        "complianceTrend": "stable",
+        "status": "GOOD"
+      },
+      "testing-strategy": {
+        "violationRate": 0,
+        "totalChecks": 72,
+        "totalViolations": 0,
+        "priority": "LOW",
+        "lastViolation": null,
+        "complianceTrend": "stable",
+        "status": "GOOD"
+      }
+    },
+    "ranking": [
+      {
+        "name": "code-style",
+        "violationRate": 45.83333333333333,
+        "totalChecks": 72,
+        "totalViolations": 33,
+        "priority": "HIGH",
+        "status": "CRITICAL"
+      },
+      {
+        "name": "security-compliance",
+        "violationRate": 1.3888888888888888,
+        "totalChecks": 72,
+        "totalViolations": 1,
+        "priority": "LOW",
+        "status": "GOOD"
+      },
+      {
+        "name": "tech-stack",
+        "violationRate": 0,
+        "totalChecks": 72,
+        "totalViolations": 0,
+        "priority": "LOW",
+        "status": "GOOD"
+      },
+      {
+        "name": "best-practices",
+        "violationRate": 0,
+        "totalChecks": 72,
+        "totalViolations": 0,
+        "priority": "LOW",
+        "status": "GOOD"
+      },
+      {
+        "name": "testing-strategy",
+        "violationRate": 0,
+        "totalChecks": 72,
+        "totalViolations": 0,
+        "priority": "LOW",
+        "status": "GOOD"
+      }
+    ],
+    "summary": {
+      "totalStandards": 5,
+      "criticalStandards": 1,
+      "warningStandards": 0,
+      "goodStandards": 4,
+      "mostViolated": [
+        {
+          "name": "code-style",
+          "violationRate": 45.83333333333333,
+          "totalChecks": 72,
+          "totalViolations": 33,
+          "priority": "HIGH",
+          "status": "CRITICAL"
+        },
+        {
+          "name": "security-compliance",
+          "violationRate": 1.3888888888888888,
+          "totalChecks": 72,
+          "totalViolations": 1,
+          "priority": "LOW",
+          "status": "GOOD"
+        },
+        {
+          "name": "tech-stack",
+          "violationRate": 0,
+          "totalChecks": 72,
+          "totalViolations": 0,
+          "priority": "LOW",
+          "status": "GOOD"
+        }
+      ],
+      "leastViolated": [
+        {
+          "name": "testing-strategy",
+          "violationRate": 0,
+          "totalChecks": 72,
+          "totalViolations": 0,
+          "priority": "LOW",
+          "status": "GOOD"
+        },
+        {
+          "name": "best-practices",
+          "violationRate": 0,
+          "totalChecks": 72,
+          "totalViolations": 0,
+          "priority": "LOW",
+          "status": "GOOD"
+        },
+        {
+          "name": "tech-stack",
+          "violationRate": 0,
+          "totalChecks": 72,
+          "totalViolations": 0,
+          "priority": "LOW",
+          "status": "GOOD"
+        }
+      ]
     }
   },
   "improvementSuggestions": [
     {
-      "priority": "MEDIUM",
+      "priority": "HIGH",
+      "category": "Standards",
+      "message": "🚨 code-style has critical violation rate (46%)",
+      "action": "Urgently review and rewrite code-style documentation with clear examples",
+      "impact": "HIGH",
+      "effort": "HIGH"
+    },
+    {
+      "priority": "HIGH",
+      "category": "Compliance",
+      "message": "📊 Low compliance score (54%)",
+      "action": "Implement comprehensive compliance improvement plan",
+      "impact": "HIGH",
+      "effort": "HIGH"
+    },
+    {
+      "priority": "HIGH",
+      "category": "Security",
+      "message": "🚨 Critical violations detected (2 critical, 285 warnings)",
+      "action": "Immediately address all critical violations",
+      "impact": "HIGH",
+      "effort": "MEDIUM"
+    },
+    {
+      "priority": "HIGH",
       "category": "Code Style",
-      "message": "Focus on reducing code style violations (285 total)",
-      "action": "Review and update code style standards"
+      "message": "⚠️ High volume of code style violations (285 total)",
+      "action": "Implement systematic approach to reduce code style violations",
+      "impact": "MEDIUM",
+      "effort": "HIGH"
     },
     {
       "priority": "MEDIUM",
-      "category": "Standards",
-      "message": "code-style has high violation rate (46%)",
-      "action": "Review and clarify code-style documentation"
+      "category": "File Types",
+      "message": "📁 High violations in .java files (273 violations)",
+      "action": "Review and improve .java file standards",
+      "impact": "MEDIUM",
+      "effort": "MEDIUM"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "File Types",
+      "message": "📁 High violations in .tsx files (14 violations)",
+      "action": "Review and improve .tsx file standards",
+      "impact": "MEDIUM",
+      "effort": "MEDIUM"
+    }
+  ],
+  "ruleBasedSuggestions": [
+    {
+      "type": "RULE_BASED",
+      "category": "Code Style",
+      "priority": "HIGH",
+      "message": "High volume of code style violations detected",
+      "suggestion": "Implement automated code formatting with Prettier/ESLint",
+      "action": "Configure IDE with code style rules and enable auto-format on save",
+      "impact": "HIGH",
+      "effort": "MEDIUM"
+    },
+    {
+      "type": "RULE_BASED",
+      "category": "Security",
+      "priority": "CRITICAL",
+      "message": "Security violations detected",
+      "suggestion": "Implement secrets management with environment variables",
+      "action": "Replace all hardcoded secrets with environment variables and use .env files",
+      "impact": "CRITICAL",
+      "effort": "HIGH"
     }
   ],
   "statisticalAnalysis": {
@@ -55,13 +311,13 @@
       "averageViolations": 287,
       "pattern": "stable",
       "outliers": 0,
-      "totalEntries": 3
+      "totalEntries": 16
     },
     "complianceTrends": {
-      "trend": 27,
-      "averageScore": 18,
-      "improvement": 18,
-      "volatility": 25,
+      "trend": 2.223529411764706,
+      "averageScore": 47,
+      "improvement": 0,
+      "volatility": 18,
       "currentScore": 54
     },
     "standardsEffectiveness": {
@@ -78,27 +334,27 @@
         "tech-stack": {
           "averageViolationRate": 0,
           "trend": 0,
-          "totalChecks": 216
+          "totalChecks": 1152
         },
         "code-style": {
           "averageViolationRate": 46,
           "trend": 0,
-          "totalChecks": 216
+          "totalChecks": 1152
         },
         "security-compliance": {
           "averageViolationRate": 1,
-          "trend": 0,
-          "totalChecks": 216
+          "trend": -8.359326303060002e-17,
+          "totalChecks": 1152
         },
         "best-practices": {
           "averageViolationRate": 0,
           "trend": 0,
-          "totalChecks": 216
+          "totalChecks": 1152
         },
         "testing-strategy": {
           "averageViolationRate": 0,
           "trend": 0,
-          "totalChecks": 216
+          "totalChecks": 1152
         }
       }
     },
@@ -106,18 +362,19 @@
       "overallRisk": null,
       "factors": [
         "Low average compliance score",
-        "High score volatility",
-        "Recent score decline"
+        "High score volatility"
       ],
       "metrics": {
-        "averageScore": 18,
-        "volatility": 25,
+        "averageScore": 47,
+        "volatility": 18,
         "violationTrend": 0
       }
     },
     "predictions": {
-      "prediction": "insufficient_data",
-      "confidence": 0
+      "prediction": 70,
+      "confidence": 100,
+      "trend": 2.223529411764706,
+      "currentScore": 54
     },
     "insights": [
       {
@@ -127,17 +384,96 @@
         "action": "Monitor for improvement opportunities"
       },
       {
-        "type": "compliance_trend",
-        "priority": "LOW",
-        "message": "Compliance improving by 18%",
-        "action": "Continue current practices"
-      },
-      {
         "type": "standards_effectiveness",
         "priority": "HIGH",
         "message": "Standards needing improvement: code-style",
         "action": "Review and update standards documentation"
       }
-    ]
+    ],
+    "violationPatterns": {
+      "patterns": [
+        {
+          "type": "DOMINANT_CATEGORY",
+          "category": "Code Style",
+          "frequency": 2850,
+          "criticalRate": 0,
+          "description": "Code Style violations are consistently high (2850 total)"
+        },
+        {
+          "type": "DOMINANT_CATEGORY",
+          "category": "Security",
+          "frequency": 20,
+          "criticalRate": 1,
+          "description": "Security violations are consistently high (20 total)"
+        }
+      ],
+      "totalPatterns": 2,
+      "dominantCategory": "Code Style",
+      "trendDirection": "stable"
+    },
+    "recurringIssues": {
+      "recurringIssues": [
+        {
+          "type": "PERSISTENT_LOW_COMPLIANCE",
+          "averageScore": 54,
+          "threshold": 70,
+          "severity": "HIGH",
+          "description": "Consistently low compliance scores (avg: 54.0%)",
+          "recommendation": "Review and update coding standards, provide team training"
+        },
+        {
+          "type": "PERSISTENT_CATEGORY_VIOLATIONS",
+          "category": "Code Style",
+          "averagePerRun": 285,
+          "totalRuns": 5,
+          "severity": "HIGH",
+          "description": "Persistent Code Style violations (285.0 avg per run)",
+          "recommendation": "Focus on Code Style standards, provide specific training"
+        }
+      ],
+      "totalIssues": 2,
+      "criticalIssues": 0,
+      "highIssues": 2,
+      "mediumIssues": 0
+    },
+    "violationClustering": {
+      "clusters": [
+        {
+          "type": "SEVERITY_CLUSTER",
+          "category": "WARNING",
+          "ratio": 0.9930313588850174,
+          "count": 2850,
+          "severity": "MEDIUM",
+          "description": "High ratio of warning violations (99.3%)",
+          "recommendation": "Review warning patterns, improve code quality standards"
+        }
+      ],
+      "patterns": [],
+      "insights": [],
+      "totalClusters": 1,
+      "totalPatterns": 0,
+      "totalInsights": 0,
+      "highSeverityClusters": 0,
+      "fileTypeClusters": 0,
+      "severityClusters": 1
+    },
+    "issuePredictions": {
+      "predictions": [
+        {
+          "type": "STANDARDS_EFFECTIVENESS_PREDICTION",
+          "issue": "STANDARDS_DETERIORATION",
+          "probability": "HIGH",
+          "confidence": 85,
+          "description": "1 standards showing deterioration",
+          "recommendation": "Review and update standards documentation, provide team training"
+        }
+      ],
+      "totalPredictions": 1,
+      "highProbabilityPredictions": 1,
+      "mediumProbabilityPredictions": 0,
+      "lowProbabilityPredictions": 0,
+      "confidence": 85,
+      "criticalPredictions": 0
+    }
   }
 }

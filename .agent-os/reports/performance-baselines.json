@@ -1,0 +1,170 @@
+{
+  "fileProcessing": {
+    ".js": {
+      "normal": {
+        "min": 5,
+        "max": 50,
+        "avg": 20
+      },
+      "slow": 100,
+      "verySlow": 200
+    },
+    ".md": {
+      "normal": {
+        "min": 2,
+        "max": 20,
+        "avg": 8
+      },
+      "slow": 50,
+      "verySlow": 100
+    },
+    ".json": {
+      "normal": {
+        "min": 1,
+        "max": 10,
+        "avg": 4
+      },
+      "slow": 25,
+      "verySlow": 50
+    },
+    ".yml": {
+      "normal": {
+        "min": 3,
+        "max": 15,
+        "avg": 8
+      },
+      "slow": 40,
+      "verySlow": 80
+    },
+    ".yaml": {
+      "normal": {
+        "min": 3,
+        "max": 15,
+        "avg": 8
+      },
+      "slow": 40,
+      "verySlow": 80
+    },
+    ".xml": {
+      "normal": {
+        "min": 5,
+        "max": 30,
+        "avg": 12
+      },
+      "slow": 60,
+      "verySlow": 120
+    },
+    ".html": {
+      "normal": {
+        "min": 3,
+        "max": 25,
+        "avg": 10
+      },
+      "slow": 50,
+      "verySlow": 100
+    },
+    ".css": {
+      "normal": {
+        "min": 2,
+        "max": 15,
+        "avg": 6
+      },
+      "slow": 30,
+      "verySlow": 60
+    },
+    ".ts": {
+      "normal": {
+        "min": 8,
+        "max": 60,
+        "avg": 25
+      },
+      "slow": 120,
+      "verySlow": 240
+    },
+    ".java": {
+      "normal": {
+        "min": 10,
+        "max": 80,
+        "avg": 35
+      },
+      "slow": 150,
+      "verySlow": 300
+    }
+  },
+  "validationExecution": {
+    "technology-stack": {
+      "normal": {
+        "min": 5,
+        "max": 30,
+        "avg": 15
+      },
+      "slow": 60,
+      "verySlow": 120
+    },
+    "code-style": {
+      "normal": {
+        "min": 10,
+        "max": 50,
+        "avg": 25
+      },
+      "slow": 100,
+      "verySlow": 200
+    },
+    "security": {
+      "normal": {
+        "min": 15,
+        "max": 60,
+        "avg": 30
+      },
+      "slow": 120,
+      "verySlow": 240
+    },
+    "architecture": {
+      "normal": {
+        "min": 8,
+        "max": 40,
+        "avg": 20
+      },
+      "slow": 80,
+      "verySlow": 160
+    },
+    "testing": {
+      "normal": {
+        "min": 5,
+        "max": 25,
+        "avg": 12
+      },
+      "slow": 50,
+      "verySlow": 100
+    }
+  },
+  "overallPerformance": {
+    "totalExecutionTime": {
+      "normal": {
+        "min": 1000,
+        "max": 10000,
+        "avg": 5000
+      },
+      "slow": 20000,
+      "verySlow": 40000
+    },
+    "filesPerSecond": {
+      "normal": {
+        "min": 0.5,
+        "max": 5,
+        "avg": 2
+      },
+      "slow": 0.2,
+      "verySlow": 0.1
+    },
+    "averageComplianceScore": {
+      "normal": {
+        "min": 70,
+        "max": 100,
+        "avg": 85
+      },
+      "low": 50,
+      "veryLow": 30
+    }
+  }
+}

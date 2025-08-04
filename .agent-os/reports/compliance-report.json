@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-04T15:08:40.613Z",
+  "timestamp": "2025-08-04T15:55:59.711Z",
   "complianceScore": 54,
   "totalChecks": 72,
   "passedChecks": 39,
@@ -10,7 +10,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
       "line": 74,
-      "timestamp": "2025-08-04T15:08:40.498Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.547Z"
     },
     {
       "type": "WARNING",
@@ -18,7 +19,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
       "line": 92,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.547Z"
     },
     {
       "type": "WARNING",
@@ -26,7 +28,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
       "line": 118,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.547Z"
     },
     {
       "type": "WARNING",
@@ -34,7 +37,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
       "line": 155,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.547Z"
     },
     {
       "type": "WARNING",
@@ -42,7 +46,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
       "line": 209,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.547Z"
     },
     {
       "type": "WARNING",
@@ -50,7 +55,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisServiceTest.java",
       "line": 221,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.547Z"
     },
     {
       "type": "WARNING",
@@ -58,7 +64,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
       "line": 59,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.548Z"
     },
     {
       "type": "WARNING",
@@ -66,7 +73,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
       "line": 79,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.548Z"
     },
     {
       "type": "WARNING",
@@ -74,7 +82,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
       "line": 83,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.548Z"
     },
     {
       "type": "WARNING",
@@ -82,7 +91,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
       "line": 103,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.548Z"
     },
     {
       "type": "WARNING",
@@ -90,7 +100,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
       "line": 124,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.548Z"
     },
     {
       "type": "WARNING",
@@ -98,7 +109,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
       "line": 145,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.548Z"
     },
     {
       "type": "WARNING",
@@ -106,7 +118,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
       "line": 180,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.548Z"
     },
     {
       "type": "WARNING",
@@ -114,7 +127,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\OpenAIClientTest.java",
       "line": 196,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.548Z"
     },
     {
       "type": "WARNING",
@@ -122,7 +136,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 82,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -130,7 +145,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 84,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -138,7 +154,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 98,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -146,7 +163,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 100,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -154,7 +172,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 101,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -162,7 +181,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 114,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -170,7 +190,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 127,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -178,7 +199,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 130,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -186,7 +208,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 144,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -194,7 +217,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 148,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -202,7 +226,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 162,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -210,7 +235,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 166,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -218,7 +244,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 181,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -226,7 +253,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 187,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -234,7 +262,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 201,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -242,7 +271,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 205,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -250,7 +280,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 212,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -258,7 +289,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 219,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -266,7 +298,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 222,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -274,7 +307,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 227,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -282,7 +316,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 240,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -290,7 +325,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 243,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -298,7 +334,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 249,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -306,7 +343,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 254,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -314,7 +352,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 267,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -322,7 +361,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceTest.java",
       "line": 285,
-      "timestamp": "2025-08-04T15:08:40.499Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.549Z"
     },
     {
       "type": "WARNING",
@@ -330,7 +370,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
       "line": 74,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -338,7 +379,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
       "line": 89,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -346,7 +388,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
       "line": 103,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -354,7 +397,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
       "line": 118,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -362,7 +406,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
       "line": 131,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -370,7 +415,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
       "line": 134,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -378,7 +424,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
       "line": 148,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -386,7 +433,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
       "line": 152,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -394,7 +442,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
       "line": 169,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -402,7 +451,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\EventProcessingServiceMinimalTest.java",
       "line": 184,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -410,7 +460,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
       "line": 70,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -418,7 +469,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
       "line": 73,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -426,7 +478,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
       "line": 96,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -434,7 +487,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
       "line": 99,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -442,7 +496,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
       "line": 114,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -450,7 +505,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
       "line": 117,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -458,7 +514,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
       "line": 148,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -466,7 +523,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisServiceTest.java",
       "line": 151,
-      "timestamp": "2025-08-04T15:08:40.500Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.550Z"
     },
     {
       "type": "WARNING",
@@ -474,7 +532,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
       "line": 38,
-      "timestamp": "2025-08-04T15:08:40.501Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -482,7 +541,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
       "line": 98,
-      "timestamp": "2025-08-04T15:08:40.501Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -490,7 +550,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
       "line": 103,
-      "timestamp": "2025-08-04T15:08:40.501Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -498,7 +559,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
       "line": 118,
-      "timestamp": "2025-08-04T15:08:40.501Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -506,7 +568,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\WebSocketIntegrationTest.java",
       "line": 183,
-      "timestamp": "2025-08-04T15:08:40.501Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -514,7 +577,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
       "line": 38,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -522,7 +586,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
       "line": 101,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -530,7 +595,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
       "line": 139,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -538,7 +604,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
       "line": 144,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -546,7 +613,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
       "line": 180,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -554,7 +622,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
       "line": 218,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -562,7 +631,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
       "line": 250,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -570,7 +640,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
       "line": 315,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -578,7 +649,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EventProcessingIntegrationTest.java",
       "line": 341,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.552Z"
     },
     {
       "type": "WARNING",
@@ -586,7 +658,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 42,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -594,7 +667,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 103,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -602,7 +676,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 123,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -610,7 +685,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 130,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -618,7 +694,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 143,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -626,7 +703,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 182,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -634,7 +712,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 219,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -642,7 +721,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 273,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -650,7 +730,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 308,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -658,7 +739,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 311,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -666,7 +748,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 315,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -674,7 +757,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 332,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -682,7 +766,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 362,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -690,7 +775,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 381,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -698,7 +784,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 397,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -706,7 +793,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\integration\\EndToEndIntegrationTest.java",
       "line": 399,
-      "timestamp": "2025-08-04T15:08:40.502Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.553Z"
     },
     {
       "type": "WARNING",
@@ -714,7 +802,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantConnectionTest.java",
       "line": 47,
-      "timestamp": "2025-08-04T15:08:40.503Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.554Z"
     },
     {
       "type": "WARNING",
@@ -722,7 +811,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantConnectionTest.java",
       "line": 53,
-      "timestamp": "2025-08-04T15:08:40.503Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.554Z"
     },
     {
       "type": "CRITICAL",
@@ -730,7 +820,8 @@
       "message": "Hardcoded secret detected - use environment variables",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantConnectionTest.java",
       "line": 23,
-      "timestamp": "2025-08-04T15:08:40.503Z"
+      "suggestion": "Replace hardcoded value with environment variable: ${process.env.VARIABLE_NAME}",
+      "timestamp": "2025-08-04T15:55:59.554Z"
     },
     {
       "type": "CRITICAL",
@@ -738,7 +829,8 @@
       "message": "Hardcoded secret detected - use environment variables",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantConnectionTest.java",
       "line": 24,
-      "timestamp": "2025-08-04T15:08:40.503Z"
+      "suggestion": "Replace hardcoded value with environment variable: ${process.env.VARIABLE_NAME}",
+      "timestamp": "2025-08-04T15:55:59.554Z"
     },
     {
       "type": "WARNING",
@@ -746,7 +838,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\test\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionControllerTest.java",
       "line": 163,
-      "timestamp": "2025-08-04T15:08:40.504Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.554Z"
     },
     {
       "type": "WARNING",
@@ -754,7 +847,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
       "line": 61,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.556Z"
     },
     {
       "type": "WARNING",
@@ -762,7 +856,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
       "line": 260,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.556Z"
     },
     {
       "type": "WARNING",
@@ -770,7 +865,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
       "line": 330,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.556Z"
     },
     {
       "type": "WARNING",
@@ -778,7 +874,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
       "line": 366,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.556Z"
     },
     {
       "type": "WARNING",
@@ -786,7 +883,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
       "line": 374,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.556Z"
     },
     {
       "type": "WARNING",
@@ -794,7 +892,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
       "line": 376,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.556Z"
     },
     {
       "type": "WARNING",
@@ -802,7 +901,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
       "line": 393,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.556Z"
     },
     {
       "type": "WARNING",
@@ -810,7 +910,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
       "line": 416,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.556Z"
     },
     {
       "type": "WARNING",
@@ -818,7 +919,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
       "line": 482,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.556Z"
     },
     {
       "type": "WARNING",
@@ -826,7 +928,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
       "line": 494,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.556Z"
     },
     {
       "type": "WARNING",
@@ -834,7 +937,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\PatternAnalysisService.java",
       "line": 499,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.556Z"
     },
     {
       "type": "WARNING",
@@ -842,7 +946,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\OpenAIClient.java",
       "line": 373,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.557Z"
     },
     {
       "type": "WARNING",
@@ -850,7 +955,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\OpenAIClient.java",
       "line": 381,
-      "timestamp": "2025-08-04T15:08:40.506Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.557Z"
     },
     {
       "type": "WARNING",
@@ -858,7 +964,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 37,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -866,7 +973,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 55,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -874,7 +982,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 89,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -882,7 +991,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 93,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -890,7 +1000,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 109,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -898,7 +1009,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 115,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -906,7 +1018,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 136,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -914,7 +1027,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 168,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -922,7 +1036,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 174,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -930,7 +1045,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 175,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -938,7 +1054,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 194,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -946,7 +1063,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 234,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -954,7 +1072,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 258,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -962,7 +1081,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 262,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -970,7 +1090,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 267,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -978,7 +1099,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 268,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -986,7 +1108,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 275,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -994,7 +1117,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantWebSocketClient.java",
       "line": 276,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1002,7 +1126,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 35,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1010,7 +1135,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 45,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1018,7 +1144,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 65,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1026,7 +1153,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 76,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1034,7 +1162,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 84,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1042,7 +1171,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 131,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1050,7 +1180,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 137,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1058,7 +1189,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 149,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1066,7 +1198,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 181,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1074,7 +1207,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 185,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1082,7 +1216,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 235,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1090,7 +1225,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 239,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1098,7 +1234,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 249,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1106,7 +1243,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 250,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1114,7 +1252,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 261,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1122,7 +1261,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 262,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1130,7 +1270,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 272,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1138,7 +1279,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantConnectionService.java",
       "line": 274,
-      "timestamp": "2025-08-04T15:08:40.507Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.558Z"
     },
     {
       "type": "WARNING",
@@ -1146,7 +1288,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantApiClient.java",
       "line": 241,
-      "timestamp": "2025-08-04T15:08:40.508Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.559Z"
     },
     {
       "type": "WARNING",
@@ -1154,7 +1297,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\HomeAssistantApiClient.java",
       "line": 242,
-      "timestamp": "2025-08-04T15:08:40.508Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.559Z"
     },
     {
       "type": "WARNING",
@@ -1162,7 +1306,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
       "line": 94,
-      "timestamp": "2025-08-04T15:08:40.508Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.559Z"
     },
     {
       "type": "WARNING",
@@ -1170,7 +1315,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
       "line": 136,
-      "timestamp": "2025-08-04T15:08:40.508Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.559Z"
     },
     {
       "type": "WARNING",
@@ -1178,7 +1324,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
       "line": 180,
-      "timestamp": "2025-08-04T15:08:40.508Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.559Z"
     },
     {
       "type": "WARNING",
@@ -1186,7 +1333,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\EventProcessingService.java",
       "line": 181,
-      "timestamp": "2025-08-04T15:08:40.508Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.559Z"
     },
     {
       "type": "WARNING",
@@ -1194,7 +1342,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 92,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1202,7 +1351,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 243,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1210,7 +1360,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 247,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1218,7 +1369,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 248,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1226,7 +1378,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 275,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1234,7 +1387,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 282,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1242,7 +1396,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 296,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1250,7 +1405,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 333,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1258,7 +1414,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 551,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1266,7 +1423,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 581,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1274,7 +1432,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 595,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1282,7 +1441,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 598,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1290,7 +1450,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 612,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1298,7 +1459,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 631,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1306,7 +1468,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 639,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1314,7 +1477,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 642,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1322,7 +1486,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 645,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1330,7 +1495,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 670,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1338,7 +1504,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 733,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1346,7 +1513,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 754,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1354,7 +1522,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 784,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1362,7 +1531,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 821,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1370,7 +1540,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 898,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1378,7 +1549,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 952,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1386,7 +1558,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\BehavioralAnalysisService.java",
       "line": 957,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1394,7 +1567,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIService.java",
       "line": 114,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1402,7 +1576,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\service\\AIErrorHandler.java",
       "line": 52,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.560Z"
     },
     {
       "type": "WARNING",
@@ -1410,7 +1585,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 58,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1418,7 +1594,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 67,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1426,7 +1603,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 68,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1434,7 +1612,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 69,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1442,7 +1621,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 70,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1450,7 +1630,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 79,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1458,7 +1639,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 92,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1466,7 +1648,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 93,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1474,7 +1657,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 95,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1482,7 +1666,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 96,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1490,7 +1675,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 108,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1498,7 +1684,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 111,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1506,7 +1693,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 112,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1514,7 +1702,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 113,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1522,7 +1711,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 158,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1530,7 +1720,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 159,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1538,7 +1729,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 174,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1546,7 +1738,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 181,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1554,7 +1747,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 182,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1562,7 +1756,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 190,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1570,7 +1765,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 191,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1578,7 +1774,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 200,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1586,7 +1783,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 202,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1594,7 +1792,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 211,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1602,7 +1801,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 213,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1610,7 +1810,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 223,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1618,7 +1819,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 225,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1626,7 +1828,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 243,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1634,7 +1837,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 244,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1642,7 +1846,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 260,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1650,7 +1855,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 261,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1658,7 +1864,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 276,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1666,7 +1873,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 277,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1674,7 +1882,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 286,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1682,7 +1891,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 287,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1690,7 +1900,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 288,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1698,7 +1909,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantEventRepository.java",
       "line": 289,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1706,7 +1918,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
       "line": 17,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1714,7 +1927,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
       "line": 55,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1722,7 +1936,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
       "line": 70,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1730,7 +1945,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
       "line": 110,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1738,7 +1954,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
       "line": 121,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1746,7 +1963,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
       "line": 130,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1754,7 +1972,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionRepository.java",
       "line": 138,
-      "timestamp": "2025-08-04T15:08:40.509Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1762,7 +1981,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 14,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1770,7 +1990,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 23,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1778,7 +1999,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 24,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1786,7 +2008,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 25,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1794,7 +2017,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 26,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1802,7 +2026,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 35,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1810,7 +2035,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 36,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1818,7 +2044,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 37,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1826,7 +2053,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 38,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1834,7 +2062,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 45,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1842,7 +2071,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 46,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1850,7 +2080,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantConnectionMetricsRepository.java",
       "line": 55,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1858,7 +2089,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 15,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1866,7 +2098,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 39,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1874,7 +2107,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 40,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1882,7 +2116,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 41,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1890,7 +2125,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 42,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1898,7 +2134,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 56,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1906,7 +2143,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 57,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1914,7 +2152,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 58,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1922,7 +2161,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 65,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1930,7 +2170,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 66,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1938,7 +2179,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 96,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1946,7 +2188,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\repository\\HomeAssistantAuditLogRepository.java",
       "line": 97,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.561Z"
     },
     {
       "type": "WARNING",
@@ -1954,7 +2197,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantEvent.java",
       "line": 57,
-      "timestamp": "2025-08-04T15:08:40.510Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.562Z"
     },
     {
       "type": "WARNING",
@@ -1962,7 +2206,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\entity\\HomeAssistantConnectionMetrics.java",
       "line": 51,
-      "timestamp": "2025-08-04T15:08:40.511Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.563Z"
     },
     {
       "type": "WARNING",
@@ -1970,7 +2215,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\PatternAnalysisController.java",
       "line": 65,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -1978,7 +2224,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\PatternAnalysisController.java",
       "line": 69,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -1986,7 +2233,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 30,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -1994,7 +2242,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 54,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2002,7 +2251,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 69,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2010,7 +2260,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 91,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2018,7 +2269,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 94,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2026,7 +2278,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 117,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2034,7 +2287,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 118,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2042,7 +2296,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 147,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2050,7 +2305,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 157,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2058,7 +2314,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 183,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2066,7 +2323,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 219,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2074,7 +2332,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 228,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2082,7 +2341,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\HomeAssistantConnectionController.java",
       "line": 243,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2090,7 +2350,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\EventMonitoringController.java",
       "line": 44,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2098,7 +2359,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\EventMonitoringController.java",
       "line": 148,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2106,7 +2368,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\EventMonitoringController.java",
       "line": 166,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2114,7 +2377,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\EventMonitoringController.java",
       "line": 192,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.566Z"
     },
     {
       "type": "WARNING",
@@ -2122,7 +2386,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
       "line": 44,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.567Z"
     },
     {
       "type": "WARNING",
@@ -2130,7 +2395,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
       "line": 94,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.567Z"
     },
     {
       "type": "WARNING",
@@ -2138,7 +2404,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
       "line": 122,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.567Z"
     },
     {
       "type": "WARNING",
@@ -2146,7 +2413,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
       "line": 143,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.567Z"
     },
     {
       "type": "WARNING",
@@ -2154,7 +2422,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
       "line": 192,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.567Z"
     },
     {
       "type": "WARNING",
@@ -2162,7 +2431,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\BehavioralAnalysisController.java",
       "line": 194,
-      "timestamp": "2025-08-04T15:08:40.513Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.567Z"
     },
     {
       "type": "WARNING",
@@ -2170,7 +2440,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
       "line": 51,
-      "timestamp": "2025-08-04T15:08:40.514Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.567Z"
     },
     {
       "type": "WARNING",
@@ -2178,7 +2449,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
       "line": 65,
-      "timestamp": "2025-08-04T15:08:40.514Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.567Z"
     },
     {
       "type": "WARNING",
@@ -2186,7 +2458,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "backend\\src\\main\\java\\com\\tappha\\homeassistant\\controller\\AISuggestionController.java",
       "line": 79,
-      "timestamp": "2025-08-04T15:08:40.514Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.567Z"
     },
     {
       "type": "WARNING",
@@ -2194,7 +2467,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\HomeAssistantConnectionForm.tsx",
       "line": 116,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.584Z"
     },
     {
       "type": "WARNING",
@@ -2202,7 +2476,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\HomeAssistantConnectionForm.tsx",
       "line": 132,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.584Z"
     },
     {
       "type": "WARNING",
@@ -2210,7 +2485,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\HomeAssistantConnectionForm.tsx",
       "line": 136,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.584Z"
     },
     {
       "type": "WARNING",
@@ -2218,7 +2494,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\HomeAssistantConnectionForm.tsx",
       "line": 151,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.584Z"
     },
     {
       "type": "WARNING",
@@ -2226,7 +2503,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\HomeAssistantConnectionForm.tsx",
       "line": 170,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.584Z"
     },
     {
       "type": "WARNING",
@@ -2234,7 +2512,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\EventMonitoringDashboard.tsx",
       "line": 233,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.584Z"
     },
     {
       "type": "WARNING",
@@ -2242,7 +2521,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
       "line": 165,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.585Z"
     },
     {
       "type": "WARNING",
@@ -2250,7 +2530,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
       "line": 172,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.585Z"
     },
     {
       "type": "WARNING",
@@ -2258,7 +2539,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
       "line": 182,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.585Z"
     },
     {
       "type": "WARNING",
@@ -2266,7 +2548,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
       "line": 189,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.585Z"
     },
     {
       "type": "WARNING",
@@ -2274,7 +2557,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
       "line": 203,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.585Z"
     },
     {
       "type": "WARNING",
@@ -2282,7 +2566,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
       "line": 210,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.585Z"
     },
     {
       "type": "WARNING",
@@ -2290,7 +2575,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
       "line": 214,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.585Z"
     },
     {
       "type": "WARNING",
@@ -2298,7 +2584,8 @@
       "message": "Line exceeds 100 character limit",
       "file": "frontend\\src\\components\\ConnectionStatusDashboard.tsx",
       "line": 218,
-      "timestamp": "2025-08-04T15:08:40.531Z"
+      "suggestion": "Split long line into multiple lines or use line continuation",
+      "timestamp": "2025-08-04T15:55:59.585Z"
     }
   ],
   "summary": {
@@ -2306,54 +2593,310 @@
     "warnings": 285
   },
   "analytics": {
-    "timestamp": "2025-08-04T15:08:40.584Z",
-    "executionTime": 112,
-    "averageFileProcessingTime": 0.1111111111111111,
-    "violationTrends": {
-      "trend": "stable",
-      "recentAverage": 18,
-      "olderAverage": null,
-      "change": null
+    "timestamp": "2025-08-04T15:55:59.660Z",
+    "executionTime": 147,
+    "averageFileProcessingTime": {
+      "overallAverage": 0.19,
+      "totalFiles": 72,
+      "totalTime": 14,
+      "fileTypePerformance": {
+        ".java": {
+          "averageTime": 0.21,
+          "count": 62,
+          "totalSize": 409476,
+          "averageSize": 6604,
+          "efficiency": 0
+        },
+        ".tsx": {
+          "averageTime": 0,
+          "count": 3,
+          "totalSize": 28283,
+          "averageSize": 9428,
+          "efficiency": 0
+        },
+        ".xml": {
+          "averageTime": 0,
+          "count": 1,
+          "totalSize": 6630,
+          "averageSize": 6630,
+          "efficiency": 0
+        },
+        ".yml": {
+          "averageTime": 0.17,
+          "count": 6,
+          "totalSize": 16938,
+          "averageSize": 2823,
+          "efficiency": 0
+        }
+      }
     },
-    "standardsEffectiveness": {
-      "tech-stack": {
-        "violationRate": 0,
-        "totalChecks": 72,
-        "totalViolations": 0
+    "validationPerformance": {
+      "technology-stack": {
+        "averageTime": 0,
+        "totalTime": 0,
+        "count": 72,
+        "minTime": 0,
+        "maxTime": 0,
+        "efficiency": 0
       },
       "code-style": {
-        "violationRate": 46,
-        "totalChecks": 72,
-        "totalViolations": 33
+        "averageTime": 0.01,
+        "totalTime": 1,
+        "count": 72,
+        "minTime": 0,
+        "maxTime": 1,
+        "efficiency": 0.01
       },
-      "security-compliance": {
-        "violationRate": 1,
-        "totalChecks": 72,
-        "totalViolations": 1
+      "security": {
+        "averageTime": 0.1,
+        "totalTime": 7,
+        "count": 72,
+        "minTime": 0,
+        "maxTime": 1,
+        "efficiency": 0.1
       },
-      "best-practices": {
-        "violationRate": 0,
-        "totalChecks": 72,
-        "totalViolations": 0
+      "architecture": {
+        "averageTime": 0,
+        "totalTime": 0,
+        "count": 72,
+        "minTime": 0,
+        "maxTime": 0,
+        "efficiency": 0
       },
-      "testing-strategy": {
-        "violationRate": 0,
-        "totalChecks": 72,
-        "totalViolations": 0
+      "testing": {
+        "averageTime": 0,
+        "totalTime": 0,
+        "count": 72,
+        "minTime": 0,
+        "maxTime": 0,
+        "efficiency": 0
+      }
+    },
+    "violationTrends": {
+      "trend": "stable",
+      "recentAverage": 54,
+      "olderAverage": 54,
+      "change": 0
+    },
+    "standardsEffectiveness": {
+      "effectiveness": {
+        "tech-stack": {
+          "violationRate": 0,
+          "totalChecks": 72,
+          "totalViolations": 0,
+          "priority": "LOW",
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "status": "GOOD"
+        },
+        "code-style": {
+          "violationRate": 46,
+          "totalChecks": 72,
+          "totalViolations": 33,
+          "priority": "HIGH",
+          "lastViolation": "2025-08-04T15:55:59.584Z",
+          "complianceTrend": "stable",
+          "status": "CRITICAL"
+        },
+        "security-compliance": {
+          "violationRate": 1,
+          "totalChecks": 72,
+          "totalViolations": 1,
+          "priority": "LOW",
+          "lastViolation": "2025-08-04T15:55:59.554Z",
+          "complianceTrend": "stable",
+          "status": "GOOD"
+        },
+        "best-practices": {
+          "violationRate": 0,
+          "totalChecks": 72,
+          "totalViolations": 0,
+          "priority": "LOW",
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "status": "GOOD"
+        },
+        "testing-strategy": {
+          "violationRate": 0,
+          "totalChecks": 72,
+          "totalViolations": 0,
+          "priority": "LOW",
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "status": "GOOD"
+        }
+      },
+      "ranking": [
+        {
+          "name": "code-style",
+          "violationRate": 45.83333333333333,
+          "totalChecks": 72,
+          "totalViolations": 33,
+          "priority": "HIGH",
+          "status": "CRITICAL"
+        },
+        {
+          "name": "security-compliance",
+          "violationRate": 1.3888888888888888,
+          "totalChecks": 72,
+          "totalViolations": 1,
+          "priority": "LOW",
+          "status": "GOOD"
+        },
+        {
+          "name": "tech-stack",
+          "violationRate": 0,
+          "totalChecks": 72,
+          "totalViolations": 0,
+          "priority": "LOW",
+          "status": "GOOD"
+        },
+        {
+          "name": "best-practices",
+          "violationRate": 0,
+          "totalChecks": 72,
+          "totalViolations": 0,
+          "priority": "LOW",
+          "status": "GOOD"
+        },
+        {
+          "name": "testing-strategy",
+          "violationRate": 0,
+          "totalChecks": 72,
+          "totalViolations": 0,
+          "priority": "LOW",
+          "status": "GOOD"
+        }
+      ],
+      "summary": {
+        "totalStandards": 5,
+        "criticalStandards": 1,
+        "warningStandards": 0,
+        "goodStandards": 4,
+        "mostViolated": [
+          {
+            "name": "code-style",
+            "violationRate": 45.83333333333333,
+            "totalChecks": 72,
+            "totalViolations": 33,
+            "priority": "HIGH",
+            "status": "CRITICAL"
+          },
+          {
+            "name": "security-compliance",
+            "violationRate": 1.3888888888888888,
+            "totalChecks": 72,
+            "totalViolations": 1,
+            "priority": "LOW",
+            "status": "GOOD"
+          },
+          {
+            "name": "tech-stack",
+            "violationRate": 0,
+            "totalChecks": 72,
+            "totalViolations": 0,
+            "priority": "LOW",
+            "status": "GOOD"
+          }
+        ],
+        "leastViolated": [
+          {
+            "name": "testing-strategy",
+            "violationRate": 0,
+            "totalChecks": 72,
+            "totalViolations": 0,
+            "priority": "LOW",
+            "status": "GOOD"
+          },
+          {
+            "name": "best-practices",
+            "violationRate": 0,
+            "totalChecks": 72,
+            "totalViolations": 0,
+            "priority": "LOW",
+            "status": "GOOD"
+          },
+          {
+            "name": "tech-stack",
+            "violationRate": 0,
+            "totalChecks": 72,
+            "totalViolations": 0,
+            "priority": "LOW",
+            "status": "GOOD"
+          }
+        ]
       }
     },
     "improvementSuggestions": [
       {
-        "priority": "MEDIUM",
+        "priority": "HIGH",
+        "category": "Standards",
+        "message": "🚨 code-style has critical violation rate (46%)",
+        "action": "Urgently review and rewrite code-style documentation with clear examples",
+        "impact": "HIGH",
+        "effort": "HIGH"
+      },
+      {
+        "priority": "HIGH",
+        "category": "Compliance",
+        "message": "📊 Low compliance score (54%)",
+        "action": "Implement comprehensive compliance improvement plan",
+        "impact": "HIGH",
+        "effort": "HIGH"
+      },
+      {
+        "priority": "HIGH",
+        "category": "Security",
+        "message": "🚨 Critical violations detected (2 critical, 285 warnings)",
+        "action": "Immediately address all critical violations",
+        "impact": "HIGH",
+        "effort": "MEDIUM"
+      },
+      {
+        "priority": "HIGH",
         "category": "Code Style",
-        "message": "Focus on reducing code style violations (285 total)",
-        "action": "Review and update code style standards"
+        "message": "⚠️ High volume of code style violations (285 total)",
+        "action": "Implement systematic approach to reduce code style violations",
+        "impact": "MEDIUM",
+        "effort": "HIGH"
       },
       {
         "priority": "MEDIUM",
-        "category": "Standards",
-        "message": "code-style has high violation rate (46%)",
-        "action": "Review and clarify code-style documentation"
+        "category": "File Types",
+        "message": "📁 High violations in .java files (273 violations)",
+        "action": "Review and improve .java file standards",
+        "impact": "MEDIUM",
+        "effort": "MEDIUM"
+      },
+      {
+        "priority": "MEDIUM",
+        "category": "File Types",
+        "message": "📁 High violations in .tsx files (14 violations)",
+        "action": "Review and improve .tsx file standards",
+        "impact": "MEDIUM",
+        "effort": "MEDIUM"
+      }
+    ],
+    "ruleBasedSuggestions": [
+      {
+        "type": "RULE_BASED",
+        "category": "Code Style",
+        "priority": "HIGH",
+        "message": "High volume of code style violations detected",
+        "suggestion": "Implement automated code formatting with Prettier/ESLint",
+        "action": "Configure IDE with code style rules and enable auto-format on save",
+        "impact": "HIGH",
+        "effort": "MEDIUM"
+      },
+      {
+        "type": "RULE_BASED",
+        "category": "Security",
+        "priority": "CRITICAL",
+        "message": "Security violations detected",
+        "suggestion": "Implement secrets management with environment variables",
+        "action": "Replace all hardcoded secrets with environment variables and use .env files",
+        "impact": "CRITICAL",
+        "effort": "HIGH"
       }
     ],
     "statisticalAnalysis": {
@@ -2362,13 +2905,13 @@
         "averageViolations": 287,
         "pattern": "stable",
         "outliers": 0,
-        "totalEntries": 3
+        "totalEntries": 16
       },
       "complianceTrends": {
-        "trend": 27,
-        "averageScore": 18,
-        "improvement": 18,
-        "volatility": 25,
+        "trend": 2.223529411764706,
+        "averageScore": 47,
+        "improvement": 0,
+        "volatility": 18,
         "currentScore": 54
       },
       "standardsEffectiveness": {
@@ -2385,27 +2928,27 @@
           "tech-stack": {
             "averageViolationRate": 0,
             "trend": 0,
-            "totalChecks": 216
+            "totalChecks": 1152
           },
           "code-style": {
             "averageViolationRate": 46,
             "trend": 0,
-            "totalChecks": 216
+            "totalChecks": 1152
           },
           "security-compliance": {
             "averageViolationRate": 1,
-            "trend": 0,
-            "totalChecks": 216
+            "trend": -8.359326303060002e-17,
+            "totalChecks": 1152
           },
           "best-practices": {
             "averageViolationRate": 0,
             "trend": 0,
-            "totalChecks": 216
+            "totalChecks": 1152
           },
           "testing-strategy": {
             "averageViolationRate": 0,
             "trend": 0,
-            "totalChecks": 216
+            "totalChecks": 1152
           }
         }
       },
@@ -2413,18 +2956,19 @@
         "overallRisk": null,
         "factors": [
           "Low average compliance score",
-          "High score volatility",
-          "Recent score decline"
+          "High score volatility"
         ],
         "metrics": {
-          "averageScore": 18,
-          "volatility": 25,
+          "averageScore": 47,
+          "volatility": 18,
           "violationTrend": 0
         }
       },
       "predictions": {
-        "prediction": "insufficient_data",
-        "confidence": 0
+        "prediction": 70,
+        "confidence": 100,
+        "trend": 2.223529411764706,
+        "currentScore": 54
       },
       "insights": [
         {
@@ -2434,18 +2978,97 @@
           "action": "Monitor for improvement opportunities"
         },
         {
-          "type": "compliance_trend",
-          "priority": "LOW",
-          "message": "Compliance improving by 18%",
-          "action": "Continue current practices"
-        },
-        {
           "type": "standards_effectiveness",
           "priority": "HIGH",
           "message": "Standards needing improvement: code-style",
           "action": "Review and update standards documentation"
         }
-      ]
+      ],
+      "violationPatterns": {
+        "patterns": [
+          {
+            "type": "DOMINANT_CATEGORY",
+            "category": "Code Style",
+            "frequency": 2850,
+            "criticalRate": 0,
+            "description": "Code Style violations are consistently high (2850 total)"
+          },
+          {
+            "type": "DOMINANT_CATEGORY",
+            "category": "Security",
+            "frequency": 20,
+            "criticalRate": 1,
+            "description": "Security violations are consistently high (20 total)"
+          }
+        ],
+        "totalPatterns": 2,
+        "dominantCategory": "Code Style",
+        "trendDirection": "stable"
+      },
+      "recurringIssues": {
+        "recurringIssues": [
+          {
+            "type": "PERSISTENT_LOW_COMPLIANCE",
+            "averageScore": 54,
+            "threshold": 70,
+            "severity": "HIGH",
+            "description": "Consistently low compliance scores (avg: 54.0%)",
+            "recommendation": "Review and update coding standards, provide team training"
+          },
+          {
+            "type": "PERSISTENT_CATEGORY_VIOLATIONS",
+            "category": "Code Style",
+            "averagePerRun": 285,
+            "totalRuns": 5,
+            "severity": "HIGH",
+            "description": "Persistent Code Style violations (285.0 avg per run)",
+            "recommendation": "Focus on Code Style standards, provide specific training"
+          }
+        ],
+        "totalIssues": 2,
+        "criticalIssues": 0,
+        "highIssues": 2,
+        "mediumIssues": 0
+      },
+      "violationClustering": {
+        "clusters": [
+          {
+            "type": "SEVERITY_CLUSTER",
+            "category": "WARNING",
+            "ratio": 0.9930313588850174,
+            "count": 2850,
+            "severity": "MEDIUM",
+            "description": "High ratio of warning violations (99.3%)",
+            "recommendation": "Review warning patterns, improve code quality standards"
+          }
+        ],
+        "patterns": [],
+        "insights": [],
+        "totalClusters": 1,
+        "totalPatterns": 0,
+        "totalInsights": 0,
+        "highSeverityClusters": 0,
+        "fileTypeClusters": 0,
+        "severityClusters": 1
+      },
+      "issuePredictions": {
+        "predictions": [
+          {
+            "type": "STANDARDS_EFFECTIVENESS_PREDICTION",
+            "issue": "STANDARDS_DETERIORATION",
+            "probability": "HIGH",
+            "confidence": 85,
+            "description": "1 standards showing deterioration",
+            "recommendation": "Review and update standards documentation, provide team training"
+          }
+        ],
+        "totalPredictions": 1,
+        "highProbabilityPredictions": 1,
+        "mediumProbabilityPredictions": 0,
+        "lowProbabilityPredictions": 0,
+        "confidence": 85,
+        "criticalPredictions": 0
+      }
     }
   }
 }
