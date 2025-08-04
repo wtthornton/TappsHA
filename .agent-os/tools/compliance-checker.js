@@ -716,6 +716,11 @@ class ComplianceChecker {
     const documentationTemplates = this.createDocumentationTemplatesBasedOnPatterns();
     const documentationValidation = this.implementDocumentationValidation();
 
+    // NEW: Enhanced prediction engine capabilities
+    const violationProbabilities = this.calculateViolationProbabilities();
+    const advancedForecasting = this.implementAdvancedTrendBasedForecasting();
+    const comprehensiveConfidenceScoring = this.implementComprehensiveConfidenceScoring();
+
     const analytics = {
       timestamp: new Date().toISOString(),
       executionTime: this.metrics.executionTime,
@@ -735,7 +740,11 @@ class ComplianceChecker {
       smartDocumentationSuggestions: smartDocumentationSuggestions,
       missingDocumentationSections: missingDocumentationSections,
       documentationTemplates: documentationTemplates,
-      documentationValidation: documentationValidation
+      documentationValidation: documentationValidation,
+      // NEW: Enhanced prediction engine
+      violationProbabilities: violationProbabilities,
+      advancedForecasting: advancedForecasting,
+      comprehensiveConfidenceScoring: comprehensiveConfidenceScoring
     };
 
     // NEW: Enhanced reporting capabilities
@@ -2321,15 +2330,17 @@ class ComplianceChecker {
     };
     
     this.violations.forEach(violation => {
-      const severity = violation.severity;
-      violationsBySeverity[severity].count++;
-      violationsBySeverity[severity].files.add(violation.file);
-      
-      const type = violation.type || 'UNKNOWN';
-      if (!violationsBySeverity[severity].types[type]) {
-        violationsBySeverity[severity].types[type] = 0;
+      const severity = violation.type || 'WARNING'; // Use type as severity
+      if (violationsBySeverity[severity]) {
+        violationsBySeverity[severity].count++;
+        violationsBySeverity[severity].files.add(violation.file);
+        
+        const type = violation.type || 'UNKNOWN';
+        if (!violationsBySeverity[severity].types[type]) {
+          violationsBySeverity[severity].types[type] = 0;
+        }
+        violationsBySeverity[severity].types[type]++;
       }
-      violationsBySeverity[severity].types[type]++;
     });
     
     // Convert Sets to arrays
@@ -2355,7 +2366,10 @@ class ComplianceChecker {
       
       violationsByStandard[standard].count++;
       violationsByStandard[standard].files.add(violation.file);
-      violationsByStandard[standard].severity[violation.severity]++;
+      const severity = violation.type || 'WARNING';
+      if (violationsByStandard[standard].severity[severity] !== undefined) {
+        violationsByStandard[standard].severity[severity]++;
+      }
     });
     
     // Convert Sets to arrays
@@ -2995,7 +3009,15 @@ class ComplianceChecker {
       ]
     };
     
-    const riskLevel = this.assessRiskForAction(item).level;
+    // Calculate risk level directly without calling assessRiskForAction
+    const riskFactors = {
+      'CRITICAL': 'HIGH',
+      'HIGH': 'HIGH',
+      'MEDIUM': 'MEDIUM',
+      'LOW': 'LOW'
+    };
+    
+    const riskLevel = riskFactors[item.priority] || 'LOW';
     return mitigations[riskLevel] || mitigations['LOW'];
   }
 
@@ -3820,6 +3842,633 @@ class ComplianceChecker {
     potential.totalPotential = Math.round((potential.fileProcessing + potential.validation + potential.overall) / 3);
     
     return potential;
+  }
+
+  // Enhanced: Build violation probability calculations
+  calculateViolationProbabilities() {
+    if (this.metrics.historicalData.length < 5) {
+      return {
+        probabilities: [],
+        confidence: 0,
+        message: 'Insufficient historical data for probability calculations (minimum 5 runs required)'
+      };
+    }
+
+    const probabilities = [];
+    const recentData = this.metrics.historicalData.slice(-10); // Last 10 runs
+
+    // Calculate file type violation probabilities
+    const fileTypeViolations = {};
+    recentData.forEach(entry => {
+      if (entry.metrics && entry.metrics.violationCategories) {
+        Object.entries(entry.metrics.violationCategories).forEach(([fileType, count]) => {
+          if (!fileTypeViolations[fileType]) {
+            fileTypeViolations[fileType] = [];
+          }
+          fileTypeViolations[fileType].push(count);
+        });
+      }
+    });
+
+    Object.entries(fileTypeViolations).forEach(([fileType, counts]) => {
+      const avgViolations = counts.reduce((sum, count) => sum + count, 0) / counts.length;
+      const trend = counts[counts.length - 1] - counts[0];
+      const probability = Math.min(100, Math.max(0, avgViolations * 10 + (trend > 0 ? 15 : trend < 0 ? -10 : 0)));
+      
+      probabilities.push({
+        type: 'FILE_TYPE_VIOLATION_PROBABILITY',
+        fileType: fileType,
+        probability: Math.round(probability),
+        confidence: this.calculateProbabilityConfidence(counts),
+        trend: trend > 0 ? 'increasing' : trend < 0 ? 'decreasing' : 'stable',
+        recommendation: this.generateViolationProbabilityRecommendation(fileType, probability, trend)
+      });
+    });
+
+    // Calculate severity-based violation probabilities
+    const severityProbabilities = this.calculateSeverityBasedProbabilities(recentData);
+    probabilities.push(...severityProbabilities);
+
+    // Calculate standards-based violation probabilities
+    const standardsProbabilities = this.calculateStandardsBasedProbabilities(recentData);
+    probabilities.push(...standardsProbabilities);
+
+    // Calculate overall confidence
+    const totalConfidence = probabilities.reduce((sum, prob) => sum + prob.confidence, 0);
+    const overallConfidence = probabilities.length > 0 ? Math.round(totalConfidence / probabilities.length) : 0;
+
+    return {
+      probabilities: probabilities,
+      confidence: overallConfidence,
+      totalProbabilities: probabilities.length,
+      highProbabilityViolations: probabilities.filter(p => p.probability > 70).length,
+      mediumProbabilityViolations: probabilities.filter(p => p.probability > 40 && p.probability <= 70).length,
+      lowProbabilityViolations: probabilities.filter(p => p.probability <= 40).length
+    };
+  }
+
+  // Enhanced: Calculate severity-based violation probabilities
+  calculateSeverityBasedProbabilities(recentData) {
+    const probabilities = [];
+    
+    // Critical violation probability
+    const criticalCounts = recentData.map(entry => entry.criticalViolations || 0);
+    const avgCritical = criticalCounts.reduce((sum, count) => sum + count, 0) / criticalCounts.length;
+    const criticalTrend = criticalCounts[criticalCounts.length - 1] - criticalCounts[0];
+    const criticalProbability = Math.min(100, Math.max(0, avgCritical * 20 + (criticalTrend > 0 ? 25 : criticalTrend < 0 ? -15 : 0)));
+    
+    probabilities.push({
+      type: 'CRITICAL_VIOLATION_PROBABILITY',
+      severity: 'CRITICAL',
+      probability: Math.round(criticalProbability),
+      confidence: this.calculateProbabilityConfidence(criticalCounts),
+      trend: criticalTrend > 0 ? 'increasing' : criticalTrend < 0 ? 'decreasing' : 'stable',
+      recommendation: this.generateSeverityProbabilityRecommendation('CRITICAL', criticalProbability, criticalTrend)
+    });
+
+    // Warning violation probability
+    const warningCounts = recentData.map(entry => entry.warnings || 0);
+    const avgWarnings = warningCounts.reduce((sum, count) => sum + count, 0) / warningCounts.length;
+    const warningTrend = warningCounts[warningCounts.length - 1] - warningCounts[0];
+    const warningProbability = Math.min(100, Math.max(0, avgWarnings * 8 + (warningTrend > 0 ? 20 : warningTrend < 0 ? -10 : 0)));
+    
+    probabilities.push({
+      type: 'WARNING_VIOLATION_PROBABILITY',
+      severity: 'WARNING',
+      probability: Math.round(warningProbability),
+      confidence: this.calculateProbabilityConfidence(warningCounts),
+      trend: warningTrend > 0 ? 'increasing' : warningTrend < 0 ? 'decreasing' : 'stable',
+      recommendation: this.generateSeverityProbabilityRecommendation('WARNING', warningProbability, warningTrend)
+    });
+
+    return probabilities;
+  }
+
+  // Enhanced: Calculate standards-based violation probabilities
+  calculateStandardsBasedProbabilities(recentData) {
+    const probabilities = [];
+    const standardsViolations = {};
+
+    // Aggregate standards violations across recent data
+    recentData.forEach(entry => {
+      if (entry.metrics && entry.metrics.standardsEffectiveness) {
+        Object.entries(entry.metrics.standardsEffectiveness).forEach(([standard, data]) => {
+          if (!standardsViolations[standard]) {
+            standardsViolations[standard] = [];
+          }
+          standardsViolations[standard].push(data.violations || 0);
+        });
+      }
+    });
+
+    Object.entries(standardsViolations).forEach(([standard, violations]) => {
+      const avgViolations = violations.reduce((sum, count) => sum + count, 0) / violations.length;
+      const trend = violations[violations.length - 1] - violations[0];
+      const probability = Math.min(100, Math.max(0, avgViolations * 15 + (trend > 0 ? 20 : trend < 0 ? -10 : 0)));
+      
+      probabilities.push({
+        type: 'STANDARDS_VIOLATION_PROBABILITY',
+        standard: standard,
+        probability: Math.round(probability),
+        confidence: this.calculateProbabilityConfidence(violations),
+        trend: trend > 0 ? 'increasing' : trend < 0 ? 'decreasing' : 'stable',
+        recommendation: this.generateStandardsProbabilityRecommendation(standard, probability, trend)
+      });
+    });
+
+    return probabilities;
+  }
+
+  // Enhanced: Calculate probability confidence based on data consistency
+  calculateProbabilityConfidence(dataPoints) {
+    if (dataPoints.length < 3) return 30;
+    
+    const mean = dataPoints.reduce((sum, point) => sum + point, 0) / dataPoints.length;
+    const variance = dataPoints.reduce((sum, point) => sum + Math.pow(point - mean, 2), 0) / dataPoints.length;
+    const stdDev = Math.sqrt(variance);
+    const coefficientOfVariation = stdDev / mean;
+    
+    // Higher confidence for more consistent data
+    let confidence = 100 - (coefficientOfVariation * 50);
+    confidence = Math.max(30, Math.min(95, confidence));
+    
+    // Bonus confidence for more data points
+    if (dataPoints.length >= 8) confidence += 10;
+    else if (dataPoints.length >= 5) confidence += 5;
+    
+    return Math.round(confidence);
+  }
+
+  // Enhanced: Generate violation probability recommendations
+  generateViolationProbabilityRecommendation(fileType, probability, trend) {
+    if (probability > 80) {
+      return `High probability of ${fileType} violations. Immediate attention required.`;
+    } else if (probability > 60) {
+      return `Moderate probability of ${fileType} violations. Monitor closely.`;
+    } else if (probability > 40) {
+      return `Low-moderate probability of ${fileType} violations. Regular monitoring recommended.`;
+    } else {
+      return `Low probability of ${fileType} violations. Continue current practices.`;
+    }
+  }
+
+  // Enhanced: Generate severity probability recommendations
+  generateSeverityProbabilityRecommendation(severity, probability, trend) {
+    if (probability > 80) {
+      return `High probability of ${severity} violations. Critical attention required.`;
+    } else if (probability > 60) {
+      return `Moderate probability of ${severity} violations. Increased monitoring needed.`;
+    } else if (probability > 40) {
+      return `Low-moderate probability of ${severity} violations. Standard monitoring.`;
+    } else {
+      return `Low probability of ${severity} violations. Continue current practices.`;
+    }
+  }
+
+  // Enhanced: Generate standards probability recommendations
+  generateStandardsProbabilityRecommendation(standard, probability, trend) {
+    if (probability > 80) {
+      return `High probability of ${standard} violations. Review and improve standards compliance.`;
+    } else if (probability > 60) {
+      return `Moderate probability of ${standard} violations. Monitor standards effectiveness.`;
+    } else if (probability > 40) {
+      return `Low-moderate probability of ${standard} violations. Regular standards review.`;
+    } else {
+      return `Low probability of ${standard} violations. Standards working well.`;
+    }
+  }
+
+  // Enhanced: Implement advanced trend-based forecasting
+  implementAdvancedTrendBasedForecasting() {
+    if (this.metrics.historicalData.length < 5) {
+      return {
+        forecasts: [],
+        confidence: 0,
+        message: 'Insufficient historical data for advanced forecasting (minimum 5 runs required)'
+      };
+    }
+
+    const forecasts = [];
+    const recentData = this.metrics.historicalData.slice(-10);
+
+    // Enhanced compliance score forecasting
+    const complianceForecast = this.generateAdvancedComplianceForecast(recentData);
+    forecasts.push(complianceForecast);
+
+    // Enhanced violation count forecasting
+    const violationForecast = this.generateAdvancedViolationForecast(recentData);
+    forecasts.push(violationForecast);
+
+    // Enhanced performance forecasting
+    const performanceForecast = this.generateAdvancedPerformanceForecast(recentData);
+    forecasts.push(performanceForecast);
+
+    // Enhanced standards effectiveness forecasting
+    const standardsForecast = this.generateAdvancedStandardsForecast(recentData);
+    forecasts.push(standardsForecast);
+
+    // Calculate overall forecast confidence
+    const totalConfidence = forecasts.reduce((sum, forecast) => sum + forecast.confidence, 0);
+    const overallConfidence = forecasts.length > 0 ? Math.round(totalConfidence / forecasts.length) : 0;
+
+    return {
+      forecasts: forecasts,
+      confidence: overallConfidence,
+      totalForecasts: forecasts.length,
+      highConfidenceForecasts: forecasts.filter(f => f.confidence > 80).length,
+      mediumConfidenceForecasts: forecasts.filter(f => f.confidence > 60 && f.confidence <= 80).length,
+      lowConfidenceForecasts: forecasts.filter(f => f.confidence <= 60).length
+    };
+  }
+
+  // Enhanced: Generate advanced compliance forecast
+  generateAdvancedComplianceForecast(recentData) {
+    const scores = recentData.map(entry => entry.complianceScore);
+    const trend = this.calculateLinearTrend(scores);
+    const volatility = this.calculateVolatility(scores);
+    const seasonality = this.detectSeasonality(scores);
+    
+    const nextScore = this.predictNextValue(scores, trend, volatility, seasonality);
+    const confidence = this.calculateForecastConfidence(scores, trend, volatility);
+    
+    return {
+      type: 'ADVANCED_COMPLIANCE_FORECAST',
+      metric: 'compliance_score',
+      currentValue: scores[scores.length - 1],
+      predictedValue: Math.round(nextScore),
+      confidence: confidence,
+      trend: trend.slope > 0 ? 'improving' : trend.slope < 0 ? 'declining' : 'stable',
+      volatility: volatility,
+      seasonality: seasonality,
+      recommendation: this.generateAdvancedForecastRecommendation('compliance score', nextScore, scores[scores.length - 1], trend.slope)
+    };
+  }
+
+  // Enhanced: Generate advanced violation forecast
+  generateAdvancedViolationForecast(recentData) {
+    const violations = recentData.map(entry => entry.violations);
+    const trend = this.calculateLinearTrend(violations);
+    const volatility = this.calculateVolatility(violations);
+    const seasonality = this.detectSeasonality(violations);
+    
+    const nextViolations = this.predictNextValue(violations, trend, volatility, seasonality);
+    const confidence = this.calculateForecastConfidence(violations, trend, volatility);
+    
+    return {
+      type: 'ADVANCED_VIOLATION_FORECAST',
+      metric: 'violation_count',
+      currentValue: violations[violations.length - 1],
+      predictedValue: Math.round(nextViolations),
+      confidence: confidence,
+      trend: trend.slope > 0 ? 'increasing' : trend.slope < 0 ? 'decreasing' : 'stable',
+      volatility: volatility,
+      seasonality: seasonality,
+      recommendation: this.generateAdvancedForecastRecommendation('violation count', nextViolations, violations[violations.length - 1], trend.slope)
+    };
+  }
+
+  // Enhanced: Generate advanced performance forecast
+  generateAdvancedPerformanceForecast(recentData) {
+    const executionTimes = recentData.map(entry => entry.metrics.executionTime);
+    const trend = this.calculateLinearTrend(executionTimes);
+    const volatility = this.calculateVolatility(executionTimes);
+    const seasonality = this.detectSeasonality(executionTimes);
+    
+    const nextExecutionTime = this.predictNextValue(executionTimes, trend, volatility, seasonality);
+    const confidence = this.calculateForecastConfidence(executionTimes, trend, volatility);
+    
+    return {
+      type: 'ADVANCED_PERFORMANCE_FORECAST',
+      metric: 'execution_time',
+      currentValue: executionTimes[executionTimes.length - 1],
+      predictedValue: Math.round(nextExecutionTime),
+      confidence: confidence,
+      trend: trend.slope > 0 ? 'slowing' : trend.slope < 0 ? 'improving' : 'stable',
+      volatility: volatility,
+      seasonality: seasonality,
+      recommendation: this.generateAdvancedForecastRecommendation('execution time', nextExecutionTime, executionTimes[executionTimes.length - 1], trend.slope)
+    };
+  }
+
+  // Enhanced: Generate advanced standards forecast
+  generateAdvancedStandardsForecast(recentData) {
+    const standardsEffectiveness = [];
+    
+    recentData.forEach(entry => {
+      if (entry.metrics && entry.metrics.standardsEffectiveness) {
+        const avgEffectiveness = Object.values(entry.metrics.standardsEffectiveness)
+          .reduce((sum, standard) => sum + (standard.effectivenessScore || 0), 0) / 
+          Object.keys(entry.metrics.standardsEffectiveness).length;
+        standardsEffectiveness.push(avgEffectiveness);
+      }
+    });
+
+    if (standardsEffectiveness.length < 3) {
+      return {
+        type: 'ADVANCED_STANDARDS_FORECAST',
+        metric: 'standards_effectiveness',
+        confidence: 30,
+        message: 'Insufficient standards effectiveness data for forecasting'
+      };
+    }
+
+    const trend = this.calculateLinearTrend(standardsEffectiveness);
+    const volatility = this.calculateVolatility(standardsEffectiveness);
+    const seasonality = this.detectSeasonality(standardsEffectiveness);
+    
+    const nextEffectiveness = this.predictNextValue(standardsEffectiveness, trend, volatility, seasonality);
+    const confidence = this.calculateForecastConfidence(standardsEffectiveness, trend, volatility);
+    
+    return {
+      type: 'ADVANCED_STANDARDS_FORECAST',
+      metric: 'standards_effectiveness',
+      currentValue: standardsEffectiveness[standardsEffectiveness.length - 1],
+      predictedValue: Math.round(nextEffectiveness),
+      confidence: confidence,
+      trend: trend.slope > 0 ? 'improving' : trend.slope < 0 ? 'declining' : 'stable',
+      volatility: volatility,
+      seasonality: seasonality,
+      recommendation: this.generateAdvancedForecastRecommendation('standards effectiveness', nextEffectiveness, standardsEffectiveness[standardsEffectiveness.length - 1], trend.slope)
+    };
+  }
+
+  // Enhanced: Calculate linear trend
+  calculateLinearTrend(data) {
+    const n = data.length;
+    const sumX = (n * (n - 1)) / 2;
+    const sumY = data.reduce((sum, y) => sum + y, 0);
+    const sumXY = data.reduce((sum, y, i) => sum + (i * y), 0);
+    const sumXX = (n * (n - 1) * (2 * n - 1)) / 6;
+    
+    const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+    const intercept = (sumY - slope * sumX) / n;
+    
+    return { slope, intercept };
+  }
+
+  // Enhanced: Calculate volatility
+  calculateVolatility(data) {
+    const mean = data.reduce((sum, value) => sum + value, 0) / data.length;
+    const variance = data.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / data.length;
+    return Math.sqrt(variance);
+  }
+
+  // Enhanced: Detect seasonality (simplified)
+  detectSeasonality(data) {
+    if (data.length < 6) return 'none';
+    
+    // Simple seasonality detection based on pattern repetition
+    const halfLength = Math.floor(data.length / 2);
+    const firstHalf = data.slice(0, halfLength);
+    const secondHalf = data.slice(halfLength);
+    
+    const firstHalfAvg = firstHalf.reduce((sum, val) => sum + val, 0) / firstHalf.length;
+    const secondHalfAvg = secondHalf.reduce((sum, val) => sum + val, 0) / secondHalf.length;
+    
+    const difference = Math.abs(firstHalfAvg - secondHalfAvg);
+    const overallAvg = (firstHalfAvg + secondHalfAvg) / 2;
+    const seasonalityStrength = difference / overallAvg;
+    
+    if (seasonalityStrength > 0.2) return 'strong';
+    else if (seasonalityStrength > 0.1) return 'moderate';
+    else return 'weak';
+  }
+
+  // Enhanced: Predict next value with trend, volatility, and seasonality
+  predictNextValue(data, trend, volatility, seasonality) {
+    const lastValue = data[data.length - 1];
+    const trendPrediction = lastValue + trend.slope;
+    
+    // Adjust for seasonality
+    let seasonalityAdjustment = 0;
+    if (seasonality === 'strong') {
+      seasonalityAdjustment = volatility * 0.3;
+    } else if (seasonality === 'moderate') {
+      seasonalityAdjustment = volatility * 0.15;
+    }
+    
+    // Add some randomness based on volatility
+    const randomFactor = (Math.random() - 0.5) * volatility * 0.2;
+    
+    return trendPrediction + seasonalityAdjustment + randomFactor;
+  }
+
+  // Enhanced: Calculate forecast confidence
+  calculateForecastConfidence(data, trend, volatility) {
+    const mean = data.reduce((sum, value) => sum + value, 0) / data.length;
+    const coefficientOfVariation = volatility / mean;
+    
+    // Base confidence on data consistency
+    let confidence = 100 - (coefficientOfVariation * 30);
+    
+    // Adjust for data points
+    if (data.length >= 10) confidence += 15;
+    else if (data.length >= 7) confidence += 10;
+    else if (data.length >= 5) confidence += 5;
+    
+    // Adjust for trend consistency
+    const trendConsistency = Math.abs(trend.slope) / mean;
+    if (trendConsistency < 0.1) confidence += 10;
+    else if (trendConsistency > 0.3) confidence -= 10;
+    
+    return Math.max(30, Math.min(95, Math.round(confidence)));
+  }
+
+  // Enhanced: Generate advanced forecast recommendations
+  generateAdvancedForecastRecommendation(metric, predictedValue, currentValue, trendSlope) {
+    const change = predictedValue - currentValue;
+    const changePercent = (change / currentValue) * 100;
+    
+    if (Math.abs(changePercent) > 20) {
+      return `Significant ${changePercent > 0 ? 'increase' : 'decrease'} in ${metric} predicted. Immediate action recommended.`;
+    } else if (Math.abs(changePercent) > 10) {
+      return `Moderate ${changePercent > 0 ? 'increase' : 'decrease'} in ${metric} predicted. Monitor closely.`;
+    } else if (Math.abs(changePercent) > 5) {
+      return `Slight ${changePercent > 0 ? 'increase' : 'decrease'} in ${metric} predicted. Regular monitoring.`;
+    } else {
+      return `Stable ${metric} predicted. Continue current practices.`;
+    }
+  }
+
+  // Enhanced: Add comprehensive confidence scoring for predictions
+  implementComprehensiveConfidenceScoring() {
+    if (this.metrics.historicalData.length < 3) {
+      return {
+        confidenceScores: [],
+        overallConfidence: 0,
+        message: 'Insufficient data for comprehensive confidence scoring'
+      };
+    }
+
+    const confidenceScores = [];
+    const recentData = this.metrics.historicalData.slice(-5);
+
+    // Data quality confidence
+    const dataQualityConfidence = this.calculateDataQualityConfidence(recentData);
+    confidenceScores.push(dataQualityConfidence);
+
+    // Prediction accuracy confidence
+    const predictionAccuracyConfidence = this.calculatePredictionAccuracyConfidence(recentData);
+    confidenceScores.push(predictionAccuracyConfidence);
+
+    // Trend consistency confidence
+    const trendConsistencyConfidence = this.calculateTrendConsistencyConfidence(recentData);
+    confidenceScores.push(trendConsistencyConfidence);
+
+    // Model reliability confidence
+    const modelReliabilityConfidence = this.calculateModelReliabilityConfidence(recentData);
+    confidenceScores.push(modelReliabilityConfidence);
+
+    // Calculate overall confidence
+    const totalConfidence = confidenceScores.reduce((sum, score) => sum + score.confidence, 0);
+    const overallConfidence = confidenceScores.length > 0 ? Math.round(totalConfidence / confidenceScores.length) : 0;
+
+    return {
+      confidenceScores: confidenceScores,
+      overallConfidence: overallConfidence,
+      totalScores: confidenceScores.length,
+      highConfidenceFactors: confidenceScores.filter(s => s.confidence > 80).length,
+      mediumConfidenceFactors: confidenceScores.filter(s => s.confidence > 60 && s.confidence <= 80).length,
+      lowConfidenceFactors: confidenceScores.filter(s => s.confidence <= 60).length
+    };
+  }
+
+  // Enhanced: Calculate data quality confidence
+  calculateDataQualityConfidence(recentData) {
+    let confidence = 70; // Base confidence
+    
+    // Check data completeness
+    const completeEntries = recentData.filter(entry => 
+      entry.complianceScore !== undefined && 
+      entry.violations !== undefined && 
+      entry.metrics !== undefined
+    ).length;
+    
+    const completenessRatio = completeEntries / recentData.length;
+    confidence += completenessRatio * 20;
+    
+    // Check data consistency
+    const scores = recentData.map(entry => entry.complianceScore);
+    const mean = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+    const variance = scores.reduce((sum, score) => sum + Math.pow(score - mean, 2), 0) / scores.length;
+    const coefficientOfVariation = Math.sqrt(variance) / mean;
+    
+    if (coefficientOfVariation < 0.1) confidence += 10;
+    else if (coefficientOfVariation > 0.3) confidence -= 10;
+    
+    return {
+      type: 'DATA_QUALITY_CONFIDENCE',
+      confidence: Math.max(30, Math.min(95, Math.round(confidence))),
+      factors: {
+        completeness: completenessRatio,
+        consistency: 1 - coefficientOfVariation,
+        dataPoints: recentData.length
+      }
+    };
+  }
+
+  // Enhanced: Calculate prediction accuracy confidence
+  calculatePredictionAccuracyConfidence(recentData) {
+    if (recentData.length < 4) {
+      return {
+        type: 'PREDICTION_ACCURACY_CONFIDENCE',
+        confidence: 30,
+        message: 'Insufficient data for accuracy assessment'
+      };
+    }
+
+    // Simple accuracy assessment based on trend prediction
+    const actualScores = recentData.map(entry => entry.complianceScore);
+    const predictedScores = [];
+    
+    for (let i = 2; i < actualScores.length; i++) {
+      const trend = actualScores[i-1] - actualScores[i-2];
+      const predicted = actualScores[i-1] + trend;
+      predictedScores.push(predicted);
+    }
+    
+    const actualForComparison = actualScores.slice(2);
+    const errors = predictedScores.map((predicted, i) => Math.abs(predicted - actualForComparison[i]));
+    const meanError = errors.reduce((sum, error) => sum + error, 0) / errors.length;
+    const meanActual = actualForComparison.reduce((sum, score) => sum + score, 0) / actualForComparison.length;
+    const accuracyRatio = 1 - (meanError / meanActual);
+    
+    const confidence = Math.max(30, Math.min(95, Math.round(accuracyRatio * 100)));
+    
+    return {
+      type: 'PREDICTION_ACCURACY_CONFIDENCE',
+      confidence: confidence,
+      factors: {
+        meanError: meanError,
+        accuracyRatio: accuracyRatio,
+        predictions: predictedScores.length
+      }
+    };
+  }
+
+  // Enhanced: Calculate trend consistency confidence
+  calculateTrendConsistencyConfidence(recentData) {
+    const scores = recentData.map(entry => entry.complianceScore);
+    const trends = [];
+    
+    for (let i = 1; i < scores.length; i++) {
+      trends.push(scores[i] - scores[i-1]);
+    }
+    
+    const meanTrend = trends.reduce((sum, trend) => sum + trend, 0) / trends.length;
+    const trendVariance = trends.reduce((sum, trend) => sum + Math.pow(trend - meanTrend, 2), 0) / trends.length;
+    const trendConsistency = 1 - (Math.sqrt(trendVariance) / Math.abs(meanTrend));
+    
+    const confidence = Math.max(30, Math.min(95, Math.round(trendConsistency * 100)));
+    
+    return {
+      type: 'TREND_CONSISTENCY_CONFIDENCE',
+      confidence: confidence,
+      factors: {
+        meanTrend: meanTrend,
+        trendVariance: trendVariance,
+        consistency: trendConsistency
+      }
+    };
+  }
+
+  // Enhanced: Calculate model reliability confidence
+  calculateModelReliabilityConfidence(recentData) {
+    let confidence = 60; // Base confidence
+    
+    // Check for sufficient data points
+    if (recentData.length >= 8) confidence += 20;
+    else if (recentData.length >= 5) confidence += 10;
+    
+    // Check for recent data (within last 7 days)
+    const now = new Date();
+    const recentEntries = recentData.filter(entry => {
+      const entryDate = new Date(entry.timestamp);
+      const daysDiff = (now - entryDate) / (1000 * 60 * 60 * 24);
+      return daysDiff <= 7;
+    });
+    
+    if (recentEntries.length >= recentData.length * 0.6) confidence += 15;
+    
+    // Check for data variety (different types of violations)
+    const uniqueViolationTypes = new Set();
+    recentData.forEach(entry => {
+      if (entry.metrics && entry.metrics.violationCategories) {
+        Object.keys(entry.metrics.violationCategories).forEach(type => uniqueViolationTypes.add(type));
+      }
+    });
+    
+    if (uniqueViolationTypes.size >= 3) confidence += 10;
+    
+    return {
+      type: 'MODEL_RELIABILITY_CONFIDENCE',
+      confidence: Math.max(30, Math.min(95, Math.round(confidence))),
+      factors: {
+        dataPoints: recentData.length,
+        recentData: recentEntries.length,
+        variety: uniqueViolationTypes.size
+      }
+    };
   }
 
   // Generate comprehensive compliance report

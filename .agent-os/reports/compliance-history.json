@@ -1510,5 +1510,314 @@
       "version": "1.0",
       "validated": true
     }
+  },
+  {
+    "timestamp": "2025-08-04T17:37:30.802Z",
+    "runId": "run_1754329050802_vilqslebr",
+    "complianceScore": 0,
+    "totalChecks": 6,
+    "passedChecks": 0,
+    "violations": 493,
+    "criticalViolations": 0,
+    "warnings": 493,
+    "metrics": {
+      "executionTime": 33,
+      "averageFileProcessingTime": {
+        "overallAverage": 1,
+        "totalFiles": 6,
+        "totalTime": 6,
+        "fileTypePerformance": {
+          ".js": {
+            "averageTime": 1.25,
+            "count": 4,
+            "totalSize": 371861,
+            "averageSize": 92965,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.5,
+            "count": 2,
+            "totalSize": 67713,
+            "averageSize": 33857,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 493
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:37:30.798Z",
+          "usageFrequency": "LOW"
+        },
+        "code-style": {
+          "violations": 6,
+          "checks": 6,
+          "violationRate": 100,
+          "lastViolation": "2025-08-04T17:37:30.798Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:37:30.798Z",
+          "usageFrequency": "LOW"
+        },
+        "security-compliance": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:37:30.799Z",
+          "usageFrequency": "LOW"
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:37:30.799Z",
+          "usageFrequency": "LOW"
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:37:30.799Z",
+          "usageFrequency": "LOW"
+        }
+      },
+      "filesProcessed": 7
+    },
+    "dataIntegrity": {
+      "checksum": "15c23418",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T17:38:08.926Z",
+    "runId": "run_1754329088926_ry0qfeo6r",
+    "complianceScore": 0,
+    "totalChecks": 6,
+    "passedChecks": 0,
+    "violations": 493,
+    "criticalViolations": 0,
+    "warnings": 493,
+    "metrics": {
+      "executionTime": 34,
+      "averageFileProcessingTime": {
+        "overallAverage": 1.5,
+        "totalFiles": 6,
+        "totalTime": 9,
+        "fileTypePerformance": {
+          ".js": {
+            "averageTime": 2,
+            "count": 4,
+            "totalSize": 372096,
+            "averageSize": 93024,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.5,
+            "count": 2,
+            "totalSize": 67713,
+            "averageSize": 33857,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 493
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:38:08.924Z",
+          "usageFrequency": "LOW"
+        },
+        "code-style": {
+          "violations": 6,
+          "checks": 6,
+          "violationRate": 100,
+          "lastViolation": "2025-08-04T17:38:08.924Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:38:08.924Z",
+          "usageFrequency": "LOW"
+        },
+        "security-compliance": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:38:08.925Z",
+          "usageFrequency": "LOW"
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:38:08.925Z",
+          "usageFrequency": "LOW"
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:38:08.925Z",
+          "usageFrequency": "LOW"
+        }
+      },
+      "filesProcessed": 7
+    },
+    "dataIntegrity": {
+      "checksum": "15c23418",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-04T17:38:24.951Z",
+    "runId": "run_1754329104951_vxjmpl621",
+    "complianceScore": 0,
+    "totalChecks": 6,
+    "passedChecks": 0,
+    "violations": 493,
+    "criticalViolations": 0,
+    "warnings": 493,
+    "metrics": {
+      "executionTime": 31,
+      "averageFileProcessingTime": {
+        "overallAverage": 1.33,
+        "totalFiles": 6,
+        "totalTime": 8,
+        "fileTypePerformance": {
+          ".js": {
+            "averageTime": 2,
+            "count": 4,
+            "totalSize": 372307,
+            "averageSize": 93077,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0,
+            "count": 2,
+            "totalSize": 67713,
+            "averageSize": 33857,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 493
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:38:24.948Z",
+          "usageFrequency": "LOW"
+        },
+        "code-style": {
+          "violations": 6,
+          "checks": 6,
+          "violationRate": 100,
+          "lastViolation": "2025-08-04T17:38:24.948Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:38:24.948Z",
+          "usageFrequency": "LOW"
+        },
+        "security-compliance": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:38:24.948Z",
+          "usageFrequency": "LOW"
+        },
+        "best-practices": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:38:24.948Z",
+          "usageFrequency": "LOW"
+        },
+        "testing-strategy": {
+          "violations": 0,
+          "checks": 6,
+          "violationRate": 0,
+          "lastViolation": null,
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 6,
+          "lastReferenced": "2025-08-04T17:38:24.948Z",
+          "usageFrequency": "LOW"
+        }
+      },
+      "filesProcessed": 7
+    },
+    "dataIntegrity": {
+      "checksum": "15c23418",
+      "version": "1.0",
+      "validated": true
+    }
   }
 ]
