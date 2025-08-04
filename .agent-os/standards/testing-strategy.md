@@ -1,20 +1,19 @@
-# Testing Strategy & Quality Standards
+# Testing Strategy & Quality Standards (Enhanced)
 
 ## Testing Trophy Approach
-- Emphasize unit + integration + some E2E tests.
-- Include static analysis (linters, type checks) as foundational layer.
+- Combine unit, integration, E2E tests, plus static analysis.
 
 ## Tools
-- Backend: JUnit 5, Mockito, Testcontainers, Jacoco.
-- Frontend: Jest + React Testing Library, Cypress/Playwright for E2E.
+- **Backend:** JUnit 5, Mockito, Testcontainers, Jacoco
+- **Frontend:** Jest + React Testing Library; Cypress or Playwright for E2E
 
 ## Coverage Targets
-- Aim for ~80% meaningful coverage.
-- Fail CI if coverage drops below threshold (~70%).
+- Aim ~80% meaningful coverage; CI fails below ~70%
 
 ## AI-Assisted Testing
-- Use AI to scaffold tests; always review generated tests for correctness.
+- Use AI to scaffold repetitive tests; review for correctness.
 
 ## CI Integration
-- Run all tests on every PR; fail fast on errors.
-- Track flaky tests and improve continuously.
+- Run all tests on each PR; fail fast; track flaky tests.
+
+**Cursor Effect:** Can auto‑generate **unit and integration tests** following project coverage & style.

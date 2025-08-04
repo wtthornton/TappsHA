@@ -1,17 +1,16 @@
-# Code Style Guide (Java/Spring & React/TypeScript)
+# Code Style Guide (Enhanced for Cursor/Agent-OS)
 
 ## General Formatting
 - Use Prettier and ESLint for JS/TS; Spotless and Checkstyle for Java.
-- Auto-format on save and enforce in CI.
+- Auto-format on save; enforce style in CI.
 
 ## Naming Conventions
-- **Java:** Packages lowercase, Classes PascalCase, methods camelCase, constants UPPER_SNAKE_CASE.
-- **TypeScript/JS:** Variables/functions camelCase, React components PascalCase.
+- **Java:** packages lowercase, Classes PascalCase, methods camelCase, constants UPPER_SNAKE_CASE.
+- **TypeScript/JS:** variables/functions camelCase, React components PascalCase.
 
-## Import Organization
-- Avoid Java wildcard imports; explicit imports only.
-- Order: external libs → internal modules. Remove unused imports automatically.
+## Import & Structure
+- Avoid Java wildcard imports; order: external → internal; remove unused automatically.
+- **Spring Boot:** package by feature; root @SpringBootApplication class.
+- **React:** functional components with hooks; co-locate component, test, style files.
 
-## Structure
-- Spring Boot: package by feature/domain; root @SpringBootApplication for scanning.
-- React: functional components with hooks, co-locate component, test, and style files.
+**Cursor Effect:** Ensures **all AI-generated code matches style automatically**, reducing review cycles.

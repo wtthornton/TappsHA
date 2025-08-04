@@ -1,22 +1,22 @@
-# Security & Compliance Standard
+# Security & Compliance Standard (Enhanced)
 
 ## Secure Defaults & Hardening
-- Deny-by-default configs; enable TLS and security headers by default.
-- Run containers as non-root; drop unnecessary Linux capabilities.
+- Deny-by-default; TLS and headers enabled by default.
+- Run containers as non-root; drop unneeded Linux capabilities.
 
 ## Dependency Management (SCA)
-- Use OWASP Dependency-Check, Snyk, Dependabot for vulnerability scanning.
-- Maintain SBOM and update base images regularly.
+- Use OWASP Dep‑Check, Snyk, Dependabot; maintain SBOMs.
 
 ## Container & Infra Security
-- Minimal base images (alpine/distroless) and regular scanning (Trivy).
+- Minimal base images (alpine/distroless), Trivy scans in CI.
 - Scan IaC for misconfigurations (Checkov, AWS Config).
 
 ## Secret Management
-- Never commit secrets; use Vault, AWS Secrets Manager, or GitHub Secrets.
-- Rotate secrets regularly and monitor for leaks.
+- No secrets in code; use Vault, AWS Secrets Manager, or GitHub Secrets.
+- Rotate secrets regularly; enable leak detection.
 
 ## OWASP Top 10 Compliance
-- Enforce robust authz checks; use parameterized queries & escaping.
-- Avoid cryptographic failures; use vetted libraries.
-- Monitor logs & alerts for suspicious activity.
+- Robust authz; parameterized queries; proper crypto.
+- Logging & alerting for suspicious activity.
+
+**Cursor Effect:** Avoids insecure code and **generates DevSecOps-ready pipelines and configs**.

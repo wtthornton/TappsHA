@@ -1,23 +1,21 @@
-# Tech Stack
+# JavaScript/TypeScript Frontend Strategy (Enhanced)
 
-## Context
-Default **Agent‑OS** stack aligned to 2025 best-practices.
+## Component Patterns
+- Use functional components with hooks; leverage custom hooks for logic reuse.
+- Co-locate components with their tests and styles.
 
-| Layer | Technology | Version / Notes |
-|-------|------------|-----------------|
-| **Frontend** | React | **19.1** (stable July 2025) |
-|  | TypeScript | **5.5** |
-|  | Vite | 6.x |
-|  | TailwindCSS | **4.1** + shadcn/ui |
-|  | State | TanStack Query 5, Context API |
-| **Mobile** | PWA | Workbox 7 |
-| **Backend** | Spring Boot | **3.5.3** (Java 21 LTS) |
-|  | Build | Gradle 9, Testcontainers |
-|  | API | REST, gRPC, Kafka 4 |
-| **Data** | PostgreSQL | **17.5**, pgvector 0.7 |
-|  | InfluxDB | **3.3 Core** |
-| **AI** | OpenAI GPT‑4o, LangChain 0.3 |
-| **CI/CD** | GitHub Actions, Docker Buildx |
-| **Runtime** | Docker 27.5, Compose V2 (Windows + WSL2) |
-| **Observability** | Prometheus 3.5, Grafana 12.1, Loki 3 |
-| **Tracing** | OpenTelemetry 1.52 |
+## State Management
+- Colocate state locally; Context or small state libs only for shared/global state.
+
+## SSR & Routing
+- Prefer Next.js for SSR/SSG when SEO/performance matters.
+- Dynamically import heavy modules for improved load times.
+
+## Error Handling & Resilience
+- Use React Error Boundaries for UI resilience.
+- Log errors to monitoring (e.g., Sentry) with user-friendly fallback UIs.
+
+## Performance
+- Use memoization (React.memo, useMemo) and lazy loading for efficiency.
+
+**Cursor Effect:** Generates **modern, production‑ready React code** with resilience and performance baked in.
