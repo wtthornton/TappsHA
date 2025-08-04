@@ -56,7 +56,7 @@
 
 - [ ] **AI Suggestion Engine** - Generate automation improvement suggestions with user approval workflow `L`
 - [ ] **Advanced Pattern Analysis** - Multi-dimensional analysis across different time intervals (1 day, 1 week, 1 month, 6 months, 1 year) using Spring Boot services `L`
-- [ ] **Behavioral Modeling** - AI models using OpenAI GPT-4o and pgvector 0.7 to identify household routines and preferences `L`
+- [ ] **Behavioral Modeling** - AI models using OpenAI GPT-4o Mini and pgvector 0.7 to identify household routines and preferences `L`
 - [ ] **Automation Recommendation Engine** - Generate context-aware automation suggestions using LangChain 0.3 `M`
 - [ ] **Third-Party Tool Discovery** - Identify and recommend relevant Home Assistant integrations `S`
 - [ ] **Predictive Analytics** - Forecast usage patterns and automation opportunities using Spring Boot analytics services `M`
@@ -103,7 +103,7 @@
 
 ### Features
 
-- [ ] **Predictive Automation** - Anticipate user needs and household changes using OpenAI GPT-4o `L`
+- [ ] **Predictive Automation** - Anticipate user needs and household changes using OpenAI GPT-4o Mini `L`
 - [ ] **Context-Aware Intelligence** - Consider environmental factors, schedules, and preferences using Spring Boot context services `L`
 - [ ] **Natural Language Processing** - Understand and process automation requests in natural language using LangChain 0.3 `M`
 - [ ] **Multi-Household Learning** - Learn from aggregated data while maintaining privacy using pgvector embeddings `XL`
@@ -115,7 +115,7 @@
 ### Dependencies
 
 - Phase 3 completion
-- Advanced NLP capabilities with OpenAI GPT-4o
+- Advanced NLP capabilities with OpenAI GPT-4o Mini
 - PWA development framework
 
 ## Phase 5: Enterprise Features

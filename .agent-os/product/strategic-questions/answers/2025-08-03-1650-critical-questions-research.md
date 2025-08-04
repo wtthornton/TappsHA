@@ -471,6 +471,32 @@ class LocalAIProcessor:
 - **Research Capabilities**: Web search, document analysis, reasoning
 - **Training Data**: Cutoff April 2024
 
+### AI Model Strategy for TappHA
+
+**OpenAI-Only Approach**: TappHA will use exclusively OpenAI models for all AI capabilities to ensure consistency, reliability, and cost control.
+
+**Cost-Effective Model Selection**:
+1. **GPT-4o Mini** - Primary model for most AI operations
+   - **Cost**: $0.00015 per 1K input tokens, $0.0006 per 1K output tokens
+   - **Use Cases**: Pattern recognition, automation suggestions, user interactions
+   - **Performance**: Excellent for most TappHA use cases
+
+2. **GPT-4o** - Advanced model for complex reasoning
+   - **Cost**: $0.0025 per 1K input tokens, $0.01 per 1K output tokens
+   - **Use Cases**: Complex automation logic, behavioral analysis, advanced recommendations
+   - **Performance**: Higher accuracy for complex tasks
+
+3. **GPT-3.5 Turbo** - Fallback model for simple operations
+   - **Cost**: $0.0005 per 1K input tokens, $0.0015 per 1K output tokens
+   - **Use Cases**: Basic text processing, simple automation logic
+   - **Performance**: Fast and cost-effective for simple tasks
+
+**Model Selection Strategy**:
+- **Default**: GPT-4o Mini for most operations
+- **Complex Tasks**: GPT-4o for advanced reasoning
+- **Simple Tasks**: GPT-3.5 Turbo for cost optimization
+- **Fallback**: Automatic fallback to lower-cost models if needed
+
 ### AI Research Process
 
 1. **Data Collection**: AI analyzed multiple data sources including:

@@ -14,6 +14,13 @@
 - PostgreSQL 15/16 (with pgvector support)
 - InfluxDB 2.x (3.x for high-scale scenarios)
 
+## AI/ML
+- OpenAI GPT-4o Mini (primary model for cost-effective operations)
+- OpenAI GPT-4o (advanced model for complex reasoning)
+- OpenAI GPT-3.5 Turbo (fallback model for simple operations)
+- pgvector 0.7 for vector embeddings
+- LangChain 0.3 for AI application development
+
 ## Observability
 - Prometheus 3.x + Grafana 10.x
 - Alertmanager for notifications
