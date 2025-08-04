@@ -19,5 +19,7 @@ GitHub Actions-based CI/CD for React (frontend) + Spring Boot (backend) + Docker
    - Container scans: Trivy
    - Optional SAST: CodeQL
 6. **Deploy Previews**: Use ephemeral environments (e.g., Uffizzi) to review PRs.
+7. **Lessons Learned Integration**: Capture deployment insights and update CI/CD processes based on lessons learned.
 
 See `ci-example-workflow.yml` for implementation example.
+**Reference:** See `@~/.agent-os/lessons-learned/categories/deployment/README.md` for deployment lessons.

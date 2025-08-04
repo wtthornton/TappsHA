@@ -127,10 +127,8 @@ public class HomeAssistantConnectionController {
             ConnectionStatusResponse response = ConnectionStatusResponse.builder()
                     .connectionId(connectionId)
                     .status(connection.getStatus().name())
-                    .homeAssistantVersion(connection.getHomeAssistantVersion())
                     .lastConnected(connection.getLastConnectedAt())
                     .lastSeen(connection.getLastSeenAt())
-                    .websocketStatus(webSocketClient.getConnectionState(connectionId).name())
                     .build();
             
             return ResponseEntity.ok(response);
@@ -269,10 +267,8 @@ public class HomeAssistantConnectionController {
                 .name(connection.getName())
                 .url(connection.getUrl())
                 .status(connection.getStatus().name())
-                .homeAssistantVersion(connection.getHomeAssistantVersion())
                 .lastConnected(connection.getLastConnectedAt())
                 .lastSeen(connection.getLastSeenAt())
-                .websocketStatus(webSocketClient.getConnectionState(connection.getId()).name())
                 .build();
     }
 } 

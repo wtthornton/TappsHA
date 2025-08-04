@@ -24,3 +24,9 @@
 - **Rule:** Treat CI/CD, IaC, and environment parity as part of development.
 - **Actions:** Maintain Dockerfiles, GitHub Actions, reproducible environments.
 - **Cursor Effect:** Generates **CI/CD‑ready microservices** without manual tweaks.
+
+## 6. Lessons Learned Integration
+- **Rule:** Capture and apply lessons learned systematically across all development phases.
+- **Actions:** Document insights, update standards, and integrate into Cursor AI rules.
+- **Cursor Effect:** AI generates **continuously improved code patterns** based on project history.
+- **Reference:** See `@~/.agent-os/lessons-learned/README.md` for complete framework.

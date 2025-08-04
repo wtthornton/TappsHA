@@ -89,6 +89,36 @@ This project follows Agent OS standards and structured development approach with
 - Risk-based test planning
 - ≥85% branch coverage requirement
 
+### Task Tracking Standards (MANDATORY)
+**ALWAYS** follow the task tracking standards defined in `@~/.agent-os/standards/enforcement.md`:
+- **ALWAYS** update tasks.md file immediately after completing any subtask
+- **NEVER** wait until the end of a session to update task progress
+- **ALWAYS** mark completed subtasks with `[x]` immediately after completion
+- **ALWAYS** add progress notes for completed sections
+- **ALWAYS** update completion percentages and overall progress
+- **ALWAYS** document session summaries with completed tasks and next priorities
+- **ALWAYS** maintain accurate task file structure with required sections
+- **ALWAYS** cross-reference tasks.md in commit messages and pull requests
+
+#### Task Update Protocol
+1. **Immediate Updates**: Mark subtasks as `[x]` immediately upon completion
+2. **Progress Notes**: Add detailed notes explaining what was accomplished
+3. **Session Summaries**: Document completed work and next priorities
+4. **Validation**: Verify all task updates before ending development sessions
+
+#### Task File Structure Requirements
+- **Required Sections**: Tasks, Recent Completion Summary, Next Priority Tasks, Overall Progress
+- **Progress Documentation**: Include timestamps, detailed descriptions, and next steps
+- **Quality Standards**: Clear task names, sufficient detail, chronological order
+- **Integration**: Reference tasks.md in development workflow and documentation
+
+#### Task Tracking Checklist Reference
+**ALWAYS** follow the comprehensive task tracking checklist in `@~/.agent-os/checklists/task-tracking-checklist.md`:
+- **Pre-Session**: Review tasks.md, identify priorities, verify structure
+- **During Session**: Update tasks immediately after each subtask completion
+- **End-of-Session**: Document session summary, update progress, validate completion
+- **Quality Assurance**: Verify accuracy, technical details, and chronological order
+
 ### Code Style Standards
 **ALWAYS** follow the code style rules defined in `@~/.agent-os/standards/code-style.md`:
 - TypeScript 5 for all runtime code

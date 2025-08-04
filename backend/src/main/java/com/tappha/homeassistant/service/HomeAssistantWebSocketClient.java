@@ -38,6 +38,7 @@ public class HomeAssistantWebSocketClient {
     
     private final ObjectMapper objectMapper;
     private final WebSocketClient webSocketClient;
+    private final EventProcessingService eventProcessingService;
     private final Map<UUID, WebSocketSession> activeSessions = new ConcurrentHashMap<>();
     private final Map<UUID, ConnectionState> connectionStates = new ConcurrentHashMap<>();
     private final AtomicLong messageIdCounter = new AtomicLong(1);
@@ -51,8 +52,9 @@ public class HomeAssistantWebSocketClient {
     @Value("${tappha.homeassistant.websocket.max-reconnect-attempts:10}")
     private int maxReconnectAttempts;
     
-    public HomeAssistantWebSocketClient(ObjectMapper objectMapper) {
+    public HomeAssistantWebSocketClient(ObjectMapper objectMapper, EventProcessingService eventProcessingService) {
         this.objectMapper = objectMapper;
+        this.eventProcessingService = eventProcessingService;
         this.webSocketClient = new StandardWebSocketClient();
     }
     
@@ -327,7 +329,8 @@ public class HomeAssistantWebSocketClient {
                 logger.debug("Received event for connection: {} - Type: {}, Entity: {}", 
                            connection.getId(), event.getEventType(), event.getEntityId());
                 
-                // TODO: Process event through Kafka or event processing pipeline
+                // Send event to Kafka processing pipeline
+                eventProcessingService.sendEventToKafka(event);
                 
             } catch (Exception e) {
                 logger.error("Error processing event for connection: {}", connection.getId(), e);

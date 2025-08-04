@@ -98,6 +98,8 @@ Check for any running development server and ask user permission to shut it down
 
 ### Step 4: Git Branch Management
 
+**Note:** After completing significant tasks, capture lessons learned using `@~/.agent-os/lessons-learned/README.md`
+
 Use the git-workflow subagent to manage git branches to ensure proper isolation by creating or switching to the appropriate branch for the spec.
 
 <instructions>

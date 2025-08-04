@@ -19,4 +19,9 @@
 - Robust authz; parameterized queries; proper crypto.
 - Logging & alerting for suspicious activity.
 
+## Security Lessons Learned
+- **Capture:** Document security incidents, vulnerabilities, and mitigation strategies
+- **Apply:** Update security standards based on lessons learned
+- **Reference:** See `@~/.agent-os/lessons-learned/categories/operations/README.md` for security lessons
+
 **Cursor Effect:** Avoids insecure code and **generates DevSecOps-ready pipelines and configs**.

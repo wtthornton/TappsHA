@@ -347,4 +347,172 @@ Before generating any code, verify:
 - Best Practices: `@~/.agent-os/standards/best-practices.md`
 - JavaScript Style: `@~/.agent-os/standards/code-style/javascript-style.md`
 - HTML Style: `@~/.agent-os/standards/code-style/html-style.md`
-- CSS Style: `@~/.agent-os/standards/code-style/css-style.md` 
+- CSS Style: `@~/.agent-os/standards/code-style/css-style.md`
+- Lessons Learned Framework: `@~/.agent-os/lessons-learned/README.md`
+
+## Lessons Learned Integration Standards
+
+### Mandatory Lessons Learned Protocol
+
+**ALWAYS** capture lessons learned after completing any significant development task or milestone.
+
+### Lessons Learned Requirements
+
+#### 1. Capture Triggers
+- **ALWAYS** capture lessons after sub-task completion
+- **ALWAYS** capture lessons after milestone completion
+- **ALWAYS** capture lessons after incident resolution
+- **ALWAYS** capture lessons after performance optimizations
+- **ALWAYS** capture lessons after security implementations
+
+#### 2. Capture Process
+```markdown
+# Lesson Capture Process
+1. Use appropriate category directory
+2. Follow lesson template structure
+3. Include all required sections
+4. Add appropriate tags for searching
+5. Link to related lessons and standards
+```
+
+#### 3. Integration Process
+- **ALWAYS** review lessons weekly during active development
+- **ALWAYS** integrate high-impact lessons into standards
+- **ALWAYS** update Cursor rules with new patterns
+- **ALWAYS** communicate changes to all teams
+- **ALWAYS** monitor adoption and effectiveness
+
+#### 4. Validation Checklist for Lessons Learned
+Before completing any development session, verify:
+- [ ] Lessons are captured for significant tasks
+- [ ] Lessons follow template structure
+- [ ] Lessons include actionable recommendations
+- [ ] Lessons are properly categorized and tagged
+- [ ] High-impact lessons are identified for integration
+
+### Lessons Learned File Structure Standards
+
+#### Required Sections
+```markdown
+# Lesson Template
+- Lesson Information (Date, Project, Phase, Priority)
+- Context (What was the situation?)
+- Action Taken (What was done?)
+- Results (What were the outcomes?)
+- Key Insights (What did we learn?)
+- Recommendations (What should we do differently?)
+- Impact Assessment (How significant is this lesson?)
+- Related Lessons (Links to related experiences)
+- Follow-up Actions (What needs to be done?)
+- Tags (Categories for searching)
+```
+
+### Enforcement Rules for Lessons Learned
+
+#### Strict Compliance
+- **NEVER** complete significant development without capturing lessons
+- **ALWAYS** use the standard lesson template
+- **ALWAYS** include actionable recommendations
+- **ALWAYS** categorize lessons appropriately
+- **ALWAYS** link to related lessons and standards
+
+#### Quality Standards
+- **ALWAYS** provide clear context and background
+- **ALWAYS** describe specific actions taken
+- **ALWAYS** document measurable outcomes
+- **ALWAYS** include technical and process insights
+- **ALWAYS** provide specific, actionable recommendations
+
+## Task Tracking Standards
+
+### Mandatory Task Update Protocol
+
+**ALWAYS** update the corresponding `tasks.md` file immediately after completing any subtask, not at the end of a session.
+
+### Task Update Requirements
+
+#### 1. Immediate Updates
+- **ALWAYS** mark completed subtasks with `[x]` immediately after completion
+- **ALWAYS** add progress notes for completed sections
+- **ALWAYS** update completion percentages
+- **NEVER** wait until the end of a session to update tasks
+
+#### 2. Progress Documentation
+```markdown
+- [x] 1.1 Write tests for new database entities
+  - **Progress Note**: Unit tests implemented with 95% coverage
+  - **Completed**: 2025-08-03 19:45
+  - **Next**: 1.2 Create database migration script
+```
+
+#### 3. Session Summary Updates
+After each development session, add:
+```markdown
+## Session Summary - YYYY-MM-DD HH:MM
+
+### ✅ Completed in This Session
+- [x] Task 1.1: Description of what was completed
+- [x] Task 2.3: Description of what was completed
+
+### 🔄 Next Priority Tasks
+- [ ] Task 1.2: Next immediate task
+- [ ] Task 2.4: Next immediate task
+
+### 📊 Progress Update
+- **Overall Progress**: X% Complete
+- **Sections Complete**: X/Y major sections
+- **Remaining Work**: Brief description
+```
+
+#### 4. Validation Checklist for Task Updates
+Before ending any development session, verify:
+- [ ] All completed subtasks are marked with `[x]`
+- [ ] Progress notes are added for completed sections
+- [ ] Session summary is documented
+- [ ] Next priority tasks are clearly identified
+- [ ] Overall progress percentage is updated
+- [ ] Remaining work is documented
+
+### Task File Structure Standards
+
+#### Required Sections
+```markdown
+# Spec Tasks
+
+## Tasks
+- [ ] 1. **Major Section Title**
+  - [ ] 1.1 Subtask description
+  - [ ] 1.2 Subtask description
+  - **Progress Note**: Current status and next steps
+
+## Recent Completion Summary
+### ✅ Completed in Latest Session (YYYY-MM-DD)
+- Description of major accomplishments
+
+### 🔄 Next Priority Tasks
+- List of immediate next steps
+
+## Overall Progress: X% Complete
+- **Completed Sections**: List of completed major sections
+- **Remaining Work**: Brief description of remaining work
+```
+
+### Enforcement Rules for Task Tracking
+
+#### Strict Compliance
+- **NEVER** complete a subtask without updating the tasks.md file
+- **ALWAYS** update tasks immediately after completion
+- **ALWAYS** document progress notes for context
+- **ALWAYS** maintain accurate completion percentages
+
+#### Quality Standards
+- **ALWAYS** use clear, descriptive task names
+- **ALWAYS** provide sufficient detail in progress notes
+- **ALWAYS** maintain chronological order of updates
+- **ALWAYS** cross-reference with related documentation
+
+#### Integration with Development Workflow
+- **ALWAYS** check tasks.md before starting new work
+- **ALWAYS** update tasks.md after completing work
+- **ALWAYS** reference tasks.md in commit messages
+- **ALWAYS** include task updates in pull request descriptions 

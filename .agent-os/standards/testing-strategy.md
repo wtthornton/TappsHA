@@ -16,4 +16,9 @@
 ## CI Integration
 - Run all tests on each PR; fail fast; track flaky tests.
 
+## Lessons Learned in Testing
+- **Capture:** Document testing insights, patterns, and failures
+- **Apply:** Update test strategies based on lessons learned
+- **Reference:** See `@~/.agent-os/lessons-learned/categories/testing/README.md` for testing lessons
+
 **Cursor Effect:** Can auto‑generate **unit and integration tests** following project coverage & style.

@@ -120,4 +120,20 @@ public interface HomeAssistantConnectionRepository extends JpaRepository<HomeAss
            "WHERE c.user.id = :userId " +
            "AND m.id = (SELECT MAX(m2.id) FROM HomeAssistantConnectionMetrics m2 WHERE m2.connection = c)")
     List<HomeAssistantConnection> findByUserIdWithLatestMetrics(@Param("userId") UUID userId);
+    
+    /**
+     * Find all connections for a specific user with pagination
+     * @param user the user
+     * @param pageable pagination parameters
+     * @return page of connections
+     */
+    Page<HomeAssistantConnection> findByUser(com.tappha.homeassistant.entity.User user, Pageable pageable);
+    
+    /**
+     * Find connection by user and URL
+     * @param user the user
+     * @param url the Home Assistant URL
+     * @return Optional containing the connection if found
+     */
+    Optional<HomeAssistantConnection> findByUserAndUrl(com.tappha.homeassistant.entity.User user, String url);
 } 

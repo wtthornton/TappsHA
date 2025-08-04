@@ -6,6 +6,8 @@ import com.tappha.homeassistant.entity.HomeAssistantEvent;
 import com.tappha.homeassistant.entity.User;
 import com.tappha.homeassistant.repository.HomeAssistantConnectionRepository;
 import com.tappha.homeassistant.repository.HomeAssistantEventRepository;
+import com.tappha.homeassistant.repository.HomeAssistantConnectionMetricsRepository;
+import com.tappha.homeassistant.repository.HomeAssistantAuditLogRepository;
 import com.tappha.homeassistant.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -33,13 +36,19 @@ public class HomeAssistantConnectionService {
     
     private final HomeAssistantConnectionRepository connectionRepository;
     private final HomeAssistantEventRepository eventRepository;
+    private final HomeAssistantConnectionMetricsRepository connectionMetricsRepository;
+    private final HomeAssistantAuditLogRepository auditLogRepository;
     private final UserRepository userRepository;
     
     public HomeAssistantConnectionService(HomeAssistantConnectionRepository connectionRepository,
                                        HomeAssistantEventRepository eventRepository,
+                                       HomeAssistantConnectionMetricsRepository connectionMetricsRepository,
+                                       HomeAssistantAuditLogRepository auditLogRepository,
                                        UserRepository userRepository) {
         this.connectionRepository = connectionRepository;
         this.eventRepository = eventRepository;
+        this.connectionMetricsRepository = connectionMetricsRepository;
+        this.auditLogRepository = auditLogRepository;
         this.userRepository = userRepository;
     }
     
@@ -49,17 +58,11 @@ public class HomeAssistantConnectionService {
     public ConnectionResponse createConnection(ConnectRequest request, OAuth2User principal) {
         try {
             String userEmail = principal.getAttribute("email");
-            String userName = principal.getAttribute("name");
-            
-            // Get or create user
             User user = userRepository.findByEmail(userEmail)
-                    .orElseGet(() -> {
-                        User newUser = new User(userEmail, userName);
-                        return userRepository.save(newUser);
-                    });
+                    .orElseThrow(() -> new RuntimeException("User not found: " + userEmail));
             
             // Check if connection already exists for this user and URL
-            Optional<HomeAssistantConnection> existingConnection = connectionRepository.findByUserIdAndUrl(user.getId(), request.getUrl());
+            Optional<HomeAssistantConnection> existingConnection = connectionRepository.findByUserAndUrl(user, request.getUrl());
             if (existingConnection.isPresent()) {
                 return ConnectionResponse.builder()
                         .success(false)
@@ -69,11 +72,12 @@ public class HomeAssistantConnectionService {
             
             // Create new connection
             HomeAssistantConnection connection = new HomeAssistantConnection();
+            connection.setUser(user);
             connection.setName(request.getConnectionName() != null ? request.getConnectionName() : "Home Assistant");
             connection.setUrl(request.getUrl());
-            connection.setEncryptedToken(request.getToken()); // Note: Should be encrypted in production
-            connection.setUser(user);
-            connection.setStatus(HomeAssistantConnection.ConnectionStatus.CONNECTING);
+            connection.setEncryptedToken(request.getToken()); // TODO: Encrypt token
+            connection.setStatus(HomeAssistantConnection.ConnectionStatus.CONNECTED);
+            connection.setLastConnectedAt(OffsetDateTime.now());
             
             HomeAssistantConnection savedConnection = connectionRepository.save(connection);
             
@@ -84,9 +88,9 @@ public class HomeAssistantConnectionService {
                     .connectionId(savedConnection.getId())
                     .status(savedConnection.getStatus().name())
                     .build();
-            
+                    
         } catch (Exception e) {
-            logger.error("Error creating Home Assistant connection", e);
+            logger.error("Error creating connection", e);
             return ConnectionResponse.builder()
                     .success(false)
                     .errorMessage("Failed to create connection: " + e.getMessage())
@@ -95,14 +99,14 @@ public class HomeAssistantConnectionService {
     }
     
     /**
-     * Get connections for the current user
+     * Get connections for a user
      */
     public Page<HomeAssistantConnection> getConnections(OAuth2User principal, Pageable pageable) {
         String userEmail = principal.getAttribute("email");
         User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException("User not found: " + userEmail));
         
-        return connectionRepository.findByUserId(user.getId(), pageable);
+        return connectionRepository.findByUser(user, pageable);
     }
     
     /**
@@ -166,22 +170,41 @@ public class HomeAssistantConnectionService {
      * Get metrics for a connection
      */
     public MetricsResponse getMetrics(UUID connectionId, String timeRange) {
-        // TODO: Implement actual metrics calculation
-        // For now, return mock data
+        // Calculate time range based on parameter
+        LocalDateTime endTime = LocalDateTime.now();
+        LocalDateTime startTime = calculateStartTime(timeRange, endTime);
+        
+        // Get connection
+        HomeAssistantConnection connection = getConnectionById(connectionId);
+        
+        // Calculate event metrics
+        long eventCount = eventRepository.countByConnectionIdAndTimestampBetween(connectionId, startTime, endTime);
+        
+        // Calculate average latency from connection metrics
+        Double averageLatency = connectionMetricsRepository
+                .findAverageLatencyByConnectionIdAndTimestampBetween(connectionId, startTime, endTime)
+                .orElse(0.0);
+        
+        // Calculate uptime percentage
+        double uptime = calculateUptime(connectionId, startTime, endTime);
+        
+        // Calculate error rate
+        double errorRate = calculateErrorRate(connectionId, startTime, endTime);
+        
+        // Calculate event rates
+        double averageEventRate = calculateAverageEventRate(connectionId, startTime, endTime);
+        double peakEventRate = calculatePeakEventRate(connectionId, startTime, endTime);
+        
+        // Get system performance metrics
+        MetricsResponse.Performance performance = getSystemPerformance();
         
         MetricsResponse.Metrics metrics = MetricsResponse.Metrics.builder()
-                .eventCount(1250)
-                .averageLatency(45.0)
-                .uptime(99.8)
-                .errorRate(0.1)
-                .peakEventRate(1500)
-                .averageEventRate(850.0)
-                .build();
-        
-        MetricsResponse.Performance performance = MetricsResponse.Performance.builder()
-                .cpuUsage(15.2)
-                .memoryUsage(28.5)
-                .eventProcessingLatency(85)
+                .eventCount((int) eventCount)
+                .averageLatency(averageLatency)
+                .uptime(uptime)
+                .errorRate(errorRate)
+                .peakEventRate((long) peakEventRate)
+                .averageEventRate(averageEventRate)
                 .build();
         
         return MetricsResponse.builder()
@@ -190,6 +213,106 @@ public class HomeAssistantConnectionService {
                 .metrics(metrics)
                 .performance(performance)
                 .build();
+    }
+    
+    /**
+     * Calculate start time based on time range parameter
+     */
+    private LocalDateTime calculateStartTime(String timeRange, LocalDateTime endTime) {
+        return switch (timeRange.toLowerCase()) {
+            case "1h" -> endTime.minusHours(1);
+            case "6h" -> endTime.minusHours(6);
+            case "24h", "1d" -> endTime.minusDays(1);
+            case "7d" -> endTime.minusDays(7);
+            case "30d", "1m" -> endTime.minusDays(30);
+            default -> endTime.minusHours(24); // Default to 24h
+        };
+    }
+    
+    /**
+     * Calculate uptime percentage for the connection
+     */
+    private double calculateUptime(UUID connectionId, LocalDateTime startTime, LocalDateTime endTime) {
+        // Get audit logs for connection status changes
+        long totalMinutes = java.time.Duration.between(startTime, endTime).toMinutes();
+        long downtimeMinutes = auditLogRepository
+                .findDowntimeMinutesByConnectionIdAndTimestampBetween(connectionId, startTime, endTime)
+                .orElse(0L);
+        
+        if (totalMinutes == 0) return 100.0;
+        return Math.max(0.0, 100.0 - ((double) downtimeMinutes / totalMinutes) * 100.0);
+    }
+    
+    /**
+     * Calculate error rate for the connection
+     */
+    private double calculateErrorRate(UUID connectionId, LocalDateTime startTime, LocalDateTime endTime) {
+        long totalEvents = eventRepository.countByConnectionIdAndTimestampBetween(connectionId, startTime, endTime);
+        long errorEvents = eventRepository.countByConnectionIdAndEventTypeAndTimestampBetween(
+                connectionId, "error", startTime, endTime);
+        
+        if (totalEvents == 0) return 0.0;
+        return (double) errorEvents / totalEvents * 100.0;
+    }
+    
+    /**
+     * Calculate average event rate (events per minute)
+     */
+    private double calculateAverageEventRate(UUID connectionId, LocalDateTime startTime, LocalDateTime endTime) {
+        long eventCount = eventRepository.countByConnectionIdAndTimestampBetween(connectionId, startTime, endTime);
+        long minutes = java.time.Duration.between(startTime, endTime).toMinutes();
+        
+        if (minutes == 0) return 0.0;
+        return (double) eventCount / minutes;
+    }
+    
+    /**
+     * Calculate peak event rate (events per minute)
+     */
+    private double calculatePeakEventRate(UUID connectionId, LocalDateTime startTime, LocalDateTime endTime) {
+        // Get the highest event count in any 1-minute window
+        return eventRepository.findPeakEventRateByConnectionIdAndTimestampBetween(connectionId, startTime, endTime)
+                .orElse(0.0);
+    }
+    
+    /**
+     * Get system performance metrics
+     */
+    private MetricsResponse.Performance getSystemPerformance() {
+        // Get system metrics from Spring Boot Actuator or custom metrics
+        Runtime runtime = Runtime.getRuntime();
+        long totalMemory = runtime.totalMemory();
+        long freeMemory = runtime.freeMemory();
+        double memoryUsage = ((double) (totalMemory - freeMemory) / totalMemory) * 100.0;
+        
+        // Get CPU usage from system metrics (simplified)
+        double cpuUsage = getCpuUsage();
+        
+        // Get event processing latency from metrics
+        double eventProcessingLatency = getEventProcessingLatency();
+        
+        return MetricsResponse.Performance.builder()
+                .cpuUsage(cpuUsage)
+                .memoryUsage(memoryUsage)
+                .eventProcessingLatency((long) eventProcessingLatency)
+                .build();
+    }
+    
+    /**
+     * Get CPU usage percentage
+     */
+    private double getCpuUsage() {
+        // Simplified CPU usage calculation
+        // In production, use Micrometer or custom metrics
+        return 15.2; // Placeholder - implement with actual system metrics
+    }
+    
+    /**
+     * Get event processing latency
+     */
+    private double getEventProcessingLatency() {
+        // Get average processing time from metrics
+        return 85.0; // Placeholder - implement with actual metrics
     }
     
     /**

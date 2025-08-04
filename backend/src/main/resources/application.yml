@@ -40,11 +40,22 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      session-timeout: 30000
+      heartbeat-interval: 10000
+      max-poll-records: 500
+      fetch-min-size: 1
+      fetch-max-wait: 500
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       acks: all
       retries: 3
+      batch-size: 16384
+      buffer-memory: 33554432
+      compression-type: snappy
+      linger-ms: 10
 
   security:
     oauth2:

@@ -29,4 +29,9 @@
 - Docker 24+ multi-stage builds
 - GitHub Actions for CI/CD pipelines
 
+## Technology Lessons Learned
+- **Capture:** Document technology choices, performance insights, and migration experiences
+- **Apply:** Update tech stack recommendations based on lessons learned
+- **Reference:** See `@~/.agent-os/lessons-learned/categories/development/README.md` for technology lessons
+
 **Cursor Effect:** Guides AI to **choose the right modern stack** and generate compatible code & config.

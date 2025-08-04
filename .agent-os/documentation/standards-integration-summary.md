@@ -17,6 +17,7 @@ This document provides a comprehensive overview of how all Agent OS standards ar
 | **CI/CD Strategy** | `.agent-os/standards/ci-cd-strategy.md` | Deployment and automation | ✅ Referenced in `.cursorrules` |
 | **Testing Strategy** | `.agent-os/standards/testing-strategy.md` | Testing standards and coverage | ✅ Referenced in `.cursorrules` |
 | **Enforcement** | `.agent-os/standards/enforcement.md` | Mandatory compliance rules | ✅ Referenced in `.cursorrules` |
+| **Lessons Learned** | `.agent-os/lessons-learned/README.md` | Lessons learned framework | ✅ Referenced in `.cursorrules` |
 
 ### Code Style Subdirectories
 
@@ -63,6 +64,7 @@ The `.cursor/rules/standards-compliance.mdc` file provides:
 - **Quality Assurance Standards:** Code quality and architecture principles
 - **Validation Checklist:** Complete compliance verification
 - **Reference Links:** Direct links to all standards files
+- **Lessons Learned Integration:** Links to lessons learned framework
 
 ### 3. Validation Process
 
@@ -75,6 +77,7 @@ Before any code submission, the following standards are validated:
 5. **CI/CD Strategy Compliance** (`ci-cd-strategy.md`)
 6. **Testing Strategy Compliance** (`testing-strategy.md`)
 7. **Enforcement Rules Compliance** (`enforcement.md`)
+8. **Lessons Learned Integration** (`lessons-learned/README.md`)
 
 ## Standards Enforcement Flow
 
@@ -88,16 +91,19 @@ Before any code submission, the following standards are validated:
    - Check `ci-cd-strategy.md` for deployment requirements
    - Check `testing-strategy.md` for testing requirements
    - Check `enforcement.md` for mandatory compliance rules
+   - Check `lessons-learned/README.md` for relevant lessons
 
 2. **During Development:**
    - Follow standards-compliance.mdc for implementation patterns
    - Use specific code-style subdirectory rules for language-specific patterns
    - Apply security standards throughout development
    - Implement testing according to testing strategy
+   - Capture lessons learned for significant insights
 
 3. **Before Submission:**
    - Run validation checklist from standards-compliance.mdc
    - Verify all standards compliance
+   - Ensure lessons learned are captured and integrated
    - Ensure code quality and architecture principles
    - Check performance and security requirements
 
