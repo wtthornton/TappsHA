@@ -521,6 +521,10 @@ class CursorIntegration {
                 <button class="chart-btn" onclick="switchChart('violations')">Violation Distribution</button>
                 <button class="chart-btn" onclick="switchChart('performance')">Performance Metrics</button>
                 <button class="chart-btn" onclick="switchChart('fileTypes')">File Type Analysis</button>
+                <button class="chart-btn" onclick="switchChart('trends')">Trend Analysis</button>
+                <button class="chart-btn" onclick="switchChart('forecasts')">Forecast Charts</button>
+                <button class="chart-btn" onclick="switchChart('timeline')">Violation Timeline</button>
+                <button class="chart-btn" onclick="switchChart('comparison')">Trend Comparison</button>
             </div>
             
             <canvas id="mainChart" class="chart-canvas"></canvas>
@@ -716,6 +720,96 @@ class CursorIntegration {
             `).join('')}
         </div>
         ` : ''}
+        
+        <!-- Progress Tracking Dashboard -->
+        <div class="analytics-section">
+            <h2>📈 Progress Tracking Dashboard</h2>
+            
+            <!-- Overall Progress -->
+            <div class="progress-section">
+                <h3>🎯 Overall Compliance Progress</h3>
+                <div class="progress-metrics">
+                    <div class="progress-card">
+                        <div class="progress-title">Current Score</div>
+                        <div class="progress-value ${report.complianceScore >= 80 ? 'success' : report.complianceScore >= 60 ? 'warning' : 'critical'}">${report.complianceScore}%</div>
+                        <div class="progress-trend">
+                            ${analytics.violationTrends && analytics.violationTrends.trend !== 'insufficient_data' ? 
+                                `Trend: ${analytics.violationTrends.trend === 'improving' ? '↗️ Improving' : analytics.violationTrends.trend === 'declining' ? '↘️ Declining' : '→ Stable'}` : 
+                                'Trend: Insufficient data'
+                            }
+                        </div>
+                    </div>
+                    
+                    <div class="progress-card">
+                        <div class="progress-title">Violation Reduction</div>
+                        <div class="progress-value ${report.summary.critical === 0 ? 'success' : report.summary.critical <= 2 ? 'warning' : 'critical'}">${report.summary.critical} Critical</div>
+                        <div class="progress-subtitle">${report.summary.warnings} Warnings</div>
+                    </div>
+                    
+                    <div class="progress-card">
+                        <div class="progress-title">Files Processed</div>
+                        <div class="progress-value info">${report.totalChecks}</div>
+                        <div class="progress-subtitle">${report.passedChecks} Passed</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Standards Progress -->
+            ${stats.standardsEffectiveness && Object.keys(stats.standardsEffectiveness).length > 0 ? `
+            <div class="progress-section">
+                <h3>📋 Standards Compliance Progress</h3>
+                <div class="standards-progress">
+                    ${Object.entries(stats.standardsEffectiveness).map(([standard, data]) => `
+                    <div class="standard-progress-card">
+                        <div class="standard-name">${standard}</div>
+                        <div class="standard-compliance ${data.complianceRate >= 80 ? 'high' : data.complianceRate >= 60 ? 'medium' : 'low'}">
+                            ${Math.round(data.complianceRate)}% compliant
+                        </div>
+                        <div class="standard-trend">
+                            ${data.trend === 'IMPROVING' ? '↗️' : data.trend === 'DECLINING' ? '↘️' : '→'} ${data.trend}
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+            </div>
+            ` : ''}
+            
+            <!-- Performance Progress -->
+            ${analytics.averageFileProcessingTime ? `
+            <div class="progress-section">
+                <h3>⚡ Performance Progress</h3>
+                <div class="performance-progress">
+                    <div class="performance-card">
+                        <div class="performance-title">Processing Speed</div>
+                        <div class="performance-value">${analytics.averageFileProcessingTime.overallAverage}ms avg</div>
+                        <div class="performance-subtitle">${analytics.averageFileProcessingTime.totalFiles} files</div>
+                    </div>
+                    
+                    <div class="performance-card">
+                        <div class="performance-title">Execution Time</div>
+                        <div class="performance-value">${analytics.executionTime || 0}ms</div>
+                        <div class="performance-subtitle">Total runtime</div>
+                    </div>
+                </div>
+            </div>
+            ` : ''}
+            
+            <!-- Improvement Suggestions -->
+            ${report.improvementSuggestions && report.improvementSuggestions.length > 0 ? `
+            <div class="progress-section">
+                <h3>💡 Improvement Opportunities</h3>
+                <div class="improvement-list">
+                    ${report.improvementSuggestions.slice(0, 5).map(suggestion => `
+                    <div class="improvement-item ${suggestion.priority.toLowerCase()}">
+                        <div class="improvement-priority">${suggestion.priority}</div>
+                        <div class="improvement-message">${suggestion.message}</div>
+                        <div class="improvement-action">${suggestion.action}</div>
+                    </div>
+                    `).join('')}
+                </div>
+            </div>
+            ` : ''}
+        </div>
     </div>
     
     <script>
@@ -728,7 +822,10 @@ class CursorIntegration {
                 passed: ${report.passedChecks || 0}
             },
             performance: ${JSON.stringify(analytics.averageFileProcessingTime || {})},
-            fileTypes: ${JSON.stringify(analytics.averageFileProcessingTime?.fileTypePerformance || {})}
+            fileTypes: ${JSON.stringify(analytics.averageFileProcessingTime?.fileTypePerformance || {})},
+            trends: ${JSON.stringify(stats.forecasts || {})},
+            forecasts: ${JSON.stringify(stats.forecasts || {})},
+            timeline: ${JSON.stringify(analytics.historicalData || [])}
         };
         
         let currentChart = 'compliance';
@@ -805,6 +902,18 @@ class CursorIntegration {
                     break;
                 case 'fileTypes':
                     drawFileTypesChart();
+                    break;
+                case 'trends':
+                    drawTrendsChart();
+                    break;
+                case 'forecasts':
+                    drawForecastsChart();
+                    break;
+                case 'timeline':
+                    drawTimelineChart();
+                    break;
+                case 'comparison':
+                    drawComparisonChart();
                     break;
             }
         }
@@ -978,6 +1087,293 @@ class CursorIntegration {
             ctx.font = '18px Arial';
             ctx.textAlign = 'center';
             ctx.fillText(message, canvas.width / 2, canvas.height / 2);
+        }
+        
+        function drawTrendsChart() {
+            const data = chartData.trends;
+            if (!data || !data.forecasts || data.forecasts.length === 0) {
+                drawNoDataMessage('Trend analysis data not available');
+                return;
+            }
+            
+            const forecasts = data.forecasts;
+            const maxForecasts = Math.max(...forecasts.map(f => f.forecast.length));
+            const chartWidth = canvas.width - 80;
+            const chartHeight = canvas.height - 100;
+            const barWidth = chartWidth / (maxForecasts + 1);
+            
+            // Draw trend lines for each forecast
+            const colors = ['#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8'];
+            
+            forecasts.forEach((forecast, index) => {
+                const color = colors[index % colors.length];
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                
+                // Draw trend line
+                forecast.forecast.forEach((value, i) => {
+                    const x = 60 + (i + 1) * barWidth;
+                    const y = canvas.height - 80 - (value / Math.max(...forecast.forecast)) * chartHeight;
+                    
+                    if (i === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                });
+                ctx.stroke();
+                
+                // Draw data points
+                forecast.forecast.forEach((value, i) => {
+                    const x = 60 + (i + 1) * barWidth;
+                    const y = canvas.height - 80 - (value / Math.max(...forecast.forecast)) * chartHeight;
+                    
+                    ctx.fillStyle = color;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 4, 0, 2 * Math.PI);
+                    ctx.fill();
+                });
+            });
+            
+            // Draw axis labels
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            
+            // X-axis labels
+            for (let i = 0; i <= maxForecasts; i++) {
+                const x = 60 + i * barWidth;
+                ctx.fillText(`T+${i}`, x, canvas.height - 50);
+            }
+            
+            // Y-axis label
+            ctx.save();
+            ctx.translate(30, canvas.height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('Forecast Values', 0, 0);
+            ctx.restore();
+            
+            updateLegend(forecasts.map((forecast, index) => ({
+                label: forecast.metric,
+                color: colors[index % colors.length]
+            })));
+        }
+        
+        function drawForecastsChart() {
+            const data = chartData.forecasts;
+            if (!data || !data.forecasts || data.forecasts.length === 0) {
+                drawNoDataMessage('Forecast data not available');
+                return;
+            }
+            
+            const forecasts = data.forecasts;
+            const chartWidth = canvas.width - 80;
+            const chartHeight = canvas.height - 100;
+            const barWidth = chartWidth / (forecasts.length + 1);
+            
+            // Draw forecast bars
+            forecasts.forEach((forecast, index) => {
+                const x = 60 + (index + 1) * barWidth;
+                const currentValue = forecast.currentValue;
+                const predictedValue = forecast.forecast[forecast.forecast.length - 1];
+                const maxValue = Math.max(currentValue, predictedValue);
+                
+                // Draw current value bar
+                const currentHeight = (currentValue / maxValue) * chartHeight;
+                const currentY = canvas.height - 80 - currentHeight;
+                
+                ctx.fillStyle = '#007bff';
+                ctx.fillRect(x - barWidth/3, currentY, barWidth/1.5, currentHeight);
+                
+                // Draw predicted value bar
+                const predictedHeight = (predictedValue / maxValue) * chartHeight;
+                const predictedY = canvas.height - 80 - predictedHeight;
+                
+                ctx.fillStyle = '#28a745';
+                ctx.fillRect(x + barWidth/6, predictedY, barWidth/1.5, predictedHeight);
+                
+                // Draw labels
+                ctx.fillStyle = '#333';
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(forecast.metric.split(' ')[0], x, canvas.height - 50);
+                ctx.fillText(currentValue, x - barWidth/6, currentY - 10);
+                ctx.fillText(predictedValue, x + barWidth/2, predictedY - 10);
+            });
+            
+            updateLegend([
+                { label: 'Current Value', color: '#007bff' },
+                { label: 'Predicted Value', color: '#28a745' }
+            ]);
+        }
+        
+        function drawTimelineChart() {
+            const data = chartData.timeline;
+            if (!data || data.length === 0) {
+                drawNoDataMessage('Timeline data not available');
+                return;
+            }
+            
+            const timelineData = data.slice(-10); // Last 10 entries
+            const chartWidth = canvas.width - 80;
+            const chartHeight = canvas.height - 100;
+            const barWidth = chartWidth / (timelineData.length + 1);
+            
+            // Draw timeline bars
+            timelineData.forEach((entry, index) => {
+                const x = 60 + (index + 1) * barWidth;
+                const complianceScore = entry.complianceScore || 0;
+                const violations = entry.violations || 0;
+                const criticalViolations = entry.criticalViolations || 0;
+                
+                // Calculate bar heights
+                const maxScore = 100;
+                const maxViolations = Math.max(...timelineData.map(e => e.violations || 0));
+                const maxCritical = Math.max(...timelineData.map(e => e.criticalViolations || 0));
+                
+                // Draw compliance score bar
+                const scoreHeight = (complianceScore / maxScore) * chartHeight * 0.4;
+                const scoreY = canvas.height - 80 - scoreHeight;
+                
+                ctx.fillStyle = complianceScore >= 80 ? '#28a745' : complianceScore >= 60 ? '#ffc107' : '#dc3545';
+                ctx.fillRect(x - barWidth/3, scoreY, barWidth/1.5, scoreHeight);
+                
+                // Draw violation count bar
+                const violationHeight = violations > 0 ? (violations / maxViolations) * chartHeight * 0.3 : 0;
+                const violationY = canvas.height - 80 - violationHeight;
+                
+                ctx.fillStyle = '#007bff';
+                ctx.fillRect(x + barWidth/6, violationY, barWidth/1.5, violationHeight);
+                
+                // Draw critical violation indicator
+                if (criticalViolations > 0) {
+                    const criticalHeight = (criticalViolations / maxCritical) * chartHeight * 0.2;
+                    const criticalY = canvas.height - 80 - criticalHeight;
+                    
+                    ctx.fillStyle = '#dc3545';
+                    ctx.fillRect(x + barWidth/2, criticalY, barWidth/1.5, criticalHeight);
+                }
+                
+                // Draw labels
+                ctx.fillStyle = '#333';
+                ctx.font = '8px Arial';
+                ctx.textAlign = 'center';
+                
+                // Format timestamp
+                const timestamp = new Date(entry.timestamp);
+                const timeLabel = timestamp.toLocaleDateString() + ' ' + timestamp.toLocaleTimeString().slice(0, 5);
+                ctx.fillText(timeLabel, x, canvas.height - 50);
+                
+                // Draw values
+                ctx.fillText(complianceScore, x - barWidth/6, scoreY - 5);
+                if (violations > 0) ctx.fillText(violations, x + barWidth/2, violationY - 5);
+                if (criticalViolations > 0) ctx.fillText(criticalViolations, x + barWidth, criticalY - 5);
+            });
+            
+            // Draw axis labels
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Timeline', canvas.width / 2, canvas.height - 20);
+            
+            updateLegend([
+                { label: 'Compliance Score', color: '#28a745' },
+                { label: 'Violations', color: '#007bff' },
+                { label: 'Critical Violations', color: '#dc3545' }
+            ]);
+        }
+        
+        function drawComparisonChart() {
+            const data = chartData.timeline;
+            if (!data || data.length < 4) {
+                drawNoDataMessage('Insufficient data for trend comparison (minimum 4 data points required)');
+                return;
+            }
+            
+            const timelineData = data.slice(-8); // Last 8 entries for comparison
+            const chartWidth = canvas.width - 80;
+            const chartHeight = canvas.height - 100;
+            const barWidth = chartWidth / (timelineData.length + 1);
+            
+            // Calculate trends for comparison
+            const complianceScores = timelineData.map(entry => entry.complianceScore || 0);
+            const violationCounts = timelineData.map(entry => entry.violations || 0);
+            const criticalCounts = timelineData.map(entry => entry.criticalViolations || 0);
+            
+            // Split data into two periods for comparison
+            const midPoint = Math.floor(timelineData.length / 2);
+            const period1 = timelineData.slice(0, midPoint);
+            const period2 = timelineData.slice(midPoint);
+            
+            const period1Avg = {
+                compliance: period1.reduce((sum, entry) => sum + (entry.complianceScore || 0), 0) / period1.length,
+                violations: period1.reduce((sum, entry) => sum + (entry.violations || 0), 0) / period1.length,
+                critical: period1.reduce((sum, entry) => sum + (entry.criticalViolations || 0), 0) / period1.length
+            };
+            
+            const period2Avg = {
+                compliance: period2.reduce((sum, entry) => sum + (entry.complianceScore || 0), 0) / period2.length,
+                violations: period2.reduce((sum, entry) => sum + (entry.violations || 0), 0) / period2.length,
+                critical: period2.reduce((sum, entry) => sum + (entry.criticalViolations || 0), 0) / period2.length
+            };
+            
+            // Draw comparison bars
+            const metrics = ['compliance', 'violations', 'critical'];
+            const colors = ['#28a745', '#007bff', '#dc3545'];
+            const maxValues = {
+                compliance: Math.max(period1Avg.compliance, period2Avg.compliance),
+                violations: Math.max(period1Avg.violations, period2Avg.violations),
+                critical: Math.max(period1Avg.critical, period2Avg.critical)
+            };
+            
+            metrics.forEach((metric, index) => {
+                const x = 60 + (index + 1) * (chartWidth / 4);
+                const period1Height = (period1Avg[metric] / maxValues[metric]) * chartHeight * 0.3;
+                const period2Height = (period2Avg[metric] / maxValues[metric]) * chartHeight * 0.3;
+                
+                // Draw period 1 bar
+                const period1Y = canvas.height - 80 - period1Height;
+                ctx.fillStyle = colors[index];
+                ctx.fillRect(x - barWidth/3, period1Y, barWidth/1.5, period1Height);
+                
+                // Draw period 2 bar
+                const period2Y = canvas.height - 80 - period2Height;
+                ctx.fillStyle = colors[index] + '80'; // Add transparency
+                ctx.fillRect(x + barWidth/6, period2Y, barWidth/1.5, period2Height);
+                
+                // Draw labels
+                ctx.fillStyle = '#333';
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(metric.charAt(0).toUpperCase() + metric.slice(1), x, canvas.height - 50);
+                ctx.fillText(Math.round(period1Avg[metric]), x - barWidth/6, period1Y - 10);
+                ctx.fillText(Math.round(period2Avg[metric]), x + barWidth/2, period2Y - 10);
+            });
+            
+            // Draw comparison indicators
+            ctx.fillStyle = '#333';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Period 1 vs Period 2 Comparison', canvas.width / 2, 30);
+            
+            // Calculate and display trends
+            const complianceTrend = period2Avg.compliance > period1Avg.compliance ? '↗️ Improving' : 
+                                  period2Avg.compliance < period1Avg.compliance ? '↘️ Declining' : '→ Stable';
+            const violationTrend = period2Avg.violations < period1Avg.violations ? '↗️ Improving' : 
+                                 period2Avg.violations > period1Avg.violations ? '↘️ Declining' : '→ Stable';
+            const criticalTrend = period2Avg.critical < period1Avg.critical ? '↗️ Improving' : 
+                                period2Avg.critical > period1Avg.critical ? '↘️ Declining' : '→ Stable';
+            
+            ctx.font = '12px Arial';
+            ctx.fillText(`Compliance: ${complianceTrend}`, canvas.width / 2, 50);
+            ctx.fillText(`Violations: ${violationTrend}`, canvas.width / 2, 65);
+            ctx.fillText(`Critical: ${criticalTrend}`, canvas.width / 2, 80);
+            
+            updateLegend([
+                { label: 'Period 1', color: '#007bff' },
+                { label: 'Period 2', color: '#007bff' + '80' }
+            ]);
         }
         
         function updateLegend(items) {

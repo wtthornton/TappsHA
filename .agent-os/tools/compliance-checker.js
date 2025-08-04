@@ -290,11 +290,17 @@ class ComplianceChecker {
         violationRate: 0,
         lastViolation: null,
         complianceTrend: 'stable',
-        priority: 'MEDIUM'
+        priority: 'MEDIUM',
+        referenceCount: 0,
+        lastReferenced: null,
+        usageFrequency: 'LOW'
       };
     }
     
     this.metrics.standardsEffectiveness[standardName].checks++;
+    this.metrics.standardsEffectiveness[standardName].referenceCount++;
+    this.metrics.standardsEffectiveness[standardName].lastReferenced = new Date().toISOString();
+    
     if (hasViolations) {
       this.metrics.standardsEffectiveness[standardName].violations++;
       this.metrics.standardsEffectiveness[standardName].lastViolation = new Date().toISOString();
@@ -311,6 +317,15 @@ class ComplianceChecker {
       standard.priority = 'MEDIUM';
     } else {
       standard.priority = 'LOW';
+    }
+    
+    // Determine usage frequency based on reference count
+    if (standard.referenceCount > 50) {
+      standard.usageFrequency = 'HIGH';
+    } else if (standard.referenceCount > 20) {
+      standard.usageFrequency = 'MEDIUM';
+    } else {
+      standard.usageFrequency = 'LOW';
     }
   }
 
@@ -714,7 +729,10 @@ class ComplianceChecker {
       violationPatterns: this.statisticalAnalysis.identifyViolationPatterns(historicalData),
       recurringIssues: this.statisticalAnalysis.detectRecurringComplianceIssues(historicalData),
       violationClustering: this.statisticalAnalysis.buildViolationClusteringAnalysis(historicalData),
-      issuePredictions: this.statisticalAnalysis.predictComplianceIssues(historicalData)
+      issuePredictions: this.statisticalAnalysis.predictComplianceIssues(historicalData),
+      forecasts: this.statisticalAnalysis.createSimpleForecasting(historicalData, 3),
+      trendBasedRiskAssessment: this.statisticalAnalysis.implementRiskAssessmentBasedOnTrends(historicalData),
+      confidenceScoring: this.statisticalAnalysis.buildConfidenceScoringForPredictions(historicalData)
     };
   }
 
@@ -796,6 +814,7 @@ class ComplianceChecker {
   calculateStandardsEffectiveness() {
     const effectiveness = {};
     const standardsRanking = [];
+    const referenceTracking = [];
     
     Object.entries(this.metrics.standardsEffectiveness).forEach(([standard, data]) => {
       if (data.checks > 0) {
@@ -806,7 +825,10 @@ class ComplianceChecker {
           priority: data.priority,
           lastViolation: data.lastViolation,
           complianceTrend: data.complianceTrend,
-          status: data.violationRate > 30 ? 'CRITICAL' : data.violationRate > 15 ? 'WARNING' : 'GOOD'
+          status: data.violationRate > 30 ? 'CRITICAL' : data.violationRate > 15 ? 'WARNING' : 'GOOD',
+          referenceCount: data.referenceCount || 0,
+          lastReferenced: data.lastReferenced,
+          usageFrequency: data.usageFrequency || 'LOW'
         };
         
         // Add to ranking for sorting
@@ -816,7 +838,17 @@ class ComplianceChecker {
           totalChecks: data.checks,
           totalViolations: data.violations,
           priority: data.priority,
-          status: effectiveness[standard].status
+          status: effectiveness[standard].status,
+          referenceCount: data.referenceCount || 0,
+          usageFrequency: data.usageFrequency || 'LOW'
+        });
+        
+        // Add to reference tracking
+        referenceTracking.push({
+          name: standard,
+          referenceCount: data.referenceCount || 0,
+          usageFrequency: data.usageFrequency || 'LOW',
+          lastReferenced: data.lastReferenced
         });
       }
     });
@@ -824,18 +856,138 @@ class ComplianceChecker {
     // Sort standards by violation rate (highest first)
     standardsRanking.sort((a, b) => b.violationRate - a.violationRate);
     
+    // Sort by reference count (most referenced first)
+    const mostReferenced = [...referenceTracking].sort((a, b) => b.referenceCount - a.referenceCount);
+    
     return {
       effectiveness: effectiveness,
       ranking: standardsRanking,
+      referenceTracking: {
+        mostReferenced: mostReferenced.slice(0, 5),
+        leastReferenced: mostReferenced.slice(-5).reverse(),
+        highUsage: mostReferenced.filter(s => s.usageFrequency === 'HIGH'),
+        mediumUsage: mostReferenced.filter(s => s.usageFrequency === 'MEDIUM'),
+        lowUsage: mostReferenced.filter(s => s.usageFrequency === 'LOW')
+      },
+      standardsClarification: this.identifyStandardsNeedingClarification(standardsRanking, mostReferenced),
       summary: {
         totalStandards: standardsRanking.length,
         criticalStandards: standardsRanking.filter(s => s.status === 'CRITICAL').length,
         warningStandards: standardsRanking.filter(s => s.status === 'WARNING').length,
         goodStandards: standardsRanking.filter(s => s.status === 'GOOD').length,
         mostViolated: standardsRanking.slice(0, 3),
-        leastViolated: standardsRanking.slice(-3).reverse()
+        leastViolated: standardsRanking.slice(-3).reverse(),
+        mostReferenced: mostReferenced.slice(0, 3),
+        totalReferences: mostReferenced.reduce((sum, s) => sum + s.referenceCount, 0)
       }
     };
+  }
+  
+  // Enhanced: Identify standards that need clarification
+  identifyStandardsNeedingClarification(standardsRanking, referenceTracking) {
+    const clarificationNeeded = [];
+    
+    // Analyze standards based on multiple factors
+    standardsRanking.forEach(standard => {
+      const referenceData = referenceTracking.find(ref => ref.name === standard.name);
+      const clarificationFactors = [];
+      
+      // Factor 1: High violation rate with high usage
+      if (standard.violationRate > 25 && referenceData && referenceData.usageFrequency === 'HIGH') {
+        clarificationFactors.push({
+          type: 'HIGH_VIOLATION_HIGH_USAGE',
+          description: 'High violation rate despite frequent usage',
+          recommendation: 'Clarify standards to reduce violations'
+        });
+      }
+      
+      // Factor 2: High violation rate with low usage
+      if (standard.violationRate > 30 && referenceData && referenceData.usageFrequency === 'LOW') {
+        clarificationFactors.push({
+          type: 'HIGH_VIOLATION_LOW_USAGE',
+          description: 'High violation rate with low adoption',
+          recommendation: 'Improve standards clarity and provide training'
+        });
+      }
+      
+      // Factor 3: Inconsistent violation patterns
+      if (standard.totalChecks > 10 && standard.violationRate > 15 && standard.violationRate < 40) {
+        clarificationFactors.push({
+          type: 'INCONSISTENT_PATTERNS',
+          description: 'Moderate but inconsistent violation patterns',
+          recommendation: 'Clarify ambiguous standards requirements'
+        });
+      }
+      
+      // Factor 4: Low usage despite being important
+      if (referenceData && referenceData.usageFrequency === 'LOW' && standard.priority === 'HIGH') {
+        clarificationFactors.push({
+          type: 'LOW_USAGE_HIGH_PRIORITY',
+          description: 'Low usage of high-priority standards',
+          recommendation: 'Improve standards documentation and accessibility'
+        });
+      }
+      
+      // Factor 5: Critical violations in frequently used standards
+      if (standard.status === 'CRITICAL' && referenceData && referenceData.usageFrequency === 'HIGH') {
+        clarificationFactors.push({
+          type: 'CRITICAL_HIGH_USAGE',
+          description: 'Critical violations in frequently used standards',
+          recommendation: 'Immediate clarification and training required'
+        });
+      }
+      
+      if (clarificationFactors.length > 0) {
+        clarificationNeeded.push({
+          standard: standard.name,
+          factors: clarificationFactors,
+          priority: this.calculateClarificationPriority(standard, referenceData),
+          totalFactors: clarificationFactors.length,
+          recommendations: clarificationFactors.map(f => f.recommendation)
+        });
+      }
+    });
+    
+    // Sort by priority
+    clarificationNeeded.sort((a, b) => {
+      const priorityOrder = { 'CRITICAL': 3, 'HIGH': 2, 'MEDIUM': 1, 'LOW': 0 };
+      return priorityOrder[b.priority] - priorityOrder[a.priority];
+    });
+    
+    return {
+      standardsNeedingClarification: clarificationNeeded,
+      summary: {
+        totalNeedingClarification: clarificationNeeded.length,
+        criticalClarification: clarificationNeeded.filter(s => s.priority === 'CRITICAL').length,
+        highClarification: clarificationNeeded.filter(s => s.priority === 'HIGH').length,
+        mediumClarification: clarificationNeeded.filter(s => s.priority === 'MEDIUM').length,
+        lowClarification: clarificationNeeded.filter(s => s.priority === 'LOW').length
+      }
+    };
+  }
+  
+  // Calculate clarification priority
+  calculateClarificationPriority(standard, referenceData) {
+    let priority = 'LOW';
+    
+    // Critical violations in high-usage standards
+    if (standard.status === 'CRITICAL' && referenceData && referenceData.usageFrequency === 'HIGH') {
+      priority = 'CRITICAL';
+    }
+    // High violation rate with high usage
+    else if (standard.violationRate > 30 && referenceData && referenceData.usageFrequency === 'HIGH') {
+      priority = 'HIGH';
+    }
+    // High violation rate with low usage
+    else if (standard.violationRate > 25 && referenceData && referenceData.usageFrequency === 'LOW') {
+      priority = 'MEDIUM';
+    }
+    // Low usage of high-priority standards
+    else if (referenceData && referenceData.usageFrequency === 'LOW' && standard.priority === 'HIGH') {
+      priority = 'MEDIUM';
+    }
+    
+    return priority;
   }
 
   // Enhanced: Generate improvement suggestions
@@ -1007,74 +1159,189 @@ class ComplianceChecker {
     
     // Analyze violation patterns and generate specific suggestions
     const violationPatterns = this.analyzeViolationPatterns();
+    const historicalPatterns = this.analyzeHistoricalPatterns();
+    const fileTypePatterns = this.analyzeFileTypePatterns();
+    const severityPatterns = this.analyzeSeverityPatterns();
     
-    // Code Style suggestions
-    if (violationPatterns.codeStyleViolations > 50) {
-      suggestions.push({
-        type: 'RULE_BASED',
-        category: 'Code Style',
-        priority: 'HIGH',
-        message: 'High volume of code style violations detected',
-        suggestion: 'Implement automated code formatting with Prettier/ESLint',
-        action: 'Configure IDE with code style rules and enable auto-format on save',
-        impact: 'HIGH',
-        effort: 'MEDIUM'
-      });
+    // Enhanced Code Style suggestions with context
+    if (violationPatterns.codeStyleViolations > 0) {
+      const codeStyleRatio = violationPatterns.codeStyleViolations / violationPatterns.totalViolations;
+      if (codeStyleRatio > 0.7) {
+        suggestions.push({
+          type: 'PATTERN_BASED',
+          category: 'Code Style',
+          priority: 'HIGH',
+          message: `Code style violations dominate (${Math.round(codeStyleRatio * 100)}% of all violations)`,
+          suggestion: 'Implement comprehensive code style automation',
+          action: 'Configure Prettier + ESLint with strict rules, enable auto-format on save, and add pre-commit hooks',
+          impact: 'HIGH',
+          effort: 'MEDIUM',
+          pattern: 'DOMINANT_VIOLATION_CATEGORY',
+          confidence: 'HIGH'
+        });
+      } else if (violationPatterns.codeStyleViolations > 20) {
+        suggestions.push({
+          type: 'PATTERN_BASED',
+          category: 'Code Style',
+          priority: 'MEDIUM',
+          message: 'Significant code style violations detected',
+          suggestion: 'Implement automated code formatting',
+          action: 'Configure IDE with code style rules and enable auto-format on save',
+          impact: 'MEDIUM',
+          effort: 'LOW',
+          pattern: 'HIGH_VOLUME_VIOLATIONS',
+          confidence: 'MEDIUM'
+        });
+      }
     }
     
-    // Security suggestions
+    // Enhanced Security suggestions with severity analysis
     if (violationPatterns.securityViolations > 0) {
-      suggestions.push({
-        type: 'RULE_BASED',
-        category: 'Security',
-        priority: 'CRITICAL',
-        message: 'Security violations detected',
-        suggestion: 'Implement secrets management with environment variables',
-        action: 'Replace all hardcoded secrets with environment variables and use .env files',
-        impact: 'CRITICAL',
-        effort: 'HIGH'
-      });
+      const criticalSecurityRatio = severityPatterns.criticalSecurity / violationPatterns.securityViolations;
+      if (criticalSecurityRatio > 0.5) {
+        suggestions.push({
+          type: 'PATTERN_BASED',
+          category: 'Security',
+          priority: 'CRITICAL',
+          message: `Critical security violations detected (${Math.round(criticalSecurityRatio * 100)}% of security violations are critical)`,
+          suggestion: 'Immediate security remediation required',
+          action: 'Replace all hardcoded secrets with environment variables, implement secrets management, and conduct security audit',
+          impact: 'CRITICAL',
+          effort: 'HIGH',
+          pattern: 'HIGH_CRITICAL_RATIO',
+          confidence: 'HIGH'
+        });
+      } else {
+        suggestions.push({
+          type: 'PATTERN_BASED',
+          category: 'Security',
+          priority: 'HIGH',
+          message: 'Security violations detected',
+          suggestion: 'Implement secrets management with environment variables',
+          action: 'Replace hardcoded secrets with environment variables and use .env files',
+          impact: 'HIGH',
+          effort: 'MEDIUM',
+          pattern: 'SECURITY_VIOLATIONS',
+          confidence: 'MEDIUM'
+        });
+      }
     }
     
-    // Architecture suggestions
-    if (violationPatterns.architectureViolations > 10) {
-      suggestions.push({
-        type: 'RULE_BASED',
-        category: 'Architecture',
-        priority: 'MEDIUM',
-        message: 'Architecture pattern violations detected',
-        suggestion: 'Follow established architectural patterns',
-        action: 'Review and update architectural standards documentation',
-        impact: 'MEDIUM',
-        effort: 'MEDIUM'
-      });
+    // Enhanced Architecture suggestions with file type analysis
+    if (violationPatterns.architectureViolations > 0) {
+      const backendArchitectureRatio = fileTypePatterns.backendArchitecture / violationPatterns.architectureViolations;
+      if (backendArchitectureRatio > 0.8) {
+        suggestions.push({
+          type: 'PATTERN_BASED',
+          category: 'Architecture',
+          priority: 'MEDIUM',
+          message: 'Backend architecture violations dominate',
+          suggestion: 'Review backend architectural patterns',
+          action: 'Update backend architectural standards and conduct code review focusing on Controller-Service-Repository pattern',
+          impact: 'MEDIUM',
+          effort: 'MEDIUM',
+          pattern: 'BACKEND_ARCHITECTURE_FOCUS',
+          confidence: 'HIGH'
+        });
+      } else {
+        suggestions.push({
+          type: 'PATTERN_BASED',
+          category: 'Architecture',
+          priority: 'MEDIUM',
+          message: 'Architecture pattern violations detected',
+          suggestion: 'Follow established architectural patterns',
+          action: 'Review and update architectural standards documentation',
+          impact: 'MEDIUM',
+          effort: 'MEDIUM',
+          pattern: 'GENERAL_ARCHITECTURE',
+          confidence: 'MEDIUM'
+        });
+      }
     }
     
-    // Testing suggestions
-    if (violationPatterns.testingViolations > 5) {
-      suggestions.push({
-        type: 'RULE_BASED',
-        category: 'Testing',
-        priority: 'MEDIUM',
-        message: 'Testing standards violations detected',
-        suggestion: 'Improve test coverage and quality',
-        action: 'Implement comprehensive testing strategy with proper test methods',
-        impact: 'MEDIUM',
-        effort: 'HIGH'
-      });
+    // Enhanced Testing suggestions with historical context
+    if (violationPatterns.testingViolations > 0) {
+      const testingTrend = historicalPatterns.testingTrend;
+      if (testingTrend === 'INCREASING') {
+        suggestions.push({
+          type: 'PATTERN_BASED',
+          category: 'Testing',
+          priority: 'HIGH',
+          message: 'Testing violations are increasing over time',
+          suggestion: 'Implement comprehensive testing strategy',
+          action: 'Establish testing standards, implement test coverage requirements, and add testing to CI/CD pipeline',
+          impact: 'HIGH',
+          effort: 'HIGH',
+          pattern: 'INCREASING_TREND',
+          confidence: 'HIGH'
+        });
+      } else {
+        suggestions.push({
+          type: 'PATTERN_BASED',
+          category: 'Testing',
+          priority: 'MEDIUM',
+          message: 'Testing standards violations detected',
+          suggestion: 'Improve test coverage and quality',
+          action: 'Implement comprehensive testing strategy with proper test methods',
+          impact: 'MEDIUM',
+          effort: 'HIGH',
+          pattern: 'TESTING_VIOLATIONS',
+          confidence: 'MEDIUM'
+        });
+      }
     }
     
-    // Performance suggestions
+    // Enhanced Performance suggestions with baseline comparison
     if (this.metrics.executionTime > 2000) {
+      const baselineComparison = this.checkPerformanceBaselines('execution', 'overall', this.metrics.executionTime);
+      if (baselineComparison.status === 'ABOVE_BASELINE') {
+        suggestions.push({
+          type: 'PATTERN_BASED',
+          category: 'Performance',
+          priority: 'MEDIUM',
+          message: 'Compliance checking performance is above baseline',
+          suggestion: 'Optimize validation algorithms and file processing',
+          action: 'Review and optimize compliance checking performance, consider caching frequently accessed data',
+          impact: 'MEDIUM',
+          effort: 'MEDIUM',
+          pattern: 'PERFORMANCE_DEGRADATION',
+          confidence: 'HIGH'
+        });
+      }
+    }
+    
+    // New: File type specific suggestions
+    if (fileTypePatterns.frontendFiles > 0 && fileTypePatterns.frontendViolations > 0) {
+      const frontendViolationRatio = fileTypePatterns.frontendViolations / fileTypePatterns.frontendFiles;
+      if (frontendViolationRatio > 0.3) {
+        suggestions.push({
+          type: 'PATTERN_BASED',
+          category: 'Frontend',
+          priority: 'MEDIUM',
+          message: 'High violation rate in frontend files',
+          suggestion: 'Focus on frontend standards compliance',
+          action: 'Review frontend code against React/TypeScript standards, implement frontend-specific linting rules',
+          impact: 'MEDIUM',
+          effort: 'MEDIUM',
+          pattern: 'FRONTEND_FOCUS',
+          confidence: 'MEDIUM'
+        });
+      }
+    }
+    
+    // New: Recurring pattern suggestions
+    if (historicalPatterns.recurringPatterns.length > 0) {
       suggestions.push({
-        type: 'RULE_BASED',
-        category: 'Performance',
-        priority: 'MEDIUM',
-        message: 'Slow compliance checking performance',
-        suggestion: 'Optimize validation algorithms and file processing',
-        action: 'Review and optimize compliance checking performance',
-        impact: 'MEDIUM',
-        effort: 'MEDIUM'
+        type: 'PATTERN_BASED',
+        category: 'Recurring Issues',
+        priority: 'HIGH',
+        message: `${historicalPatterns.recurringPatterns.length} recurring violation patterns detected`,
+        suggestion: 'Address systemic compliance issues',
+        action: 'Review and update standards documentation, implement preventive measures, and conduct team training',
+        impact: 'HIGH',
+        effort: 'HIGH',
+        pattern: 'RECURRING_PATTERNS',
+        confidence: 'HIGH'
       });
     }
     
@@ -1105,6 +1372,88 @@ class ComplianceChecker {
         case 'Testing':
           patterns.testingViolations++;
           break;
+      }
+    });
+    
+    return patterns;
+  }
+  
+  // Analyze historical patterns for trend-based suggestions
+  analyzeHistoricalPatterns() {
+    const patterns = {
+      testingTrend: 'STABLE',
+      recurringPatterns: []
+    };
+    
+    if (this.metrics.historicalData.length >= 3) {
+      const recentRuns = this.metrics.historicalData.slice(-3);
+      const testingViolations = recentRuns.map(run => run.violations - run.criticalViolations - run.warnings);
+      
+      // Simple trend analysis
+      if (testingViolations[2] > testingViolations[1] && testingViolations[1] > testingViolations[0]) {
+        patterns.testingTrend = 'INCREASING';
+      } else if (testingViolations[2] < testingViolations[1] && testingViolations[1] < testingViolations[0]) {
+        patterns.testingTrend = 'DECREASING';
+      }
+      
+      // Identify recurring patterns
+      const violationMessages = this.violations.map(v => v.message);
+      const messageCounts = {};
+      violationMessages.forEach(message => {
+        messageCounts[message] = (messageCounts[message] || 0) + 1;
+      });
+      
+      patterns.recurringPatterns = Object.entries(messageCounts)
+        .filter(([message, count]) => count > 2)
+        .map(([message, count]) => ({ message, count }));
+    }
+    
+    return patterns;
+  }
+  
+  // Analyze file type patterns for context-aware suggestions
+  analyzeFileTypePatterns() {
+    const patterns = {
+      frontendFiles: 0,
+      frontendViolations: 0,
+      backendFiles: 0,
+      backendViolations: 0,
+      backendArchitecture: 0
+    };
+    
+    this.violations.forEach(violation => {
+      const filePath = violation.file || '';
+      if (filePath.includes('.tsx') || filePath.includes('.ts') || filePath.includes('frontend/')) {
+        patterns.frontendFiles++;
+        patterns.frontendViolations++;
+      } else if (filePath.includes('.java') || filePath.includes('backend/')) {
+        patterns.backendFiles++;
+        patterns.backendViolations++;
+        if (violation.category === 'Architecture') {
+          patterns.backendArchitecture++;
+        }
+      }
+    });
+    
+    return patterns;
+  }
+  
+  // Analyze severity patterns for risk assessment
+  analyzeSeverityPatterns() {
+    const patterns = {
+      criticalSecurity: 0,
+      criticalTotal: 0,
+      warningTotal: 0
+    };
+    
+    this.violations.forEach(violation => {
+      if (violation.type === 'CRITICAL') {
+        patterns.criticalTotal++;
+        if (violation.category === 'Security') {
+          patterns.criticalSecurity++;
+        }
+      } else if (violation.type === 'WARNING') {
+        patterns.warningTotal++;
       }
     });
     

@@ -866,6 +866,497 @@ class StatisticalAnalysis {
       criticalPredictions: predictions.filter(p => p.issue.includes('CRITICAL') || p.issue.includes('HIGH')).length
     };
   }
+  
+  // Enhanced: Create simple forecasting using historical data
+  createSimpleForecasting(historicalData, forecastPeriods = 3) {
+    if (!historicalData || historicalData.length < 5) {
+      return {
+        forecasts: [],
+        confidence: 'LOW',
+        message: 'Insufficient historical data for forecasting (minimum 5 data points required)'
+      };
+    }
+
+    const forecasts = [];
+    const recentData = historicalData.slice(-Math.min(10, historicalData.length));
+
+    // Forecast compliance scores
+    const complianceScores = recentData.map(entry => entry.complianceScore);
+    const scoreForecast = this.generateLinearForecast(complianceScores, forecastPeriods);
+    
+    forecasts.push({
+      type: 'COMPLIANCE_SCORE_FORECAST',
+      metric: 'Compliance Score',
+      currentValue: complianceScores[complianceScores.length - 1],
+      forecast: scoreForecast,
+      trend: this.calculateTrend(complianceScores),
+      confidence: this.calculateForecastConfidence(complianceScores),
+      recommendation: this.generateForecastRecommendation(scoreForecast, 'compliance score')
+    });
+
+    // Forecast violation counts
+    const violationCounts = recentData.map(entry => entry.violations);
+    const violationForecast = this.generateLinearForecast(violationCounts, forecastPeriods);
+    
+    forecasts.push({
+      type: 'VIOLATION_COUNT_FORECAST',
+      metric: 'Violation Count',
+      currentValue: violationCounts[violationCounts.length - 1],
+      forecast: violationForecast,
+      trend: this.calculateTrend(violationCounts),
+      confidence: this.calculateForecastConfidence(violationCounts),
+      recommendation: this.generateForecastRecommendation(violationForecast, 'violation count')
+    });
+
+    // Forecast critical violations
+    const criticalViolations = recentData.map(entry => entry.criticalViolations);
+    const criticalForecast = this.generateLinearForecast(criticalViolations, forecastPeriods);
+    
+    forecasts.push({
+      type: 'CRITICAL_VIOLATION_FORECAST',
+      metric: 'Critical Violations',
+      currentValue: criticalViolations[criticalViolations.length - 1],
+      forecast: criticalForecast,
+      trend: this.calculateTrend(criticalViolations),
+      confidence: this.calculateForecastConfidence(criticalViolations),
+      recommendation: this.generateForecastRecommendation(criticalForecast, 'critical violations')
+    });
+
+    // Forecast execution time
+    const executionTimes = recentData.map(entry => entry.metrics?.executionTime || 0);
+    const executionForecast = this.generateLinearForecast(executionTimes, forecastPeriods);
+    
+    forecasts.push({
+      type: 'EXECUTION_TIME_FORECAST',
+      metric: 'Execution Time (ms)',
+      currentValue: executionTimes[executionTimes.length - 1],
+      forecast: executionForecast,
+      trend: this.calculateTrend(executionTimes),
+      confidence: this.calculateForecastConfidence(executionTimes),
+      recommendation: this.generateForecastRecommendation(executionForecast, 'execution time')
+    });
+
+    // Forecast file processing performance
+    const fileProcessingTimes = recentData.map(entry => entry.metrics?.averageFileProcessingTime || 0);
+    const fileProcessingForecast = this.generateLinearForecast(fileProcessingTimes, forecastPeriods);
+    
+    forecasts.push({
+      type: 'FILE_PROCESSING_FORECAST',
+      metric: 'Average File Processing Time (ms)',
+      currentValue: fileProcessingTimes[fileProcessingTimes.length - 1],
+      forecast: fileProcessingForecast,
+      trend: this.calculateTrend(fileProcessingTimes),
+      confidence: this.calculateForecastConfidence(fileProcessingTimes),
+      recommendation: this.generateForecastRecommendation(fileProcessingForecast, 'file processing time')
+    });
+
+    return {
+      forecasts,
+      confidence: this.calculateOverallForecastConfidence(forecasts),
+      message: `Generated ${forecasts.length} forecasts for ${forecastPeriods} periods ahead`,
+      dataPoints: recentData.length,
+      forecastPeriods
+    };
+  }
+  
+  // Generate linear forecast using simple linear regression
+  generateLinearForecast(data, periods) {
+    if (data.length < 2) return [];
+    
+    const n = data.length;
+    const xValues = Array.from({length: n}, (_, i) => i);
+    
+    // Calculate linear regression parameters
+    const sumX = xValues.reduce((acc, val) => acc + val, 0);
+    const sumY = data.reduce((acc, val) => acc + val, 0);
+    const sumXY = xValues.reduce((acc, x, i) => acc + (x * data[i]), 0);
+    const sumXX = xValues.reduce((acc, x) => acc + (x * x), 0);
+    
+    const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+    const intercept = (sumY - slope * sumX) / n;
+    
+    // Generate forecasts
+    const forecasts = [];
+    for (let i = 1; i <= periods; i++) {
+      const forecastValue = intercept + slope * (n + i - 1);
+      forecasts.push(Math.max(0, Math.round(forecastValue))); // Ensure non-negative values
+    }
+    
+    return forecasts;
+  }
+  
+  // Calculate forecast confidence based on data consistency
+  calculateForecastConfidence(data) {
+    if (data.length < 3) return 'LOW';
+    
+    const stdDev = this.calculateStandardDeviation(data);
+    const mean = this.calculateMean(data);
+    const coefficientOfVariation = stdDev / mean;
+    
+    if (coefficientOfVariation < 0.1) return 'HIGH';
+    if (coefficientOfVariation < 0.3) return 'MEDIUM';
+    return 'LOW';
+  }
+  
+  // Generate forecast recommendations
+  generateForecastRecommendation(forecast, metricName) {
+    const trend = forecast[forecast.length - 1] - forecast[0];
+    const improvement = trend < 0;
+    
+    if (improvement) {
+      return `Forecast shows improvement in ${metricName}. Continue current practices.`;
+    } else {
+      return `Forecast shows potential degradation in ${metricName}. Consider preventive measures.`;
+    }
+  }
+  
+  // Calculate overall forecast confidence
+  calculateOverallForecastConfidence(forecasts) {
+    const confidences = forecasts.map(f => f.confidence);
+    const highConfidence = confidences.filter(c => c === 'HIGH').length;
+    const mediumConfidence = confidences.filter(c => c === 'MEDIUM').length;
+    
+    if (highConfidence >= forecasts.length * 0.7) return 'HIGH';
+    if (highConfidence + mediumConfidence >= forecasts.length * 0.7) return 'MEDIUM';
+    return 'LOW';
+  }
+  
+  // Enhanced: Implement risk assessment based on trends
+  implementRiskAssessmentBasedOnTrends(historicalData) {
+    if (!historicalData || historicalData.length < 5) {
+      return {
+        message: 'Insufficient data for trend-based risk assessment (minimum 5 data points required)',
+        riskAssessment: {},
+        trendAnalysis: {},
+        riskPredictions: [],
+        mitigationStrategies: []
+      };
+    }
+
+    const recentData = historicalData.slice(-Math.min(10, historicalData.length));
+    const riskAssessment = {};
+    const trendAnalysis = {};
+    const riskPredictions = [];
+    const mitigationStrategies = [];
+
+    // Analyze compliance score trends and risks
+    const complianceScores = recentData.map(entry => entry.complianceScore);
+    const scoreTrend = this.calculateTrend(complianceScores);
+    const scoreVolatility = this.calculateStandardDeviation(complianceScores) / this.calculateMean(complianceScores);
+    
+    trendAnalysis.complianceScore = {
+      trend: scoreTrend,
+      trendDirection: scoreTrend > 0 ? 'IMPROVING' : scoreTrend < 0 ? 'DECLINING' : 'STABLE',
+      volatility: Math.round(scoreVolatility * 100),
+      riskLevel: this.calculateTrendBasedRisk(scoreTrend, scoreVolatility, complianceScores[complianceScores.length - 1])
+    };
+
+    // Analyze violation count trends and risks
+    const violationCounts = recentData.map(entry => entry.violations);
+    const violationTrend = this.calculateTrend(violationCounts);
+    const violationVolatility = this.calculateStandardDeviation(violationCounts) / this.calculateMean(violationCounts);
+    
+    trendAnalysis.violationCount = {
+      trend: violationTrend,
+      trendDirection: violationTrend > 0 ? 'INCREASING' : violationTrend < 0 ? 'DECREASING' : 'STABLE',
+      volatility: Math.round(violationVolatility * 100),
+      riskLevel: this.calculateTrendBasedRisk(violationTrend, violationVolatility, violationCounts[violationCounts.length - 1])
+    };
+
+    // Analyze critical violation trends and risks
+    const criticalViolations = recentData.map(entry => entry.criticalViolations);
+    const criticalTrend = this.calculateTrend(criticalViolations);
+    const criticalVolatility = this.calculateStandardDeviation(criticalViolations) / this.calculateMean(criticalViolations);
+    
+    trendAnalysis.criticalViolations = {
+      trend: criticalTrend,
+      trendDirection: criticalTrend > 0 ? 'INCREASING' : criticalTrend < 0 ? 'DECREASING' : 'STABLE',
+      volatility: Math.round(criticalVolatility * 100),
+      riskLevel: this.calculateTrendBasedRisk(criticalTrend, criticalVolatility, criticalViolations[criticalViolations.length - 1])
+    };
+
+    // Generate risk predictions based on trends
+    if (trendAnalysis.complianceScore.riskLevel === 'HIGH') {
+      riskPredictions.push({
+        type: 'COMPLIANCE_SCORE_RISK',
+        risk: 'HIGH',
+        probability: 'HIGH',
+        description: 'Compliance score showing declining trend with high volatility',
+        impact: 'CRITICAL',
+        timeframe: 'IMMEDIATE',
+        mitigation: 'Implement comprehensive compliance review and team training'
+      });
+    }
+
+    if (trendAnalysis.violationCount.riskLevel === 'HIGH') {
+      riskPredictions.push({
+        type: 'VIOLATION_COUNT_RISK',
+        risk: 'HIGH',
+        probability: 'HIGH',
+        description: 'Violation count showing increasing trend',
+        impact: 'HIGH',
+        timeframe: 'SHORT_TERM',
+        mitigation: 'Implement stricter code review and automated compliance checks'
+      });
+    }
+
+    if (trendAnalysis.criticalViolations.riskLevel === 'HIGH') {
+      riskPredictions.push({
+        type: 'CRITICAL_VIOLATION_RISK',
+        risk: 'CRITICAL',
+        probability: 'HIGH',
+        description: 'Critical violations showing increasing trend',
+        impact: 'CRITICAL',
+        timeframe: 'IMMEDIATE',
+        mitigation: 'Immediate security review and critical issue prioritization required'
+      });
+    }
+
+    // Generate mitigation strategies
+    const highRiskAreas = Object.entries(trendAnalysis).filter(([area, data]) => data.riskLevel === 'HIGH');
+    
+    if (highRiskAreas.length > 0) {
+      mitigationStrategies.push({
+        priority: 'IMMEDIATE',
+        strategy: 'Comprehensive Risk Mitigation',
+        actions: [
+          'Implement immediate compliance review',
+          'Establish stricter code review process',
+          'Add automated compliance checks to CI/CD',
+          'Provide team training on standards',
+          'Set up monitoring for risk indicators'
+        ],
+        expectedOutcome: 'Reduce risk levels within 2-4 weeks',
+        successMetrics: ['Reduced violation count', 'Improved compliance score', 'Decreased critical violations']
+      });
+    }
+
+    // Calculate overall risk assessment
+    const riskLevels = Object.values(trendAnalysis).map(data => data.riskLevel);
+    const highRiskCount = riskLevels.filter(level => level === 'HIGH').length;
+    const overallRiskLevel = highRiskCount >= 2 ? 'HIGH' : highRiskCount === 1 ? 'MEDIUM' : 'LOW';
+
+    riskAssessment.overallRisk = {
+      level: overallRiskLevel,
+      score: Math.round((highRiskCount / riskLevels.length) * 100),
+      trendAnalysis: trendAnalysis,
+      riskPredictions: riskPredictions,
+      mitigationStrategies: mitigationStrategies
+    };
+
+    return {
+      riskAssessment,
+      trendAnalysis,
+      riskPredictions,
+      mitigationStrategies,
+      dataPoints: recentData.length,
+      confidence: this.calculateRiskAssessmentConfidence(recentData)
+    };
+  }
+  
+  // Calculate trend-based risk level
+  calculateTrendBasedRisk(trend, volatility, currentValue) {
+    const trendRisk = trend < 0 ? Math.abs(trend) * 10 : 0;
+    const volatilityRisk = volatility > 0.3 ? 30 : volatility > 0.1 ? 15 : 0;
+    const valueRisk = currentValue < 50 ? 40 : currentValue < 70 ? 20 : 0;
+    
+    const totalRisk = trendRisk + volatilityRisk + valueRisk;
+    
+    if (totalRisk > 60) return 'HIGH';
+    if (totalRisk > 30) return 'MEDIUM';
+    return 'LOW';
+  }
+  
+  // Calculate risk assessment confidence
+  calculateRiskAssessmentConfidence(data) {
+    if (data.length < 5) return 'LOW';
+    if (data.length < 8) return 'MEDIUM';
+    return 'HIGH';
+  }
+  
+  // Enhanced: Build confidence scoring for predictions
+  buildConfidenceScoringForPredictions(historicalData) {
+    if (!historicalData || historicalData.length < 3) {
+      return {
+        message: 'Insufficient data for confidence scoring (minimum 3 data points required)',
+        confidenceScores: {},
+        predictionReliability: 'LOW',
+        recommendations: []
+      };
+    }
+
+    const recentData = historicalData.slice(-Math.min(10, historicalData.length));
+    const confidenceScores = {};
+    const recommendations = [];
+
+    // Calculate confidence for compliance score predictions
+    const complianceScores = recentData.map(entry => entry.complianceScore);
+    const scoreConfidence = this.calculatePredictionConfidence(complianceScores, 'compliance score');
+    
+    confidenceScores.complianceScore = {
+      confidence: scoreConfidence.level,
+      score: scoreConfidence.score,
+      factors: scoreConfidence.factors,
+      reliability: scoreConfidence.reliability
+    };
+
+    // Calculate confidence for violation count predictions
+    const violationCounts = recentData.map(entry => entry.violations);
+    const violationConfidence = this.calculatePredictionConfidence(violationCounts, 'violation count');
+    
+    confidenceScores.violationCount = {
+      confidence: violationConfidence.level,
+      score: violationConfidence.score,
+      factors: violationConfidence.factors,
+      reliability: violationConfidence.reliability
+    };
+
+    // Calculate confidence for critical violation predictions
+    const criticalViolations = recentData.map(entry => entry.criticalViolations);
+    const criticalConfidence = this.calculatePredictionConfidence(criticalViolations, 'critical violations');
+    
+    confidenceScores.criticalViolations = {
+      confidence: criticalConfidence.level,
+      score: criticalConfidence.score,
+      factors: criticalConfidence.factors,
+      reliability: criticalConfidence.reliability
+    };
+
+    // Calculate confidence for execution time predictions
+    const executionTimes = recentData.map(entry => entry.metrics?.executionTime || 0);
+    const executionConfidence = this.calculatePredictionConfidence(executionTimes, 'execution time');
+    
+    confidenceScores.executionTime = {
+      confidence: executionConfidence.level,
+      score: executionConfidence.score,
+      factors: executionConfidence.factors,
+      reliability: executionConfidence.reliability
+    };
+
+    // Generate recommendations based on confidence levels
+    Object.entries(confidenceScores).forEach(([metric, data]) => {
+      if (data.confidence === 'LOW') {
+        recommendations.push(`Low confidence in ${metric} predictions - collect more data`);
+      } else if (data.confidence === 'MEDIUM') {
+        recommendations.push(`Medium confidence in ${metric} predictions - consider with caution`);
+      } else {
+        recommendations.push(`High confidence in ${metric} predictions - reliable for decision making`);
+      }
+    });
+
+    // Calculate overall prediction reliability
+    const confidenceLevels = Object.values(confidenceScores).map(data => data.confidence);
+    const highConfidenceCount = confidenceLevels.filter(level => level === 'HIGH').length;
+    const overallReliability = highConfidenceCount >= confidenceLevels.length * 0.7 ? 'HIGH' : 
+                              highConfidenceCount >= confidenceLevels.length * 0.4 ? 'MEDIUM' : 'LOW';
+
+    return {
+      confidenceScores,
+      predictionReliability: overallReliability,
+      recommendations,
+      dataPoints: recentData.length,
+      overallConfidenceScore: Math.round(this.calculateMean(Object.values(confidenceScores).map(c => c.score)))
+    };
+  }
+  
+  // Calculate prediction confidence for a specific metric
+  calculatePredictionConfidence(data, metricName) {
+    if (data.length < 3) {
+      return {
+        level: 'LOW',
+        score: 0,
+        factors: ['Insufficient data points'],
+        reliability: 'UNRELIABLE'
+      };
+    }
+
+    const factors = [];
+    let confidenceScore = 100;
+
+    // Factor 1: Data consistency (lower standard deviation = higher confidence)
+    const stdDev = this.calculateStandardDeviation(data);
+    const mean = this.calculateMean(data);
+    const coefficientOfVariation = stdDev / mean;
+    
+    if (coefficientOfVariation > 0.5) {
+      confidenceScore -= 30;
+      factors.push('High data volatility');
+    } else if (coefficientOfVariation > 0.2) {
+      confidenceScore -= 15;
+      factors.push('Moderate data volatility');
+    } else {
+      factors.push('Low data volatility');
+    }
+
+    // Factor 2: Data points (more data = higher confidence)
+    if (data.length < 5) {
+      confidenceScore -= 25;
+      factors.push('Limited data points');
+    } else if (data.length < 8) {
+      confidenceScore -= 10;
+      factors.push('Moderate data points');
+    } else {
+      factors.push('Sufficient data points');
+    }
+
+    // Factor 3: Trend consistency (consistent trends = higher confidence)
+    const trend = this.calculateTrend(data);
+    const trendConsistency = this.calculateTrendConsistency(data);
+    
+    if (trendConsistency < 0.7) {
+      confidenceScore -= 20;
+      factors.push('Inconsistent trends');
+    } else {
+      factors.push('Consistent trends');
+    }
+
+    // Factor 4: Outlier presence (fewer outliers = higher confidence)
+    const outliers = this.detectOutliers(data);
+    const outlierRatio = outliers.length / data.length;
+    
+    if (outlierRatio > 0.3) {
+      confidenceScore -= 20;
+      factors.push('High outlier presence');
+    } else if (outlierRatio > 0.1) {
+      confidenceScore -= 10;
+      factors.push('Moderate outlier presence');
+    } else {
+      factors.push('Low outlier presence');
+    }
+
+    // Determine confidence level
+    let confidenceLevel = 'LOW';
+    if (confidenceScore >= 80) confidenceLevel = 'HIGH';
+    else if (confidenceScore >= 60) confidenceLevel = 'MEDIUM';
+
+    // Determine reliability
+    let reliability = 'UNRELIABLE';
+    if (confidenceScore >= 80) reliability = 'RELIABLE';
+    else if (confidenceScore >= 60) reliability = 'MODERATELY_RELIABLE';
+
+    return {
+      level: confidenceLevel,
+      score: Math.max(0, confidenceScore),
+      factors,
+      reliability
+    };
+  }
+  
+  // Calculate trend consistency
+  calculateTrendConsistency(data) {
+    if (data.length < 4) return 0;
+    
+    const segments = Math.floor(data.length / 2);
+    const firstHalf = data.slice(0, segments);
+    const secondHalf = data.slice(-segments);
+    
+    const firstTrend = this.calculateTrend(firstHalf);
+    const secondTrend = this.calculateTrend(secondHalf);
+    
+    // Calculate similarity between trends
+    const trendSimilarity = 1 - Math.abs(firstTrend - secondTrend) / Math.max(Math.abs(firstTrend), Math.abs(secondTrend), 1);
+    return Math.max(0, trendSimilarity);
+  }
 }
 
 module.exports = StatisticalAnalysis; 
