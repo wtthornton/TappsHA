@@ -1,0 +1,32 @@
+{
+  "rulePerformance": [
+    {
+      "timestamp": "2025-08-04T20:15:57.995Z",
+      "totalRules": 189,
+      "performanceMetrics": {
+        "totalRules": 189,
+        "averagePerformance": 84,
+        "averageOptimization": 77,
+        "averageComplexity": 53,
+        "averageClarity": 86,
+        "highPerformanceRules": 102,
+        "lowPerformanceRules": 0,
+        "optimizationOpportunities": 0
+      },
+      "optimizationOpportunities": 1
+    }
+  ],
+  "optimizationHistory": [
+    {
+      "totalRules": 189,
+      "averagePerformance": 84,
+      "averageOptimization": 77,
+      "averageComplexity": 53,
+      "averageClarity": 86,
+      "highPerformanceRules": 102,
+      "lowPerformanceRules": 0,
+      "optimizationOpportunities": 0
+    }
+  ],
+  "lastUpdated": "2025-08-04T20:15:57.996Z"
+}

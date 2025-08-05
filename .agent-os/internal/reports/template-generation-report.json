@@ -1,0 +1,62 @@
+{
+  "generatedAt": "2025-08-04T20:40:36.755Z",
+  "summary": {
+    "totalTemplates": 4,
+    "generatedTemplates": 4,
+    "templateTypes": 4,
+    "topTemplateTypes": [
+      {
+        "type": "technical",
+        "count": 1
+      },
+      {
+        "type": "process",
+        "count": 1
+      },
+      {
+        "type": "project",
+        "count": 1
+      },
+      {
+        "type": "general",
+        "count": 1
+      }
+    ]
+  },
+  "templateTypes": {
+    "technical": 1,
+    "process": 1,
+    "project": 1,
+    "general": 1
+  },
+  "templates": [
+    {
+      "filename": "technical-lesson-template.md",
+      "type": "technical",
+      "title": "Technical Lesson Template",
+      "sections": 6,
+      "tags": 3
+    },
+    {
+      "filename": "process-lesson-template.md",
+      "type": "process",
+      "title": "Process Lesson Template",
+      "sections": 6,
+      "tags": 3
+    },
+    {
+      "filename": "project-lesson-template.md",
+      "type": "project",
+      "title": "Project Lesson Template",
+      "sections": 6,
+      "tags": 3
+    },
+    {
+      "filename": "general-lesson-template.md",
+      "type": "general",
+      "title": "General Lesson Template",
+      "sections": 5,
+      "tags": 3
+    }
+  ]
+}

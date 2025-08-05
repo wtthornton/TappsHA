@@ -1,0 +1,191 @@
+{
+  "templateHistory": [
+    {
+      "timestamp": "2025-08-04T20:29:40.374Z",
+      "totalTemplates": 4,
+      "templateTypes": {
+        "technical": 1,
+        "process": 1,
+        "project": 1,
+        "general": 1
+      },
+      "generatedTemplates": 4
+    },
+    {
+      "timestamp": "2025-08-04T20:40:36.754Z",
+      "totalTemplates": 4,
+      "templateTypes": {
+        "technical": 1,
+        "process": 1,
+        "project": 1,
+        "general": 1
+      },
+      "generatedTemplates": 4
+    }
+  ],
+  "generationHistory": [
+    [
+      {
+        "filename": "technical-lesson-template.md",
+        "type": "technical",
+        "title": "Technical Lesson Template",
+        "description": "Template for technical lessons learned",
+        "sections": [
+          "context",
+          "actionTaken",
+          "results",
+          "keyInsights",
+          "recommendations",
+          "followUpActions"
+        ],
+        "tags": [
+          "technical",
+          "implementation",
+          "coding"
+        ],
+        "path": "C:\\cursor\\TappHA\\.agent-os\\lessons-learned\\templates\\technical\\technical-lesson-template.md"
+      },
+      {
+        "filename": "process-lesson-template.md",
+        "type": "process",
+        "title": "Process Lesson Template",
+        "description": "Template for process improvement lessons",
+        "sections": [
+          "context",
+          "actionTaken",
+          "results",
+          "keyInsights",
+          "recommendations",
+          "followUpActions"
+        ],
+        "tags": [
+          "process",
+          "workflow",
+          "improvement"
+        ],
+        "path": "C:\\cursor\\TappHA\\.agent-os\\lessons-learned\\templates\\process\\process-lesson-template.md"
+      },
+      {
+        "filename": "project-lesson-template.md",
+        "type": "project",
+        "title": "Project Lesson Template",
+        "description": "Template for project management lessons",
+        "sections": [
+          "context",
+          "actionTaken",
+          "results",
+          "keyInsights",
+          "recommendations",
+          "followUpActions"
+        ],
+        "tags": [
+          "project",
+          "management",
+          "planning"
+        ],
+        "path": "C:\\cursor\\TappHA\\.agent-os\\lessons-learned\\templates\\project\\project-lesson-template.md"
+      },
+      {
+        "filename": "general-lesson-template.md",
+        "type": "general",
+        "title": "General Lesson Template",
+        "description": "Template for general lessons learned",
+        "sections": [
+          "context",
+          "actionTaken",
+          "results",
+          "keyInsights",
+          "recommendations"
+        ],
+        "tags": [
+          "general",
+          "learning",
+          "improvement"
+        ],
+        "path": "C:\\cursor\\TappHA\\.agent-os\\lessons-learned\\templates\\general\\general-lesson-template.md"
+      }
+    ],
+    [
+      {
+        "filename": "technical-lesson-template.md",
+        "type": "technical",
+        "title": "Technical Lesson Template",
+        "description": "Template for technical lessons learned",
+        "sections": [
+          "context",
+          "actionTaken",
+          "results",
+          "keyInsights",
+          "recommendations",
+          "followUpActions"
+        ],
+        "tags": [
+          "technical",
+          "implementation",
+          "coding"
+        ],
+        "path": "C:\\cursor\\TappHA\\.agent-os\\lessons-learned\\templates\\technical\\technical-lesson-template.md"
+      },
+      {
+        "filename": "process-lesson-template.md",
+        "type": "process",
+        "title": "Process Lesson Template",
+        "description": "Template for process improvement lessons",
+        "sections": [
+          "context",
+          "actionTaken",
+          "results",
+          "keyInsights",
+          "recommendations",
+          "followUpActions"
+        ],
+        "tags": [
+          "process",
+          "workflow",
+          "improvement"
+        ],
+        "path": "C:\\cursor\\TappHA\\.agent-os\\lessons-learned\\templates\\process\\process-lesson-template.md"
+      },
+      {
+        "filename": "project-lesson-template.md",
+        "type": "project",
+        "title": "Project Lesson Template",
+        "description": "Template for project management lessons",
+        "sections": [
+          "context",
+          "actionTaken",
+          "results",
+          "keyInsights",
+          "recommendations",
+          "followUpActions"
+        ],
+        "tags": [
+          "project",
+          "management",
+          "planning"
+        ],
+        "path": "C:\\cursor\\TappHA\\.agent-os\\lessons-learned\\templates\\project\\project-lesson-template.md"
+      },
+      {
+        "filename": "general-lesson-template.md",
+        "type": "general",
+        "title": "General Lesson Template",
+        "description": "Template for general lessons learned",
+        "sections": [
+          "context",
+          "actionTaken",
+          "results",
+          "keyInsights",
+          "recommendations"
+        ],
+        "tags": [
+          "general",
+          "learning",
+          "improvement"
+        ],
+        "path": "C:\\cursor\\TappHA\\.agent-os\\lessons-learned\\templates\\general\\general-lesson-template.md"
+      }
+    ]
+  ],
+  "lastUpdated": "2025-08-04T20:40:36.754Z"
+}

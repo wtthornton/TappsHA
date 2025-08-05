@@ -1,0 +1,171 @@
+{
+  "impactHistory": [
+    {
+      "timestamp": "2025-08-04T20:38:29.665Z",
+      "totalLessons": 5,
+      "averageImpactScore": 100,
+      "impactScores": [
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "impactMetrics": {
+        "technicalImpact": 0,
+        "processImpact": 0,
+        "projectImpact": 0,
+        "qualityImpact": 0,
+        "adoptionImpact": 0
+      }
+    },
+    {
+      "timestamp": "2025-08-04T20:38:47.126Z",
+      "totalLessons": 5,
+      "averageImpactScore": 100,
+      "impactScores": [
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "impactMetrics": {
+        "technicalImpact": 0,
+        "processImpact": 0,
+        "projectImpact": 0,
+        "qualityImpact": 0,
+        "adoptionImpact": 0
+      }
+    },
+    {
+      "timestamp": "2025-08-04T20:39:18.221Z",
+      "totalLessons": 5,
+      "averageImpactScore": 100,
+      "impactScores": [
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "impactMetrics": {
+        "technicalImpact": {
+          "total": 125,
+          "count": 5
+        },
+        "processImpact": {
+          "total": 125,
+          "count": 5
+        },
+        "projectImpact": {
+          "total": 125,
+          "count": 5
+        },
+        "qualityImpact": {
+          "total": 125,
+          "count": 5
+        },
+        "adoptionImpact": {
+          "total": 125,
+          "count": 5
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-04T20:40:36.762Z",
+      "totalLessons": 5,
+      "averageImpactScore": 100,
+      "impactScores": [
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "impactMetrics": {
+        "technicalImpact": {
+          "total": 125,
+          "count": 5
+        },
+        "processImpact": {
+          "total": 125,
+          "count": 5
+        },
+        "projectImpact": {
+          "total": 125,
+          "count": 5
+        },
+        "qualityImpact": {
+          "total": 125,
+          "count": 5
+        },
+        "adoptionImpact": {
+          "total": 125,
+          "count": 5
+        }
+      }
+    }
+  ],
+  "impactMetrics": [
+    {
+      "technicalImpact": 0,
+      "processImpact": 0,
+      "projectImpact": 0,
+      "qualityImpact": 0,
+      "adoptionImpact": 0
+    },
+    {
+      "technicalImpact": 0,
+      "processImpact": 0,
+      "projectImpact": 0,
+      "qualityImpact": 0,
+      "adoptionImpact": 0
+    },
+    {
+      "technicalImpact": {
+        "total": 125,
+        "count": 5
+      },
+      "processImpact": {
+        "total": 125,
+        "count": 5
+      },
+      "projectImpact": {
+        "total": 125,
+        "count": 5
+      },
+      "qualityImpact": {
+        "total": 125,
+        "count": 5
+      },
+      "adoptionImpact": {
+        "total": 125,
+        "count": 5
+      }
+    },
+    {
+      "technicalImpact": {
+        "total": 125,
+        "count": 5
+      },
+      "processImpact": {
+        "total": 125,
+        "count": 5
+      },
+      "projectImpact": {
+        "total": 125,
+        "count": 5
+      },
+      "qualityImpact": {
+        "total": 125,
+        "count": 5
+      },
+      "adoptionImpact": {
+        "total": 125,
+        "count": 5
+      }
+    }
+  ],
+  "lastUpdated": "2025-08-04T20:40:36.762Z"
+}

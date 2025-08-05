@@ -1,0 +1,196 @@
+{
+  "qualityHistory": [
+    {
+      "timestamp": "2025-08-04T20:26:56.350Z",
+      "totalLessons": 5,
+      "averageQualityScore": 100,
+      "validationErrors": 5,
+      "qualityScores": [
+        100,
+        100,
+        100,
+        100,
+        100
+      ]
+    },
+    {
+      "timestamp": "2025-08-04T20:28:23.495Z",
+      "totalLessons": 5,
+      "averageQualityScore": 100,
+      "validationErrors": 5,
+      "qualityScores": [
+        100,
+        100,
+        100,
+        100,
+        100
+      ]
+    },
+    {
+      "timestamp": "2025-08-04T20:40:36.744Z",
+      "totalLessons": 5,
+      "averageQualityScore": 100,
+      "validationErrors": 5,
+      "qualityScores": [
+        100,
+        100,
+        100,
+        100,
+        100
+      ]
+    },
+    {
+      "timestamp": "2025-08-04T21:54:43.090Z",
+      "totalLessons": 0,
+      "averageQualityScore": 0,
+      "validationErrors": 0,
+      "qualityScores": []
+    }
+  ],
+  "validationHistory": [
+    [
+      {
+        "filename": "2025-01-27-agent-os-review-summary.md",
+        "errors": [
+          "Section 0,context is required and must be at least 10 characters",
+          "Section 1,actionTaken is required and must be at least 10 characters",
+          "Section 2,results is required and must be at least 10 characters",
+          "Section 3,keyInsights is required and must be at least 10 characters",
+          "Section 4,recommendations is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "2025-01-27-step1-foundation-complete.md",
+        "errors": [
+          "Section 0,context is required and must be at least 10 characters",
+          "Section 1,actionTaken is required and must be at least 10 characters",
+          "Section 2,results is required and must be at least 10 characters",
+          "Section 3,keyInsights is required and must be at least 10 characters",
+          "Section 4,recommendations is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "2025-08-04-cursor-rule-optimization.md",
+        "errors": [
+          "Section 0,context is required and must be at least 10 characters",
+          "Section 1,actionTaken is required and must be at least 10 characters",
+          "Section 2,results is required and must be at least 10 characters",
+          "Section 3,keyInsights is required and must be at least 10 characters",
+          "Section 4,recommendations is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "2025-08-04-hybrid-architecture-implementation.md",
+        "errors": [
+          "Section 0,context is required and must be at least 10 characters",
+          "Section 1,actionTaken is required and must be at least 10 characters",
+          "Section 2,results is required and must be at least 10 characters",
+          "Section 3,keyInsights is required and must be at least 10 characters",
+          "Section 4,recommendations is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "README.md",
+        "errors": [
+          "Section 0,context is required and must be at least 10 characters",
+          "Section 1,actionTaken is required and must be at least 10 characters",
+          "Section 2,results is required and must be at least 10 characters",
+          "Section 3,keyInsights is required and must be at least 10 characters",
+          "Section 4,recommendations is required and must be at least 10 characters"
+        ]
+      }
+    ],
+    [
+      {
+        "filename": "2025-01-27-agent-os-review-summary.md",
+        "errors": [
+          "Section context is required and must be at least 10 characters",
+          "Section actionTaken is required and must be at least 10 characters",
+          "Section results is required and must be at least 10 characters",
+          "Section keyInsights is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "2025-01-27-step1-foundation-complete.md",
+        "errors": [
+          "Section context is required and must be at least 10 characters",
+          "Section actionTaken is required and must be at least 10 characters",
+          "Section results is required and must be at least 10 characters",
+          "Section keyInsights is required and must be at least 10 characters",
+          "Section recommendations is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "2025-08-04-cursor-rule-optimization.md",
+        "errors": [
+          "Section actionTaken is required and must be at least 10 characters",
+          "Section keyInsights is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "2025-08-04-hybrid-architecture-implementation.md",
+        "errors": [
+          "Section actionTaken is required and must be at least 10 characters",
+          "Section keyInsights is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "README.md",
+        "errors": [
+          "Section context is required and must be at least 10 characters",
+          "Section actionTaken is required and must be at least 10 characters",
+          "Section results is required and must be at least 10 characters",
+          "Section keyInsights is required and must be at least 10 characters",
+          "Section recommendations is required and must be at least 10 characters"
+        ]
+      }
+    ],
+    [
+      {
+        "filename": "2025-01-27-agent-os-review-summary.md",
+        "errors": [
+          "Section context is required and must be at least 10 characters",
+          "Section actionTaken is required and must be at least 10 characters",
+          "Section results is required and must be at least 10 characters",
+          "Section keyInsights is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "2025-01-27-step1-foundation-complete.md",
+        "errors": [
+          "Section context is required and must be at least 10 characters",
+          "Section actionTaken is required and must be at least 10 characters",
+          "Section results is required and must be at least 10 characters",
+          "Section keyInsights is required and must be at least 10 characters",
+          "Section recommendations is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "2025-08-04-cursor-rule-optimization.md",
+        "errors": [
+          "Section actionTaken is required and must be at least 10 characters",
+          "Section keyInsights is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "2025-08-04-hybrid-architecture-implementation.md",
+        "errors": [
+          "Section actionTaken is required and must be at least 10 characters",
+          "Section keyInsights is required and must be at least 10 characters"
+        ]
+      },
+      {
+        "filename": "README.md",
+        "errors": [
+          "Section context is required and must be at least 10 characters",
+          "Section actionTaken is required and must be at least 10 characters",
+          "Section results is required and must be at least 10 characters",
+          "Section keyInsights is required and must be at least 10 characters",
+          "Section recommendations is required and must be at least 10 characters"
+        ]
+      }
+    ],
+    []
+  ],
+  "lastUpdated": "2025-08-04T21:54:43.090Z"
+}

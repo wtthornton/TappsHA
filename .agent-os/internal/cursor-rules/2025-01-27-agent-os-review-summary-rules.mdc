@@ -1,0 +1,26 @@
+# Cursor Rules Generated from Lesson: Agent OS Review Summary - 2025-01-27
+
+**Source**: Agent OS - 2025-01-27
+**Priority**: Medium
+**Tags**: agent-os-review, development-environment, code-quality, testing-infrastructure, lessons-learned, standards-compliance, typescript, architecture-assessment, CodeValidator, ComplianceChecker
+
+## Generated Rules
+
+### 1. Code Quality Standards - Agent OS Review Summary - 2025-01-27
+
+**Type**: quality
+**Priority**: Medium
+**Description**: Maintain code quality standards based on lesson: Agent OS Review Summary - 2025-01-27
+
+**ALWAYS** maintain code quality standards based on lesson "Agent OS Review Summary - 2025-01-27":
+- Follow established coding conventions
+- Ensure proper error handling
+- Maintain code readability and maintainability
+
+## Usage Guidelines
+
+- These rules were automatically generated from lesson: Agent OS Review Summary - 2025-01-27
+- Apply these rules consistently across the project
+- Review and update rules as needed based on new lessons
+- Report rule effectiveness to improve future generation
+

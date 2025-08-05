@@ -1,0 +1,1969 @@
+{
+  "generatedAt": "2025-08-05T00:12:13.669Z",
+  "totalRules": 489,
+  "rulesByType": {
+    "general": 275,
+    "standard": 115,
+    "rule": 39,
+    "lesson": 55,
+    "template": 5
+  },
+  "rules": [
+    {
+      "filename": "purpose.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "capabilities.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "pipeline-integration.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "development-best-practices-enhanced-for-cursor-agent-os.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "1-mobile-first-responsive-design.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "2-observability-by-design.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "3-dry-kiss-12-factor-principles.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "4-performance-fail-fast.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "5-devops-agile-embedded.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "6-lessons-learned-integration.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "goals.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "key-practices.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "code-style-guide-enhanced-for-cursor-agent-os.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "general-formatting.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "naming-conventions.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "import-structure.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "code-style-lessons-learned.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "purpose.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "tiers.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "key-practices.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "notes.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "backend-java-spring-boot.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "frontend-react-typescript.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "database.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ai-ml.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "infrastructure.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "java-spring-boot.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "typescript-react.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "css-tailwindcss.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "layered-architecture.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "security-patterns.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "error-handling.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "unit-tests-java.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "unit-tests-typescript.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "backend-performance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "frontend-performance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "authentication-authorization.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "data-protection.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "metrics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "logging.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "tracing.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "validation-checklist.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technology-stack.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "code-style.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "architecture.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "testing.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "performance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "security.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "strict-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "code-review-requirements.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "documentation-requirements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "references.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "mandatory-lessons-learned-protocol.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "1-capture-triggers.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "lesson-capture-process.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "3-integration-process.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "4-validation-checklist-for-lessons-learned.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "lesson-template.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "strict-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "quality-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "mandatory-task-update-protocol.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "1-immediate-updates.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "2-progress-documentation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "completed-in-this-session.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "next-priority-tasks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "progress-update.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "4-validation-checklist-for-task-updates.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "tasks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "completed-in-latest-session-yyyy-mm-dd.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "next-priority-tasks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "overall-progress-x-complete.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "strict-compliance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "quality-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "integration-with-development-workflow.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "purpose.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "components.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "best-practice-stack.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "secure-defaults-hardening.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "dependency-management-sca.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "container-infra-security.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "secret-management.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "owasp-top-10-compliance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "security-lessons-learned.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "purpose.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "examples.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "frontend.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "backend.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "databases-time-series.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ai-ml.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "observability.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ci-cd-containers.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technology-lessons-learned.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "testing-strategy-quality-standards-enhanced.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "testing-trophy-approach.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "tools.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "coverage-targets.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ai-assisted-testing.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ci-integration.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "lessons-learned-in-testing.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "purpose.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "components.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ci-cd-integration.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "product-decisions-log.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "2025-08-03-comprehensive-strategic-research-completion.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "decision.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "research-findings-applied.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "rationale.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "consequences.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "2025-01-27-lessons-learned-framework-integration.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "decision.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "framework-components.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "rationale.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "consequences.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "2025-08-03-ai-model-strategy-and-performance-optimization.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "decision.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "alternatives-considered.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "rationale.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "consequences.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "2024-12-19-standards-compliance-alignment.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "decision.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "alternatives-considered.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "rationale.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "consequences.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "2024-12-19-initial-product-planning.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "decision.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "alternatives-considered.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "rationale.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "consequences.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "decision-schema.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "categories.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "product-mission-lite.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "pitch.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "primary-customers.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "user-personas.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "manual-automation-management-overhead.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "limited-pattern-recognition.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "reactive-vs-proactive-automation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "lack-of-intelligent-recommendations.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "autonomous-ai-driven-management.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "advanced-pattern-recognition.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "proactive-optimization.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "privacy-first-ai.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "cost-effective-ai-operations.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "core-features.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "intelligence-features.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "management-features.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "integration-features.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "user-experience-features.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "business-model-features.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "performance-metrics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technical-metrics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "business-metrics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-1-enhancement-questions.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "critical-phase-1-enhancement-questions.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "1-home-assistant-integration-architecture.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "2-real-time-event-processing-scale.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "3-data-privacy-implementation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "4-user-control-framework-granularity.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "5-mvp-feature-validation-strategy.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "6-performance-baseline-establishment.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "7-security-hardening-strategy.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "8-observability-implementation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "9-user-onboarding-experience.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "10-rollback-and-safety-mechanisms.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "strategic-enhancement-recommendations.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "immediate-actions-for-phase-1-enhancement.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "critical-success-factors.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "implementation-priority-matrix.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "next-steps.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "documentation-standards-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "completed-work-marked-for-future-review-ignore.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "foundation-documentation-enhancement-status-complete.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "strategic-research-completion-status-complete.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "high-priority-research-completion-status-complete.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "medium-priority-research-completion-status-complete.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "low-priority-research-completion-status-complete.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-1-core-foundation-mvp-0-complete.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "review-instructions-for-future-reviews.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ignore-these-items-already-complete.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "focus-on-these-items.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "status-update-protocol.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "progress-metrics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "user-research-validation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technical-feasibility.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "privacy-strategy.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ai-acceptance-strategy.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "high-priority-research-insights.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "medium-priority-research-insights.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "low-priority-research-insights.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "value-proposition.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "success-metrics-from-research.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "risk-mitigation-strategies.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "completed-foundation-work.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "current-focus.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "monorepo-directory-structure.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "standards-integration.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "phase-1-core-foundation-mvp.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "features.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "dependencies.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-2-intelligence-engine.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "features.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "dependencies.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-3-autonomous-management.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "features.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "dependencies.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-4-advanced-intelligence.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "features.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "dependencies.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-2-enhancement-questions-research-2025-01-27-1500.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ai-model-selection-optimization-strategy-score-95.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "behavioral-pattern-recognition-accuracy-score-92.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "real-time-ai-processing-performance-score-88.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ai-recommendation-quality-relevance-score-93.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "local-ai-processing-implementation-score-90.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-1-enhancement-questions-research-2025-01-27-1430.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "home-assistant-integration-architecture-score-95.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "real-time-event-processing-scale-score-92.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "data-privacy-implementation-score-90.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "user-control-framework-granularity-score-85.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "rollback-and-safety-mechanisms-score-88.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "high-priority-questions-research-2025-08-03-1723.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "competitive-moat-score-78.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "home-assistant-integration-strategy-score-75.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "user-control-preferences-score-72.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "data-privacy-security-score-70.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "mvp-validation-score-68.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "success-metrics-from-research.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "risk-mitigation-strategies.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "backend.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "frontend.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ai-ml.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "infrastructure.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "testing-quality.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-1-success-metrics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "overall-project-success-metrics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "high-priority-risks-mitigated.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "medium-priority-risks-mitigated.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "low-priority-risks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-1-core-foundation-mvp-6-8-weeks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-2-intelligence-engine-8-10-weeks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-3-autonomous-management-10-12-weeks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-4-advanced-intelligence-12-16-weeks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "backend-framework.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "frontend-framework.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "build-tools.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "css-framework.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "state-management.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "database.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "time-series-data.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "ai-ml-stack.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "ci-cd.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "runtime.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "observability.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "javascript-typescript.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "testing.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "linting.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "mobile-first-accessible.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "security.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "cloud-native.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "observability.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "lessons-learned-integration.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "testing-quality.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "layered-architecture.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "api-design.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "data-access.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "ai-model-strategy-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "performance-optimization-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "user-experience-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "business-model-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "mobile-strategy-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "timeline-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "risk-mitigation-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "research-based-recommendations.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "completed-research-impact.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "research-based-compliance-enhancements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "deviations.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "last-updated.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "application-framework.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "database-system.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "javascript-framework.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "import-strategy.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "css-framework.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ui-component-library.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "fonts-provider.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "icon-library.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "application-hosting.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "database-hosting.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "asset-hosting.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "deployment-solution.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "code-repository-url.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "ai-ml-stack-research-validated.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "home-assistant-integration-research-validated.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "security-research-validated.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "performance-research-validated.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "development-process-research-validated.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "observability-research-validated.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "user-experience-research-validated.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "business-model-research-validated.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "development-timeline-research-validated.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "risk-management-research-validated.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "project-project-name.mdc",
+      "type": "template"
+    },
+    {
+      "filename": "task-structure-template.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "mandatory-lessons-learned-integration.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "capture-triggers-per-agent-os-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "lessons-learned-process.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "validation-checklist.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "immediate-updates.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "progress-documentation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "example-task-structure.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "standards-compliance.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "lessons-learned-integration.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "standards-review.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "code-quality-assessment.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "1-development-environment-setup.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "2-testing-infrastructure.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "3-code-quality-tools.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "1-development-environment-setup-lessons.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "2-architecture-assessment-lessons.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "3-testing-infrastructure-lessons.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "completed.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "remaining-issues.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "next-steps.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "high-impact-improvements.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "medium-impact-improvements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "immediate-actions.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "process-improvements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "standards-updates.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "tags.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "1-automated-trigger-detection.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "2-context-collection.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "3-template-population.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "4-quality-validation.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "process-documentation.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "quality-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "automation-features.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "foundation-metrics.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "quality-targets.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "phase-2-advanced-analytics-future.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-3-optimization-future.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "phase-4-integration-future.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "1-simplicity-is-key.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "2-quality-over-quantity.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "3-foundation-first.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "immediate-benefits.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "long-term-benefits.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "cursor-rule-optimization-implementation-lessons-learned.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "action-taken.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "results.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "performance-analysis.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "rule-optimization.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "recommendation-engine.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "for-future-implementations.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "for-architecture-decisions.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "for-technology-stack.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "impact-assessment.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "related-lessons.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "follow-up-actions.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "tags.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "hybrid-architecture-implementation-lessons-learned.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "action-taken.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "results.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "architecture-design.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "implementation-challenges.mdc",
+      "type": "template"
+    },
+    {
+      "filename": "performance-optimization.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "for-future-implementations.mdc",
+      "type": "template"
+    },
+    {
+      "filename": "for-architecture-decisions.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "for-technology-stack.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "impact-assessment.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "related-lessons.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "follow-up-actions.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "tags.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "lessons-learned-framework-production-implementation-2025-08-04.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "context.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "action-taken.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "positive-outcomes.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "technical-achievements.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "performance-metrics.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "what-worked-well.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "technical-lessons.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "process-lessons.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "for-production-deployment.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "for-future-enhancements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "for-maintenance.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "immediate-next-1-2-days.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "short-term-next-1-week.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "medium-term-next-2-4-weeks.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "tags.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "1-source-file-discovery.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "2-content-analysis.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "3-rule-generation.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "4-rule-validation.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "source-files-md.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "generated-files-mdc.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "usr-bin-env-node.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "run-cursor-init-process.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "run-with-specific-options.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "package-json-script.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "cursor-init-json.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "with-existing-tools.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "github-workflows-cursor-init-yml.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "implementation-goals.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "quality-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "lessons-learned-framework-improvements-agent-os.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "project-lessons-learned-framework-improvements.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "mission-alignment.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "technology-constraints.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "1-enhanced-lesson-capture-process-critical.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "2-lesson-analytics-and-insights-critical.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "3-lesson-validation-and-quality-high.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "4-lesson-search-and-discovery-high.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "5-enhanced-lesson-capture-process-high.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "6-simple-analytics-integration-high.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "7-enhanced-documentation-analysis-medium.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "8-simple-validation-engine-medium.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "completed-in-latest-session-2025-08-04.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "next-priority-tasks.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "overall-progress-60-complete.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "node-js-implementation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "vanilla-javascript-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "markdown-integration.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "lessons-learned-integration.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "implementation-goals.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "performance-targets.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "quality-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "simple-analytics-enhancements-agent-os-framework.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "mission-alignment.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technology-constraints.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "1-enhanced-metrics-collection-system.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "2-simple-trend-analysis-engine.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "3-smart-documentation-analysis.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "4-enhanced-reporting-and-insights.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "5-simple-predictive-capabilities.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "6-integration-and-optimization.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "7-lessons-learned-integration.mdc",
+      "type": "lesson"
+    },
+    {
+      "filename": "completed-in-latest-session-2025-01-27.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "current-focus-remaining-high-impact-tasks-1-remaining-work.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "task-1-improvement-forecasting.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "task-2-success-prediction-implementation.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "execution-priority-order.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "expected-impact.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "next-priority-tasks.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "overall-progress-99-complete.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "success-metrics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "risk-assessment.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technology-requirements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "implementation-principles.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "references.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "agent-os-framework-technology-stack-agent-improvements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "runtime-environment.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "file-system-structure.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "development-tools.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "data-storage.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "validation-and-compliance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "reporting-and-analytics.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "cursor-specific-tools.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "cursor-rule-management.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "cursor-integration-points.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "mandatory-simplicity.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "portability-requirements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "performance-requirements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "core-tools.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "utility-tools.mdc",
+      "type": "template"
+    },
+    {
+      "filename": "cursor-specific-tools.mdc",
+      "type": "rule"
+    },
+    {
+      "filename": "markdown-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "javascript-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "cursor-rule-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "configuration-standards.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "cursor-ai-integration.mdc",
+      "type": "template"
+    },
+    {
+      "filename": "git-integration.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "ci-cd-integration.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "optimization-strategies.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "monitoring-and-observability.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "framework-security.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "data-security.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "version-management.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "quality-assurance.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "planned-improvements.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "technology-evolution.mdc",
+      "type": "general"
+    },
+    {
+      "filename": "documentation.mdc",
+      "type": "standard"
+    },
+    {
+      "filename": "external-resources.mdc",
+      "type": "standard"
+    }
+  ]
+}
