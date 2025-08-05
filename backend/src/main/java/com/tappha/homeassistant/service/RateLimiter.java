@@ -36,4 +36,12 @@ public interface RateLimiter {
      * @return seconds until reset
      */
     long getTimeUntilReset();
+    
+    /**
+     * Check if request is allowed for specific client and operation
+     * @param clientId the client identifier (IP, user ID, etc.)
+     * @param operation the operation type (login, api_call, etc.)
+     * @return true if request is allowed, false if rate limited
+     */
+    boolean allowRequest(String clientId, String operation);
 } 

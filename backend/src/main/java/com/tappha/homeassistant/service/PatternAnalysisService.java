@@ -91,8 +91,8 @@ public class PatternAnalysisService {
      * Analyze patterns for a specific time interval
      */
     private Map<String, Object> analyzeTimeInterval(UUID connectionId, int hours) {
-        Instant endTime = Instant.now();
-        Instant startTime = endTime.minus(Duration.ofHours(hours));
+        OffsetDateTime endTime = OffsetDateTime.now();
+        OffsetDateTime startTime = endTime.minus(Duration.ofHours(hours));
         
         List<HomeAssistantEvent> events = eventRepository.findByConnectionIdAndTimestampBetween(
             connectionId, startTime, endTime);
@@ -476,8 +476,8 @@ public class PatternAnalysisService {
         
         try {
             // Analyze recent events (last 24 hours)
-            Instant endTime = Instant.now();
-            Instant startTime = endTime.minus(Duration.ofHours(24));
+            OffsetDateTime endTime = OffsetDateTime.now();
+            OffsetDateTime startTime = endTime.minus(Duration.ofHours(24));
             
             List<HomeAssistantEvent> recentEvents = eventRepository.findByConnectionIdAndTimestampBetween(
                 connectionId, startTime, endTime);
@@ -498,7 +498,7 @@ public class PatternAnalysisService {
                     alert.put("severity", "MEDIUM");
                     alert.put("message", String.format("Unusual activity detected at hour %d", anomaly.get("hour")));
                     alert.put("details", anomaly);
-                    alert.put("timestamp", Instant.now());
+                    alert.put("timestamp", OffsetDateTime.now());
                     
                     alerts.add(alert);
                 }
@@ -512,7 +512,7 @@ public class PatternAnalysisService {
                 alert.put("severity", "LOW");
                 alert.put("message", "Daily routine patterns have changed");
                 alert.put("confidence", confidence);
-                alert.put("timestamp", Instant.now());
+                alert.put("timestamp", OffsetDateTime.now());
                 
                 alerts.add(alert);
             }

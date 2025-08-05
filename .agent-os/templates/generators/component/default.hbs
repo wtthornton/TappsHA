@@ -1,0 +1,27 @@
+import React from 'react';
+{{#if options.typescript}}
+import type { FC } from 'react';
+{{/if}}
+
+{{#if options.typescript}}
+interface {{name}}Props {
+  // Add your props here
+}
+{{/if}}
+
+{{#if options.typescript}}
+export const {{name}}: FC<{{name}}Props> = ({}) => {
+{{else}}
+export const {{name}} = ({}) => {
+{{/if}}
+  return (
+    <div className="{{kebabCase name}}">
+      <h2>{{name}} Component</h2>
+      {/* Add your component content here */}
+    </div>
+  );
+};
+
+{{name}}.displayName = '{{name}}';
+
+export default {{name}};

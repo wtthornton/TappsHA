@@ -1,0 +1,45 @@
+{{#if options.typescript}}
+import type { AxiosInstance } from 'axios';
+{{/if}}
+import { apiClient } from '@/services/api/api-client';
+
+{{#if options.typescript}}
+export interface {{name}}Config {
+  // Add configuration options
+}
+
+export interface {{name}}Methods {
+  // Add method signatures
+}
+{{/if}}
+
+export class {{name}} {{#if options.typescript}}implements {{name}}Methods {{/if}}{
+  private static instance: {{name}};
+  private apiClient{{#if options.typescript}}: AxiosInstance{{/if}};
+
+  private constructor(config{{#if options.typescript}}?: {{name}}Config{{/if}}) {
+    this.apiClient = apiClient;
+    // Initialize with config
+  }
+
+  public static getInstance(config{{#if options.typescript}}?: {{name}}Config{{/if}}){{#if options.typescript}}: {{name}}{{/if}} {
+    if (!{{name}}.instance) {
+      {{name}}.instance = new {{name}}(config);
+    }
+    return {{name}}.instance;
+  }
+
+  // Add your service methods here
+  public async exampleMethod(param{{#if options.typescript}}: string{{/if}}){{#if options.typescript}}: Promise<any>{{/if}} {
+    try {
+      const response = await this.apiClient.get(`/example/${param}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error in exampleMethod:', error);
+      throw error;
+    }
+  }
+}
+
+// Export singleton instance
+export const {{camelCase name}} = {{name}}.getInstance();

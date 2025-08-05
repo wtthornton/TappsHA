@@ -1,7 +1,8 @@
 import React from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { homeAssistantApi } from '../services/api/home-assistant';
-import { ConnectionDto } from '../services/api/api-client';
+import { WebSocketStatus } from './WebSocketStatus';
+import type { HomeAssistantWebSocketConfig } from '../services/api/home-assistant-websocket';
 
 const ConnectionStatusDashboard: React.FC = () => {
   const queryClient = useQueryClient();
@@ -51,7 +52,11 @@ const ConnectionStatusDashboard: React.FC = () => {
     }
   };
 
-  const getWebSocketStatusColor = (status: string) => {
+  const getWebSocketStatusColor = (status: string | undefined) => {
+    if (!status) {
+      return 'bg-gray-100 text-gray-800';
+    }
+    
     switch (status.toLowerCase()) {
       case 'connected':
       case 'authenticated':
@@ -104,87 +109,117 @@ const ConnectionStatusDashboard: React.FC = () => {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {connectionsData.connections.map((connection) => (
-          <div
-            key={connection.connectionId}
-            className="bg-white rounded-lg shadow-md p-6 border border-gray-200"
-          >
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">{connection.name}</h3>
-                <p className="text-sm text-gray-500 truncate">{connection.url}</p>
-              </div>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => handleTestConnection(connection.connectionId)}
-                  disabled={testConnectionMutation.isPending}
-                  className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 disabled:opacity-50"
-                >
-                  Test
-                </button>
-                <button
-                  onClick={() => handleDisconnect(connection.connectionId)}
-                  disabled={disconnectMutation.isPending}
-                  className="px-3 py-1 text-xs bg-red-100 text-red-700 rounded-md hover:bg-red-200 disabled:opacity-50"
-                >
-                  Disconnect
-                </button>
-              </div>
-            </div>
+        {connectionsData.connections.map((connection) => {
+          // Create WebSocket config for this connection
+          const wsConfig: HomeAssistantWebSocketConfig = {
+            url: connection.url.replace('http', 'ws') + '/api/websocket',
+            accessToken: 'your-access-token', // This should come from the connection data
+            reconnectInterval: 3000,
+            maxReconnectAttempts: 5,
+            heartbeatInterval: 30000,
+          };
 
-            <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Status:</span>
-                <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(connection.status)}`}>
-                  {connection.status}
-                </span>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">WebSocket:</span>
-                <span className={`px-2 py-1 text-xs rounded-full ${getWebSocketStatusColor(connection.websocketStatus)}`}>
-                  {connection.websocketStatus}
-                </span>
+          return (
+            <div
+              key={connection.connectionId}
+              className="bg-white rounded-lg shadow-md p-6 border border-gray-200"
+            >
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">{connection.name}</h3>
+                  <p className="text-sm text-gray-500 truncate">{connection.url}</p>
+                </div>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleTestConnection(connection.connectionId)}
+                    disabled={testConnectionMutation.isPending}
+                    className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 disabled:opacity-50"
+                  >
+                    Test
+                  </button>
+                  <button
+                    onClick={() => handleDisconnect(connection.connectionId)}
+                    disabled={disconnectMutation.isPending}
+                    className="px-3 py-1 text-xs bg-red-100 text-red-700 rounded-md hover:bg-red-200 disabled:opacity-50"
+                  >
+                    Disconnect
+                  </button>
+                </div>
               </div>
 
-              {connection.homeAssistantVersion && (
+              <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Version:</span>
-                  <span className="text-sm text-gray-900">{connection.homeAssistantVersion}</span>
+                  <span className="text-sm text-gray-600">Status:</span>
+                  <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(connection.status)}`}>
+                    {connection.status}
+                  </span>
                 </div>
-              )}
 
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Events:</span>
-                <span className="text-sm text-gray-900">{connection.eventCount.toLocaleString()}</span>
-              </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600">WebSocket:</span>
+                  <span className={`px-2 py-1 text-xs rounded-full ${getWebSocketStatusColor(connection.websocketStatus)}`}>
+                    {connection.websocketStatus}
+                  </span>
+                </div>
 
-              {connection.healthMetrics && (
-                <div className="space-y-2 pt-3 border-t border-gray-200">
+                {connection.homeAssistantVersion && (
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Latency:</span>
-                    <span className="text-sm text-gray-900">{connection.healthMetrics.latency}ms</span>
+                    <span className="text-sm text-gray-600">Version:</span>
+                    <span className="text-sm text-gray-900">{connection.homeAssistantVersion}</span>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Uptime:</span>
-                    <span className="text-sm text-gray-900">{connection.healthMetrics.uptime.toFixed(1)}%</span>
+                )}
+
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600">Events:</span>
+                  <span className="text-sm text-gray-900">{connection.eventCount.toLocaleString()}</span>
+                </div>
+
+                {connection.healthMetrics && (
+                  <div className="space-y-2 pt-3 border-t border-gray-200">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Latency:</span>
+                      <span className="text-sm text-gray-900">{connection.healthMetrics.latency}ms</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Uptime:</span>
+                      <span className="text-sm text-gray-900">{connection.healthMetrics.uptime.toFixed(1)}%</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Error Rate:</span>
+                      <span className="text-sm text-gray-900">{connection.healthMetrics.errorRate.toFixed(2)}%</span>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Error Rate:</span>
-                    <span className="text-sm text-gray-900">{connection.healthMetrics.errorRate.toFixed(2)}%</span>
+                )}
+
+                <div className="pt-3 border-t border-gray-200">
+                  <div className="text-xs text-gray-500">
+                    <div>Last Connected: {new Date(connection.lastConnected).toLocaleString()}</div>
+                    <div>Last Seen: {new Date(connection.lastSeen).toLocaleString()}</div>
                   </div>
                 </div>
-              )}
 
-              <div className="pt-3 border-t border-gray-200">
-                <div className="text-xs text-gray-500">
-                  <div>Last Connected: {new Date(connection.lastConnected).toLocaleString()}</div>
-                  <div>Last Seen: {new Date(connection.lastSeen).toLocaleString()}</div>
+                {/* WebSocket Status Component */}
+                <div className="pt-3 border-t border-gray-200">
+                  <WebSocketStatus
+                    config={wsConfig}
+                    onMessage={(message) => {
+                      console.log('WebSocket message received:', message);
+                    }}
+                    onError={(error) => {
+                      console.error('WebSocket error:', error);
+                    }}
+                    onStateChange={(states) => {
+                      console.log('State changes received:', states);
+                    }}
+                    onEvent={(event) => {
+                      console.log('Event received:', event);
+                    }}
+                  />
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

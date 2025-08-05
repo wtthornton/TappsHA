@@ -1,0 +1,177 @@
+# Agent-OS Dependency Compatibility Matrix
+# Last Updated: January 27, 2025
+
+frontend:
+  react:
+    version: "19.1.1"
+    compatible:
+      - "@types/react": "19.1.1"
+      - "react-dom": "19.1.1"
+      - "@testing-library/react": "^14.0.0"
+      - "@vitejs/plugin-react": "^4.3.4"
+    incompatible:
+      - "@testing-library/react": "<14.0.0"
+      - "react-dom": "<19.0.0"
+  
+  typescript:
+    version: "5.5.3"
+    compatible:
+      - "@typescript-eslint/parser": "^8.20.0"
+      - "@typescript-eslint/eslint-plugin": "^8.20.0"
+      - "eslint": "^9.17.0"
+    settings:
+      verbatimModuleSyntax: true
+      strict: true
+  
+  vitest:
+    version: "0.34.0"
+    compatible:
+      - "@vitest/ui": "0.34.0"
+      - "@vitest/coverage-c8": "0.34.0"
+      - "jsdom": "^22.0.0"
+      - "@testing-library/jest-dom": "^6.0.0"
+    config:
+      globals: true
+      environment: "jsdom"
+  
+  vite:
+    version: "7.0.0"
+    compatible:
+      - "@vitejs/plugin-react": "^4.3.4"
+      - "vite-tsconfig-paths": "^4.2.0"
+      - "vite-plugin-svgr": "^4.0.0"
+  
+  tanstack-query:
+    version: "5.62.14"
+    compatible:
+      - "@tanstack/react-query-devtools": "5.62.14"
+      - "@tanstack/eslint-plugin-query": "^5.0.0"
+  
+  tailwindcss:
+    version: "4.0.0"
+    compatible:
+      - "postcss": "^8.4.31"
+      - "autoprefixer": "^10.4.16"
+      - "@tailwindcss/forms": "^0.5.7"
+      - "@tailwindcss/typography": "^0.5.10"
+  
+  axios:
+    version: "1.7.0"
+    compatible:
+      - "axios-retry": "^4.0.0"
+      - "@types/axios": "^0.14.0"
+
+backend:
+  spring-boot:
+    version: "3.5.3"
+    compatible:
+      - "spring-boot-starter-web": "3.5.3"
+      - "spring-boot-starter-security": "3.5.3"
+      - "spring-boot-starter-data-jpa": "3.5.3"
+      - "spring-boot-starter-validation": "3.5.3"
+      - "spring-boot-starter-actuator": "3.5.3"
+      - "spring-boot-starter-test": "3.5.3"
+    java: "21"
+  
+  jsonwebtoken:
+    version: "0.11.5"
+    compatible:
+      - "jjwt-api": "0.11.5"
+      - "jjwt-impl": "0.11.5"
+      - "jjwt-jackson": "0.11.5"
+    notes: "Use 0.11.5 for compatibility, not 0.12.x"
+  
+  postgresql:
+    version: "17"
+    compatible:
+      - "postgresql": "42.6.0"
+      - "pgvector": "0.1.6"
+      - "hibernate-core": "6.2.13.Final"
+  
+  kafka:
+    version: "3.6.0"
+    compatible:
+      - "spring-kafka": "3.0.12"
+      - "kafka-streams": "3.6.0"
+  
+  openapi:
+    version: "2.2.0"
+    compatible:
+      - "springdoc-openapi-starter-webmvc-ui": "2.2.0"
+      - "springdoc-openapi-starter-common": "2.2.0"
+
+testing:
+  junit:
+    version: "5.10.0"
+    compatible:
+      - "junit-jupiter-api": "5.10.0"
+      - "junit-jupiter-engine": "5.10.0"
+      - "junit-platform-launcher": "1.10.0"
+  
+  mockito:
+    version: "5.5.0"
+    compatible:
+      - "mockito-core": "5.5.0"
+      - "mockito-junit-jupiter": "5.5.0"
+  
+  testcontainers:
+    version: "1.19.0"
+    compatible:
+      - "testcontainers": "1.19.0"
+      - "postgresql": "1.19.0"
+      - "kafka": "1.19.0"
+
+tools:
+  docker:
+    version: "24"
+    compatible:
+      - "docker-compose": "v2"
+  
+  node:
+    version: "20.x"
+    compatible:
+      - "npm": "10.x"
+      - "pnpm": "8.x"
+  
+  java:
+    version: "21"
+    type: "LTS"
+
+monitoring:
+  prometheus:
+    version: "2.50"
+    compatible:
+      - "micrometer-registry-prometheus": "1.11.5"
+  
+  grafana:
+    version: "11"
+    compatible:
+      - "grafana-loki": "3.0"
+
+ai:
+  openai:
+    version: "gpt-4o"
+    compatible:
+      - "openai-java": "1.0.0"
+      - "langchain": "0.3.0"
+  
+  pgvector:
+    version: "0.5.0"
+    compatible:
+      - "postgresql": "17"
+
+validation_rules:
+  - name: "React Version Lock"
+    rule: "React, React-DOM, and @types/react must have matching major versions"
+    
+  - name: "TypeScript Strict"
+    rule: "TypeScript must use strict mode with verbatimModuleSyntax"
+    
+  - name: "JWT Version"
+    rule: "Use jsonwebtoken 0.11.5, not 0.12.x for compatibility"
+    
+  - name: "Spring Boot Java"
+    rule: "Spring Boot 3.x requires Java 17+"
+    
+  - name: "Test Library Matching"
+    rule: "Test library versions must match framework versions"

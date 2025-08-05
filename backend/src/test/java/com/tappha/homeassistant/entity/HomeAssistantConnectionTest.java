@@ -140,6 +140,10 @@ class HomeAssistantConnectionTest {
     @Test
     @DisplayName("Should update last seen timestamp")
     void shouldUpdateLastSeen() {
+        // Initialize with a timestamp if null
+        if (connection.getLastSeenAt() == null) {
+            connection.setLastSeenAt(OffsetDateTime.now().minusMinutes(1));
+        }
         OffsetDateTime beforeUpdate = connection.getLastSeenAt();
         
         // Wait a bit to ensure timestamp difference
@@ -158,6 +162,10 @@ class HomeAssistantConnectionTest {
     @Test
     @DisplayName("Should update last connected timestamp")
     void shouldUpdateLastConnected() {
+        // Initialize with a timestamp if null
+        if (connection.getLastConnectedAt() == null) {
+            connection.setLastConnectedAt(OffsetDateTime.now().minusMinutes(1));
+        }
         OffsetDateTime beforeUpdate = connection.getLastConnectedAt();
         
         // Wait a bit to ensure timestamp difference

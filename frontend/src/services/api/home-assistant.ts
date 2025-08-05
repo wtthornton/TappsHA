@@ -1,4 +1,5 @@
-import apiClient, {
+import apiClient from './api-client';
+import type {
   ConnectRequest,
   ConnectionResponse,
   ConnectionsResponse,
@@ -8,25 +9,34 @@ import apiClient, {
   MetricsResponse,
 } from './api-client';
 
+// API Response wrapper interface
+interface ApiResponseWrapper<T> {
+  data: T;
+}
+
 export class HomeAssistantApiService {
   // Connect to Home Assistant instance
   async connect(request: ConnectRequest): Promise<ConnectionResponse> {
-    return apiClient.post<ConnectionResponse>('/v1/home-assistant/connect', request);
+    const response = await apiClient.post<ApiResponseWrapper<ConnectionResponse>>('/v1/home-assistant/connect', request);
+    return response.data;
   }
 
   // Get all connections
   async getConnections(page = 0, size = 20): Promise<ConnectionsResponse> {
-    return apiClient.get<ConnectionsResponse>(`/v1/home-assistant/connections?page=${page}&size=${size}`);
+    const response = await apiClient.get<ApiResponseWrapper<ConnectionsResponse>>(`/v1/home-assistant/connections?page=${page}&size=${size}`);
+    return response.data;
   }
 
   // Test connection
   async testConnection(connectionId: string): Promise<ConnectionTestResponse> {
-    return apiClient.post<ConnectionTestResponse>(`/v1/home-assistant/connections/${connectionId}/test`);
+    const response = await apiClient.post<ApiResponseWrapper<ConnectionTestResponse>>(`/v1/home-assistant/connections/${connectionId}/test`);
+    return response.data;
   }
 
   // Disconnect and remove connection
   async disconnect(connectionId: string): Promise<DisconnectResponse> {
-    return apiClient.delete<DisconnectResponse>(`/v1/home-assistant/connections/${connectionId}`);
+    const response = await apiClient.delete<ApiResponseWrapper<DisconnectResponse>>(`/v1/home-assistant/connections/${connectionId}`);
+    return response.data;
   }
 
   // Get connection events
@@ -45,19 +55,22 @@ export class HomeAssistantApiService {
     if (eventType) params.append('eventType', eventType);
     if (entityId) params.append('entityId', entityId);
     
-    return apiClient.get<EventsResponse>(`/v1/home-assistant/connections/${connectionId}/events?${params}`);
+    const response = await apiClient.get<ApiResponseWrapper<EventsResponse>>(`/v1/home-assistant/connections/${connectionId}/events?${params}`);
+    return response.data;
   }
 
   // Get connection metrics
   async getMetrics(connectionId: string, timeRange = '24h'): Promise<MetricsResponse> {
-    return apiClient.get<MetricsResponse>(`/v1/home-assistant/connections/${connectionId}/metrics?timeRange=${timeRange}`);
+    const response = await apiClient.get<ApiResponseWrapper<MetricsResponse>>(`/v1/home-assistant/connections/${connectionId}/metrics?timeRange=${timeRange}`);
+    return response.data;
   }
 
   // Get connection status
   async getConnectionStatus(connectionId: string): Promise<{ status: string; lastConnected: string; lastSeen: string }> {
-    return apiClient.get<{ status: string; lastConnected: string; lastSeen: string }>(
+    const response = await apiClient.get<ApiResponseWrapper<{ status: string; lastConnected: string; lastSeen: string }>>(
       `/v1/home-assistant/connections/${connectionId}/status`
     );
+    return response.data;
   }
 }
 

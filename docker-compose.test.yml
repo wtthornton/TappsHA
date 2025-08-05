@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # Test Home Assistant instance
+  homeassistant-test:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant-test
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - TZ=UTC
+    volumes:
+      - ./test-config:/config
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "8123:8123"
+    networks:
+      - tappha-test-network
+
+  # PostgreSQL for Home Assistant
+  homeassistant-db:
+    image: postgres:17
+    container_name: homeassistant-db-test
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: homeassistant
+      POSTGRES_USER: homeassistant
+      POSTGRES_PASSWORD: homeassistant
+    volumes:
+      - homeassistant-db-data:/var/lib/postgresql/data
+    networks:
+      - tappha-test-network
+
+  # Redis for Home Assistant
+  homeassistant-redis:
+    image: redis:7-alpine
+    container_name: homeassistant-redis-test
+    restart: unless-stopped
+    networks:
+      - tappha-test-network
+
+networks:
+  tappha-test-network:
+    driver: bridge
+
+volumes:
+  homeassistant-db-data: 

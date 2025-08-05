@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { homeAssistantApi } from '../services/api/home-assistant';
-import { ConnectRequest } from '../services/api/api-client';
+import type { ConnectRequest } from '../services/api/api-client';
 
 const HomeAssistantConnectionForm: React.FC = () => {
   const queryClient = useQueryClient();

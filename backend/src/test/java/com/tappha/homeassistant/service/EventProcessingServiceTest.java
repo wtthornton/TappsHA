@@ -83,14 +83,14 @@ class EventProcessingServiceTest {
         testEvent.setEventType("state_changed");
         
         when(objectMapper.writeValueAsString(testEvent)).thenReturn(eventJson);
-        when(kafkaTemplate.send(anyString(), eq(eventJson))).thenReturn(sendResultFuture);
+        when(kafkaTemplate.send(anyString(), anyString(), eq(eventJson))).thenReturn(sendResultFuture);
         when(sendResultFuture.get()).thenReturn(mock(SendResult.class));
 
         // Act
         eventProcessingService.sendEventToKafka(testEvent);
 
         // Assert
-        verify(kafkaTemplate).send("homeassistant-events", eventJson);
+        verify(kafkaTemplate).send("homeassistant-events", "state_changed", eventJson);
         verify(sendResultFuture).get();
     }
 
@@ -101,14 +101,14 @@ class EventProcessingServiceTest {
         testEvent.setEventType("state_changed");
         
         when(objectMapper.writeValueAsString(testEvent)).thenReturn(eventJson);
-        when(kafkaTemplate.send(anyString(), eq(eventJson))).thenReturn(sendResultFuture);
+        when(kafkaTemplate.send(anyString(), anyString(), eq(eventJson))).thenReturn(sendResultFuture);
         when(sendResultFuture.get()).thenThrow(new RuntimeException("Kafka send failed"));
 
         // Act
         eventProcessingService.sendEventToKafka(testEvent);
 
         // Assert - Should fallback to direct storage
-        verify(kafkaTemplate).send("homeassistant-events", eventJson);
+        verify(kafkaTemplate).send("homeassistant-events", "state_changed", eventJson);
         verify(eventRepository).save(testEvent);
     }
 
@@ -119,13 +119,13 @@ class EventProcessingServiceTest {
         testEvent.setEventType("state_changed");
         
         when(objectMapper.writeValueAsString(testEvent)).thenReturn(eventJson);
-        when(kafkaTemplate.send(anyString(), eq(eventJson))).thenThrow(new RuntimeException("Kafka exception"));
+        when(kafkaTemplate.send(anyString(), anyString(), eq(eventJson))).thenThrow(new RuntimeException("Kafka exception"));
 
         // Act
         eventProcessingService.sendEventToKafka(testEvent);
 
         // Assert - Should fallback to direct storage
-        verify(kafkaTemplate).send("homeassistant-events", eventJson);
+        verify(kafkaTemplate).send("homeassistant-events", "state_changed", eventJson);
         verify(eventRepository).save(testEvent);
     }
 
@@ -210,8 +210,12 @@ class EventProcessingServiceTest {
         testEvent.setEventType("state_changed");
         testEvent.setEntityId("sensor.humidity");
         
-        when(objectMapper.readTree(eventJson)).thenReturn(mock(com.fasterxml.jackson.databind.JsonNode.class));
-        when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
+        try {
+            when(objectMapper.readTree(eventJson)).thenReturn(mock(com.fasterxml.jackson.databind.JsonNode.class));
+            when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            // Mock setup exception
+        }
 
         // Act
         eventProcessingService.processEvent(eventJson);
@@ -227,8 +231,12 @@ class EventProcessingServiceTest {
         String eventJson = "{\"id\":\"" + testEvent.getId() + "\",\"eventType\":\"automation_triggered\"}";
         testEvent.setEventType("automation_triggered");
         
-        when(objectMapper.readTree(eventJson)).thenReturn(mock(com.fasterxml.jackson.databind.JsonNode.class));
-        when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
+        try {
+            when(objectMapper.readTree(eventJson)).thenReturn(mock(com.fasterxml.jackson.databind.JsonNode.class));
+            when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            // Mock setup exception
+        }
 
         // Act
         eventProcessingService.processEvent(eventJson);
@@ -248,8 +256,12 @@ class EventProcessingServiceTest {
         String eventJson = "{\"id\":\"" + testEvent.getId() + "\",\"eventType\":\"automation_triggered\"}";
         testEvent.setEventType("automation_triggered");
         
-        when(objectMapper.readTree(eventJson)).thenReturn(mock(com.fasterxml.jackson.databind.JsonNode.class));
-        when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
+        try {
+            when(objectMapper.readTree(eventJson)).thenReturn(mock(com.fasterxml.jackson.databind.JsonNode.class));
+            when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            // Mock setup exception
+        }
 
         eventProcessingService.processEvent(eventJson);
         
@@ -290,8 +302,12 @@ class EventProcessingServiceTest {
         String eventJson = "{\"id\":\"" + testEvent.getId() + "\"}";
         testEvent.setEventType(null); // Null event type
         
-        when(objectMapper.readTree(eventJson)).thenReturn(mock(com.fasterxml.jackson.databind.JsonNode.class));
-        when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
+        try {
+            when(objectMapper.readTree(eventJson)).thenReturn(mock(com.fasterxml.jackson.databind.JsonNode.class));
+            when(objectMapper.treeToValue(any(), eq(HomeAssistantEvent.class))).thenReturn(testEvent);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            // Mock setup exception
+        }
 
         // Act
         eventProcessingService.processEvent(eventJson);

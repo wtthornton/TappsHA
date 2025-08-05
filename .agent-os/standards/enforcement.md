@@ -279,6 +279,15 @@ public class ExampleController {
 
 Before generating any code, verify:
 
+### Feature Scoring (MANDATORY FIRST)
+- [ ] Feature scored on Business Impact (1-10)
+- [ ] Feature scored on Developer Productivity (1-10)
+- [ ] Feature scored on Implementation Complexity (1-10)
+- [ ] Feature scored on Adoption Likelihood (1-10)
+- [ ] Phase classification applied (Phase 1/2/3+)
+- [ ] Implementation decision documented (proceed/defer/eliminate)
+- [ ] Resource allocation aligns with phase priority
+
 ### Technology Stack
 - [ ] Spring Boot 3.3+ (Java 21 LTS) for backend
 - [ ] React 19 with TypeScript 5 for frontend
@@ -323,7 +332,11 @@ Before generating any code, verify:
 ## Enforcement Rules
 
 ### Strict Compliance
+- **NEVER** develop features without proper impact scoring
 - **NEVER** deviate from these standards without explicit approval
+- **ALWAYS** score features using the 4-dimension framework before development
+- **ALWAYS** follow phase classification thresholds (Phase 1: ≥8/10 productivity, Phase 2: ≥7/10 productivity)
+- **ALWAYS** eliminate features with <6/10 developer productivity impact
 - **ALWAYS** reference this document when making technology decisions
 - **ALWAYS** follow the established patterns and conventions
 - **ALWAYS** use the specified versions and configurations
@@ -348,7 +361,91 @@ Before generating any code, verify:
 - JavaScript Style: `@~/.agent-os/standards/code-style/javascript-style.md`
 - HTML Style: `@~/.agent-os/standards/code-style/html-style.md`
 - CSS Style: `@~/.agent-os/standards/code-style/css-style.md`
+- Feature Scoring Framework: `@~/.agent-os/standards/feature-scoring.md`
 - Lessons Learned Framework: `@~/.agent-os/lessons-learned/README.md`
+
+## Feature Scoring Framework Integration Standards
+
+### Mandatory Feature Scoring Protocol
+
+**ALWAYS** score features using the Agent-OS Feature Scoring Framework before development planning or resource allocation.
+
+**MANDATORY**: All features must be scored on Business Impact, Developer Productivity, Implementation Complexity, and Adoption Likelihood (1-10 scale each).
+
+### Feature Scoring Requirements
+
+#### 1. Scoring Triggers
+- **ALWAYS** score features during initial feature request
+- **ALWAYS** score features before sprint planning
+- **ALWAYS** score features before resource allocation
+- **ALWAYS** re-score features during bi-weekly reviews
+- **MANDATORY**: No development without proper feature scoring
+
+#### 2. Scoring Process
+```markdown
+# Feature Scoring Process
+1. Assemble scoring team (product owner + lead developer + 2 team members)
+2. Score individually then discuss for consensus
+3. Use mandatory 4-dimension scoring criteria
+4. Document justification for each score
+5. Apply phase classification based on thresholds
+6. Make implementation decision (proceed/defer/eliminate)
+```
+
+#### 3. Implementation Thresholds
+- **Phase 1 (Immediate)**: Developer Productivity ≥8/10 OR Combined Score ≥32/40
+- **Phase 2 (Next)**: Developer Productivity ≥7/10 OR Combined Score ≥28/40  
+- **Phase 3+ (Deferred)**: All other features requiring executive approval
+- **Elimination**: Developer Productivity <6/10 OR Combined Score <24/40
+
+#### 4. Validation Checklist for Feature Scoring
+Before proceeding with any feature development, verify:
+- [ ] Feature scored on all 4 dimensions (Business Impact, Developer Productivity, Implementation Complexity, Adoption Likelihood)
+- [ ] Scores documented with clear justification
+- [ ] Phase classification applied based on thresholds
+- [ ] Implementation decision made (proceed/defer/eliminate)
+- [ ] Resource allocation aligns with phase priority
+- [ ] Automatic elimination criteria checked
+
+### Feature Scoring File Structure Standards
+
+#### Required Sections
+```markdown
+# Feature Scoring Template
+- Feature Name and Description
+- Scoring (4 dimensions with justification)
+- Threshold Analysis (phase classification)
+- Implementation Decision (proceed/defer/eliminate)
+- Priority Ranking (high/medium/low)
+- Resource Allocation (effort percentage)
+```
+
+### Enforcement Rules for Feature Scoring
+
+#### Strict Compliance
+- **NEVER** develop features without proper impact scoring
+- **ALWAYS** use the standardized 4-dimension scoring criteria
+- **ALWAYS** follow phase classification thresholds
+- **ALWAYS** eliminate features meeting automatic elimination criteria
+- **ALWAYS** allocate 80% effort to Phase 1 features, 20% to Phase 2 features, 0% to Phase 3+ features
+
+#### Quality Standards
+- **ALWAYS** provide clear justification for each score
+- **ALWAYS** involve cross-functional team in scoring process
+- **ALWAYS** document implementation decision rationale
+- **ALWAYS** validate scoring accuracy post-implementation
+
+#### Resource Allocation Rules
+- **80% development effort** on Phase 1 features (≥8/10 developer productivity impact)
+- **20% development effort** on Phase 2 features (≥7/10 developer productivity impact)
+- **0% development effort** on Phase 3+ features until Phase 1-2 are complete
+- **Automatic elimination** of features scoring <6/10 on developer productivity
+
+#### Scope Discipline Protocol
+- **MANDATORY**: Features with <7/10 developer productivity require executive approval
+- **MANDATORY**: Quarterly scope reviews to eliminate low-impact features from backlog
+- **MANDATORY**: Protected development time for high-impact features
+- **MANDATORY**: No feature additions during high-impact feature development without re-scoring
 
 ## Lessons Learned Integration Standards
 

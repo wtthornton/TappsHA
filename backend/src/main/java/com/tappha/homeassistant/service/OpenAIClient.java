@@ -361,7 +361,7 @@ public class OpenAIClient {
     private void handleHttpClientError(HttpClientErrorException e) {
         if (e.getStatusCode().value() == 429) {
             // Rate limit exceeded
-            throw new RateLimitException("OpenAI rate limit exceeded", 60);
+            throw new RateLimitException("OpenAI rate limit exceeded", e);
         } else if (e.getStatusCode().value() == 401) {
             // Authentication error
             throw new OpenAIException("OpenAI authentication failed", "auth_error", 401, e);

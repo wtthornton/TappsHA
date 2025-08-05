@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { homeAssistantApi } from '../services/api/home-assistant';
-import { EventResponse } from '../services/api/api-client';
+
 
 const EventMonitoringDashboard: React.FC = () => {
   const [selectedConnectionId, setSelectedConnectionId] = useState<string>('');

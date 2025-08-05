@@ -147,4 +147,11 @@ public class TokenBucketRateLimiter implements RateLimiter {
         refillTokens();
         return new int[]{requestTokens.get(), tokenTokens.get()};
     }
+    
+    @Override
+    public boolean allowRequest(String clientId, String operation) {
+        // For now, use the general rate limiting logic
+        // In a production system, you would implement per-client rate limiting
+        return acquirePermission();
+    }
 } 

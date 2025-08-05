@@ -1,0 +1,63 @@
+{
+  "recommendations": [
+    // Essential
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next",
+    
+    // React & TypeScript
+    "dsznajder.es7-react-js-snippets",
+    "burkeholland.simple-react-snippets",
+    "infeng.vscode-react-typescript",
+    
+    // Testing
+    "vitest.explorer",
+    "Orta.vscode-jest",
+    "firsttris.vscode-jest-runner",
+    
+    // Productivity
+    "christian-kohler.path-intellisense",
+    "christian-kohler.npm-intellisense",
+    "formulahendry.auto-rename-tag",
+    "steoates.autoimport",
+    "wix.vscode-import-cost",
+    "usernamehw.errorlens",
+    
+    // Git
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "donjayamanne.githistory",
+    
+    // CSS & Styling
+    "bradlc.vscode-tailwindcss",
+    "styled-components.vscode-styled-components",
+    
+    // Code Quality
+    "SonarSource.sonarlint-vscode",
+    "streetsidesoftware.code-spell-checker",
+    
+    // Documentation
+    "yzhang.markdown-all-in-one",
+    "bierner.markdown-mermaid",
+    
+    // AI Assistance
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    
+    // Debugging
+    "msjsdiag.debugger-for-chrome",
+    "firefox-devtools.vscode-firefox-debug",
+    
+    // Docker & DevOps
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-containers",
+    
+    // API Development
+    "humao.rest-client",
+    "42Crunch.vscode-openapi",
+    
+    // File Management
+    "sleistner.vscode-fileutils",
+    "alexcvzz.vscode-sqlite"
+  ]
+}

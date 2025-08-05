@@ -276,9 +276,180 @@ class ComplianceChecker {
   // Enhanced: Track violation categories for analytics
   trackViolationCategory(category, type) {
     if (!this.metrics.violationCategories[category]) {
-      this.metrics.violationCategories[category] = { CRITICAL: 0, WARNING: 0 };
+      this.metrics.violationCategories[category] = { 
+        CRITICAL: 0, 
+        WARNING: 0,
+        INFO: 0,
+        SUGGESTION: 0
+      };
     }
     this.metrics.violationCategories[category][type]++;
+    
+    // Track detailed violation patterns
+    this.trackDetailedViolationPatterns(category, type);
+  }
+
+  trackDetailedViolationPatterns(category, type) {
+    if (!this.metrics.detailedViolationPatterns) {
+      this.metrics.detailedViolationPatterns = {
+        byCategory: {},
+        byType: {},
+        bySeverity: {},
+        byFileType: {},
+        byStandard: {},
+        patterns: [],
+        trends: []
+      };
+    }
+    
+    // Track by category
+    if (!this.metrics.detailedViolationPatterns.byCategory[category]) {
+      this.metrics.detailedViolationPatterns.byCategory[category] = { CRITICAL: 0, WARNING: 0, INFO: 0, SUGGESTION: 0 };
+    }
+    this.metrics.detailedViolationPatterns.byCategory[category][type]++;
+    
+    // Track by type
+    if (!this.metrics.detailedViolationPatterns.byType[type]) {
+      this.metrics.detailedViolationPatterns.byType[type] = 0;
+    }
+    this.metrics.detailedViolationPatterns.byType[type]++;
+    
+    // Track by severity
+    if (!this.metrics.detailedViolationPatterns.bySeverity[type]) {
+      this.metrics.detailedViolationPatterns.bySeverity[type] = 0;
+    }
+    this.metrics.detailedViolationPatterns.bySeverity[type]++;
+    
+    // Add to patterns with timestamp
+    this.metrics.detailedViolationPatterns.patterns.push({
+      category,
+      type,
+      timestamp: Date.now(),
+      count: 1
+    });
+    
+    // Keep only last 1000 patterns to prevent memory bloat
+    if (this.metrics.detailedViolationPatterns.patterns.length > 1000) {
+      this.metrics.detailedViolationPatterns.patterns = this.metrics.detailedViolationPatterns.patterns.slice(-1000);
+    }
+  }
+
+  getDetailedViolationAnalysis() {
+    if (!this.metrics.detailedViolationPatterns) {
+      return {
+        summary: {},
+        trends: [],
+        recommendations: []
+      };
+    }
+    
+    const patterns = this.metrics.detailedViolationPatterns.patterns;
+    const recentPatterns = patterns.filter(p => Date.now() - p.timestamp < 3600000); // Last hour
+    
+    // Calculate trends
+    const trends = this.calculateViolationTrends(patterns);
+    
+    // Generate recommendations
+    const recommendations = this.generateViolationRecommendations(this.metrics.detailedViolationPatterns);
+    
+    return {
+      summary: this.metrics.detailedViolationPatterns,
+      trends,
+      recommendations,
+      recentActivity: {
+        total: recentPatterns.length,
+        critical: recentPatterns.filter(p => p.type === 'CRITICAL').length,
+        warnings: recentPatterns.filter(p => p.type === 'WARNING').length,
+        info: recentPatterns.filter(p => p.type === 'INFO').length,
+        suggestions: recentPatterns.filter(p => p.type === 'SUGGESTION').length
+      }
+    };
+  }
+
+  calculateViolationTrends(patterns) {
+    const trends = [];
+    const categories = [...new Set(patterns.map(p => p.category))];
+    const types = [...new Set(patterns.map(p => p.type))];
+    
+    // Calculate trends by category
+    categories.forEach(category => {
+      const categoryPatterns = patterns.filter(p => p.category === category);
+      const recentCount = categoryPatterns.filter(p => Date.now() - p.timestamp < 300000).length; // Last 5 minutes
+      const olderCount = categoryPatterns.filter(p => Date.now() - p.timestamp >= 300000 && Date.now() - p.timestamp < 600000).length; // 5-10 minutes ago
+      
+      const trend = recentCount > olderCount ? 'increasing' : recentCount < olderCount ? 'decreasing' : 'stable';
+      trends.push({
+        category,
+        trend,
+        recentCount,
+        olderCount,
+        change: recentCount - olderCount
+      });
+    });
+    
+    // Calculate trends by type
+    types.forEach(type => {
+      const typePatterns = patterns.filter(p => p.type === type);
+      const recentCount = typePatterns.filter(p => Date.now() - p.timestamp < 300000).length;
+      const olderCount = typePatterns.filter(p => Date.now() - p.timestamp >= 300000 && Date.now() - p.timestamp < 600000).length;
+      
+      const trend = recentCount > olderCount ? 'increasing' : recentCount < olderCount ? 'decreasing' : 'stable';
+      trends.push({
+        type,
+        trend,
+        recentCount,
+        olderCount,
+        change: recentCount - olderCount
+      });
+    });
+    
+    return trends;
+  }
+
+  generateViolationRecommendations(detailedPatterns) {
+    const recommendations = [];
+    
+    // Check for high critical violation rates
+    const criticalCount = detailedPatterns.bySeverity.CRITICAL || 0;
+    const warningCount = detailedPatterns.bySeverity.WARNING || 0;
+    const totalCount = criticalCount + warningCount;
+    
+    if (criticalCount > 0 && (criticalCount / totalCount) > 0.3) {
+      recommendations.push({
+        type: 'urgent',
+        title: 'High Critical Violation Rate',
+        description: `${Math.round((criticalCount / totalCount) * 100)}% of violations are critical`,
+        action: 'Review critical violations immediately and implement fixes'
+      });
+    }
+    
+    // Check for increasing trends
+    const trends = this.calculateViolationTrends(detailedPatterns.patterns);
+    const increasingTrends = trends.filter(t => t.trend === 'increasing');
+    
+    if (increasingTrends.length > 0) {
+      recommendations.push({
+        type: 'warning',
+        title: 'Increasing Violation Trends',
+        description: `${increasingTrends.length} categories/types showing increasing violations`,
+        action: 'Investigate root causes and implement preventive measures'
+      });
+    }
+    
+    // Check for category-specific issues
+    Object.entries(detailedPatterns.byCategory).forEach(([category, counts]) => {
+      const categoryTotal = Object.values(counts).reduce((sum, count) => sum + count, 0);
+      if (categoryTotal > 10) {
+        recommendations.push({
+          type: 'info',
+          title: `High ${category} Violations`,
+          description: `${categoryTotal} violations in ${category} category`,
+          action: `Focus on ${category} standards and best practices`
+        });
+      }
+    });
+    
+    return recommendations;
   }
 
   // Enhanced: Track standards effectiveness with detailed metrics
@@ -4512,6 +4683,8 @@ class ComplianceChecker {
     this.initializeNotificationSystem();
     
     const chokidar = require('chokidar');
+    
+    // Enhanced file watching configuration for better performance
     const watcher = chokidar.watch([
       '**/*.java',
       '**/*.ts',
@@ -4522,12 +4695,40 @@ class ComplianceChecker {
       '**/*.json',
       '**/*.md',
     ], {
-      ignored: ['node_modules/**', 'target/**', 'dist/**', '.git/**', '.agent-os/reports/**'],
+      ignored: [
+        'node_modules/**', 
+        'target/**', 
+        'dist/**', 
+        '.git/**', 
+        '.agent-os/reports/**',
+        '**/*.tmp',
+        '**/*.log',
+        '**/*.cache',
+        '**/coverage/**',
+        '**/.nyc_output/**',
+        '**/build/**',
+        '**/.next/**',
+        '**/.nuxt/**',
+        '**/.output/**'
+      ],
       persistent: true,
       ignoreInitial: true,
+      // Performance optimizations
+      awaitWriteFinish: {
+        stabilityThreshold: 2000,
+        pollInterval: 100
+      },
+      usePolling: false, // Use native events when possible
+      interval: 100, // Polling interval if needed
+      binaryInterval: 300,
+      alwaysStat: false, // Don't always stat files
+      depth: 99, // Limit directory depth
+      disableGlobbing: false,
+      ignorePermissionErrors: true,
+      atomic: true, // Handle atomic writes
     });
 
-    // Real-time violation tracking
+    // Enhanced real-time metrics with performance tracking
     this.realTimeViolations = [];
     this.realTimeMetrics = {
       startTime: Date.now(),
@@ -4535,7 +4736,30 @@ class ComplianceChecker {
       violationsDetected: 0,
       criticalViolations: 0,
       warnings: 0,
+      // Performance tracking
+      averageProcessingTime: 0,
+      totalProcessingTime: 0,
+      fileChangeDetectionTimes: [],
+      batchProcessingTimes: [],
+      memoryUsage: process.memoryUsage(),
+      cpuUsage: process.cpuUsage(),
+      // Real-time effectiveness scoring
+      effectivenessScore: 100,
+      timeSaved: 0,
+      productivityGain: 0,
+      qualityImprovement: 0,
+      standardsAdoption: 0,
+      roi: 0,
+      effectivenessHistory: [],
+      effectivenessTrends: [],
+      effectivenessRecommendations: []
     };
+
+    // Batch processing for multiple file changes
+    this.pendingFileChanges = new Map();
+    this.batchTimeout = null;
+    this.batchSize = 5; // Process up to 5 files at once
+    this.batchDelay = 500; // Wait 500ms for batching
 
     watcher.on('change', (filePath) => {
       this.handleRealTimeFileChange(filePath);
@@ -4549,53 +4773,124 @@ class ComplianceChecker {
       this.handleRealTimeFileRemoval(filePath);
     });
 
+    // Performance monitoring
+    this.startPerformanceMonitoring();
+
     console.log('✅ Real-time monitoring active. Press Ctrl+C to stop.');
     return watcher;
   }
 
   handleRealTimeFileChange(filePath, changeType = 'modified') {
-    const startTime = Date.now();
-    console.log(`\n📝 File ${changeType}: ${filePath}`);
+    const detectionTime = Date.now();
     
-    try {
-      const content = fs.readFileSync(filePath, 'utf8');
-      const violations = this.validateCode(filePath, content);
-      
-      // Update real-time metrics
-      this.realTimeMetrics.filesChanged++;
-      this.realTimeMetrics.violationsDetected += violations.length;
-      this.realTimeMetrics.criticalViolations += violations.filter(v => v.type === 'CRITICAL').length;
-      this.realTimeMetrics.warnings += violations.filter(v => v.type === 'WARNING').length;
-      
-      // Track real-time violations
-      const realTimeViolation = {
-        filePath,
-        changeType,
-        timestamp: new Date().toISOString(),
-        violations,
-        processingTime: Date.now() - startTime,
-      };
-      
-      this.realTimeViolations.push(realTimeViolation);
-      
-      // Immediate feedback system
-      this.provideImmediateFeedback(realTimeViolation);
-      
-      // Add configurable alerts for violations
-      this.addConfigurableAlertsForViolations(realTimeViolation);
-      
-      // Implement trend-based notifications
-      this.implementTrendBasedNotifications();
-      
-      // Create improvement milestone alerts
-      this.createImprovementMilestoneAlerts();
-      
-      // Update live dashboard
-      this.updateLiveDashboard();
-      
-    } catch (error) {
-      console.error(`❌ Error processing ${filePath}:`, error.message);
+    // Add to batch processing
+    this.pendingFileChanges.set(filePath, {
+      changeType,
+      detectionTime,
+      processed: false
+    });
+    
+    // Clear existing timeout
+    if (this.batchTimeout) {
+      clearTimeout(this.batchTimeout);
     }
+    
+    // Set new timeout for batch processing
+    this.batchTimeout = setTimeout(() => {
+      this.processBatchFileChanges();
+    }, this.batchDelay);
+    
+    // Process immediately if batch is full
+    if (this.pendingFileChanges.size >= this.batchSize) {
+      if (this.batchTimeout) {
+        clearTimeout(this.batchTimeout);
+      }
+      this.processBatchFileChanges();
+    }
+  }
+
+  processBatchFileChanges() {
+    const batchStartTime = Date.now();
+    const filesToProcess = Array.from(this.pendingFileChanges.entries()).slice(0, this.batchSize);
+    
+    console.log(`\n📦 Processing batch of ${filesToProcess.length} file changes...`);
+    
+    filesToProcess.forEach(([filePath, fileData]) => {
+      const startTime = Date.now();
+      console.log(`📝 File ${fileData.changeType}: ${filePath}`);
+      
+      try {
+        const content = fs.readFileSync(filePath, 'utf8');
+        const violations = this.validateCode(filePath, content);
+        
+        // Update real-time metrics
+        this.realTimeMetrics.filesChanged++;
+        this.realTimeMetrics.violationsDetected += violations.length;
+        this.realTimeMetrics.criticalViolations += violations.filter(v => v.type === 'CRITICAL').length;
+        this.realTimeMetrics.warnings += violations.filter(v => v.type === 'WARNING').length;
+        
+        // Track processing time
+        const processingTime = Date.now() - startTime;
+        this.realTimeMetrics.fileChangeDetectionTimes.push({
+          filePath,
+          detectionTime: fileData.detectionTime - this.realTimeMetrics.startTime,
+          processingTime,
+          changeType: fileData.changeType
+        });
+        
+        // Track real-time violations
+        const realTimeViolation = {
+          filePath,
+          changeType: fileData.changeType,
+          timestamp: new Date().toISOString(),
+          violations,
+          processingTime,
+          detectionTime: fileData.detectionTime,
+        };
+        
+        this.realTimeViolations.push(realTimeViolation);
+        
+        // Mark as processed
+        fileData.processed = true;
+        
+        // Immediate feedback system
+        this.provideImmediateFeedback(realTimeViolation);
+        
+        // Add configurable alerts for violations
+        this.addConfigurableAlertsForViolations(realTimeViolation);
+        
+      } catch (error) {
+        console.error(`❌ Error processing ${filePath}:`, error.message);
+      }
+    });
+    
+    // Track batch processing time
+    const batchProcessingTime = Date.now() - batchStartTime;
+    this.realTimeMetrics.batchProcessingTimes.push({
+      batchSize: filesToProcess.length,
+      processingTime: batchProcessingTime,
+      timestamp: Date.now()
+    });
+    
+    // Update average processing time
+    this.updateAverageProcessingTime();
+    
+    // Calculate real-time effectiveness
+    this.calculateRealTimeEffectiveness();
+    
+    // Implement trend-based notifications
+    this.implementTrendBasedNotifications();
+    
+    // Create improvement milestone alerts
+    this.createImprovementMilestoneAlerts();
+    
+    // Update live dashboard
+    this.updateLiveDashboard();
+    
+    // Clear processed files from pending
+    filesToProcess.forEach(([filePath]) => {
+      this.pendingFileChanges.delete(filePath);
+    });
   }
 
   handleRealTimeFileRemoval(filePath) {
@@ -4715,6 +5010,467 @@ class ComplianceChecker {
     
     const totalTime = this.realTimeViolations.reduce((sum, v) => sum + v.processingTime, 0);
     return Math.round(totalTime / this.realTimeViolations.length);
+  }
+
+  updateAverageProcessingTime() {
+    if (this.realTimeMetrics.fileChangeDetectionTimes.length === 0) return;
+    
+    const totalTime = this.realTimeMetrics.fileChangeDetectionTimes.reduce((sum, time) => {
+      return sum + (time.processingTime || 0);
+    }, 0);
+    
+    this.realTimeMetrics.averageProcessingTime = Math.round(totalTime / this.realTimeMetrics.fileChangeDetectionTimes.length);
+    this.realTimeMetrics.totalProcessingTime = totalTime;
+  }
+
+  startPerformanceMonitoring() {
+    // Monitor memory and CPU usage every 30 seconds
+    this.performanceInterval = setInterval(() => {
+      this.updatePerformanceMetrics();
+    }, 30000);
+  }
+
+  updatePerformanceMetrics() {
+    const currentMemory = process.memoryUsage();
+    const currentCpu = process.cpuUsage();
+    const now = Date.now();
+    
+    // Calculate memory usage change
+    const memoryChange = {
+      rss: currentMemory.rss - this.realTimeMetrics.memoryUsage.rss,
+      heapUsed: currentMemory.heapUsed - this.realTimeMetrics.memoryUsage.heapUsed,
+      heapTotal: currentMemory.heapTotal - this.realTimeMetrics.memoryUsage.heapTotal,
+      external: currentMemory.external - this.realTimeMetrics.memoryUsage.external
+    };
+    
+    // Calculate CPU usage change
+    const cpuChange = {
+      user: currentCpu.user - this.realTimeMetrics.cpuUsage.user,
+      system: currentCpu.system - this.realTimeMetrics.cpuUsage.system
+    };
+    
+    // Calculate performance metrics
+    const performanceMetrics = {
+      timestamp: now,
+      memory: {
+        current: currentMemory,
+        change: memoryChange,
+        usage: {
+          rss: Math.round(currentMemory.rss / 1024 / 1024 * 100) / 100, // MB
+          heapUsed: Math.round(currentMemory.heapUsed / 1024 / 1024 * 100) / 100, // MB
+          heapTotal: Math.round(currentMemory.heapTotal / 1024 / 1024 * 100) / 100, // MB
+          external: Math.round(currentMemory.external / 1024 / 1024 * 100) / 100 // MB
+        }
+      },
+      cpu: {
+        current: currentCpu,
+        change: cpuChange,
+        usage: {
+          user: Math.round(cpuChange.user / 1000000 * 100) / 100, // seconds
+          system: Math.round(cpuChange.system / 1000000 * 100) / 100, // seconds
+          total: Math.round((cpuChange.user + cpuChange.system) / 1000000 * 100) / 100 // seconds
+        }
+      },
+      processing: {
+        averageProcessingTime: this.realTimeMetrics.averageProcessingTime,
+        totalProcessingTime: this.realTimeMetrics.totalProcessingTime,
+        pendingFiles: this.pendingFileChanges.size,
+        batchSize: this.batchSize,
+        batchDelay: this.batchDelay
+      },
+      effectiveness: {
+        effectivenessScore: this.realTimeMetrics.effectivenessScore,
+        timeSaved: this.realTimeMetrics.timeSaved,
+        productivityGain: this.realTimeMetrics.productivityGain,
+        qualityImprovement: this.realTimeMetrics.qualityImprovement,
+        standardsAdoption: this.realTimeMetrics.standardsAdoption,
+        roi: this.realTimeMetrics.roi
+      }
+    };
+    
+    // Update metrics
+    this.realTimeMetrics.memoryUsage = currentMemory;
+    this.realTimeMetrics.cpuUsage = currentCpu;
+    
+    // Track performance history
+    if (!this.realTimeMetrics.performanceHistory) {
+      this.realTimeMetrics.performanceHistory = [];
+    }
+    this.realTimeMetrics.performanceHistory.push(performanceMetrics);
+    
+    // Keep only last 100 performance entries
+    if (this.realTimeMetrics.performanceHistory.length > 100) {
+      this.realTimeMetrics.performanceHistory = this.realTimeMetrics.performanceHistory.slice(-100);
+    }
+    
+    // Log performance warnings if thresholds exceeded
+    this.checkPerformanceThresholds(memoryChange, cpuChange);
+    
+    // Generate performance insights
+    this.generatePerformanceInsights();
+  }
+
+  checkPerformanceThresholds(memoryChange, cpuChange) {
+    const memoryThreshold = 100 * 1024 * 1024; // 100MB
+    const cpuThreshold = 1000000; // 1 second of CPU time
+    
+    if (Math.abs(memoryChange.heapUsed) > memoryThreshold) {
+      console.warn(`⚠️  High memory usage detected: ${Math.round(memoryChange.heapUsed / 1024 / 1024)}MB`);
+    }
+    
+    if (Math.abs(cpuChange.user) > cpuThreshold || Math.abs(cpuChange.system) > cpuThreshold) {
+      console.warn(`⚠️  High CPU usage detected: ${Math.round(cpuChange.user / 1000000)}s user, ${Math.round(cpuChange.system / 1000000)}s system`);
+    }
+  }
+
+  getPerformanceMetrics() {
+    return {
+      averageProcessingTime: this.realTimeMetrics.averageProcessingTime,
+      totalProcessingTime: this.realTimeMetrics.totalProcessingTime,
+      batchProcessingTimes: this.realTimeMetrics.batchProcessingTimes,
+      fileChangeDetectionTimes: this.realTimeMetrics.fileChangeDetectionTimes,
+      memoryUsage: this.realTimeMetrics.memoryUsage,
+      cpuUsage: this.realTimeMetrics.cpuUsage,
+      pendingFiles: this.pendingFileChanges.size,
+      batchSize: this.batchSize,
+      batchDelay: this.batchDelay,
+      performanceHistory: this.realTimeMetrics.performanceHistory || [],
+      performanceInsights: this.realTimeMetrics.performanceInsights || []
+    };
+  }
+
+  generatePerformanceInsights() {
+    if (!this.realTimeMetrics.performanceHistory || this.realTimeMetrics.performanceHistory.length < 5) {
+      return;
+    }
+    
+    const history = this.realTimeMetrics.performanceHistory;
+    const recentHistory = history.slice(-10);
+    
+    // Calculate memory trends
+    const memoryTrends = this.calculateMemoryTrends(recentHistory);
+    
+    // Calculate CPU trends
+    const cpuTrends = this.calculateCpuTrends(recentHistory);
+    
+    // Calculate processing efficiency
+    const processingEfficiency = this.calculateProcessingEfficiency(recentHistory);
+    
+    // Generate insights
+    const insights = [];
+    
+    // Memory insights
+    if (memoryTrends.trend === 'increasing' && memoryTrends.rate > 10) {
+      insights.push({
+        type: 'warning',
+        category: 'memory',
+        title: 'Memory Usage Increasing',
+        description: `Memory usage is increasing at ${memoryTrends.rate}MB per check`,
+        action: 'Consider optimizing file processing or reducing batch size'
+      });
+    }
+    
+    // CPU insights
+    if (cpuTrends.trend === 'increasing' && cpuTrends.rate > 0.5) {
+      insights.push({
+        type: 'warning',
+        category: 'cpu',
+        title: 'CPU Usage Increasing',
+        description: `CPU usage is increasing at ${cpuTrends.rate}s per check`,
+        action: 'Review validation logic and consider optimization'
+      });
+    }
+    
+    // Processing efficiency insights
+    if (processingEfficiency.efficiency < 0.7) {
+      insights.push({
+        type: 'warning',
+        category: 'processing',
+        title: 'Low Processing Efficiency',
+        description: `Processing efficiency is ${Math.round(processingEfficiency.efficiency * 100)}%`,
+        action: 'Optimize batch processing and file change detection'
+      });
+    }
+    
+    // Positive insights
+    if (memoryTrends.trend === 'stable' && cpuTrends.trend === 'stable' && processingEfficiency.efficiency > 0.8) {
+      insights.push({
+        type: 'positive',
+        category: 'performance',
+        title: 'Excellent Performance',
+        description: 'System performance is stable and efficient',
+        action: 'Continue current optimization strategy'
+      });
+    }
+    
+    this.realTimeMetrics.performanceInsights = insights;
+  }
+
+  calculateMemoryTrends(history) {
+    const memoryUsage = history.map(h => h.memory.usage.heapUsed);
+    const timestamps = history.map(h => h.timestamp);
+    
+    if (memoryUsage.length < 2) {
+      return { trend: 'stable', rate: 0 };
+    }
+    
+    // Calculate linear regression
+    const n = memoryUsage.length;
+    const sumX = timestamps.reduce((sum, t) => sum + t, 0);
+    const sumY = memoryUsage.reduce((sum, m) => sum + m, 0);
+    const sumXY = timestamps.reduce((sum, t, i) => sum + t * memoryUsage[i], 0);
+    const sumX2 = timestamps.reduce((sum, t) => sum + t * t, 0);
+    
+    const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+    const rate = slope * 1000; // Convert to MB per second
+    
+    return {
+      trend: rate > 1 ? 'increasing' : rate < -1 ? 'decreasing' : 'stable',
+      rate: Math.round(rate * 100) / 100
+    };
+  }
+
+  calculateCpuTrends(history) {
+    const cpuUsage = history.map(h => h.cpu.usage.total);
+    const timestamps = history.map(h => h.timestamp);
+    
+    if (cpuUsage.length < 2) {
+      return { trend: 'stable', rate: 0 };
+    }
+    
+    // Calculate linear regression
+    const n = cpuUsage.length;
+    const sumX = timestamps.reduce((sum, t) => sum + t, 0);
+    const sumY = cpuUsage.reduce((sum, c) => sum + c, 0);
+    const sumXY = timestamps.reduce((sum, t, i) => sum + t * cpuUsage[i], 0);
+    const sumX2 = timestamps.reduce((sum, t) => sum + t * t, 0);
+    
+    const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+    const rate = slope * 1000; // Convert to seconds per second
+    
+    return {
+      trend: rate > 0.1 ? 'increasing' : rate < -0.1 ? 'decreasing' : 'stable',
+      rate: Math.round(rate * 100) / 100
+    };
+  }
+
+  calculateProcessingEfficiency(history) {
+    const processingTimes = history.map(h => h.processing.averageProcessingTime);
+    const avgProcessingTime = processingTimes.reduce((sum, time) => sum + time, 0) / processingTimes.length;
+    
+    // Efficiency is inverse to processing time (lower time = higher efficiency)
+    const maxExpectedTime = 1000; // 1 second
+    const efficiency = Math.max(0, 1 - (avgProcessingTime / maxExpectedTime));
+    
+    return {
+      efficiency: Math.round(efficiency * 100) / 100,
+      averageProcessingTime: Math.round(avgProcessingTime * 100) / 100
+    };
+  }
+
+  calculateRealTimeEffectiveness() {
+    const now = Date.now();
+    const sessionDuration = (now - this.realTimeMetrics.startTime) / 1000 / 60; // minutes
+    
+    // Calculate time saved based on violations prevented
+    const timePerViolation = 0.25; // 15 minutes per violation
+    const timePerCriticalViolation = 2; // 2 hours per critical violation
+    const timeSaved = (this.realTimeMetrics.violationsDetected * timePerViolation) + 
+                     (this.realTimeMetrics.criticalViolations * timePerCriticalViolation);
+    
+    // Calculate productivity gain based on compliance improvement
+    const totalViolations = this.realTimeMetrics.violationsDetected;
+    const totalFiles = this.realTimeMetrics.filesChanged;
+    const complianceRate = totalFiles > 0 ? ((totalFiles - totalViolations) / totalFiles) * 100 : 100;
+    const productivityGain = Math.max(0, (complianceRate - 50) / 50 * 100); // 0-100% scale
+    
+    // Calculate quality improvement based on violation reduction
+    const qualityImprovement = Math.max(0, 100 - (totalViolations / Math.max(totalFiles, 1)) * 100);
+    
+    // Calculate standards adoption
+    const standardsAdoption = this.calculateStandardsAdoptionRate();
+    
+    // Calculate ROI
+    const hourlyRate = 100; // Assume $100/hour developer cost
+    const timeSavedCost = timeSaved * hourlyRate;
+    const timeInvestment = sessionDuration * hourlyRate * 0.1; // 10% of session time
+    const roi = timeInvestment > 0 ? ((timeSavedCost - timeInvestment) / timeInvestment) * 100 : 0;
+    
+    // Calculate overall effectiveness score
+    const effectivenessScore = Math.round(
+      (timeSaved / 10 + productivityGain + qualityImprovement + standardsAdoption) / 4
+    );
+    
+    // Update real-time metrics
+    this.realTimeMetrics.effectivenessScore = Math.max(0, Math.min(100, effectivenessScore));
+    this.realTimeMetrics.timeSaved = Math.round(timeSaved * 100) / 100;
+    this.realTimeMetrics.productivityGain = Math.round(productivityGain * 100) / 100;
+    this.realTimeMetrics.qualityImprovement = Math.round(qualityImprovement * 100) / 100;
+    this.realTimeMetrics.standardsAdoption = Math.round(standardsAdoption * 100) / 100;
+    this.realTimeMetrics.roi = Math.round(roi * 100) / 100;
+    
+    // Track effectiveness history
+    this.realTimeMetrics.effectivenessHistory.push({
+      timestamp: now,
+      effectivenessScore,
+      timeSaved,
+      productivityGain,
+      qualityImprovement,
+      standardsAdoption,
+      roi,
+      sessionDuration
+    });
+    
+    // Keep only last 100 entries to prevent memory bloat
+    if (this.realTimeMetrics.effectivenessHistory.length > 100) {
+      this.realTimeMetrics.effectivenessHistory = this.realTimeMetrics.effectivenessHistory.slice(-100);
+    }
+    
+    // Calculate effectiveness trends
+    this.calculateEffectivenessTrends();
+    
+    // Generate effectiveness recommendations
+    this.generateEffectivenessRecommendations();
+    
+    return {
+      effectivenessScore: this.realTimeMetrics.effectivenessScore,
+      timeSaved: this.realTimeMetrics.timeSaved,
+      productivityGain: this.realTimeMetrics.productivityGain,
+      qualityImprovement: this.realTimeMetrics.qualityImprovement,
+      standardsAdoption: this.realTimeMetrics.standardsAdoption,
+      roi: this.realTimeMetrics.roi,
+      sessionDuration: Math.round(sessionDuration * 100) / 100,
+      trends: this.realTimeMetrics.effectivenessTrends,
+      recommendations: this.realTimeMetrics.effectivenessRecommendations
+    };
+  }
+
+  calculateStandardsAdoptionRate() {
+    if (!this.metrics.standardsEffectiveness) return 0;
+    
+    const standards = Object.keys(this.metrics.standardsEffectiveness);
+    if (standards.length === 0) return 0;
+    
+    let totalAdoption = 0;
+    standards.forEach(standard => {
+      const standardData = this.metrics.standardsEffectiveness[standard];
+      const totalChecks = standardData.checks || 0;
+      const violations = standardData.violations || 0;
+      
+      if (totalChecks > 0) {
+        const adoptionRate = Math.max(0, 100 - (violations / totalChecks) * 100);
+        totalAdoption += adoptionRate;
+      }
+    });
+    
+    return Math.round(totalAdoption / standards.length);
+  }
+
+  calculateEffectivenessTrends() {
+    const history = this.realTimeMetrics.effectivenessHistory;
+    if (history.length < 2) return;
+    
+    const recentScores = history.slice(-5).map(h => h.effectivenessScore);
+    const olderScores = history.slice(0, Math.max(0, history.length - 5)).map(h => h.effectivenessScore);
+    
+    if (recentScores.length >= 3 && olderScores.length >= 3) {
+      const recentAvg = recentScores.reduce((sum, score) => sum + score, 0) / recentScores.length;
+      const olderAvg = olderScores.reduce((sum, score) => sum + score, 0) / olderScores.length;
+      const change = recentAvg - olderAvg;
+      
+      this.realTimeMetrics.effectivenessTrends = {
+        trend: change > 5 ? 'improving' : change < -5 ? 'declining' : 'stable',
+        change: Math.round(change * 100) / 100,
+        recentAverage: Math.round(recentAvg * 100) / 100,
+        olderAverage: Math.round(olderAvg * 100) / 100
+      };
+    }
+  }
+
+  generateEffectivenessRecommendations() {
+    const recommendations = [];
+    const effectiveness = this.realTimeMetrics.effectivenessScore;
+    const timeSaved = this.realTimeMetrics.timeSaved;
+    const productivityGain = this.realTimeMetrics.productivityGain;
+    const qualityImprovement = this.realTimeMetrics.qualityImprovement;
+    const standardsAdoption = this.realTimeMetrics.standardsAdoption;
+    const roi = this.realTimeMetrics.roi;
+    
+    // Low effectiveness score
+    if (effectiveness < 50) {
+      recommendations.push({
+        type: 'urgent',
+        title: 'Low Effectiveness Score',
+        description: `Current effectiveness score is ${effectiveness}/100`,
+        action: 'Review compliance strategy and focus on high-impact improvements'
+      });
+    }
+    
+    // Low time savings
+    if (timeSaved < 2) {
+      recommendations.push({
+        type: 'warning',
+        title: 'Low Time Savings',
+        description: `Only ${timeSaved} hours saved so far`,
+        action: 'Focus on preventing critical violations and improving efficiency'
+      });
+    }
+    
+    // Low productivity gain
+    if (productivityGain < 30) {
+      recommendations.push({
+        type: 'warning',
+        title: 'Low Productivity Gain',
+        description: `Productivity gain is only ${productivityGain}%`,
+        action: 'Improve compliance rates and reduce violation frequency'
+      });
+    }
+    
+    // Low quality improvement
+    if (qualityImprovement < 60) {
+      recommendations.push({
+        type: 'warning',
+        title: 'Low Quality Improvement',
+        description: `Quality improvement is only ${qualityImprovement}%`,
+        action: 'Focus on reducing violations and improving code quality'
+      });
+    }
+    
+    // Low standards adoption
+    if (standardsAdoption < 70) {
+      recommendations.push({
+        type: 'warning',
+        title: 'Low Standards Adoption',
+        description: `Standards adoption is only ${standardsAdoption}%`,
+        action: 'Review standards documentation and provide additional training'
+      });
+    }
+    
+    // Negative ROI
+    if (roi < 0) {
+      recommendations.push({
+        type: 'urgent',
+        title: 'Negative ROI',
+        description: `Current ROI is ${roi}%`,
+        action: 'Optimize compliance process and reduce overhead'
+      });
+    }
+    
+    // Positive recommendations
+    if (effectiveness > 80) {
+      recommendations.push({
+        type: 'positive',
+        title: 'Excellent Effectiveness',
+        description: `Effectiveness score is ${effectiveness}/100`,
+        action: 'Consider expanding Agent-OS usage to additional projects'
+      });
+    }
+    
+    this.realTimeMetrics.effectivenessRecommendations = recommendations;
+  }
+
+  getRealTimeEffectivenessMetrics() {
+    return this.calculateRealTimeEffectiveness();
   }
 
   generateLiveHtmlDashboard(liveData) {
