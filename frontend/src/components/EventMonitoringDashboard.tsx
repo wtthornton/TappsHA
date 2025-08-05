@@ -1,369 +1,186 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Progress } from './ui/progress';
-import { Alert, AlertDescription } from './ui/alert';
-import { 
-  Activity, 
-  TrendingUp, 
-  TrendingDown, 
-  Clock, 
-  Filter, 
-  Database, 
-  Zap,
-  RefreshCw,
-  AlertTriangle,
-  CheckCircle
-} from 'lucide-react';
+import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { homeAssistantApi } from '../services/api/home-assistant';
+import { EventResponse } from '../services/api/api-client';
 
-interface EventStats {
-  totalEventsProcessed: number;
-  totalEventsFiltered: number;
-  totalEventsStored: number;
-  filterRate: number;
-  avgProcessingTime: number;
-  minProcessingTime: number;
-  maxProcessingTime: number;
-  timestamp: string;
-}
+const EventMonitoringDashboard: React.FC = () => {
+  const [selectedConnectionId, setSelectedConnectionId] = useState<string>('');
+  const [eventType, setEventType] = useState<string>('');
+  const [entityId, setEntityId] = useState<string>('');
 
-interface PerformanceMetrics {
-  throughput: number;
-  efficiency: number;
-  avgProcessingTime: number;
-  minProcessingTime: number;
-  maxProcessingTime: number;
-  filterRate: number;
-  timestamp: string;
-}
+  const { data: connectionsData } = useQuery({
+    queryKey: ['connections'],
+    queryFn: () => homeAssistantApi.getConnections(),
+  });
 
-interface HealthStatus {
-  status: 'HEALTHY' | 'DEGRADED' | 'ERROR';
-  avgProcessingTime: number;
-  totalEventsProcessed: number;
-  filterRate: number;
-  timestamp: string;
-}
+  const { data: eventsData, isLoading, error } = useQuery({
+    queryKey: ['events', selectedConnectionId, eventType, entityId],
+    queryFn: () => homeAssistantApi.getEvents(selectedConnectionId, 100, 0, eventType, entityId),
+    enabled: !!selectedConnectionId,
+    refetchInterval: 10000, // Refetch every 10 seconds
+  });
 
-interface EventMonitoringDashboardProps {
-  className?: string;
-}
+  const handleConnectionChange = (connectionId: string) => {
+    setSelectedConnectionId(connectionId);
+  };
 
-const EventMonitoringDashboard: React.FC<EventMonitoringDashboardProps> = ({ className }) => {
-  const [eventStats, setEventStats] = useState<EventStats | null>(null);
-  const [performanceMetrics, setPerformanceMetrics] = useState<PerformanceMetrics | null>(null);
-  const [healthStatus, setHealthStatus] = useState<HealthStatus | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const handleEventTypeChange = (type: string) => {
+    setEventType(type);
+  };
 
-  const fetchEventStats = async () => {
+  const handleEntityIdChange = (entity: string) => {
+    setEntityId(entity);
+  };
+
+  const formatEventData = (data: Record<string, any>): string => {
     try {
-      const response = await fetch('/api/events/stats');
-      if (!response.ok) throw new Error('Failed to fetch event stats');
-      const data = await response.json();
-      setEventStats(data);
-    } catch (err) {
-      setError('Failed to fetch event statistics');
-      console.error('Error fetching event stats:', err);
+      return JSON.stringify(data, null, 2);
+    } catch {
+      return String(data);
     }
   };
 
-  const fetchPerformanceMetrics = async () => {
-    try {
-      const response = await fetch('/api/events/performance');
-      if (!response.ok) throw new Error('Failed to fetch performance metrics');
-      const data = await response.json();
-      setPerformanceMetrics(data);
-    } catch (err) {
-      setError('Failed to fetch performance metrics');
-      console.error('Error fetching performance metrics:', err);
-    }
-  };
-
-  const fetchHealthStatus = async () => {
-    try {
-      const response = await fetch('/api/events/health');
-      if (!response.ok) throw new Error('Failed to fetch health status');
-      const data = await response.json();
-      setHealthStatus(data);
-    } catch (err) {
-      setError('Failed to fetch health status');
-      console.error('Error fetching health status:', err);
-    }
-  };
-
-  const resetStats = async () => {
-    try {
-      const response = await fetch('/api/events/stats/reset', { method: 'POST' });
-      if (!response.ok) throw new Error('Failed to reset statistics');
-      
-      // Refresh all data after reset
-      await Promise.all([
-        fetchEventStats(),
-        fetchPerformanceMetrics(),
-        fetchHealthStatus()
-      ]);
-    } catch (err) {
-      setError('Failed to reset statistics');
-      console.error('Error resetting stats:', err);
-    }
-  };
-
-  const fetchAllData = async () => {
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      await Promise.all([
-        fetchEventStats(),
-        fetchPerformanceMetrics(),
-        fetchHealthStatus()
-      ]);
-      setLastUpdated(new Date());
-    } catch (err) {
-      setError('Failed to fetch monitoring data');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchAllData();
-    
-    // Set up auto-refresh every 30 seconds
-    const interval = setInterval(fetchAllData, 30000);
-    
-    return () => clearInterval(interval);
-  }, []);
-
-  const getHealthStatusColor = (status: string) => {
-    switch (status) {
-      case 'HEALTHY':
-        return 'bg-green-500';
-      case 'DEGRADED':
-        return 'bg-yellow-500';
-      case 'ERROR':
-        return 'bg-red-500';
-      default:
-        return 'bg-gray-500';
-    }
-  };
-
-  const getHealthStatusIcon = (status: string) => {
-    switch (status) {
-      case 'HEALTHY':
-        return <CheckCircle className="h-4 w-4" />;
-      case 'DEGRADED':
-        return <AlertTriangle className="h-4 w-4" />;
-      case 'ERROR':
-        return <AlertTriangle className="h-4 w-4" />;
-      default:
-        return <Activity className="h-4 w-4" />;
-    }
-  };
-
-  if (isLoading && !eventStats) {
+  if (!connectionsData?.connections?.length) {
     return (
-      <div className={`flex items-center justify-center p-8 ${className}`}>
-        <div className="flex items-center space-x-2">
-          <RefreshCw className="h-6 w-6 animate-spin" />
-          <span>Loading event monitoring data...</span>
-        </div>
+      <div className="text-center py-8">
+        <h3 className="text-lg font-medium text-gray-900 mb-2">No Connections Available</h3>
+        <p className="text-gray-500">Please add a Home Assistant connection to monitor events.</p>
       </div>
     );
   }
 
   return (
-    <div className={`space-y-6 ${className}`}>
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight">Event Monitoring Dashboard</h2>
-          <p className="text-muted-foreground">
-            Real-time monitoring of Home Assistant event processing and filtering performance
-          </p>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Button onClick={fetchAllData} variant="outline" size="sm">
-            <RefreshCw className="h-4 w-4 mr-2" />
-            Refresh
-          </Button>
-          <Button onClick={resetStats} variant="outline" size="sm">
-            Reset Stats
-          </Button>
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold text-gray-900">Event Monitoring</h2>
+        <div className="text-sm text-gray-500">
+          {eventsData?.total || 0} events
         </div>
       </div>
 
-      {/* Error Alert */}
-      {error && (
-        <Alert variant="destructive">
-          <AlertTriangle className="h-4 w-4" />
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      )}
+      {/* Connection Selection */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <label htmlFor="connection" className="block text-sm font-medium text-gray-700 mb-1">
+            Select Connection
+          </label>
+          <select
+            id="connection"
+            value={selectedConnectionId}
+            onChange={(e) => handleConnectionChange(e.target.value)}
+            className="input-field"
+          >
+            <option value="">Choose a connection...</option>
+            {connectionsData.connections.map((connection) => (
+              <option key={connection.connectionId} value={connection.connectionId}>
+                {connection.name} ({connection.status})
+              </option>
+            ))}
+          </select>
+        </div>
 
-      {/* Health Status */}
-      {healthStatus && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Activity className="h-5 w-5" />
-              <span>System Health</span>
-              <Badge 
-                variant="secondary" 
-                className={`${getHealthStatusColor(healthStatus.status)} text-white`}
-              >
-                {getHealthStatusIcon(healthStatus.status)}
-                <span className="ml-1">{healthStatus.status}</span>
-              </Badge>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="flex items-center space-x-2">
-                <Clock className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Avg Processing Time:</span>
-                <span className="font-medium">{healthStatus.avgProcessingTime.toFixed(2)}ms</span>
+        <div>
+          <label htmlFor="eventType" className="block text-sm font-medium text-gray-700 mb-1">
+            Event Type
+          </label>
+          <input
+            type="text"
+            id="eventType"
+            value={eventType}
+            onChange={(e) => handleEventTypeChange(e.target.value)}
+            className="input-field"
+            placeholder="state_changed"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="entityId" className="block text-sm font-medium text-gray-700 mb-1">
+            Entity ID
+          </label>
+          <input
+            type="text"
+            id="entityId"
+            value={entityId}
+            onChange={(e) => handleEntityIdChange(e.target.value)}
+            className="input-field"
+            placeholder="light.living_room"
+          />
+        </div>
+      </div>
+
+      {/* Events Display */}
+      {selectedConnectionId && (
+        <div className="card">
+          {isLoading ? (
+            <div className="flex justify-center items-center p-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            </div>
+          ) : error ? (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
+              Error loading events: {error.message}
+            </div>
+          ) : eventsData?.events?.length ? (
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-medium text-gray-900">Recent Events</h3>
+                <div className="text-sm text-gray-500">
+                  Showing {eventsData.events.length} of {eventsData.total} events
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <Database className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Total Processed:</span>
-                <span className="font-medium">{healthStatus.totalEventsProcessed.toLocaleString()}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Filter className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Filter Rate:</span>
-                <span className="font-medium">{healthStatus.filterRate.toFixed(1)}%</span>
+              
+              <div className="space-y-3 max-h-96 overflow-y-auto">
+                {eventsData.events.map((event) => (
+                  <div
+                    key={event.id}
+                    className="border border-gray-200 rounded-lg p-4 bg-gray-50"
+                  >
+                    <div className="flex justify-between items-start mb-2">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-sm font-medium text-gray-900">
+                          {event.eventType}
+                        </span>
+                        {event.entityId && (
+                          <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                            {event.entityId}
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-xs text-gray-500">
+                        {new Date(event.timestamp).toLocaleString()}
+                      </span>
+                    </div>
+                    
+                    {Object.keys(event.data).length > 0 && (
+                      <details className="mt-2">
+                        <summary className="text-sm text-gray-600 cursor-pointer hover:text-gray-900">
+                          View Event Data
+                        </summary>
+                        <pre className="mt-2 text-xs bg-gray-100 p-2 rounded overflow-x-auto">
+                          {formatEventData(event.data)}
+                        </pre>
+                      </details>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Event Processing Statistics */}
-      {eventStats && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Database className="h-5 w-5" />
-              <span>Event Processing Statistics</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <TrendingUp className="h-4 w-4 text-green-500" />
-                  <span className="text-sm font-medium">Total Processed</span>
-                </div>
-                <div className="text-2xl font-bold">
-                  {eventStats.totalEventsProcessed.toLocaleString()}
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <Filter className="h-4 w-4 text-yellow-500" />
-                  <span className="text-sm font-medium">Total Filtered</span>
-                </div>
-                <div className="text-2xl font-bold">
-                  {eventStats.totalEventsFiltered.toLocaleString()}
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <Database className="h-4 w-4 text-blue-500" />
-                  <span className="text-sm font-medium">Total Stored</span>
-                </div>
-                <div className="text-2xl font-bold">
-                  {eventStats.totalEventsStored.toLocaleString()}
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <Zap className="h-4 w-4 text-purple-500" />
-                  <span className="text-sm font-medium">Filter Rate</span>
-                </div>
-                <div className="text-2xl font-bold">
-                  {eventStats.filterRate.toFixed(1)}%
-                </div>
-                <Progress value={eventStats.filterRate} className="h-2" />
-              </div>
+          ) : (
+            <div className="text-center py-8">
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No Events</h3>
+              <p className="text-gray-500">
+                No events found for the selected connection and filters.
+              </p>
             </div>
-          </CardContent>
-        </Card>
+          )}
+        </div>
       )}
 
-      {/* Performance Metrics */}
-      {performanceMetrics && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <TrendingUp className="h-5 w-5" />
-              <span>Performance Metrics</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <Zap className="h-4 w-4 text-green-500" />
-                  <span className="text-sm font-medium">Throughput</span>
-                </div>
-                <div className="text-2xl font-bold">
-                  {performanceMetrics.throughput.toFixed(1)}
-                </div>
-                <span className="text-xs text-muted-foreground">events/min</span>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <TrendingUp className="h-4 w-4 text-blue-500" />
-                  <span className="text-sm font-medium">Efficiency</span>
-                </div>
-                <div className="text-2xl font-bold">
-                  {performanceMetrics.efficiency.toFixed(1)}%
-                </div>
-                <Progress value={performanceMetrics.efficiency} className="h-2" />
-              </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <Clock className="h-4 w-4 text-orange-500" />
-                  <span className="text-sm font-medium">Avg Processing</span>
-                </div>
-                <div className="text-2xl font-bold">
-                  {performanceMetrics.avgProcessingTime.toFixed(2)}ms
-                </div>
-                <span className="text-xs text-muted-foreground">
-                  Min: {performanceMetrics.minProcessingTime}ms | 
-                  Max: {performanceMetrics.maxProcessingTime}ms
-                </span>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <Filter className="h-4 w-4 text-purple-500" />
-                  <span className="text-sm font-medium">Filter Rate</span>
-                </div>
-                <div className="text-2xl font-bold">
-                  {performanceMetrics.filterRate.toFixed(1)}%
-                </div>
-                <span className="text-xs text-muted-foreground">volume reduction</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Last Updated */}
-      {lastUpdated && (
-        <div className="text-center text-sm text-muted-foreground">
-          Last updated: {lastUpdated.toLocaleTimeString()}
+      {!selectedConnectionId && (
+        <div className="text-center py-8">
+          <h3 className="text-lg font-medium text-gray-900 mb-2">Select a Connection</h3>
+          <p className="text-gray-500">
+            Choose a Home Assistant connection to start monitoring events.
+          </p>
         </div>
       )}
     </div>

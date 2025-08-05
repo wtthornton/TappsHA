@@ -90,6 +90,39 @@
         </dependency>
 
         <!-- AI/ML Dependencies -->
+
+        <dependency>
+            <groupId>org.tensorflow</groupId>
+            <artifactId>tensorflow-lite-api</artifactId>
+            <version>2.15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.tensorflow</groupId>
+            <artifactId>tensorflow-lite-support</artifactId>
+            <version>0.4.4</version>
+        </dependency>
+        <!-- ONNX Runtime for Model Interoperability -->
+        <dependency>
+            <groupId>com.microsoft.onnxruntime</groupId>
+            <artifactId>onnxruntime</artifactId>
+            <version>1.16.3</version>
+        </dependency>
+        <!-- LangChain for AI Application Development -->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j</artifactId>
+            <version>0.27.1</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-open-ai</artifactId>
+            <version>0.27.1</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
+            <version>0.27.1</version>
+        </dependency>
         <dependency>
             <groupId>com.theokanning.openai-gpt3-java</groupId>
             <artifactId>service</artifactId>

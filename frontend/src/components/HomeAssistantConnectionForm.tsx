@@ -1,189 +1,166 @@
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-
-interface ConnectRequest {
-  url: string;
-  token: string;
-  connectionName?: string;
-}
-
-interface ConnectionResponse {
-  success: boolean;
-  connectionId?: string;
-  status?: string;
-  homeAssistantVersion?: string;
-  supportedFeatures?: string[];
-  errorMessage?: string;
-}
+import { homeAssistantApi } from '../services/api/home-assistant';
+import { ConnectRequest } from '../services/api/api-client';
 
 const HomeAssistantConnectionForm: React.FC = () => {
+  const queryClient = useQueryClient();
   const [formData, setFormData] = useState<ConnectRequest>({
     url: '',
     token: '',
-    connectionName: ''
+    connectionName: '',
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
-
-  const queryClient = useQueryClient();
+  const [errors, setErrors] = useState<Partial<ConnectRequest>>({});
+  const [isTestMode, setIsTestMode] = useState(false);
 
   const connectMutation = useMutation({
-    mutationFn: async (data: ConnectRequest): Promise<ConnectionResponse> => {
-      const response = await fetch('/api/v1/home-assistant/connect', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.errorMessage || 'Failed to connect');
+    mutationFn: (data: ConnectRequest) => homeAssistantApi.connect(data),
+    onSuccess: (response) => {
+      if (response.success) {
+        queryClient.invalidateQueries({ queryKey: ['connections'] });
+        setFormData({ url: '', token: '', connectionName: '' });
+        setErrors({});
+        alert('Connection established successfully!');
+      } else {
+        alert(`Connection failed: ${response.errorMessage}`);
       }
-
-      return response.json();
     },
-    onSuccess: (data) => {
-      setSuccess(`Successfully connected to Home Assistant! Connection ID: ${data.connectionId}`);
-      setError(null);
-      setFormData({ url: '', token: '', connectionName: '' });
-      
-      // Invalidate and refetch connections list
-      queryClient.invalidateQueries({ queryKey: ['connections'] });
+    onError: (error: any) => {
+      alert(`Connection failed: ${error.response?.data?.errorMessage || error.message}`);
     },
-    onError: (error: Error) => {
-      setError(error.message);
-      setSuccess(null);
-    },
-    onSettled: () => {
-      setIsLoading(false);
-    }
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError(null);
-    setSuccess(null);
+  const validateForm = (): boolean => {
+    const newErrors: Partial<ConnectRequest> = {};
 
-    // Basic validation
-    if (!formData.url || !formData.token) {
-      setError('URL and token are required');
-      setIsLoading(false);
-      return;
+    if (!formData.url) {
+      newErrors.url = 'URL is required';
+    } else if (!formData.url.startsWith('http://') && !formData.url.startsWith('https://')) {
+      newErrors.url = 'URL must start with http:// or https://';
     }
 
-    // Validate URL format
-    try {
-      new URL(formData.url);
-    } catch {
-      setError('Please enter a valid URL');
-      setIsLoading(false);
-      return;
+    if (!formData.token) {
+      newErrors.token = 'Token is required';
     }
 
-    connectMutation.mutate(formData);
+    if (!formData.connectionName) {
+      newErrors.connectionName = 'Connection name is required';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (validateForm()) {
+      connectMutation.mutate(formData);
+    }
+  };
+
+  const handleInputChange = (field: keyof ConnectRequest, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
-        Connect to Home Assistant
-      </h2>
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="url" className="block text-sm font-medium text-gray-700 mb-1">
-            Home Assistant URL
-          </label>
-          <input
-            type="url"
-            id="url"
-            name="url"
-            value={formData.url}
-            onChange={handleInputChange}
-            placeholder="https://homeassistant.local"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="token" className="block text-sm font-medium text-gray-700 mb-1">
-            Authentication Token
-          </label>
-          <input
-            type="password"
-            id="token"
-            name="token"
-            value={formData.token}
-            onChange={handleInputChange}
-            placeholder="Enter your long-lived access token"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            required
-          />
-          <p className="text-xs text-gray-500 mt-1">
-            You can create a long-lived access token in Home Assistant under Profile → Long-Lived Access Tokens
-          </p>
-        </div>
-
-        <div>
-          <label htmlFor="connectionName" className="block text-sm font-medium text-gray-700 mb-1">
-            Connection Name (Optional)
-          </label>
-          <input
-            type="text"
-            id="connectionName"
-            name="connectionName"
-            value={formData.connectionName}
-            onChange={handleInputChange}
-            placeholder="My Home Assistant"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-
-        {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
-            {error}
-          </div>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <label htmlFor="connectionName" className="block text-sm font-medium text-gray-700 mb-1">
+          Connection Name
+        </label>
+        <input
+          type="text"
+          id="connectionName"
+          value={formData.connectionName}
+          onChange={(e) => handleInputChange('connectionName', e.target.value)}
+          className={`input-field ${errors.connectionName ? 'border-red-500' : ''}`}
+          placeholder="My Home Assistant"
+        />
+        {errors.connectionName && (
+          <p className="mt-1 text-sm text-red-600">{errors.connectionName}</p>
         )}
+      </div>
 
-        {success && (
-          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md">
-            {success}
-          </div>
+      <div>
+        <label htmlFor="url" className="block text-sm font-medium text-gray-700 mb-1">
+          Home Assistant URL
+        </label>
+        <input
+          type="url"
+          id="url"
+          value={formData.url}
+          onChange={(e) => handleInputChange('url', e.target.value)}
+          className={`input-field ${errors.url ? 'border-red-500' : ''}`}
+          placeholder="https://homeassistant.local:8123"
+        />
+        {errors.url && (
+          <p className="mt-1 text-sm text-red-600">{errors.url}</p>
         )}
+        <p className="mt-1 text-xs text-gray-500">
+          Enter the full URL of your Home Assistant instance
+        </p>
+      </div>
 
+      <div>
+        <label htmlFor="token" className="block text-sm font-medium text-gray-700 mb-1">
+          Long-Lived Access Token
+        </label>
+        <input
+          type="password"
+          id="token"
+          value={formData.token}
+          onChange={(e) => handleInputChange('token', e.target.value)}
+          className={`input-field ${errors.token ? 'border-red-500' : ''}`}
+          placeholder="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+        />
+        {errors.token && (
+          <p className="mt-1 text-sm text-red-600">{errors.token}</p>
+        )}
+        <p className="mt-1 text-xs text-gray-500">
+          Create a long-lived access token in your Home Assistant profile settings
+        </p>
+      </div>
+
+      <div className="flex items-center space-x-4 pt-4">
         <button
           type="submit"
-          disabled={isLoading}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={connectMutation.isPending}
+          className="btn-primary disabled:opacity-50"
         >
-          {isLoading ? 'Connecting...' : 'Connect to Home Assistant'}
+          {connectMutation.isPending ? 'Connecting...' : 'Connect'}
         </button>
-      </form>
-
-      <div className="mt-6 p-4 bg-blue-50 rounded-md">
-        <h3 className="text-sm font-medium text-blue-800 mb-2">How to get your token:</h3>
-        <ol className="text-sm text-blue-700 space-y-1">
-          <li>1. Open your Home Assistant instance</li>
-          <li>2. Go to your profile (bottom left)</li>
-          <li>3. Scroll down to "Long-Lived Access Tokens"</li>
-          <li>4. Create a new token with a descriptive name</li>
-          <li>5. Copy the token and paste it above</li>
-        </ol>
+        
+        <button
+          type="button"
+          onClick={() => setIsTestMode(!isTestMode)}
+          className="btn-secondary"
+        >
+          {isTestMode ? 'Hide' : 'Show'} Test Mode
+        </button>
       </div>
-    </div>
+
+      {isTestMode && (
+        <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-md">
+          <h4 className="text-sm font-medium text-blue-900 mb-2">Test Mode</h4>
+          <p className="text-xs text-blue-700">
+            In test mode, the connection will be validated but not saved. This is useful for testing
+            your Home Assistant configuration before creating a permanent connection.
+          </p>
+        </div>
+      )}
+
+      {connectMutation.isError && (
+        <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-md">
+          <h4 className="text-sm font-medium text-red-900 mb-2">Connection Error</h4>
+          <p className="text-xs text-red-700">
+            {connectMutation.error?.message || 'Failed to connect to Home Assistant'}
+          </p>
+        </div>
+      )}
+    </form>
   );
 };
 

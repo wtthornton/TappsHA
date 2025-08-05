@@ -1,70 +1,26 @@
 import React from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-
-interface ConnectionDto {
-  connectionId: string;
-  name: string;
-  url: string;
-  status: string;
-  homeAssistantVersion: string;
-  lastConnected: string;
-  lastSeen: string;
-  websocketStatus: string;
-  eventCount: number;
-  healthMetrics: {
-    latency: number;
-    uptime: number;
-    errorRate: number;
-  };
-}
-
-interface ConnectionsResponse {
-  connections: ConnectionDto[];
-  total: number;
-  page: number;
-  size: number;
-}
+import { homeAssistantApi } from '../services/api/home-assistant';
+import { ConnectionDto } from '../services/api/api-client';
 
 const ConnectionStatusDashboard: React.FC = () => {
   const queryClient = useQueryClient();
 
-  const { data: connectionsData, isLoading, error } = useQuery<ConnectionsResponse>({
+  const { data: connectionsData, isLoading, error } = useQuery({
     queryKey: ['connections'],
-    queryFn: async () => {
-      const response = await fetch('/api/v1/home-assistant/connections');
-      if (!response.ok) {
-        throw new Error('Failed to fetch connections');
-      }
-      return response.json();
-    },
+    queryFn: () => homeAssistantApi.getConnections(),
     refetchInterval: 30000, // Refetch every 30 seconds
   });
 
   const testConnectionMutation = useMutation({
-    mutationFn: async (connectionId: string) => {
-      const response = await fetch(`/api/v1/home-assistant/connections/${connectionId}/test`, {
-        method: 'POST',
-      });
-      if (!response.ok) {
-        throw new Error('Failed to test connection');
-      }
-      return response.json();
-    },
+    mutationFn: (connectionId: string) => homeAssistantApi.testConnection(connectionId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['connections'] });
     },
   });
 
   const disconnectMutation = useMutation({
-    mutationFn: async (connectionId: string) => {
-      const response = await fetch(`/api/v1/home-assistant/connections/${connectionId}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) {
-        throw new Error('Failed to disconnect');
-      }
-      return response.json();
-    },
+    mutationFn: (connectionId: string) => homeAssistantApi.disconnect(connectionId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['connections'] });
     },
