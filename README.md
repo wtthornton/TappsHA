@@ -2,6 +2,32 @@
 
 TappHA is an intelligent automation management platform for Home Assistant that provides AI-powered insights and recommendations while maintaining complete privacy through local-only processing.
 
+## 📊 Project Status
+
+**Current Phase**: Phase 1 - Home Assistant Integration  
+**Development Status**: Backend Core Complete, Frontend Implementation In Progress  
+**Last Updated**: January 2025
+
+### ✅ Completed Features
+- **Backend Architecture**: Spring Boot 3.5.3 + Java 21 with comprehensive entity model
+- **Database Schema**: PostgreSQL 17 with pgvector, complete migration scripts
+- **API Endpoints**: Full Home Assistant integration REST API
+- **Security**: OAuth 2.1, token encryption, comprehensive authentication
+- **Event Processing**: WebSocket client, Kafka integration, intelligent filtering
+- **Monitoring**: Prometheus metrics, Spring Boot Actuator, health checks
+- **Testing**: JUnit 5, Testcontainers, comprehensive test coverage
+
+### 🔄 In Progress
+- **Frontend Implementation**: React 19 + TypeScript 5.5 with TailwindCSS
+- **UI Components**: Connection management, real-time dashboard, event monitoring
+- **Integration Testing**: End-to-end testing with actual Home Assistant instances
+
+### 📋 Planned Features
+- **AI-Powered Insights** (Phase 2): Intelligent automation recommendations
+- **Pattern Recognition** (Phase 2): Identify usage patterns and optimization opportunities
+- **Automation Management** (Phase 3): Create and modify Home Assistant automations
+- **Mobile Application** (Phase 4): Native mobile app for monitoring and control
+
 ## 🚀 Features
 
 ### Phase 1: Home Assistant Integration (Current)
@@ -78,8 +104,8 @@ TappHA is an intelligent automation management platform for Home Assistant that 
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-org/tappha.git
-cd tappha
+git clone https://github.com/wtthornton/TappsHA.git
+cd TappsHA
 ```
 
 ### 2. Set Up Environment Variables
@@ -290,9 +316,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Troubleshooting](docs/troubleshooting.md)
 
 ### Community
-- [GitHub Issues](https://github.com/your-org/tappha/issues)
-- [Discussions](https://github.com/your-org/tappha/discussions)
-- [Wiki](https://github.com/your-org/tappha/wiki)
+- [GitHub Issues](https://github.com/wtthornton/TappsHA/issues)
+- [Discussions](https://github.com/wtthornton/TappsHA/discussions)
+- [Wiki](https://github.com/wtthornton/TappsHA/wiki)
 
 ### Roadmap
 - [Phase 1: Home Assistant Integration](docs/roadmap/phase1.md)
