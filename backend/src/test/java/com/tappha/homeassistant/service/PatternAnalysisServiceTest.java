@@ -50,7 +50,7 @@ class PatternAnalysisServiceTest {
         List<HomeAssistantEvent> events = createSampleEvents();
         
         when(connectionRepository.findById(connectionId)).thenReturn(Optional.of(connection));
-        when(eventRepository.findByConnectionIdAndTimestampBetween(any(), any(), any()))
+        when(eventRepository.findByConnectionIdAndTimestampBetween(any(UUID.class), any(OffsetDateTime.class), any(OffsetDateTime.class)))
             .thenReturn(events);
         
         // Act
@@ -71,7 +71,7 @@ class PatternAnalysisServiceTest {
         assertTrue(confidence >= 0.0 && confidence <= 1.0);
         
         verify(connectionRepository).findById(connectionId);
-        verify(eventRepository, times(5)).findByConnectionIdAndTimestampBetween(any(), any(), any());
+        verify(eventRepository, times(5)).findByConnectionIdAndTimestampBetween(any(UUID.class), any(OffsetDateTime.class), any(OffsetDateTime.class));
     }
 
     @Test
@@ -89,7 +89,7 @@ class PatternAnalysisServiceTest {
         assertEquals(0.0, result.get("overall_confidence"));
         
         verify(connectionRepository).findById(connectionId);
-        verify(eventRepository, never()).findByConnectionIdAndTimestampBetween(any(), any(), any());
+        verify(eventRepository, never()).findByConnectionIdAndTimestampBetween(any(UUID.class), any(OffsetDateTime.class), any(OffsetDateTime.class));
     }
 
     @Test
@@ -100,7 +100,7 @@ class PatternAnalysisServiceTest {
         connection.setId(connectionId);
         
         when(connectionRepository.findById(connectionId)).thenReturn(Optional.of(connection));
-        when(eventRepository.findByConnectionIdAndTimestampBetween(any(), any(), any()))
+        when(eventRepository.findByConnectionIdAndTimestampBetween(any(UUID.class), any(OffsetDateTime.class), any(OffsetDateTime.class)))
             .thenReturn(new ArrayList<>());
         
         // Act
@@ -115,7 +115,7 @@ class PatternAnalysisServiceTest {
         assertEquals(0.0, dayAnalysis.get("confidence"));
         
         verify(connectionRepository).findById(connectionId);
-        verify(eventRepository, times(5)).findByConnectionIdAndTimestampBetween(any(), any(), any());
+        verify(eventRepository, times(5)).findByConnectionIdAndTimestampBetween(any(UUID.class), any(OffsetDateTime.class), any(OffsetDateTime.class));
     }
 
     @Test
@@ -142,7 +142,7 @@ class PatternAnalysisServiceTest {
         UUID connectionId = UUID.randomUUID();
         List<HomeAssistantEvent> events = createSampleEvents();
         
-        when(eventRepository.findByConnectionIdAndTimestampBetween(any(), any(), any()))
+        when(eventRepository.findByConnectionIdAndTimestampBetween(any(UUID.class), any(OffsetDateTime.class), any(OffsetDateTime.class)))
             .thenReturn(events);
         
         // Act
@@ -154,14 +154,14 @@ class PatternAnalysisServiceTest {
         assertTrue(alerts.isEmpty() || alerts.stream().allMatch(alert -> 
             alert.containsKey("type") && alert.containsKey("severity") && alert.containsKey("message")));
         
-        verify(eventRepository).findByConnectionIdAndTimestampBetween(any(), any(), any());
+        verify(eventRepository).findByConnectionIdAndTimestampBetween(any(UUID.class), any(OffsetDateTime.class), any(OffsetDateTime.class));
     }
 
     @Test
     void testGetRealTimeAlerts_NoEvents() {
         // Arrange
         UUID connectionId = UUID.randomUUID();
-        when(eventRepository.findByConnectionIdAndTimestampBetween(any(), any(), any()))
+        when(eventRepository.findByConnectionIdAndTimestampBetween(any(UUID.class), any(OffsetDateTime.class), any(OffsetDateTime.class)))
             .thenReturn(new ArrayList<>());
         
         // Act
@@ -171,14 +171,14 @@ class PatternAnalysisServiceTest {
         assertNotNull(alerts);
         assertTrue(alerts.isEmpty());
         
-        verify(eventRepository).findByConnectionIdAndTimestampBetween(any(), any(), any());
+        verify(eventRepository).findByConnectionIdAndTimestampBetween(any(UUID.class), any(OffsetDateTime.class), any(OffsetDateTime.class));
     }
 
     @Test
     void testGetRealTimeAlerts_Exception() {
         // Arrange
         UUID connectionId = UUID.randomUUID();
-        when(eventRepository.findByConnectionIdAndTimestampBetween(any(), any(), any()))
+        when(eventRepository.findByConnectionIdAndTimestampBetween(any(UUID.class), any(OffsetDateTime.class), any(OffsetDateTime.class)))
             .thenThrow(new RuntimeException("Database error"));
         
         // Act
@@ -188,7 +188,7 @@ class PatternAnalysisServiceTest {
         assertNotNull(alerts);
         assertTrue(alerts.isEmpty());
         
-        verify(eventRepository).findByConnectionIdAndTimestampBetween(any(), any(), any());
+        verify(eventRepository).findByConnectionIdAndTimestampBetween(any(UUID.class), any(OffsetDateTime.class), any(OffsetDateTime.class));
     }
 
     /**

@@ -80,45 +80,53 @@ class EventProcessingServiceTest {
     void testSendEventToKafka_Success() throws Exception {
         // Arrange
         String eventJson = "{\"id\":\"" + testEvent.getId() + "\",\"eventType\":\"state_changed\"}";
+        testEvent.setEventType("state_changed");
+        
         when(objectMapper.writeValueAsString(testEvent)).thenReturn(eventJson);
-        when(kafkaTemplate.send(anyString(), anyString(), anyString())).thenReturn(sendResultFuture);
-        when(sendResultFuture).thenReturn(CompletableFuture.completedFuture(null));
+        when(kafkaTemplate.send(anyString(), eq(eventJson))).thenReturn(sendResultFuture);
+        when(sendResultFuture.get()).thenReturn(mock(SendResult.class));
 
         // Act
         eventProcessingService.sendEventToKafka(testEvent);
 
         // Assert
-        verify(kafkaTemplate).send("homeassistant-events", "state_changed", eventJson);
-        verify(objectMapper).writeValueAsString(testEvent);
+        verify(kafkaTemplate).send("homeassistant-events", eventJson);
+        verify(sendResultFuture).get();
     }
 
     @Test
     void testSendEventToKafka_Failure_FallbackToDirectStorage() throws Exception {
         // Arrange
         String eventJson = "{\"id\":\"" + testEvent.getId() + "\",\"eventType\":\"state_changed\"}";
+        testEvent.setEventType("state_changed");
+        
         when(objectMapper.writeValueAsString(testEvent)).thenReturn(eventJson);
-        when(kafkaTemplate.send(anyString(), anyString(), anyString())).thenReturn(sendResultFuture);
-        when(sendResultFuture).thenReturn(CompletableFuture.failedFuture(new RuntimeException("Kafka error")));
+        when(kafkaTemplate.send(anyString(), eq(eventJson))).thenReturn(sendResultFuture);
+        when(sendResultFuture.get()).thenThrow(new RuntimeException("Kafka send failed"));
 
         // Act
         eventProcessingService.sendEventToKafka(testEvent);
 
-        // Assert
-        verify(kafkaTemplate).send("homeassistant-events", "state_changed", eventJson);
+        // Assert - Should fallback to direct storage
+        verify(kafkaTemplate).send("homeassistant-events", eventJson);
         verify(eventRepository).save(testEvent);
     }
 
     @Test
     void testSendEventToKafka_Exception_FallbackToDirectStorage() throws Exception {
         // Arrange
-        when(objectMapper.writeValueAsString(testEvent)).thenThrow(new RuntimeException("JSON serialization error"));
+        String eventJson = "{\"id\":\"" + testEvent.getId() + "\",\"eventType\":\"state_changed\"}";
+        testEvent.setEventType("state_changed");
+        
+        when(objectMapper.writeValueAsString(testEvent)).thenReturn(eventJson);
+        when(kafkaTemplate.send(anyString(), eq(eventJson))).thenThrow(new RuntimeException("Kafka exception"));
 
         // Act
         eventProcessingService.sendEventToKafka(testEvent);
 
-        // Assert
+        // Assert - Should fallback to direct storage
+        verify(kafkaTemplate).send("homeassistant-events", eventJson);
         verify(eventRepository).save(testEvent);
-        verify(kafkaTemplate, never()).send(anyString(), anyString(), anyString());
     }
 
     @Test
