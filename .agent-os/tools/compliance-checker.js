@@ -628,6 +628,9 @@ class ComplianceChecker {
   validateCodebase(codebasePath = '.') {
     console.log('🔍 Running comprehensive compliance check with analytics...');
     
+    // Check if we should include .agent-os files
+    const includeAgentOS = process.argv.includes('--include-agent-os') || process.argv.includes('-a');
+    
     const patterns = [
       '**/*.java',
       '**/*.ts',
@@ -644,7 +647,14 @@ class ComplianceChecker {
     let totalViolations = 0;
 
     patterns.forEach(pattern => {
-      const files = glob.sync(pattern, { cwd: codebasePath, ignore: ['node_modules/**', 'target/**', 'dist/**'] });
+      const ignorePatterns = ['node_modules/**', 'target/**', 'dist/**'];
+      
+      // By default, exclude .agent-os files unless explicitly requested
+      if (!includeAgentOS) {
+        ignorePatterns.push('.agent-os/**');
+      }
+      
+      const files = glob.sync(pattern, { cwd: codebasePath, ignore: ignorePatterns });
       
       files.forEach(file => {
         const fullPath = path.join(codebasePath, file);

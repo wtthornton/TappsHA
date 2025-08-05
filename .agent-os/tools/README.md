@@ -1,6 +1,6 @@
-# Agent OS Compliance Tools
+# Agent OS Tools
 
-Automated compliance checking tools for Agent OS standards with real-time validation and feedback.
+Consolidated developer tools for the Agent OS Development Framework.
 
 ## 🚀 Quick Start
 
@@ -9,108 +9,112 @@ Automated compliance checking tools for Agent OS standards with real-time valida
 # Install dependencies
 npm install
 
-# Install global tools
-npm run install:tools
+# Check Agent OS status
+npm run status
 ```
 
 ### Basic Usage
 ```bash
-# Check entire codebase
+# Run full compliance check
 npm run check
-
-# Check specific file
-npm run check:file path/to/file.java
 
 # Start real-time validation
 npm run watch
 
-# Generate compliance report
+# Validate specific standards
 npm run validate
 
-# Open compliance dashboard
-npm run report
+# Manage lessons learned
+npm run lessons
 ```
 
-## 📊 Features
+## 🛠️ Available Tools
 
-### Automated Compliance Checking
-- **Technology Stack Validation** - Verify Spring Boot 3.3+, React 19, PostgreSQL 17, etc.
-- **Code Style Validation** - Check indentation, line length, naming conventions
-- **Security Validation** - Detect hardcoded secrets, SQL injection vulnerabilities
-- **Architecture Validation** - Verify Controller → Service → Repository pattern
-- **Testing Validation** - Ensure ≥85% branch coverage
-
-### Real-Time Feedback
-- **Immediate validation** on file changes
-- **Auto-fix suggestions** for common violations
-- **Compliance scoring** (0-100%)
-- **Violation categorization** (Critical/Warning)
-- **Trend analysis** over time
-
-### CI/CD Integration
-- **Automated compliance checks** on every PR
-- **Block merges** on critical violations
-- **Generate compliance reports** in PR comments
-- **Track compliance metrics** over time
-
-## 🛠️ Tools
-
-### Compliance Checker (`compliance-checker.js`)
-Comprehensive validation against all Agent OS standards.
+### 1. Agent OS CLI (`agent-os-cli.js`)
+Main entry point for all Agent OS operations.
 
 ```bash
-# Check entire codebase
-node compliance-checker.js
+# Show help
+node agent-os-cli.js help
 
-# Check specific file
-node compliance-checker.js path/to/file.java
+# Check compliance
+node agent-os-cli.js check
 
-# Generate detailed report
-node compliance-checker.js --report
+# Start real-time monitoring
+node agent-os-cli.js watch
+
+# Validate standards
+node agent-os-cli.js validate
+
+# Manage lessons learned
+node agent-os-cli.js lessons
+
+# Check status
+node agent-os-cli.js status
 ```
+
+### 2. Compliance Checker (`compliance-checker.js`)
+Comprehensive validation against Agent OS standards.
 
 **Features:**
-- Validates against all .agent-os standards
-- Generates compliance scores
-- Categorizes violations (Critical/Warning)
-- Provides detailed violation reports
-- Exits with error code for CI/CD integration
+- Technology stack validation (Spring Boot 3.3+, React 19, PostgreSQL 17)
+- Code style validation (TypeScript 5, 2 spaces, 100 chars max)
+- Security compliance (OAuth 2.1, input validation, no hardcoded secrets)
+- Architecture validation (Controller → Service → Repository pattern)
+- Testing validation (≥85% branch coverage)
 
-### Cursor Integration (`cursor-integration.js`)
-Real-time validation and feedback during development.
+### 3. Standards Validator (`standards-validator.js`)
+Validates project against specific Agent OS standards.
 
 ```bash
-# Real-time file watching
+# Validate all standards
+node standards-validator.js
+
+# Validate specific standard
+node standards-validator.js --standard security
+node standards-validator.js --standard code-style
+node standards-validator.js --standard testing
+```
+
+### 4. Lessons Tracker (`lessons-tracker.js`)
+Manages lessons learned and insights.
+
+```bash
+# Capture new lesson
+node lessons-tracker.js --capture
+
+# List all lessons
+node lessons-tracker.js --list
+
+# Apply lessons to current project
+node lessons-tracker.js --apply
+```
+
+### 5. Cursor Integration (`cursor-integration.js`)
+Real-time validation and Cursor AI integration.
+
+```bash
+# Start real-time monitoring
 node cursor-integration.js watch
 
-# Check specific file
-node cursor-integration.js check path/to/file.ts
-
-# Generate comprehensive report
+# Generate compliance report
 node cursor-integration.js check
 ```
 
-**Features:**
-- Real-time validation on file changes
-- Auto-fix suggestions for violations
-- Compliance dashboard updates
-- Improvement suggestions
-- HTML dashboard generation
-
-## 📋 Compliance Standards
+## 📊 Compliance Standards
 
 ### Technology Stack
-- **Spring Boot 3.3+** (Java 21 LTS)
-- **React 19** with TypeScript 5
-- **PostgreSQL 17** with pgvector extension
-- **Docker 24** with Compose V2
-- **Prometheus v2.50 + Grafana 11**
+- **Backend:** Spring Boot 3.3+ (Java 21 LTS)
+- **Frontend:** React 19 with TypeScript 5
+- **Database:** PostgreSQL 17 with pgvector extension
+- **Runtime:** Docker 24, Compose V2
+- **Observability:** Prometheus v2.50, Grafana 11
 
 ### Code Style
-- **2 spaces indentation** (no tabs)
-- **100 characters max** line length
-- **PascalCase** for components/classes
-- **camelCase** for variables/functions
+- **TypeScript 5** for all runtime code
+- **2 spaces** indentation (no tabs)
+- **100 characters** max line length
+- **PascalCase** for components, **camelCase** for variables/functions
 - **Functional components** with hooks (React)
 
 ### Security
@@ -148,34 +152,48 @@ node cursor-integration.js check
 - Testing coverage ≥ 85%
 - Code quality score ≥ 80%
 
-### Warning Thresholds
-- Code style violations < 10 per file
-- Performance warnings < 5 per module
-- Documentation gaps < 3 per feature
-- Test coverage gaps < 15%
+## 📈 Usage Examples
 
-## 📈 Compliance Dashboard
-
-### Real-Time Metrics
-- **Overall compliance score** (0-100%)
-- **Category-specific scores** (Technology Stack, Code Style, Security, etc.)
-- **Violation count** by severity (Critical/Warning)
-- **Trend analysis** showing improvement over time
-
-### Dashboard Features
-- **Interactive HTML dashboard** with real-time updates
-- **Violation tracking** with file and line numbers
-- **Improvement suggestions** for each violation
-- **Historical compliance data** for trend analysis
-- **Export capabilities** for reporting
-
-### Access Dashboard
+### Daily Development Workflow
 ```bash
-# Generate and open dashboard
-npm run report
+# 1. Start with compliance check
+npm run check
 
-# Manual dashboard access
-open .agent-os/dashboard/compliance-dashboard.html
+# 2. Start real-time monitoring
+npm run watch
+
+# 3. During development, validate specific standards
+npm run validate --standard security
+
+# 4. Capture lessons learned
+npm run lessons --capture
+
+# 5. Apply lessons to current project
+npm run lessons --apply
+```
+
+### CI/CD Integration
+```bash
+# Pre-commit hook
+node agent-os-cli.js check
+
+# CI pipeline
+npm run check && npm run validate
+
+# Generate compliance report
+node agent-os-cli.js check --report
+```
+
+### Project Setup
+```bash
+# Check current status
+npm run status
+
+# Validate all standards
+npm run validate --all
+
+# List available lessons
+npm run lessons --list
 ```
 
 ## 🔧 Configuration
@@ -197,11 +215,11 @@ BLOCK_ON_CRITICAL=true
 ```
 
 ### Custom Standards
-Add custom validation rules by extending the compliance checker:
+Add custom validation rules by extending the standards validator:
 
 ```javascript
 // Add custom validation
-class CustomComplianceChecker extends ComplianceChecker {
+class CustomStandardsValidator extends StandardsValidator {
   validateCustomRule(filePath, content) {
     // Your custom validation logic
     return violations;
@@ -209,41 +227,35 @@ class CustomComplianceChecker extends ComplianceChecker {
 }
 ```
 
-## 🚀 CI/CD Integration
+## 📁 Directory Structure
 
-### GitHub Actions
-The compliance tools integrate with the CI/CD pipeline via `.github/workflows/standards-compliance.yml`:
+```
+.agent-os/tools/
+├── agent-os-cli.js          # Main CLI entry point
+├── compliance-checker.js     # Unified compliance checking
+├── cursor-integration.js     # Cursor AI integration
+├── standards-validator.js    # Standards validation
+├── lessons-tracker.js        # Lessons learned tracking
+├── package.json             # Dependencies
+└── README.md               # This file
 
-- **Automated compliance checks** on every PR
-- **Block merges** on critical violations
-- **Generate compliance reports** in PR comments
-- **Track compliance metrics** over time
-
-### Pre-commit Hooks
-```bash
-# Add to .git/hooks/pre-commit
-#!/bin/sh
-node .agent-os/tools/compliance-checker.js
-if [ $? -ne 0 ]; then
-  echo "❌ Critical compliance violations found. Commit blocked."
-  exit 1
-fi
+.agent-os/internal/tools/    # Internal framework tools
+├── cursor-init-backup.js
+├── lesson-impact-tracker.js
+├── lesson-quality-validator.js
+├── lesson-template-generator.js
+├── lesson-categorizer.js
+├── cursor-rule-optimizer.js
+├── cursor-analytics.js
+├── hybrid-md-processor.js
+├── md-executor.js
+├── documentation-analyzer.js
+├── statistical-analysis.js
+├── update-cursor-init.js
+└── production-deployment.js
 ```
 
-## 📊 Reporting
-
-### Compliance Reports
-- **JSON reports** for programmatic access
-- **HTML dashboards** for visual analysis
-- **PR comments** with compliance summaries
-- **Trend analysis** for continuous improvement
-
-### Report Locations
-- **Compliance reports:** `.agent-os/reports/compliance-report.json`
-- **Dashboard:** `.agent-os/dashboard/compliance-dashboard.html`
-- **CI/CD artifacts:** Available in GitHub Actions
-
-## 🔍 Troubleshooting
+## 🚨 Troubleshooting
 
 ### Common Issues
 
@@ -259,31 +271,28 @@ node --version
 **No violations detected:**
 ```bash
 # Check if files are being scanned
-node compliance-checker.js --verbose
+node agent-os-cli.js check --verbose
 
 # Verify file patterns
-ls **/*.java **/*.ts **/*.tsx
+find . -name "*.java" -o -name "*.ts" -o -name "*.tsx"
 ```
 
-**CI/CD failures:**
+**Standards not loading:**
 ```bash
-# Check compliance report generation
-node cursor-integration.js check
+# Check standards directory
+ls -la .agent-os/standards/
 
-# Verify critical violations
-node -e "
-const report = JSON.parse(require('fs').readFileSync('.agent-os/reports/compliance-report.json', 'utf8'));
-console.log('Critical violations:', report.violations.filter(v => v.type === 'CRITICAL').length);
-"
+# Verify standards files
+cat .agent-os/standards/tech-stack.md
 ```
 
 ### Debug Mode
 ```bash
 # Enable verbose logging
-DEBUG=compliance node compliance-checker.js
+DEBUG=compliance node agent-os-cli.js check
 
 # Check specific validation
-node compliance-checker.js --validate-security path/to/file.java
+node agent-os-cli.js validate --standard security --verbose
 ```
 
 ## 📚 References
@@ -296,15 +305,15 @@ node compliance-checker.js --validate-security path/to/file.java
 - **Testing Strategy:** `@~/.agent-os/standards/testing-strategy.md`
 - **Enforcement:** `@~/.agent-os/standards/enforcement.md`
 
-### Related Tools
+### Related Documentation
+- **Agent OS Fundamentals:** `@~/.agent-os/AGENT-OS-FUNDAMENTALS.md`
+- **Quick Start Guide:** `@~/.agent-os/QUICK-START-GUIDE.md`
 - **Compliance Checklist:** `@~/.agent-os/checklists/compliance-checklist.md`
-- **Cursor Rules:** `.cursor/rules/automated-compliance.mdc`
-- **CI/CD Workflow:** `.github/workflows/standards-compliance.yml`
 
 ## 🤝 Contributing
 
 ### Adding New Validations
-1. Extend the `ComplianceChecker` class
+1. Extend the `StandardsValidator` class
 2. Add validation method for your rule
 3. Update the main validation flow
 4. Add tests for your validation
@@ -321,4 +330,4 @@ MIT License - see LICENSE file for details.
 
 ---
 
-**Agent OS Compliance Tools** - Ensuring standards compliance through automation and real-time feedback. 
+**Agent OS Tools** - Ensuring standards compliance through automation and real-time feedback. 

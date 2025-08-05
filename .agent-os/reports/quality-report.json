@@ -1,113 +1,23 @@
 {
-  "generatedAt": "2025-08-04T20:40:36.744Z",
+  "generatedAt": "2025-08-04T21:54:43.097Z",
   "summary": {
-    "totalLessons": 5,
-    "validatedLessons": 5,
-    "averageQualityScore": 100,
-    "validationErrors": 5,
-    "topQualityLessons": [
-      {
-        "filename": "2025-01-27-agent-os-review-summary.md",
-        "title": "Agent OS Review Summary - 2025-01-27",
-        "qualityScore": 100,
-        "phase": "planning",
-        "priority": "high"
-      },
-      {
-        "filename": "2025-01-27-step1-foundation-complete.md",
-        "title": "Step 1 Foundation Setup - Complete",
-        "qualityScore": 100,
-        "phase": "development",
-        "priority": "high"
-      },
-      {
-        "filename": "2025-08-04-cursor-rule-optimization.md",
-        "title": "Cursor Rule Optimization Implementation - Lessons Learned",
-        "qualityScore": 100,
-        "phase": "development",
-        "priority": "critical"
-      },
-      {
-        "filename": "2025-08-04-hybrid-architecture-implementation.md",
-        "title": "Hybrid Architecture Implementation - Lessons Learned",
-        "qualityScore": 100,
-        "phase": "development",
-        "priority": "critical"
-      },
-      {
-        "filename": "README.md",
-        "title": "Agent OS Lessons Learned Framework",
-        "qualityScore": 100,
-        "phase": "planning",
-        "priority": "critical"
-      }
-    ]
+    "totalLessons": 0,
+    "validatedLessons": 0,
+    "averageQualityScore": 0,
+    "validationErrors": 0,
+    "topQualityLessons": []
   },
   "qualityDistribution": {
-    "excellent": 5,
+    "excellent": 0,
     "good": 0,
     "fair": 0,
     "poor": 0,
     "failing": 0
   },
-  "validationErrors": [
-    {
-      "filename": "2025-01-27-agent-os-review-summary.md",
-      "errors": [
-        "Section context is required and must be at least 10 characters",
-        "Section actionTaken is required and must be at least 10 characters",
-        "Section results is required and must be at least 10 characters",
-        "Section keyInsights is required and must be at least 10 characters"
-      ]
-    },
-    {
-      "filename": "2025-01-27-step1-foundation-complete.md",
-      "errors": [
-        "Section context is required and must be at least 10 characters",
-        "Section actionTaken is required and must be at least 10 characters",
-        "Section results is required and must be at least 10 characters",
-        "Section keyInsights is required and must be at least 10 characters",
-        "Section recommendations is required and must be at least 10 characters"
-      ]
-    },
-    {
-      "filename": "2025-08-04-cursor-rule-optimization.md",
-      "errors": [
-        "Section actionTaken is required and must be at least 10 characters",
-        "Section keyInsights is required and must be at least 10 characters"
-      ]
-    },
-    {
-      "filename": "2025-08-04-hybrid-architecture-implementation.md",
-      "errors": [
-        "Section actionTaken is required and must be at least 10 characters",
-        "Section keyInsights is required and must be at least 10 characters"
-      ]
-    },
-    {
-      "filename": "README.md",
-      "errors": [
-        "Section context is required and must be at least 10 characters",
-        "Section actionTaken is required and must be at least 10 characters",
-        "Section results is required and must be at least 10 characters",
-        "Section keyInsights is required and must be at least 10 characters",
-        "Section recommendations is required and must be at least 10 characters"
-      ]
-    }
-  ],
+  "validationErrors": [],
   "qualityTrends": {
-    "byPhase": {
-      "planning": 100,
-      "development": 100
-    },
-    "byPriority": {
-      "high": 100,
-      "critical": 100
-    },
-    "bySection": {
-      "8": 100,
-      "9": 100,
-      "11": 100
-    }
+    "byPhase": {},
+    "byPriority": {},
+    "bySection": {}
   }
 }

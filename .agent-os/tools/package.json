@@ -1,25 +1,29 @@
 {
   "name": "agent-os-tools",
   "version": "1.0.0",
-  "description": "Simple tools for Agent OS standards and lessons learned",
-  "main": "compliance-checker.js",
+  "description": "Agent OS Development Framework Tools - Consolidated developer tools for standards compliance and lessons learned",
+  "main": "agent-os-cli.js",
   "scripts": {
-    "check": "node compliance-checker.js",
-    "watch": "node cursor-integration.js watch",
-    "validate": "node cursor-integration.js check",
-    "report": "node cursor-integration.js check && open .agent-os/dashboard/compliance-dashboard.html",
+    "check": "node agent-os-cli.js check",
+    "watch": "node agent-os-cli.js watch",
+    "validate": "node agent-os-cli.js validate",
+    "lessons": "node agent-os-cli.js lessons",
+    "status": "node agent-os-cli.js status",
+    "help": "node agent-os-cli.js help",
     "lint": "node -c",
     "format": "prettier --write ."
   },
   "keywords": [
+    "agent-os",
     "standards",
+    "compliance",
     "lessons-learned",
-    "cursor",
-    "agent-os"
+    "development-framework"
   ],
   "author": "Agent OS Team",
   "license": "MIT",
   "dependencies": {
+    "commander": "^11.0.0",
     "chokidar": "^3.5.3",
     "glob": "^10.3.10"
   },

@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const glob = require('glob'); // Added glob module
 
 class CursorInit {
   constructor() {
@@ -51,22 +52,81 @@ class CursorInit {
   discoverSourceFiles() {
     const patterns = [
       path.join(this.sourceDir, 'standards', '*.md'),
-      path.join(this.sourceDir, 'lessons-learned', '**', '*.md'),
+      path.join(this.sourceDir, 'lessons-learned', '*.md'),
+      path.join(this.sourceDir, 'agent-improvements', '*.md'),
       path.join(this.sourceDir, 'templates', '*.md'),
-      path.join(this.sourceDir, 'agent-improvements', '*.md')
+      path.join(this.sourceDir, 'product', '*.md'),
+      path.join(this.sourceDir, 'specs', '*.md'),
+      path.join(this.sourceDir, 'process', '*.md'),
+      path.join(this.sourceDir, 'test', '*.md'),
+      path.join(this.sourceDir, 'dashboard', '*.md'),
+      path.join(this.sourceDir, 'reports', '*.md'),
+      path.join(this.sourceDir, 'documentation', '*.md'),
+      path.join(this.sourceDir, 'instructions', '*.md'),
+      path.join(this.sourceDir, 'checklists', '*.md'),
     ];
+
+    // Check if we should include .agent-os files
+    const includeAgentOS = process.argv.includes('--include-agent-os') || process.argv.includes('-a');
     
     let files = [];
     patterns.forEach(pattern => {
-      try {
-        const matches = this.globSync(pattern);
-        files = files.concat(matches);
-      } catch (error) {
-        console.warn(`⚠️ Pattern ${pattern} not found: ${error.message}`);
+      const found = glob.sync(pattern);
+      files = files.concat(found);
+    });
+
+    // Filter out .agent-os files unless explicitly requested
+    if (!includeAgentOS) {
+      files = files.filter(file => !file.includes('.agent-os'));
+    }
+
+    // Prioritize product files over standards files
+    files = this.prioritizeProductFiles(files);
+
+    return files;
+  }
+
+
+  prioritizeProductFiles(files) {
+    const fileMap = new Map();
+    const productFiles = [];
+    const standardsFiles = [];
+    
+    // Separate files by directory
+    files.forEach(file => {
+      const relativePath = path.relative(this.sourceDir, file);
+      const filename = path.basename(file);
+      
+      if (relativePath.startsWith('product/')) {
+        productFiles.push({ file, filename });
+      } else if (relativePath.startsWith('standards/')) {
+        standardsFiles.push({ file, filename });
+      } else {
+        // Keep all other files
+        fileMap.set(relativePath, file);
       }
     });
     
-    return files.filter(file => fs.existsSync(file));
+    // For each standards file, check if there's a product equivalent
+    standardsFiles.forEach(({ file, filename }) => {
+      const productEquivalent = productFiles.find(p => p.filename === filename);
+      
+      if (productEquivalent) {
+        // Product file exists, skip standards file
+        console.log(` Skipping standards/${filename} in favor of product/${filename}`);
+        fileMap.set(`product/${filename}`, productEquivalent.file);
+      } else {
+        // No product equivalent, keep standards file
+        fileMap.set(`standards/${filename}`, file);
+      }
+    });
+    
+    // Add all product files
+    productFiles.forEach(({ file, filename }) => {
+      fileMap.set(`product/${filename}`, file);
+    });
+    
+    return Array.from(fileMap.values());
   }
 
   globSync(pattern) {
@@ -193,17 +253,17 @@ class CursorInit {
   isNotRuleWorthy(title, content) {
     const skipKeywords = ['overview', 'introduction', 'table of contents', 'summary', 'conclusion'];
     const skipTitle = skipKeywords.some(keyword => 
-      title.toLowerCase().includes(keyword)
+      (title || '').toLowerCase().includes(keyword)
     );
     
-    const skipContent = content.length < 50; // Too short to be a meaningful rule
+    const skipContent = (content || '').length < 50; // Too short to be a meaningful rule
     
     return skipTitle || skipContent;
   }
 
   determineRuleType(title, content) {
-    const titleLower = title.toLowerCase();
-    const contentLower = content.toLowerCase();
+    const titleLower = (title || '').toLowerCase();
+    const contentLower = (content || '').toLowerCase();
     
     if (titleLower.includes('standard') || contentLower.includes('standard')) {
       return 'standard';
@@ -278,7 +338,7 @@ ${content}
       'maintenance': ['maintain', 'maintenance', 'support']
     };
     
-    const contentLower = content.toLowerCase();
+    const contentLower = (content || '').toLowerCase();
     for (const [phase, keywords] of Object.entries(phaseKeywords)) {
       if (keywords.some(keyword => contentLower.includes(keyword))) {
         return phase;
@@ -295,7 +355,7 @@ ${content}
       'low': ['low', 'minor', 'nice-to-have']
     };
     
-    const contentLower = content.toLowerCase();
+    const contentLower = (content || '').toLowerCase();
     for (const [priority, keywords] of Object.entries(priorityKeywords)) {
       if (keywords.some(keyword => contentLower.includes(keyword))) {
         return priority;
@@ -306,7 +366,7 @@ ${content}
 
   extractTags(content) {
     const tags = [];
-    const contentLower = content.toLowerCase();
+    const contentLower = (content || '').toLowerCase();
     
     const tagKeywords = [
       'technical', 'performance', 'security', 'ux', 'process', 'team',
@@ -369,7 +429,7 @@ ${content}
 
   generateRuleFilename(title) {
     // Convert title to filename
-    return title
+    return (title || 'untitled')
       .toLowerCase()
       .replace(/[^a-z0-9]/g, '-')
       .replace(/-+/g, '-')
@@ -527,7 +587,7 @@ ${content}
       'follow', 'apply', 'ensure', 'validate', 'test', 'check'
     ];
     
-    const contentLower = content.toLowerCase();
+    const contentLower = (content || '').toLowerCase();
     return actionableKeywords.some(keyword => contentLower.includes(keyword));
   }
 
@@ -542,7 +602,7 @@ ${content}
 
   shouldHaveCodeExamples(content) {
     const codeKeywords = ['javascript', 'typescript', 'java', 'spring', 'react', 'node'];
-    const contentLower = content.toLowerCase();
+    const contentLower = (content || '').toLowerCase();
     return codeKeywords.some(keyword => contentLower.includes(keyword));
   }
 
@@ -555,8 +615,8 @@ ${content}
   }
 
   isRuleTypeConsistent(rule) {
-    const titleLower = rule.title.toLowerCase();
-    const contentLower = rule.content.toLowerCase();
+    const titleLower = (rule.title || '').toLowerCase();
+    const contentLower = (rule.content || '').toLowerCase();
     const type = rule.type;
     
     // Check if rule type matches content
@@ -645,3 +705,4 @@ if (require.main === module) {
 }
 
 module.exports = CursorInit; 
+
