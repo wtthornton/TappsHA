@@ -21,17 +21,22 @@ class SimpleMetricsAPI {
   }
 
   /**
-   * Start the metrics API server
+   * Start the metrics API server with comprehensive endpoints
    */
   start() {
     console.log('🚀 Starting Simple Metrics API...');
     console.log(`📊 API available at: http://localhost:${this.port}`);
-    console.log(`📈 Endpoints:`);
+    console.log(`📈 Comprehensive Endpoints:`);
     console.log(`   GET /metrics - Current compliance metrics`);
-    console.log(`   GET /metrics/history - Historical data`);
-    console.log(`   GET /metrics/trends - Trend analysis`);
+    console.log(`   GET /metrics/history - Historical data with filtering`);
+    console.log(`   GET /metrics/trends - Advanced trend analysis`);
     console.log(`   GET /metrics/effectiveness - Effectiveness metrics`);
+    console.log(`   GET /metrics/performance - Performance metrics`);
+    console.log(`   GET /metrics/violations - Violation breakdown`);
     console.log(`   GET /metrics/health - API health check`);
+    console.log(`   GET /metrics/summary - Comprehensive summary`);
+    console.log(`   POST /metrics/refresh - Trigger metrics refresh`);
+    console.log(`   GET /metrics/config - API configuration`);
     
     this.server = http.createServer((req, res) => {
       this.handleRequest(req, res);
@@ -39,11 +44,73 @@ class SimpleMetricsAPI {
 
     this.server.listen(this.port, () => {
       console.log(`✅ Simple metrics API running on port ${this.port}`);
+      console.log(`🔄 Auto-refresh: Enabled with 30s interval`);
+      this.startAutoRefresh();
     });
   }
 
   /**
-   * Handle incoming HTTP requests
+   * Start auto-refresh functionality
+   */
+  startAutoRefresh() {
+    this.refreshInterval = 30000; // 30 seconds
+    this.isAutoRefreshEnabled = true;
+    this.lastRefreshTime = Date.now();
+    
+    this.refreshTimer = setInterval(() => {
+      if (this.isAutoRefreshEnabled) {
+        this.refreshMetrics();
+      }
+    }, this.refreshInterval);
+    
+    console.log(`🔄 Auto-refresh started with ${this.refreshInterval / 1000}s interval`);
+  }
+
+  /**
+   * Refresh metrics data
+   */
+  refreshMetrics() {
+    try {
+      const metrics = this.getCurrentMetrics();
+      const history = this.getHistoricalData();
+      
+      // Add current metrics to history
+      history.push({
+        timestamp: new Date().toISOString(),
+        ...metrics
+      });
+      
+      // Keep only last 100 entries
+      if (history.length > 100) {
+        history.splice(0, history.length - 100);
+      }
+      
+      // Save updated history
+      this.saveHistoricalData(history);
+      
+      // Save current metrics
+      fs.writeFileSync(this.metricsPath, JSON.stringify(metrics, null, 2));
+      
+      this.lastRefreshTime = Date.now();
+      console.log(`🔄 Metrics refreshed at ${new Date().toLocaleTimeString()}`);
+    } catch (error) {
+      console.error('❌ Error refreshing metrics:', error.message);
+    }
+  }
+
+  /**
+   * Save historical data
+   */
+  saveHistoricalData(history) {
+    try {
+      fs.writeFileSync(this.historyPath, JSON.stringify(history, null, 2));
+    } catch (error) {
+      console.error('❌ Error saving historical data:', error.message);
+    }
+  }
+
+  /**
+   * Handle incoming HTTP requests with comprehensive endpoints
    */
   handleRequest(req, res) {
     const parsedUrl = url.parse(req.url, true);
@@ -74,8 +141,23 @@ class SimpleMetricsAPI {
       case '/metrics/effectiveness':
         this.serveEffectivenessMetrics(req, res);
         break;
+      case '/metrics/performance':
+        this.servePerformanceMetrics(req, res);
+        break;
+      case '/metrics/violations':
+        this.serveViolationMetrics(req, res);
+        break;
       case '/metrics/health':
         this.serveHealthCheck(req, res);
+        break;
+      case '/metrics/summary':
+        this.serveComprehensiveSummary(req, res);
+        break;
+      case '/metrics/refresh':
+        this.handleRefreshRequest(req, res);
+        break;
+      case '/metrics/config':
+        this.serveConfiguration(req, res);
         break;
       default:
         this.serveNotFound(req, res);
@@ -83,7 +165,7 @@ class SimpleMetricsAPI {
   }
 
   /**
-   * Serve current metrics
+   * Serve current metrics with enhanced data
    */
   serveCurrentMetrics(req, res) {
     try {
@@ -91,7 +173,15 @@ class SimpleMetricsAPI {
       const response = {
         timestamp: new Date().toISOString(),
         status: 'success',
-        data: metrics
+        data: {
+          ...metrics,
+          api: {
+            version: '1.0.0',
+            lastRefresh: this.lastRefreshTime,
+            nextRefresh: this.lastRefreshTime + this.refreshInterval,
+            autoRefresh: this.isAutoRefreshEnabled
+          }
+        }
       };
       
       res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -106,73 +196,57 @@ class SimpleMetricsAPI {
    */
   serveHistoricalData(req, res) {
     try {
-      const parsedUrl = url.parse(req.url, true);
-      const query = parsedUrl.query;
+      const { days, limit, offset, startDate, endDate } = req.query;
+      const history = this.getHistoricalData();
       
-      // Get all historical data
-      let history = this.getHistoricalData();
+      let filteredHistory = [...history];
       
-      // Apply filters
-      if (query.startDate) {
-        const startDate = new Date(query.startDate);
-        history = history.filter(entry => new Date(entry.timestamp) >= startDate);
+      // Apply date filtering
+      if (days) {
+        const cutoffDate = new Date();
+        cutoffDate.setDate(cutoffDate.getDate() - parseInt(days));
+        filteredHistory = filteredHistory.filter(entry => 
+          new Date(entry.timestamp) >= cutoffDate
+        );
       }
       
-      if (query.endDate) {
-        const endDate = new Date(query.endDate);
-        history = history.filter(entry => new Date(entry.timestamp) <= endDate);
+      if (startDate) {
+        const start = new Date(startDate);
+        filteredHistory = filteredHistory.filter(entry => 
+          new Date(entry.timestamp) >= start
+        );
       }
       
-      if (query.minScore) {
-        const minScore = parseInt(query.minScore);
-        history = history.filter(entry => (entry.complianceScore || 0) >= minScore);
+      if (endDate) {
+        const end = new Date(endDate);
+        filteredHistory = filteredHistory.filter(entry => 
+          new Date(entry.timestamp) <= end
+        );
       }
-      
-      if (query.maxScore) {
-        const maxScore = parseInt(query.maxScore);
-        history = history.filter(entry => (entry.complianceScore || 0) <= maxScore);
-      }
-      
-      if (query.hasViolations === 'true') {
-        history = history.filter(entry => (entry.violations || 0) > 0);
-      }
-      
-      if (query.hasCriticalViolations === 'true') {
-        history = history.filter(entry => (entry.criticalViolations || 0) > 0);
-      }
-      
-      // Calculate summary statistics
-      const summary = this.calculateHistoricalSummary(history);
       
       // Apply pagination
-      const page = parseInt(query.page) || 1;
-      const limit = parseInt(query.limit) || 50;
-      const startIndex = (page - 1) * limit;
-      const endIndex = startIndex + limit;
-      const paginatedHistory = history.slice(startIndex, endIndex);
+      const limitNum = limit ? parseInt(limit) : filteredHistory.length;
+      const offsetNum = offset ? parseInt(offset) : 0;
+      const paginatedHistory = filteredHistory.slice(offsetNum, offsetNum + limitNum);
+      
+      const summary = this.calculateHistoricalSummary(filteredHistory);
       
       const response = {
         timestamp: new Date().toISOString(),
         status: 'success',
         data: {
-          entries: paginatedHistory,
+          history: paginatedHistory,
+          summary: summary,
           pagination: {
-            page,
-            limit,
-            total: history.length,
-            totalPages: Math.ceil(history.length / limit),
-            hasNext: endIndex < history.length,
-            hasPrev: page > 1
+            total: filteredHistory.length,
+            limit: limitNum,
+            offset: offsetNum,
+            hasMore: offsetNum + limitNum < filteredHistory.length
           },
-          summary,
-          dateRange: this.getDateRange(history),
           filters: {
-            startDate: query.startDate || null,
-            endDate: query.endDate || null,
-            minScore: query.minScore || null,
-            maxScore: query.maxScore || null,
-            hasViolations: query.hasViolations || null,
-            hasCriticalViolations: query.hasCriticalViolations || null
+            days: days || null,
+            startDate: startDate || null,
+            endDate: endDate || null
           }
         }
       };
@@ -249,6 +323,69 @@ class SimpleMetricsAPI {
   }
 
   /**
+   * Serve performance metrics
+   */
+  servePerformanceMetrics(req, res) {
+    try {
+      const metrics = this.getCurrentMetrics();
+      const history = this.getHistoricalData();
+      
+      const performance = {
+        current: metrics.performance || {},
+        historical: this.calculatePerformanceHistory(history),
+        trends: this.calculatePerformanceTrends(history),
+        bottlenecks: this.identifyPerformanceBottlenecks(metrics),
+        recommendations: this.generatePerformanceRecommendations(metrics, history)
+      };
+      
+      const response = {
+        timestamp: new Date().toISOString(),
+        status: 'success',
+        data: performance
+      };
+      
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(response, null, 2));
+    } catch (error) {
+      this.serveError(res, error);
+    }
+  }
+
+  /**
+   * Serve violation metrics
+   */
+  serveViolationMetrics(req, res) {
+    try {
+      const metrics = this.getCurrentMetrics();
+      const history = this.getHistoricalData();
+      
+      const violations = {
+        current: {
+          total: metrics.violations || 0,
+          critical: metrics.criticalViolations || 0,
+          warnings: metrics.warnings || 0,
+          categories: metrics.violationCategories || {}
+        },
+        historical: this.calculateViolationHistory(history),
+        trends: this.calculateViolationTrends(history),
+        breakdown: this.calculateViolationBreakdown(history),
+        patterns: this.analyzeViolationPatterns(history)
+      };
+      
+      const response = {
+        timestamp: new Date().toISOString(),
+        status: 'success',
+        data: violations
+      };
+      
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(response, null, 2));
+    } catch (error) {
+      this.serveError(res, error);
+    }
+  }
+
+  /**
    * Serve health check
    */
   serveHealthCheck(req, res) {
@@ -262,6 +399,121 @@ class SimpleMetricsAPI {
     
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(health, null, 2));
+  }
+
+  /**
+   * Serve comprehensive summary
+   */
+  serveComprehensiveSummary(req, res) {
+    try {
+      const metrics = this.getCurrentMetrics();
+      const history = this.getHistoricalData();
+      
+      const summary = {
+        overview: {
+          complianceScore: metrics.complianceScore || 0,
+          totalViolations: metrics.violations || 0,
+          criticalViolations: metrics.criticalViolations || 0,
+          filesProcessed: metrics.filesProcessed || 0,
+          lastCheck: metrics.timestamp
+        },
+        performance: {
+          executionTime: metrics.performance?.executionTime || 0,
+          memoryUsage: metrics.performance?.memoryUsage || {},
+          cpuUsage: metrics.performance?.cpuUsage || 0,
+          efficiency: this.calculateOverallEfficiency(metrics)
+        },
+        trends: this.calculateTrends(),
+        effectiveness: this.calculateEffectiveness(),
+        recommendations: this.generateOverallRecommendations(metrics, history)
+      };
+      
+      const response = {
+        timestamp: new Date().toISOString(),
+        status: 'success',
+        data: summary
+      };
+      
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(response, null, 2));
+    } catch (error) {
+      this.serveError(res, error);
+    }
+  }
+
+  /**
+   * Handle refresh request
+   */
+  handleRefreshRequest(req, res) {
+    if (req.method === 'POST') {
+      try {
+        this.refreshMetrics();
+        
+        const response = {
+          timestamp: new Date().toISOString(),
+          status: 'success',
+          message: 'Metrics refreshed successfully',
+          data: {
+            lastRefresh: this.lastRefreshTime,
+            nextRefresh: this.lastRefreshTime + this.refreshInterval
+          }
+        };
+        
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(response, null, 2));
+      } catch (error) {
+        this.serveError(res, error);
+      }
+    } else {
+      res.writeHead(405, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Method not allowed' }));
+    }
+  }
+
+  /**
+   * Serve API configuration
+   */
+  serveConfiguration(req, res) {
+    const config = {
+      version: '1.0.0',
+      autoRefresh: {
+        enabled: this.isAutoRefreshEnabled,
+        interval: this.refreshInterval,
+        lastRefresh: this.lastRefreshTime,
+        nextRefresh: this.lastRefreshTime + this.refreshInterval
+      },
+      endpoints: [
+        { path: '/metrics', method: 'GET', description: 'Current metrics' },
+        { path: '/metrics/history', method: 'GET', description: 'Historical data' },
+        { path: '/metrics/trends', method: 'GET', description: 'Trend analysis' },
+        { path: '/metrics/effectiveness', method: 'GET', description: 'Effectiveness metrics' },
+        { path: '/metrics/performance', method: 'GET', description: 'Performance metrics' },
+        { path: '/metrics/violations', method: 'GET', description: 'Violation breakdown' },
+        { path: '/metrics/health', method: 'GET', description: 'Health check' },
+        { path: '/metrics/summary', method: 'GET', description: 'Comprehensive summary' },
+        { path: '/metrics/refresh', method: 'POST', description: 'Trigger refresh' },
+        { path: '/metrics/config', method: 'GET', description: 'API configuration' }
+      ],
+      features: [
+        'Real-time metrics',
+        'Historical data analysis',
+        'Trend prediction',
+        'Performance monitoring',
+        'Violation tracking',
+        'Effectiveness calculation',
+        'Auto-refresh',
+        'Comprehensive reporting'
+      ]
+    };
+    
+    const response = {
+      timestamp: new Date().toISOString(),
+      status: 'success',
+      data: config
+    };
+    
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(response, null, 2));
   }
 
   /**

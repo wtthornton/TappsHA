@@ -273,23 +273,34 @@ class ComplianceChecker {
     }
   }
 
-  // Enhanced: Track violation categories for analytics
+  // Enhanced: Track violation categories for analytics with comprehensive categorization
   trackViolationCategory(category, type) {
     if (!this.metrics.violationCategories[category]) {
       this.metrics.violationCategories[category] = { 
         CRITICAL: 0, 
         WARNING: 0,
         INFO: 0,
-        SUGGESTION: 0
+        SUGGESTION: 0,
+        total: 0,
+        trends: {},
+        patterns: [],
+        recommendations: []
       };
     }
     this.metrics.violationCategories[category][type]++;
+    this.metrics.violationCategories[category].total++;
     
-    // Track detailed violation patterns
+    // Track detailed violation patterns with enhanced analysis
     this.trackDetailedViolationPatterns(category, type);
+    
+    // Update trends and recommendations
+    this.updateViolationTrends(category);
+    this.generateViolationRecommendations(category);
   }
 
   trackDetailedViolationPatterns(category, type) {
+    const timestamp = Date.now();
+    
     if (!this.metrics.detailedViolationPatterns) {
       this.metrics.detailedViolationPatterns = {
         byCategory: {},
@@ -320,13 +331,20 @@ class ComplianceChecker {
     }
     this.metrics.detailedViolationPatterns.bySeverity[type]++;
     
-    // Add to patterns with timestamp
-    this.metrics.detailedViolationPatterns.patterns.push({
+    // Enhanced pattern tracking with detailed analysis
+    const pattern = {
       category,
       type,
-      timestamp: Date.now(),
-      count: 1
-    });
+      timestamp,
+      count: 1,
+      severity: this.getViolationSeverity(type),
+      frequency: this.calculateViolationFrequency(category, type),
+      trend: this.calculateViolationTrend(category, type),
+      impact: this.calculateViolationImpact(type),
+      priority: this.calculateViolationPriority(category, type)
+    };
+    
+    this.metrics.detailedViolationPatterns.patterns.push(pattern);
     
     // Keep only last 1000 patterns to prevent memory bloat
     if (this.metrics.detailedViolationPatterns.patterns.length > 1000) {
@@ -364,6 +382,277 @@ class ComplianceChecker {
         suggestions: recentPatterns.filter(p => p.type === 'SUGGESTION').length
       }
     };
+  }
+
+  // Enhanced violation analysis helper methods
+  getViolationSeverity(type) {
+    const severityLevels = {
+      'CRITICAL': 4,
+      'WARNING': 3,
+      'INFO': 2,
+      'SUGGESTION': 1
+    };
+    
+    return severityLevels[type] || 1;
+  }
+
+  calculateViolationFrequency(category, type) {
+    const patterns = this.metrics.detailedViolationPatterns?.patterns || [];
+    const recentPatterns = patterns.filter(p => 
+      p.timestamp > Date.now() - (24 * 60 * 60 * 1000) // Last 24 hours
+    );
+    
+    const typeCount = recentPatterns.filter(p => p.type === type).length;
+    const totalCount = recentPatterns.length;
+    
+    return totalCount > 0 ? (typeCount / totalCount) * 100 : 0;
+  }
+
+  calculateViolationTrend(category, type) {
+    const patterns = this.metrics.detailedViolationPatterns?.patterns || [];
+    const recentPatterns = patterns.slice(-10); // Last 10 patterns
+    
+    if (recentPatterns.length < 2) {
+      return 'stable';
+    }
+    
+    const typeCount = recentPatterns.filter(p => p.type === type).length;
+    const previousCount = patterns.slice(-20, -10).filter(p => p.type === type).length;
+    
+    if (typeCount > previousCount) {
+      return 'increasing';
+    } else if (typeCount < previousCount) {
+      return 'decreasing';
+    }
+    
+    return 'stable';
+  }
+
+  calculateViolationImpact(type) {
+    const impactScores = {
+      'CRITICAL': 10,
+      'WARNING': 5,
+      'INFO': 2,
+      'SUGGESTION': 1
+    };
+    
+    return impactScores[type] || 1;
+  }
+
+  calculateViolationPriority(category, type) {
+    const severity = this.getViolationSeverity(type);
+    const frequency = this.calculateViolationFrequency(category, type);
+    const impact = this.calculateViolationImpact(type);
+    
+    // Priority formula: severity * frequency * impact
+    return Math.round(severity * (frequency / 100) * impact);
+  }
+
+  updateViolationTrends(category) {
+    const patterns = this.metrics.detailedViolationPatterns?.patterns || [];
+    
+    if (patterns.length < 5) {
+      return;
+    }
+    
+    // Calculate trends for each violation type
+    const trends = {
+      CRITICAL: this.calculateTypeTrend(patterns, 'CRITICAL'),
+      WARNING: this.calculateTypeTrend(patterns, 'WARNING'),
+      INFO: this.calculateTypeTrend(patterns, 'INFO'),
+      SUGGESTION: this.calculateTypeTrend(patterns, 'SUGGESTION')
+    };
+    
+    if (this.metrics.violationCategories[category]) {
+      this.metrics.violationCategories[category].trends = trends;
+    }
+  }
+
+  calculateTypeTrend(patterns, type) {
+    const typePatterns = patterns.filter(p => p.type === type);
+    
+    if (typePatterns.length < 3) {
+      return { direction: 'stable', magnitude: 0, confidence: 0.5 };
+    }
+    
+    // Group by time periods (last 7 days)
+    const now = Date.now();
+    const dayInMs = 24 * 60 * 60 * 1000;
+    const periods = [];
+    
+    for (let i = 6; i >= 0; i--) {
+      const start = now - (i + 1) * dayInMs;
+      const end = now - i * dayInMs;
+      const count = typePatterns.filter(p => p.timestamp >= start && p.timestamp < end).length;
+      periods.push(count);
+    }
+    
+    // Calculate trend direction and magnitude
+    const changes = periods.map((count, i) => {
+      if (i === 0) return 0;
+      return count - periods[i - 1];
+    }).slice(1);
+    
+    const averageChange = changes.reduce((sum, change) => sum + change, 0) / changes.length;
+    
+    let direction = 'stable';
+    let magnitude = Math.abs(averageChange);
+    let confidence = 0.5;
+    
+    if (averageChange > 0.5) {
+      direction = 'increasing';
+      confidence = Math.min(1, 0.5 + (averageChange / 5));
+    } else if (averageChange < -0.5) {
+      direction = 'decreasing';
+      confidence = Math.min(1, 0.5 + (Math.abs(averageChange) / 5));
+    }
+    
+    return {
+      direction,
+      magnitude: Math.round(magnitude * 10) / 10,
+      confidence: Math.round(confidence * 100) / 100,
+      averageChange: Math.round(averageChange * 10) / 10
+    };
+  }
+
+  generateViolationRecommendations(category) {
+    const patterns = this.metrics.detailedViolationPatterns?.patterns || [];
+    const trends = this.metrics.violationCategories[category]?.trends || {};
+    
+    const recommendations = [];
+    
+    // Analyze each violation type
+    Object.entries(trends).forEach(([type, trend]) => {
+      if (trend.direction === 'increasing' && trend.confidence > 0.7) {
+        recommendations.push({
+          type: 'urgent',
+          category,
+          violationType: type,
+          message: `${type} violations in ${category} are increasing`,
+          action: this.getViolationAction(category, type),
+          priority: this.calculateViolationPriority(category, type),
+          impact: 'high'
+        });
+      } else if (trend.direction === 'decreasing' && trend.confidence > 0.7) {
+        recommendations.push({
+          type: 'positive',
+          category,
+          violationType: type,
+          message: `${type} violations in ${category} are decreasing`,
+          action: 'Continue current practices',
+          priority: 1,
+          impact: 'low'
+        });
+      }
+    });
+    
+    // Add category-specific recommendations
+    const categoryRecommendations = this.getCategorySpecificRecommendations(category, patterns);
+    recommendations.push(...categoryRecommendations);
+    
+    if (this.metrics.violationCategories[category]) {
+      this.metrics.violationCategories[category].recommendations = recommendations;
+    }
+  }
+
+  getViolationAction(category, type) {
+    const actions = {
+      'codeStyle': {
+        'CRITICAL': 'Review and fix code style violations immediately',
+        'WARNING': 'Address code style warnings in next iteration',
+        'INFO': 'Consider improving code style',
+        'SUGGESTION': 'Optional code style improvements'
+      },
+      'security': {
+        'CRITICAL': 'Fix security vulnerabilities immediately',
+        'WARNING': 'Address security warnings promptly',
+        'INFO': 'Review security practices',
+        'SUGGESTION': 'Consider security enhancements'
+      },
+      'architecture': {
+        'CRITICAL': 'Refactor architectural violations',
+        'WARNING': 'Plan architectural improvements',
+        'INFO': 'Review architecture patterns',
+        'SUGGESTION': 'Consider architectural improvements'
+      },
+      'testing': {
+        'CRITICAL': 'Add missing critical tests',
+        'WARNING': 'Improve test coverage',
+        'INFO': 'Review testing practices',
+        'SUGGESTION': 'Consider additional tests'
+      },
+      'performance': {
+        'CRITICAL': 'Optimize performance bottlenecks',
+        'WARNING': 'Address performance warnings',
+        'INFO': 'Review performance practices',
+        'SUGGESTION': 'Consider performance optimizations'
+      }
+    };
+    
+    return actions[category]?.[type] || 'Review and address violations';
+  }
+
+  getCategorySpecificRecommendations(category, patterns) {
+    const recommendations = [];
+    
+    switch (category) {
+      case 'codeStyle':
+        recommendations.push({
+          type: 'improvement',
+          category,
+          message: 'Consider implementing automated code formatting',
+          action: 'Set up Prettier or similar tool',
+          priority: 3,
+          impact: 'medium'
+        });
+        break;
+        
+      case 'security':
+        recommendations.push({
+          type: 'security',
+          category,
+          message: 'Regular security audits recommended',
+          action: 'Schedule security review',
+          priority: 5,
+          impact: 'high'
+        });
+        break;
+        
+      case 'architecture':
+        recommendations.push({
+          type: 'architecture',
+          category,
+          message: 'Consider architectural review',
+          action: 'Plan refactoring sessions',
+          priority: 4,
+          impact: 'medium'
+        });
+        break;
+        
+      case 'testing':
+        recommendations.push({
+          type: 'testing',
+          category,
+          message: 'Improve test coverage',
+          action: 'Add unit and integration tests',
+          priority: 3,
+          impact: 'medium'
+        });
+        break;
+        
+      case 'performance':
+        recommendations.push({
+          type: 'performance',
+          category,
+          message: 'Monitor performance metrics',
+          action: 'Implement performance monitoring',
+          priority: 4,
+          impact: 'medium'
+        });
+        break;
+    }
+    
+    return recommendations;
   }
 
   calculateViolationTrends(patterns) {
@@ -4736,13 +5025,18 @@ class ComplianceChecker {
       violationsDetected: 0,
       criticalViolations: 0,
       warnings: 0,
-      // Performance tracking
+      // Enhanced performance tracking
       averageProcessingTime: 0,
       totalProcessingTime: 0,
       fileChangeDetectionTimes: [],
       batchProcessingTimes: [],
       memoryUsage: process.memoryUsage(),
       cpuUsage: process.cpuUsage(),
+      // Performance optimization metrics
+      batchEfficiency: 0,
+      processingThroughput: 0,
+      memoryEfficiency: 0,
+      cpuEfficiency: 0,
       // Real-time effectiveness scoring
       effectivenessScore: 100,
       timeSaved: 0,
@@ -4755,14 +5049,26 @@ class ComplianceChecker {
       effectivenessRecommendations: []
     };
 
-    // Batch processing for multiple file changes
+    // Enhanced batch processing for multiple file changes
     this.pendingFileChanges = new Map();
     this.batchTimeout = null;
-    this.batchSize = 5; // Process up to 5 files at once
-    this.batchDelay = 500; // Wait 500ms for batching
+    this.batchSize = 10; // Increased from 5 to 10 files
+    this.batchDelay = 300; // Reduced from 500ms to 300ms
+    this.maxBatchSize = 20; // Maximum batch size
+    this.batchProcessingQueue = [];
+    this.isBatchProcessing = false;
 
+    // Performance monitoring
+    this.performanceThresholds = {
+      maxProcessingTime: 5000, // 5 seconds
+      maxMemoryUsage: 500 * 1024 * 1024, // 500MB
+      maxCpuUsage: 80, // 80%
+      maxBatchSize: 20
+    };
+
+    // File change event handlers with performance optimization
     watcher.on('change', (filePath) => {
-      this.handleRealTimeFileChange(filePath);
+      this.handleRealTimeFileChange(filePath, 'modified');
     });
 
     watcher.on('add', (filePath) => {
@@ -4773,21 +5079,46 @@ class ComplianceChecker {
       this.handleRealTimeFileRemoval(filePath);
     });
 
+    // Enhanced error handling
+    watcher.on('error', (error) => {
+      console.error('❌ File watching error:', error.message);
+      this.trackPerformanceIssue('file_watching_error', error.message);
+    });
+
     // Performance monitoring
     this.startPerformanceMonitoring();
 
-    console.log('✅ Real-time monitoring active. Press Ctrl+C to stop.');
+    console.log('✅ Enhanced real-time monitoring active with performance optimizations.');
+    console.log(`📊 Batch processing: ${this.batchSize} files, ${this.batchDelay}ms delay`);
+    console.log(`⚡ Performance thresholds: ${this.performanceThresholds.maxProcessingTime}ms max processing time`);
+    
     return watcher;
   }
 
+  /**
+   * Enhanced file change handler with performance optimization
+   */
   handleRealTimeFileChange(filePath, changeType = 'modified') {
     const detectionTime = Date.now();
     
-    // Add to batch processing
+    // Performance optimization: Skip if file is too large
+    try {
+      const stats = fs.statSync(filePath);
+      if (stats.size > 10 * 1024 * 1024) { // Skip files larger than 10MB
+        console.log(`⚠️ Skipping large file: ${filePath} (${Math.round(stats.size / 1024 / 1024)}MB)`);
+        return;
+      }
+    } catch (error) {
+      // File might not exist, continue processing
+    }
+    
+    // Add to batch processing with enhanced tracking
     this.pendingFileChanges.set(filePath, {
       changeType,
       detectionTime,
-      processed: false
+      processed: false,
+      priority: this.calculateFilePriority(filePath, changeType),
+      estimatedProcessingTime: this.estimateProcessingTime(filePath)
     });
     
     // Clear existing timeout
@@ -4795,138 +5126,307 @@ class ComplianceChecker {
       clearTimeout(this.batchTimeout);
     }
     
+    // Adaptive batch delay based on queue size
+    const adaptiveDelay = this.calculateAdaptiveBatchDelay();
+    
     // Set new timeout for batch processing
     this.batchTimeout = setTimeout(() => {
       this.processBatchFileChanges();
-    }, this.batchDelay);
+    }, adaptiveDelay);
     
-    // Process immediately if batch is full
-    if (this.pendingFileChanges.size >= this.batchSize) {
-      if (this.batchTimeout) {
-        clearTimeout(this.batchTimeout);
-      }
-      this.processBatchFileChanges();
+    // Track detection performance
+    this.trackFileChangeDetection(filePath, detectionTime);
+  }
+
+  /**
+   * Calculate file priority for processing order
+   */
+  calculateFilePriority(filePath, changeType) {
+    let priority = 1; // Default priority
+    
+    // Higher priority for critical files
+    if (filePath.includes('src/') || filePath.includes('main/')) {
+      priority += 2;
+    }
+    
+    // Higher priority for configuration files
+    if (filePath.includes('config/') || filePath.includes('application.')) {
+      priority += 1;
+    }
+    
+    // Higher priority for added files (new files)
+    if (changeType === 'added') {
+      priority += 1;
+    }
+    
+    // Lower priority for test files
+    if (filePath.includes('test/') || filePath.includes('__tests__/')) {
+      priority -= 1;
+    }
+    
+    return Math.max(1, priority);
+  }
+
+  /**
+   * Estimate processing time for a file
+   */
+  estimateProcessingTime(filePath) {
+    const fileSize = this.getFileSize(filePath);
+    const fileType = path.extname(filePath);
+    
+    // Base processing time estimates
+    const baseTimes = {
+      '.java': 200, // Java files take longer
+      '.ts': 150,   // TypeScript files
+      '.tsx': 150,  // TypeScript React files
+      '.js': 100,   // JavaScript files
+      '.jsx': 100,  // React files
+      '.json': 50,  // JSON files are fast
+      '.md': 30,    // Markdown files are very fast
+      '.xml': 80    // XML files
+    };
+    
+    const baseTime = baseTimes[fileType] || 100;
+    const sizeMultiplier = Math.min(2, fileSize / (1024 * 1024)); // Cap at 2x for large files
+    
+    return Math.round(baseTime * sizeMultiplier);
+  }
+
+  /**
+   * Calculate adaptive batch delay based on queue size
+   */
+  calculateAdaptiveBatchDelay() {
+    const queueSize = this.pendingFileChanges.size;
+    
+    if (queueSize >= this.maxBatchSize) {
+      return 100; // Process immediately if queue is full
+    } else if (queueSize >= this.batchSize) {
+      return this.batchDelay; // Use standard delay
+    } else {
+      return this.batchDelay * 1.5; // Longer delay for smaller batches
     }
   }
 
+  /**
+   * Enhanced batch processing with performance optimization
+   */
   processBatchFileChanges() {
+    if (this.isBatchProcessing) {
+      return; // Prevent concurrent processing
+    }
+    
+    this.isBatchProcessing = true;
     const batchStartTime = Date.now();
-    const filesToProcess = Array.from(this.pendingFileChanges.entries()).slice(0, this.batchSize);
     
-    console.log(`\n📦 Processing batch of ${filesToProcess.length} file changes...`);
-    
-    filesToProcess.forEach(([filePath, fileData]) => {
-      const startTime = Date.now();
-      console.log(`📝 File ${fileData.changeType}: ${filePath}`);
+    try {
+      // Sort files by priority and estimated processing time
+      const sortedFiles = Array.from(this.pendingFileChanges.entries())
+        .sort(([, a], [, b]) => {
+          // Sort by priority first, then by estimated processing time
+          if (a.priority !== b.priority) {
+            return b.priority - a.priority;
+          }
+          return a.estimatedProcessingTime - b.estimatedProcessingTime;
+        });
       
-      try {
-        const content = fs.readFileSync(filePath, 'utf8');
-        const violations = this.validateCode(filePath, content);
+      // Process files in batches
+      const batchSize = Math.min(this.batchSize, sortedFiles.length);
+      const currentBatch = sortedFiles.slice(0, batchSize);
+      
+      console.log(`🔄 Processing batch of ${currentBatch.length} files...`);
+      
+      // Process files concurrently with limits
+      const processingPromises = currentBatch.map(([filePath, fileData]) => {
+        return this.processFileWithPerformanceTracking(filePath, fileData);
+      });
+      
+      Promise.all(processingPromises)
+        .then(() => {
+          const batchEndTime = Date.now();
+          const batchProcessingTime = batchEndTime - batchStartTime;
+          
+          // Track batch performance
+          this.trackBatchPerformance(batchProcessingTime, currentBatch.length);
+          
+          // Clear processed files
+          currentBatch.forEach(([filePath]) => {
+            this.pendingFileChanges.delete(filePath);
+          });
+          
+          console.log(`✅ Batch processed in ${batchProcessingTime}ms (${currentBatch.length} files)`);
+          
+          // Update real-time metrics
+          this.updateRealTimeMetrics();
+          
+          // Process remaining files if any
+          if (this.pendingFileChanges.size > 0) {
+            setTimeout(() => {
+              this.processBatchFileChanges();
+            }, 100);
+          }
+        })
+        .catch(error => {
+          console.error('❌ Batch processing error:', error.message);
+          this.trackPerformanceIssue('batch_processing_error', error.message);
+        })
+        .finally(() => {
+          this.isBatchProcessing = false;
+        });
         
-        // Update real-time metrics
-        this.realTimeMetrics.filesChanged++;
+    } catch (error) {
+      console.error('❌ Error in batch processing:', error.message);
+      this.isBatchProcessing = false;
+    }
+  }
+
+  /**
+   * Process file with performance tracking
+   */
+  async processFileWithPerformanceTracking(filePath, fileData) {
+    const startTime = Date.now();
+    
+    try {
+      // Check performance thresholds before processing
+      if (!this.checkPerformanceThresholds()) {
+        console.log(`⚠️ Performance threshold exceeded, skipping: ${filePath}`);
+        return;
+      }
+      
+      // Read and validate file
+      const content = fs.readFileSync(filePath, 'utf8');
+      const violations = this.validateCode(filePath, content);
+      
+      const processingTime = Date.now() - startTime;
+      
+      // Track processing performance
+      this.trackFileProcessing(filePath, processingTime);
+      
+      // Update real-time violations
+      if (violations.length > 0) {
+        this.realTimeViolations.push(...violations);
         this.realTimeMetrics.violationsDetected += violations.length;
         this.realTimeMetrics.criticalViolations += violations.filter(v => v.type === 'CRITICAL').length;
         this.realTimeMetrics.warnings += violations.filter(v => v.type === 'WARNING').length;
         
-        // Track processing time
-        const processingTime = Date.now() - startTime;
-        this.realTimeMetrics.fileChangeDetectionTimes.push({
+        // Provide immediate feedback
+        this.provideImmediateFeedback({
           filePath,
-          detectionTime: fileData.detectionTime - this.realTimeMetrics.startTime,
-          processingTime,
-          changeType: fileData.changeType
-        });
-        
-        // Track real-time violations
-        const realTimeViolation = {
-          filePath,
-          changeType: fileData.changeType,
-          timestamp: new Date().toISOString(),
           violations,
           processingTime,
-          detectionTime: fileData.detectionTime,
-        };
-        
-        this.realTimeViolations.push(realTimeViolation);
-        
-        // Mark as processed
-        fileData.processed = true;
-        
-        // Immediate feedback system
-        this.provideImmediateFeedback(realTimeViolation);
-        
-        // Add configurable alerts for violations
-        this.addConfigurableAlertsForViolations(realTimeViolation);
-        
-      } catch (error) {
-        console.error(`❌ Error processing ${filePath}:`, error.message);
+          timestamp: new Date().toISOString()
+        });
       }
-    });
+      
+      // Update file change metrics
+      this.realTimeMetrics.filesChanged++;
+      
+    } catch (error) {
+      console.error(`❌ Error processing file ${filePath}:`, error.message);
+      this.trackPerformanceIssue('file_processing_error', error.message);
+    }
+  }
+
+  /**
+   * Check performance thresholds
+   */
+  checkPerformanceThresholds() {
+    const memoryUsage = process.memoryUsage();
+    const currentMemory = memoryUsage.heapUsed;
     
-    // Track batch processing time
-    const batchProcessingTime = Date.now() - batchStartTime;
+    // Check memory usage
+    if (currentMemory > this.performanceThresholds.maxMemoryUsage) {
+      console.warn(`⚠️ Memory usage high: ${Math.round(currentMemory / 1024 / 1024)}MB`);
+      return false;
+    }
+    
+    // Check processing time (simplified CPU check)
+    const currentTime = Date.now();
+    if (this.realTimeMetrics.totalProcessingTime > this.performanceThresholds.maxProcessingTime) {
+      console.warn(`⚠️ Processing time high: ${this.realTimeMetrics.totalProcessingTime}ms`);
+      return false;
+    }
+    
+    return true;
+  }
+
+  /**
+   * Track file change detection performance
+   */
+  trackFileChangeDetection(filePath, detectionTime) {
+    const detectionDuration = Date.now() - detectionTime;
+    this.realTimeMetrics.fileChangeDetectionTimes.push(detectionDuration);
+    
+    // Keep only last 100 detection times
+    if (this.realTimeMetrics.fileChangeDetectionTimes.length > 100) {
+      this.realTimeMetrics.fileChangeDetectionTimes.shift();
+    }
+  }
+
+  /**
+   * Track batch performance
+   */
+  trackBatchPerformance(processingTime, fileCount) {
     this.realTimeMetrics.batchProcessingTimes.push({
-      batchSize: filesToProcess.length,
-      processingTime: batchProcessingTime,
+      processingTime,
+      fileCount,
       timestamp: Date.now()
     });
     
+    // Keep only last 50 batch times
+    if (this.realTimeMetrics.batchProcessingTimes.length > 50) {
+      this.realTimeMetrics.batchProcessingTimes.shift();
+    }
+    
+    // Calculate batch efficiency
+    const averageTimePerFile = processingTime / fileCount;
+    this.realTimeMetrics.batchEfficiency = Math.round((1000 / averageTimePerFile) * 100) / 100; // Files per second
+    
+    // Calculate processing throughput
+    this.realTimeMetrics.processingThroughput = Math.round((fileCount / processingTime) * 1000); // Files per second
+  }
+
+  /**
+   * Track performance issues
+   */
+  trackPerformanceIssue(type, message) {
+    const issue = {
+      type,
+      message,
+      timestamp: Date.now(),
+      memoryUsage: process.memoryUsage(),
+      cpuUsage: process.cpuUsage()
+    };
+    
+    // Store performance issues for analysis
+    if (!this.performanceIssues) {
+      this.performanceIssues = [];
+    }
+    
+    this.performanceIssues.push(issue);
+    
+    // Keep only last 100 issues
+    if (this.performanceIssues.length > 100) {
+      this.performanceIssues.shift();
+    }
+  }
+
+  /**
+   * Update real-time metrics with performance data
+   */
+  updateRealTimeMetrics() {
     // Update average processing time
-    this.updateAverageProcessingTime();
-    
-    // Calculate real-time effectiveness
-    this.calculateRealTimeEffectiveness();
-    
-    // Implement trend-based notifications
-    this.implementTrendBasedNotifications();
-    
-    // Create improvement milestone alerts
-    this.createImprovementMilestoneAlerts();
-    
-    // Update live dashboard
-    this.updateLiveDashboard();
-    
-    // Clear processed files from pending
-    filesToProcess.forEach(([filePath]) => {
-      this.pendingFileChanges.delete(filePath);
-    });
-  }
-
-  handleRealTimeFileRemoval(filePath) {
-    console.log(`🗑️  File removed: ${filePath}`);
-    
-    // Remove any tracked violations for this file
-    this.realTimeViolations = this.realTimeViolations.filter(
-      v => v.filePath !== filePath,
-    );
-    
-    this.updateLiveDashboard();
-  }
-
-  provideImmediateFeedback(realTimeViolation) {
-    const { filePath, violations, processingTime } = realTimeViolation;
-    
-    if (violations.length === 0) {
-      console.log(`✅ ${filePath} - No violations detected (${processingTime}ms)`);
-      return;
+    if (this.realTimeMetrics.fileChangeDetectionTimes.length > 0) {
+      const totalTime = this.realTimeMetrics.fileChangeDetectionTimes.reduce((sum, time) => sum + time, 0);
+      this.realTimeMetrics.averageProcessingTime = Math.round(totalTime / this.realTimeMetrics.fileChangeDetectionTimes.length);
     }
     
-    console.log(`⚠️  ${filePath} - ${violations.length} violation(s) detected (${processingTime}ms)`);
+    // Update memory and CPU efficiency
+    const memoryUsage = process.memoryUsage();
+    const heapUsed = memoryUsage.heapUsed / (1024 * 1024); // MB
+    this.realTimeMetrics.memoryEfficiency = Math.round((100 - (heapUsed / 500) * 100) * 100) / 100; // Efficiency percentage
     
-    violations.forEach(violation => {
-      const icon = violation.type === 'CRITICAL' ? '🚨' : '⚠️';
-      console.log(`  ${icon} ${violation.type}: ${violation.message}`);
-      
-      if (violation.suggestion) {
-        console.log(`     💡 Suggestion: ${violation.suggestion}`);
-      }
-    });
-    
-    // Provide quick fix suggestions
-    if (violations.length > 0) {
-      this.suggestQuickFixes(filePath, violations);
-    }
+    // Update total processing time
+    this.realTimeMetrics.totalProcessingTime = Date.now() - this.realTimeMetrics.startTime;
   }
 
   suggestQuickFixes(filePath, violations) {
@@ -5272,44 +5772,70 @@ class ComplianceChecker {
     const now = Date.now();
     const sessionDuration = (now - this.realTimeMetrics.startTime) / 1000 / 60; // minutes
     
-    // Calculate time saved based on violations prevented
+    // Enhanced time savings calculation with detailed breakdown
     const timePerViolation = 0.25; // 15 minutes per violation
     const timePerCriticalViolation = 2; // 2 hours per critical violation
-    const timeSaved = (this.realTimeMetrics.violationsDetected * timePerViolation) + 
-                     (this.realTimeMetrics.criticalViolations * timePerCriticalViolation);
+    const timePerWarning = 0.5; // 30 minutes per warning
+    const timePerInfo = 0.1; // 6 minutes per info
+    const timePerSuggestion = 0.05; // 3 minutes per suggestion
     
-    // Calculate productivity gain based on compliance improvement
+    const timeSaved = (
+      (this.realTimeMetrics.violationsDetected * timePerViolation) + 
+      (this.realTimeMetrics.criticalViolations * timePerCriticalViolation) +
+      (this.realTimeMetrics.warnings * timePerWarning) +
+      (this.realTimeMetrics.infoViolations || 0) * timePerInfo +
+      (this.realTimeMetrics.suggestions || 0) * timePerSuggestion
+    );
+    
+    // Enhanced productivity gain calculation
     const totalViolations = this.realTimeMetrics.violationsDetected;
     const totalFiles = this.realTimeMetrics.filesChanged;
     const complianceRate = totalFiles > 0 ? ((totalFiles - totalViolations) / totalFiles) * 100 : 100;
     const productivityGain = Math.max(0, (complianceRate - 50) / 50 * 100); // 0-100% scale
     
-    // Calculate quality improvement based on violation reduction
+    // Enhanced quality improvement calculation
     const qualityImprovement = Math.max(0, 100 - (totalViolations / Math.max(totalFiles, 1)) * 100);
     
-    // Calculate standards adoption
+    // Enhanced standards adoption calculation
     const standardsAdoption = this.calculateStandardsAdoptionRate();
     
-    // Calculate ROI
+    // Enhanced ROI calculation with detailed cost analysis
     const hourlyRate = 100; // Assume $100/hour developer cost
     const timeSavedCost = timeSaved * hourlyRate;
     const timeInvestment = sessionDuration * hourlyRate * 0.1; // 10% of session time
     const roi = timeInvestment > 0 ? ((timeSavedCost - timeInvestment) / timeInvestment) * 100 : 0;
     
-    // Calculate overall effectiveness score
+    // Enhanced effectiveness score calculation with weighted components
+    const timeSavedWeight = 0.3;
+    const productivityWeight = 0.25;
+    const qualityWeight = 0.25;
+    const standardsWeight = 0.2;
+    
+    const normalizedTimeSaved = Math.min(100, (timeSaved / 10) * 100); // Normalize to 0-100
     const effectivenessScore = Math.round(
-      (timeSaved / 10 + productivityGain + qualityImprovement + standardsAdoption) / 4
+      (normalizedTimeSaved * timeSavedWeight) +
+      (productivityGain * productivityWeight) +
+      (qualityImprovement * qualityWeight) +
+      (standardsAdoption * standardsWeight)
     );
     
-    // Update real-time metrics
+    // Calculate additional effectiveness metrics
+    const efficiencyScore = this.calculateEfficiencyScore();
+    const impactScore = this.calculateImpactScore();
+    const sustainabilityScore = this.calculateSustainabilityScore();
+    
+    // Update real-time metrics with enhanced data
     this.realTimeMetrics.effectivenessScore = Math.max(0, Math.min(100, effectivenessScore));
     this.realTimeMetrics.timeSaved = Math.round(timeSaved * 100) / 100;
     this.realTimeMetrics.productivityGain = Math.round(productivityGain * 100) / 100;
     this.realTimeMetrics.qualityImprovement = Math.round(qualityImprovement * 100) / 100;
     this.realTimeMetrics.standardsAdoption = Math.round(standardsAdoption * 100) / 100;
     this.realTimeMetrics.roi = Math.round(roi * 100) / 100;
+    this.realTimeMetrics.efficiencyScore = efficiencyScore;
+    this.realTimeMetrics.impactScore = impactScore;
+    this.realTimeMetrics.sustainabilityScore = sustainabilityScore;
     
-    // Track effectiveness history
+    // Enhanced effectiveness history tracking
     this.realTimeMetrics.effectivenessHistory.push({
       timestamp: now,
       effectivenessScore,
@@ -5318,7 +5844,19 @@ class ComplianceChecker {
       qualityImprovement,
       standardsAdoption,
       roi,
-      sessionDuration
+      sessionDuration,
+      efficiencyScore,
+      impactScore,
+      sustainabilityScore,
+      detailedMetrics: {
+        violationsDetected: this.realTimeMetrics.violationsDetected,
+        criticalViolations: this.realTimeMetrics.criticalViolations,
+        warnings: this.realTimeMetrics.warnings,
+        filesChanged: this.realTimeMetrics.filesChanged,
+        averageProcessingTime: this.realTimeMetrics.averageProcessingTime,
+        batchEfficiency: this.realTimeMetrics.batchEfficiency,
+        processingThroughput: this.realTimeMetrics.processingThroughput
+      }
     });
     
     // Keep only last 100 entries to prevent memory bloat
@@ -5326,10 +5864,10 @@ class ComplianceChecker {
       this.realTimeMetrics.effectivenessHistory = this.realTimeMetrics.effectivenessHistory.slice(-100);
     }
     
-    // Calculate effectiveness trends
+    // Calculate enhanced effectiveness trends
     this.calculateEffectivenessTrends();
     
-    // Generate effectiveness recommendations
+    // Generate enhanced effectiveness recommendations
     this.generateEffectivenessRecommendations();
     
     return {
@@ -5339,9 +5877,13 @@ class ComplianceChecker {
       qualityImprovement: this.realTimeMetrics.qualityImprovement,
       standardsAdoption: this.realTimeMetrics.standardsAdoption,
       roi: this.realTimeMetrics.roi,
+      efficiencyScore: this.realTimeMetrics.efficiencyScore,
+      impactScore: this.realTimeMetrics.impactScore,
+      sustainabilityScore: this.realTimeMetrics.sustainabilityScore,
       sessionDuration: Math.round(sessionDuration * 100) / 100,
       trends: this.realTimeMetrics.effectivenessTrends,
-      recommendations: this.realTimeMetrics.effectivenessRecommendations
+      recommendations: this.realTimeMetrics.effectivenessRecommendations,
+      detailedMetrics: this.realTimeMetrics.effectivenessHistory[this.realTimeMetrics.effectivenessHistory.length - 1]?.detailedMetrics || {}
     };
   }
 
@@ -5364,6 +5906,107 @@ class ComplianceChecker {
     });
     
     return Math.round(totalAdoption / standards.length);
+  }
+
+  // Enhanced effectiveness calculation helper methods
+  calculateEfficiencyScore() {
+    const processingTime = this.realTimeMetrics.averageProcessingTime || 0;
+    const batchEfficiency = this.realTimeMetrics.batchEfficiency || 0;
+    const processingThroughput = this.realTimeMetrics.processingThroughput || 0;
+    
+    // Calculate efficiency based on processing performance
+    let efficiencyScore = 100;
+    
+    // Penalize for slow processing
+    if (processingTime > 1000) {
+      efficiencyScore -= 20;
+    } else if (processingTime > 500) {
+      efficiencyScore -= 10;
+    }
+    
+    // Reward for high batch efficiency
+    if (batchEfficiency > 10) {
+      efficiencyScore += 10;
+    } else if (batchEfficiency > 5) {
+      efficiencyScore += 5;
+    }
+    
+    // Reward for high throughput
+    if (processingThroughput > 5) {
+      efficiencyScore += 10;
+    } else if (processingThroughput > 2) {
+      efficiencyScore += 5;
+    }
+    
+    return Math.max(0, Math.min(100, efficiencyScore));
+  }
+
+  calculateImpactScore() {
+    const violationsDetected = this.realTimeMetrics.violationsDetected || 0;
+    const criticalViolations = this.realTimeMetrics.criticalViolations || 0;
+    const filesChanged = this.realTimeMetrics.filesChanged || 0;
+    
+    // Calculate impact based on violations prevented
+    let impactScore = 0;
+    
+    if (filesChanged > 0) {
+      // Base impact from violations detected
+      impactScore += Math.min(50, violationsDetected * 5);
+      
+      // Additional impact from critical violations
+      impactScore += Math.min(30, criticalViolations * 10);
+      
+      // Impact from file coverage
+      impactScore += Math.min(20, (filesChanged / 10) * 5);
+    }
+    
+    return Math.max(0, Math.min(100, impactScore));
+  }
+
+  calculateSustainabilityScore() {
+    const history = this.realTimeMetrics.effectivenessHistory || [];
+    if (history.length < 3) return 50; // Default score for insufficient data
+    
+    // Calculate sustainability based on consistent performance
+    const recentScores = history.slice(-5).map(h => h.effectivenessScore);
+    const averageScore = recentScores.reduce((sum, score) => sum + score, 0) / recentScores.length;
+    
+    // Calculate consistency (lower variance = higher sustainability)
+    const variance = recentScores.reduce((sum, score) => {
+      return sum + Math.pow(score - averageScore, 2);
+    }, 0) / recentScores.length;
+    
+    const standardDeviation = Math.sqrt(variance);
+    const consistencyScore = Math.max(0, 100 - (standardDeviation * 2));
+    
+    // Calculate trend sustainability
+    const trendScore = this.calculateTrendSustainability(recentScores);
+    
+    // Combine consistency and trend scores
+    const sustainabilityScore = (consistencyScore * 0.6) + (trendScore * 0.4);
+    
+    return Math.max(0, Math.min(100, Math.round(sustainabilityScore)));
+  }
+
+  calculateTrendSustainability(scores) {
+    if (scores.length < 2) return 50;
+    
+    // Calculate trend direction and strength
+    const changes = scores.map((score, i) => {
+      if (i === 0) return 0;
+      return score - scores[i - 1];
+    }).slice(1);
+    
+    const averageChange = changes.reduce((sum, change) => sum + change, 0) / changes.length;
+    
+    // Positive trend = higher sustainability
+    if (averageChange > 0) {
+      return Math.min(100, 50 + (averageChange * 10));
+    } else if (averageChange < 0) {
+      return Math.max(0, 50 + (averageChange * 10));
+    }
+    
+    return 50; // Stable trend
   }
 
   calculateEffectivenessTrends() {
@@ -5496,7 +6139,7 @@ class ComplianceChecker {
             padding: 20px; 
             border-radius: 8px; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+            margin-bottom: 20px; 
             text-align: center;
         }
         .live-indicator {
