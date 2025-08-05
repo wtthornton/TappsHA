@@ -1166,17 +1166,36 @@ class SimpleMetricsAPI {
    * Calculate effectiveness metrics
    */
   calculateEffectiveness() {
-    const metrics = this.getCurrentMetrics();
+    // Get basic metrics without recursion
+    let basicMetrics;
+    try {
+      if (fs.existsSync(this.metricsPath)) {
+        basicMetrics = JSON.parse(fs.readFileSync(this.metricsPath, 'utf8'));
+      } else {
+        basicMetrics = {
+          complianceScore: 0,
+          violations: 0,
+          criticalViolations: 0
+        };
+      }
+    } catch (error) {
+      basicMetrics = {
+        complianceScore: 0,
+        violations: 0,
+        criticalViolations: 0
+      };
+    }
+    
     const history = this.getHistoricalData();
     
     // Calculate time saved (estimated)
-    const timeSaved = this.estimateTimeSaved(metrics, history);
+    const timeSaved = this.estimateTimeSaved(basicMetrics, history);
     
     // Calculate productivity gain
-    const productivityGain = this.calculateProductivityGain(metrics);
+    const productivityGain = this.calculateProductivityGain(basicMetrics);
     
     // Calculate standards adoption
-    const standardsAdoption = this.calculateStandardsAdoption(metrics);
+    const standardsAdoption = this.calculateStandardsAdoption(basicMetrics);
     
     // Calculate quality improvement
     const qualityImprovement = this.calculateQualityImprovement(history);
@@ -1191,9 +1210,9 @@ class SimpleMetricsAPI {
       qualityImprovement,
       overallEffectiveness: Math.round(overallEffectiveness),
       metrics: {
-        complianceScore: metrics.complianceScore || 0,
-        violations: metrics.violations || 0,
-        criticalViolations: metrics.criticalViolations || 0
+        complianceScore: basicMetrics.complianceScore || 0,
+        violations: basicMetrics.violations || 0,
+        criticalViolations: basicMetrics.criticalViolations || 0
       }
     };
   }

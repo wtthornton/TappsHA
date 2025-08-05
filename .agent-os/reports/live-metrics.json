@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-08-05T23:22:25.135Z",
+  "complianceScore": 0,
+  "totalChecks": 0,
+  "passedChecks": 0,
+  "violations": 0,
+  "criticalViolations": 0,
+  "warnings": 0,
+  "performance": {
+    "executionTime": 0,
+    "averageFileProcessingTime": 0,
+    "memoryUsage": 0,
+    "cpuUsage": 0
+  },
+  "effectiveness": {
+    "timeSaved": 0,
+    "productivityGain": 0,
+    "standardsAdoption": 0,
+    "qualityImprovement": 0
+  },
+  "totalViolations": 0,
+  "filesProcessed": 0,
+  "fileTypes": [],
+  "averageProcessingTime": 0
+}

@@ -10,6 +10,7 @@
     "lessons": "node agent-os-cli.js lessons",
     "status": "node agent-os-cli.js status",
     "help": "node agent-os-cli.js help",
+    "validation-suite": "node validation-suite.js",
     "lint": "node -c",
     "format": "prettier --write ."
   },

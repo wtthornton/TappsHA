@@ -35,6 +35,30 @@ class ComplianceChecker {
     // Initialize statistical analysis
     this.statisticalAnalysis = new StatisticalAnalysis();
     this.statisticalAnalysis.loadHistoricalData();
+    
+    // Initialize real-time metrics
+    this.realTimeMetrics = {
+      startTime: Date.now(),
+      violationsDetected: 0,
+      criticalViolations: 0,
+      warnings: 0,
+      infoViolations: 0,
+      suggestions: 0,
+      filesChanged: 0,
+      averageProcessingTime: 0,
+      batchEfficiency: 0,
+      processingThroughput: 0,
+      effectivenessScore: 0,
+      timeSaved: 0,
+      productivityGain: 0,
+      qualityImprovement: 0,
+      standardsAdoption: 0,
+      roi: 0,
+      efficiencyScore: 0,
+      impactScore: 0,
+      sustainabilityScore: 0,
+      effectivenessHistory: []
+    };
   }
 
   loadStandards() {

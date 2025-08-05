@@ -14,8 +14,6 @@ const fs = require('fs');
 // Import tool modules
 const ComplianceChecker = require('./compliance-checker');
 const CursorIntegration = require('./cursor-integration');
-const StandardsValidator = require('./standards-validator');
-const LessonsTracker = require('./lessons-tracker');
 
 class AgentOSCLI {
   constructor() {
@@ -68,8 +66,8 @@ class AgentOSCLI {
       .option('-a, --all', 'Validate all standards')
       .action(async (options) => {
         try {
-          const validator = new StandardsValidator();
-          await validator.validateStandards(options);
+          const checker = new ComplianceChecker();
+          await checker.runCheck(options);
         } catch (error) {
           console.error('❌ Standards validation failed:', error.message);
           process.exit(1);
@@ -85,8 +83,8 @@ class AgentOSCLI {
       .option('-a, --apply', 'Apply lessons learned to current project')
       .action(async (options) => {
         try {
-          const tracker = new LessonsTracker();
-          await tracker.handleLessons(options);
+          console.log('📚 Lessons learned tracking - Coming soon');
+          console.log('This feature will be implemented in a future update');
         } catch (error) {
           console.error('❌ Lessons tracking failed:', error.message);
           process.exit(1);
