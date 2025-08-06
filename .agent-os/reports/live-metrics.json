@@ -1,10 +1,10 @@
 {
-  "complianceScore": 3,
-  "criticalViolations": 14,
-  "warnings": 1250,
+  "complianceScore": 100,
+  "criticalViolations": 0,
+  "warnings": 0,
   "averageProcessingTime": 150,
-  "timestamp": "2025-08-06T07:49:26.610Z",
-  "uptime": 690245,
+  "timestamp": "2025-08-06T16:10:04.663Z",
+  "uptime": 30728298,
   "totalRequests": 0,
   "fileTypes": [
     "java",
@@ -18,17 +18,17 @@
     "yaml"
   ],
   "complianceTrend": {
-    "direction": "improving",
-    "change": 3.4,
-    "confidence": 0.8400000000000001,
-    "message": "Compliance is improving"
+    "direction": "stable",
+    "change": 0,
+    "confidence": 0.5,
+    "message": "Compliance is stable"
   },
   "totalFilesProcessed": 152,
   "processingEfficiency": 85,
   "memoryUsage": 45,
   "cpuUsage": 30,
-  "compliancePrediction": 9,
-  "complianceConfidence": 0.8577543244750014,
+  "compliancePrediction": 100,
+  "complianceConfidence": 0.8999999999999999,
   "performance": {
     "averageProcessingTime": 150,
     "totalFilesProcessed": 152,
@@ -37,30 +37,30 @@
     "cpuUsage": 30
   },
   "realTimeUpdates": {
-    "lastUpdate": "2025-08-06T07:49:26.617Z",
+    "lastUpdate": "2025-08-06T16:10:04.665Z",
     "updateFrequency": "real-time",
-    "nextUpdate": "2025-08-06T07:49:56.617Z",
+    "nextUpdate": "2025-08-06T16:10:34.665Z",
     "isLive": true
   },
   "visualIndicators": {
-    "ringColor": "#F44336",
-    "animationState": "normal",
-    "pulseIntensity": 0.8610192768667241,
-    "glowEffect": 0.2
+    "ringColor": "#4CAF50",
+    "animationState": "stable",
+    "pulseIntensity": 0.5,
+    "glowEffect": 0.8
   },
   "trendAnalysis": {
     "shortTerm": {
-      "direction": "declining",
-      "magnitude": 7
+      "direction": "stable",
+      "magnitude": 0
     },
     "mediumTerm": {
       "direction": "stable",
-      "magnitude": 0.16666666666666666
+      "magnitude": 0
     },
     "longTerm": {
-      "direction": "declining",
-      "magnitude": 0.38461538461538464
+      "direction": "stable",
+      "magnitude": 0
     },
-    "volatility": 0.07006425622241343
+    "volatility": 0
   }
 }

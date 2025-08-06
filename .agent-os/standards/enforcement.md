@@ -4,6 +4,120 @@
 
 This document defines the mandatory enforcement rules for Agent OS standards compliance. **ALL** code generation must follow these rules without exception.
 
+## MANDATORY REFACTORING ENFORCEMENT
+
+### Phase-Based Refactoring Requirements
+**ALWAYS** perform refactoring after each specification phase completion:
+
+#### Phase 1: Foundation Refactoring (CRITICAL)
+**MANDATORY** after completing foundation features:
+- [ ] **Security Hardening**: Implement token encryption, remove hardcoded secrets
+- [ ] **Error Handling**: Add comprehensive exception handling to all services
+- [ ] **Input Validation**: Validate all user inputs and API parameters
+- [ ] **Logging**: Implement structured logging with proper levels
+- [ ] **Testing**: Achieve ≥85% branch coverage for all new code
+
+#### Phase 2: Integration Refactoring (HIGH)
+**MANDATORY** after completing integration features:
+- [ ] **API Consistency**: Standardize all API response formats
+- [ ] **Service Decomposition**: Break large services into focused components
+- [ ] **Performance Optimization**: Optimize database queries and API calls
+- [ ] **Monitoring**: Add comprehensive metrics and health checks
+- [ ] **Documentation**: Update API documentation and code comments
+
+#### Phase 3: Advanced Features Refactoring (MEDIUM)
+**MANDATORY** after completing advanced features:
+- [ ] **Code Quality**: Address all TODO/FIXME items
+- [ ] **Architecture Review**: Optimize service interactions
+- [ ] **Security Audit**: Perform comprehensive security review
+- [ ] **Performance Testing**: Validate performance benchmarks
+- [ ] **User Experience**: Optimize UI/UX based on feedback
+
+### Security Refactoring Standards
+**CRITICAL** - Must be implemented immediately:
+
+```java
+// ALWAYS encrypt sensitive data
+@Service
+public class SecurityService {
+    
+    @Autowired
+    private EncryptionService encryptionService;
+    
+    // NEVER store tokens in plain text
+    public void storeConnection(ConnectionRequest request) {
+        String encryptedToken = encryptionService.encrypt(request.getToken());
+        connection.setEncryptedToken(encryptedToken);
+    }
+    
+    // ALWAYS validate inputs
+    public void validateInput(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new ValidationException("Input cannot be null or empty");
+        }
+        // Add additional validation as needed
+    }
+}
+```
+
+### Code Quality Refactoring Standards
+**MANDATORY** patterns for all refactoring:
+
+```java
+// ALWAYS implement proper error handling
+@Service
+public class ExampleService {
+    
+    private static final Logger logger = LoggerFactory.getLogger(ExampleService.class);
+    
+    public ExampleDto processData(ExampleRequest request) {
+        try {
+            // Validate input
+            validateRequest(request);
+            
+            // Process data
+            Example result = repository.save(processRequest(request));
+            
+            // Log success
+            logger.info("Successfully processed request: {}", request.getId());
+            
+            return mapToDto(result);
+            
+        } catch (ValidationException e) {
+            logger.warn("Validation failed for request: {}", request.getId(), e);
+            throw e;
+        } catch (Exception e) {
+            logger.error("Unexpected error processing request: {}", request.getId(), e);
+            throw new ServiceException("Failed to process request", e);
+        }
+    }
+}
+```
+
+### Refactoring Quality Gates
+**MANDATORY** checks before completing any phase:
+
+#### Security Quality Gate
+- [ ] No hardcoded secrets in code
+- [ ] All sensitive data encrypted
+- [ ] Input validation implemented
+- [ ] SQL injection prevention
+- [ ] OWASP Top-10 compliance
+
+#### Code Quality Gate
+- [ ] ≤5 TODO/FIXME items per service
+- [ ] ≥85% branch coverage
+- [ ] All public methods documented
+- [ ] Proper exception handling
+- [ ] Consistent naming conventions
+
+#### Performance Quality Gate
+- [ ] P95 response time ≤200ms
+- [ ] Memory usage within limits
+- [ ] Database queries optimized
+- [ ] Connection pooling configured
+- [ ] Caching implemented where appropriate
+
 ## Mandatory Technology Stack
 
 ### Backend (Java/Spring Boot)

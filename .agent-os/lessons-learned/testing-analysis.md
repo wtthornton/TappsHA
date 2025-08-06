@@ -21,13 +21,13 @@ mockApiClient.post.mockResolvedValue({ ...response });
 
 **Root Cause**: No clear documentation of API client behavior in mocks vs reality.
 
-**Solution**: Create mock factories that mirror actual behavior:
+**Solution**: Use standardized mock factories:
 ```typescript
-// .agent-os/testing/mock-factories.ts
-export const createApiClientMock = () => ({
-  get: vi.fn().mockImplementation((url) => Promise.resolve(mockResponses[url])),
-  post: vi.fn().mockImplementation((url, data) => Promise.resolve(mockResponses[url])),
-  // Behavior matches actual client - returns data directly, not wrapped
+// CONSOLIDATED INTO: .agent-os/testing/mock-factories.js
+import { createApiClientMock } from '.agent-os/testing/mock-factories.js';
+
+const apiMock = createApiClientMock({
+  '/api/endpoint': { data: 'response' } // Handles response.data unwrapping automatically
 });
 ```
 
@@ -48,16 +48,12 @@ vi.mock('../auth', () => ({
 
 **Root Cause**: Vitest hoisting and singleton pattern incompatibility.
 
-**Solution**: Standardized singleton mock pattern:
+**Solution**: Use standardized singleton mock pattern:
 ```typescript
-// .agent-os/testing/patterns/singleton-mock.ts
-export function mockSingleton<T>(modulePath: string, className: string, mockMethods: Partial<T>) {
-  return vi.mock(modulePath, () => ({
-    [className]: {
-      getInstance: () => mockMethods
-    }
-  }));
-}
+// CONSOLIDATED INTO: .agent-os/testing/mock-factories.js
+import { mockSingleton } from '.agent-os/testing/mock-factories.js';
+
+mockSingleton('../auth', 'AuthService', mockAuthMethods);
 ```
 
 ### 3. LocalStorage Mock Issues

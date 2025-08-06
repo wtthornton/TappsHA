@@ -366,6 +366,214 @@ Before saving any answer documents, verify:
 - [ ] Includes risk assessment and mitigation strategies
 - [ ] Provides implementation timeline and success metrics
 
+## REAL-TIME AGENT OS INTEGRATION (MANDATORY)
+
+### Pre-Code Generation Validation
+**ALWAYS** perform these checks before generating any code:
+
+#### 1. Environment Validation
+```javascript
+const { DependencyValidator } = require('.agent-os/utils/dependency-validator.js');
+const validator = new DependencyValidator();
+// ALWAYS validate environment before suggesting new dependencies or code
+const envResult = validator.validateEnvironment({ minNodeVersion: 18 });
+```
+
+#### 2. Cross-Platform Command Generation
+```javascript
+const CrossPlatformShell = require('.agent-os/utils/cross-platform-shell.js');
+const shell = new CrossPlatformShell();
+// ALWAYS use this instead of raw execSync() or platform-specific commands
+shell.executeCommand('npm install && npm test');
+```
+
+#### 3. Infrastructure Health Awareness
+```javascript
+const InfrastructureRecovery = require('.agent-os/utils/infrastructure-recovery.js');
+// ALWAYS check infrastructure health before deployment suggestions
+const health = await recovery.assessInfrastructureHealth();
+```
+
+#### 4. Feature Scope Validation
+```javascript
+const FeatureScoringFramework = require('.agent-os/utils/feature-scoring.js');
+// ALWAYS score new features before implementation
+const framework = new FeatureScoringFramework();
+const results = framework.scoreFeatures(proposedFeatures);
+```
+
+### Real-Time Code Generation Rules
+
+#### Automatic Utility Integration
+**ALWAYS** integrate Agent OS utilities in generated code:
+
+- **Environment Checks**: Use `DependencyValidator` before suggesting dependency changes
+- **Command Execution**: Use `CrossPlatformShell` for all terminal commands  
+- **Testing**: Use mock factories from `.agent-os/testing/mock-factories.js`
+- **Infrastructure**: Reference `InfrastructureRecovery` for deployment scripts
+- **Feature Planning**: Apply `FeatureScoringFramework` for new feature suggestions
+
+#### Phase-Aware Code Generation
+**ALWAYS** adapt code generation based on current development phase:
+
+##### Foundation Phase (Current Phase Detection Required)
+- **Security First**: Include encryption, input validation, authentication patterns
+- **Infrastructure**: Focus on Docker, database setup, basic monitoring
+- **Testing Foundation**: Establish testing patterns with ≥85% coverage requirement
+
+##### Integration Phase  
+- **API Consistency**: Standardize response formats and error handling
+- **Service Architecture**: Enforce Controller → Service → Repository pattern
+- **Performance**: Add monitoring, logging, metrics collection
+
+##### Advanced Features Phase
+- **Optimization**: Focus on performance, user experience improvements
+- **Documentation**: Comprehensive API docs and architectural documentation
+- **Quality Gates**: Address all TODO/FIXME items before feature completion
+
+### Early Issue Detection Patterns
+
+#### Security Issue Prevention
+**ALWAYS** detect and prevent these issues during code generation:
+```javascript
+// NEVER generate code with hardcoded secrets
+const token = process.env.API_TOKEN; // ✅ Correct
+
+// NEVER generate code without input validation
+public ResponseEntity<?> processData(@Valid @RequestBody DataRequest request) // ✅ Correct
+
+// NEVER generate SQL without parameterization
+@Query("SELECT u FROM User u WHERE u.email = :email") // ✅ Correct
+```
+
+#### Architecture Issue Prevention
+**ALWAYS** enforce these patterns during code generation:
+```java
+// ✅ Correct Controller Pattern
+@RestController
+@RequestMapping("/api/v1/users")
+public class UserController {
+    private final UserService userService; // Service injection, not Repository
+}
+
+// ✅ Correct Service Pattern  
+@Service
+@Transactional
+public class UserService {
+    private final UserRepository userRepository; // Repository injection
+}
+```
+
+#### Testing Integration Prevention
+**ALWAYS** generate tests using standardized patterns:
+```typescript
+// ✅ Correct Test Pattern
+import { createApiClientMock, setupBrowserMocks } from '.agent-os/testing/mock-factories.js';
+
+describe('UserService', () => {
+  beforeEach(() => {
+    setupBrowserMocks(); // Standardized setup
+  });
+  
+  test('should authenticate user', async () => {
+    const apiMock = createApiClientMock({
+      '/api/auth/login': { user: { id: 1 }, tokens: { access: 'token' } }
+    });
+    // Test implementation using standardized mocks
+  });
+});
+```
+
+### Compliance Validation Integration
+
+#### Real-Time Standards Checking
+**ALWAYS** validate against these standards during code generation:
+
+1. **Technology Stack Compliance** (`.agent-os/standards/tech-stack.md`):
+   - Spring Boot 3.3+ with Java 21 LTS for backend
+   - React 19 with TypeScript 5 for frontend  
+   - PostgreSQL 17 with pgvector extension
+   - Docker 24 with Compose V2
+
+2. **Code Style Compliance** (`.agent-os/standards/code-style.md`):
+   - 2 spaces indentation (never tabs)
+   - 100 characters max line length
+   - PascalCase for components, camelCase for functions
+   - Functional components with hooks (React)
+
+3. **Security Compliance** (`.agent-os/standards/security-compliance.md`):
+   - No hardcoded secrets (use environment variables)
+   - Input validation for all user inputs
+   - SQL injection prevention with @Param annotations
+   - HTTPS/TLS 1.3 for all communications
+
+4. **Architecture Compliance** (`.agent-os/standards/best-practices.md`):
+   - Controller → Service → Repository pattern
+   - Proper exception handling with @ControllerAdvice
+   - Spring Security with OAuth 2.1
+   - Observability with Spring Boot Actuator
+
+#### Immediate Violation Prevention
+**BLOCK** code generation if these violations would be introduced:
+- Security vulnerabilities (hardcoded secrets, SQL injection)
+- Architecture violations (Controller accessing Repository directly)
+- Technology stack deviations (wrong versions, unsupported libraries)
+- Missing critical dependencies or configuration
+
+### Feature Development Integration
+
+#### Feature Scoring Integration
+**ALWAYS** apply feature scoring before suggesting new functionality:
+```javascript
+// ALWAYS evaluate feature impact before implementation
+const featureScore = framework.scoreFeature({
+  name: 'New Feature Name',
+  description: 'Feature description',
+  importance: 8, // Business value (1-10)
+  complexity: 6, // Development effort (1-10)  
+  impact: 9      // Developer productivity impact (1-10)
+});
+
+// ONLY suggest implementation if score >= 6.0 (medium priority threshold)
+if (featureScore.scores.weighted < 6.0) {
+  // Suggest deferring or eliminating the feature
+}
+```
+
+#### Quick Wins Identification
+**ALWAYS** prioritize features with high impact, low complexity:
+- Impact ≥ 8, Complexity ≤ 4 = Immediate implementation suggestion
+- Impact ≥ 7, Complexity ≤ 6 = High priority suggestion
+- Impact < 6 = Question the feature value before suggesting
+
+### Infrastructure Integration
+
+#### Environment Validation Before Suggestions
+**ALWAYS** validate environment before suggesting infrastructure changes:
+```javascript
+// Check current infrastructure health
+const health = await recovery.assessInfrastructureHealth({
+  includeChecks: ['database', 'containers', 'ports', 'dependencies']
+});
+
+if (health.overall !== 'healthy') {
+  // Suggest fixes before new infrastructure changes
+  console.log('Fix infrastructure issues before proceeding:');
+  health.recommendations.forEach(rec => console.log(`- ${rec}`));
+}
+```
+
+#### Dependency Change Validation
+**ALWAYS** validate dependencies before suggesting package changes:
+```javascript
+// Before suggesting new dependencies
+const depResult = validator.verifyDependencies(['new-package']);
+if (!depResult.passed) {
+  // Suggest proper installation steps
+  console.log('Run: npm install new-package');
+}
+```
+
 ## Standards Enforcement
 
 ### Mandatory Compliance
@@ -373,6 +581,11 @@ Before saving any answer documents, verify:
 - **ALWAYS** reference standards files when making technology decisions
 - **ALWAYS** follow the established patterns and conventions
 - **ALWAYS** use the specified versions and configurations
+- **ALWAYS** integrate Agent OS utilities in all generated code
+- **ALWAYS** validate environment before suggesting changes
+- **ALWAYS** apply feature scoring for new functionality
+- **ALWAYS** use standardized testing patterns
+- **ALWAYS** check infrastructure health before deployment suggestions
 - **ALWAYS** save strategic questions in `.agent-os/product/strategic-questions/` with proper template format
 - **NEVER** create strategic questions in incorrect locations or formats
 - **ALWAYS** conduct deep research using multiple data sources for strategic questions

@@ -1,0 +1,87 @@
+{
+  "phase": "1",
+  "timestamp": "2025-08-06T16:03:33.010Z",
+  "security": {
+    "hardcodedSecrets": {
+      "count": 18,
+      "passed": false,
+      "details": "Found 18 potential hardcoded secrets"
+    },
+    "encryptionCoverage": {
+      "coverage": 4,
+      "passed": false,
+      "details": "Encryption coverage: 4%"
+    },
+    "inputValidation": {
+      "passed": true,
+      "details": "Input validation check"
+    },
+    "sqlInjectionPrevention": {
+      "passed": true,
+      "details": "SQL injection prevention check"
+    },
+    "owaspCompliance": {
+      "passed": true,
+      "details": "OWASP compliance check"
+    },
+    "score": 35,
+    "passed": false
+  },
+  "codeQuality": {
+    "todoCount": {
+      "totalTodos": 0,
+      "servicesWithExcessTodos": 0,
+      "serviceBreakdown": {},
+      "passed": true,
+      "details": "0 total TODOs, 0 services with >5 TODOs"
+    },
+    "testCoverage": {
+      "coverage": 0,
+      "passed": false,
+      "details": "Could not determine test coverage"
+    },
+    "documentation": {
+      "passed": true,
+      "details": "Documentation check"
+    },
+    "exceptionHandling": {
+      "passed": true,
+      "details": "Exception handling check"
+    },
+    "namingConventions": {
+      "passed": true,
+      "details": "Naming conventions check"
+    },
+    "score": 70,
+    "passed": false
+  },
+  "performance": {
+    "responseTime": {
+      "passed": true,
+      "details": "Response time check"
+    },
+    "memoryUsage": {
+      "passed": true,
+      "details": "Memory usage check"
+    },
+    "databasePerformance": {
+      "passed": true,
+      "details": "Database performance check"
+    },
+    "connectionPooling": {
+      "passed": true,
+      "details": "Connection pooling check"
+    },
+    "caching": {
+      "passed": true,
+      "details": "Caching check"
+    },
+    "score": 100,
+    "passed": true
+  },
+  "metrics": {
+    "totalFiles": 140,
+    "totalLines": 28223,
+    "averageLinesPerFile": 202
+  }
+}

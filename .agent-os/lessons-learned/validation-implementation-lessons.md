@@ -92,111 +92,38 @@ try {
 
 ## 🚀 Improvement Recommendations for Agent OS
 
-### 1. Enhanced Validation Framework
+## 🚀 Improvement Recommendations - CONSOLIDATED INTO UTILITIES
+
+**These patterns have been extracted into reusable utilities:**
+
+### 1. Validation Framework → `.agent-os/utils/dependency-validator.js`
 ```javascript
-class ValidationFramework {
-  constructor() {
-    this.checks = [];
-    this.results = {};
-    this.criticalFailures = [];
-  }
-  
-  addCheck(name, validator, options = {}) {
-    this.checks.push({
-      name,
-      validator,
-      critical: options.critical || false,
-      category: options.category || 'general'
-    });
-  }
-  
-  async runAll() {
-    for (const check of this.checks) {
-      try {
-        this.results[check.name] = await check.validator();
-      } catch (error) {
-        this.results[check.name] = { 
-          valid: false, 
-          error: error.message 
-        };
-        if (check.critical) {
-          this.criticalFailures.push(check.name);
-        }
-      }
-    }
-    return this.generateReport();
-  }
-}
+const { DependencyValidator } = require('.agent-os/utils/dependency-validator.js');
+const validator = new DependencyValidator();
+validator.validateEnvironment();
 ```
 
-### 2. Dependency Verification Helper
+### 2. Dependency Verification → `.agent-os/utils/dependency-validator.js`
 ```javascript
-function verifyDependencies(requiredModules) {
-  const missing = [];
-  for (const module of requiredModules) {
-    try {
-      require.resolve(module);
-    } catch (e) {
-      missing.push(module);
-    }
-  }
-  if (missing.length > 0) {
-    console.error(`Missing dependencies: ${missing.join(', ')}`);
-    console.log('Run: npm install');
-    return false;
-  }
-  return true;
-}
+const validator = new DependencyValidator();
+const result = validator.verifyDependencies(['commander', 'chalk']);
 ```
 
-### 3. Shell Command Abstraction
+### 3. Shell Command Abstraction → `.agent-os/utils/cross-platform-shell.js`
 ```javascript
-class ShellExecutor {
-  constructor() {
-    this.isWindows = process.platform === 'win32';
-    this.shell = this.isWindows ? 'powershell.exe' : '/bin/bash';
-  }
-  
-  executeCommand(command) {
-    if (this.isWindows && command.includes('&&')) {
-      // Split commands for PowerShell
-      const commands = command.split('&&').map(cmd => cmd.trim());
-      return this.executeSequential(commands);
-    }
-    return execSync(command, { encoding: 'utf8' });
-  }
-  
-  executeSequential(commands) {
-    let result = '';
-    for (const cmd of commands) {
-      result += execSync(cmd, { encoding: 'utf8' });
-    }
-    return result;
-  }
-}
+const CrossPlatformShell = require('.agent-os/utils/cross-platform-shell.js');
+const shell = new CrossPlatformShell();
+shell.executeCommand('npm install && npm test'); // Handles platform differences
 ```
 
-### 4. Circular Dependency Detector
+### 4. Circular Dependency Detector → `.agent-os/utils/dependency-validator.js`
 ```javascript
-class DependencyTracker {
-  constructor() {
-    this.callStack = [];
-    this.circularDependencies = [];
-  }
-  
-  trackCall(methodName) {
-    if (this.callStack.includes(methodName)) {
-      this.circularDependencies.push([...this.callStack, methodName]);
-      throw new Error(`Circular dependency detected: ${this.callStack.join(' → ')} → ${methodName}`);
-    }
-    this.callStack.push(methodName);
-  }
-  
-  endCall() {
-    this.callStack.pop();
-  }
-}
+const { CircularDependencyDetector } = require('.agent-os/utils/dependency-validator.js');
+const detector = new CircularDependencyDetector();
+detector.trackCall('methodName');
 ```
+
+**See `.agent-os/standards/development-utilities.md` for complete usage guidelines.**
 
 ## 📊 Metrics and Performance Insights
 
