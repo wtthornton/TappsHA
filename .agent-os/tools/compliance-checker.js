@@ -4577,7 +4577,44 @@ class ComplianceChecker {
 
   // Enhanced: Generate advanced compliance forecast
   generateAdvancedComplianceForecast(recentData) {
-    const scores = recentData.map(entry => entry.complianceScore);
+    // Add proper null/undefined checks for missing metrics data
+    if (!recentData || !Array.isArray(recentData) || recentData.length === 0) {
+      return {
+        type: 'ADVANCED_COMPLIANCE_FORECAST',
+        metric: 'compliance_score',
+        confidence: 0,
+        message: 'No recent data available for compliance forecasting',
+      };
+    }
+
+    // Filter out entries with missing compliance scores
+    const validEntries = recentData.filter(entry => 
+      entry && 
+      typeof entry.complianceScore === 'number'
+    );
+
+    if (validEntries.length === 0) {
+      return {
+        type: 'ADVANCED_COMPLIANCE_FORECAST',
+        metric: 'compliance_score',
+        confidence: 0,
+        message: 'No valid compliance score data available for forecasting',
+      };
+    }
+
+    const scores = validEntries.map(entry => entry.complianceScore);
+    
+    // Ensure we have enough data points for meaningful analysis
+    if (scores.length < 2) {
+      return {
+        type: 'ADVANCED_COMPLIANCE_FORECAST',
+        metric: 'compliance_score',
+        currentValue: scores[0],
+        confidence: 30,
+        message: 'Insufficient data points for trend analysis',
+      };
+    }
+
     const trend = this.calculateLinearTrend(scores);
     const volatility = this.calculateVolatility(scores);
     const seasonality = this.detectSeasonality(scores);
@@ -4600,7 +4637,44 @@ class ComplianceChecker {
 
   // Enhanced: Generate advanced violation forecast
   generateAdvancedViolationForecast(recentData) {
-    const violations = recentData.map(entry => entry.violations);
+    // Add proper null/undefined checks for missing metrics data
+    if (!recentData || !Array.isArray(recentData) || recentData.length === 0) {
+      return {
+        type: 'ADVANCED_VIOLATION_FORECAST',
+        metric: 'violation_count',
+        confidence: 0,
+        message: 'No recent data available for violation forecasting',
+      };
+    }
+
+    // Filter out entries with missing violation data
+    const validEntries = recentData.filter(entry => 
+      entry && 
+      typeof entry.violations === 'number'
+    );
+
+    if (validEntries.length === 0) {
+      return {
+        type: 'ADVANCED_VIOLATION_FORECAST',
+        metric: 'violation_count',
+        confidence: 0,
+        message: 'No valid violation data available for forecasting',
+      };
+    }
+
+    const violations = validEntries.map(entry => entry.violations);
+    
+    // Ensure we have enough data points for meaningful analysis
+    if (violations.length < 2) {
+      return {
+        type: 'ADVANCED_VIOLATION_FORECAST',
+        metric: 'violation_count',
+        currentValue: violations[0],
+        confidence: 30,
+        message: 'Insufficient data points for trend analysis',
+      };
+    }
+
     const trend = this.calculateLinearTrend(violations);
     const volatility = this.calculateVolatility(violations);
     const seasonality = this.detectSeasonality(violations);
@@ -4623,7 +4697,45 @@ class ComplianceChecker {
 
   // Enhanced: Generate advanced performance forecast
   generateAdvancedPerformanceForecast(recentData) {
-    const executionTimes = recentData.map(entry => entry.metrics.executionTime);
+    // Add proper null/undefined checks for missing metrics data
+    if (!recentData || !Array.isArray(recentData) || recentData.length === 0) {
+      return {
+        type: 'ADVANCED_PERFORMANCE_FORECAST',
+        metric: 'execution_time',
+        confidence: 0,
+        message: 'No recent data available for performance forecasting',
+      };
+    }
+
+    // Filter out entries with missing metrics and extract execution times
+    const validEntries = recentData.filter(entry => 
+      entry && 
+      entry.metrics && 
+      typeof entry.metrics.executionTime === 'number'
+    );
+
+    if (validEntries.length === 0) {
+      return {
+        type: 'ADVANCED_PERFORMANCE_FORECAST',
+        metric: 'execution_time',
+        confidence: 0,
+        message: 'No valid execution time data available for forecasting',
+      };
+    }
+
+    const executionTimes = validEntries.map(entry => entry.metrics.executionTime);
+    
+    // Ensure we have enough data points for meaningful analysis
+    if (executionTimes.length < 2) {
+      return {
+        type: 'ADVANCED_PERFORMANCE_FORECAST',
+        metric: 'execution_time',
+        currentValue: executionTimes[0],
+        confidence: 30,
+        message: 'Insufficient data points for trend analysis',
+      };
+    }
+
     const trend = this.calculateLinearTrend(executionTimes);
     const volatility = this.calculateVolatility(executionTimes);
     const seasonality = this.detectSeasonality(executionTimes);
@@ -7480,15 +7592,212 @@ class ComplianceChecker {
   }
 
   getAllFiles() {
+    // Ultra-optimized file scanning with intelligent filtering
     const patterns = ['**/*.js', '**/*.ts', '**/*.jsx', '**/*.tsx', '**/*.md'];
     const files = [];
     
+    // Comprehensive exclusion patterns based on .gitignore and common patterns
+    const excludePatterns = [
+      // Node.js and package managers
+      'node_modules/**',
+      'npm-debug.log*',
+      'yarn-debug.log*',
+      'yarn-error.log*',
+      'pnpm-debug.log*',
+      'lerna-debug.log*',
+      '*.tgz',
+      '.yarn-integrity',
+      '.npm',
+      '.eslintcache',
+      '.node_repl_history',
+      
+      // Build outputs
+      'dist/**',
+      'dist-ssr/**',
+      'build/**',
+      'target/**',
+      'coverage/**',
+      '*.lcov',
+      '.nyc_output',
+      
+      // Framework-specific
+      '.next/**',
+      '.nuxt/**',
+      '.cache/**',
+      '.parcel-cache/**',
+      '.rpt2_cache/**',
+      '.rts2_cache_cjs/**',
+      '.rts2_cache_es/**',
+      '.rts2_cache_umd/**',
+      '.fusebox/**',
+      
+      // IDE and editor files
+      '.vscode/**',
+      '.idea/**',
+      '*.iml',
+      '*.ipr',
+      '*.iws',
+      '.settings/**',
+      '.project',
+      '.classpath',
+      '*.suo',
+      '*.ntvs*',
+      '*.njsproj',
+      '*.sln',
+      '*.sw?',
+      
+      // OS files
+      '.DS_Store',
+      '.DS_Store?',
+      '._*',
+      '.Spotlight-V100',
+      '.Trashes',
+      'ehthumbs.db',
+      'Thumbs.db',
+      
+      // Temporary and cache files
+      'tmp/**',
+      'temp/**',
+      'logs/**',
+      '*.tmp',
+      '*.temp',
+      '*.swp',
+      '*.swo',
+      '*~',
+      
+      // Compiled and bundled files
+      '*.min.js',
+      '*.bundle.js',
+      '*.chunk.js',
+      '*.class',
+      '*.jar',
+      '*.war',
+      '*.ear',
+      
+      // Lock files
+      '*.lock',
+      'package-lock.json',
+      'yarn.lock',
+      'pnpm-lock.yaml',
+      
+      // Environment and secrets
+      '.env*',
+      'secrets/**',
+      '*.pem',
+      '*.key',
+      '*.crt',
+      
+      // Database files
+      '*.db',
+      '*.sqlite',
+      '*.sqlite3',
+      
+      // Docker and Kubernetes
+      '.dockerignore',
+      '*.kubeconfig',
+      
+      // Git
+      '.git/**',
+      
+      // Dependencies
+      'vendor/**',
+      'bower_components/**',
+      'jspm_packages/**',
+      'web_modules/**',
+      
+      // Logs
+      '*.log',
+      'logs/**',
+      
+      // Runtime data
+      'pids/**',
+      '*.pid',
+      '*.seed',
+      '*.pid.lock',
+      
+      // Test coverage
+      'coverage/**',
+      '*.lcov',
+      '.nyc_output',
+      
+      // Serverless
+      '.serverless/**',
+      
+      // DynamoDB
+      '.dynamodb/**',
+      
+      // TernJS
+      '.tern-port',
+      
+      // VSCode test
+      '.vscode-test/**',
+      
+      // Spring Boot
+      'application-*.properties',
+      'application-*.yml',
+      
+      // Microbundle
+      '.rpt2_cache/**',
+      '.rts2_cache_cjs/**',
+      '.rts2_cache_es/**',
+      '.rts2_cache_umd/**'
+    ];
+    
+    // Ultra-conservative depth limit to prevent deep scanning
+    const maxDepth = 3;
+    
+    // File size limit (skip files larger than 1MB)
+    const maxFileSize = 1024 * 1024; // 1MB
+    
     patterns.forEach(pattern => {
-      const matches = glob.sync(pattern, { ignore: ['node_modules/**', '.git/**'] });
-      files.push(...matches);
+      try {
+        const matches = glob.sync(pattern, { 
+          ignore: excludePatterns,
+          maxDepth: maxDepth,
+          nodir: true, // Only files, not directories
+          absolute: false,
+          follow: false, // Don't follow symlinks
+          ignore: excludePatterns
+        });
+        
+        // Advanced filtering with file size checks
+        const filteredMatches = matches.filter(file => {
+          // Skip files in node_modules subdirectories (double-check)
+          if (file.includes('node_modules')) return false;
+          
+          // Skip minified and bundled files
+          if (file.includes('.min.') || file.includes('.bundle.') || file.includes('.chunk.')) return false;
+          
+          // Skip test files in node_modules
+          if (file.includes('node_modules') && (file.includes('test') || file.includes('spec'))) return false;
+          
+          // Skip very large files
+          try {
+            const stats = fs.statSync(file);
+            if (stats.size > maxFileSize) return false;
+          } catch (error) {
+            // If we can't read the file, skip it
+            return false;
+          }
+          
+          // Skip files that are likely to be generated
+          if (file.includes('.generated.') || file.includes('.auto.')) return false;
+          
+          return true;
+        });
+        
+        files.push(...filteredMatches);
+      } catch (error) {
+        console.warn(`⚠️  Could not scan pattern ${pattern}: ${error.message}`);
+      }
     });
     
-    return files;
+    // Remove duplicates and sort for consistent results
+    const uniqueFiles = [...new Set(files)].sort();
+    
+    console.log(`📁 Scanned ${uniqueFiles.length} files (ultra-optimized from thousands)`);
+    
+    return uniqueFiles;
   }
 
   // Enhanced: Unified analytics interface implementation

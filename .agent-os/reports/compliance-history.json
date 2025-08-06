@@ -788,5 +788,4197 @@
     "filesProcessed": 0,
     "fileTypes": [],
     "averageProcessingTime": 0
+  },
+  {
+    "timestamp": "2025-08-06T00:07:30.436Z",
+    "runId": "run_1754438850436_hakbcgsmd",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 10446,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1153,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.14,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.06,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.03,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.08,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.29,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.07,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.8,
+              "confidence": 1,
+              "averageChange": 5.8
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.3,
+              "confidence": 1,
+              "averageChange": 166.3
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:07:30.189Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:07:30.323Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:07:30.214Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:07:30.323Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:07:29.522Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:07:30.323Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:07:23.656Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:07:30.323Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:07:30.321Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:07:30.323Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:17:17.201Z",
+    "runId": "run_1754439437201_3otmvqpki",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9619,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1044,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.15,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.05,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.03,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.07,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.29,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.08,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0.14,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.7,
+              "confidence": 1,
+              "averageChange": 5.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:17:16.945Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:17:17.082Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:17:16.966Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:17:17.082Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:17:16.287Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:17:17.082Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:17:10.861Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:17:17.082Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:17:17.080Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:17:17.082Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:20:32.207Z",
+    "runId": "run_1754439632207_9r637w4p4",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9521,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1035,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.06,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.05,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.07,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.43,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.06,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.8,
+              "confidence": 1,
+              "averageChange": 5.8
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:20:31.957Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:20:32.089Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:20:31.981Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:20:32.089Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:20:31.285Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:20:32.089Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:20:25.970Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:20:32.089Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:20:32.088Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:20:32.089Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:21:06.025Z",
+    "runId": "run_1754439666026_enzrxjl02",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9994,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1058,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.18,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.06,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.13,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.07,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.43,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.06,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0.29,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.7,
+              "confidence": 1,
+              "averageChange": 5.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.7,
+              "confidence": 1,
+              "averageChange": 166.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:21:05.779Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:21:05.914Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:21:05.801Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:21:05.915Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:21:05.128Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:21:05.915Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:20:59.684Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:21:05.915Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:21:05.913Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:21:05.915Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:22:45.478Z",
+    "runId": "run_1754439765478_7jcbbgnb9",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9603,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1129,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.25,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.05,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.2,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.08,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.36,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.06,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0.14,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.3,
+              "confidence": 1,
+              "averageChange": 166.3
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.8,
+              "confidence": 1,
+              "averageChange": 5.8
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:22:45.230Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:22:45.365Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:22:45.252Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:22:45.365Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:22:44.575Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:22:45.365Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:22:39.324Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:22:45.365Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:22:45.363Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:22:45.365Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:23:16.424Z",
+    "runId": "run_1754439796424_v0a53tcog",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9343,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1087,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.17,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.05,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.13,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.08,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.43,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.06,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.8,
+              "confidence": 1,
+              "averageChange": 5.8
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:23:16.176Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:23:16.311Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:23:16.196Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:23:16.311Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:23:15.520Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:23:16.311Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:23:10.417Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:23:16.311Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:23:16.309Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:23:16.311Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:23:45.535Z",
+    "runId": "run_1754439825535_5s4yadh34",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9372,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1063,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.3,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.05,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.07,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.07,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.57,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.06,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.7,
+              "confidence": 1,
+              "averageChange": 5.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:23:45.289Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:23:45.424Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:23:45.310Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:23:45.424Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:23:44.639Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:23:45.424Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:23:39.445Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:23:45.424Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:23:45.422Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:23:45.424Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:24:25.825Z",
+    "runId": "run_1754439865825_sl4uwwtqt",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 10080,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1132,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.18,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.05,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.2,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.08,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.29,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.07,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0.14,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.7,
+              "confidence": 1,
+              "averageChange": 166.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.7,
+              "confidence": 1,
+              "averageChange": 5.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:24:25.557Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:24:25.706Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:24:25.578Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:24:25.706Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:24:24.821Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:24:25.706Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:24:19.137Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:24:25.706Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:24:25.705Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:24:25.706Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:24:59.793Z",
+    "runId": "run_1754439899793_raeawtmep",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 10023,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1066,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.13,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.04,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.07,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.08,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.71,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.08,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.8,
+              "confidence": 1,
+              "averageChange": 5.8
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:24:59.431Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:24:59.636Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:24:59.462Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:24:59.636Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:24:58.487Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:24:59.636Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:24:52.964Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:24:59.636Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:24:59.635Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:24:59.636Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:26:22.476Z",
+    "runId": "run_1754439982476_9ldoyosh6",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9573,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1054,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.15,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.05,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.1,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.08,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.14,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.06,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.3,
+              "confidence": 1,
+              "averageChange": 166.3
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.8,
+              "confidence": 1,
+              "averageChange": 5.8
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:26:22.233Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:26:22.364Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:26:22.253Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:26:22.364Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:26:21.585Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:26:22.364Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:26:16.123Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:26:22.364Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:26:22.362Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:26:22.364Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:27:13.988Z",
+    "runId": "run_1754440033988_wyartqx60",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9720,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1114,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.11,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.06,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.07,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.08,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.43,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.07,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.3,
+              "confidence": 1,
+              "averageChange": 166.3
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.8,
+              "confidence": 1,
+              "averageChange": 5.8
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:27:13.718Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:27:13.864Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:27:13.740Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:27:13.864Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:27:13.038Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:27:13.864Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:27:07.589Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:27:13.864Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:27:13.862Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:27:13.864Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:27:57.572Z",
+    "runId": "run_1754440077572_pvj9qakdj",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9927,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1118,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.17,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.06,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.1,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.08,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.57,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.06,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.3,
+              "confidence": 1,
+              "averageChange": 166.3
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.8,
+              "confidence": 1,
+              "averageChange": 5.8
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:27:57.316Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:27:57.455Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:27:57.339Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:27:57.455Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:27:56.668Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:27:57.455Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:27:51.004Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:27:57.455Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:27:57.453Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:27:57.455Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:28:58.136Z",
+    "runId": "run_1754440138136_1tbxqpzih",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9750,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1094,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.15,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.05,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.2,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.08,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.21,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.06,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.3,
+              "confidence": 1,
+              "averageChange": 166.3
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.7,
+              "confidence": 1,
+              "averageChange": 5.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.7,
+              "confidence": 1,
+              "averageChange": 166.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.7,
+              "confidence": 1,
+              "averageChange": 166.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:28:57.880Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:28:58.023Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:28:57.908Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:28:58.023Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:28:57.216Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:28:58.023Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:28:51.744Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:28:58.023Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:28:58.021Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:28:58.023Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:33:53.542Z",
+    "runId": "run_1754440433542_llf698rup",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9423,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.06,
+        "totalFiles": 15760,
+        "totalTime": 1001,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.14,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.05,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.1,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.07,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.21,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.06,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.7,
+              "confidence": 1,
+              "averageChange": 166.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.8,
+              "confidence": 1,
+              "averageChange": 5.8
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:33:53.293Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:33:53.428Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:33:53.314Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:33:53.428Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:33:52.647Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:33:53.428Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:33:47.467Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:33:53.428Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:33:53.427Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:33:53.428Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:34:23.866Z",
+    "runId": "run_1754440463866_spdhgohpf",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 9962,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1145,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.17,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.05,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.07,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.08,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.5,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.06,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.7,
+              "confidence": 1,
+              "averageChange": 166.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.7,
+              "confidence": 1,
+              "averageChange": 5.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.5,
+              "confidence": 1,
+              "averageChange": 166.5
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:34:23.584Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:34:23.729Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:34:23.608Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:34:23.729Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:34:22.895Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:34:23.729Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:34:17.159Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:34:23.729Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:34:23.728Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:34:23.729Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
+  },
+  {
+    "timestamp": "2025-08-06T00:35:42.914Z",
+    "runId": "run_1754440542914_q0v6kb2sv",
+    "complianceScore": 100,
+    "totalChecks": 5364,
+    "passedChecks": 5364,
+    "violations": 0,
+    "criticalViolations": 0,
+    "warnings": 0,
+    "metrics": {
+      "executionTime": 10266,
+      "averageFileProcessingTime": {
+        "overallAverage": 0.07,
+        "totalFiles": 15760,
+        "totalTime": 1131,
+        "fileTypePerformance": {
+          ".java": {
+            "averageTime": 0.07,
+            "count": 71,
+            "totalSize": 439283,
+            "averageSize": 6187,
+            "efficiency": 0
+          },
+          ".ts": {
+            "averageTime": 0.06,
+            "count": 4936,
+            "totalSize": 15989223,
+            "averageSize": 3239,
+            "efficiency": 0
+          },
+          ".tsx": {
+            "averageTime": 0.07,
+            "count": 30,
+            "totalSize": 191483,
+            "averageSize": 6383,
+            "efficiency": 0
+          },
+          ".js": {
+            "averageTime": 0.08,
+            "count": 9928,
+            "totalSize": 69737275,
+            "averageSize": 7024,
+            "efficiency": 0
+          },
+          ".xml": {
+            "averageTime": 0.5,
+            "count": 14,
+            "totalSize": 1660117,
+            "averageSize": 118580,
+            "efficiency": 0
+          },
+          ".json": {
+            "averageTime": 0.06,
+            "count": 774,
+            "totalSize": 6430138,
+            "averageSize": 8308,
+            "efficiency": 0
+          },
+          ".yml": {
+            "averageTime": 0.14,
+            "count": 7,
+            "totalSize": 18010,
+            "averageSize": 2573,
+            "efficiency": 0
+          }
+        }
+      },
+      "violationCategories": {
+        "Code Style": {
+          "CRITICAL": 0,
+          "WARNING": 10362,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 10362,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.3,
+              "confidence": 1,
+              "averageChange": 166.3
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Security": {
+          "CRITICAL": 1,
+          "WARNING": 0,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 1,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 5.8,
+              "confidence": 1,
+              "averageChange": 5.8
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Testing": {
+          "CRITICAL": 0,
+          "WARNING": 9,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 9,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.7,
+              "confidence": 1,
+              "averageChange": 166.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        },
+        "Technology Stack": {
+          "CRITICAL": 0,
+          "WARNING": 24,
+          "INFO": 0,
+          "SUGGESTION": 0,
+          "total": 24,
+          "trends": {
+            "CRITICAL": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "WARNING": {
+              "direction": "increasing",
+              "magnitude": 166.7,
+              "confidence": 1,
+              "averageChange": 166.7
+            },
+            "INFO": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            },
+            "SUGGESTION": {
+              "direction": "stable",
+              "magnitude": 0,
+              "confidence": 0.5
+            }
+          },
+          "patterns": [],
+          "recommendations": []
+        }
+      },
+      "standardsEffectiveness": {
+        "tech-stack": {
+          "violations": 24,
+          "checks": 15760,
+          "violationRate": 0.15228426395939085,
+          "lastViolation": "2025-08-06T00:35:42.656Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:35:42.798Z",
+          "usageFrequency": "HIGH"
+        },
+        "code-style": {
+          "violations": 10366,
+          "checks": 15760,
+          "violationRate": 65.7741116751269,
+          "lastViolation": "2025-08-06T00:35:42.677Z",
+          "complianceTrend": "stable",
+          "priority": "HIGH",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:35:42.798Z",
+          "usageFrequency": "HIGH"
+        },
+        "security-compliance": {
+          "violations": 17,
+          "checks": 15760,
+          "violationRate": 0.10786802030456853,
+          "lastViolation": "2025-08-06T00:35:41.968Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:35:42.798Z",
+          "usageFrequency": "HIGH"
+        },
+        "best-practices": {
+          "violations": 4,
+          "checks": 15760,
+          "violationRate": 0.025380710659898477,
+          "lastViolation": "2025-08-06T00:35:36.361Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:35:42.798Z",
+          "usageFrequency": "HIGH"
+        },
+        "testing-strategy": {
+          "violations": 9,
+          "checks": 15760,
+          "violationRate": 0.05710659898477158,
+          "lastViolation": "2025-08-06T00:35:42.796Z",
+          "complianceTrend": "stable",
+          "priority": "LOW",
+          "referenceCount": 15760,
+          "lastReferenced": "2025-08-06T00:35:42.798Z",
+          "usageFrequency": "HIGH"
+        }
+      },
+      "filesProcessed": 15761
+    },
+    "dataIntegrity": {
+      "checksum": "-52469453",
+      "version": "1.0",
+      "validated": true
+    }
   }
 ]

@@ -4,6 +4,30 @@
 
 The Agent-OS Development Toolkit is a comprehensive framework designed to enable single-pass development by preventing errors before they occur. Based on extensive analysis of common development issues, this toolkit provides intelligent assistance, automated validation, and code generation capabilities.
 
+## Tech Stack Management
+
+### Authoritative Tech Stack Source
+**IMPORTANT**: `.agent-os/product/tech-stack.md` is the **authoritative source** for all base project operations.
+
+- **Location**: `.agent-os/product/tech-stack.md`
+- **Purpose**: Defines the technology stack for the specific product/project
+- **Usage**: All base project operations (base/backend, base/frontend, base/src) must align with this tech stack
+- **Validation**: Use `node .agent-os/tools/product-validator.js` to validate compliance
+
+### Tech Stack File Structure
+```
+.agent-os/
+├── agent-improvements/tech-stack.md    # For improving Agent OS framework itself
+├── standards/tech-stack.md             # Standards for Agent OS products
+└── product/tech-stack.md              # AUTHORITATIVE: Product-specific tech stack
+```
+
+### Validation Process
+1. **Check**: `.agent-os/product/tech-stack.md` exists
+2. **Validate**: All base project files align with product tech stack
+3. **Report**: Compliance status and recommendations
+4. **Enforce**: Use product tech stack for all development decisions
+
 ## Key Features
 
 ### 🧪 Testing Infrastructure
@@ -77,6 +101,14 @@ npm run validate:mocks
 ```
 
 This checks for common mock setup issues and provides fixes.
+
+### 4. Validate Product Tech Stack
+
+```bash
+node .agent-os/tools/product-validator.js
+```
+
+This validates that all base project files align with `.agent-os/product/tech-stack.md`.
 
 ## Testing Best Practices
 

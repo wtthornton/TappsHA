@@ -11,7 +11,7 @@ This document defines the technology stack for improving the .agent-os framework
 - **Markdown** - All documentation, standards, and templates
 - **JSON** - Configuration and data storage
 - **HTML** - Simple dashboards and reports (generated from JavaScript)
-
+New Ne
 ### File System Structure
 ```
 .agent-os/

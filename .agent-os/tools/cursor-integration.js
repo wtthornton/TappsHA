@@ -280,6 +280,52 @@ class CursorIntegration {
     const analytics = report.analytics || {};
     const stats = analytics.statisticalAnalysis || {};
     
+    // Enhanced HTML escaping function for template literals
+    const escapeHtml = (str) => {
+      if (typeof str !== 'string') return String(str);
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    };
+    
+    // Enhanced path resolution for cross-platform compatibility
+    const resolvePath = (filePath) => {
+      if (!filePath) return '';
+      return filePath.replace(/\\/g, '/').replace(/\/+/g, '/');
+    };
+    
+    // Enhanced data validation and fallbacks
+    const safeGet = (obj, path, defaultValue = '') => {
+      try {
+        const keys = path.split('.');
+        let result = obj;
+        for (const key of keys) {
+          if (result && typeof result === 'object' && key in result) {
+            result = result[key];
+          } else {
+            return defaultValue;
+          }
+        }
+        return result !== undefined && result !== null ? result : defaultValue;
+      } catch (error) {
+        return defaultValue;
+      }
+    };
+    
+    // Enhanced array mapping with error handling
+    const safeMap = (array, callback, fallback = '') => {
+      try {
+        if (!Array.isArray(array)) return fallback;
+        return array.map(callback).join('');
+      } catch (error) {
+        console.warn('Error in safeMap:', error.message);
+        return fallback;
+      }
+    };
+    
     const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -488,8 +534,8 @@ class CursorIntegration {
     <div class="container">
         <div class="header">
             <h1>🚀 Enhanced Compliance Dashboard</h1>
-            <div class="score ${report.complianceScore >= 90 ? 'success' : report.complianceScore >= 70 ? 'warning' : 'critical'}">
-                ${report.complianceScore}%
+            <div class="score ${safeGet(report, 'complianceScore', 0) >= 90 ? 'success' : safeGet(report, 'complianceScore', 0) >= 70 ? 'warning' : 'critical'}">
+                ${escapeHtml(safeGet(report, 'complianceScore', 0))}%
             </div>
             <p style="text-align: center; margin: 0;">Overall Compliance Score</p>
         </div>
@@ -497,19 +543,19 @@ class CursorIntegration {
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-title">📁 Files Checked</div>
-                <div class="metric-value">${report.totalChecks}</div>
+                <div class="metric-value">${escapeHtml(safeGet(report, 'totalChecks', 0))}</div>
             </div>
             <div class="metric-card">
                 <div class="metric-title">🚨 Critical Issues</div>
-                <div class="metric-value critical">${report.summary.critical}</div>
+                <div class="metric-value critical">${escapeHtml(safeGet(report, 'summary.critical', 0))}</div>
             </div>
             <div class="metric-card">
                 <div class="metric-title">⚠️ Warnings</div>
-                <div class="metric-value warning">${report.summary.warnings}</div>
+                <div class="metric-value warning">${escapeHtml(safeGet(report, 'summary.warnings', 0))}</div>
             </div>
             <div class="metric-card">
                 <div class="metric-title">⚡ Execution Time</div>
-                <div class="metric-value info">${analytics.executionTime || 0}ms</div>
+                <div class="metric-value info">${escapeHtml(safeGet(analytics, 'executionTime', 0))}ms</div>
             </div>
         </div>
         
@@ -533,65 +579,65 @@ class CursorIntegration {
         
         <div class="chart-tooltip" id="tooltip"></div>
         
-        ${analytics.averageFileProcessingTime && typeof analytics.averageFileProcessingTime === 'object' ? `
+        ${safeGet(analytics, 'averageFileProcessingTime') && typeof safeGet(analytics, 'averageFileProcessingTime') === 'object' ? `
         <div class="analytics-section">
             <h2>📊 File Processing Performance</h2>
             <div class="metrics-grid">
                 <div class="metric-card">
                     <div class="metric-title">Overall Average</div>
-                    <div class="metric-value">${analytics.averageFileProcessingTime.overallAverage}ms</div>
-                    <div>${analytics.averageFileProcessingTime.totalFiles} files processed</div>
+                    <div class="metric-value">${escapeHtml(safeGet(analytics, 'averageFileProcessingTime.overallAverage', 0))}ms</div>
+                    <div>${escapeHtml(safeGet(analytics, 'averageFileProcessingTime.totalFiles', 0))} files processed</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-title">Total Processing Time</div>
-                    <div class="metric-value">${analytics.averageFileProcessingTime.totalTime}ms</div>
+                    <div class="metric-value">${escapeHtml(safeGet(analytics, 'averageFileProcessingTime.totalTime', 0))}ms</div>
                 </div>
             </div>
             
-            ${analytics.averageFileProcessingTime.fileTypePerformance ? `
+            ${safeGet(analytics, 'averageFileProcessingTime.fileTypePerformance') ? `
             <h3>📈 Performance by File Type</h3>
             <div class="file-type-stats">
-                ${Object.entries(analytics.averageFileProcessingTime.fileTypePerformance).map(([fileType, stats]) => `
+                ${safeMap(Object.entries(safeGet(analytics, 'averageFileProcessingTime.fileTypePerformance', {})), ([fileType, stats]) => `
                 <div class="file-type-card">
-                    <div style="font-weight: bold; font-size: 1.2em;">${fileType}</div>
-                    <div>${stats.averageTime}ms avg</div>
-                    <div>${stats.count} files</div>
-                    <div>${stats.averageSize} bytes avg</div>
+                    <div style="font-weight: bold; font-size: 1.2em;">${escapeHtml(fileType)}</div>
+                    <div>${escapeHtml(safeGet(stats, 'averageTime', 0))}ms avg</div>
+                    <div>${escapeHtml(safeGet(stats, 'count', 0))} files</div>
+                    <div>${escapeHtml(safeGet(stats, 'averageSize', 0))} bytes avg</div>
                 </div>
-                `).join('')}
+                `, '')}
             </div>
             ` : ''}
         </div>
         ` : ''}
         
-        ${stats.violationPatterns && stats.violationPatterns.patterns.length > 0 ? `
+        ${safeGet(stats, 'violationPatterns.patterns') && safeGet(stats, 'violationPatterns.patterns').length > 0 ? `
         <div class="analytics-section">
             <h2>🔍 Violation Patterns Detected</h2>
-            ${stats.violationPatterns.patterns.map(pattern => `
+            ${safeMap(safeGet(stats, 'violationPatterns.patterns', []), pattern => `
             <div class="issue-item">
-                <strong>${pattern.type}</strong><br>
-                ${pattern.description}
+                <strong>${escapeHtml(safeGet(pattern, 'type', 'Unknown'))}</strong><br>
+                ${escapeHtml(safeGet(pattern, 'description', 'No description available'))}
             </div>
-            `).join('')}
+            `, '')}
         </div>
         ` : ''}
         
-        ${stats.recurringIssues && stats.recurringIssues.recurringIssues.length > 0 ? `
+        ${safeGet(stats, 'recurringIssues.recurringIssues') && safeGet(stats, 'recurringIssues.recurringIssues').length > 0 ? `
         <div class="analytics-section">
             <h2>⚠️ Recurring Compliance Issues</h2>
-            ${stats.recurringIssues.recurringIssues.map(issue => `
-            <div class="issue-item severity-${issue.severity.toLowerCase()}">
-                <strong>[${issue.severity}] ${issue.type}</strong><br>
-                ${issue.description}<br>
-                <em>Recommendation: ${issue.recommendation}</em>
+            ${safeMap(safeGet(stats, 'recurringIssues.recurringIssues', []), issue => `
+            <div class="issue-item severity-${escapeHtml(safeGet(issue, 'severity', 'medium').toLowerCase())}">
+                <strong>[${escapeHtml(safeGet(issue, 'severity', 'Unknown'))}] ${escapeHtml(safeGet(issue, 'type', 'Unknown'))}</strong><br>
+                ${escapeHtml(safeGet(issue, 'description', 'No description available'))}<br>
+                <em>Recommendation: ${escapeHtml(safeGet(issue, 'recommendation', 'No recommendation available'))}</em>
             </div>
-            `).join('')}
+            `, '')}
             
             <div style="margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 4px;">
-                <strong>Summary:</strong> ${stats.recurringIssues.totalIssues} recurring issues detected
-                ${stats.recurringIssues.criticalIssues > 0 ? `<br>🚨 Critical: ${stats.recurringIssues.criticalIssues}` : ''}
-                ${stats.recurringIssues.highIssues > 0 ? `<br>⚠️ High: ${stats.recurringIssues.highIssues}` : ''}
-                ${stats.recurringIssues.mediumIssues > 0 ? `<br>📊 Medium: ${stats.recurringIssues.mediumIssues}` : ''}
+                <strong>Summary:</strong> ${escapeHtml(safeGet(stats, 'recurringIssues.totalIssues', 0))} recurring issues detected
+                ${safeGet(stats, 'recurringIssues.criticalIssues', 0) > 0 ? `<br>🚨 Critical: ${escapeHtml(safeGet(stats, 'recurringIssues.criticalIssues', 0))}` : ''}
+                ${safeGet(stats, 'recurringIssues.highIssues', 0) > 0 ? `<br>⚠️ High: ${escapeHtml(safeGet(stats, 'recurringIssues.highIssues', 0))}` : ''}
+                ${safeGet(stats, 'recurringIssues.mediumIssues', 0) > 0 ? `<br>📊 Medium: ${escapeHtml(safeGet(stats, 'recurringIssues.mediumIssues', 0))}` : ''}
             </div>
         </div>
         ` : ''}
