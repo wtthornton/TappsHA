@@ -97,6 +97,17 @@
         </dependency>
 
         <!-- AI/ML Dependencies -->
+        <!-- TensorFlow Java for Local AI Processing -->
+        <dependency>
+            <groupId>org.tensorflow</groupId>
+            <artifactId>tensorflow-core-platform</artifactId>
+            <version>0.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.tensorflow</groupId>
+            <artifactId>ndarray</artifactId>
+            <version>0.4.0</version>
+        </dependency>
         <!-- ONNX Runtime for Model Interoperability -->
         <dependency>
             <groupId>com.microsoft.onnxruntime</groupId>

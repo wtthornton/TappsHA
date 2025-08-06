@@ -38,6 +38,7 @@ public class HybridAIProcessingService {
 
     private final RedisTemplate<String, Object> aiCacheRedisTemplate;
     private final OpenAIClient openAIClient;
+    private final TensorFlowLiteService tensorFlowLiteService;
     private final ObjectMapper objectMapper;
 
     @Value("${ai.hybrid.enabled:true}")
@@ -128,14 +129,34 @@ public class HybridAIProcessingService {
 
     /**
      * Process suggestion using local TensorFlow Lite model
-     * Note: This is a placeholder implementation until TensorFlow Lite integration is complete
      */
     private AISuggestion processWithLocalModel(AutomationContext context, UserPreferences preferences) {
-        log.debug("Local TensorFlow Lite processing not yet implemented");
-        
-        // TODO: Implement TensorFlow Lite integration
-        // For now, return null to trigger cloud fallback
-        return null;
+        try {
+            log.debug("Processing suggestion using local TensorFlow Lite model");
+            
+            // Use TensorFlow Lite service for local inference
+            CompletableFuture<AISuggestion> localSuggestion = 
+                    tensorFlowLiteService.generateLocalSuggestion(context, preferences);
+            
+            // Wait for local processing (with timeout)
+            AISuggestion suggestion = localSuggestion.get(5, java.util.concurrent.TimeUnit.SECONDS);
+            
+            if (suggestion != null && suggestion.getConfidence() != null && 
+                suggestion.getConfidence() >= localThreshold.doubleValue()) {
+                
+                log.info("Local TensorFlow Lite processing successful with confidence: {}", 
+                        suggestion.getConfidence());
+                return suggestion;
+            } else {
+                log.debug("Local TensorFlow Lite confidence below threshold: {}", 
+                         suggestion != null ? suggestion.getConfidence() : "null");
+                return null; // Trigger cloud fallback
+            }
+            
+        } catch (Exception e) {
+            log.warn("Local TensorFlow Lite processing failed, falling back to cloud: {}", e.getMessage());
+            return null; // Trigger cloud fallback
+        }
     }
 
     /**
@@ -215,7 +236,7 @@ public class HybridAIProcessingService {
                 .localFirst(localFirst)
                 .localThreshold(localThreshold)
                 .cachingEnabled(cachingEnabled)
-                .tensorflowLiteEnabled(tensorflowLiteEnabled)
+                .tensorflowLiteEnabled(tensorFlowLiteService.isHealthy())
                 .build();
     }
 

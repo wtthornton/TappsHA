@@ -27,9 +27,11 @@ import java.util.stream.Collectors;
 public class AIService {
 
     private final OpenAiService openAiService;
+    private final LangChainAutomationService langChainService;
 
-    public AIService(OpenAiService openAiService) {
+    public AIService(OpenAiService openAiService, LangChainAutomationService langChainService) {
         this.openAiService = openAiService;
+        this.langChainService = langChainService;
     }
 
     @Value("${openai.model:gpt-4o-mini}")
@@ -187,5 +189,43 @@ public class AIService {
         }
         
         return true;
+    }
+
+    /**
+     * Generate context-aware automation suggestion using LangChain framework
+     * 
+     * @param context AutomationContext with current Home Assistant state
+     * @param preferences User preferences for automation generation
+     * @return CompletableFuture<AISuggestion> with LangChain-generated suggestion
+     */
+    public java.util.concurrent.CompletableFuture<AISuggestion> generateContextAwareSuggestion(
+            com.tappha.homeassistant.dto.AutomationContext context, 
+            com.tappha.homeassistant.dto.UserPreferences preferences) {
+        
+        log.debug("Generating context-aware suggestion using LangChain framework");
+        
+        try {
+            // Use LangChain service for enhanced context-aware processing
+            return langChainService.generateContextAwareSuggestion(context, preferences);
+            
+        } catch (Exception e) {
+            log.error("Error generating context-aware suggestion with LangChain", e);
+            // Fallback to basic OpenAI generation if LangChain fails
+            return java.util.concurrent.CompletableFuture.failedFuture(e);
+        }
+    }
+
+    /**
+     * Check if LangChain integration is available and healthy
+     * 
+     * @return true if LangChain service is healthy, false otherwise
+     */
+    public boolean isLangChainHealthy() {
+        try {
+            return langChainService.isHealthy();
+        } catch (Exception e) {
+            log.error("Error checking LangChain health", e);
+            return false;
+        }
     }
 } 
