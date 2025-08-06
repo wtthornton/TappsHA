@@ -62,6 +62,9 @@ Before completing any development session, verify:
 - [ ] Lessons include actionable recommendations
 - [ ] Lessons are properly categorized and tagged
 - [ ] High-impact lessons are identified for integration
+- [ ] **Sub-task specifications updated** in `.agent-os/specs/*/tasks.md`
+- [ ] **Main tasks and sub-task specs synchronized**
+- [ ] **No orphaned incomplete sub-tasks**
 
 ### Task Update Protocol
 
@@ -70,12 +73,32 @@ Before completing any development session, verify:
 - **ALWAYS** add progress notes for completed sections
 - **ALWAYS** update completion percentages
 - **NEVER** wait until the end of a session to update tasks
+- **MANDATORY**: Update corresponding sub-task specifications in `.agent-os/specs/*/tasks.md`
+
+#### Sub-Task Specification Tracking
+**CRITICAL**: For every completed implementation, IMMEDIATELY update sub-task specifications:
+
+```markdown
+# In main tasks.md
+- [x] 2.1 Implement hybrid AI processing coordinator
+
+# MUST ALSO UPDATE in .agent-os/specs/YYYY-MM-DD-*/tasks.md
+- [x] 2.1 Write tests for AI service components and hybrid processing
+- [x] 2.4 Build hybrid AI processing coordinator with local-first strategy
+```
+
+#### Dual Update Requirements
+1. **Main Task File**: Update `tasks.md` with completed work
+2. **Sub-Task Specifications**: Update `.agent-os/specs/*/tasks.md` with completed implementation
+3. **Verification**: Ensure both files are synchronized
+4. **Documentation**: Reference both updates in commit messages
 
 #### Progress Documentation
 ```markdown
 - [x] [Sub-task Number] [Sub-task description]
   - **Progress Note**: [Detailed description of what was accomplished]
   - **Completed**: [Timestamp]
+  - **Sub-Task Specs Updated**: ✅ `.agent-os/specs/[spec-name]/tasks.md` marked complete
   - **Next**: [Next sub-task to work on]
 ```
 

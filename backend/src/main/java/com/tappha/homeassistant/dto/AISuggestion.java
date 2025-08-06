@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
@@ -19,10 +20,14 @@ import java.util.Map;
 public class AISuggestion {
     
     private String id;
-    private String suggestion; // The actual AI suggestion text
-    private String suggestionType; // 'improvement', 'new', 'optimization'
+    private String title;
+    private String description;
+    private String automationConfig; // JSON configuration for Home Assistant
+    private BigDecimal confidenceScore; // 0.0 to 1.0
+    private SuggestionType suggestionType;
+    private String suggestion; // The actual AI suggestion text (legacy)
     private Map<String, Object> suggestionData;
-    private Double confidence; // 0.0 to 1.0
+    private Double confidence; // 0.0 to 1.0 (legacy)
     private Double safetyScore; // 0.0 to 1.0
     private String reasoning;
     private String context; // Context used to generate the suggestion
@@ -34,4 +39,16 @@ public class AISuggestion {
     private OffsetDateTime approvedAt;
     private OffsetDateTime implementedAt;
     private Map<String, Object> metadata;
+
+    /**
+     * Suggestion types enum
+     */
+    public enum SuggestionType {
+        ENERGY_OPTIMIZATION,
+        COMFORT_IMPROVEMENT, 
+        SECURITY_ENHANCEMENT,
+        AUTOMATION_SIMPLIFICATION,
+        DEVICE_INTEGRATION,
+        SCHEDULE_OPTIMIZATION
+    }
 } 

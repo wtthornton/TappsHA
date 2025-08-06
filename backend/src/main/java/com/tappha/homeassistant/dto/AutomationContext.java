@@ -2,6 +2,10 @@ package com.tappha.homeassistant.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+import java.util.List;
 
 /**
  * Context for AI automation suggestions
@@ -9,8 +13,13 @@ import lombok.Data;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AutomationContext {
     
+    private String contextId;
+    private String patternType;
+    private List<String> entityIds;
     private String entityId;
     private String eventType;
     private String oldState;

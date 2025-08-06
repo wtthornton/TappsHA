@@ -90,11 +90,18 @@
 2. ✅ Code quality standards met
 3. ✅ Tests passing
 4. ✅ Security review completed
+5. ✅ **Sub-task specifications updated** (NEW REQUIREMENT)
+
+### Sub-Task Specification Verification
+- [ ] **Main tasks.md updated**: All completed work reflected
+- [ ] **Sub-task specs updated**: Related `.agent-os/specs/*/tasks.md` files marked complete
+- [ ] **Sync verified**: Main tasks align with sub-task specifications
+- [ ] **No orphaned sub-tasks**: All implemented features have corresponding sub-task updates
 
 ### Sign-off
 - [ ] **Developer**: Self-reviewed using this checklist
-- [ ] **Reviewer**: All items verified
-- [ ] **Ready to merge**: All checks passed
+- [ ] **Reviewer**: All items verified, including sub-task specification updates
+- [ ] **Ready to merge**: All checks passed, task tracking complete
 
 ---
 

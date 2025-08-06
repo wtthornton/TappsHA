@@ -51,6 +51,10 @@ public class AISuggestion {
     @Column(nullable = false)
     private SuggestionStatus status = SuggestionStatus.PENDING;
     
+    @Size(max = 36)
+    @Column(name = "batch_id")
+    private String batchId;
+    
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private OffsetDateTime createdAt;
@@ -65,6 +69,13 @@ public class AISuggestion {
     private List<AISuggestionFeedback> feedback = new ArrayList<>();
     
     public enum SuggestionType {
+        ENERGY_OPTIMIZATION,
+        COMFORT_IMPROVEMENT, 
+        SECURITY_ENHANCEMENT,
+        AUTOMATION_SIMPLIFICATION,
+        DEVICE_INTEGRATION,
+        SCHEDULE_OPTIMIZATION,
+        // Legacy values
         AUTOMATION_OPTIMIZATION,
         NEW_AUTOMATION,
         SCHEDULE_ADJUSTMENT,
@@ -190,6 +201,14 @@ public class AISuggestion {
     
     public void setFeedback(List<AISuggestionFeedback> feedback) {
         this.feedback = feedback;
+    }
+    
+    public String getBatchId() {
+        return batchId;
+    }
+    
+    public void setBatchId(String batchId) {
+        this.batchId = batchId;
     }
     
     // Helper methods

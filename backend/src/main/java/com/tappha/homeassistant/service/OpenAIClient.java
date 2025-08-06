@@ -40,32 +40,35 @@ public class OpenAIClient {
     private static final Logger logger = LoggerFactory.getLogger(OpenAIClient.class);
     
     private final RateLimiter rateLimiter;
-    private final ErrorHandler errorHandler;
+    private final AIErrorHandler errorHandler;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     
-    @Value("${openai.api.key}")
+    @Value("${ai.openai.api.key}")
     private String apiKey;
     
-    @Value("${openai.api.base-url:https://api.openai.com/v1}")
+    @Value("${ai.openai.api.base-url:https://api.openai.com/v1}")
     private String baseUrl;
     
-    @Value("${openai.model:gpt-4o-mini}")
-    private String model;
+    @Value("${ai.openai.models.primary:gpt-4o-mini}")
+    private String primaryModel;
     
-    @Value("${openai.max-tokens:1000}")
+    @Value("${ai.openai.models.fallback:gpt-3.5-turbo}")
+    private String fallbackModel;
+    
+    @Value("${ai.openai.max-tokens:1000}")
     private int maxTokens;
     
-    @Value("${openai.temperature:0.7}")
+    @Value("${ai.openai.temperature:0.7}")
     private double temperature;
     
-    @Value("${openai.timeout:30000}")
+    @Value("${ai.openai.timeout:30000}")
     private Duration timeout;
     
-    @Value("${openai.max-retries:3}")
+    @Value("${ai.openai.max-retries:3}")
     private int maxRetries;
     
-    public OpenAIClient(RateLimiter rateLimiter, ErrorHandler errorHandler) {
+    public OpenAIClient(RateLimiter rateLimiter, AIErrorHandler errorHandler) {
         this.rateLimiter = rateLimiter;
         this.errorHandler = errorHandler;
         this.restTemplate = new RestTemplate();
@@ -111,20 +114,50 @@ public class OpenAIClient {
     }
     
     /**
-     * Internal method to generate suggestion with retry logic
+     * Internal method to generate suggestion with model fallback logic
      */
     private AISuggestion generateSuggestionInternal(
         AutomationContext context, UserPreferences preferences) {
         
         try {
+            // Try primary model first
+            return generateWithModel(context, preferences, primaryModel);
+            
+        } catch (Exception primaryError) {
+            logger.warn("Primary model ({}) failed, attempting fallback: {}", primaryModel, primaryError.getMessage());
+            
+            try {
+                // Try fallback model
+                return generateWithModel(context, preferences, fallbackModel);
+                
+            } catch (Exception fallbackError) {
+                logger.error("Both primary and fallback models failed. Primary: {}, Fallback: {}", 
+                           primaryError.getMessage(), fallbackError.getMessage());
+                throw new RuntimeException("All AI models failed", fallbackError);
+            }
+        }
+    }
+    
+    /**
+     * Generate suggestion with specific model
+     */
+    private AISuggestion generateWithModel(
+        AutomationContext context, UserPreferences preferences, String modelToUse) {
+        
+        try {
             // Prepare request
-            ObjectNode requestBody = createRequestBody(context, preferences);
+            ObjectNode requestBody = createRequestBody(context, preferences, modelToUse);
             
             // Make API call
             ResponseEntity<JsonNode> response = makeApiCall(requestBody);
             
             // Parse response
-            return parseSuggestionResponse(response.getBody(), context, preferences);
+            AISuggestion result = parseSuggestionResponse(response.getBody(), context, preferences);
+            
+            // Record success for circuit breaker
+            errorHandler.recordSuccess();
+            
+            return result;
             
         } catch (HttpClientErrorException e) {
             handleHttpClientError(e);
@@ -164,12 +197,13 @@ public class OpenAIClient {
     /**
      * Create request body for OpenAI API
      */
-    private ObjectNode createRequestBody(AutomationContext context, UserPreferences preferences) {
+    private ObjectNode createRequestBody(AutomationContext context, UserPreferences preferences, String modelToUse) {
         ObjectNode requestBody = objectMapper.createObjectNode();
         
-        // Set model
-        requestBody.put("model", preferences.getPreferredModel() != null ? 
-            preferences.getPreferredModel() : model);
+        // Set model (use specified model or preference override)
+        String effectiveModel = preferences.getPreferredModel() != null ? 
+            preferences.getPreferredModel() : modelToUse;
+        requestBody.put("model", effectiveModel);
         
         // Set parameters
         requestBody.put("max_tokens", maxTokens);
@@ -265,7 +299,7 @@ public class OpenAIClient {
             
             return AISuggestion.builder()
                 .id(UUID.randomUUID().toString())
-                .suggestionType((String) suggestionData.get("suggestionType"))
+                .suggestionType(AISuggestion.SuggestionType.ENERGY_OPTIMIZATION) // Default type
                 .suggestionData(suggestionData)
                 .confidence((Double) suggestionData.get("confidence"))
                 .safetyScore((Double) suggestionData.get("safetyScore"))

@@ -140,4 +140,9 @@ public interface AIBatchProcessingRepository extends JpaRepository<AIBatchProces
         @Param("startDate") OffsetDateTime startDate,
         @Param("endDate") OffsetDateTime endDate
     );
+    
+    /**
+     * Find top N recent batch processing records ordered by start time descending
+     */
+    List<AIBatchProcessing> findTop10ByOrderByStartTimeDesc();
 }

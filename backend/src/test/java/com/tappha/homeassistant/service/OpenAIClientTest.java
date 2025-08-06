@@ -32,7 +32,7 @@ class OpenAIClientTest {
     private RateLimiter rateLimiter;
 
     @Mock
-    private ErrorHandler errorHandler;
+    private AIErrorHandler errorHandler;
 
     private OpenAIClient openAIClient;
 

@@ -33,6 +33,18 @@ spring:
     baseline-on-migrate: true
     validate-on-migrate: true
 
+  redis:
+    host: localhost
+    port: 6379
+    password: ${REDIS_PASSWORD:}
+    timeout: 5000
+    lettuce:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 5
+        max-wait: -1
+
 # Kafka temporarily disabled for development
   # kafka:
   #   bootstrap-servers: localhost:9092
@@ -125,23 +137,48 @@ influxdb:
   org: tappha
   bucket: tappha-metrics
 
-# OpenAI Configuration
-openai:
-  api:
-    key: ${OPENAI_API_KEY:}
-    base-url: https://api.openai.com/v1
-  model: gpt-4o-mini
-  max-tokens: 1000
-  temperature: 0.7
-  timeout: 30000
-  max-retries: 3
-  rate-limit:
-    requests-per-minute: 60
-    tokens-per-minute: 150000
-    burst-size: 10
+# AI Processing Configuration
+ai:
+  hybrid:
+    enabled: true
+    local-first: true
+    local-threshold: 0.7  # Use local processing for confidence >= 0.7
+    fallback-enabled: true
+  openai:
+    api:
+      key: ${OPENAI_API_KEY:}
+      base-url: https://api.openai.com/v1
+    models:
+      primary: gpt-4o-mini
+      fallback: gpt-3.5-turbo
+    max-tokens: 1000
+    temperature: 0.7
+    timeout: 30000
+    max-retries: 3
+    rate-limit:
+      requests-per-minute: 60
+      tokens-per-minute: 150000
+      burst-size: 10
+  local:
+    tensorflow-lite:
+      enabled: false  # Will be enabled when TensorFlow Lite is implemented
+      model-path: /models/pattern-classifier.tflite
+      inference-timeout: 100  # ms
+      confidence-threshold: 0.7
+  caching:
+    enabled: true
+    ttl: 3600  # seconds (1 hour)
+    max-size: 10000  # maximum number of cached responses
+    key-prefix: "ai:suggestion:"
+  batch:
+    enabled: true
+    schedule: "0 0 */6 * * *"  # Every 6 hours
+    batch-size: 100
+    max-concurrent-batches: 3
+    processing-timeout: 300000  # 5 minutes
+    retry-failed-suggestions: true
 
-# Spring AI Configuration
-  ai:
+  spring-ai:
     openai:
       chat:
         options:

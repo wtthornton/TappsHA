@@ -601,22 +601,56 @@ Before ending any development session, verify:
 - **Remaining Work**: Brief description of remaining work
 ```
 
+### Sub-Task Specification Management
+
+#### Mandatory Sub-Task Updates
+**ALWAYS** update sub-task specifications in `.agent-os/specs/*/tasks.md` files immediately when completing implementation:
+
+```markdown
+# Before Implementation
+- [ ] 2.1 Implement hybrid AI processing coordinator
+
+# After Implementation - IMMEDIATELY UPDATE
+- [x] 2.1 Implement hybrid AI processing coordinator
+```
+
+#### Sub-Task Specification Requirements
+- **ALWAYS** mark completed sub-tasks with `[x]` in specification files
+- **ALWAYS** update sub-task specifications before marking main tasks complete
+- **ALWAYS** maintain sync between main tasks.md and sub-task specifications
+- **NEVER** leave sub-task specifications outdated after implementation
+
+#### Sub-Task File Locations
+- `.agent-os/specs/YYYY-MM-DD-*/tasks.md` - Specification sub-tasks
+- Main `tasks.md` - High-level project tasks
+- Both must be updated simultaneously
+
+#### Validation Checklist for Sub-Task Updates
+Before marking any main task as complete:
+- [ ] All related sub-tasks in `.agent-os/specs/*/tasks.md` are marked `[x]`
+- [ ] Sub-task specifications reflect actual implementation
+- [ ] No orphaned incomplete sub-tasks remain
+- [ ] Main task completion aligns with sub-task completion
+
 ### Enforcement Rules for Task Tracking
 
 #### Strict Compliance
-- **NEVER** complete a subtask without updating the tasks.md file
+- **NEVER** complete a subtask without updating BOTH tasks.md AND sub-task specifications
 - **ALWAYS** update tasks immediately after completion
 - **ALWAYS** document progress notes for context
 - **ALWAYS** maintain accurate completion percentages
+- **MANDATORY**: Update sub-task specifications in `.agent-os/specs/*/tasks.md` immediately
 
 #### Quality Standards
 - **ALWAYS** use clear, descriptive task names
 - **ALWAYS** provide sufficient detail in progress notes
 - **ALWAYS** maintain chronological order of updates
 - **ALWAYS** cross-reference with related documentation
+- **ALWAYS** keep sub-task specifications in sync with implementation
 
 #### Integration with Development Workflow
-- **ALWAYS** check tasks.md before starting new work
-- **ALWAYS** update tasks.md after completing work
+- **ALWAYS** check tasks.md AND sub-task specifications before starting new work
+- **ALWAYS** update tasks.md AND sub-task specifications after completing work
 - **ALWAYS** reference tasks.md in commit messages
-- **ALWAYS** include task updates in pull request descriptions 
+- **ALWAYS** include task updates in pull request descriptions
+- **MANDATORY**: Verify sub-task specification updates in code reviews 
