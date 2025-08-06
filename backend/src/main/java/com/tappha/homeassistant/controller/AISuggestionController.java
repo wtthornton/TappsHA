@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,9 +22,10 @@ import java.util.Map;
  * @see https://developers.home-assistant.io/docs/development_index
  */
 @RestController
-@RequestMapping("/ai/suggestions")
+@RequestMapping("/api/v1/ai-suggestions")
 @RequiredArgsConstructor
 @Slf4j
+@ConditionalOnBean(AIService.class)
 public class AISuggestionController {
 
     private final AIService aiService;

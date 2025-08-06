@@ -46,6 +46,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HomeAssistantAuditLog> auditLogs = new ArrayList<>();
     
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<AISuggestionApproval> aiSuggestionApprovals = new ArrayList<>();
+    
     // Default constructor
     public User() {}
     
@@ -136,6 +139,14 @@ public class User {
         this.auditLogs = auditLogs;
     }
     
+    public List<AISuggestionApproval> getAiSuggestionApprovals() {
+        return aiSuggestionApprovals;
+    }
+    
+    public void setAiSuggestionApprovals(List<AISuggestionApproval> aiSuggestionApprovals) {
+        this.aiSuggestionApprovals = aiSuggestionApprovals;
+    }
+    
     // Helper methods
     public void addConnection(HomeAssistantConnection connection) {
         connections.add(connection);
@@ -150,6 +161,11 @@ public class User {
     public void addAuditLog(HomeAssistantAuditLog auditLog) {
         auditLogs.add(auditLog);
         auditLog.setUser(this);
+    }
+    
+    public void addAiSuggestionApproval(AISuggestionApproval approval) {
+        aiSuggestionApprovals.add(approval);
+        approval.setUser(this);
     }
     
     @Override

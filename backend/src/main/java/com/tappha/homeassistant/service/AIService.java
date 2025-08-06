@@ -8,6 +8,7 @@ import com.tappha.homeassistant.entity.HomeAssistantEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,11 +22,15 @@ import java.util.stream.Collectors;
  * @see https://developers.home-assistant.io/docs/development_index
  */
 @Service
-@RequiredArgsConstructor
 @Slf4j
+@ConditionalOnBean(OpenAiService.class)
 public class AIService {
 
     private final OpenAiService openAiService;
+
+    public AIService(OpenAiService openAiService) {
+        this.openAiService = openAiService;
+    }
 
     @Value("${openai.model:gpt-4o-mini}")
     private String openaiModel;

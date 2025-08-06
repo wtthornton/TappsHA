@@ -70,6 +70,9 @@ public class HomeAssistantConnection {
     @OneToMany(mappedBy = "connection", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HomeAssistantAuditLog> auditLogs = new ArrayList<>();
     
+    @OneToMany(mappedBy = "connection", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<AISuggestion> aiSuggestions = new ArrayList<>();
+    
     public enum ConnectionStatus {
         DISCONNECTED,
         CONNECTING,
@@ -223,6 +226,14 @@ public class HomeAssistantConnection {
         this.auditLogs = auditLogs;
     }
     
+    public List<AISuggestion> getAiSuggestions() {
+        return aiSuggestions;
+    }
+    
+    public void setAiSuggestions(List<AISuggestion> aiSuggestions) {
+        this.aiSuggestions = aiSuggestions;
+    }
+    
     // Helper methods
     public void addEvent(HomeAssistantEvent event) {
         events.add(event);
@@ -237,6 +248,11 @@ public class HomeAssistantConnection {
     public void addAuditLog(HomeAssistantAuditLog auditLog) {
         auditLogs.add(auditLog);
         auditLog.setConnection(this);
+    }
+    
+    public void addAiSuggestion(AISuggestion aiSuggestion) {
+        aiSuggestions.add(aiSuggestion);
+        aiSuggestion.setConnection(this);
     }
     
     public void updateLastSeen() {

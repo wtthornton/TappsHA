@@ -106,8 +106,9 @@ public class EventProcessingService {
     /**
      * Kafka listener for processing events from the queue
      * Implements intelligent filtering for 60-80% volume reduction
+     * TEMPORARILY DISABLED for development without Kafka
      */
-    @KafkaListener(topics = "homeassistant-events", groupId = "tappha-event-processor")
+    // @KafkaListener(topics = "homeassistant-events", groupId = "tappha-event-processor")
     public void processEvent(@Payload String eventJson, 
                            @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
                            @Header(KafkaHeaders.OFFSET) long offset) {

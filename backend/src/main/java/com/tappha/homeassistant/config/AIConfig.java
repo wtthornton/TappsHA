@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Configuration;
  * 
  * @see https://developers.home-assistant.io/docs/development_index
  */
-@Configuration
+// @Configuration
 public class AIConfig {
 
-    @Value("${openai.api.key}")
+    @Value("${openai.api.key:}")
     private String openaiApiKey;
 
     @Value("${openai.api.base-url:https://api.openai.com/v1}")
@@ -36,6 +36,10 @@ public class AIConfig {
      */
     @Bean
     public OpenAiService openAiService() {
+        if (openaiApiKey == null || openaiApiKey.trim().isEmpty()) {
+            // Return a mock service when API key is not provided
+            return null;
+        }
         return new OpenAiService(openaiApiKey);
     }
 } 
