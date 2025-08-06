@@ -149,12 +149,12 @@ services:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
       SPRING_INFLUX_URL: http://influxdb:8086
       SPRING_INFLUX_TOKEN: tappha-admin-token
+      GOOGLE_CLIENT_ID: your-google-client-id
+      GOOGLE_CLIENT_SECRET: your-google-client-secret
       SPRING_INFLUX_ORG: tappha
       SPRING_INFLUX_BUCKET: tappha-metrics
     depends_on:
       postgres:
-        condition: service_healthy
-      kafka:
         condition: service_healthy
       influxdb:
         condition: service_healthy

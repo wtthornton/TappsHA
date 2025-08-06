@@ -3,8 +3,8 @@
   "criticalViolations": 0,
   "warnings": 0,
   "averageProcessingTime": 150,
-  "timestamp": "2025-08-06T18:13:36.498Z",
-  "uptime": 38140134,
+  "timestamp": "2025-08-06T19:47:38.037Z",
+  "uptime": 43781672,
   "totalRequests": 0,
   "fileTypes": [
     "java",
@@ -37,9 +37,9 @@
     "cpuUsage": 30
   },
   "realTimeUpdates": {
-    "lastUpdate": "2025-08-06T18:13:36.503Z",
+    "lastUpdate": "2025-08-06T19:47:38.042Z",
     "updateFrequency": "real-time",
-    "nextUpdate": "2025-08-06T18:14:06.503Z",
+    "nextUpdate": "2025-08-06T19:48:08.042Z",
     "isLive": true
   },
   "visualIndicators": {

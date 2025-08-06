@@ -3,8 +3,10 @@ package com.tappha.homeassistant.websocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -66,6 +68,20 @@ public class WebSocketSessionManager {
      */
     public int getActiveSessionCount() {
         return activeSessions.size();
+    }
+
+    /**
+     * Send message to a specific session
+     */
+    public void sendMessageToSession(String sessionId, String message) throws IOException {
+        WebSocketSession session = activeSessions.get(sessionId);
+        if (session != null && session.isOpen()) {
+            session.sendMessage(new TextMessage(message));
+            logger.debug("Sent message to session: {}", sessionId);
+        } else {
+            logger.warn("Cannot send message to session {}: session not found or closed", sessionId);
+            throw new IOException("Session not found or closed: " + sessionId);
+        }
     }
 
     /**

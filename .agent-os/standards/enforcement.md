@@ -1,770 +1,369 @@
 # Agent OS Standards Enforcement
 
 ## Overview
+This document defines the mandatory enforcement rules for Agent OS compliance across all projects. These rules ensure consistent quality, maintainability, and adherence to established standards.
 
-This document defines the mandatory enforcement rules for Agent OS standards compliance. **ALL** code generation must follow these rules without exception.
+## Mandatory Compliance Rules
 
-## MANDATORY REFACTORING ENFORCEMENT
+### 1. Feature Scoring Framework (MANDATORY)
+**ALWAYS** score all features before development using the 4-dimension framework:
 
-### Phase-Based Refactoring Requirements
-**ALWAYS** perform refactoring after each specification phase completion:
+#### Required Scoring Dimensions
+- **Business Impact (1-10)**: How much does this improve Agent-OS effectiveness?
+- **Developer Productivity (1-10)**: How much faster/better will developers code with this feature?
+- **Implementation Complexity (1-10)**: How difficult is this to build and maintain?
+- **Adoption Likelihood (1-10)**: How likely are developers to actively use this feature?
 
-#### Phase 1: Foundation Refactoring (CRITICAL)
-**MANDATORY** after completing foundation features:
-- [ ] **Security Hardening**: Implement token encryption, remove hardcoded secrets
-- [ ] **Error Handling**: Add comprehensive exception handling to all services
-- [ ] **Input Validation**: Validate all user inputs and API parameters
-- [ ] **Logging**: Implement structured logging with proper levels
-- [ ] **Testing**: Achieve ≥85% branch coverage for all new code
+#### Phase Classification Criteria
+- **Phase 1 Criteria**: Developer Productivity ≥ 8/10 OR Combined Score ≥ 32/40
+- **Phase 2 Criteria**: Developer Productivity ≥ 7/10 OR Combined Score ≥ 28/40
+- **Phase 3+ Criteria**: All other features requiring executive approval
+- **Elimination Criteria**: Developer Productivity < 6/10 OR Combined Score < 24/40
 
-#### Phase 2: Integration Refactoring (HIGH)
-**MANDATORY** after completing integration features:
-- [ ] **API Consistency**: Standardize all API response formats
-- [ ] **Service Decomposition**: Break large services into focused components
-- [ ] **Performance Optimization**: Optimize database queries and API calls
-- [ ] **Monitoring**: Add comprehensive metrics and health checks
-- [ ] **Documentation**: Update API documentation and code comments
+#### Required Documentation
+- **ALWAYS** use `.agent-os/templates/feature-scoring-template.md`
+- **ALWAYS** document scoring justification for each dimension
+- **ALWAYS** include threshold analysis and phase classification
+- **ALWAYS** make implementation decision (Proceed/Defer/Eliminate)
 
-#### Phase 3: Advanced Features Refactoring (MEDIUM)
-**MANDATORY** after completing advanced features:
-- [ ] **Code Quality**: Address all TODO/FIXME items
-- [ ] **Architecture Review**: Optimize service interactions
-- [ ] **Security Audit**: Perform comprehensive security review
-- [ ] **Performance Testing**: Validate performance benchmarks
-- [ ] **User Experience**: Optimize UI/UX based on feedback
+### 2. Technology Stack Validation (MANDATORY)
+**ALWAYS** validate technology choices against Context7 before implementation:
 
-### Security Refactoring Standards
-**CRITICAL** - Must be implemented immediately:
+#### Context7 Validation Requirements
+- [ ] Technology choices validated against Context7 documentation
+- [ ] Current versions confirmed via Context7
+- [ ] Best practices verified via Context7
+- [ ] Compatibility checked across components
 
-```java
-// ALWAYS encrypt sensitive data
-@Service
-public class SecurityService {
-    
-    @Autowired
-    private EncryptionService encryptionService;
-    
-    // NEVER store tokens in plain text
-    public void storeConnection(ConnectionRequest request) {
-        String encryptedToken = encryptionService.encrypt(request.getToken());
-        connection.setEncryptedToken(encryptedToken);
-    }
-    
-    // ALWAYS validate inputs
-    public void validateInput(String input) {
-        if (input == null || input.trim().isEmpty()) {
-            throw new ValidationException("Input cannot be null or empty");
-        }
-        // Add additional validation as needed
-    }
-}
+#### Agent OS Standards Compliance
+- [ ] Spring Boot 3.3+ (Java 21 LTS) for backend
+- [ ] React 19 with TypeScript 5 for frontend
+- [ ] PostgreSQL 17 with pgvector for database
+- [ ] OpenAI GPT-4o for AI capabilities
+- [ ] Docker 24 for containerization
+
+### 3. Task Tracking Standards (MANDATORY)
+**ALWAYS** update tasks.md file immediately after completing any subtask:
+
+#### Immediate Update Requirements
+- **ALWAYS** mark completed subtasks with `[x]` immediately after completion
+- **NEVER** wait until the end of a session to update task progress
+- **ALWAYS** add progress notes for completed sections
+- **ALWAYS** update completion percentages and overall progress
+- **ALWAYS** document session summaries with completed tasks and next priorities
+
+#### Task File Structure Requirements
+- **Required Sections**: Tasks, Recent Completion Summary, Next Priority Tasks, Overall Progress
+- **Progress Documentation**: Include timestamps, detailed descriptions, and next steps
+- **Quality Standards**: Clear task names, sufficient detail, chronological order
+- **Integration**: Reference tasks.md in commit messages and pull requests
+
+#### Task Update Protocol
+1. **Immediate Updates**: Mark subtasks as `[x]` immediately upon completion
+2. **Progress Notes**: Add detailed notes explaining what was accomplished
+3. **Session Summaries**: Document completed work and next priorities
+4. **Validation**: Verify all task updates before ending development sessions
+
+### 4. Lessons Learned Capture (MANDATORY)
+**ALWAYS** capture lessons learned for significant tasks:
+
+#### Required Lesson Structure
+- **ALWAYS** use `.agent-os/templates/lessons-learned-template.md`
+- **ALWAYS** include context, action taken, results, and key insights
+- **ALWAYS** provide specific, actionable recommendations
+- **ALWAYS** assess impact level, scope, and urgency
+- **ALWAYS** include follow-up actions and standards integration
+
+#### Lesson Categories
+- **Development**: Code patterns, architecture decisions, technical challenges
+- **Process**: Workflow improvements, team collaboration, project management
+- **Technology**: Tool selection, integration challenges, performance optimization
+- **Security**: Security implementations, vulnerability management, compliance
+- **Performance**: Optimization strategies, monitoring, scalability
+- **Team**: Communication, collaboration, knowledge sharing
+- **Other**: Any other significant learnings
+
+### 5. Code Style Standards (MANDATORY)
+**ALWAYS** follow established code style standards:
+
+#### Java/Spring Boot Standards
+- **ALWAYS** use 2 spaces indentation (never tabs)
+- **ALWAYS** use 100 chars soft max line length
+- **ALWAYS** use PascalCase for classes, camelCase for variables/functions
+- **ALWAYS** follow Controller → Service → Repository pattern
+- **ALWAYS** implement proper exception handling with @ControllerAdvice
+- **ALWAYS** use SLF4J for logging
+
+#### TypeScript/React Standards
+- **ALWAYS** use 2 spaces indentation (never tabs)
+- **ALWAYS** use 100 chars soft max line length
+- **ALWAYS** use PascalCase for components, camelCase for variables/functions
+- **ALWAYS** use functional components with hooks
+- **ALWAYS** use proper TypeScript types
+- **ALWAYS** use TanStack Query for data fetching
+
+#### CSS/TailwindCSS Standards
+- **ALWAYS** use mobile-first approach (≤400px xs breakpoint)
+- **ALWAYS** use TailwindCSS 4.x utilities
+- **ALWAYS** implement responsive design
+- **ALWAYS** follow accessibility standards (WCAG 2.2 AA)
+
+### 6. Architecture Standards (MANDATORY)
+**ALWAYS** follow layered architecture patterns:
+
+#### Backend Architecture
+- **ALWAYS** implement Controller → Service → Repository pattern
+- **ALWAYS** maintain clear separation of concerns
+- **ALWAYS** use JPA/Hibernate with PostgreSQL
+- **ALWAYS** implement Spring Security with OAuth 2.1
+- **ALWAYS** use Spring Boot Actuator for monitoring
+
+#### Frontend Architecture
+- **ALWAYS** use component-based structure
+- **ALWAYS** use Context API for lightweight state management
+- **ALWAYS** use TanStack Query for data fetching
+- **ALWAYS** implement proper error boundaries
+- **ALWAYS** use loading states for better UX
+
+### 7. Security Standards (MANDATORY)
+**ALWAYS** implement comprehensive security measures:
+
+#### Authentication & Authorization
+- **ALWAYS** use Spring Security with OAuth 2.1
+- **ALWAYS** implement JWT token validation
+- **ALWAYS** use role-based access control (RBAC)
+- **ALWAYS** implement input validation
+- **ALWAYS** use HTTPS/TLS 1.3
+
+#### Data Protection
+- **ALWAYS** encrypt sensitive data at rest
+- **ALWAYS** use parameterized queries (JPA)
+- **ALWAYS** implement proper session management
+- **ALWAYS** follow OWASP Top-10 compliance
+- **ALWAYS** implement security headers
+
+### 8. Performance Standards (MANDATORY)
+**ALWAYS** meet performance targets:
+
+#### Backend Performance
+- **ALWAYS** achieve P95 response time ≤ 200ms
+- **ALWAYS** configure connection pooling
+- **ALWAYS** implement caching (Redis)
+- **ALWAYS** use async processing for heavy operations
+- **ALWAYS** use Spring Boot Actuator + Prometheus monitoring
+
+#### Frontend Performance
+- **ALWAYS** achieve Time to Interactive (TTI) ≤ 2s on LTE
+- **ALWAYS** use code splitting with React.lazy()
+- **ALWAYS** implement proper loading states
+- **ALWAYS** use TanStack Query caching
+- **ALWAYS** implement performance monitoring
+
+### 9. Testing Standards (MANDATORY)
+**ALWAYS** achieve comprehensive test coverage:
+
+#### Unit Tests
+- **ALWAYS** achieve ≥85% branch coverage
+- **ALWAYS** test all public methods
+- **ALWAYS** use mock objects appropriately
+- **ALWAYS** manage test data properly
+
+#### Integration Tests
+- **ALWAYS** test critical paths
+- **ALWAYS** test database integration
+- **ALWAYS** test API integration
+- **ALWAYS** test error scenarios
+
+#### E2E Tests
+- **ALWAYS** use Cypress for e2e tests
+- **ALWAYS** test critical user journeys
+- **ALWAYS** test cross-browser compatibility
+- **ALWAYS** test mobile responsiveness
+
+### 10. Documentation Standards (MANDATORY)
+**ALWAYS** complete all documentation requirements:
+
+#### API Documentation
+- **ALWAYS** create OpenAPI/Swagger documentation
+- **ALWAYS** document all endpoints
+- **ALWAYS** include request/response examples
+- **ALWAYS** document error codes
+
+#### Code Documentation
+- **ALWAYS** use JavaDoc for public APIs
+- **ALWAYS** use TSDoc for exported TypeScript
+- **ALWAYS** keep README files updated
+- **ALWAYS** maintain architecture documentation
+
+#### Deployment Documentation
+- **ALWAYS** create environment setup guide
+- **ALWAYS** document deployment procedures
+- **ALWAYS** document configuration management
+- **ALWAYS** create troubleshooting guide
+
+## Compliance Validation
+
+### Automated Compliance Checking
+**ALWAYS** use the automated compliance checker:
+
+```bash
+# Run compliance check
+node .agent-os/tools/compliance-checker.js
+
+# Check specific categories
+node .agent-os/tools/compliance-checker.js --category security
+node .agent-os/tools/compliance-checker.js --category performance
 ```
 
-### Code Quality Refactoring Standards
-**MANDATORY** patterns for all refactoring:
+### Manual Compliance Checklist
+**ALWAYS** use `.agent-os/templates/compliance-checklist-template.md` for manual validation:
 
-```java
-// ALWAYS implement proper error handling
-@Service
-public class ExampleService {
-    
-    private static final Logger logger = LoggerFactory.getLogger(ExampleService.class);
-    
-    public ExampleDto processData(ExampleRequest request) {
-        try {
-            // Validate input
-            validateRequest(request);
-            
-            // Process data
-            Example result = repository.save(processRequest(request));
-            
-            // Log success
-            logger.info("Successfully processed request: {}", request.getId());
-            
-            return mapToDto(result);
-            
-        } catch (ValidationException e) {
-            logger.warn("Validation failed for request: {}", request.getId(), e);
-            throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error processing request: {}", request.getId(), e);
-            throw new ServiceException("Failed to process request", e);
-        }
-    }
-}
-```
+#### Pre-Development Validation
+- [ ] Feature scoring completed and documented
+- [ ] Technology stack validated against Context7
+- [ ] Task tracking structure established
+- [ ] Documentation templates prepared
 
-### Refactoring Quality Gates
-**MANDATORY** checks before completing any phase:
+#### Development Validation
+- [ ] Code style standards followed
+- [ ] Architecture patterns implemented
+- [ ] Security measures implemented
+- [ ] Performance targets met
+- [ ] Test coverage requirements satisfied
 
-#### Security Quality Gate
+#### Post-Development Validation
+- [ ] Task tracking updated immediately
+- [ ] Lessons learned captured
+- [ ] Documentation completed
+- [ ] Quality gates passed
+
+## Quality Gates
+
+### Security Quality Gate
 - [ ] No hardcoded secrets in code
 - [ ] All sensitive data encrypted
 - [ ] Input validation implemented
 - [ ] SQL injection prevention
 - [ ] OWASP Top-10 compliance
 
-#### Code Quality Gate
+### Code Quality Gate
 - [ ] ≤5 TODO/FIXME items per service
 - [ ] ≥85% branch coverage
 - [ ] All public methods documented
 - [ ] Proper exception handling
 - [ ] Consistent naming conventions
 
-#### Performance Quality Gate
+### Performance Quality Gate
 - [ ] P95 response time ≤200ms
 - [ ] Memory usage within limits
 - [ ] Database queries optimized
 - [ ] Connection pooling configured
 - [ ] Caching implemented where appropriate
 
-## Mandatory Technology Stack
+### User Experience Quality Gate
+- [ ] Mobile-first design implemented
+- [ ] Accessibility standards met
+- [ ] Loading states implemented
+- [ ] Error handling user-friendly
+- [ ] Performance targets met
+
+## Enforcement Mechanisms
+
+### Automated Enforcement
+- **CI/CD Integration**: Automated compliance checks in build pipeline
+- **Pre-commit Hooks**: Validate code style and security before commits
+- **Automated Testing**: Ensure test coverage requirements are met
+- **Performance Monitoring**: Track performance metrics in real-time
+
+### Manual Enforcement
+- **Code Reviews**: Mandatory review of all code changes
+- **Architecture Reviews**: Review architectural decisions
+- **Security Reviews**: Validate security implementations
+- **Documentation Reviews**: Ensure documentation completeness
+
+### Compliance Reporting
+- **Weekly Reports**: Track compliance metrics
+- **Monthly Reviews**: Comprehensive compliance assessment
+- **Quarterly Audits**: Deep-dive compliance analysis
+- **Annual Assessments**: Full standards compliance review
+
+## Violation Handling
+
+### Minor Violations
+- **Warning**: First-time minor violations
+- **Documentation**: Record violation and corrective action
+- **Training**: Provide additional training if needed
+- **Follow-up**: Verify correction in next review
+
+### Major Violations
+- **Immediate Stop**: Halt development until violation is corrected
+- **Root Cause Analysis**: Identify why violation occurred
+- **Corrective Action**: Implement fixes and preventive measures
+- **Process Update**: Update standards if needed
+
+### Critical Violations
+- **Emergency Review**: Immediate team review
+- **Process Suspension**: Suspend development until resolved
+- **Executive Notification**: Notify leadership of critical issues
+- **Standards Revision**: Update standards to prevent recurrence
+
+## Continuous Improvement
+
+### Standards Evolution
+- **Regular Review**: Quarterly review of all standards
+- **Feedback Integration**: Incorporate team feedback
+- **Industry Alignment**: Align with industry best practices
+- **Technology Updates**: Update for new technologies
+
+### Process Optimization
+- **Automation**: Increase automated compliance checking
+- **Tooling**: Improve compliance tools and templates
+- **Training**: Enhance team training and onboarding
+- **Documentation**: Improve standards documentation
+
+### Metrics and KPIs
+- **Compliance Rate**: Track overall compliance percentage
+- **Violation Rate**: Monitor violation frequency
+- **Resolution Time**: Track time to resolve violations
+- **Team Satisfaction**: Measure team satisfaction with standards
+
+## Templates and Tools
+
+### Required Templates
+- **Feature Scoring**: `.agent-os/templates/feature-scoring-template.md`
+- **Task Updates**: `.agent-os/templates/task-update-template.md`
+- **Lessons Learned**: `.agent-os/templates/lessons-learned-template.md`
+- **Compliance Checklist**: `.agent-os/templates/compliance-checklist-template.md`
+
+### Required Tools
+- **Compliance Checker**: `.agent-os/tools/compliance-checker.js`
+- **Feature Scoring Calculator**: Automated scoring calculations
+- **Task Tracking Validator**: Validate task tracking compliance
+- **Lessons Learned Tracker**: Track and categorize lessons
+
+## Success Metrics
+
+### Compliance Targets
+- **Overall Compliance**: ≥95% compliance rate
+- **Security Compliance**: 100% security compliance
+- **Performance Compliance**: ≥90% performance compliance
+- **Documentation Compliance**: ≥85% documentation completeness
+
+### Quality Targets
+- **Code Quality**: ≥90% code quality score
+- **Test Coverage**: ≥85% branch coverage
+- **Performance**: Meet all performance targets
+- **Security**: Zero security vulnerabilities
+
+### Process Targets
+- **Task Tracking**: 100% immediate task updates
+- **Lessons Learned**: Capture lessons for all significant tasks
+- **Feature Scoring**: Score all features before development
+- **Standards Validation**: Validate all technology choices
+
+---
 
-### Backend (Java/Spring Boot)
-**ALWAYS** use:
-- Spring Boot 3.3+ (Java 21 LTS)
-- Spring Security with OAuth 2.1
-- JPA/Hibernate with PostgreSQL 17
-- Spring Boot Actuator for monitoring
-- SLF4J for logging
-- @Async for background processing
-- Controller → Service → Repository pattern
-
-### Frontend (React/TypeScript)
-**ALWAYS** use:
-- React 19 stable with TypeScript 5
-- Functional components with hooks
-- TanStack Query 5 for data fetching
-- Context API for lightweight state
-- TailwindCSS 4.x + shadcn/ui
-- Vitest + jsdom for unit tests
-- Cypress for e2e tests
-
-### Database
-**ALWAYS** use:
-- PostgreSQL 17 with pgvector extension
-- InfluxDB 3 Core for time-series data
-- JPA/Hibernate for ORM
-- Connection pooling
-- Proper indexing strategies
-
-### AI/ML
-**ALWAYS** use:
-- OpenAI GPT-4o for NLP
-- pgvector for vector embeddings
-- LangChain 0.2 for AI applications
-- Async/await patterns for API calls
-
-### Infrastructure
-**ALWAYS** use:
-- Docker 24 with Compose V2
-- GitHub Actions for CI/CD
-- Prometheus v2.50 + Grafana 11
-- Loki 3 for logging
-- Multi-stage Docker builds
-
-## Mandatory Code Style
-
-### Java/Spring Boot
-```java
-// ALWAYS use these patterns:
-@RestController
-@RequestMapping("/api/v1")
-public class ExampleController {
-    
-    private final ExampleService exampleService;
-    
-    public ExampleController(ExampleService exampleService) {
-        this.exampleService = exampleService;
-    }
-    
-    @GetMapping("/examples")
-    public ResponseEntity<List<ExampleDto>> getExamples() {
-        return ResponseEntity.ok(exampleService.findAll());
-    }
-}
-```
-
-### TypeScript/React
-```typescript
-// ALWAYS use these patterns:
-import { useState, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
-
-interface ExampleProps {
-  id: string;
-}
-
-export const ExampleComponent: React.FC<ExampleProps> = ({ id }) => {
-  const { data, isLoading } = useQuery({
-    queryKey: ['example', id],
-    queryFn: () => fetchExample(id),
-  });
-  
-  if (isLoading) return <div>Loading...</div>;
-  
-  return <div>{data?.name}</div>;
-};
-```
-
-### CSS/TailwindCSS
-```css
-/* ALWAYS use mobile-first approach */
-.example-component {
-  @apply p-4 text-sm; /* xs: ≤400px */
-  
-  @apply sm:p-6 sm:text-base; /* sm: 640px+ */
-  @apply md:p-8 md:text-lg; /* md: 768px+ */
-  @apply lg:p-10 lg:text-xl; /* lg: 1024px+ */
-}
-```
-
-## Mandatory Architecture Patterns
-
-### Layered Architecture
-```
-Controller Layer (REST API)
-    ↓
-Service Layer (Business Logic)
-    ↓
-Repository Layer (Data Access)
-    ↓
-Database Layer (PostgreSQL/InfluxDB)
-```
-
-### Security Patterns
-```java
-// ALWAYS implement security
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig {
-    
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-            .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/public/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .build();
-    }
-}
-```
-
-### Error Handling
-```java
-// ALWAYS implement proper error handling
-@ControllerAdvice
-public class GlobalExceptionHandler {
-    
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleException(Exception ex) {
-        log.error("Unexpected error", ex);
-        return ResponseEntity
-            .status(HttpStatus.INTERNAL_SERVER_ERROR)
-            .body(new ErrorResponse("Internal server error"));
-    }
-}
-```
-
-## Mandatory Testing Patterns
-
-### Unit Tests (Java)
-```java
-@ExtendWith(MockitoExtension.class)
-class ExampleServiceTest {
-    
-    @Mock
-    private ExampleRepository repository;
-    
-    @InjectMocks
-    private ExampleService service;
-    
-    @Test
-    void shouldReturnExample() {
-        // given
-        Example example = new Example("test");
-        when(repository.findById(1L)).thenReturn(Optional.of(example));
-        
-        // when
-        Example result = service.findById(1L);
-        
-        // then
-        assertThat(result).isEqualTo(example);
-    }
-}
-```
-
-### Unit Tests (TypeScript)
-```typescript
-import { render, screen } from '@testing-library/react';
-import { ExampleComponent } from './ExampleComponent';
-
-describe('ExampleComponent', () => {
-  it('should render example', () => {
-    render(<ExampleComponent id="1" />);
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
-  });
-});
-```
-
-## Mandatory Performance Standards
-
-### Backend Performance
-- P95 response time ≤ 200ms
-- Use connection pooling
-- Implement proper caching (Redis)
-- Use async processing for heavy operations
-- Monitor with Spring Boot Actuator + Prometheus
-
-### Frontend Performance
-- Time to Interactive (TTI) ≤ 2s on LTE
-- Use code splitting with React.lazy()
-- Implement proper loading states
-- Use TanStack Query for caching
-- Monitor with @vercel/analytics
-
-## Mandatory Security Standards
-
-### Authentication & Authorization
-- Use Spring Security with OAuth 2.1
-- Implement JWT token validation
-- Use role-based access control (RBAC)
-- Validate all inputs
-- Use HTTPS/TLS 1.3
-
-### Data Protection
-- Encrypt sensitive data at rest
-- Use parameterized queries (JPA)
-- Implement proper session management
-- Follow OWASP Top-10 guidelines
-- Use Helmet.js for security headers
-
-## Mandatory Observability
-
-### Metrics
-```java
-// ALWAYS expose metrics
-@RestController
-public class MetricsController {
-    
-    @GetMapping("/actuator/prometheus")
-    public String metrics() {
-        return "application_requests_total{method=\"GET\"} 42";
-    }
-}
-```
-
-### Logging
-```java
-// ALWAYS use structured logging
-@Slf4j
-public class ExampleService {
-    
-    public void processExample(Example example) {
-        log.info("Processing example: {}", example.getId());
-        // ... processing logic
-        log.debug("Example processed successfully: {}", example);
-    }
-}
-```
-
-### Tracing
-```java
-// ALWAYS implement distributed tracing
-@RestController
-public class ExampleController {
-    
-    @GetMapping("/examples")
-    public ResponseEntity<List<Example>> getExamples() {
-        Span span = tracer.spanBuilder("getExamples").startSpan();
-        try (var scope = span.makeCurrent()) {
-            // ... implementation
-            return ResponseEntity.ok(examples);
-        } finally {
-            span.end();
-        }
-    }
-}
-```
-
-## Validation Checklist
-
-Before generating any code, verify:
-
-### Feature Scoring (MANDATORY FIRST)
-- [ ] Feature scored on Business Impact (1-10)
-- [ ] Feature scored on Developer Productivity (1-10)
-- [ ] Feature scored on Implementation Complexity (1-10)
-- [ ] Feature scored on Adoption Likelihood (1-10)
-- [ ] Phase classification applied (Phase 1/2/3+)
-- [ ] Implementation decision documented (proceed/defer/eliminate)
-- [ ] Resource allocation aligns with phase priority
-
-### Technology Stack
-- [ ] Spring Boot 3.3+ (Java 21 LTS) for backend
-- [ ] React 19 with TypeScript 5 for frontend
-- [ ] PostgreSQL 17 with pgvector for database
-- [ ] InfluxDB 3 Core for time-series data
-- [ ] OpenAI GPT-4o for AI capabilities
-- [ ] Docker 24 for containerization
-
-### Code Style
-- [ ] 2 spaces indentation
-- [ ] 100 chars soft max line length
-- [ ] PascalCase for components/classes
-- [ ] camelCase for variables/functions
-- [ ] Functional components with hooks
-- [ ] Proper TypeScript types
-
-### Architecture
-- [ ] Controller → Service → Repository pattern
-- [ ] Clear separation of concerns
-- [ ] Proper exception handling
-- [ ] Security implementation
-- [ ] Observability setup
-
-### Testing
-- [ ] Unit tests with ≥80% branch coverage
-- [ ] Integration tests for critical paths
-- [ ] E2E tests with Cypress
-- [ ] Static analysis tools
-
-### Performance
-- [ ] Backend P95 ≤ 200ms
-- [ ] Frontend TTI ≤ 2s on LTE
-- [ ] Proper caching implementation
-- [ ] Database optimization
-
-### Security
-- [ ] Input validation
-- [ ] Authentication/Authorization
-- [ ] HTTPS/TLS implementation
-- [ ] OWASP Top-10 compliance
-
-## Enforcement Rules
-
-### Strict Compliance
-- **NEVER** develop features without proper impact scoring
-- **NEVER** deviate from these standards without explicit approval
-- **ALWAYS** score features using the 4-dimension framework before development
-- **ALWAYS** follow phase classification thresholds (Phase 1: ≥8/10 productivity, Phase 2: ≥7/10 productivity)
-- **ALWAYS** eliminate features with <6/10 developer productivity impact
-- **ALWAYS** reference this document when making technology decisions
-- **ALWAYS** follow the established patterns and conventions
-- **ALWAYS** use the specified versions and configurations
-
-### Code Review Requirements
-- All code must pass static analysis
-- All code must meet test coverage requirements
-- All code must follow security guidelines
-- All code must meet performance standards
-
-### Documentation Requirements
-- All public APIs must have JavaDoc/TSDoc
-- All configuration must be documented
-- All deployment procedures must be documented
-- All operational procedures must be documented
-
-## References
-
-- Technology Stack: `@~/.agent-os/standards/tech-stack.md`
-- Code Style: `@~/.agent-os/standards/code-style.md`
-- Best Practices: `@~/.agent-os/standards/best-practices.md`
-- JavaScript Style: `@~/.agent-os/standards/code-style/javascript-style.md`
-- HTML Style: `@~/.agent-os/standards/code-style/html-style.md`
-- CSS Style: `@~/.agent-os/standards/code-style/css-style.md`
-- Feature Scoring Framework: `@~/.agent-os/standards/feature-scoring.md`
-- Lessons Learned Framework: `@~/.agent-os/lessons-learned/README.md`
-
-## Feature Scoring Framework Integration Standards
-
-### Mandatory Feature Scoring Protocol
-
-**ALWAYS** score features using the Agent-OS Feature Scoring Framework before development planning or resource allocation.
-
-**MANDATORY**: All features must be scored on Business Impact, Developer Productivity, Implementation Complexity, and Adoption Likelihood (1-10 scale each).
-
-### Feature Scoring Requirements
-
-#### 1. Scoring Triggers
-- **ALWAYS** score features during initial feature request
-- **ALWAYS** score features before sprint planning
-- **ALWAYS** score features before resource allocation
-- **ALWAYS** re-score features during bi-weekly reviews
-- **MANDATORY**: No development without proper feature scoring
-
-#### 2. Scoring Process
-```markdown
-# Feature Scoring Process
-1. Assemble scoring team (product owner + lead developer + 2 team members)
-2. Score individually then discuss for consensus
-3. Use mandatory 4-dimension scoring criteria
-4. Document justification for each score
-5. Apply phase classification based on thresholds
-6. Make implementation decision (proceed/defer/eliminate)
-```
-
-#### 3. Implementation Thresholds
-- **Phase 1 (Immediate)**: Developer Productivity ≥8/10 OR Combined Score ≥32/40
-- **Phase 2 (Next)**: Developer Productivity ≥7/10 OR Combined Score ≥28/40  
-- **Phase 3+ (Deferred)**: All other features requiring executive approval
-- **Elimination**: Developer Productivity <6/10 OR Combined Score <24/40
-
-#### 4. Validation Checklist for Feature Scoring
-Before proceeding with any feature development, verify:
-- [ ] Feature scored on all 4 dimensions (Business Impact, Developer Productivity, Implementation Complexity, Adoption Likelihood)
-- [ ] Scores documented with clear justification
-- [ ] Phase classification applied based on thresholds
-- [ ] Implementation decision made (proceed/defer/eliminate)
-- [ ] Resource allocation aligns with phase priority
-- [ ] Automatic elimination criteria checked
-
-### Feature Scoring File Structure Standards
-
-#### Required Sections
-```markdown
-# Feature Scoring Template
-- Feature Name and Description
-- Scoring (4 dimensions with justification)
-- Threshold Analysis (phase classification)
-- Implementation Decision (proceed/defer/eliminate)
-- Priority Ranking (high/medium/low)
-- Resource Allocation (effort percentage)
-```
-
-### Enforcement Rules for Feature Scoring
-
-#### Strict Compliance
-- **NEVER** develop features without proper impact scoring
-- **ALWAYS** use the standardized 4-dimension scoring criteria
-- **ALWAYS** follow phase classification thresholds
-- **ALWAYS** eliminate features meeting automatic elimination criteria
-- **ALWAYS** allocate 80% effort to Phase 1 features, 20% to Phase 2 features, 0% to Phase 3+ features
-
-#### Quality Standards
-- **ALWAYS** provide clear justification for each score
-- **ALWAYS** involve cross-functional team in scoring process
-- **ALWAYS** document implementation decision rationale
-- **ALWAYS** validate scoring accuracy post-implementation
-
-#### Resource Allocation Rules
-- **80% development effort** on Phase 1 features (≥8/10 developer productivity impact)
-- **20% development effort** on Phase 2 features (≥7/10 developer productivity impact)
-- **0% development effort** on Phase 3+ features until Phase 1-2 are complete
-- **Automatic elimination** of features scoring <6/10 on developer productivity
-
-#### Scope Discipline Protocol
-- **MANDATORY**: Features with <7/10 developer productivity require executive approval
-- **MANDATORY**: Quarterly scope reviews to eliminate low-impact features from backlog
-- **MANDATORY**: Protected development time for high-impact features
-- **MANDATORY**: No feature additions during high-impact feature development without re-scoring
-
-## Lessons Learned Integration Standards
-
-### Mandatory Lessons Learned Protocol
-
-**ALWAYS** capture lessons learned after completing any significant development task or milestone.
-
-**MANDATORY**: Every task list must include a lessons learned sub-task as the final sub-task of each main task.
-
-### Lessons Learned Requirements
-
-#### 1. Capture Triggers
-- **ALWAYS** capture lessons after sub-task completion
-- **ALWAYS** capture lessons after milestone completion
-- **ALWAYS** capture lessons after incident resolution
-- **ALWAYS** capture lessons after performance optimizations
-- **ALWAYS** capture lessons after security implementations
-- **MANDATORY**: Include lessons learned sub-task in every task list
-
-#### 2. Capture Process
-```markdown
-# Lesson Capture Process
-1. Use appropriate category directory
-2. Follow lesson template structure
-3. Include all required sections
-4. Add appropriate tags for searching
-5. Link to related lessons and standards
-```
-
-#### 3. Integration Process
-- **ALWAYS** review lessons weekly during active development
-- **ALWAYS** integrate high-impact lessons into standards
-- **ALWAYS** update Cursor rules with new patterns
-- **ALWAYS** communicate changes to all teams
-- **ALWAYS** monitor adoption and effectiveness
-
-#### 4. Validation Checklist for Lessons Learned
-Before completing any development session, verify:
-- [ ] Lessons are captured for significant tasks
-- [ ] Lessons follow template structure
-- [ ] Lessons include actionable recommendations
-- [ ] Lessons are properly categorized and tagged
-- [ ] High-impact lessons are identified for integration
-- [ ] Every task list includes lessons learned sub-tasks
-- [ ] Lessons learned sub-tasks are marked complete after task completion
-
-### Lessons Learned File Structure Standards
-
-#### Required Sections
-```markdown
-# Lesson Template
-- Lesson Information (Date, Project, Phase, Priority)
-- Context (What was the situation?)
-- Action Taken (What was done?)
-- Results (What were the outcomes?)
-- Key Insights (What did we learn?)
-- Recommendations (What should we do differently?)
-- Impact Assessment (How significant is this lesson?)
-- Related Lessons (Links to related experiences)
-- Follow-up Actions (What needs to be done?)
-- Tags (Categories for searching)
-```
-
-### Enforcement Rules for Lessons Learned
-
-#### Strict Compliance
-- **NEVER** complete significant development without capturing lessons
-- **ALWAYS** use the standard lesson template
-- **ALWAYS** include actionable recommendations
-- **ALWAYS** categorize lessons appropriately
-- **ALWAYS** link to related lessons and standards
-- **MANDATORY**: Include lessons learned sub-task in every task list
-- **MANDATORY**: Complete lessons learned sub-task after each main task
-
-#### Quality Standards
-- **ALWAYS** provide clear context and background
-- **ALWAYS** describe specific actions taken
-- **ALWAYS** document measurable outcomes
-- **ALWAYS** include technical and process insights
-- **ALWAYS** provide specific, actionable recommendations
-
-## Task Tracking Standards
-
-### Mandatory Task Update Protocol
-
-**ALWAYS** update the corresponding `tasks.md` file immediately after completing any subtask, not at the end of a session.
-
-### Task Update Requirements
-
-#### 1. Immediate Updates
-- **ALWAYS** mark completed subtasks with `[x]` immediately after completion
-- **ALWAYS** add progress notes for completed sections
-- **ALWAYS** update completion percentages
-- **NEVER** wait until the end of a session to update tasks
-
-#### 2. Progress Documentation
-```markdown
-- [x] 1.1 Write tests for new database entities
-  - **Progress Note**: Unit tests implemented with 95% coverage
-  - **Completed**: 2025-08-03 19:45
-  - **Next**: 1.2 Create database migration script
-```
-
-#### 3. Session Summary Updates
-After each development session, add:
-```markdown
-## Session Summary - YYYY-MM-DD HH:MM
-
-### ✅ Completed in This Session
-- [x] Task 1.1: Description of what was completed
-- [x] Task 2.3: Description of what was completed
-
-### 🔄 Next Priority Tasks
-- [ ] Task 1.2: Next immediate task
-- [ ] Task 2.4: Next immediate task
-
-### 📊 Progress Update
-- **Overall Progress**: X% Complete
-- **Sections Complete**: X/Y major sections
-- **Remaining Work**: Brief description
-```
-
-#### 4. Validation Checklist for Task Updates
-Before ending any development session, verify:
-- [ ] All completed subtasks are marked with `[x]`
-- [ ] Progress notes are added for completed sections
-- [ ] Session summary is documented
-- [ ] Next priority tasks are clearly identified
-- [ ] Overall progress percentage is updated
-- [ ] Remaining work is documented
-
-### Task File Structure Standards
-
-#### Required Sections
-```markdown
-# Spec Tasks
-
-## Tasks
-- [ ] 1. **Major Section Title**
-  - [ ] 1.1 Subtask description
-  - [ ] 1.2 Subtask description
-  - **Progress Note**: Current status and next steps
-
-## Recent Completion Summary
-### ✅ Completed in Latest Session (YYYY-MM-DD)
-- Description of major accomplishments
-
-### 🔄 Next Priority Tasks
-- List of immediate next steps
-
-## Overall Progress: X% Complete
-- **Completed Sections**: List of completed major sections
-- **Remaining Work**: Brief description of remaining work
-```
-
-### Sub-Task Specification Management
-
-#### Mandatory Sub-Task Updates
-**ALWAYS** update sub-task specifications in `.agent-os/specs/*/tasks.md` files immediately when completing implementation:
-
-```markdown
-# Before Implementation
-- [ ] 2.1 Implement hybrid AI processing coordinator
-
-# After Implementation - IMMEDIATELY UPDATE
-- [x] 2.1 Implement hybrid AI processing coordinator
-```
-
-#### Sub-Task Specification Requirements
-- **ALWAYS** mark completed sub-tasks with `[x]` in specification files
-- **ALWAYS** update sub-task specifications before marking main tasks complete
-- **ALWAYS** maintain sync between main tasks.md and sub-task specifications
-- **NEVER** leave sub-task specifications outdated after implementation
-
-#### Sub-Task File Locations
-- `.agent-os/specs/YYYY-MM-DD-*/tasks.md` - Specification sub-tasks
-- Main `tasks.md` - High-level project tasks
-- Both must be updated simultaneously
-
-#### Validation Checklist for Sub-Task Updates
-Before marking any main task as complete:
-- [ ] All related sub-tasks in `.agent-os/specs/*/tasks.md` are marked `[x]`
-- [ ] Sub-task specifications reflect actual implementation
-- [ ] No orphaned incomplete sub-tasks remain
-- [ ] Main task completion aligns with sub-task completion
-
-### Enforcement Rules for Task Tracking
-
-#### Strict Compliance
-- **NEVER** complete a subtask without updating BOTH tasks.md AND sub-task specifications
-- **ALWAYS** update tasks immediately after completion
-- **ALWAYS** document progress notes for context
-- **ALWAYS** maintain accurate completion percentages
-- **MANDATORY**: Update sub-task specifications in `.agent-os/specs/*/tasks.md` immediately
-
-#### Quality Standards
-- **ALWAYS** use clear, descriptive task names
-- **ALWAYS** provide sufficient detail in progress notes
-- **ALWAYS** maintain chronological order of updates
-- **ALWAYS** cross-reference with related documentation
-- **ALWAYS** keep sub-task specifications in sync with implementation
-
-#### Integration with Development Workflow
-- **ALWAYS** check tasks.md AND sub-task specifications before starting new work
-- **ALWAYS** update tasks.md AND sub-task specifications after completing work
-- **ALWAYS** reference tasks.md in commit messages
-- **ALWAYS** include task updates in pull request descriptions
-- **MANDATORY**: Verify sub-task specification updates in code reviews 
+**Document Version**: 2.0
+**Last Updated**: 2025-01-27
+**Next Review**: 2025-04-27
+**Compliance**: Agent OS Standards v2.0 

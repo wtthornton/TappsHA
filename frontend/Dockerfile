@@ -8,10 +8,11 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm install
 
-# Copy source code
+# Copy source code (excluding test files)
 COPY . .
+RUN rm -rf src/**/__tests__ src/**/*.test.tsx src/**/*.test.ts src/test-setup.ts src/services/api/__tests__
 
 # Build the application
 RUN npm run build

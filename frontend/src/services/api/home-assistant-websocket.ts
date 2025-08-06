@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useWebSocket, type WebSocketConfig, type WebSocketMessage } from '../../hooks/useWebSocket';
+import { useWebSocket, type WebSocketConfig } from '../../hooks/useWebSocket';
 
 export interface HomeAssistantWebSocketConfig extends WebSocketConfig {
   accessToken: string;
@@ -7,11 +7,13 @@ export interface HomeAssistantWebSocketConfig extends WebSocketConfig {
   eventTypes?: string[];
 }
 
-export interface HomeAssistantWebSocketMessage extends WebSocketMessage {
-  type: 'auth' | 'subscribe_events' | 'get_states' | 'call_service' | 'ping' | 'pong';
+export interface HomeAssistantWebSocketMessage {
+  type: 'auth' | 'subscribe_events' | 'get_states' | 'call_service' | 'ping' | 'pong' | 'result' | 'event';
   id?: number;
   success?: boolean;
   result?: any;
+  data: any;
+  timestamp: number;
   error?: {
     code: string;
     message: string;
@@ -194,8 +196,8 @@ export const useHomeAssistantWebSocket = (config: HomeAssistantWebSocketConfig) 
     wsActions.send(getStatesMessage);
   }, [service, wsActions]);
 
-  const callService = useCallback((domain: string, service: string, serviceData?: Record<string, any>) => {
-    const callServiceMessage = service.callService(domain, service, serviceData);
+  const callService = useCallback((domain: string, serviceName: string, serviceData?: Record<string, any>) => {
+    const callServiceMessage = service.callService(domain, serviceName, serviceData);
     wsActions.send(callServiceMessage);
   }, [service, wsActions]);
 

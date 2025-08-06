@@ -1,0 +1,3 @@
+# Spec Summary (Lite)
+
+Implement a comprehensive React frontend for Assisted Automation Creation that provides an intuitive, AI-powered interface for users to create, validate, and manage Home Assistant automations. The frontend will include natural language input for automation requirements, template browsing and selection, drag-and-drop automation builder, real-time validation dashboard, and history/feedback components. All components will integrate with the existing backend API endpoints and provide responsive design for desktop and tablet devices. 

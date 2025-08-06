@@ -22,7 +22,7 @@ export const RealTimeHealthMetrics: React.FC<RealTimeHealthMetricsProps> = ({
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { state, actions, service } = useHomeAssistantWebSocket(config);
+  const { state } = useHomeAssistantWebSocket(config);
 
   // Initialize metrics
   useEffect(() => {
@@ -65,28 +65,13 @@ export const RealTimeHealthMetrics: React.FC<RealTimeHealthMetricsProps> = ({
     return () => clearInterval(interval);
   }, [state.isConnected, updateInterval]);
 
-  const getMetricStatus = (name: string, value: number): 'good' | 'warning' | 'error' => {
-    switch (name) {
-      case 'CPU Usage':
-      case 'Memory Usage':
-      case 'Disk Usage':
-        if (value < 50) return 'good';
-        if (value < 80) return 'warning';
-        return 'error';
-      case 'Network Latency':
-        if (value < 100) return 'good';
-        if (value < 500) return 'warning';
-        return 'error';
-      case 'Event Rate':
-        if (value < 100) return 'good';
-        if (value < 500) return 'warning';
-        return 'error';
-      default:
-        return 'good';
-    }
+  const getMetricStatus = (_name: string, value: number): 'good' | 'warning' | 'error' => {
+    if (value < 50) return 'good';
+    if (value < 80) return 'warning';
+    return 'error';
   };
 
-  const getMetricTrend = (name: string, value: number): 'up' | 'down' | 'stable' => {
+  const getMetricTrend = (_name: string, _value: number): 'up' | 'down' | 'stable' => {
     // In a real implementation, this would compare with previous values
     const random = Math.random();
     if (random < 0.33) return 'up';

@@ -139,7 +139,7 @@ export const useWebSocket = (config: WebSocketConfig): [WebSocketState, WebSocke
     }
   }, [stopHeartbeat, mergedConfig.maxReconnectAttempts, mergedConfig.reconnectInterval]);
 
-  const handleError = useCallback((error: Event) => {
+  const handleError = useCallback((_error: Event) => {
     setState(prev => ({
       ...prev,
       isConnected: false,
@@ -162,8 +162,8 @@ export const useWebSocket = (config: WebSocketConfig): [WebSocketState, WebSocke
         ...prev,
         lastMessage: message,
       }));
-    } catch (error) {
-      console.error('Failed to parse WebSocket message:', error);
+    } catch (_error) {
+      console.error('Failed to parse WebSocket message:', _error);
     }
   }, []);
 

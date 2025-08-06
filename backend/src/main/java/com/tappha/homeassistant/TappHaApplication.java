@@ -16,10 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * with AI-powered insights and recommendations while maintaining privacy through
  * local-only processing.
  */
-@SpringBootApplication(exclude = {
-    org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration.class,
-    org.springframework.kafka.annotation.KafkaBootstrapConfiguration.class
-})
+@SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.tappha.homeassistant.repository")
 @EnableAsync
 @EnableScheduling

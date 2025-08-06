@@ -29,13 +29,13 @@ export const WebSocketStatus: React.FC<WebSocketStatusProps> = ({
         if (service.isErrorResponse(parsedMessage)) {
           const errorMessage = service.getErrorMessage(parsedMessage);
           onError?.(errorMessage || 'Unknown WebSocket error');
-        } else if (parsedMessage.type === 'result' && parsedMessage.result) {
+        } else if (parsedMessage.type === 'result' as any && parsedMessage.result) {
           // Handle different result types
           if (Array.isArray(parsedMessage.result)) {
             // States result
             onStateChange?.(parsedMessage.result);
           }
-        } else if (parsedMessage.type === 'event') {
+        } else if (parsedMessage.type === 'event' as any) {
           // Event subscription result
           onEvent?.(parsedMessage.data);
         }

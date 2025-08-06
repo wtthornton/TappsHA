@@ -34,7 +34,7 @@ export const RealTimeEventStream: React.FC<RealTimeEventStreamProps> = ({
     if (state.lastMessage) {
       const parsedMessage = service.parseMessage(JSON.stringify(state.lastMessage.data));
       
-      if (parsedMessage && parsedMessage.type === 'event') {
+      if (parsedMessage && parsedMessage.type === 'event' as any) {
         const eventData = parsedMessage.data;
         
         if (!isPaused) {
