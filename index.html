@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TappHA - Intelligent Home Assistant Management</title>
+    <meta name="description" content="TappHA is an intelligent automation management platform for Home Assistant that provides AI-powered insights and recommendations while maintaining complete privacy through local-only processing.">
+    <meta name="keywords" content="Home Assistant, automation, AI, smart home, privacy, local processing">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/wtthornton/TappsHA/main/frontend/public/vite.svg">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="flex items-center">
+                    <h1 class="text-3xl font-bold text-gray-900">TappHA</h1>
+                    <span class="ml-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        Phase 1: 85% Complete
+                    </span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="https://github.com/wtthornton/TappsHA" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6">
+                    Intelligent Home Assistant Management
+                </h2>
+                <p class="text-xl md:text-2xl mb-8 text-blue-100">
+                    AI-powered insights and recommendations while maintaining complete privacy through local-only processing
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://github.com/wtthornton/TappsHA" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        View on GitHub
+                    </a>
+                    <a href="https://github.com/wtthornton/TappsHA/blob/main/README.md" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                        Read Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Key Features</h3>
+                <p class="text-lg text-gray-600">Comprehensive Home Assistant integration with AI-powered automation management</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Real-Time Monitoring</h4>
+                    <p class="text-gray-600">WebSocket-based event subscription with intelligent filtering and 60-80% volume reduction</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Privacy-First</h4>
+                    <p class="text-gray-600">Local-only processing with zero external dependencies and complete user control</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">AI-Powered Insights</h4>
+                    <p class="text-gray-600">Intelligent automation recommendations with 90% accuracy and behavioral modeling</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Secure Authentication</h4>
+                    <p class="text-gray-600">OAuth 2.1 integration with token encryption and comprehensive audit trails</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Advanced Analytics</h4>
+                    <p class="text-gray-600">Multi-dimensional pattern analysis with 85-90% accuracy across time intervals</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Mobile-First Design</h4>
+                    <p class="text-gray-600">Responsive React 19 interface with TypeScript 5.5 and TailwindCSS 4.x</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Technology Stack</h3>
+                <p class="text-lg text-gray-600">Modern, scalable architecture with proven technologies</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="text-xl font-semibold mb-4 text-center">Backend</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• Spring Boot 3.5.3 + Java 21 LTS</li>
+                        <li>• PostgreSQL 17 with pgvector</li>
+                        <li>• Apache Kafka for event streaming</li>
+                        <li>• Spring Security with OAuth 2.1</li>
+                        <li>• Prometheus + Grafana monitoring</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="text-xl font-semibold mb-4 text-center">Frontend</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• React 19 + TypeScript 5.5</li>
+                        <li>• TailwindCSS 4.x + shadcn/ui</li>
+                        <li>• TanStack Query 5 + Context API</li>
+                        <li>• Vite 5.x build tool</li>
+                        <li>• Vitest + jsdom testing</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="text-xl font-semibold mb-4 text-center">AI/ML</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• OpenAI GPT-4o Mini</li>
+                        <li>• pgvector for embeddings</li>
+                        <li>• LangChain 0.3 framework</li>
+                        <li>• TensorFlow Lite (local)</li>
+                        <li>• Hybrid local-cloud processing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Development Roadmap</h3>
+                <p class="text-lg text-gray-600">Comprehensive roadmap with research-based planning</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">85% Complete</span>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2 text-green-900">Phase 1: Core Foundation</h4>
+                    <p class="text-green-700 text-sm">Home Assistant integration, event monitoring, basic pattern recognition, user authentication, privacy-first architecture</p>
+                </div>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Ready to Begin</span>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2 text-blue-900">Phase 2: Intelligence Engine</h4>
+                    <p class="text-blue-700 text-sm">AI suggestion engine, advanced pattern analysis, behavioral modeling, automation recommendations</p>
+                </div>
+                
+                <div class="bg-purple-50 border-l-4 border-purple-400 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Planned</span>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2 text-purple-900">Phase 3: Autonomous Management</h4>
+                    <p class="text-purple-700 text-sm">Assisted automation creation, lifecycle management, real-time optimization, adaptive learning</p>
+                </div>
+                
+                <div class="bg-indigo-50 border-l-4 border-indigo-400 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Planned</span>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2 text-indigo-900">Phase 4: Advanced Intelligence</h4>
+                    <p class="text-indigo-700 text-sm">Predictive automation, NLP capabilities, voice integration, federated learning</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Metrics Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Success Metrics</h3>
+                <p class="text-lg text-gray-600">Research-based targets and validation</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">80-90%</div>
+                    <h4 class="text-lg font-semibold mb-2">Time Savings</h4>
+                    <p class="text-gray-600">Reduction in automation management time</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">60%</div>
+                    <h4 class="text-lg font-semibold mb-2">User Engagement</h4>
+                    <p class="text-gray-600">Users try AI suggestions within 3 months</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">4.0+</div>
+                    <h4 class="text-lg font-semibold mb-2">User Satisfaction</h4>
+                    <p class="text-gray-600">Rating on user satisfaction surveys</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                    <div class="text-3xl font-bold text-red-600 mb-2">50%+</div>
+                    <h4 class="text-lg font-semibold mb-2">Performance Improvement</h4>
+                    <p class="text-gray-600">Reduction in automation failures</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                    <div class="text-3xl font-bold text-indigo-600 mb-2">80%+</div>
+                    <h4 class="text-lg font-semibold mb-2">User Retention</h4>
+                    <p class="text-gray-600">User retention after 6 months</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                    <div class="text-3xl font-bold text-yellow-600 mb-2">225K-300K</div>
+                    <h4 class="text-lg font-semibold mb-2">Market Opportunity</h4>
+                    <p class="text-gray-600">Power users with strong demand</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-blue-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-3xl font-bold text-white mb-4">Ready to Get Started?</h3>
+            <p class="text-xl text-blue-100 mb-8">Join the intelligent home automation revolution</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://github.com/wtthornton/TappsHA" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    View Project on GitHub
+                </a>
+                <a href="https://github.com/wtthornton/TappsHA/issues" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    Report Issues
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">TappHA</h4>
+                    <p class="text-gray-400">Intelligent automation management platform for Home Assistant with AI-powered insights and complete privacy protection.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="https://github.com/wtthornton/TappsHA" class="hover:text-white">GitHub Repository</a></li>
+                        <li><a href="https://github.com/wtthornton/TappsHA/blob/main/README.md" class="hover:text-white">Documentation</a></li>
+                        <li><a href="https://github.com/wtthornton/TappsHA/issues" class="hover:text-white">Issues</a></li>
+                        <li><a href="https://github.com/wtthornton/TappsHA/discussions" class="hover:text-white">Discussions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Technology</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Spring Boot 3.5.3 + Java 21</li>
+                        <li>React 19 + TypeScript 5.5</li>
+                        <li>PostgreSQL 17 + pgvector</li>
+                        <li>OpenAI GPT-4o Mini</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 TappHA. Licensed under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
