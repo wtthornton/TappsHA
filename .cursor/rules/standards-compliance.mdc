@@ -1,8 +1,22 @@
 # Agent OS Standards Compliance
 
-## MANDATORY: Standards Compliance Reference
+## MANDATORY: Context7 First, Agent OS Second
 
-**ALWAYS** reference and follow ALL Agent OS standards when implementing any feature or making technology decisions.
+**ALWAYS** prioritize Context7 documentation and standards over Agent OS standards when both are available.
+
+### Context7 Priority Rule
+**ALWAYS** check `@~/.cursor/rules/context7-priority.mdc` first for:
+- Library documentation and API references
+- Current best practices and patterns
+- Official documentation from library maintainers
+- Version-specific information and compatibility
+
+### Agent OS Standards Reference
+**ONLY** reference Agent OS standards when:
+- Context7 doesn't have documentation for the specific library
+- Context7 documentation is outdated or incomplete
+- Agent OS has project-specific requirements not covered by Context7
+- Project-specific architectural patterns and conventions
 
 ### Core Standards Reference
 

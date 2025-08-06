@@ -1,0 +1,173 @@
+# Context7 Priority Rule
+
+## MANDATORY: Context7 First, Agent OS Second
+
+**ALWAYS** prioritize Context7 documentation and standards over Agent OS standards when both are available.
+
+### Context7 Priority Hierarchy
+
+#### 1. Documentation and API References
+**ALWAYS** use Context7 first for:
+- Library documentation and API references
+- Code examples and best practices
+- Version-specific information
+- Official documentation from library maintainers
+- Current patterns and recommendations
+
+#### 2. Technology Stack Validation
+**ALWAYS** validate technology choices against Context7:
+- Check for latest versions and compatibility
+- Verify current best practices
+- Confirm security recommendations
+- Validate performance optimizations
+
+#### 3. Code Generation Standards
+**ALWAYS** use Context7 patterns when available:
+- Follow official library patterns
+- Use current API signatures
+- Implement recommended practices
+- Apply latest security guidelines
+
+### Context7 Integration Process
+
+#### Before Writing Code
+1. **ALWAYS** check Context7 for library documentation
+2. **ALWAYS** verify current versions and compatibility
+3. **ALWAYS** use official patterns and examples
+4. **ALWAYS** follow current best practices from Context7
+
+#### When Context7 is Unavailable
+**ONLY** fall back to Agent OS standards when:
+- Context7 doesn't have documentation for the specific library
+- Context7 documentation is outdated or incomplete
+- Agent OS has project-specific requirements not covered by Context7
+
+### Context7 Usage Patterns
+
+#### For React Development
+**ALWAYS** use Context7 for:
+- React Hooks documentation and patterns
+- Component lifecycle best practices
+- State management patterns
+- Performance optimization techniques
+- Accessibility guidelines
+
+#### For Backend Development
+**ALWAYS** use Context7 for:
+- Spring Boot API documentation
+- Database integration patterns
+- Security implementation guides
+- Testing frameworks and patterns
+
+#### For AI/ML Development
+**ALWAYS** use Context7 for:
+- OpenAI API documentation
+- LangChain patterns and best practices
+- Vector database integration
+- Model optimization techniques
+
+### Agent OS Fallback Rules
+
+#### When to Use Agent OS Standards
+**ONLY** reference Agent OS standards for:
+- Project-specific architectural patterns
+- Internal coding conventions
+- Security policies specific to the project
+- CI/CD configurations
+- Deployment strategies
+- Project-specific testing requirements
+
+#### Agent OS Integration
+**ALWAYS** ensure Agent OS standards complement Context7:
+- Don't override Context7 recommendations
+- Use Agent OS for project-specific requirements
+- Maintain consistency with Context7 patterns
+- Update Agent OS standards based on Context7 findings
+
+### Implementation Guidelines
+
+#### Code Generation Priority
+1. **Context7 First**: Check Context7 for current patterns
+2. **Validate**: Ensure compatibility with project requirements
+3. **Agent OS Check**: Verify against project-specific standards
+4. **Integrate**: Combine Context7 patterns with Agent OS requirements
+
+#### Documentation Priority
+1. **Context7 Sources**: Use official documentation
+2. **Current Examples**: Follow latest code patterns
+3. **Best Practices**: Implement recommended approaches
+4. **Project Integration**: Apply project-specific requirements
+
+#### Testing Priority
+1. **Context7 Patterns**: Use official testing approaches
+2. **Current Frameworks**: Follow latest testing best practices
+3. **Project Requirements**: Meet Agent OS testing standards
+4. **Integration**: Ensure comprehensive coverage
+
+### Validation Checklist
+
+Before implementing any feature, verify:
+- [ ] Context7 documentation has been consulted
+- [ ] Current library versions are being used
+- [ ] Official patterns are being followed
+- [ ] Agent OS project requirements are met
+- [ ] Security standards are maintained
+- [ ] Performance requirements are satisfied
+- [ ] Testing coverage meets standards
+
+### Context7 Integration Examples
+
+#### React Component Development
+```typescript
+// ✅ Good: Using Context7 React patterns
+import { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const [data, setData] = useState(null);
+  
+  useEffect(() => {
+    // Follow Context7 patterns for data fetching
+    fetchData().then(setData);
+  }, []);
+  
+  return <div>{data}</div>;
+}
+```
+
+#### Spring Boot Service Development
+```java
+// ✅ Good: Using Context7 Spring Boot patterns
+@RestController
+@RequestMapping("/api")
+public class MyController {
+    
+    @GetMapping("/data")
+    public ResponseEntity<DataResponse> getData() {
+        // Follow Context7 Spring Boot patterns
+        return ResponseEntity.ok(new DataResponse());
+    }
+}
+```
+
+### Reference Links
+
+#### Context7 Documentation
+- **React:** `/reactjs/react.dev`
+- **Spring Boot:** `/spring-projects/spring-boot`
+- **OpenAI:** `/openai/openai-node`
+- **LangChain:** `/langchain-ai/langchain`
+
+#### Agent OS Standards (Fallback)
+- **Technology Stack:** `@~/.agent-os/standards/tech-stack.md`
+- **Code Style:** `@~/.agent-os/standards/code-style.md`
+- **Best Practices:** `@~/.agent-os/standards/best-practices.md`
+- **Security Compliance:** `@~/.agent-os/standards/security-compliance.md`
+
+description: Context7 priority over Agent OS standards
+globs: ["**/*.{ts,tsx,js,jsx,java,yml,yaml,json}"]
+alwaysApply: true
+---
+description:
+globs:
+alwaysApply: false
+---
