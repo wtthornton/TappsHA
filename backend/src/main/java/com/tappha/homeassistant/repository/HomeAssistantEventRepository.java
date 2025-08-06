@@ -104,8 +104,8 @@ public interface HomeAssistantEventRepository extends JpaRepository<HomeAssistan
      */
     @Query("SELECT MAX(event_count) FROM (" +
            "SELECT DATE_TRUNC('minute', e.timestamp) as minute, COUNT(e) as event_count " +
-           "FROM home_assistant_event e " +
-           "WHERE e.connection_id = :connectionId AND e.timestamp BETWEEN :startTime AND :endTime " +
+           "FROM HomeAssistantEvent e " +
+           "WHERE e.connection.id = :connectionId AND e.timestamp BETWEEN :startTime AND :endTime " +
            "GROUP BY DATE_TRUNC('minute', e.timestamp)" +
            ") as minute_counts")
     Optional<Double> findPeakEventRateByConnectionIdAndTimestampBetween(@Param("connectionId") UUID connectionId, 

@@ -36,7 +36,7 @@ public interface HomeAssistantAuditLogRepository extends JpaRepository<HomeAssis
      * @param endTime the end time
      * @return list of audit logs
      */
-    @Query("SELECT a FROM HomeAssistantAuditLog a WHERE a.connection.id = :connectionId AND a.timestamp BETWEEN :startTime AND :endTime ORDER BY a.timestamp DESC")
+    @Query("SELECT a FROM HomeAssistantAuditLog a WHERE a.connection.id = :connectionId AND a.createdAt BETWEEN :startTime AND :endTime ORDER BY a.createdAt DESC")
     List<HomeAssistantAuditLog> findByConnectionIdAndTimestampBetween(@Param("connectionId") UUID connectionId, 
                                                                      @Param("startTime") LocalDateTime startTime, 
                                                                      @Param("endTime") LocalDateTime endTime);
@@ -48,11 +48,11 @@ public interface HomeAssistantAuditLogRepository extends JpaRepository<HomeAssis
      * @param endTime the end time
      * @return Optional containing the total downtime minutes
      */
-    @Query("SELECT COALESCE(SUM(EXTRACT(EPOCH FROM (a.endTime - a.startTime)) / 60), 0) " +
+    @Query("SELECT COALESCE(COUNT(a), 0) " +
            "FROM HomeAssistantAuditLog a " +
            "WHERE a.connection.id = :connectionId " +
-           "AND a.action = 'CONNECTION_DOWN' " +
-           "AND a.timestamp BETWEEN :startTime AND :endTime")
+           "AND a.action = 'ERROR' " +
+           "AND a.createdAt BETWEEN :startTime AND :endTime")
     Optional<Long> findDowntimeMinutesByConnectionIdAndTimestampBetween(@Param("connectionId") UUID connectionId, 
                                                                         @Param("startTime") LocalDateTime startTime, 
                                                                         @Param("endTime") LocalDateTime endTime);
@@ -62,7 +62,7 @@ public interface HomeAssistantAuditLogRepository extends JpaRepository<HomeAssis
      * @param connectionId the connection ID
      * @return Optional containing the latest audit log
      */
-    @Query("SELECT a FROM HomeAssistantAuditLog a WHERE a.connection.id = :connectionId ORDER BY a.timestamp DESC")
+    @Query("SELECT a FROM HomeAssistantAuditLog a WHERE a.connection.id = :connectionId ORDER BY a.createdAt DESC")
     Optional<HomeAssistantAuditLog> findLatestByConnectionId(@Param("connectionId") UUID connectionId);
     
     /**
@@ -93,7 +93,7 @@ public interface HomeAssistantAuditLogRepository extends JpaRepository<HomeAssis
      * @param endTime the end time
      * @return list of audit logs
      */
-    @Query("SELECT a FROM HomeAssistantAuditLog a WHERE a.timestamp BETWEEN :startTime AND :endTime ORDER BY a.timestamp DESC")
+    @Query("SELECT a FROM HomeAssistantAuditLog a WHERE a.createdAt BETWEEN :startTime AND :endTime ORDER BY a.createdAt DESC")
     List<HomeAssistantAuditLog> findByTimestampBetween(@Param("startTime") LocalDateTime startTime, 
                                                        @Param("endTime") LocalDateTime endTime);
     

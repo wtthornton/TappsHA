@@ -20,7 +20,7 @@ public interface HomeAssistantConnectionMetricsRepository extends JpaRepository<
      * @param endTime the end time
      * @return Optional containing the average latency
      */
-    @Query("SELECT AVG(m.latency) FROM HomeAssistantConnectionMetrics m WHERE m.connection.id = :connectionId AND m.timestamp BETWEEN :startTime AND :endTime")
+    @Query("SELECT AVG(m.metricValue) FROM HomeAssistantConnectionMetrics m WHERE m.connection.id = :connectionId AND m.timestamp BETWEEN :startTime AND :endTime AND m.metricType = 'LATENCY'")
     Optional<Double> findAverageLatencyByConnectionIdAndTimestampBetween(@Param("connectionId") UUID connectionId, 
                                                                         @Param("startTime") LocalDateTime startTime, 
                                                                         @Param("endTime") LocalDateTime endTime);

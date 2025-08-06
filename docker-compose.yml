@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # PostgreSQL Database
   postgres:
-    image: postgres:17-alpine
+    image: pgvector/pgvector:pg17
     container_name: tappha-postgres
     environment:
       POSTGRES_DB: tappha
@@ -73,7 +73,7 @@ services:
       kafka:
         condition: service_healthy
     ports:
-      - "8080:8080"
+      - "8081:8080"
     environment:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
@@ -81,7 +81,7 @@ services:
 
   # InfluxDB for time-series metrics
   influxdb:
-    image: influxdb:3.0-alpine
+    image: influxdb:2.7-alpine
     container_name: tappha-influxdb
     environment:
       DOCKER_INFLUXDB_INIT_MODE: setup
