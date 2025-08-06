@@ -117,4 +117,20 @@ public class KafkaConfig {
                 ))
                 .build();
     }
+    
+    /**
+     * Create event processing batches topic
+     */
+    @Bean
+    public NewTopic eventProcessingBatchesTopic() {
+        return TopicBuilder.name("event-processing-batches")
+                .partitions(2)
+                .replicas(1)
+                .configs(Map.of(
+                    "retention.ms", "7776000000", // 90 days retention
+                    "cleanup.policy", "delete",
+                    "compression.type", "snappy"
+                ))
+                .build();
+    }
 } 
