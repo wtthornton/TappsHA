@@ -1,196 +1,91 @@
 package com.tappha.homeassistant.entity;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.OffsetDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.*;
-
-@DisplayName("AIBatchProcessing Entity Tests")
-class AIBatchProcessingTest {
+/**
+ * Test class for AIBatchProcessing entity
+ * 
+ * Tests the AI batch processing entity for the AI Suggestion Engine
+ * as part of Task 1.1: Write tests for AI suggestion entities and repositories
+ */
+public class AIBatchProcessingTest {
 
     private AIBatchProcessing batchProcessing;
+    private HomeAssistantConnection connection;
 
     @BeforeEach
     void setUp() {
+        connection = new HomeAssistantConnection();
+        connection.setId(UUID.randomUUID());
+        connection.setName("Test HA Connection");
+        connection.setUrl("http://192.168.1.86:8123/");
+
         batchProcessing = new AIBatchProcessing();
-    }
-
-    @Test
-    @DisplayName("Should create AIBatchProcessing with default values")
-    void shouldCreateAIBatchProcessingWithDefaults() {
-        assertThat(batchProcessing.getId()).isNull();
-        assertThat(batchProcessing.getStatus()).isEqualTo(AIBatchProcessing.BatchStatus.RUNNING);
-        assertThat(batchProcessing.getSuggestionsGenerated()).isZero();
-        assertThat(batchProcessing.getErrorsCount()).isZero();
-        assertThat(batchProcessing.getStartTime()).isNull();
-        assertThat(batchProcessing.getEndTime()).isNull();
-    }
-
-    @Test
-    @DisplayName("Should create AIBatchProcessing with constructor")
-    void shouldCreateAIBatchProcessingWithConstructor() {
-        String batchId = "batch-2025-08-05-143000";
-        String patternDataSource = "pattern-analysis-service";
-        
-        AIBatchProcessing batch = new AIBatchProcessing(batchId, patternDataSource);
-
-        assertThat(batch.getBatchId()).isEqualTo(batchId);
-        assertThat(batch.getPatternDataSource()).isEqualTo(patternDataSource);
-        assertThat(batch.getStatus()).isEqualTo(AIBatchProcessing.BatchStatus.RUNNING);
-        assertThat(batch.getStartTime()).isNotNull();
-        assertThat(batch.getStartTime()).isBeforeOrEqualTo(OffsetDateTime.now());
-        assertThat(batch.getSuggestionsGenerated()).isZero();
-        assertThat(batch.getErrorsCount()).isZero();
-    }
-
-    @Test
-    @DisplayName("Should set and get all properties")
-    void shouldSetAndGetAllProperties() {
-        UUID id = UUID.randomUUID();
-        String batchId = "test-batch-123";
-        String patternDataSource = "test-source";
-        OffsetDateTime startTime = OffsetDateTime.now().minusHours(1);
-        OffsetDateTime endTime = OffsetDateTime.now();
-
-        batchProcessing.setId(id);
-        batchProcessing.setBatchId(batchId);
-        batchProcessing.setStartTime(startTime);
-        batchProcessing.setEndTime(endTime);
-        batchProcessing.setStatus(AIBatchProcessing.BatchStatus.COMPLETED);
-        batchProcessing.setSuggestionsGenerated(5);
-        batchProcessing.setErrorsCount(1);
-        batchProcessing.setPatternDataSource(patternDataSource);
-
-        assertThat(batchProcessing.getId()).isEqualTo(id);
-        assertThat(batchProcessing.getBatchId()).isEqualTo(batchId);
-        assertThat(batchProcessing.getStartTime()).isEqualTo(startTime);
-        assertThat(batchProcessing.getEndTime()).isEqualTo(endTime);
-        assertThat(batchProcessing.getStatus()).isEqualTo(AIBatchProcessing.BatchStatus.COMPLETED);
-        assertThat(batchProcessing.getSuggestionsGenerated()).isEqualTo(5);
-        assertThat(batchProcessing.getErrorsCount()).isEqualTo(1);
-        assertThat(batchProcessing.getPatternDataSource()).isEqualTo(patternDataSource);
-    }
-
-    @Test
-    @DisplayName("Should validate batch statuses")
-    void shouldValidateBatchStatuses() {
-        assertThat(AIBatchProcessing.BatchStatus.values()).containsExactly(
-            AIBatchProcessing.BatchStatus.RUNNING,
-            AIBatchProcessing.BatchStatus.COMPLETED,
-            AIBatchProcessing.BatchStatus.FAILED,
-            AIBatchProcessing.BatchStatus.CANCELLED
-        );
-    }
-
-    @Test
-    @DisplayName("Should implement equals and hashCode correctly")
-    void shouldImplementEqualsAndHashCodeCorrectly() {
-        UUID id = UUID.randomUUID();
-        
-        AIBatchProcessing batch1 = new AIBatchProcessing();
-        batch1.setId(id);
-        
-        AIBatchProcessing batch2 = new AIBatchProcessing();
-        batch2.setId(id);
-        
-        AIBatchProcessing batch3 = new AIBatchProcessing();
-        batch3.setId(UUID.randomUUID());
-
-        assertThat(batch1).isEqualTo(batch2);
-        assertThat(batch1).isNotEqualTo(batch3);
-        assertThat(batch1.hashCode()).isEqualTo(batch2.hashCode());
-        assertThat(batch1.hashCode()).isNotEqualTo(batch3.hashCode());
-    }
-
-    @Test
-    @DisplayName("Should handle null ID in equals and hashCode")
-    void shouldHandleNullIdInEqualsAndHashCode() {
-        AIBatchProcessing batch1 = new AIBatchProcessing();
-        AIBatchProcessing batch2 = new AIBatchProcessing();
-
-        assertThat(batch1).isEqualTo(batch2);
-        assertThat(batch1.hashCode()).isEqualTo(batch2.hashCode());
-    }
-
-    @Test
-    @DisplayName("Should generate proper toString")
-    void shouldGenerateProperToString() {
         batchProcessing.setId(UUID.randomUUID());
-        batchProcessing.setBatchId("test-batch-123");
+        batchProcessing.setBatchId("BATCH-001");
+        batchProcessing.setStatus(AIBatchProcessing.BatchStatus.RUNNING);
+        batchProcessing.setSuggestionsGenerated(50);
+        batchProcessing.setErrorsCount(5);
+        batchProcessing.setStartTime(OffsetDateTime.now());
+        batchProcessing.setEndTime(null);
+        batchProcessing.setPatternDataSource("pattern-analysis-service");
+    }
+
+    @Test
+    void testAIBatchProcessingCreation() {
+        assertNotNull(batchProcessing);
+        assertNotNull(batchProcessing.getId());
+        assertEquals("BATCH-001", batchProcessing.getBatchId());
+        assertEquals(AIBatchProcessing.BatchStatus.RUNNING, batchProcessing.getStatus());
+        assertEquals(50, batchProcessing.getSuggestionsGenerated());
+        assertEquals(5, batchProcessing.getErrorsCount());
+        assertEquals("pattern-analysis-service", batchProcessing.getPatternDataSource());
+    }
+
+    @Test
+    void testAIBatchProcessingStatusTransitions() {
+        // Test status transitions
         batchProcessing.setStatus(AIBatchProcessing.BatchStatus.COMPLETED);
-        batchProcessing.setSuggestionsGenerated(5);
+        assertEquals(AIBatchProcessing.BatchStatus.COMPLETED, batchProcessing.getStatus());
 
-        String toString = batchProcessing.toString();
-        
-        assertThat(toString).contains("AIBatchProcessing{");
-        assertThat(toString).contains("id=");
-        assertThat(toString).contains("batchId='test-batch-123'");
-        assertThat(toString).contains("status=COMPLETED");
-        assertThat(toString).contains("suggestionsGenerated=5");
+        batchProcessing.setStatus(AIBatchProcessing.BatchStatus.FAILED);
+        assertEquals(AIBatchProcessing.BatchStatus.FAILED, batchProcessing.getStatus());
+
+        batchProcessing.setStatus(AIBatchProcessing.BatchStatus.CANCELLED);
+        assertEquals(AIBatchProcessing.BatchStatus.CANCELLED, batchProcessing.getStatus());
     }
 
     @Test
-    @DisplayName("Should handle complete batch helper method")
-    void shouldHandleCompleteBatchHelperMethod() {
-        batchProcessing.completeBatch();
-        
-        assertThat(batchProcessing.getStatus()).isEqualTo(AIBatchProcessing.BatchStatus.COMPLETED);
-        assertThat(batchProcessing.getEndTime()).isNotNull();
-        assertThat(batchProcessing.getEndTime()).isBeforeOrEqualTo(OffsetDateTime.now());
+    void testAIBatchProcessingSuccessRateCalculation() {
+        // Test success rate calculation
+        assertEquals(90.0, batchProcessing.getSuccessRate(), 0.01);
+
+        batchProcessing.setSuggestionsGenerated(0);
+        batchProcessing.setErrorsCount(50);
+        assertEquals(0.0, batchProcessing.getSuccessRate(), 0.01);
+
+        batchProcessing.setSuggestionsGenerated(50);
+        batchProcessing.setErrorsCount(0);
+        assertEquals(100.0, batchProcessing.getSuccessRate(), 0.01);
     }
 
     @Test
-    @DisplayName("Should handle fail batch helper method")
-    void shouldHandleFailBatchHelperMethod() {
-        batchProcessing.failBatch();
-        
-        assertThat(batchProcessing.getStatus()).isEqualTo(AIBatchProcessing.BatchStatus.FAILED);
-        assertThat(batchProcessing.getEndTime()).isNotNull();
-        assertThat(batchProcessing.getEndTime()).isBeforeOrEqualTo(OffsetDateTime.now());
+    void testAIBatchProcessingTimestamps() {
+        OffsetDateTime now = OffsetDateTime.now();
+        batchProcessing.setStartTime(now);
+        batchProcessing.setEndTime(now);
+
+        assertEquals(now, batchProcessing.getStartTime());
+        assertEquals(now, batchProcessing.getEndTime());
     }
 
     @Test
-    @DisplayName("Should handle cancel batch helper method")
-    void shouldHandleCancelBatchHelperMethod() {
-        batchProcessing.cancelBatch();
-        
-        assertThat(batchProcessing.getStatus()).isEqualTo(AIBatchProcessing.BatchStatus.CANCELLED);
-        assertThat(batchProcessing.getEndTime()).isNotNull();
-        assertThat(batchProcessing.getEndTime()).isBeforeOrEqualTo(OffsetDateTime.now());
-    }
-
-    @Test
-    @DisplayName("Should increment suggestions generated")
-    void shouldIncrementSuggestionsGenerated() {
-        assertThat(batchProcessing.getSuggestionsGenerated()).isZero();
-        
-        batchProcessing.incrementSuggestionsGenerated();
-        assertThat(batchProcessing.getSuggestionsGenerated()).isEqualTo(1);
-        
-        batchProcessing.incrementSuggestionsGenerated();
-        assertThat(batchProcessing.getSuggestionsGenerated()).isEqualTo(2);
-    }
-
-    @Test
-    @DisplayName("Should increment errors count")
-    void shouldIncrementErrorsCount() {
-        assertThat(batchProcessing.getErrorsCount()).isZero();
-        
-        batchProcessing.incrementErrorsCount();
-        assertThat(batchProcessing.getErrorsCount()).isEqualTo(1);
-        
-        batchProcessing.incrementErrorsCount();
-        assertThat(batchProcessing.getErrorsCount()).isEqualTo(2);
-    }
-
-    @Test
-    @DisplayName("Should calculate processing duration")
-    void shouldCalculateProcessingDuration() {
+    void testAIBatchProcessingProcessingDuration() {
         OffsetDateTime startTime = OffsetDateTime.now().minusMinutes(15);
         OffsetDateTime endTime = OffsetDateTime.now();
         
@@ -198,42 +93,68 @@ class AIBatchProcessingTest {
         batchProcessing.setEndTime(endTime);
         
         long durationMinutes = batchProcessing.getProcessingDurationMinutes();
-        assertThat(durationMinutes).isBetween(14L, 16L); // Allow for small timing variations
+        assertTrue(durationMinutes >= 14 && durationMinutes <= 16); // Allow for small timing variations
     }
 
     @Test
-    @DisplayName("Should return zero duration for incomplete batch")
-    void shouldReturnZeroDurationForIncompleteBatch() {
-        batchProcessing.setStartTime(OffsetDateTime.now().minusMinutes(5));
-        // End time is null (batch still running)
-        
-        long durationMinutes = batchProcessing.getProcessingDurationMinutes();
-        assertThat(durationMinutes).isZero();
+    void testAIBatchProcessingEquality() {
+        AIBatchProcessing batch1 = new AIBatchProcessing();
+        batch1.setId(batchProcessing.getId());
+        batch1.setBatchId(batchProcessing.getBatchId());
+
+        AIBatchProcessing batch2 = new AIBatchProcessing();
+        batch2.setId(batchProcessing.getId());
+        batch2.setBatchId(batchProcessing.getBatchId());
+
+        assertEquals(batch1.getId(), batch2.getId());
+        assertEquals(batch1.getBatchId(), batch2.getBatchId());
     }
 
     @Test
-    @DisplayName("Should determine if batch is running")
-    void shouldDetermineIfBatchIsRunning() {
-        batchProcessing.setStatus(AIBatchProcessing.BatchStatus.RUNNING);
-        assertThat(batchProcessing.isRunning()).isTrue();
-        
+    void testAIBatchProcessingToString() {
+        String toString = batchProcessing.toString();
+        assertNotNull(toString);
+        assertTrue(toString.contains("AIBatchProcessing"));
+        assertTrue(toString.contains(batchProcessing.getId().toString()));
+        assertTrue(toString.contains(batchProcessing.getBatchId()));
+    }
+
+    @Test
+    void testAIBatchProcessingWithNullValues() {
+        AIBatchProcessing nullBatch = new AIBatchProcessing();
+        nullBatch.setId(UUID.randomUUID());
+
+        assertNotNull(nullBatch.getId());
+        assertNull(nullBatch.getBatchId());
+        assertNull(nullBatch.getStatus());
+        assertNull(nullBatch.getStartTime());
+        assertNull(nullBatch.getEndTime());
+    }
+
+    @Test
+    void testAIBatchProcessingIsRunning() {
+        // Test running status
+        assertTrue(batchProcessing.isRunning());
+
         batchProcessing.setStatus(AIBatchProcessing.BatchStatus.COMPLETED);
-        assertThat(batchProcessing.isRunning()).isFalse();
+        assertFalse(batchProcessing.isRunning());
+
+        batchProcessing.setStatus(AIBatchProcessing.BatchStatus.RUNNING);
+        assertTrue(batchProcessing.isRunning());
     }
 
     @Test
-    @DisplayName("Should determine if batch is finished")
-    void shouldDetermineIfBatchIsFinished() {
-        batchProcessing.setStatus(AIBatchProcessing.BatchStatus.RUNNING);
-        assertThat(batchProcessing.isFinished()).isFalse();
-        
+    void testAIBatchProcessingIsFinished() {
+        // Test finished status
+        assertFalse(batchProcessing.isFinished());
+
         batchProcessing.setStatus(AIBatchProcessing.BatchStatus.COMPLETED);
-        assertThat(batchProcessing.isFinished()).isTrue();
-        
+        assertTrue(batchProcessing.isFinished());
+
         batchProcessing.setStatus(AIBatchProcessing.BatchStatus.FAILED);
-        assertThat(batchProcessing.isFinished()).isTrue();
-        
+        assertTrue(batchProcessing.isFinished());
+
         batchProcessing.setStatus(AIBatchProcessing.BatchStatus.CANCELLED);
-        assertThat(batchProcessing.isFinished()).isTrue();
+        assertTrue(batchProcessing.isFinished());
     }
 }

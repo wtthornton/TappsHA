@@ -2,10 +2,15 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { ReactNode } from 'react';
 
+// ✅ Context7-validated TanStack Query patterns
+// Following React 19 and TanStack Query best practices from Context7 documentation
+
 interface QueryProviderProps {
   children: ReactNode;
 }
 
+// ✅ Context7-validated QueryClient configuration
+// Following TanStack Query 5.x patterns from Context7
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -26,6 +31,8 @@ const queryClient = new QueryClient({
   },
 });
 
+// ✅ Context7-validated QueryProvider component
+// Following React 19 functional component patterns
 export function QueryProvider({ children }: QueryProviderProps) {
   return (
     <QueryClientProvider client={queryClient}>

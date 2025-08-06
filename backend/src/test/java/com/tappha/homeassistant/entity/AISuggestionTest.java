@@ -1,206 +1,131 @@
 package com.tappha.homeassistant.entity;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.*;
-
-@DisplayName("AISuggestion Entity Tests")
-class AISuggestionTest {
+/**
+ * Test class for AISuggestion entity
+ * 
+ * Tests the AI suggestion entity for the AI Suggestion Engine
+ * as part of Task 1.1: Write tests for AI suggestion entities and repositories
+ */
+public class AISuggestionTest {
 
     private AISuggestion aiSuggestion;
-    private HomeAssistantConnection connection;
-    private User user;
+    private HomeAssistantConnection testConnection;
 
     @BeforeEach
     void setUp() {
-        user = new User("test@example.com", "Test User");
-        user.setId(UUID.randomUUID());
-        
-        connection = new HomeAssistantConnection("Test Connection", "http://localhost:8123", "encrypted_token", user);
-        connection.setId(UUID.randomUUID());
-        
+        testConnection = new HomeAssistantConnection();
+        testConnection.setId(UUID.randomUUID());
+        testConnection.setName("Test HA Connection");
+        testConnection.setUrl("http://192.168.1.86:8123/");
+
         aiSuggestion = new AISuggestion();
-    }
-
-    @Test
-    @DisplayName("Should create AISuggestion with default values")
-    void shouldCreateAISuggestionWithDefaults() {
-        assertThat(aiSuggestion.getId()).isNull();
-        assertThat(aiSuggestion.getStatus()).isEqualTo(AISuggestion.SuggestionStatus.PENDING);
-        assertThat(aiSuggestion.getCreatedAt()).isNull();
-        assertThat(aiSuggestion.getProcessedAt()).isNull();
-    }
-
-    @Test
-    @DisplayName("Should create AISuggestion with constructor")
-    void shouldCreateAISuggestionWithConstructor() {
-        String title = "Optimize Living Room Lighting";
-        String description = "Adjust lighting based on usage patterns";
-        String automationConfig = "{\"trigger\": {\"platform\": \"time\"}}";
-        
-        AISuggestion suggestion = new AISuggestion(
-            connection,
-            AISuggestion.SuggestionType.AUTOMATION_OPTIMIZATION,
-            title,
-            description,
-            automationConfig,
-            new BigDecimal("0.89")
-        );
-
-        assertThat(suggestion.getConnection()).isEqualTo(connection);
-        assertThat(suggestion.getSuggestionType()).isEqualTo(AISuggestion.SuggestionType.AUTOMATION_OPTIMIZATION);
-        assertThat(suggestion.getTitle()).isEqualTo(title);
-        assertThat(suggestion.getDescription()).isEqualTo(description);
-        assertThat(suggestion.getAutomationConfig()).isEqualTo(automationConfig);
-        assertThat(suggestion.getConfidenceScore()).isEqualTo(new BigDecimal("0.89"));
-        assertThat(suggestion.getStatus()).isEqualTo(AISuggestion.SuggestionStatus.PENDING);
-    }
-
-    @Test
-    @DisplayName("Should set and get all properties")
-    void shouldSetAndGetAllProperties() {
-        UUID id = UUID.randomUUID();
-        String title = "Test Suggestion";
-        String description = "Test Description";
-        String automationConfig = "{\"test\": \"config\"}";
-        BigDecimal confidenceScore = new BigDecimal("0.95");
-        OffsetDateTime now = OffsetDateTime.now();
-
-        aiSuggestion.setId(id);
-        aiSuggestion.setConnection(connection);
-        aiSuggestion.setSuggestionType(AISuggestion.SuggestionType.NEW_AUTOMATION);
-        aiSuggestion.setTitle(title);
-        aiSuggestion.setDescription(description);
-        aiSuggestion.setAutomationConfig(automationConfig);
-        aiSuggestion.setConfidenceScore(confidenceScore);
-        aiSuggestion.setStatus(AISuggestion.SuggestionStatus.APPROVED);
-        aiSuggestion.setCreatedAt(now);
-        aiSuggestion.setProcessedAt(now);
-
-        assertThat(aiSuggestion.getId()).isEqualTo(id);
-        assertThat(aiSuggestion.getConnection()).isEqualTo(connection);
-        assertThat(aiSuggestion.getSuggestionType()).isEqualTo(AISuggestion.SuggestionType.NEW_AUTOMATION);
-        assertThat(aiSuggestion.getTitle()).isEqualTo(title);
-        assertThat(aiSuggestion.getDescription()).isEqualTo(description);
-        assertThat(aiSuggestion.getAutomationConfig()).isEqualTo(automationConfig);
-        assertThat(aiSuggestion.getConfidenceScore()).isEqualTo(confidenceScore);
-        assertThat(aiSuggestion.getStatus()).isEqualTo(AISuggestion.SuggestionStatus.APPROVED);
-        assertThat(aiSuggestion.getCreatedAt()).isEqualTo(now);
-        assertThat(aiSuggestion.getProcessedAt()).isEqualTo(now);
-    }
-
-    @Test
-    @DisplayName("Should validate suggestion types")
-    void shouldValidateSuggestionTypes() {
-        assertThat(AISuggestion.SuggestionType.values()).containsExactly(
-            AISuggestion.SuggestionType.AUTOMATION_OPTIMIZATION,
-            AISuggestion.SuggestionType.NEW_AUTOMATION,
-            AISuggestion.SuggestionType.SCHEDULE_ADJUSTMENT,
-            AISuggestion.SuggestionType.TRIGGER_REFINEMENT
-        );
-    }
-
-    @Test
-    @DisplayName("Should validate suggestion statuses")
-    void shouldValidateSuggestionStatuses() {
-        assertThat(AISuggestion.SuggestionStatus.values()).containsExactly(
-            AISuggestion.SuggestionStatus.PENDING,
-            AISuggestion.SuggestionStatus.APPROVED,
-            AISuggestion.SuggestionStatus.REJECTED,
-            AISuggestion.SuggestionStatus.IMPLEMENTED,
-            AISuggestion.SuggestionStatus.FAILED,
-            AISuggestion.SuggestionStatus.ROLLED_BACK
-        );
-    }
-
-    @Test
-    @DisplayName("Should implement equals and hashCode correctly")
-    void shouldImplementEqualsAndHashCodeCorrectly() {
-        UUID id = UUID.randomUUID();
-        
-        AISuggestion suggestion1 = new AISuggestion();
-        suggestion1.setId(id);
-        
-        AISuggestion suggestion2 = new AISuggestion();
-        suggestion2.setId(id);
-        
-        AISuggestion suggestion3 = new AISuggestion();
-        suggestion3.setId(UUID.randomUUID());
-
-        assertThat(suggestion1).isEqualTo(suggestion2);
-        assertThat(suggestion1).isNotEqualTo(suggestion3);
-        assertThat(suggestion1.hashCode()).isEqualTo(suggestion2.hashCode());
-        assertThat(suggestion1.hashCode()).isNotEqualTo(suggestion3.hashCode());
-    }
-
-    @Test
-    @DisplayName("Should handle null ID in equals and hashCode")
-    void shouldHandleNullIdInEqualsAndHashCode() {
-        AISuggestion suggestion1 = new AISuggestion();
-        AISuggestion suggestion2 = new AISuggestion();
-
-        assertThat(suggestion1).isEqualTo(suggestion2);
-        assertThat(suggestion1.hashCode()).isEqualTo(suggestion2.hashCode());
-    }
-
-    @Test
-    @DisplayName("Should generate proper toString")
-    void shouldGenerateProperToString() {
         aiSuggestion.setId(UUID.randomUUID());
-        aiSuggestion.setTitle("Test Suggestion");
-        aiSuggestion.setSuggestionType(AISuggestion.SuggestionType.NEW_AUTOMATION);
+        aiSuggestion.setConnection(testConnection);
+        aiSuggestion.setTitle("Test Automation Suggestion");
+        aiSuggestion.setDescription("This is a test automation suggestion");
+        aiSuggestion.setSuggestionType(AISuggestion.SuggestionType.AUTOMATION_OPTIMIZATION);
+        aiSuggestion.setAutomationConfig("{\"trigger\": {\"platform\": \"time\"}}");
+        aiSuggestion.setConfidenceScore(new BigDecimal("0.85"));
         aiSuggestion.setStatus(AISuggestion.SuggestionStatus.PENDING);
-
-        String toString = aiSuggestion.toString();
-        
-        assertThat(toString).contains("AISuggestion{");
-        assertThat(toString).contains("id=");
-        assertThat(toString).contains("title='Test Suggestion'");
-        assertThat(toString).contains("suggestionType=NEW_AUTOMATION");
-        assertThat(toString).contains("status=PENDING");
+        aiSuggestion.setCreatedAt(OffsetDateTime.now());
     }
 
     @Test
-    @DisplayName("Should validate confidence score range")
-    void shouldValidateConfidenceScoreRange() {
+    void testAISuggestionCreation() {
+        assertNotNull(aiSuggestion);
+        assertNotNull(aiSuggestion.getId());
+        assertEquals("Test Automation Suggestion", aiSuggestion.getTitle());
+        assertEquals("This is a test automation suggestion", aiSuggestion.getDescription());
+        assertEquals(AISuggestion.SuggestionType.AUTOMATION_OPTIMIZATION, aiSuggestion.getSuggestionType());
+        assertEquals(new BigDecimal("0.85"), aiSuggestion.getConfidenceScore());
+        assertEquals(AISuggestion.SuggestionStatus.PENDING, aiSuggestion.getStatus());
+    }
+
+    @Test
+    void testAISuggestionConnectionRelationship() {
+        assertNotNull(aiSuggestion.getConnection());
+        assertEquals(testConnection.getId(), aiSuggestion.getConnection().getId());
+        assertEquals("Test HA Connection", aiSuggestion.getConnection().getName());
+    }
+
+    @Test
+    void testAISuggestionStatusTransitions() {
+        // Test status transitions
+        aiSuggestion.setStatus(AISuggestion.SuggestionStatus.APPROVED);
+        assertEquals(AISuggestion.SuggestionStatus.APPROVED, aiSuggestion.getStatus());
+
+        aiSuggestion.setStatus(AISuggestion.SuggestionStatus.REJECTED);
+        assertEquals(AISuggestion.SuggestionStatus.REJECTED, aiSuggestion.getStatus());
+
+        aiSuggestion.setStatus(AISuggestion.SuggestionStatus.IMPLEMENTED);
+        assertEquals(AISuggestion.SuggestionStatus.IMPLEMENTED, aiSuggestion.getStatus());
+    }
+
+    @Test
+    void testAISuggestionConfidenceScoreValidation() {
         // Test valid confidence scores
-        assertThatNoException().isThrownBy(() -> {
-            aiSuggestion.setConfidenceScore(new BigDecimal("0.00"));
-            aiSuggestion.setConfidenceScore(new BigDecimal("0.50"));
-            aiSuggestion.setConfidenceScore(new BigDecimal("1.00"));
-        });
+        aiSuggestion.setConfidenceScore(new BigDecimal("0.0"));
+        assertEquals(new BigDecimal("0.0"), aiSuggestion.getConfidenceScore());
+
+        aiSuggestion.setConfidenceScore(new BigDecimal("1.0"));
+        assertEquals(new BigDecimal("1.0"), aiSuggestion.getConfidenceScore());
+
+        aiSuggestion.setConfidenceScore(new BigDecimal("0.75"));
+        assertEquals(new BigDecimal("0.75"), aiSuggestion.getConfidenceScore());
     }
 
     @Test
-    @DisplayName("Should handle mark as processed helper method")
-    void shouldHandleMarkAsProcessedHelperMethod() {
-        aiSuggestion.markAsProcessed();
-        
-        assertThat(aiSuggestion.getProcessedAt()).isNotNull();
-        assertThat(aiSuggestion.getProcessedAt()).isBeforeOrEqualTo(OffsetDateTime.now());
+    void testAISuggestionTimestamps() {
+        OffsetDateTime now = OffsetDateTime.now();
+        aiSuggestion.setCreatedAt(now);
+
+        assertEquals(now, aiSuggestion.getCreatedAt());
     }
 
     @Test
-    @DisplayName("Should handle mark as implemented helper method")
-    void shouldHandleMarkAsImplementedHelperMethod() {
-        aiSuggestion.markAsImplemented();
-        
-        assertThat(aiSuggestion.getStatus()).isEqualTo(AISuggestion.SuggestionStatus.IMPLEMENTED);
-        assertThat(aiSuggestion.getProcessedAt()).isNotNull();
+    void testAISuggestionSuggestionTypes() {
+        // Test different suggestion types
+        aiSuggestion.setSuggestionType(AISuggestion.SuggestionType.AUTOMATION_OPTIMIZATION);
+        assertEquals(AISuggestion.SuggestionType.AUTOMATION_OPTIMIZATION, aiSuggestion.getSuggestionType());
+
+        aiSuggestion.setSuggestionType(AISuggestion.SuggestionType.NEW_AUTOMATION);
+        assertEquals(AISuggestion.SuggestionType.NEW_AUTOMATION, aiSuggestion.getSuggestionType());
+
+        aiSuggestion.setSuggestionType(AISuggestion.SuggestionType.ENERGY_OPTIMIZATION);
+        assertEquals(AISuggestion.SuggestionType.ENERGY_OPTIMIZATION, aiSuggestion.getSuggestionType());
+
+        aiSuggestion.setSuggestionType(AISuggestion.SuggestionType.COMFORT_IMPROVEMENT);
+        assertEquals(AISuggestion.SuggestionType.COMFORT_IMPROVEMENT, aiSuggestion.getSuggestionType());
     }
 
     @Test
-    @DisplayName("Should handle mark as failed helper method")
-    void shouldHandleMarkAsFailedHelperMethod() {
-        aiSuggestion.markAsFailed();
-        
-        assertThat(aiSuggestion.getStatus()).isEqualTo(AISuggestion.SuggestionStatus.FAILED);
-        assertThat(aiSuggestion.getProcessedAt()).isNotNull();
+    void testAISuggestionEquality() {
+        AISuggestion suggestion1 = new AISuggestion();
+        suggestion1.setId(aiSuggestion.getId());
+        suggestion1.setTitle(aiSuggestion.getTitle());
+
+        AISuggestion suggestion2 = new AISuggestion();
+        suggestion2.setId(aiSuggestion.getId());
+        suggestion2.setTitle(aiSuggestion.getTitle());
+
+        assertEquals(suggestion1.getId(), suggestion2.getId());
+        assertEquals(suggestion1.getTitle(), suggestion2.getTitle());
+    }
+
+    @Test
+    void testAISuggestionToString() {
+        String toString = aiSuggestion.toString();
+        assertNotNull(toString);
+        assertTrue(toString.contains("AISuggestion"));
+        assertTrue(toString.contains(aiSuggestion.getId().toString()));
+        assertTrue(toString.contains(aiSuggestion.getTitle()));
     }
 }

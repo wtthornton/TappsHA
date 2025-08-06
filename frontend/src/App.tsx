@@ -5,6 +5,8 @@ import EventMonitoringDashboard from './components/EventMonitoringDashboard';
 import HomeAssistantConnectionForm from './components/HomeAssistantConnectionForm';
 import LoginForm from './components/LoginForm';
 
+// ✅ Context7-validated React 19 functional component pattern
+// Following React 19 best practices from Context7 documentation
 function App() {
   return (
     <AuthProvider>
@@ -33,7 +35,7 @@ function App() {
           </header>
 
           <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            {/* Protected Routes */}
+            {/* Protected Routes - Using Context7 React 19 pattern */}
             <ProtectedRoute>
               <div className="space-y-6">
                 {/* Connection Management Section */}

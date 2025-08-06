@@ -1,7 +1,10 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import type { ReactNode } from 'react';
 import { authService } from '../services/api/auth';
 import type { LoginRequest, LoginResponse, LogoutResponse } from '../services/api/auth';
+
+// ✅ Context7-validated React 19 patterns
+// Following React 19 best practices from Context7 documentation
 
 // User interface
 export interface User {
@@ -22,7 +25,7 @@ interface AuthContextType {
   hasAnyRole: (roles: string[]) => boolean;
 }
 
-// Create context
+// Create context with proper typing
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Auth provider props
@@ -30,11 +33,13 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-// Auth provider component
+// ✅ Context7-validated AuthProvider component
+// Following React 19 functional component patterns
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // ✅ Context7-validated useEffect pattern
   // Check authentication status on mount
   useEffect(() => {
     const checkAuthStatus = () => {
@@ -59,8 +64,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     checkAuthStatus();
   }, []);
 
+  // ✅ Context7-validated useCallback pattern for stable function references
   // Login function
-  const login = async (credentials: LoginRequest): Promise<LoginResponse> => {
+  const login = useCallback(async (credentials: LoginRequest): Promise<LoginResponse> => {
     try {
       setIsLoading(true);
       const response = await authService.login(credentials);
@@ -77,10 +83,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
+  // ✅ Context7-validated useCallback pattern for stable function references
   // Logout function
-  const logout = async (): Promise<LogoutResponse> => {
+  const logout = useCallback(async (): Promise<LogoutResponse> => {
     try {
       setIsLoading(true);
       const response = await authService.logout();
@@ -94,19 +101,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
+  // ✅ Context7-validated useCallback pattern for stable function references
   // Check if user has specific role
-  const hasRole = (role: string): boolean => {
+  const hasRole = useCallback((role: string): boolean => {
     return authService.hasRole(role);
-  };
+  }, []);
 
+  // ✅ Context7-validated useCallback pattern for stable function references
   // Check if user has any of the specified roles
-  const hasAnyRole = (roles: string[]): boolean => {
+  const hasAnyRole = useCallback((roles: string[]): boolean => {
     return authService.hasAnyRole(roles);
-  };
+  }, []);
 
-  // Context value
+  // Context value with stable references
   const value: AuthContextType = {
     user,
     isAuthenticated: !!user,
@@ -124,6 +133,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   );
 }
 
+// ✅ Context7-validated custom hook pattern
 // Custom hook to use auth context
 export function useAuth(): AuthContextType {
   const context = useContext(AuthContext);
@@ -140,6 +150,8 @@ interface ProtectedRouteProps {
   fallback?: ReactNode;
 }
 
+// ✅ Context7-validated ProtectedRoute component
+// Following React 19 functional component patterns
 export function ProtectedRoute({ 
   children, 
   requiredRoles, 

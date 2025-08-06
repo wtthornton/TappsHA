@@ -129,6 +129,19 @@ tappha:
     monitoring:
       metrics-interval: 60000
       health-check-interval: 30000
+  
+  # WebSocket Configuration
+  websocket:
+    max-text-message-size: 8192
+    max-binary-message-size: 8192
+    idle-timeout: 600000
+    max-sessions: 100
+    heartbeat-interval: 30000
+  
+  # JWT Configuration
+  jwt:
+    secret: ${JWT_SECRET:default-jwt-secret-change-in-production}
+    expiration: 86400000
 
 # InfluxDB Configuration
 influxdb:

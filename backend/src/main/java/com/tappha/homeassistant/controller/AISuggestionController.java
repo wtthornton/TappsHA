@@ -121,6 +121,76 @@ public class AISuggestionController {
     }
 
     /**
+     * Approve an AI suggestion
+     */
+    @PostMapping("/{suggestionId}/approve")
+    public ResponseEntity<Map<String, Object>> approveSuggestion(
+            @PathVariable UUID suggestionId,
+            @RequestBody Map<String, String> request) {
+        try {
+            String reason = request.getOrDefault("reason", "Approved by user");
+            String userEmail = request.getOrDefault("userEmail", "unknown@example.com");
+            
+            log.info("Approving suggestion: {} by user: {}", suggestionId, userEmail);
+            
+            // TODO: Implement approval logic with AISuggestionApproval entity
+            // This would involve creating an AISuggestionApproval record
+            // and updating the AISuggestion status
+            
+            return ResponseEntity.ok(Map.of(
+                    "status", "approved",
+                    "suggestionId", suggestionId.toString(),
+                    "approvedBy", userEmail,
+                    "reason", reason,
+                    "timestamp", System.currentTimeMillis()
+            ));
+            
+        } catch (Exception e) {
+            log.error("Error approving suggestion: {}", suggestionId, e);
+            return ResponseEntity.internalServerError()
+                    .body(Map.of(
+                            "error", "Failed to approve suggestion",
+                            "timestamp", System.currentTimeMillis()
+                    ));
+        }
+    }
+
+    /**
+     * Reject an AI suggestion
+     */
+    @PostMapping("/{suggestionId}/reject")
+    public ResponseEntity<Map<String, Object>> rejectSuggestion(
+            @PathVariable UUID suggestionId,
+            @RequestBody Map<String, String> request) {
+        try {
+            String reason = request.getOrDefault("reason", "Rejected by user");
+            String userEmail = request.getOrDefault("userEmail", "unknown@example.com");
+            
+            log.info("Rejecting suggestion: {} by user: {}", suggestionId, userEmail);
+            
+            // TODO: Implement rejection logic with AISuggestionApproval entity
+            // This would involve creating an AISuggestionApproval record
+            // and updating the AISuggestion status
+            
+            return ResponseEntity.ok(Map.of(
+                    "status", "rejected",
+                    "suggestionId", suggestionId.toString(),
+                    "rejectedBy", userEmail,
+                    "reason", reason,
+                    "timestamp", System.currentTimeMillis()
+            ));
+            
+        } catch (Exception e) {
+            log.error("Error rejecting suggestion: {}", suggestionId, e);
+            return ResponseEntity.internalServerError()
+                    .body(Map.of(
+                            "error", "Failed to reject suggestion",
+                            "timestamp", System.currentTimeMillis()
+                    ));
+        }
+    }
+
+    /**
      * Get AI service health status
      */
     @GetMapping("/health")
