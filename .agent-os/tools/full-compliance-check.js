@@ -9,30 +9,433 @@
 
 const fs = require('fs');
 const path = require('path');
-const ComplianceChecker = require('./compliance-checker');
 
 class FullComplianceCheck {
   constructor() {
-    this.checker = new ComplianceChecker();
-    this.results = {
-      overall: {
-        score: 0,
-        status: 'unknown',
-        criticalViolations: 0,
-        warnings: 0,
-        passed: 0,
+    this.standards = this.loadStandards();
+    this.violations = [];
+    this.complianceScore = 100;
+    this.totalChecks = 0;
+    this.passedChecks = 0;
+    
+    // Enhanced metrics collection
+    this.metrics = {
+      startTime: Date.now(),
+      executionTime: 0,
+      fileProcessingTimes: {},
+      violationCategories: {},
+      standardsEffectiveness: {},
+      historicalData: this.loadHistoricalData(),
+    };
+  }
+
+  loadStandards() {
+    const standardsPath = path.join(__dirname, '../standards');
+    const standards = {};
+
+    // Load all standards files
+    const standardFiles = [
+      'tech-stack.md',
+      'code-style.md',
+      'best-practices.md',
+      'security-compliance.md',
+      'ci-cd-strategy.md',
+      'testing-strategy.md',
+      'enforcement.md',
+    ];
+
+    standardFiles.forEach(file => {
+      const filePath = path.join(standardsPath, file);
+      if (fs.existsSync(filePath)) {
+        standards[file.replace('.md', '')] = fs.readFileSync(filePath, 'utf8');
+      }
+    });
+
+    return standards;
+  }
+
+  loadHistoricalData() {
+    const historyPath = path.join(__dirname, '../reports/compliance-history.json');
+    try {
+      if (fs.existsSync(historyPath)) {
+        return JSON.parse(fs.readFileSync(historyPath, 'utf8'));
+      }
+    } catch (error) {
+      console.warn('⚠️  Could not load historical data:', error.message);
+    }
+    return [];
+  }
+
+  saveHistoricalData() {
+    const historyPath = path.join(__dirname, '../reports/compliance-history.json');
+    
+    const historyEntry = {
+      timestamp: new Date().toISOString(),
+      runId: this.generateRunId(),
+      complianceScore: this.complianceScore,
+      totalChecks: this.totalChecks,
+      passedChecks: this.passedChecks,
+      violations: this.violations.length,
+      criticalViolations: this.violations.filter(v => v.type === 'CRITICAL').length,
+      warnings: this.violations.filter(v => v.type === 'WARNING').length,
+      metrics: {
+        executionTime: this.metrics.executionTime,
+        filesProcessed: Object.keys(this.metrics.fileProcessingTimes).length,
+      },
+    };
+
+    this.metrics.historicalData.push(historyEntry);
+    
+    // Keep last 30 entries
+    if (this.metrics.historicalData.length > 30) {
+      this.metrics.historicalData = this.metrics.historicalData.slice(-30);
+    }
+
+    const reportsDir = path.dirname(historyPath);
+    if (!fs.existsSync(reportsDir)) {
+      fs.mkdirSync(reportsDir, { recursive: true });
+    }
+
+    try {
+      fs.writeFileSync(historyPath, JSON.stringify(this.metrics.historicalData, null, 2));
+      console.log('✅ Historical data saved successfully');
+    } catch (error) {
+      console.warn('⚠️  Could not save historical data:', error.message);
+    }
+  }
+
+  generateRunId() {
+    return `run_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  }
+
+  trackViolationCategory(category, type) {
+    if (!this.metrics.violationCategories[category]) {
+      this.metrics.violationCategories[category] = { 
+        CRITICAL: 0, 
+        WARNING: 0,
+        INFO: 0,
+        SUGGESTION: 0,
         total: 0
-      },
-      categories: {
-        technologyStack: { score: 0, violations: [], status: 'unknown' },
-        codeStyle: { score: 0, violations: [], status: 'unknown' },
-        security: { score: 0, violations: [], status: 'unknown' },
-        architecture: { score: 0, violations: [], status: 'unknown' },
-        testing: { score: 0, violations: [], status: 'unknown' },
-        performance: { score: 0, violations: [], status: 'unknown' }
-      },
-      recommendations: [],
-      timestamp: new Date().toISOString()
+      };
+    }
+    this.metrics.violationCategories[category][type]++;
+    this.metrics.violationCategories[category].total++;
+  }
+
+  trackStandardsEffectiveness(standardName, hasViolations) {
+    if (!this.metrics.standardsEffectiveness[standardName]) {
+      this.metrics.standardsEffectiveness[standardName] = { 
+        violations: 0, 
+        checks: 0,
+        violationRate: 0,
+        lastViolation: null,
+      };
+    }
+    
+    this.metrics.standardsEffectiveness[standardName].checks++;
+    
+    if (hasViolations) {
+      this.metrics.standardsEffectiveness[standardName].violations++;
+      this.metrics.standardsEffectiveness[standardName].lastViolation = new Date().toISOString();
+    }
+    
+    const standard = this.metrics.standardsEffectiveness[standardName];
+    standard.violationRate = (standard.violations / standard.checks) * 100;
+  }
+
+  trackFileProcessing(filePath, processingTime) {
+    this.metrics.fileProcessingTimes[filePath] = {
+      processingTime,
+      timestamp: new Date().toISOString(),
+    };
+  }
+
+  validateCode(filePath, content) {
+    const startTime = Date.now();
+    const violations = [];
+    
+    // Technology Stack Validation
+    const techStackViolations = this.validateTechnologyStack(filePath, content);
+    violations.push(...techStackViolations);
+    this.trackStandardsEffectiveness('tech-stack', techStackViolations.length > 0);
+    
+    // Code Style Validation
+    const codeStyleViolations = this.validateCodeStyle(filePath, content);
+    violations.push(...codeStyleViolations);
+    this.trackStandardsEffectiveness('code-style', codeStyleViolations.length > 0);
+    
+    // Security Validation
+    const securityViolations = this.validateSecurity(filePath, content);
+    violations.push(...securityViolations);
+    this.trackStandardsEffectiveness('security-compliance', securityViolations.length > 0);
+    
+    // Architecture Validation
+    const architectureViolations = this.validateArchitecture(filePath, content);
+    violations.push(...architectureViolations);
+    this.trackStandardsEffectiveness('best-practices', architectureViolations.length > 0);
+    
+    // Testing Validation
+    const testingViolations = this.validateTesting(filePath, content);
+    violations.push(...testingViolations);
+    this.trackStandardsEffectiveness('testing-strategy', testingViolations.length > 0);
+
+    // Track processing time
+    const processingTime = Date.now() - startTime;
+    this.trackFileProcessing(filePath, processingTime);
+
+    // Track violation categories
+    violations.forEach(violation => {
+      this.trackViolationCategory(violation.category, violation.type);
+      violation.timestamp = new Date().toISOString();
+    });
+
+    return violations;
+  }
+
+  validateTechnologyStack(filePath, content) {
+    const violations = [];
+    
+    // Check for Spring Boot 3.3+ usage
+    if (filePath.includes('pom.xml') || filePath.includes('build.gradle')) {
+      if (!content.includes('spring-boot-starter-parent') && !content.includes('spring-boot')) {
+        violations.push({
+          type: 'CRITICAL',
+          category: 'Technology Stack',
+          message: 'Missing Spring Boot 3.3+ dependency',
+          file: filePath,
+          line: 1,
+        });
+      }
+    }
+
+    // Check for React 19 usage in frontend
+    if (filePath.includes('package.json')) {
+      if (content.includes('"react"') && !content.includes('"react": "^19')) {
+        violations.push({
+          type: 'WARNING',
+          category: 'Technology Stack',
+          message: 'React version should be 19.x',
+          file: filePath,
+          line: 1,
+        });
+      }
+    }
+
+    return violations;
+  }
+
+  validateCodeStyle(filePath, content) {
+    const violations = [];
+    const lines = content.split('\n');
+    
+    lines.forEach((line, index) => {
+      const lineNumber = index + 1;
+      
+      // Check for tabs instead of spaces
+      if (line.startsWith('\t')) {
+        violations.push({
+          type: 'WARNING',
+          category: 'Code Style',
+          message: 'Use spaces instead of tabs for indentation',
+          file: filePath,
+          line: lineNumber,
+          suggestion: 'Replace tabs with 2 spaces for consistent indentation',
+        });
+      }
+      
+      // Check line length (100 chars max)
+      if (line.length > 100) {
+        violations.push({
+          type: 'WARNING',
+          category: 'Code Style',
+          message: 'Line exceeds 100 character limit',
+          file: filePath,
+          line: lineNumber,
+          suggestion: 'Split long line into multiple lines or use line continuation',
+        });
+      }
+    });
+
+    return violations;
+  }
+
+  validateSecurity(filePath, content) {
+    const violations = [];
+    
+    // Check for hardcoded secrets
+    const secretPatterns = [
+      /password\s*=\s*['"][^'"]+['"]/i,
+      /api_key\s*=\s*['"][^'"]+['"]/i,
+      /secret\s*=\s*['"][^'"]+['"]/i,
+      /token\s*=\s*['"][^'"]+['"]/i,
+    ];
+    
+    const lines = content.split('\n');
+    lines.forEach((line, index) => {
+      secretPatterns.forEach(pattern => {
+        if (pattern.test(line)) {
+          violations.push({
+            type: 'CRITICAL',
+            category: 'Security',
+            message: 'Hardcoded secret detected - use environment variables',
+            file: filePath,
+            line: index + 1,
+            suggestion: 'Replace hardcoded value with environment variable: ${process.env.VARIABLE_NAME}',
+          });
+        }
+      });
+    });
+
+    return violations;
+  }
+
+  validateArchitecture(filePath, content) {
+    const violations = [];
+    
+    // Check for proper Spring Boot annotations
+    if (filePath.includes('.java')) {
+      if (content.includes('@RestController') && !content.includes('@RequestMapping')) {
+        violations.push({
+          type: 'WARNING',
+          category: 'Architecture',
+          message: 'RestController should have RequestMapping annotation',
+          file: filePath,
+          line: 1,
+          suggestion: 'Add @RequestMapping annotation to define API endpoints',
+        });
+      }
+    }
+    
+    // Check for proper React component structure
+    if (filePath.includes('.tsx') || filePath.includes('.jsx')) {
+      if (content.includes('React.FC') && !content.includes('interface')) {
+        violations.push({
+          type: 'WARNING',
+          category: 'Architecture',
+          message: 'React component should have proper TypeScript interface',
+          file: filePath,
+          line: 1,
+          suggestion: 'Define TypeScript interface for component props',
+        });
+      }
+    }
+
+    return violations;
+  }
+
+  validateTesting(filePath, content) {
+    const violations = [];
+    
+    // Check for test files
+    if (filePath.includes('Test.java') || filePath.includes('.test.') || filePath.includes('.spec.')) {
+      if (!content.includes('@Test') && !content.includes('describe(') && !content.includes('it(')) {
+        violations.push({
+          type: 'WARNING',
+          category: 'Testing',
+          message: 'Test file should contain actual test methods',
+          file: filePath,
+          line: 1,
+          suggestion: 'Add @Test annotations or test methods to validate functionality',
+        });
+      }
+    }
+
+    return violations;
+  }
+
+  validateCodebase(codebasePath = '.') {
+    console.log('🔍 Running comprehensive compliance check...');
+    
+    const patterns = [
+      '**/*.java',
+      '**/*.ts',
+      '**/*.tsx',
+      '**/*.js',
+      '**/*.jsx',
+      '**/*.xml',
+      '**/*.json',
+      '**/*.yml',
+      '**/*.yaml',
+    ];
+
+    let totalFiles = 0;
+    let totalViolations = 0;
+
+    patterns.forEach(pattern => {
+      const ignorePatterns = [
+        'node_modules/**', 
+        'target/**', 
+        'dist/**', 
+        '.agent-os/**',
+        'frontend/node_modules/**',
+        'backend/target/**',
+        '**/node_modules/**',
+        '**/target/**',
+        '**/dist/**',
+        '**/.git/**',
+        '**/coverage/**',
+        '**/.nyc_output/**'
+      ];
+      
+      try {
+        const glob = require('glob');
+        const files = glob.sync(pattern, { cwd: codebasePath, ignore: ignorePatterns });
+        
+        files.forEach(file => {
+          const fullPath = path.join(codebasePath, file);
+          try {
+            const content = fs.readFileSync(fullPath, 'utf8');
+            const violations = this.validateCode(file, content);
+            
+            if (violations.length > 0) {
+              this.violations.push(...violations);
+              totalViolations += violations.length;
+            }
+            
+            totalFiles++;
+            this.totalChecks++;
+          } catch (error) {
+            console.warn(`⚠️  Could not read file: ${file}`);
+          }
+        });
+      } catch (error) {
+        console.warn(`⚠️  Could not process pattern: ${pattern}`, error.message);
+      }
+    });
+
+    // Calculate compliance based on files with violations vs total files
+    const filesWithViolations = this.violations.reduce((acc, violation) => {
+      if (!acc.includes(violation.file)) {
+        acc.push(violation.file);
+      }
+      return acc;
+    }, []).length;
+    
+    this.passedChecks = this.totalChecks - filesWithViolations;
+    this.complianceScore = Math.max(0, Math.round((this.passedChecks / this.totalChecks) * 100));
+
+    // Calculate execution time
+    this.metrics.executionTime = Date.now() - this.metrics.startTime;
+
+    // Save historical data
+    this.saveHistoricalData();
+
+    return {
+      totalFiles,
+      totalViolations,
+      complianceScore: this.complianceScore,
+      violations: this.violations,
+      metrics: this.metrics,
+    };
+  }
+
+  generateReport() {
+    return {
+      totalChecks: this.totalChecks,
+      passedChecks: this.passedChecks,
+      violations: this.violations,
+      complianceScore: this.complianceScore,
+      metrics: this.metrics,
     };
   }
 
@@ -41,10 +444,10 @@ class FullComplianceCheck {
     
     try {
       // Run comprehensive compliance check
-      await this.checker.validateCodebase('.');
+      await this.validateCodebase('.');
       
       // Generate detailed report
-      const report = this.checker.generateReport();
+      const report = this.generateReport();
       
       // Parse and structure results
       this.parseResults(report);
@@ -62,13 +465,52 @@ class FullComplianceCheck {
       
     } catch (error) {
       console.error('❌ Compliance check failed:', error.message);
-      this.results.overall.status = 'error';
-      this.results.overall.score = 0;
+      this.results = {
+        overall: {
+          score: 0,
+          status: 'error',
+          criticalViolations: 0,
+          warnings: 0,
+          passed: 0,
+          total: 0
+        },
+        categories: {
+          technologyStack: { score: 0, violations: [], status: 'error' },
+          codeStyle: { score: 0, violations: [], status: 'error' },
+          security: { score: 0, violations: [], status: 'error' },
+          architecture: { score: 0, violations: [], status: 'error' },
+          testing: { score: 0, violations: [], status: 'error' },
+          performance: { score: 0, violations: [], status: 'error' }
+        },
+        recommendations: [],
+        timestamp: new Date().toISOString()
+      };
       return this.results;
     }
   }
 
   parseResults(report) {
+    this.results = {
+      overall: {
+        score: report.complianceScore || 0,
+        status: 'unknown',
+        criticalViolations: 0,
+        warnings: 0,
+        passed: report.passedChecks || 0,
+        total: report.totalChecks || 0
+      },
+      categories: {
+        technologyStack: { score: 0, violations: [], status: 'unknown' },
+        codeStyle: { score: 0, violations: [], status: 'unknown' },
+        security: { score: 0, violations: [], status: 'unknown' },
+        architecture: { score: 0, violations: [], status: 'unknown' },
+        testing: { score: 0, violations: [], status: 'unknown' },
+        performance: { score: 0, violations: [], status: 'unknown' }
+      },
+      recommendations: [],
+      timestamp: new Date().toISOString()
+    };
+
     // Parse the compliance checker results
     if (report && report.violations) {
       this.results.overall.total = report.totalChecks || 0;

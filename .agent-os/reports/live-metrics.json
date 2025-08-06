@@ -1,25 +1,66 @@
 {
-  "timestamp": "2025-08-05T23:22:25.135Z",
-  "complianceScore": 0,
-  "totalChecks": 0,
-  "passedChecks": 0,
-  "violations": 0,
-  "criticalViolations": 0,
-  "warnings": 0,
+  "complianceScore": 3,
+  "criticalViolations": 14,
+  "warnings": 1250,
+  "averageProcessingTime": 150,
+  "timestamp": "2025-08-06T07:49:26.610Z",
+  "uptime": 690245,
+  "totalRequests": 0,
+  "fileTypes": [
+    "java",
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "xml",
+    "json",
+    "yml",
+    "yaml"
+  ],
+  "complianceTrend": {
+    "direction": "improving",
+    "change": 3.4,
+    "confidence": 0.8400000000000001,
+    "message": "Compliance is improving"
+  },
+  "totalFilesProcessed": 152,
+  "processingEfficiency": 85,
+  "memoryUsage": 45,
+  "cpuUsage": 30,
+  "compliancePrediction": 9,
+  "complianceConfidence": 0.8577543244750014,
   "performance": {
-    "executionTime": 0,
-    "averageFileProcessingTime": 0,
-    "memoryUsage": 0,
-    "cpuUsage": 0
+    "averageProcessingTime": 150,
+    "totalFilesProcessed": 152,
+    "processingEfficiency": 85,
+    "memoryUsage": 45,
+    "cpuUsage": 30
   },
-  "effectiveness": {
-    "timeSaved": 0,
-    "productivityGain": 0,
-    "standardsAdoption": 0,
-    "qualityImprovement": 0
+  "realTimeUpdates": {
+    "lastUpdate": "2025-08-06T07:49:26.617Z",
+    "updateFrequency": "real-time",
+    "nextUpdate": "2025-08-06T07:49:56.617Z",
+    "isLive": true
   },
-  "totalViolations": 0,
-  "filesProcessed": 0,
-  "fileTypes": [],
-  "averageProcessingTime": 0
+  "visualIndicators": {
+    "ringColor": "#F44336",
+    "animationState": "normal",
+    "pulseIntensity": 0.8610192768667241,
+    "glowEffect": 0.2
+  },
+  "trendAnalysis": {
+    "shortTerm": {
+      "direction": "declining",
+      "magnitude": 7
+    },
+    "mediumTerm": {
+      "direction": "stable",
+      "magnitude": 0.16666666666666666
+    },
+    "longTerm": {
+      "direction": "declining",
+      "magnitude": 0.38461538461538464
+    },
+    "volatility": 0.07006425622241343
+  }
 }
