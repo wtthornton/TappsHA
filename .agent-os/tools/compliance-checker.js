@@ -7,10 +7,14 @@
  * Usage: node .agent-os/tools/compliance-checker.js [file-path]
  */
 
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const StatisticalAnalysis = require('./statistical-analysis');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { glob } from 'glob';
+import StatisticalAnalysis from './statistical-analysis.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class ComplianceChecker {
   constructor() {
@@ -8467,33 +8471,30 @@ class ComplianceChecker {
 }
 
 // CLI execution
-if (require.main === module) {
-  const checker = new ComplianceChecker();
-  const command = process.argv[2] || 'check';
-  const targetPath = process.argv[3] || '.';
+const checker = new ComplianceChecker();
+const command = process.argv[2] || 'check';
+const targetPath = process.argv[3] || '.';
+
+if (command === 'monitor') {
+  console.log('🚀 Starting real-time compliance monitoring...');
+  console.log('📊 Live dashboard will be available at: .agent-os/reports/live-dashboard.html');
+  console.log('📈 Real-time data will be saved to: .agent-os/reports/live-dashboard.json');
   
-  if (command === 'monitor') {
-    console.log('🚀 Starting real-time compliance monitoring...');
-    console.log('📊 Live dashboard will be available at: .agent-os/reports/live-dashboard.html');
-    console.log('📈 Real-time data will be saved to: .agent-os/reports/live-dashboard.json');
-    
-    const watcher = checker.startRealTimeMonitoring();
-    
-    // Handle graceful shutdown
-    process.on('SIGINT', () => {
-      console.log('\n🛑 Stopping real-time monitoring...');
-      watcher.close();
-      process.exit(0);
-    });
-  } else {
-    const result = checker.validateCodebase(targetPath);
-    const report = checker.generateReport();
-    
-    // Exit with error code if critical violations found
-    const criticalViolations = report.violations.filter(v => v.type === 'CRITICAL');
-    process.exit(criticalViolations.length > 0 ? 1 : 0);
-  }
+  const watcher = checker.startRealTimeMonitoring();
+  
+  // Handle graceful shutdown
+  process.on('SIGINT', () => {
+    console.log('\n🛑 Stopping real-time monitoring...');
+    watcher.close();
+    process.exit(0);
+  });
+} else {
+  const result = checker.validateCodebase(targetPath);
+  const report = checker.generateReport();
+  
+  // Exit with error code if critical violations found
+  const criticalViolations = report.violations.filter(v => v.type === 'CRITICAL');
+  process.exit(criticalViolations.length > 0 ? 1 : 0);
 }
 
-module.exports = ComplianceChecker; 
-module.exports = ComplianceChecker; 
+export default ComplianceChecker; 

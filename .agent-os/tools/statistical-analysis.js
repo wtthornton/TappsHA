@@ -14,13 +14,15 @@ class StatisticalAnalysis {
   loadHistoricalData() {
     // Load historical compliance data for trend analysis
     try {
-      const fs = require('fs');
-      const path = require('path');
-      const historyPath = path.join(__dirname, '../reports/compliance-history.json');
-      
-      if (fs.existsSync(historyPath)) {
-        this.historicalData = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
-      }
+      import('fs').then(fs => {
+        import('path').then(path => {
+          const historyPath = path.join(__dirname, '../reports/compliance-history.json');
+          
+          if (fs.existsSync(historyPath)) {
+            this.historicalData = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
+          }
+        });
+      });
     } catch (error) {
       console.warn('⚠️  Could not load historical data:', error.message);
       this.historicalData = [];
@@ -1315,4 +1317,4 @@ class StatisticalAnalysis {
   }
 }
 
-module.exports = StatisticalAnalysis; 
+export default StatisticalAnalysis; 

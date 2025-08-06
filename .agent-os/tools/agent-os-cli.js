@@ -7,13 +7,16 @@
  * including compliance checking, standards validation, and lessons learned tracking.
  */
 
-const { program } = require('commander');
-const path = require('path');
-const fs = require('fs');
+import { program } from 'commander';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Import tool modules
-const ComplianceChecker = require('./compliance-checker');
-const CursorIntegration = require('./cursor-integration');
+import ComplianceChecker from './compliance-checker.js';
 
 class AgentOSCLI {
   constructor() {
