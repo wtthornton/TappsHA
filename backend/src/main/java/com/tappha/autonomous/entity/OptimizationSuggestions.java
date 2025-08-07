@@ -2,6 +2,9 @@ package com.tappha.autonomous.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -46,10 +49,12 @@ public class OptimizationSuggestions {
     private String suggestionType; // 'PERFORMANCE', 'EFFICIENCY', 'SAFETY', 'USER_EXPERIENCE'
 
     @NotNull
+    @Size(min = 1, max = 255, message = "Suggestion title must be between 1 and 255 characters")
     @Column(name = "suggestion_title", nullable = false)
     private String suggestionTitle;
 
     @NotNull
+    @Size(min = 1, message = "Suggestion description must not be empty")
     @Column(name = "suggestion_description", columnDefinition = "TEXT", nullable = false)
     private String suggestionDescription;
 
@@ -62,8 +67,13 @@ public class OptimizationSuggestions {
     @Column(name = "expected_impact")
     private String expectedImpact; // 'LOW', 'MEDIUM', 'HIGH', 'CRITICAL'
 
+    @Min(value = 0, message = "Confidence score must be at least 0")
+    @Max(value = 100, message = "Confidence score must be at most 100")
     @Column(name = "confidence_score", precision = 5, scale = 2)
     private Double confidenceScore;
+
+    @Column(name = "impact_level")
+    private String impactLevel; // 'LOW', 'MEDIUM', 'HIGH', 'CRITICAL'
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -78,8 +88,12 @@ public class OptimizationSuggestions {
     @Column(name = "review_status")
     private String reviewStatus = "PENDING"; // 'PENDING', 'APPROVED', 'REJECTED', 'IMPLEMENTED'
 
+    @Size(min = 1, message = "Implementation notes must not be empty if provided")
     @Column(name = "implementation_notes", columnDefinition = "TEXT")
     private String implementationNotes;
+
+    @Column(name = "metadata", columnDefinition = "JSONB")
+    private String metadata;
 
     // Default constructor
     public OptimizationSuggestions() {
@@ -206,6 +220,22 @@ public class OptimizationSuggestions {
 
     public void setImplementationNotes(String implementationNotes) {
         this.implementationNotes = implementationNotes;
+    }
+
+    public String getImpactLevel() {
+        return impactLevel;
+    }
+
+    public void setImpactLevel(String impactLevel) {
+        this.impactLevel = impactLevel;
+    }
+
+    public String getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(String metadata) {
+        this.metadata = metadata;
     }
 
     // Business Logic Methods

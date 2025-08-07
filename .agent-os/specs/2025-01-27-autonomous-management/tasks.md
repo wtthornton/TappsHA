@@ -7,9 +7,9 @@
   - [x] 1.2 Create Flyway migration V004__create_autonomous_management_tables.sql
   - [x] 1.3 Implement AutomationManagement, AutomationLifecycleHistory, ApprovalWorkflow, and related JPA entities
          - [x] 1.4 Create Spring Data JPA repositories with custom query methods
-  - [ ] 1.5 Add database indexes for performance optimization
-  - [ ] 1.6 Implement data validation constraints and foreign key relationships
-  - [ ] 1.7 Create repository integration tests with Testcontainers
+  - [x] 1.5 Add database indexes for performance optimization
+  - [x] 1.6 Implement data validation constraints and foreign key relationships
+  - [x] 1.7 Create repository integration tests with Testcontainers
   - [ ] 1.8 Verify all entity and repository tests pass
 
 - [ ] 2. **Automation Management Service Implementation**

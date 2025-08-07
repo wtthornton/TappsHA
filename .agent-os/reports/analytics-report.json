@@ -1,6 +1,6 @@
 {
-  "timestamp": "2025-08-07T07:45:05.897Z",
-  "executionTime": 15274,
+  "timestamp": "2025-08-07T17:54:49.428Z",
+  "executionTime": 6713,
   "averageFileProcessingTime": 0,
   "validationPerformance": {},
   "violationTrends": {
@@ -496,7 +496,7 @@
     {
       "priority": "MEDIUM",
       "category": "Performance",
-      "message": "⚡ Slow execution time (15274ms)",
+      "message": "⚡ Slow execution time (6713ms)",
       "action": "Optimize compliance checking performance",
       "impact": "MEDIUM",
       "effort": "MEDIUM"
@@ -972,7 +972,7 @@
       {
         "type": "ADVANCED_PERFORMANCE_FORECAST",
         "metric": "execution_time",
-        "currentValue": 15274,
+        "currentValue": 6713,
         "confidence": 30,
         "message": "Insufficient data points for trend analysis"
       },
@@ -1112,11 +1112,11 @@
     },
     "json": {
       "summary": {
-        "timestamp": "2025-08-07T07:45:07.579Z",
+        "timestamp": "2025-08-07T17:54:50.395Z",
         "totalFiles": 0,
         "totalViolations": 0,
         "complianceScore": null,
-        "executionTime": 15274
+        "executionTime": 6713
       },
       "violations": [],
       "performance": {},
@@ -1617,14 +1617,14 @@
       }
     },
     "html": {
-      "main": "\n<!DOCTYPE html>\n<html>\n<head>\n    <title>Compliance Analytics Report</title>\n    <style>\n        body { font-family: Arial, sans-serif; margin: 20px; }\n        .summary { background: #f5f5f5; padding: 20px; border-radius: 5px; }\n        .section { margin: 20px 0; }\n        .metric { display: inline-block; margin: 10px; padding: 10px; background: #fff; border: 1px solid #ddd; }\n        .critical { color: #d32f2f; }\n        .warning { color: #f57c00; }\n        .success { color: #388e3c; }\n    </style>\n</head>\n<body>\n    <h1>Compliance Analytics Report</h1>\n    <div class=\"summary\">\n        <h2>Summary</h2>\n        <div class=\"metric\">Total Files: 0</div>\n        <div class=\"metric\">Total Violations: 0</div>\n        <div class=\"metric\">Compliance Score: NaN%</div>\n        <div class=\"metric\">Execution Time: 15274ms</div>\n    </div>\n    \n    <div class=\"section\">\n        <h2>Violations by Type</h2>\n        <table border=\"1\"><tr><th>Type</th><th>Count</th><th>Files</th><th>Critical</th><th>Warning</th></tr></table>\n    </div>\n    \n    <div class=\"section\">\n        <h2>Performance Metrics</h2>\n        <table border=\"1\"><tr><th>File Type</th><th>Count</th><th>Avg Time (ms)</th><th>Total Time (ms)</th></tr></table>\n    </div>\n    \n    <div class=\"section\">\n        <h2>Standards Effectiveness</h2>\n        <table border=\"1\"><tr><th>Standard</th><th>Violation Rate</th><th>Status</th><th>Total Checks</th></tr></table>\n    </div>\n</body>\n</html>",
+      "main": "\n<!DOCTYPE html>\n<html>\n<head>\n    <title>Compliance Analytics Report</title>\n    <style>\n        body { font-family: Arial, sans-serif; margin: 20px; }\n        .summary { background: #f5f5f5; padding: 20px; border-radius: 5px; }\n        .section { margin: 20px 0; }\n        .metric { display: inline-block; margin: 10px; padding: 10px; background: #fff; border: 1px solid #ddd; }\n        .critical { color: #d32f2f; }\n        .warning { color: #f57c00; }\n        .success { color: #388e3c; }\n    </style>\n</head>\n<body>\n    <h1>Compliance Analytics Report</h1>\n    <div class=\"summary\">\n        <h2>Summary</h2>\n        <div class=\"metric\">Total Files: 0</div>\n        <div class=\"metric\">Total Violations: 0</div>\n        <div class=\"metric\">Compliance Score: NaN%</div>\n        <div class=\"metric\">Execution Time: 6713ms</div>\n    </div>\n    \n    <div class=\"section\">\n        <h2>Violations by Type</h2>\n        <table border=\"1\"><tr><th>Type</th><th>Count</th><th>Files</th><th>Critical</th><th>Warning</th></tr></table>\n    </div>\n    \n    <div class=\"section\">\n        <h2>Performance Metrics</h2>\n        <table border=\"1\"><tr><th>File Type</th><th>Count</th><th>Avg Time (ms)</th><th>Total Time (ms)</th></tr></table>\n    </div>\n    \n    <div class=\"section\">\n        <h2>Standards Effectiveness</h2>\n        <table border=\"1\"><tr><th>Standard</th><th>Violation Rate</th><th>Status</th><th>Total Checks</th></tr></table>\n    </div>\n</body>\n</html>",
       "violations": "<table border=\"1\"><tr><th>Type</th><th>Count</th><th>Files</th><th>Critical</th><th>Warning</th></tr></table>",
       "performance": "<table border=\"1\"><tr><th>File Type</th><th>Count</th><th>Avg Time (ms)</th><th>Total Time (ms)</th></tr></table>",
       "standards": "<table border=\"1\"><tr><th>Standard</th><th>Violation Rate</th><th>Status</th><th>Total Checks</th></tr></table>"
     },
     "markdown": {
-      "main": "# Compliance Analytics Report\n\n**Generated:** 2025-08-07T07:45:07.580Z\n\n## Summary\n\n- **Total Files:** 0\n- **Total Violations:** 0\n- **Compliance Score:** NaN%\n- **Execution Time:** 15274ms\n\n## Violations\n\n\n## Performance\n\n- **Average Processing Time:** undefinedms\n- **Total Processing Time:** undefinedms\n\n## Standards Effectiveness\n\n",
-      "summary": "# Compliance Analytics Report\n\n**Generated:** 2025-08-07T07:45:07.580Z\n\n",
+      "main": "# Compliance Analytics Report\n\n**Generated:** 2025-08-07T17:54:50.396Z\n\n## Summary\n\n- **Total Files:** 0\n- **Total Violations:** 0\n- **Compliance Score:** NaN%\n- **Execution Time:** 6713ms\n\n## Violations\n\n\n## Performance\n\n- **Average Processing Time:** undefinedms\n- **Total Processing Time:** undefinedms\n\n## Standards Effectiveness\n\n",
+      "summary": "# Compliance Analytics Report\n\n**Generated:** 2025-08-07T17:54:50.396Z\n\n",
       "violations": "\n\n\n",
       "performance": "\n\n- **Average Processing Time:** undefinedms\n- **Total Processing Time:** undefinedms\n\n",
       "standards": " Effectiveness\n\n"
@@ -1924,7 +1924,7 @@
         "source": "violation_analysis",
         "priority": "MEDIUM",
         "category": "Performance",
-        "message": "⚡ Slow execution time (15274ms)",
+        "message": "⚡ Slow execution time (6713ms)",
         "action": "Optimize compliance checking performance",
         "impact": "MEDIUM",
         "effort": "MEDIUM",
@@ -2816,7 +2816,7 @@
         "source": "violation_analysis",
         "priority": "MEDIUM",
         "category": "Performance",
-        "message": "⚡ Slow execution time (15274ms)",
+        "message": "⚡ Slow execution time (6713ms)",
         "action": "Optimize compliance checking performance",
         "impact": "MEDIUM",
         "effort": "MEDIUM",

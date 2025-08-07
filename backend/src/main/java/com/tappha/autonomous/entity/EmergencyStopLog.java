@@ -2,6 +2,7 @@ package com.tappha.autonomous.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -39,6 +40,10 @@ public class EmergencyStopLog {
     private AutomationManagement automationManagement;
 
     @NotNull
+    @Column(name = "stop_type", nullable = false)
+    private String stopType; // 'MANUAL', 'AUTOMATIC', 'SYSTEM', 'EMERGENCY'
+
+    @NotNull
     @Column(name = "triggered_by", nullable = false)
     private UUID triggeredBy;
 
@@ -47,11 +52,18 @@ public class EmergencyStopLog {
     private Instant triggerTimestamp;
 
     @NotNull
-    @Column(name = "trigger_reason", columnDefinition = "TEXT", nullable = false)
-    private String triggerReason;
+    @Size(min = 1, message = "Stop reason must not be empty")
+    @Column(name = "stop_reason", columnDefinition = "TEXT", nullable = false)
+    private String stopReason;
 
     @Column(name = "trigger_source")
     private String triggerSource; // 'MANUAL', 'AUTOMATIC', 'SYSTEM'
+
+    @Column(name = "recovery_status")
+    private String recoveryStatus; // 'PENDING', 'IN_PROGRESS', 'COMPLETED', 'FAILED'
+
+    @Column(name = "recovery_timestamp")
+    private Instant recoveryTimestamp;
 
     @Column(name = "affected_automations", columnDefinition = "JSONB")
     private String affectedAutomations;
@@ -59,16 +71,19 @@ public class EmergencyStopLog {
     @Column(name = "recovery_actions", columnDefinition = "JSONB")
     private String recoveryActions;
 
+    @Column(name = "metadata", columnDefinition = "JSONB")
+    private String metadata;
+
     // Default constructor
     public EmergencyStopLog() {
         this.triggerTimestamp = Instant.now();
     }
 
     // Constructor with required fields
-    public EmergencyStopLog(UUID triggeredBy, String triggerReason) {
+    public EmergencyStopLog(UUID triggeredBy, String stopReason) {
         this();
         this.triggeredBy = triggeredBy;
-        this.triggerReason = triggerReason;
+        this.stopReason = stopReason;
     }
 
     // Getters and Setters
@@ -104,12 +119,12 @@ public class EmergencyStopLog {
         this.triggerTimestamp = triggerTimestamp;
     }
 
-    public String getTriggerReason() {
-        return triggerReason;
+    public String getStopReason() {
+        return stopReason;
     }
 
-    public void setTriggerReason(String triggerReason) {
-        this.triggerReason = triggerReason;
+    public void setStopReason(String stopReason) {
+        this.stopReason = stopReason;
     }
 
     public String getTriggerSource() {
@@ -136,16 +151,49 @@ public class EmergencyStopLog {
         this.recoveryActions = recoveryActions;
     }
 
+    public String getStopType() {
+        return stopType;
+    }
+
+    public void setStopType(String stopType) {
+        this.stopType = stopType;
+    }
+
+    public String getRecoveryStatus() {
+        return recoveryStatus;
+    }
+
+    public void setRecoveryStatus(String recoveryStatus) {
+        this.recoveryStatus = recoveryStatus;
+    }
+
+    public Instant getRecoveryTimestamp() {
+        return recoveryTimestamp;
+    }
+
+    public void setRecoveryTimestamp(Instant recoveryTimestamp) {
+        this.recoveryTimestamp = recoveryTimestamp;
+    }
+
+    public String getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(String metadata) {
+        this.metadata = metadata;
+    }
+
     // Business Logic Methods
     /**
      * Creates a manual emergency stop
      */
     public static EmergencyStopLog createManualEmergencyStop(
             UUID triggeredBy,
-            String triggerReason,
+            String stopReason,
             String affectedAutomations) {
         
-        EmergencyStopLog log = new EmergencyStopLog(triggeredBy, triggerReason);
+        EmergencyStopLog log = new EmergencyStopLog(triggeredBy, stopReason);
+        log.setStopType("MANUAL");
         log.setTriggerSource("MANUAL");
         log.setAffectedAutomations(affectedAutomations);
         return log;
@@ -156,11 +204,12 @@ public class EmergencyStopLog {
      */
     public static EmergencyStopLog createAutomaticEmergencyStop(
             UUID triggeredBy,
-            String triggerReason,
+            String stopReason,
             String affectedAutomations,
             String recoveryActions) {
         
-        EmergencyStopLog log = new EmergencyStopLog(triggeredBy, triggerReason);
+        EmergencyStopLog log = new EmergencyStopLog(triggeredBy, stopReason);
+        log.setStopType("AUTOMATIC");
         log.setTriggerSource("AUTOMATIC");
         log.setAffectedAutomations(affectedAutomations);
         log.setRecoveryActions(recoveryActions);
@@ -172,11 +221,12 @@ public class EmergencyStopLog {
      */
     public static EmergencyStopLog createSystemEmergencyStop(
             UUID triggeredBy,
-            String triggerReason,
+            String stopReason,
             String affectedAutomations,
             String recoveryActions) {
         
-        EmergencyStopLog log = new EmergencyStopLog(triggeredBy, triggerReason);
+        EmergencyStopLog log = new EmergencyStopLog(triggeredBy, stopReason);
+        log.setStopType("SYSTEM");
         log.setTriggerSource("SYSTEM");
         log.setAffectedAutomations(affectedAutomations);
         log.setRecoveryActions(recoveryActions);
@@ -252,10 +302,12 @@ public class EmergencyStopLog {
         return "EmergencyStopLog{" +
                 "id=" + id +
                 ", automationManagementId=" + (automationManagement != null ? automationManagement.getId() : null) +
+                ", stopType='" + stopType + '\'' +
                 ", triggeredBy=" + triggeredBy +
                 ", triggerTimestamp=" + triggerTimestamp +
-                ", triggerReason='" + triggerReason + '\'' +
+                ", stopReason='" + stopReason + '\'' +
                 ", triggerSource='" + triggerSource + '\'' +
+                ", recoveryStatus='" + recoveryStatus + '\'' +
                 '}';
     }
 }

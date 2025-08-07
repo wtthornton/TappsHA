@@ -2,6 +2,9 @@ package com.tappha.autonomous.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -44,6 +47,7 @@ public class AutomationPerformanceMetrics {
     @Column(name = "execution_timestamp", nullable = false, updatable = false)
     private Instant executionTimestamp;
 
+    @Min(value = 0, message = "Execution duration must be non-negative")
     @Column(name = "execution_duration_ms")
     private Integer executionDurationMs;
 
@@ -51,20 +55,27 @@ public class AutomationPerformanceMetrics {
     @Column(name = "success", nullable = false)
     private Boolean success;
 
+    @Size(min = 1, message = "Error message must not be empty if provided")
     @Column(name = "error_message", columnDefinition = "TEXT")
     private String errorMessage;
 
+    @Size(min = 1, message = "Trigger source must not be empty if provided")
     @Column(name = "trigger_source")
     private String triggerSource;
 
     @Column(name = "affected_entities", columnDefinition = "JSONB")
     private String affectedEntities;
 
+    @Min(value = 0, message = "Performance score must be at least 0")
+    @Max(value = 100, message = "Performance score must be at most 100")
     @Column(name = "performance_score", precision = 5, scale = 2)
     private Double performanceScore;
 
     @Column(name = "resource_usage", columnDefinition = "JSONB")
     private String resourceUsage;
+
+    @Column(name = "metadata", columnDefinition = "JSONB")
+    private String metadata;
 
     // Default constructor
     public AutomationPerformanceMetrics() {
@@ -157,6 +168,14 @@ public class AutomationPerformanceMetrics {
 
     public void setResourceUsage(String resourceUsage) {
         this.resourceUsage = resourceUsage;
+    }
+
+    public String getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(String metadata) {
+        this.metadata = metadata;
     }
 
     // Business Logic Methods

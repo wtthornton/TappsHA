@@ -1,125 +1,3332 @@
 {
-  "timestamp": "2025-08-07T07:45:37.550Z",
-  "complianceScore": 100,
-  "criticalViolations": 0,
+  "timestamp": "2025-08-07T17:54:47.650Z",
+  "runId": "run_1754589287650_ts8o4seaj",
+  "overallScore": null,
+  "filesChecked": 0,
+  "criticalIssues": 0,
   "warnings": 0,
-  "totalFilesProcessed": 152,
-  "averageProcessingTime": 150,
-  "standards": [
-    {
-      "name": "ai-assisted-governance.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\ai-assisted-governance.md",
-      "size": 688
+  "executionTime": 6713,
+  "violations": [],
+  "standardsCompliance": {
+    "effectiveness": {},
+    "ranking": [],
+    "referenceTracking": {
+      "mostReferenced": [],
+      "leastReferenced": [],
+      "highUsage": [],
+      "mediumUsage": [],
+      "lowUsage": []
     },
-    {
-      "name": "best-practices.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\best-practices.md",
-      "size": 11090
+    "standardsClarification": {
+      "standardsNeedingClarification": [],
+      "summary": {
+        "totalNeedingClarification": 0,
+        "criticalClarification": 0,
+        "highClarification": 0,
+        "mediumClarification": 0,
+        "lowClarification": 0
+      }
     },
-    {
-      "name": "ci-cd-strategy.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\ci-cd-strategy.md",
-      "size": 1236
+    "unusedOrObsolete": {
+      "unusedStandards": [
+        {
+          "name": "ai-assisted-governance",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "best-practices",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "ci-cd-strategy",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "code-style",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "configuration-management",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "consolidated-development-patterns",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "cross-platform-command-execution",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "cursor-rule-hierarchy",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "dependency-management",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "development-patterns",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "development-utilities",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "directory-structure",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "enforcement",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "feature-scoring",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "mpc-standards",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "policy-as-code",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "security-compliance",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "service-specific-rules",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "tech-stack",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "testing-standards",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "testing-strategy",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        },
+        {
+          "name": "visual-regression-testing",
+          "type": "UNUSED",
+          "daysSinceLastReference": 999,
+          "reason": "No references in over 30 days",
+          "recommendation": "Consider removing or updating this standard",
+          "priority": "HIGH"
+        }
+      ],
+      "obsoleteStandards": [],
+      "standardsToReview": [],
+      "summary": {
+        "totalUnused": 22,
+        "totalObsolete": 0,
+        "totalToReview": 0,
+        "highPriorityUnused": 22,
+        "highPriorityObsolete": 0,
+        "highPriorityReview": 0
+      }
     },
-    {
-      "name": "code-style.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\code-style.md",
-      "size": 20056
+    "clarityAndUsability": {
+      "clarityMetrics": {},
+      "usabilityMetrics": {},
+      "summary": {
+        "clearStandards": 0,
+        "unclearStandards": 0,
+        "usableStandards": 0,
+        "poorUsabilityStandards": 0
+      }
     },
-    {
-      "name": "configuration-management.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\configuration-management.md",
-      "size": 15883
+    "effectivenessAnalysis": {
+      "effectivenessMetrics": {},
+      "optimizationOpportunities": [],
+      "summary": {
+        "highlyEffective": 0,
+        "effective": 0,
+        "needsImprovement": 0,
+        "ineffective": 0,
+        "totalOptimizationOpportunities": 0,
+        "highPriorityOptimizations": 0,
+        "averageEffectivenessScore": null
+      }
     },
-    {
-      "name": "consolidated-development-patterns.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\consolidated-development-patterns.md",
-      "size": 14985
+    "improvementSuggestions": {
+      "suggestions": [
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "ai-assisted-governance",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "best-practices",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "ci-cd-strategy",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "code-style",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "configuration-management",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "consolidated-development-patterns",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "cross-platform-command-execution",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "cursor-rule-hierarchy",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "dependency-management",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "development-patterns",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "development-utilities",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "directory-structure",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "enforcement",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "feature-scoring",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "mpc-standards",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "policy-as-code",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "security-compliance",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "service-specific-rules",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "tech-stack",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "testing-standards",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "testing-strategy",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        },
+        {
+          "type": "REMOVE_OR_UPDATE",
+          "standard": "visual-regression-testing",
+          "priority": "HIGH",
+          "reason": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW"
+        }
+      ],
+      "summary": {
+        "totalSuggestions": 22,
+        "highPriority": 22,
+        "mediumPriority": 0,
+        "lowPriority": 0,
+        "removeOrUpdate": 22,
+        "updateOrDeprecate": 0,
+        "clarifyStandard": 0,
+        "improveUsability": 0
+      }
     },
-    {
-      "name": "cross-platform-command-execution.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\cross-platform-command-execution.md",
-      "size": 7289
+    "optimizationSuggestions": {
+      "suggestions": [],
+      "summary": {
+        "totalSuggestions": 0,
+        "criticalPriority": 0,
+        "highPriority": 0,
+        "mediumPriority": 0,
+        "urgentOptimizations": 0,
+        "redesignStandards": 0,
+        "improveStandards": 0,
+        "enhanceStandards": 0
+      }
     },
-    {
-      "name": "cursor-rule-hierarchy.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\cursor-rule-hierarchy.md",
-      "size": 884
-    },
-    {
-      "name": "dependency-management.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\dependency-management.md",
-      "size": 10600
-    },
-    {
-      "name": "development-patterns.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\development-patterns.md",
-      "size": 9970
-    },
-    {
-      "name": "development-utilities.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\development-utilities.md",
-      "size": 11081
-    },
-    {
-      "name": "directory-structure.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\directory-structure.md",
-      "size": 989
-    },
-    {
-      "name": "enforcement.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\enforcement.md",
-      "size": 15784
-    },
-    {
-      "name": "feature-scoring.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\feature-scoring.md",
-      "size": 8022
-    },
-    {
-      "name": "mpc-standards.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\mpc-standards.md",
-      "size": 2387
-    },
-    {
-      "name": "policy-as-code.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\policy-as-code.md",
-      "size": 621
-    },
-    {
-      "name": "security-compliance.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\security-compliance.md",
-      "size": 1119
-    },
-    {
-      "name": "service-specific-rules.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\service-specific-rules.md",
-      "size": 471
-    },
-    {
-      "name": "tech-stack.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\tech-stack.md",
-      "size": 2199
-    },
-    {
-      "name": "testing-standards.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\testing-standards.md",
-      "size": 10985
-    },
-    {
-      "name": "testing-strategy.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\testing-strategy.md",
-      "size": 908
-    },
-    {
-      "name": "visual-regression-testing.md",
-      "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\visual-regression-testing.md",
-      "size": 609
+    "summary": {
+      "totalStandards": 0,
+      "criticalStandards": 0,
+      "warningStandards": 0,
+      "goodStandards": 0,
+      "mostViolated": [],
+      "leastViolated": [],
+      "mostReferenced": [],
+      "totalReferences": 0,
+      "totalUnused": 22,
+      "totalObsolete": 0,
+      "clearStandards": 0,
+      "unclearStandards": 0,
+      "usableStandards": 0,
+      "poorUsabilityStandards": 0,
+      "totalImprovementSuggestions": 22,
+      "highlyEffective": 0,
+      "effective": 0,
+      "needsImprovement": 0,
+      "ineffective": 0,
+      "totalOptimizationOpportunities": 0,
+      "averageEffectivenessScore": null,
+      "totalOptimizationSuggestions": 0
     }
-  ],
-  "recommendations": [
-    "Continue using ES modules for all tools",
-    "Maintain self-contained architecture",
-    "Use only built-in Node.js APIs"
-  ]
+  },
+  "performanceMetrics": 0,
+  "analytics": {
+    "timestamp": "2025-08-07T17:54:49.428Z",
+    "executionTime": 6713,
+    "averageFileProcessingTime": 0,
+    "validationPerformance": {},
+    "violationTrends": {
+      "trend": "stable",
+      "recentAverage": null,
+      "olderAverage": 100,
+      "change": null
+    },
+    "standardsEffectiveness": {
+      "effectiveness": {},
+      "ranking": [],
+      "referenceTracking": {
+        "mostReferenced": [],
+        "leastReferenced": [],
+        "highUsage": [],
+        "mediumUsage": [],
+        "lowUsage": []
+      },
+      "standardsClarification": {
+        "standardsNeedingClarification": [],
+        "summary": {
+          "totalNeedingClarification": 0,
+          "criticalClarification": 0,
+          "highClarification": 0,
+          "mediumClarification": 0,
+          "lowClarification": 0
+        }
+      },
+      "unusedOrObsolete": {
+        "unusedStandards": [
+          {
+            "name": "ai-assisted-governance",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "best-practices",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "ci-cd-strategy",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "code-style",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "configuration-management",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "consolidated-development-patterns",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "cross-platform-command-execution",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "cursor-rule-hierarchy",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "dependency-management",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "development-patterns",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "development-utilities",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "directory-structure",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "enforcement",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "feature-scoring",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "mpc-standards",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "policy-as-code",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "security-compliance",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "service-specific-rules",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "tech-stack",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "testing-standards",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "testing-strategy",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          },
+          {
+            "name": "visual-regression-testing",
+            "type": "UNUSED",
+            "daysSinceLastReference": 999,
+            "reason": "No references in over 30 days",
+            "recommendation": "Consider removing or updating this standard",
+            "priority": "HIGH"
+          }
+        ],
+        "obsoleteStandards": [],
+        "standardsToReview": [],
+        "summary": {
+          "totalUnused": 22,
+          "totalObsolete": 0,
+          "totalToReview": 0,
+          "highPriorityUnused": 22,
+          "highPriorityObsolete": 0,
+          "highPriorityReview": 0
+        }
+      },
+      "clarityAndUsability": {
+        "clarityMetrics": {},
+        "usabilityMetrics": {},
+        "summary": {
+          "clearStandards": 0,
+          "unclearStandards": 0,
+          "usableStandards": 0,
+          "poorUsabilityStandards": 0
+        }
+      },
+      "effectivenessAnalysis": {
+        "effectivenessMetrics": {},
+        "optimizationOpportunities": [],
+        "summary": {
+          "highlyEffective": 0,
+          "effective": 0,
+          "needsImprovement": 0,
+          "ineffective": 0,
+          "totalOptimizationOpportunities": 0,
+          "highPriorityOptimizations": 0,
+          "averageEffectivenessScore": null
+        }
+      },
+      "improvementSuggestions": {
+        "suggestions": [
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "ai-assisted-governance",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "best-practices",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "ci-cd-strategy",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "code-style",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "configuration-management",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "consolidated-development-patterns",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "cross-platform-command-execution",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "cursor-rule-hierarchy",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "dependency-management",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "development-patterns",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "development-utilities",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "directory-structure",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "enforcement",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "feature-scoring",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "mpc-standards",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "policy-as-code",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "security-compliance",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "service-specific-rules",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "tech-stack",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "testing-standards",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "testing-strategy",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          },
+          {
+            "type": "REMOVE_OR_UPDATE",
+            "standard": "visual-regression-testing",
+            "priority": "HIGH",
+            "reason": "No references in over 30 days",
+            "action": "Consider removing or updating this standard",
+            "impact": "MEDIUM",
+            "effort": "LOW"
+          }
+        ],
+        "summary": {
+          "totalSuggestions": 22,
+          "highPriority": 22,
+          "mediumPriority": 0,
+          "lowPriority": 0,
+          "removeOrUpdate": 22,
+          "updateOrDeprecate": 0,
+          "clarifyStandard": 0,
+          "improveUsability": 0
+        }
+      },
+      "optimizationSuggestions": {
+        "suggestions": [],
+        "summary": {
+          "totalSuggestions": 0,
+          "criticalPriority": 0,
+          "highPriority": 0,
+          "mediumPriority": 0,
+          "urgentOptimizations": 0,
+          "redesignStandards": 0,
+          "improveStandards": 0,
+          "enhanceStandards": 0
+        }
+      },
+      "summary": {
+        "totalStandards": 0,
+        "criticalStandards": 0,
+        "warningStandards": 0,
+        "goodStandards": 0,
+        "mostViolated": [],
+        "leastViolated": [],
+        "mostReferenced": [],
+        "totalReferences": 0,
+        "totalUnused": 22,
+        "totalObsolete": 0,
+        "clearStandards": 0,
+        "unclearStandards": 0,
+        "usableStandards": 0,
+        "poorUsabilityStandards": 0,
+        "totalImprovementSuggestions": 22,
+        "highlyEffective": 0,
+        "effective": 0,
+        "needsImprovement": 0,
+        "ineffective": 0,
+        "totalOptimizationOpportunities": 0,
+        "averageEffectivenessScore": null,
+        "totalOptimizationSuggestions": 0
+      }
+    },
+    "improvementSuggestions": [
+      {
+        "priority": "MEDIUM",
+        "category": "Performance",
+        "message": "⚡ Slow execution time (6713ms)",
+        "action": "Optimize compliance checking performance",
+        "impact": "MEDIUM",
+        "effort": "MEDIUM"
+      }
+    ],
+    "ruleBasedSuggestions": [],
+    "statisticalAnalysis": {
+      "violationFrequency": {
+        "totalViolations": null,
+        "averageViolations": null,
+        "trend": "stable"
+      },
+      "complianceTrends": {
+        "averageCompliance": null,
+        "trend": "stable",
+        "improvement": 0
+      },
+      "standardsEffectiveness": {
+        "effectiveness": "good",
+        "recommendations": []
+      },
+      "riskAssessment": {
+        "overallRisk": "low",
+        "riskFactors": []
+      },
+      "predictions": {
+        "predictedScore": 85,
+        "confidence": 75
+      },
+      "insights": {
+        "insights": [
+          "Compliance is stable",
+          "No critical issues detected"
+        ],
+        "recommendations": [
+          "Continue current practices"
+        ]
+      },
+      "violationPatterns": {
+        "patterns": [],
+        "recurringIssues": []
+      },
+      "recurringIssues": {
+        "issues": [],
+        "frequency": {}
+      },
+      "violationClustering": {
+        "clusters": [],
+        "analysis": "No significant clustering detected"
+      },
+      "issuePredictions": {
+        "predictions": [],
+        "confidence": 0
+      },
+      "forecasts": {
+        "forecasts": [],
+        "accuracy": 0
+      },
+      "trendBasedRiskAssessment": {
+        "riskLevel": "low",
+        "factors": []
+      },
+      "confidenceScoring": {
+        "confidence": 75,
+        "factors": []
+      },
+      "patternBasedSuggestions": {
+        "suggestions": [],
+        "priority": "low"
+      }
+    },
+    "documentationQuality": {
+      "clarityScores": {},
+      "completenessScores": {},
+      "summary": {
+        "clearDocumentation": 0,
+        "unclearDocumentation": 0,
+        "completeDocumentation": 0,
+        "incompleteDocumentation": 0,
+        "averageClarityScore": null,
+        "averageCompletenessScore": null
+      }
+    },
+    "documentationUpdates": {
+      "updateMetrics": {},
+      "summary": {
+        "recentUpdates": 0,
+        "moderateUpdates": 0,
+        "agingUpdates": 0,
+        "staleUpdates": 0,
+        "criticalUpdates": 0,
+        "averageDaysSinceUpdate": null
+      }
+    },
+    "documentationGaps": {
+      "gaps": [
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "tech-stack",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create tech-stack.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        },
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "code-style",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create code-style.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        },
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "best-practices",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create best-practices.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        },
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "security-compliance",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create security-compliance.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        },
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "ci-cd-strategy",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create ci-cd-strategy.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        },
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "testing-strategy",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create testing-strategy.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        },
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "enforcement",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create enforcement.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        },
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "mission",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create mission.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        },
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "architecture",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create architecture.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        },
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "deployment",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create deployment.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        },
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "monitoring",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create monitoring.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        },
+        {
+          "type": "MISSING_DOCUMENTATION",
+          "document": "troubleshooting",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create troubleshooting.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM"
+        }
+      ],
+      "summary": {
+        "totalGaps": 12,
+        "missingDocumentation": 12,
+        "incompleteDocumentation": 0,
+        "missingSections": 0,
+        "highPriorityGaps": 12,
+        "mediumPriorityGaps": 0
+      }
+    },
+    "documentationImprovementPlans": {
+      "plans": [
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "tech-stack",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create tech-stack.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        },
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "code-style",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create code-style.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        },
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "best-practices",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create best-practices.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        },
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "security-compliance",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create security-compliance.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        },
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "ci-cd-strategy",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create ci-cd-strategy.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        },
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "testing-strategy",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create testing-strategy.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        },
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "enforcement",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create enforcement.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        },
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "mission",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create mission.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        },
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "architecture",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create architecture.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        },
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "deployment",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create deployment.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        },
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "monitoring",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create monitoring.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        },
+        {
+          "type": "CREATE_DOCUMENTATION",
+          "document": "troubleshooting",
+          "priority": "HIGH",
+          "reason": "Expected documentation is missing",
+          "action": "Create troubleshooting.md documentation",
+          "impact": "HIGH",
+          "effort": "MEDIUM",
+          "estimatedImprovement": 90
+        }
+      ],
+      "summary": {
+        "totalPlans": 12,
+        "highPriority": 12,
+        "mediumPriority": 0,
+        "improveClarity": 0,
+        "completeDocumentation": 0,
+        "updateDocumentation": 0,
+        "createDocumentation": 12
+      }
+    },
+    "smartDocumentationSuggestions": {
+      "suggestions": [],
+      "summary": {
+        "totalSuggestions": 0,
+        "highPriority": 0,
+        "mediumPriority": 0,
+        "updateBasedOnUsage": 0,
+        "improveClarity": 0,
+        "completeDocumentation": 0
+      }
+    },
+    "missingDocumentationSections": {
+      "missingSections": [],
+      "summary": {
+        "totalDocumentsWithMissingSections": 0,
+        "highPriority": 0,
+        "mediumPriority": 0,
+        "averageMissingSections": 0
+      }
+    },
+    "documentationTemplates": {
+      "templates": {
+        "technicalTemplate": {
+          "name": "Technical Documentation Template",
+          "sections": [
+            "# Overview",
+            "# Architecture",
+            "# Implementation",
+            "# Configuration",
+            "# API Reference",
+            "# Examples",
+            "# Troubleshooting"
+          ],
+          "contentGuidelines": {
+            "minCodeBlocks": 3,
+            "minLists": 8,
+            "minLength": 1500,
+            "includeLinks": true
+          }
+        },
+        "userGuideTemplate": {
+          "name": "User Guide Template",
+          "sections": [
+            "# Overview",
+            "# Getting Started",
+            "# Features",
+            "# Usage Examples",
+            "# Configuration",
+            "# Troubleshooting",
+            "# FAQ"
+          ],
+          "contentGuidelines": {
+            "minCodeBlocks": 1,
+            "minLists": 10,
+            "minLength": 800,
+            "includeLinks": true
+          }
+        }
+      },
+      "patterns": {
+        "sectionPatterns": {},
+        "contentPatterns": {}
+      },
+      "summary": {
+        "totalTemplates": 2,
+        "successfulPatterns": 0,
+        "averageCodeBlocks": null,
+        "averageLists": null
+      }
+    },
+    "documentationValidation": {
+      "validationResults": {},
+      "summary": {
+        "totalDocuments": 0,
+        "validDocuments": 0,
+        "needsImprovement": 0,
+        "invalidDocuments": 0,
+        "averageScore": null
+      }
+    },
+    "violationProbabilities": {
+      "probabilities": [
+        {
+          "type": "CRITICAL_VIOLATION_PROBABILITY",
+          "severity": "CRITICAL",
+          "probability": 0,
+          "confidence": null,
+          "trend": "stable",
+          "recommendation": "Low probability of CRITICAL violations. Continue current practices."
+        },
+        {
+          "type": "WARNING_VIOLATION_PROBABILITY",
+          "severity": "WARNING",
+          "probability": 0,
+          "confidence": null,
+          "trend": "stable",
+          "recommendation": "Low probability of WARNING violations. Continue current practices."
+        }
+      ],
+      "confidence": null,
+      "totalProbabilities": 2,
+      "highProbabilityViolations": 0,
+      "mediumProbabilityViolations": 0,
+      "lowProbabilityViolations": 2
+    },
+    "advancedForecasting": {
+      "forecasts": [
+        {
+          "type": "ADVANCED_COMPLIANCE_FORECAST",
+          "metric": "compliance_score",
+          "currentValue": null,
+          "predictedValue": null,
+          "confidence": null,
+          "trend": "stable",
+          "volatility": null,
+          "seasonality": "weak",
+          "recommendation": "Stable compliance score predicted. Continue current practices."
+        },
+        {
+          "type": "ADVANCED_VIOLATION_FORECAST",
+          "metric": "violation_count",
+          "currentValue": 0,
+          "confidence": 30,
+          "message": "Insufficient data points for trend analysis"
+        },
+        {
+          "type": "ADVANCED_PERFORMANCE_FORECAST",
+          "metric": "execution_time",
+          "currentValue": 6713,
+          "confidence": 30,
+          "message": "Insufficient data points for trend analysis"
+        },
+        {
+          "type": "ADVANCED_STANDARDS_FORECAST",
+          "metric": "standards_effectiveness",
+          "confidence": 30,
+          "message": "Insufficient standards effectiveness data for forecasting"
+        }
+      ],
+      "confidence": null,
+      "totalForecasts": 4,
+      "highConfidenceForecasts": 0,
+      "mediumConfidenceForecasts": 0,
+      "lowConfidenceForecasts": 3
+    },
+    "comprehensiveConfidenceScoring": {
+      "confidenceScores": [
+        {
+          "type": "DATA_QUALITY_CONFIDENCE",
+          "confidence": 74,
+          "factors": {
+            "completeness": 0.2,
+            "consistency": null,
+            "dataPoints": 5
+          }
+        },
+        {
+          "type": "PREDICTION_ACCURACY_CONFIDENCE",
+          "confidence": null,
+          "factors": {
+            "meanError": null,
+            "accuracyRatio": null,
+            "predictions": 3
+          }
+        },
+        {
+          "type": "TREND_CONSISTENCY_CONFIDENCE",
+          "confidence": null,
+          "factors": {
+            "meanTrend": null,
+            "trendVariance": null,
+            "consistency": null
+          }
+        },
+        {
+          "type": "MODEL_RELIABILITY_CONFIDENCE",
+          "confidence": 85,
+          "factors": {
+            "dataPoints": 5,
+            "recentData": 5,
+            "variety": 0
+          }
+        }
+      ],
+      "overallConfidence": null,
+      "totalScores": 4,
+      "highConfidenceFactors": 1,
+      "mediumConfidenceFactors": 1,
+      "lowConfidenceFactors": 0
+    },
+    "drillDownCapabilities": {
+      "violations": {
+        "byFile": {},
+        "byType": {},
+        "bySeverity": {
+          "CRITICAL": {
+            "count": 0,
+            "files": [],
+            "types": {}
+          },
+          "WARNING": {
+            "count": 0,
+            "files": [],
+            "types": {}
+          }
+        },
+        "byStandard": {}
+      },
+      "performance": {
+        "byFileType": {},
+        "byValidationType": {},
+        "byTimeRange": {
+          "0-100ms": {
+            "count": 0,
+            "totalTime": 0
+          },
+          "100-500ms": {
+            "count": 0,
+            "totalTime": 0
+          },
+          "500ms-1s": {
+            "count": 0,
+            "totalTime": 0
+          },
+          "1s+": {
+            "count": 0,
+            "totalTime": 0
+          }
+        }
+      },
+      "standards": {
+        "byEffectiveness": {},
+        "byUsage": {
+          "mostReferenced": [],
+          "leastReferenced": [],
+          "highUsage": [],
+          "mediumUsage": [],
+          "lowUsage": []
+        },
+        "byViolationRate": []
+      },
+      "documentation": {
+        "byQuality": {
+          "clarity": {},
+          "completeness": {}
+        },
+        "byUpdateFrequency": {
+          "updateMetrics": {},
+          "summary": {
+            "recentUpdates": 0,
+            "moderateUpdates": 0,
+            "agingUpdates": 0,
+            "staleUpdates": 0,
+            "criticalUpdates": 0,
+            "averageDaysSinceUpdate": null
+          }
+        },
+        "byCompleteness": {}
+      }
+    },
+    "exportableReports": {
+      "csv": {
+        "violations": "File,Type,Severity,Message,Line,Standard\n",
+        "performance": "File,ProcessingTime,FileSize,FileType\n",
+        "standards": "Standard,ViolationRate,TotalChecks,TotalViolations,Status\n"
+      },
+      "json": {
+        "summary": {
+          "timestamp": "2025-08-07T17:54:50.395Z",
+          "totalFiles": 0,
+          "totalViolations": 0,
+          "complianceScore": null,
+          "executionTime": 6713
+        },
+        "violations": [],
+        "performance": {},
+        "standards": {
+          "effectiveness": {},
+          "ranking": [],
+          "referenceTracking": {
+            "mostReferenced": [],
+            "leastReferenced": [],
+            "highUsage": [],
+            "mediumUsage": [],
+            "lowUsage": []
+          },
+          "standardsClarification": {
+            "standardsNeedingClarification": [],
+            "summary": {
+              "totalNeedingClarification": 0,
+              "criticalClarification": 0,
+              "highClarification": 0,
+              "mediumClarification": 0,
+              "lowClarification": 0
+            }
+          },
+          "unusedOrObsolete": {
+            "unusedStandards": [
+              {
+                "name": "ai-assisted-governance",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "best-practices",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "ci-cd-strategy",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "code-style",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "configuration-management",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "consolidated-development-patterns",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "cross-platform-command-execution",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "cursor-rule-hierarchy",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "dependency-management",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "development-patterns",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "development-utilities",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "directory-structure",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "enforcement",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "feature-scoring",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "mpc-standards",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "policy-as-code",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "security-compliance",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "service-specific-rules",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "tech-stack",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "testing-standards",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "testing-strategy",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              },
+              {
+                "name": "visual-regression-testing",
+                "type": "UNUSED",
+                "daysSinceLastReference": 999,
+                "reason": "No references in over 30 days",
+                "recommendation": "Consider removing or updating this standard",
+                "priority": "HIGH"
+              }
+            ],
+            "obsoleteStandards": [],
+            "standardsToReview": [],
+            "summary": {
+              "totalUnused": 22,
+              "totalObsolete": 0,
+              "totalToReview": 0,
+              "highPriorityUnused": 22,
+              "highPriorityObsolete": 0,
+              "highPriorityReview": 0
+            }
+          },
+          "clarityAndUsability": {
+            "clarityMetrics": {},
+            "usabilityMetrics": {},
+            "summary": {
+              "clearStandards": 0,
+              "unclearStandards": 0,
+              "usableStandards": 0,
+              "poorUsabilityStandards": 0
+            }
+          },
+          "effectivenessAnalysis": {
+            "effectivenessMetrics": {},
+            "optimizationOpportunities": [],
+            "summary": {
+              "highlyEffective": 0,
+              "effective": 0,
+              "needsImprovement": 0,
+              "ineffective": 0,
+              "totalOptimizationOpportunities": 0,
+              "highPriorityOptimizations": 0,
+              "averageEffectivenessScore": null
+            }
+          },
+          "improvementSuggestions": {
+            "suggestions": [
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "ai-assisted-governance",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "best-practices",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "ci-cd-strategy",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "code-style",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "configuration-management",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "consolidated-development-patterns",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "cross-platform-command-execution",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "cursor-rule-hierarchy",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "dependency-management",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "development-patterns",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "development-utilities",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "directory-structure",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "enforcement",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "feature-scoring",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "mpc-standards",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "policy-as-code",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "security-compliance",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "service-specific-rules",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "tech-stack",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "testing-standards",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "testing-strategy",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              },
+              {
+                "type": "REMOVE_OR_UPDATE",
+                "standard": "visual-regression-testing",
+                "priority": "HIGH",
+                "reason": "No references in over 30 days",
+                "action": "Consider removing or updating this standard",
+                "impact": "MEDIUM",
+                "effort": "LOW"
+              }
+            ],
+            "summary": {
+              "totalSuggestions": 22,
+              "highPriority": 22,
+              "mediumPriority": 0,
+              "lowPriority": 0,
+              "removeOrUpdate": 22,
+              "updateOrDeprecate": 0,
+              "clarifyStandard": 0,
+              "improveUsability": 0
+            }
+          },
+          "optimizationSuggestions": {
+            "suggestions": [],
+            "summary": {
+              "totalSuggestions": 0,
+              "criticalPriority": 0,
+              "highPriority": 0,
+              "mediumPriority": 0,
+              "urgentOptimizations": 0,
+              "redesignStandards": 0,
+              "improveStandards": 0,
+              "enhanceStandards": 0
+            }
+          },
+          "summary": {
+            "totalStandards": 0,
+            "criticalStandards": 0,
+            "warningStandards": 0,
+            "goodStandards": 0,
+            "mostViolated": [],
+            "leastViolated": [],
+            "mostReferenced": [],
+            "totalReferences": 0,
+            "totalUnused": 22,
+            "totalObsolete": 0,
+            "clearStandards": 0,
+            "unclearStandards": 0,
+            "usableStandards": 0,
+            "poorUsabilityStandards": 0,
+            "totalImprovementSuggestions": 22,
+            "highlyEffective": 0,
+            "effective": 0,
+            "needsImprovement": 0,
+            "ineffective": 0,
+            "totalOptimizationOpportunities": 0,
+            "averageEffectivenessScore": null,
+            "totalOptimizationSuggestions": 0
+          }
+        },
+        "documentation": {
+          "clarityScores": {},
+          "completenessScores": {},
+          "summary": {
+            "clearDocumentation": 0,
+            "unclearDocumentation": 0,
+            "completeDocumentation": 0,
+            "incompleteDocumentation": 0,
+            "averageClarityScore": null,
+            "averageCompletenessScore": null
+          }
+        }
+      },
+      "html": {
+        "main": "\n<!DOCTYPE html>\n<html>\n<head>\n    <title>Compliance Analytics Report</title>\n    <style>\n        body { font-family: Arial, sans-serif; margin: 20px; }\n        .summary { background: #f5f5f5; padding: 20px; border-radius: 5px; }\n        .section { margin: 20px 0; }\n        .metric { display: inline-block; margin: 10px; padding: 10px; background: #fff; border: 1px solid #ddd; }\n        .critical { color: #d32f2f; }\n        .warning { color: #f57c00; }\n        .success { color: #388e3c; }\n    </style>\n</head>\n<body>\n    <h1>Compliance Analytics Report</h1>\n    <div class=\"summary\">\n        <h2>Summary</h2>\n        <div class=\"metric\">Total Files: 0</div>\n        <div class=\"metric\">Total Violations: 0</div>\n        <div class=\"metric\">Compliance Score: NaN%</div>\n        <div class=\"metric\">Execution Time: 6713ms</div>\n    </div>\n    \n    <div class=\"section\">\n        <h2>Violations by Type</h2>\n        <table border=\"1\"><tr><th>Type</th><th>Count</th><th>Files</th><th>Critical</th><th>Warning</th></tr></table>\n    </div>\n    \n    <div class=\"section\">\n        <h2>Performance Metrics</h2>\n        <table border=\"1\"><tr><th>File Type</th><th>Count</th><th>Avg Time (ms)</th><th>Total Time (ms)</th></tr></table>\n    </div>\n    \n    <div class=\"section\">\n        <h2>Standards Effectiveness</h2>\n        <table border=\"1\"><tr><th>Standard</th><th>Violation Rate</th><th>Status</th><th>Total Checks</th></tr></table>\n    </div>\n</body>\n</html>",
+        "violations": "<table border=\"1\"><tr><th>Type</th><th>Count</th><th>Files</th><th>Critical</th><th>Warning</th></tr></table>",
+        "performance": "<table border=\"1\"><tr><th>File Type</th><th>Count</th><th>Avg Time (ms)</th><th>Total Time (ms)</th></tr></table>",
+        "standards": "<table border=\"1\"><tr><th>Standard</th><th>Violation Rate</th><th>Status</th><th>Total Checks</th></tr></table>"
+      },
+      "markdown": {
+        "main": "# Compliance Analytics Report\n\n**Generated:** 2025-08-07T17:54:50.396Z\n\n## Summary\n\n- **Total Files:** 0\n- **Total Violations:** 0\n- **Compliance Score:** NaN%\n- **Execution Time:** 6713ms\n\n## Violations\n\n\n## Performance\n\n- **Average Processing Time:** undefinedms\n- **Total Processing Time:** undefinedms\n\n## Standards Effectiveness\n\n",
+        "summary": "# Compliance Analytics Report\n\n**Generated:** 2025-08-07T17:54:50.396Z\n\n",
+        "violations": "\n\n\n",
+        "performance": "\n\n- **Average Processing Time:** undefinedms\n- **Total Processing Time:** undefinedms\n\n",
+        "standards": " Effectiveness\n\n"
+      }
+    },
+    "prioritizedActionItems": {
+      "actionItems": [
+        {
+          "id": "standards_1",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_2",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_3",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_4",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_5",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_6",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_7",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_8",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_9",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_10",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_11",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_12",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_13",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_14",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_15",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_16",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_17",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_18",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_19",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_20",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_21",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "standards_22",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25
+        },
+        {
+          "id": "improvement_0",
+          "type": "IMPROVEMENT",
+          "source": "violation_analysis",
+          "priority": "MEDIUM",
+          "category": "Performance",
+          "message": "⚡ Slow execution time (6713ms)",
+          "action": "Optimize compliance checking performance",
+          "impact": "MEDIUM",
+          "effort": "MEDIUM",
+          "estimatedTime": 4,
+          "estimatedImpact": 25
+        }
+      ],
+      "summary": {
+        "totalItems": 23,
+        "criticalPriority": 0,
+        "highPriority": 22,
+        "mediumPriority": 1,
+        "lowPriority": 0,
+        "highImpact": 0,
+        "estimatedTotalTime": 26,
+        "estimatedTotalImpact": 575
+      }
+    },
+    "impactAssessment": {
+      "overallImpact": {
+        "complianceScore": {
+          "currentScore": null,
+          "potentialScore": null,
+          "estimatedImprovement": 575,
+          "improvementPercentage": null
+        },
+        "performanceImpact": {
+          "itemsCount": 1,
+          "estimatedTimeInvestment": 4,
+          "estimatedPerformanceGain": 25,
+          "roi": 6.25
+        },
+        "standardsImpact": {
+          "itemsCount": 22,
+          "criticalStandards": 0,
+          "highPriorityStandards": 22,
+          "estimatedComplianceImprovement": 550
+        },
+        "documentationImpact": {
+          "itemsCount": 0,
+          "clarityImprovements": 0,
+          "completenessImprovements": 0,
+          "estimatedQualityImprovement": 0
+        }
+      },
+      "individualAssessments": [
+        {
+          "id": "standards_1",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_2",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_3",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_4",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_5",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_6",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_7",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_8",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_9",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_10",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_11",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_12",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_13",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_14",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_15",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_16",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_17",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_18",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_19",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_20",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_21",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "standards_22",
+          "impact": 4,
+          "riskAssessment": {
+            "level": "MEDIUM",
+            "factors": [
+              "Priority: HIGH",
+              "Impact: MEDIUM",
+              "Effort: LOW"
+            ],
+            "mitigation": [
+              "Implement in phases",
+              "Create rollback plan",
+              "Monitor closely during implementation"
+            ]
+          },
+          "successProbability": 0.9,
+          "dependencies": [
+            "Standards review committee",
+            "Team training schedule"
+          ]
+        },
+        {
+          "id": "improvement_0",
+          "impact": 1.6,
+          "riskAssessment": {
+            "level": "LOW",
+            "factors": [
+              "Priority: MEDIUM",
+              "Impact: MEDIUM",
+              "Effort: MEDIUM"
+            ],
+            "mitigation": [
+              "Test in staging environment",
+              "Have backup plan ready"
+            ]
+          },
+          "successProbability": 0.7,
+          "dependencies": [
+            "Performance testing environment",
+            "Monitoring tools setup"
+          ]
+        }
+      ]
+    },
+    "suggestionValidation": {
+      "validatedSuggestions": [
+        {
+          "id": "standards_1",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_2",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_3",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_4",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_5",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_6",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_7",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_8",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_9",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_10",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_11",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_12",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_13",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_14",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_15",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_16",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_17",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_18",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_19",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_20",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_21",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "standards_22",
+          "type": "STANDARDS_IMPROVEMENT",
+          "source": "standards_analysis",
+          "priority": "HIGH",
+          "category": "Standards",
+          "message": "No references in over 30 days",
+          "action": "Consider removing or updating this standard",
+          "impact": "MEDIUM",
+          "effort": "LOW",
+          "estimatedTime": 1,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        },
+        {
+          "id": "improvement_0",
+          "type": "IMPROVEMENT",
+          "source": "violation_analysis",
+          "priority": "MEDIUM",
+          "category": "Performance",
+          "message": "⚡ Slow execution time (6713ms)",
+          "action": "Optimize compliance checking performance",
+          "impact": "MEDIUM",
+          "effort": "MEDIUM",
+          "estimatedTime": 4,
+          "estimatedImpact": 25,
+          "validationScore": 100,
+          "validationNotes": []
+        }
+      ],
+      "rejectedSuggestions": [],
+      "needsReview": [],
+      "summary": {
+        "totalValidated": 23,
+        "totalRejected": 0,
+        "totalNeedsReview": 0,
+        "validationScore": 100
+      }
+    }
+  }
 }

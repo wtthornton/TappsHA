@@ -2,6 +2,8 @@ package com.tappha.autonomous.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Min;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -43,9 +45,21 @@ public class AutomationBackup {
     @Column(name = "backup_timestamp", nullable = false, updatable = false)
     private Instant backupTimestamp;
 
+    @Size(min = 1, max = 255, message = "Backup name must be between 1 and 255 characters if provided")
+    @Column(name = "backup_name")
+    private String backupName;
+
+    @Size(min = 1, message = "Backup description must not be empty if provided")
+    @Column(name = "backup_description")
+    private String backupDescription;
+
     @NotNull
     @Column(name = "backup_type", nullable = false)
     private String backupType; // 'AUTOMATIC', 'MANUAL', 'BEFORE_MODIFICATION'
+
+    @Min(value = 0, message = "Backup size must be non-negative")
+    @Column(name = "backup_size_bytes")
+    private Long backupSizeBytes;
 
     @NotNull
     @Column(name = "backup_data", columnDefinition = "JSONB", nullable = false)
@@ -125,6 +139,30 @@ public class AutomationBackup {
 
     public void setCreatedBy(UUID createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public String getBackupName() {
+        return backupName;
+    }
+
+    public void setBackupName(String backupName) {
+        this.backupName = backupName;
+    }
+
+    public String getBackupDescription() {
+        return backupDescription;
+    }
+
+    public void setBackupDescription(String backupDescription) {
+        this.backupDescription = backupDescription;
+    }
+
+    public Long getBackupSizeBytes() {
+        return backupSizeBytes;
+    }
+
+    public void setBackupSizeBytes(Long backupSizeBytes) {
+        this.backupSizeBytes = backupSizeBytes;
     }
 
     // Business Logic Methods

@@ -2,6 +2,7 @@ package com.tappha.autonomous.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -70,9 +71,11 @@ public class ApprovalWorkflow {
     @Column(name = "rejection_timestamp")
     private Instant rejectionTimestamp;
 
+    @Size(min = 1, message = "Approval notes must not be empty if provided")
     @Column(name = "approval_notes", columnDefinition = "TEXT")
     private String approvalNotes;
 
+    @Size(min = 1, message = "Rejection reason must not be empty if provided")
     @Column(name = "rejection_reason", columnDefinition = "TEXT")
     private String rejectionReason;
 
@@ -82,6 +85,7 @@ public class ApprovalWorkflow {
     @Column(name = "emergency_stop_timestamp")
     private Instant emergencyStopTimestamp;
 
+    @Size(min = 1, message = "Emergency stop reason must not be empty if provided")
     @Column(name = "emergency_stop_reason", columnDefinition = "TEXT")
     private String emergencyStopReason;
 

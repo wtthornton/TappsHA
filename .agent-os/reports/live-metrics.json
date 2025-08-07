@@ -1,12 +1,12 @@
 {
-  "complianceScore": 100,
+  "complianceScore": 101,
   "criticalViolations": 0,
   "warnings": 0,
   "totalFilesProcessed": 152,
   "averageProcessingTime": 150,
-  "timestamp": "2025-08-07T17:33:13.373Z",
-  "uptime": 39490710,
-  "totalRequests": 1106,
+  "timestamp": "2025-08-07T18:16:44.065Z",
+  "uptime": 42101402,
+  "totalRequests": 1155,
   "fileTypes": [
     "java",
     "ts",
@@ -19,16 +19,16 @@
     "yaml"
   ],
   "complianceTrend": {
-    "direction": "stable",
-    "change": 0,
-    "confidence": 0.5,
-    "message": "Compliance is stable"
+    "direction": "declining",
+    "change": -0.8,
+    "confidence": 0.5799999999999997,
+    "message": "Compliance is declining"
   },
   "processingEfficiency": 85,
   "memoryUsage": 45,
   "cpuUsage": 30,
-  "compliancePrediction": 100,
-  "complianceConfidence": 0.8999999999999999,
+  "compliancePrediction": 99,
+  "complianceConfidence": 0.8964100251257867,
   "performance": {
     "averageProcessingTime": 150,
     "totalFilesProcessed": 152,
@@ -37,21 +37,21 @@
     "cpuUsage": 30
   },
   "realTimeUpdates": {
-    "lastUpdate": "2025-08-07T17:33:13.385Z",
+    "lastUpdate": "2025-08-07T18:16:44.074Z",
     "updateFrequency": "real-time",
-    "nextUpdate": "2025-08-07T17:33:43.385Z",
+    "nextUpdate": "2025-08-07T18:17:14.074Z",
     "isLive": true
   },
   "visualIndicators": {
     "ringColor": "#4CAF50",
-    "animationState": "stable",
-    "pulseIntensity": 0.5,
-    "glowEffect": 0.8
+    "animationState": "normal",
+    "pulseIntensity": 0.4619899748742132,
+    "glowEffect": 0.7000000000000001
   },
   "trendAnalysis": {
     "shortTerm": {
       "direction": "stable",
-      "magnitude": 0
+      "magnitude": 0.5
     },
     "mediumTerm": {
       "direction": "stable",
@@ -59,8 +59,8 @@
     },
     "longTerm": {
       "direction": "stable",
-      "magnitude": 0
+      "magnitude": 0.07692307692307693
     },
-    "volatility": 0
+    "volatility": 0.0066332495807108005
   }
 }

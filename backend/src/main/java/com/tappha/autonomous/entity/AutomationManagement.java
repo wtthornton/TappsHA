@@ -3,6 +3,9 @@ package com.tappha.autonomous.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Pattern;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -38,11 +41,12 @@ public class AutomationManagement {
 
     @NotNull
     @Size(max = 255)
+    @Pattern(regexp = "^[a-zA-Z0-9_-]+$", message = "Home Assistant automation ID must contain only alphanumeric characters, underscores, and hyphens")
     @Column(name = "home_assistant_automation_id", nullable = false, unique = true)
     private String homeAssistantAutomationId;
 
     @NotNull
-    @Size(max = 255)
+    @Size(min = 1, max = 255, message = "Name must be between 1 and 255 characters")
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -53,18 +57,24 @@ public class AutomationManagement {
     @Column(name = "lifecycle_state", nullable = false)
     private LifecycleState lifecycleState = LifecycleState.ACTIVE;
 
+    @Min(value = 0, message = "Performance score must be at least 0")
+    @Max(value = 100, message = "Performance score must be at most 100")
     @Column(name = "performance_score", precision = 5, scale = 2)
     private Double performanceScore;
 
     @Column(name = "last_execution_time")
     private Instant lastExecutionTime;
 
+    @Min(value = 0, message = "Execution count must be non-negative")
     @Column(name = "execution_count")
     private Integer executionCount = 0;
 
+    @Min(value = 0, message = "Success rate must be at least 0")
+    @Max(value = 100, message = "Success rate must be at most 100")
     @Column(name = "success_rate", precision = 5, scale = 2)
     private Double successRate;
 
+    @Min(value = 0, message = "Average execution time must be non-negative")
     @Column(name = "average_execution_time_ms")
     private Integer averageExecutionTimeMs;
 
@@ -82,6 +92,7 @@ public class AutomationManagement {
     @Column(name = "modified_by")
     private UUID modifiedBy;
 
+    @Min(value = 1, message = "Version must be positive")
     @Column(name = "version", nullable = false)
     private Integer version = 1;
 
