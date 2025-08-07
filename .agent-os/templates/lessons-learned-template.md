@@ -94,6 +94,29 @@ We achieved 85ms average latency (target: <100ms) and 92% accuracy (target: 90%)
 7. CREATE template for AI service implementation with caching and circuit breakers
 ```
 
+## Compliance Impact
+**How did this affect our standards compliance?**
+
+### Compliance Status
+- **Before Change**: [XX]% compliance score
+- **After Change**: [XX]% compliance score
+- **Violations Introduced**: [Number] new violations
+- **Violations Resolved**: [Number] violations fixed
+- **Standards Impact**: [Positive/Negative/Neutral]
+
+### Compliance Actions Taken
+- [ ] Ran `node compliance-checker.js --detailed` after implementation
+- [ ] Addressed any new violations before proceeding
+- [ ] Updated compliance documentation
+- [ ] Verified score remained ≥85%
+- [ ] Documented compliance status in task tracking
+
+### Compliance Lessons
+- [What compliance issues were encountered]
+- [How were they resolved]
+- [What standards were validated or challenged]
+- [What compliance patterns emerged]
+
 ## Impact Assessment
 **How significant is this lesson?**
 

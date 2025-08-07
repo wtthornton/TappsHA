@@ -61,4 +61,16 @@ public class AuditTrailService {
         log.error("Logging error for operation: {} - {}", operation, error);
         // TODO: Implement error logging
     }
+
+    /**
+     * Log action for audit trail
+     * 
+     * @param action Action type
+     * @param description Action description
+     * @param entityId Entity ID
+     */
+    public void logAction(String action, String description, String entityId) {
+        log.info("Logging action: {} - {} for entity: {}", action, description, entityId);
+        // TODO: Implement audit logging
+    }
 } 

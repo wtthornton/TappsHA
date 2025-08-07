@@ -50,4 +50,14 @@ public interface AutomationVersionRepository extends JpaRepository<AutomationVer
      * Find versions by automation ID and AI-generated flag
      */
     List<AutomationVersion> findByAutomationIdAndAiGeneratedOrderByCreatedAtDesc(String automationId, Boolean aiGenerated);
+
+    /**
+     * Find versions by automation ID ordered by version number descending
+     */
+    List<AutomationVersion> findByAutomationIdOrderByVersionNumberDesc(String automationId);
+
+    /**
+     * Find top version by automation ID ordered by version number descending
+     */
+    Optional<AutomationVersion> findTopByAutomationIdOrderByVersionNumberDesc(String automationId);
 } 

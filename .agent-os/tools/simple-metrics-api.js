@@ -5,10 +5,15 @@
  * Provides RESTful endpoints for current metrics, historical data, and trends
  */
 
-const fs = require('fs');
-const path = require('path');
-const http = require('http');
-const url = require('url');
+import fs from 'fs';
+import path from 'path';
+import http from 'http';
+import url from 'url';
+import { fileURLToPath } from 'url';
+
+// Get __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class SimpleMetricsAPI {
   constructor() {
@@ -1736,10 +1741,10 @@ class SimpleMetricsAPI {
 }
 
 // Export for use in other modules
-module.exports = SimpleMetricsAPI;
+export default SimpleMetricsAPI;
 
 // CLI execution
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   const api = new SimpleMetricsAPI();
   
   // Handle graceful shutdown

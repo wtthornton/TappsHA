@@ -97,13 +97,9 @@ public interface AIBatchProcessingRepository extends JpaRepository<AIBatchProces
     
     /**
      * Get average processing time for completed batches
-     * TODO: Fix PostgreSQL-specific EXTRACT function - temporarily commented out
+     * NOTE: This functionality has been moved to AIBatchProcessingService.getAverageProcessingTimeSeconds()
+     * to avoid PostgreSQL-specific timestamp functions
      */
-    /*
-    @Query("SELECT AVG(EXTRACT(EPOCH FROM (b.endTime - b.startTime))) FROM AIBatchProcessing b " +
-           "WHERE b.status = 'COMPLETED' AND b.endTime IS NOT NULL")
-    Double getAverageProcessingTimeSeconds();
-    */
     
     /**
      * Find batches by date range and pattern data source
@@ -148,4 +144,9 @@ public interface AIBatchProcessingRepository extends JpaRepository<AIBatchProces
      * Find top N recent batch processing records ordered by start time descending
      */
     List<AIBatchProcessing> findTop10ByOrderByStartTimeDesc();
+    
+    /**
+     * Find completed batches with end time not null for calculating average processing time
+     */
+    List<AIBatchProcessing> findByStatusAndEndTimeIsNotNull(AIBatchProcessing.BatchStatus status);
 }

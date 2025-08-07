@@ -16,6 +16,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -388,5 +389,33 @@ public class AIBatchProcessingService {
      */
     public List<AIBatchProcessing> getRecentBatchStatus() {
         return batchProcessingRepository.findTop10ByOrderByStartTimeDesc();
+    }
+
+    /**
+     * Get average processing time for completed batches in seconds
+     * Replaces PostgreSQL-specific timestamp functions with Java calculation
+     */
+    public Double getAverageProcessingTimeSeconds() {
+        try {
+            List<AIBatchProcessing> completedBatches = batchProcessingRepository.findByStatusAndEndTimeIsNotNull(
+                    AIBatchProcessing.BatchStatus.COMPLETED);
+            
+            if (completedBatches.isEmpty()) {
+                return 0.0;
+            }
+            
+            double totalSeconds = completedBatches.stream()
+                    .filter(batch -> batch.getStartTime() != null && batch.getEndTime() != null)
+                    .mapToDouble(batch -> {
+                        Duration duration = Duration.between(batch.getStartTime(), batch.getEndTime());
+                        return duration.toSeconds();
+                    })
+                    .sum();
+            
+            return totalSeconds / completedBatches.size();
+        } catch (Exception e) {
+            log.error("Error calculating average processing time: {}", e.getMessage());
+            return 0.0;
+        }
     }
 }

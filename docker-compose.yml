@@ -146,7 +146,7 @@ services:
       DB_USERNAME: tappha
       DB_PASSWORD: tappha
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/tappha
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
       SPRING_INFLUX_URL: http://influxdb:8086
       SPRING_INFLUX_TOKEN: tappha-admin-token
       GOOGLE_CLIENT_ID: your-google-client-id

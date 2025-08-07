@@ -1,0 +1,413 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent-OS Real-Time Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom animations for Agent-OS dashboard */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-600 to-purple-600 min-h-screen text-gray-900">
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Header Section -->
+        <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 mb-8 shadow-lg border border-white/20">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        Agent-OS Dashboard
+                    </h1>
+                    <p class="text-gray-600 mt-2">Live monitoring and analytics for your development standards compliance</p>
+                </div>
+                
+                <!-- Status Indicators -->
+                <div class="flex flex-wrap gap-3">
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-green-500 to-green-600 text-white">
+                        <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                        <span>Dashboard Online</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+                        <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                        <span>Real-time Updates</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-purple-500 to-purple-600 text-white">
+                        <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                        <span>Auto-refresh</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Refresh Controls -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4 mt-6">
+                <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200" onclick="refreshDashboard()">
+                    ð Refresh Now
+                </button>
+                <div class="flex items-center gap-2">
+                    <label for="refreshInterval" class="text-sm font-medium text-gray-700">Auto-refresh:</label>
+                    <select id="refreshInterval" class="px-3 py-1 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" onchange="updateRefreshInterval()">
+                        <option value="0">Disabled</option>
+                        <option value="10000">10 seconds</option>
+                        <option value="30000" selected>30 seconds</option>
+                        <option value="60000">1 minute</option>
+                        <option value="300000">5 minutes</option>
+                    </select>
+                </div>
+                <div class="text-sm text-gray-500">
+                    Last updated: <span id="lastUpdated" class="font-medium">11:32:31 PM</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Metrics Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+            <!-- Compliance Score Card -->
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Compliance Score</h3>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background: linear-gradient(135deg, #4CAF50, #45a049);">
+                        â
+                    </div>
+                </div>
+                
+                <div class="relative w-32 h-32 mx-auto mb-4">
+                    <svg class="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
+                        <circle class="text-gray-200" stroke-width="8" stroke="currentColor" fill="transparent" r="45" cx="60" cy="60"></circle>
+                        <circle class="text-green-500 transition-all duration-1000 ease-in-out" stroke-width="8" stroke-dasharray="283" stroke-dashoffset="0" stroke-linecap="round" stroke="currentColor" fill="transparent" r="45" cx="60" cy="60"></circle>
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <div class="text-2xl font-bold text-gray-800">100%</div>
+                        <div class="text-sm text-gray-500">Compliance</div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-sm text-red-600">
+                        â 0.2%
+                    </div>
+                    <div class="text-xs text-gray-500">Compliance is declining</div>
+                </div>
+            </div>
+            
+            <!-- Violations Card -->
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Violations</h3>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background: linear-gradient(135deg, #f44336, #d32f2f);">
+                        â 
+                    </div>
+                </div>
+                
+                <div class="text-center mb-4">
+                    <div class="text-3xl font-bold text-gray-800">0</div>
+                    <div class="text-sm text-gray-500">Total Violations</div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-sm text-gray-500">
+                        â 0
+                    </div>
+                    <div class="text-xs text-gray-500">vs last period</div>
+                </div>
+            </div>
+            
+            <!-- Files Processed Card -->
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Files Processed</h3>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background: linear-gradient(135deg, #2196F3, #1976D2);">
+                        ð
+                    </div>
+                </div>
+                
+                <div class="text-center mb-4">
+                    <div class="text-3xl font-bold text-gray-800">152</div>
+                    <div class="text-sm text-gray-500">Total Files</div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-sm text-gray-500">â 0</div>
+                    <div class="text-xs text-gray-500">vs last period</div>
+                </div>
+            </div>
+            
+            <!-- Performance Card -->
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Performance</h3>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background: linear-gradient(135deg, #FF9800, #F57C00);">
+                        â¡
+                    </div>
+                </div>
+                
+                <div class="text-center mb-4">
+                    <div class="text-3xl font-bold text-gray-800">150ms</div>
+                    <div class="text-sm text-gray-500">Avg Processing</div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-sm text-gray-500">
+                        â 0ms
+                    </div>
+                    <div class="text-xs text-gray-500">vs last period</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <!-- Violation Trends Chart -->
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Violation Trends</h3>
+                    <div class="flex gap-2">
+                        <button class="px-3 py-1 text-sm rounded-lg bg-blue-600 text-white" onclick="updateChart('violations', '7d')">7D</button>
+                        <button class="px-3 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300" onclick="updateChart('violations', '30d')">30D</button>
+                        <button class="px-3 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300" onclick="updateChart('violations', '90d')">90D</button>
+                    </div>
+                </div>
+                <div class="h-64">
+                    <canvas id="violationsChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Compliance History Chart -->
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Compliance History</h3>
+                    <div class="flex gap-2">
+                        <button class="px-3 py-1 text-sm rounded-lg bg-blue-600 text-white" onclick="updateChart('compliance', '7d')">7D</button>
+                        <button class="px-3 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300" onclick="updateChart('compliance', '30d')">30D</button>
+                        <button class="px-3 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300" onclick="updateChart('compliance', '90d')">90D</button>
+                    </div>
+                </div>
+                <div class="h-64">
+                    <canvas id="complianceChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Effectiveness Section -->
+        <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
+            <h3 class="text-lg font-semibold text-gray-800 mb-6">Effectiveness Metrics</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-green-600">NaN</div>
+                    <div class="text-sm text-gray-500">Hours Saved</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-blue-600">100%</div>
+                    <div class="text-sm text-gray-500">Productivity Gain</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-orange-600">0%</div>
+                    <div class="text-sm text-gray-500">Quality Improvement</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-purple-600">0%</div>
+                    <div class="text-sm text-gray-500">Standards Adoption</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let refreshIntervalId = null;
+        let violationsChart = null;
+        let complianceChart = null;
+
+        // Initialize charts
+        function initializeCharts() {
+            // Violations Chart
+            const violationsCtx = document.getElementById('violationsChart').getContext('2d');
+            violationsChart = new Chart(violationsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Violations',
+                        data: [12, 19, 15, 17, 14, 16, 14],
+                        borderColor: '#f44336',
+                        backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Compliance Chart
+            const complianceCtx = document.getElementById('complianceChart').getContext('2d');
+            complianceChart = new Chart(complianceCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Compliance %',
+                        data: [42, 45, 43, 47, 44, 46, 44],
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Refresh dashboard data
+        async function refreshDashboard() {
+            try {
+                const response = await fetch('/metrics');
+                const data = await response.json();
+                
+                // Update metrics
+                updateMetrics(data.data);
+                
+                // Update last updated time
+                document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+                
+                console.log('Dashboard refreshed successfully');
+            } catch (error) {
+                console.error('Error refreshing dashboard:', error);
+            }
+        }
+
+        // Update metrics display
+        function updateMetrics(metrics) {
+            // Update compliance score
+            const complianceRing = document.querySelector('.text-green-500');
+            const complianceScore = document.querySelector('.text-2xl.font-bold.text-gray-800');
+            const newOffset = 283 - (283 * metrics.complianceScore / 100);
+            
+            complianceRing.style.strokeDashoffset = newOffset;
+            complianceScore.textContent = metrics.complianceScore + '%';
+            
+            // Update other metrics
+            const metricValues = document.querySelectorAll('.text-3xl.font-bold.text-gray-800');
+            metricValues[1].textContent = metrics.totalViolations;
+            metricValues[2].textContent = metrics.totalFilesProcessed;
+            metricValues[3].textContent = metrics.averageProcessingTime + 'ms';
+        }
+
+        // Update chart data
+        function updateChart(chartType, period) {
+            // Update chart controls
+            const controls = document.querySelectorAll('.chart-control');
+            controls.forEach(control => control.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Here you would fetch new data based on period
+            // For now, we'll just log the request
+            console.log(`Updating ${chartType} chart for ${period}`);
+        }
+
+        // Update refresh interval
+        function updateRefreshInterval() {
+            const interval = document.getElementById('refreshInterval').value;
+            
+            if (refreshIntervalId) {
+                clearInterval(refreshIntervalId);
+            }
+            
+            if (interval > 0) {
+                refreshIntervalId = setInterval(refreshDashboard, parseInt(interval));
+                console.log(`Auto-refresh set to ${interval}ms`);
+            }
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            updateRefreshInterval();
+            
+            // Initial refresh
+            refreshDashboard();
+        });
+    </script>
+</body>
+</html>

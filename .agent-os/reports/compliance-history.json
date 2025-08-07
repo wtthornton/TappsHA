@@ -1,12 +1,13 @@
 [
   {
-    "timestamp": "2025-08-06T18:58:07.208Z",
+    "timestamp": "2025-08-07T13:41:39.672Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 40810842,
-    "totalRequests": 0,
+    "uptime": 25597010,
+    "totalRequests": 787,
     "fileTypes": [
       "java",
       "ts",
@@ -24,7 +25,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -38,9 +38,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T18:58:07.211Z",
+      "lastUpdate": "2025-08-07T13:41:39.677Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T18:58:37.211Z",
+      "nextUpdate": "2025-08-07T13:42:09.677Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -66,13 +66,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T18:58:37.220Z",
+    "timestamp": "2025-08-07T13:42:09.679Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 40840856,
-    "totalRequests": 0,
+    "uptime": 25627016,
+    "totalRequests": 788,
     "fileTypes": [
       "java",
       "ts",
@@ -90,7 +91,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -104,9 +104,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T18:58:37.224Z",
+      "lastUpdate": "2025-08-07T13:42:09.683Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T18:59:07.224Z",
+      "nextUpdate": "2025-08-07T13:42:39.683Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -132,13 +132,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T18:59:07.236Z",
+    "timestamp": "2025-08-07T13:42:39.689Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 40870871,
-    "totalRequests": 0,
+    "uptime": 25657026,
+    "totalRequests": 788,
     "fileTypes": [
       "java",
       "ts",
@@ -156,7 +157,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -170,9 +170,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T18:59:07.241Z",
+      "lastUpdate": "2025-08-07T13:42:39.694Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T18:59:37.241Z",
+      "nextUpdate": "2025-08-07T13:43:09.694Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -198,13 +198,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T18:59:37.243Z",
+    "timestamp": "2025-08-07T13:43:09.691Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 40900878,
-    "totalRequests": 0,
+    "uptime": 25687029,
+    "totalRequests": 789,
     "fileTypes": [
       "java",
       "ts",
@@ -222,7 +223,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -236,9 +236,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T18:59:37.248Z",
+      "lastUpdate": "2025-08-07T13:43:09.695Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:00:07.248Z",
+      "nextUpdate": "2025-08-07T13:43:39.695Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -264,13 +264,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:00:07.258Z",
+    "timestamp": "2025-08-07T13:43:39.706Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 40930893,
-    "totalRequests": 0,
+    "uptime": 25717043,
+    "totalRequests": 789,
     "fileTypes": [
       "java",
       "ts",
@@ -288,7 +289,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -302,9 +302,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:00:07.260Z",
+      "lastUpdate": "2025-08-07T13:43:39.711Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:00:37.260Z",
+      "nextUpdate": "2025-08-07T13:44:09.711Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -330,13 +330,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:00:37.264Z",
+    "timestamp": "2025-08-07T13:44:09.706Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 40960899,
-    "totalRequests": 0,
+    "uptime": 25747044,
+    "totalRequests": 790,
     "fileTypes": [
       "java",
       "ts",
@@ -354,7 +355,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -368,9 +368,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:00:37.268Z",
+      "lastUpdate": "2025-08-07T13:44:09.710Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:01:07.268Z",
+      "nextUpdate": "2025-08-07T13:44:39.710Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -396,13 +396,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:01:07.267Z",
+    "timestamp": "2025-08-07T13:44:39.716Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 40990902,
-    "totalRequests": 0,
+    "uptime": 25777054,
+    "totalRequests": 790,
     "fileTypes": [
       "java",
       "ts",
@@ -420,7 +421,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -434,9 +434,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:01:07.271Z",
+      "lastUpdate": "2025-08-07T13:44:39.720Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:01:37.271Z",
+      "nextUpdate": "2025-08-07T13:45:09.720Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -462,13 +462,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:01:37.273Z",
+    "timestamp": "2025-08-07T13:45:09.726Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41020909,
-    "totalRequests": 0,
+    "uptime": 25807065,
+    "totalRequests": 791,
     "fileTypes": [
       "java",
       "ts",
@@ -486,7 +487,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -500,9 +500,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:01:37.276Z",
+      "lastUpdate": "2025-08-07T13:45:09.730Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:02:07.276Z",
+      "nextUpdate": "2025-08-07T13:45:39.730Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -528,13 +528,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:02:07.282Z",
+    "timestamp": "2025-08-07T13:45:39.740Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41050917,
-    "totalRequests": 0,
+    "uptime": 25837078,
+    "totalRequests": 791,
     "fileTypes": [
       "java",
       "ts",
@@ -552,7 +553,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -566,9 +566,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:02:07.285Z",
+      "lastUpdate": "2025-08-07T13:45:39.744Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:02:37.285Z",
+      "nextUpdate": "2025-08-07T13:46:09.744Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -594,13 +594,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:02:37.288Z",
+    "timestamp": "2025-08-07T13:46:09.741Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41080924,
-    "totalRequests": 0,
+    "uptime": 25867079,
+    "totalRequests": 792,
     "fileTypes": [
       "java",
       "ts",
@@ -618,7 +619,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -632,9 +632,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:02:37.292Z",
+      "lastUpdate": "2025-08-07T13:46:09.746Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:03:07.292Z",
+      "nextUpdate": "2025-08-07T13:46:39.746Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -660,13 +660,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:03:07.297Z",
+    "timestamp": "2025-08-07T13:46:39.748Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41110931,
-    "totalRequests": 0,
+    "uptime": 25897086,
+    "totalRequests": 792,
     "fileTypes": [
       "java",
       "ts",
@@ -684,7 +685,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -698,9 +698,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:03:07.302Z",
+      "lastUpdate": "2025-08-07T13:46:39.751Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:03:37.302Z",
+      "nextUpdate": "2025-08-07T13:47:09.751Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -726,13 +726,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:03:37.302Z",
+    "timestamp": "2025-08-07T13:47:09.755Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41140938,
-    "totalRequests": 0,
+    "uptime": 25927092,
+    "totalRequests": 793,
     "fileTypes": [
       "java",
       "ts",
@@ -750,7 +751,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -764,9 +764,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:03:37.305Z",
+      "lastUpdate": "2025-08-07T13:47:09.760Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:04:07.305Z",
+      "nextUpdate": "2025-08-07T13:47:39.760Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -792,13 +792,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:04:07.305Z",
+    "timestamp": "2025-08-07T13:47:39.766Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41170940,
-    "totalRequests": 0,
+    "uptime": 25957104,
+    "totalRequests": 793,
     "fileTypes": [
       "java",
       "ts",
@@ -816,7 +817,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -830,9 +830,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:04:07.309Z",
+      "lastUpdate": "2025-08-07T13:47:39.770Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:04:37.309Z",
+      "nextUpdate": "2025-08-07T13:48:09.770Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -858,13 +858,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:04:37.318Z",
+    "timestamp": "2025-08-07T13:48:09.775Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41200953,
-    "totalRequests": 0,
+    "uptime": 25987113,
+    "totalRequests": 794,
     "fileTypes": [
       "java",
       "ts",
@@ -882,7 +883,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -896,9 +896,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:04:37.322Z",
+      "lastUpdate": "2025-08-07T13:48:09.779Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:05:07.322Z",
+      "nextUpdate": "2025-08-07T13:48:39.779Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -924,13 +924,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:05:07.323Z",
+    "timestamp": "2025-08-07T13:48:39.791Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41230959,
-    "totalRequests": 0,
+    "uptime": 26017129,
+    "totalRequests": 794,
     "fileTypes": [
       "java",
       "ts",
@@ -948,7 +949,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -962,9 +962,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:05:07.327Z",
+      "lastUpdate": "2025-08-07T13:48:39.795Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:05:37.327Z",
+      "nextUpdate": "2025-08-07T13:49:09.795Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -990,13 +990,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:05:37.336Z",
+    "timestamp": "2025-08-07T13:49:09.797Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41260972,
-    "totalRequests": 0,
+    "uptime": 26047135,
+    "totalRequests": 795,
     "fileTypes": [
       "java",
       "ts",
@@ -1014,7 +1015,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1028,9 +1028,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:05:37.342Z",
+      "lastUpdate": "2025-08-07T13:49:09.801Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:06:07.342Z",
+      "nextUpdate": "2025-08-07T13:49:39.801Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1056,13 +1056,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:06:07.348Z",
+    "timestamp": "2025-08-07T13:49:39.796Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41290984,
-    "totalRequests": 0,
+    "uptime": 26077135,
+    "totalRequests": 795,
     "fileTypes": [
       "java",
       "ts",
@@ -1080,7 +1081,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1094,9 +1094,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:06:07.352Z",
+      "lastUpdate": "2025-08-07T13:49:39.800Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:06:37.352Z",
+      "nextUpdate": "2025-08-07T13:50:09.800Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1122,13 +1122,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:06:37.352Z",
+    "timestamp": "2025-08-07T13:50:09.806Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41320987,
-    "totalRequests": 0,
+    "uptime": 26107144,
+    "totalRequests": 796,
     "fileTypes": [
       "java",
       "ts",
@@ -1146,7 +1147,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1160,9 +1160,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:06:37.355Z",
+      "lastUpdate": "2025-08-07T13:50:09.810Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:07:07.355Z",
+      "nextUpdate": "2025-08-07T13:50:39.810Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1188,13 +1188,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:07:07.356Z",
+    "timestamp": "2025-08-07T13:50:39.817Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41350991,
-    "totalRequests": 0,
+    "uptime": 26137155,
+    "totalRequests": 796,
     "fileTypes": [
       "java",
       "ts",
@@ -1212,7 +1213,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1226,9 +1226,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:07:07.359Z",
+      "lastUpdate": "2025-08-07T13:50:39.821Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:07:37.359Z",
+      "nextUpdate": "2025-08-07T13:51:09.821Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1254,13 +1254,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:07:37.359Z",
+    "timestamp": "2025-08-07T13:51:09.832Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41380995,
-    "totalRequests": 0,
+    "uptime": 26167170,
+    "totalRequests": 797,
     "fileTypes": [
       "java",
       "ts",
@@ -1278,7 +1279,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1292,9 +1292,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:07:37.363Z",
+      "lastUpdate": "2025-08-07T13:51:09.836Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:08:07.363Z",
+      "nextUpdate": "2025-08-07T13:51:39.836Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1320,13 +1320,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:08:07.375Z",
+    "timestamp": "2025-08-07T13:51:39.845Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41411010,
-    "totalRequests": 0,
+    "uptime": 26197183,
+    "totalRequests": 797,
     "fileTypes": [
       "java",
       "ts",
@@ -1344,7 +1345,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1358,9 +1358,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:08:07.381Z",
+      "lastUpdate": "2025-08-07T13:51:39.848Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:08:37.381Z",
+      "nextUpdate": "2025-08-07T13:52:09.848Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1386,13 +1386,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:08:37.378Z",
+    "timestamp": "2025-08-07T13:52:09.859Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41441014,
-    "totalRequests": 0,
+    "uptime": 26227197,
+    "totalRequests": 798,
     "fileTypes": [
       "java",
       "ts",
@@ -1410,7 +1411,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1424,9 +1424,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:08:37.386Z",
+      "lastUpdate": "2025-08-07T13:52:09.863Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:09:07.386Z",
+      "nextUpdate": "2025-08-07T13:52:39.863Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1452,13 +1452,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:09:07.391Z",
+    "timestamp": "2025-08-07T13:52:39.869Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41471026,
-    "totalRequests": 0,
+    "uptime": 26257207,
+    "totalRequests": 798,
     "fileTypes": [
       "java",
       "ts",
@@ -1476,7 +1477,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1490,9 +1490,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:09:07.395Z",
+      "lastUpdate": "2025-08-07T13:52:39.879Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:09:37.395Z",
+      "nextUpdate": "2025-08-07T13:53:09.879Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1518,13 +1518,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:09:37.404Z",
+    "timestamp": "2025-08-07T13:53:09.881Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41501040,
-    "totalRequests": 0,
+    "uptime": 26287219,
+    "totalRequests": 799,
     "fileTypes": [
       "java",
       "ts",
@@ -1542,7 +1543,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1556,9 +1556,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:09:37.410Z",
+      "lastUpdate": "2025-08-07T13:53:09.887Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:10:07.410Z",
+      "nextUpdate": "2025-08-07T13:53:39.887Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1584,13 +1584,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:10:07.411Z",
+    "timestamp": "2025-08-07T13:53:39.898Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41531046,
-    "totalRequests": 0,
+    "uptime": 26317235,
+    "totalRequests": 799,
     "fileTypes": [
       "java",
       "ts",
@@ -1608,7 +1609,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1622,9 +1622,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:10:07.418Z",
+      "lastUpdate": "2025-08-07T13:53:39.903Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:10:37.418Z",
+      "nextUpdate": "2025-08-07T13:54:09.903Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1650,13 +1650,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:10:37.413Z",
+    "timestamp": "2025-08-07T13:54:09.901Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41561048,
-    "totalRequests": 0,
+    "uptime": 26347240,
+    "totalRequests": 800,
     "fileTypes": [
       "java",
       "ts",
@@ -1674,7 +1675,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1688,9 +1688,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:10:37.417Z",
+      "lastUpdate": "2025-08-07T13:54:09.907Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:11:07.417Z",
+      "nextUpdate": "2025-08-07T13:54:39.907Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1716,13 +1716,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:11:07.427Z",
+    "timestamp": "2025-08-07T13:54:39.906Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41591062,
-    "totalRequests": 0,
+    "uptime": 26377244,
+    "totalRequests": 800,
     "fileTypes": [
       "java",
       "ts",
@@ -1740,7 +1741,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1754,9 +1754,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:11:07.430Z",
+      "lastUpdate": "2025-08-07T13:54:39.909Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:11:37.430Z",
+      "nextUpdate": "2025-08-07T13:55:09.909Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1782,13 +1782,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:11:37.439Z",
+    "timestamp": "2025-08-07T13:55:09.913Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41621074,
-    "totalRequests": 0,
+    "uptime": 26407251,
+    "totalRequests": 801,
     "fileTypes": [
       "java",
       "ts",
@@ -1806,7 +1807,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1820,9 +1820,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:11:37.443Z",
+      "lastUpdate": "2025-08-07T13:55:09.917Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:12:07.443Z",
+      "nextUpdate": "2025-08-07T13:55:39.917Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1848,13 +1848,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:12:07.442Z",
+    "timestamp": "2025-08-07T13:55:39.920Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41651076,
-    "totalRequests": 0,
+    "uptime": 26437259,
+    "totalRequests": 801,
     "fileTypes": [
       "java",
       "ts",
@@ -1872,7 +1873,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1886,9 +1886,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:12:07.448Z",
+      "lastUpdate": "2025-08-07T13:55:39.926Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:12:37.448Z",
+      "nextUpdate": "2025-08-07T13:56:09.926Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1914,13 +1914,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:12:37.442Z",
+    "timestamp": "2025-08-07T13:56:09.932Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41681077,
-    "totalRequests": 0,
+    "uptime": 26467270,
+    "totalRequests": 802,
     "fileTypes": [
       "java",
       "ts",
@@ -1938,7 +1939,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -1952,9 +1952,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:12:37.446Z",
+      "lastUpdate": "2025-08-07T13:56:09.937Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:13:07.446Z",
+      "nextUpdate": "2025-08-07T13:56:39.937Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -1980,13 +1980,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:13:07.445Z",
+    "timestamp": "2025-08-07T13:56:39.942Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41711080,
-    "totalRequests": 0,
+    "uptime": 26497279,
+    "totalRequests": 802,
     "fileTypes": [
       "java",
       "ts",
@@ -2004,7 +2005,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2018,9 +2018,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:13:07.449Z",
+      "lastUpdate": "2025-08-07T13:56:39.947Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:13:37.449Z",
+      "nextUpdate": "2025-08-07T13:57:09.947Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2046,13 +2046,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:13:37.460Z",
+    "timestamp": "2025-08-07T13:57:09.942Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41741094,
-    "totalRequests": 0,
+    "uptime": 26527280,
+    "totalRequests": 803,
     "fileTypes": [
       "java",
       "ts",
@@ -2070,7 +2071,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2084,9 +2084,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:13:37.465Z",
+      "lastUpdate": "2025-08-07T13:57:09.951Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:14:07.465Z",
+      "nextUpdate": "2025-08-07T13:57:39.951Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2112,13 +2112,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:14:07.469Z",
+    "timestamp": "2025-08-07T13:57:39.950Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41771105,
-    "totalRequests": 0,
+    "uptime": 26557287,
+    "totalRequests": 806,
     "fileTypes": [
       "java",
       "ts",
@@ -2136,7 +2137,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2150,9 +2150,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:14:07.474Z",
+      "lastUpdate": "2025-08-07T13:57:39.962Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:14:37.474Z",
+      "nextUpdate": "2025-08-07T13:58:09.962Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2178,13 +2178,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:14:37.485Z",
+    "timestamp": "2025-08-07T13:58:09.960Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41801119,
-    "totalRequests": 0,
+    "uptime": 26587297,
+    "totalRequests": 807,
     "fileTypes": [
       "java",
       "ts",
@@ -2202,7 +2203,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2216,9 +2216,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:14:37.491Z",
+      "lastUpdate": "2025-08-07T13:58:09.976Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:15:07.491Z",
+      "nextUpdate": "2025-08-07T13:58:39.976Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2244,13 +2244,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:15:07.483Z",
+    "timestamp": "2025-08-07T13:58:39.966Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41831118,
-    "totalRequests": 0,
+    "uptime": 26617303,
+    "totalRequests": 808,
     "fileTypes": [
       "java",
       "ts",
@@ -2268,7 +2269,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2282,9 +2282,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:15:07.489Z",
+      "lastUpdate": "2025-08-07T13:58:39.976Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:15:37.489Z",
+      "nextUpdate": "2025-08-07T13:59:09.976Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2310,13 +2310,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:15:37.493Z",
+    "timestamp": "2025-08-07T13:59:09.971Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41861128,
-    "totalRequests": 0,
+    "uptime": 26647307,
+    "totalRequests": 809,
     "fileTypes": [
       "java",
       "ts",
@@ -2334,7 +2335,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2348,9 +2348,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:15:37.497Z",
+      "lastUpdate": "2025-08-07T13:59:09.983Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:16:07.497Z",
+      "nextUpdate": "2025-08-07T13:59:39.983Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2376,13 +2376,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:16:07.498Z",
+    "timestamp": "2025-08-07T13:59:39.973Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41891133,
-    "totalRequests": 0,
+    "uptime": 26677309,
+    "totalRequests": 810,
     "fileTypes": [
       "java",
       "ts",
@@ -2400,7 +2401,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2414,9 +2414,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:16:07.504Z",
+      "lastUpdate": "2025-08-07T13:59:39.988Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:16:37.504Z",
+      "nextUpdate": "2025-08-07T14:00:09.988Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2442,13 +2442,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:16:37.503Z",
+    "timestamp": "2025-08-07T14:00:09.985Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41921138,
-    "totalRequests": 0,
+    "uptime": 26707323,
+    "totalRequests": 811,
     "fileTypes": [
       "java",
       "ts",
@@ -2466,7 +2467,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2480,9 +2480,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:16:37.511Z",
+      "lastUpdate": "2025-08-07T14:00:09.992Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:17:07.511Z",
+      "nextUpdate": "2025-08-07T14:00:39.992Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2508,13 +2508,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:17:07.517Z",
+    "timestamp": "2025-08-07T14:00:40.001Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41951152,
-    "totalRequests": 0,
+    "uptime": 26737338,
+    "totalRequests": 812,
     "fileTypes": [
       "java",
       "ts",
@@ -2532,7 +2533,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2546,9 +2546,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:17:07.524Z",
+      "lastUpdate": "2025-08-07T14:00:40.006Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:17:37.524Z",
+      "nextUpdate": "2025-08-07T14:01:10.006Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2574,13 +2574,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:17:37.518Z",
+    "timestamp": "2025-08-07T14:01:10.006Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 41981153,
-    "totalRequests": 0,
+    "uptime": 26767344,
+    "totalRequests": 813,
     "fileTypes": [
       "java",
       "ts",
@@ -2598,7 +2599,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2612,9 +2612,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:17:37.523Z",
+      "lastUpdate": "2025-08-07T14:01:10.013Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:18:07.523Z",
+      "nextUpdate": "2025-08-07T14:01:40.013Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2640,13 +2640,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:18:07.522Z",
+    "timestamp": "2025-08-07T14:01:40.009Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42011157,
-    "totalRequests": 0,
+    "uptime": 26797347,
+    "totalRequests": 814,
     "fileTypes": [
       "java",
       "ts",
@@ -2664,7 +2665,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2678,9 +2678,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:18:07.528Z",
+      "lastUpdate": "2025-08-07T14:01:40.017Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:18:37.528Z",
+      "nextUpdate": "2025-08-07T14:02:10.017Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2706,13 +2706,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:18:37.539Z",
+    "timestamp": "2025-08-07T14:02:10.012Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42041173,
-    "totalRequests": 0,
+    "uptime": 26827350,
+    "totalRequests": 815,
     "fileTypes": [
       "java",
       "ts",
@@ -2730,7 +2731,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2744,9 +2744,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:18:37.544Z",
+      "lastUpdate": "2025-08-07T14:02:10.020Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:19:07.544Z",
+      "nextUpdate": "2025-08-07T14:02:40.020Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2772,13 +2772,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:19:07.545Z",
+    "timestamp": "2025-08-07T14:02:40.016Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42071179,
-    "totalRequests": 0,
+    "uptime": 26857353,
+    "totalRequests": 816,
     "fileTypes": [
       "java",
       "ts",
@@ -2796,7 +2797,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2810,9 +2810,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:19:07.549Z",
+      "lastUpdate": "2025-08-07T14:02:40.031Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:19:37.549Z",
+      "nextUpdate": "2025-08-07T14:03:10.031Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2838,13 +2838,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:19:37.556Z",
+    "timestamp": "2025-08-07T14:03:10.023Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42101191,
-    "totalRequests": 0,
+    "uptime": 26887361,
+    "totalRequests": 817,
     "fileTypes": [
       "java",
       "ts",
@@ -2862,7 +2863,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2876,9 +2876,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:19:37.561Z",
+      "lastUpdate": "2025-08-07T14:03:10.035Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:20:07.561Z",
+      "nextUpdate": "2025-08-07T14:03:40.035Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2904,13 +2904,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:20:07.566Z",
+    "timestamp": "2025-08-07T14:03:40.039Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42131201,
-    "totalRequests": 0,
+    "uptime": 26917376,
+    "totalRequests": 818,
     "fileTypes": [
       "java",
       "ts",
@@ -2928,7 +2929,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -2942,9 +2942,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:20:07.573Z",
+      "lastUpdate": "2025-08-07T14:03:40.048Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:20:37.573Z",
+      "nextUpdate": "2025-08-07T14:04:10.048Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -2970,13 +2970,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:20:37.575Z",
+    "timestamp": "2025-08-07T14:04:10.054Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42161210,
-    "totalRequests": 0,
+    "uptime": 26947392,
+    "totalRequests": 819,
     "fileTypes": [
       "java",
       "ts",
@@ -2994,7 +2995,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3008,9 +3008,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:20:37.582Z",
+      "lastUpdate": "2025-08-07T14:04:10.061Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:21:07.582Z",
+      "nextUpdate": "2025-08-07T14:04:40.061Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3036,13 +3036,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:21:07.585Z",
+    "timestamp": "2025-08-07T14:04:40.062Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42191219,
-    "totalRequests": 0,
+    "uptime": 26977398,
+    "totalRequests": 820,
     "fileTypes": [
       "java",
       "ts",
@@ -3060,7 +3061,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3074,9 +3074,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:21:07.593Z",
+      "lastUpdate": "2025-08-07T14:04:40.073Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:21:37.593Z",
+      "nextUpdate": "2025-08-07T14:05:10.073Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3102,13 +3102,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:21:37.598Z",
+    "timestamp": "2025-08-07T14:05:10.061Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42221233,
-    "totalRequests": 0,
+    "uptime": 27007399,
+    "totalRequests": 821,
     "fileTypes": [
       "java",
       "ts",
@@ -3126,7 +3127,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3140,9 +3140,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:21:37.603Z",
+      "lastUpdate": "2025-08-07T14:05:10.069Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:22:07.603Z",
+      "nextUpdate": "2025-08-07T14:05:40.069Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3168,13 +3168,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:22:07.607Z",
+    "timestamp": "2025-08-07T14:05:40.071Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42251241,
-    "totalRequests": 0,
+    "uptime": 27037408,
+    "totalRequests": 822,
     "fileTypes": [
       "java",
       "ts",
@@ -3192,7 +3193,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3206,9 +3206,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:22:07.613Z",
+      "lastUpdate": "2025-08-07T14:05:40.077Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:22:37.613Z",
+      "nextUpdate": "2025-08-07T14:06:10.077Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3234,13 +3234,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:22:37.608Z",
+    "timestamp": "2025-08-07T14:06:10.085Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42281243,
-    "totalRequests": 0,
+    "uptime": 27067423,
+    "totalRequests": 823,
     "fileTypes": [
       "java",
       "ts",
@@ -3258,7 +3259,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3272,9 +3272,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:22:37.614Z",
+      "lastUpdate": "2025-08-07T14:06:10.092Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:23:07.614Z",
+      "nextUpdate": "2025-08-07T14:06:40.092Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3300,13 +3300,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:23:07.610Z",
+    "timestamp": "2025-08-07T14:06:40.094Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42311244,
-    "totalRequests": 0,
+    "uptime": 27097431,
+    "totalRequests": 824,
     "fileTypes": [
       "java",
       "ts",
@@ -3324,7 +3325,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3338,9 +3338,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:23:07.615Z",
+      "lastUpdate": "2025-08-07T14:06:40.108Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:23:37.615Z",
+      "nextUpdate": "2025-08-07T14:07:10.108Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3366,13 +3366,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:23:37.617Z",
+    "timestamp": "2025-08-07T14:07:10.095Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42341251,
-    "totalRequests": 0,
+    "uptime": 27127432,
+    "totalRequests": 825,
     "fileTypes": [
       "java",
       "ts",
@@ -3390,7 +3391,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3404,9 +3404,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:23:37.622Z",
+      "lastUpdate": "2025-08-07T14:07:10.109Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:24:07.622Z",
+      "nextUpdate": "2025-08-07T14:07:40.109Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3432,13 +3432,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:24:07.627Z",
+    "timestamp": "2025-08-07T14:07:40.107Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42371262,
-    "totalRequests": 0,
+    "uptime": 27157445,
+    "totalRequests": 826,
     "fileTypes": [
       "java",
       "ts",
@@ -3456,7 +3457,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3470,9 +3470,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:24:07.632Z",
+      "lastUpdate": "2025-08-07T14:07:40.119Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:24:37.632Z",
+      "nextUpdate": "2025-08-07T14:08:10.119Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3498,13 +3498,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:24:37.637Z",
+    "timestamp": "2025-08-07T14:08:10.117Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42401271,
-    "totalRequests": 0,
+    "uptime": 27187455,
+    "totalRequests": 827,
     "fileTypes": [
       "java",
       "ts",
@@ -3522,7 +3523,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3536,9 +3536,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:24:37.642Z",
+      "lastUpdate": "2025-08-07T14:08:10.127Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:25:07.642Z",
+      "nextUpdate": "2025-08-07T14:08:40.127Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3564,13 +3564,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:25:07.644Z",
+    "timestamp": "2025-08-07T14:08:40.130Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42431279,
-    "totalRequests": 0,
+    "uptime": 27217468,
+    "totalRequests": 828,
     "fileTypes": [
       "java",
       "ts",
@@ -3588,7 +3589,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3602,9 +3602,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:25:07.649Z",
+      "lastUpdate": "2025-08-07T14:08:40.139Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:25:37.649Z",
+      "nextUpdate": "2025-08-07T14:09:10.139Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3630,13 +3630,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:25:37.658Z",
+    "timestamp": "2025-08-07T14:09:10.140Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42461292,
-    "totalRequests": 0,
+    "uptime": 27247478,
+    "totalRequests": 829,
     "fileTypes": [
       "java",
       "ts",
@@ -3654,7 +3655,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3668,9 +3668,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:25:37.664Z",
+      "lastUpdate": "2025-08-07T14:09:10.147Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:26:07.664Z",
+      "nextUpdate": "2025-08-07T14:09:40.147Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3696,13 +3696,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:26:07.666Z",
+    "timestamp": "2025-08-07T14:09:40.146Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42491301,
-    "totalRequests": 0,
+    "uptime": 27277484,
+    "totalRequests": 830,
     "fileTypes": [
       "java",
       "ts",
@@ -3720,7 +3721,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3734,9 +3734,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:26:07.670Z",
+      "lastUpdate": "2025-08-07T14:09:40.153Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:26:37.670Z",
+      "nextUpdate": "2025-08-07T14:10:10.153Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3762,13 +3762,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:26:37.677Z",
+    "timestamp": "2025-08-07T14:10:10.152Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42521312,
-    "totalRequests": 0,
+    "uptime": 27307490,
+    "totalRequests": 831,
     "fileTypes": [
       "java",
       "ts",
@@ -3786,7 +3787,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3800,9 +3800,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:26:37.683Z",
+      "lastUpdate": "2025-08-07T14:10:10.159Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:27:07.683Z",
+      "nextUpdate": "2025-08-07T14:10:40.159Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3828,13 +3828,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:27:07.685Z",
+    "timestamp": "2025-08-07T14:10:40.168Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42551320,
-    "totalRequests": 0,
+    "uptime": 27337505,
+    "totalRequests": 832,
     "fileTypes": [
       "java",
       "ts",
@@ -3852,7 +3853,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3866,9 +3866,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:27:07.691Z",
+      "lastUpdate": "2025-08-07T14:10:40.175Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:27:37.691Z",
+      "nextUpdate": "2025-08-07T14:11:10.175Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3894,13 +3894,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:27:37.699Z",
+    "timestamp": "2025-08-07T14:11:10.175Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42581334,
-    "totalRequests": 0,
+    "uptime": 27367512,
+    "totalRequests": 833,
     "fileTypes": [
       "java",
       "ts",
@@ -3918,7 +3919,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3932,9 +3932,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:27:37.702Z",
+      "lastUpdate": "2025-08-07T14:11:10.181Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:28:07.702Z",
+      "nextUpdate": "2025-08-07T14:11:40.182Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -3960,13 +3960,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:28:07.712Z",
+    "timestamp": "2025-08-07T14:11:40.190Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42611346,
-    "totalRequests": 0,
+    "uptime": 27397528,
+    "totalRequests": 834,
     "fileTypes": [
       "java",
       "ts",
@@ -3984,7 +3985,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -3998,9 +3998,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:28:07.717Z",
+      "lastUpdate": "2025-08-07T14:11:40.195Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:28:37.717Z",
+      "nextUpdate": "2025-08-07T14:12:10.195Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4026,13 +4026,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:28:37.718Z",
+    "timestamp": "2025-08-07T14:12:10.204Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42641353,
-    "totalRequests": 0,
+    "uptime": 27427541,
+    "totalRequests": 835,
     "fileTypes": [
       "java",
       "ts",
@@ -4050,7 +4051,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4064,9 +4064,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:28:37.722Z",
+      "lastUpdate": "2025-08-07T14:12:10.211Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:29:07.722Z",
+      "nextUpdate": "2025-08-07T14:12:40.211Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4092,13 +4092,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:29:07.734Z",
+    "timestamp": "2025-08-07T14:12:40.211Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42671368,
-    "totalRequests": 0,
+    "uptime": 27457549,
+    "totalRequests": 836,
     "fileTypes": [
       "java",
       "ts",
@@ -4116,7 +4117,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4130,9 +4130,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:29:07.740Z",
+      "lastUpdate": "2025-08-07T14:12:40.219Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:29:37.740Z",
+      "nextUpdate": "2025-08-07T14:13:10.219Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4158,13 +4158,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:29:37.734Z",
+    "timestamp": "2025-08-07T14:13:10.222Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42701369,
-    "totalRequests": 0,
+    "uptime": 27487559,
+    "totalRequests": 837,
     "fileTypes": [
       "java",
       "ts",
@@ -4182,7 +4183,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4196,9 +4196,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:29:37.738Z",
+      "lastUpdate": "2025-08-07T14:13:10.235Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:30:07.738Z",
+      "nextUpdate": "2025-08-07T14:13:40.235Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4224,13 +4224,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:30:07.744Z",
+    "timestamp": "2025-08-07T14:13:40.236Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42731379,
-    "totalRequests": 0,
+    "uptime": 27517574,
+    "totalRequests": 838,
     "fileTypes": [
       "java",
       "ts",
@@ -4248,7 +4249,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4262,9 +4262,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:30:07.750Z",
+      "lastUpdate": "2025-08-07T14:13:40.244Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:30:37.750Z",
+      "nextUpdate": "2025-08-07T14:14:10.244Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4290,13 +4290,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:30:37.752Z",
+    "timestamp": "2025-08-07T14:14:10.247Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42761388,
-    "totalRequests": 0,
+    "uptime": 27547585,
+    "totalRequests": 839,
     "fileTypes": [
       "java",
       "ts",
@@ -4314,7 +4315,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4328,9 +4328,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:30:37.756Z",
+      "lastUpdate": "2025-08-07T14:14:10.255Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:31:07.756Z",
+      "nextUpdate": "2025-08-07T14:14:40.255Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4356,13 +4356,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:31:07.757Z",
+    "timestamp": "2025-08-07T14:14:40.253Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42791392,
-    "totalRequests": 0,
+    "uptime": 27577591,
+    "totalRequests": 840,
     "fileTypes": [
       "java",
       "ts",
@@ -4380,7 +4381,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4394,9 +4394,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:31:07.764Z",
+      "lastUpdate": "2025-08-07T14:14:40.259Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:31:37.764Z",
+      "nextUpdate": "2025-08-07T14:15:10.259Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4422,13 +4422,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:31:37.773Z",
+    "timestamp": "2025-08-07T14:15:10.261Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42821408,
-    "totalRequests": 0,
+    "uptime": 27607599,
+    "totalRequests": 841,
     "fileTypes": [
       "java",
       "ts",
@@ -4446,7 +4447,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4460,9 +4460,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:31:37.778Z",
+      "lastUpdate": "2025-08-07T14:15:10.266Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:32:07.778Z",
+      "nextUpdate": "2025-08-07T14:15:40.266Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4488,13 +4488,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:32:07.776Z",
+    "timestamp": "2025-08-07T14:15:40.266Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42851410,
-    "totalRequests": 0,
+    "uptime": 27637604,
+    "totalRequests": 842,
     "fileTypes": [
       "java",
       "ts",
@@ -4512,7 +4513,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4526,9 +4526,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:32:07.783Z",
+      "lastUpdate": "2025-08-07T14:15:40.272Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:32:37.783Z",
+      "nextUpdate": "2025-08-07T14:16:10.272Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4554,13 +4554,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:32:37.777Z",
+    "timestamp": "2025-08-07T14:16:10.274Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42881410,
-    "totalRequests": 0,
+    "uptime": 27667612,
+    "totalRequests": 843,
     "fileTypes": [
       "java",
       "ts",
@@ -4578,7 +4579,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4592,9 +4592,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:32:37.790Z",
+      "lastUpdate": "2025-08-07T14:16:10.279Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:33:07.790Z",
+      "nextUpdate": "2025-08-07T14:16:40.279Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4620,13 +4620,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:33:07.786Z",
+    "timestamp": "2025-08-07T14:16:40.287Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42911421,
-    "totalRequests": 0,
+    "uptime": 27697625,
+    "totalRequests": 844,
     "fileTypes": [
       "java",
       "ts",
@@ -4644,7 +4645,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4658,9 +4658,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:33:07.794Z",
+      "lastUpdate": "2025-08-07T14:16:40.293Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:33:37.794Z",
+      "nextUpdate": "2025-08-07T14:17:10.293Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4686,13 +4686,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:33:37.794Z",
+    "timestamp": "2025-08-07T14:17:10.300Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42941427,
-    "totalRequests": 0,
+    "uptime": 27727638,
+    "totalRequests": 845,
     "fileTypes": [
       "java",
       "ts",
@@ -4710,7 +4711,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4724,9 +4724,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:33:37.804Z",
+      "lastUpdate": "2025-08-07T14:17:10.306Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:34:07.804Z",
+      "nextUpdate": "2025-08-07T14:17:40.306Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4752,13 +4752,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:34:07.801Z",
+    "timestamp": "2025-08-07T14:17:40.303Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 42971435,
-    "totalRequests": 0,
+    "uptime": 27757641,
+    "totalRequests": 846,
     "fileTypes": [
       "java",
       "ts",
@@ -4776,7 +4777,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4790,9 +4790,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:34:07.807Z",
+      "lastUpdate": "2025-08-07T14:17:40.308Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:34:37.807Z",
+      "nextUpdate": "2025-08-07T14:18:10.308Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4818,13 +4818,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:34:37.810Z",
+    "timestamp": "2025-08-07T14:18:10.309Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43001444,
-    "totalRequests": 0,
+    "uptime": 27787646,
+    "totalRequests": 847,
     "fileTypes": [
       "java",
       "ts",
@@ -4842,7 +4843,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4856,9 +4856,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:34:37.819Z",
+      "lastUpdate": "2025-08-07T14:18:10.315Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:35:07.819Z",
+      "nextUpdate": "2025-08-07T14:18:40.315Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4884,13 +4884,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:35:07.811Z",
+    "timestamp": "2025-08-07T14:18:40.316Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43031446,
-    "totalRequests": 0,
+    "uptime": 27817654,
+    "totalRequests": 848,
     "fileTypes": [
       "java",
       "ts",
@@ -4908,7 +4909,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4922,9 +4922,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:35:07.817Z",
+      "lastUpdate": "2025-08-07T14:18:40.321Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:35:37.817Z",
+      "nextUpdate": "2025-08-07T14:19:10.321Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -4950,13 +4950,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:35:37.827Z",
+    "timestamp": "2025-08-07T14:19:10.324Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43061460,
-    "totalRequests": 0,
+    "uptime": 27847662,
+    "totalRequests": 849,
     "fileTypes": [
       "java",
       "ts",
@@ -4974,7 +4975,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -4988,9 +4988,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:35:37.840Z",
+      "lastUpdate": "2025-08-07T14:19:10.329Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:36:07.840Z",
+      "nextUpdate": "2025-08-07T14:19:40.329Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5016,13 +5016,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:36:07.836Z",
+    "timestamp": "2025-08-07T14:19:40.331Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43091471,
-    "totalRequests": 0,
+    "uptime": 27877670,
+    "totalRequests": 850,
     "fileTypes": [
       "java",
       "ts",
@@ -5040,7 +5041,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5054,9 +5054,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:36:07.839Z",
+      "lastUpdate": "2025-08-07T14:19:40.336Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:36:37.839Z",
+      "nextUpdate": "2025-08-07T14:20:10.336Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5082,13 +5082,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:36:37.839Z",
+    "timestamp": "2025-08-07T14:20:10.333Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43121473,
-    "totalRequests": 0,
+    "uptime": 27907671,
+    "totalRequests": 851,
     "fileTypes": [
       "java",
       "ts",
@@ -5106,7 +5107,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5120,9 +5120,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:36:37.851Z",
+      "lastUpdate": "2025-08-07T14:20:10.338Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:37:07.851Z",
+      "nextUpdate": "2025-08-07T14:20:40.338Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5148,13 +5148,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:37:07.849Z",
+    "timestamp": "2025-08-07T14:20:40.334Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43151482,
-    "totalRequests": 0,
+    "uptime": 27937672,
+    "totalRequests": 852,
     "fileTypes": [
       "java",
       "ts",
@@ -5172,7 +5173,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5186,9 +5186,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:37:07.856Z",
+      "lastUpdate": "2025-08-07T14:20:40.340Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:37:37.856Z",
+      "nextUpdate": "2025-08-07T14:21:10.340Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5214,13 +5214,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:37:37.850Z",
+    "timestamp": "2025-08-07T14:21:10.352Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43181485,
-    "totalRequests": 0,
+    "uptime": 27967687,
+    "totalRequests": 853,
     "fileTypes": [
       "java",
       "ts",
@@ -5238,7 +5239,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5252,9 +5252,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:37:37.858Z",
+      "lastUpdate": "2025-08-07T14:21:10.362Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:38:07.858Z",
+      "nextUpdate": "2025-08-07T14:21:40.362Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5280,13 +5280,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:38:07.858Z",
+    "timestamp": "2025-08-07T14:21:40.357Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43211493,
-    "totalRequests": 0,
+    "uptime": 27997694,
+    "totalRequests": 854,
     "fileTypes": [
       "java",
       "ts",
@@ -5304,7 +5305,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5318,9 +5318,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:38:07.863Z",
+      "lastUpdate": "2025-08-07T14:21:40.363Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:38:37.863Z",
+      "nextUpdate": "2025-08-07T14:22:10.363Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5346,13 +5346,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:38:37.859Z",
+    "timestamp": "2025-08-07T14:22:10.362Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43241495,
-    "totalRequests": 0,
+    "uptime": 28027700,
+    "totalRequests": 855,
     "fileTypes": [
       "java",
       "ts",
@@ -5370,7 +5371,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5384,9 +5384,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:38:37.866Z",
+      "lastUpdate": "2025-08-07T14:22:10.370Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:39:07.866Z",
+      "nextUpdate": "2025-08-07T14:22:40.370Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5412,13 +5412,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:39:07.870Z",
+    "timestamp": "2025-08-07T14:22:40.368Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43271505,
-    "totalRequests": 0,
+    "uptime": 28057706,
+    "totalRequests": 856,
     "fileTypes": [
       "java",
       "ts",
@@ -5436,7 +5437,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5450,9 +5450,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:39:07.875Z",
+      "lastUpdate": "2025-08-07T14:22:40.376Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:39:37.875Z",
+      "nextUpdate": "2025-08-07T14:23:10.376Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5478,13 +5478,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:39:37.879Z",
+    "timestamp": "2025-08-07T14:23:10.365Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43301514,
-    "totalRequests": 0,
+    "uptime": 28087704,
+    "totalRequests": 857,
     "fileTypes": [
       "java",
       "ts",
@@ -5502,7 +5503,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5516,9 +5516,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:39:37.886Z",
+      "lastUpdate": "2025-08-07T14:23:10.372Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:40:07.886Z",
+      "nextUpdate": "2025-08-07T14:23:40.372Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5544,13 +5544,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:40:07.892Z",
+    "timestamp": "2025-08-07T14:23:40.374Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43331526,
-    "totalRequests": 0,
+    "uptime": 28117712,
+    "totalRequests": 858,
     "fileTypes": [
       "java",
       "ts",
@@ -5568,7 +5569,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5582,9 +5582,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:40:07.897Z",
+      "lastUpdate": "2025-08-07T14:23:40.379Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:40:37.897Z",
+      "nextUpdate": "2025-08-07T14:24:10.379Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5610,13 +5610,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:40:37.905Z",
+    "timestamp": "2025-08-07T14:24:10.378Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43361540,
-    "totalRequests": 0,
+    "uptime": 28147716,
+    "totalRequests": 859,
     "fileTypes": [
       "java",
       "ts",
@@ -5634,7 +5635,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5648,9 +5648,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:40:37.910Z",
+      "lastUpdate": "2025-08-07T14:24:10.384Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:41:07.910Z",
+      "nextUpdate": "2025-08-07T14:24:40.384Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5676,13 +5676,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:41:07.914Z",
+    "timestamp": "2025-08-07T14:24:40.390Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43391549,
-    "totalRequests": 0,
+    "uptime": 28177727,
+    "totalRequests": 860,
     "fileTypes": [
       "java",
       "ts",
@@ -5700,7 +5701,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5714,9 +5714,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:41:07.920Z",
+      "lastUpdate": "2025-08-07T14:24:40.394Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:41:37.920Z",
+      "nextUpdate": "2025-08-07T14:25:10.394Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5742,13 +5742,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:41:37.921Z",
+    "timestamp": "2025-08-07T14:25:10.400Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43421555,
-    "totalRequests": 0,
+    "uptime": 28207738,
+    "totalRequests": 861,
     "fileTypes": [
       "java",
       "ts",
@@ -5766,7 +5767,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5780,9 +5780,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:41:37.925Z",
+      "lastUpdate": "2025-08-07T14:25:10.413Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:42:07.925Z",
+      "nextUpdate": "2025-08-07T14:25:40.413Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5808,13 +5808,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:42:07.933Z",
+    "timestamp": "2025-08-07T14:25:40.410Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43451568,
-    "totalRequests": 0,
+    "uptime": 28237748,
+    "totalRequests": 862,
     "fileTypes": [
       "java",
       "ts",
@@ -5832,7 +5833,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5846,9 +5846,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:42:07.937Z",
+      "lastUpdate": "2025-08-07T14:25:40.415Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:42:37.937Z",
+      "nextUpdate": "2025-08-07T14:26:10.415Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5874,13 +5874,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:42:37.945Z",
+    "timestamp": "2025-08-07T14:26:10.427Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43481579,
-    "totalRequests": 0,
+    "uptime": 28267764,
+    "totalRequests": 863,
     "fileTypes": [
       "java",
       "ts",
@@ -5898,7 +5899,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5912,9 +5912,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:42:37.950Z",
+      "lastUpdate": "2025-08-07T14:26:10.443Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:43:07.950Z",
+      "nextUpdate": "2025-08-07T14:26:40.443Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -5940,13 +5940,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:43:07.955Z",
+    "timestamp": "2025-08-07T14:26:40.425Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43511590,
-    "totalRequests": 0,
+    "uptime": 28297762,
+    "totalRequests": 864,
     "fileTypes": [
       "java",
       "ts",
@@ -5964,7 +5965,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -5978,9 +5978,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:43:07.960Z",
+      "lastUpdate": "2025-08-07T14:26:40.432Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:43:37.960Z",
+      "nextUpdate": "2025-08-07T14:27:10.432Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -6006,13 +6006,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:43:37.965Z",
+    "timestamp": "2025-08-07T14:27:10.434Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43541599,
-    "totalRequests": 0,
+    "uptime": 28327770,
+    "totalRequests": 865,
     "fileTypes": [
       "java",
       "ts",
@@ -6030,7 +6031,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -6044,9 +6044,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:43:37.971Z",
+      "lastUpdate": "2025-08-07T14:27:10.447Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:44:07.971Z",
+      "nextUpdate": "2025-08-07T14:27:40.447Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -6072,13 +6072,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:44:07.963Z",
+    "timestamp": "2025-08-07T14:27:40.446Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43571599,
-    "totalRequests": 0,
+    "uptime": 28357784,
+    "totalRequests": 866,
     "fileTypes": [
       "java",
       "ts",
@@ -6096,7 +6097,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -6110,9 +6110,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:44:07.969Z",
+      "lastUpdate": "2025-08-07T14:27:40.450Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:44:37.969Z",
+      "nextUpdate": "2025-08-07T14:28:10.450Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -6138,13 +6138,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:44:37.976Z",
+    "timestamp": "2025-08-07T14:28:10.449Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43601610,
-    "totalRequests": 0,
+    "uptime": 28387786,
+    "totalRequests": 867,
     "fileTypes": [
       "java",
       "ts",
@@ -6162,7 +6163,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -6176,9 +6176,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:44:37.982Z",
+      "lastUpdate": "2025-08-07T14:28:10.455Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:45:07.982Z",
+      "nextUpdate": "2025-08-07T14:28:40.455Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -6204,13 +6204,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:45:07.984Z",
+    "timestamp": "2025-08-07T14:28:40.457Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43631618,
-    "totalRequests": 0,
+    "uptime": 28417794,
+    "totalRequests": 868,
     "fileTypes": [
       "java",
       "ts",
@@ -6228,7 +6229,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -6242,9 +6242,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:45:07.989Z",
+      "lastUpdate": "2025-08-07T14:28:40.468Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:45:37.989Z",
+      "nextUpdate": "2025-08-07T14:29:10.468Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -6270,13 +6270,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:45:37.995Z",
+    "timestamp": "2025-08-07T14:29:10.459Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43661629,
-    "totalRequests": 0,
+    "uptime": 28447797,
+    "totalRequests": 869,
     "fileTypes": [
       "java",
       "ts",
@@ -6294,7 +6295,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -6308,9 +6308,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:45:38.000Z",
+      "lastUpdate": "2025-08-07T14:29:10.467Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:46:08.000Z",
+      "nextUpdate": "2025-08-07T14:29:40.467Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -6336,13 +6336,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:46:08.005Z",
+    "timestamp": "2025-08-07T14:29:40.475Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43691640,
-    "totalRequests": 0,
+    "uptime": 28477812,
+    "totalRequests": 870,
     "fileTypes": [
       "java",
       "ts",
@@ -6360,7 +6361,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -6374,9 +6374,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:46:08.009Z",
+      "lastUpdate": "2025-08-07T14:29:40.481Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:46:38.009Z",
+      "nextUpdate": "2025-08-07T14:30:10.481Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -6402,13 +6402,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:46:38.020Z",
+    "timestamp": "2025-08-07T14:30:10.482Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43721655,
-    "totalRequests": 0,
+    "uptime": 28507820,
+    "totalRequests": 871,
     "fileTypes": [
       "java",
       "ts",
@@ -6426,7 +6427,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -6440,9 +6440,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:46:38.024Z",
+      "lastUpdate": "2025-08-07T14:30:10.488Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:47:08.024Z",
+      "nextUpdate": "2025-08-07T14:30:40.488Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -6468,13 +6468,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:47:08.026Z",
+    "timestamp": "2025-08-07T14:30:40.485Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43751661,
-    "totalRequests": 0,
+    "uptime": 28537823,
+    "totalRequests": 872,
     "fileTypes": [
       "java",
       "ts",
@@ -6492,7 +6493,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -6506,9 +6506,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:47:08.031Z",
+      "lastUpdate": "2025-08-07T14:30:40.491Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:47:38.031Z",
+      "nextUpdate": "2025-08-07T14:31:10.491Z",
       "isLive": true
     },
     "visualIndicators": {
@@ -6534,13 +6534,14 @@
     }
   },
   {
-    "timestamp": "2025-08-06T19:47:38.037Z",
+    "timestamp": "2025-08-07T14:31:10.494Z",
     "complianceScore": 100,
     "criticalViolations": 0,
     "warnings": 0,
+    "totalFilesProcessed": 152,
     "averageProcessingTime": 150,
-    "uptime": 43781672,
-    "totalRequests": 0,
+    "uptime": 28567831,
+    "totalRequests": 873,
     "fileTypes": [
       "java",
       "ts",
@@ -6558,7 +6559,6 @@
       "confidence": 0.5,
       "message": "Compliance is stable"
     },
-    "totalFilesProcessed": 152,
     "processingEfficiency": 85,
     "memoryUsage": 45,
     "cpuUsage": 30,
@@ -6572,9 +6572,9 @@
       "cpuUsage": 30
     },
     "realTimeUpdates": {
-      "lastUpdate": "2025-08-06T19:47:38.042Z",
+      "lastUpdate": "2025-08-07T14:31:10.499Z",
       "updateFrequency": "real-time",
-      "nextUpdate": "2025-08-06T19:48:08.042Z",
+      "nextUpdate": "2025-08-07T14:31:40.499Z",
       "isLive": true
     },
     "visualIndicators": {

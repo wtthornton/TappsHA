@@ -28,4 +28,6 @@ public class AutomationLifecycleStats {
     private LocalDateTime retiredAt;
     private Integer approvalCount;
     private Integer optimizationCount;
+    private Integer totalStateTransitions;
+    private Double averageVersionLifetime;
 } 

@@ -92,6 +92,119 @@ New Ne
 - **Memory efficient** - < 100MB memory usage
 - **Real-time updates** - Immediate feedback
 
+## Self-Contained Tool Development Patterns
+
+### ES Module Standards
+- **Use ES modules**: All tools must use `import`/`export` syntax
+- **Path resolution**: Use `fileURLToPath` for `__dirname` emulation
+- **Main module detection**: Use `import.meta.url` for CLI execution
+- **Package.json**: Always check `"type": "module"` before development
+
+### File Discovery Patterns
+```javascript
+// Self-contained file discovery using built-in Node.js APIs
+findFiles(pattern, options = {}) {
+  const { cwd = '.', ignore = [] } = options;
+  const files = [];
+  
+  const findFilesRecursive = (dir, baseDir = '') => {
+    const items = fs.readdirSync(dir);
+    
+    for (const item of items) {
+      const fullPath = path.join(dir, item);
+      const relativePath = path.join(baseDir, item);
+      const stats = fs.statSync(fullPath);
+      
+      // Check ignore patterns
+      const shouldIgnore = ignore.some(ignorePattern => {
+        if (ignorePattern.includes('**')) {
+          const pattern = ignorePattern.replace('**', '.*');
+          return new RegExp(pattern).test(relativePath);
+        }
+        return relativePath.includes(ignorePattern.replace('**', ''));
+      });
+      
+      if (shouldIgnore) continue;
+      
+      if (stats.isDirectory()) {
+        findFilesRecursive(fullPath, relativePath);
+      } else if (stats.isFile()) {
+        if (this.matchesPattern(relativePath, pattern)) {
+          files.push(relativePath);
+        }
+      }
+    }
+  };
+  
+  findFilesRecursive(cwd);
+  return files;
+}
+```
+
+### Pattern Matching Implementation
+```javascript
+// Built-in pattern matching without external libraries
+matchesPattern(filePath, pattern) {
+  if (pattern.includes('**')) {
+    // Handle glob patterns like '**/*.md'
+    const regexPattern = pattern
+      .replace(/\*\*/g, '.*')
+      .replace(/\*/g, '[^/]*')
+      .replace(/\./g, '\\.');
+    return new RegExp(regexPattern).test(filePath);
+  } else if (pattern.includes('*')) {
+    // Handle simple wildcard patterns
+    const regexPattern = pattern.replace(/\*/g, '.*').replace(/\./g, '\\.');
+    return new RegExp(regexPattern).test(filePath);
+  } else {
+    // Exact match
+    return filePath === pattern;
+  }
+}
+```
+
+### Async/Await Best Practices
+- **Only use async when awaiting promises**: Don't mark methods as async unnecessarily
+- **Use for...of instead of forEach**: When dealing with async operations
+- **Validate async patterns**: Check requirements before implementing
+- **Avoid mixing sync/async**: Keep patterns consistent
+
+### Self-Contained Statistical Analysis
+```javascript
+// Complete implementation of required methods
+createStatisticalAnalysis() {
+  return {
+    analyzeViolationFrequency: (historicalData) => ({
+      totalViolations: historicalData.length > 0 ? 
+        historicalData.reduce((sum, entry) => sum + entry.violations, 0) : 0,
+      averageViolations: historicalData.length > 0 ? 
+        Math.round(historicalData.reduce((sum, entry) => sum + entry.violations, 0) / historicalData.length) : 0,
+      trend: 'stable'
+    }),
+    // Implement all required methods with meaningful defaults
+    analyzeComplianceTrends: (historicalData) => ({
+      averageCompliance: historicalData.length > 0 ? 
+        Math.round(historicalData.reduce((sum, entry) => sum + entry.complianceScore, 0) / historicalData.length) : 100,
+      trend: 'stable',
+      improvement: 0
+    }),
+    // ... additional methods as needed
+  };
+}
+```
+
+### Error Prevention Patterns
+- **Validate before implementation**: Check requirements before coding
+- **Comprehensive testing**: Test all tools after changes
+- **Incremental fixes**: Address one issue at a time
+- **Linter compliance**: Fix all linter errors before completion
+
+### Dependency Management Rules
+- **Prefer built-in APIs**: Use Node.js built-ins over external packages
+- **Self-contained first**: Implement functionality before adding dependencies
+- **Minimal surface area**: Reduce external dependency footprint
+- **Document expected methods**: When removing dependencies, ensure all required methods are implemented
+
 ## Tool Categories
 
 ### Core Tools

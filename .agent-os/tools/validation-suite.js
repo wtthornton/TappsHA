@@ -14,10 +14,15 @@
  * Usage: node .agent-os/tools/validation-suite.js
  */
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
-const os = require('os');
+import fs from 'fs';
+import path from 'path';
+import { execSync } from 'child_process';
+import os from 'os';
+import { fileURLToPath } from 'url';
+
+// Get __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class ValidationSuite {
   constructor() {
@@ -765,7 +770,7 @@ class ValidationSuite {
 }
 
 // Run validation if called directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   const validator = new ValidationSuite();
   validator.runValidation().then(success => {
     process.exit(success ? 0 : 1);
@@ -775,4 +780,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = ValidationSuite; 
+export default ValidationSuite; 

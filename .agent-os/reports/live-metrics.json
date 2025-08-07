@@ -2,10 +2,11 @@
   "complianceScore": 100,
   "criticalViolations": 0,
   "warnings": 0,
+  "totalFilesProcessed": 152,
   "averageProcessingTime": 150,
-  "timestamp": "2025-08-06T19:47:38.037Z",
-  "uptime": 43781672,
-  "totalRequests": 0,
+  "timestamp": "2025-08-07T14:31:10.494Z",
+  "uptime": 28567831,
+  "totalRequests": 873,
   "fileTypes": [
     "java",
     "ts",
@@ -23,7 +24,6 @@
     "confidence": 0.5,
     "message": "Compliance is stable"
   },
-  "totalFilesProcessed": 152,
   "processingEfficiency": 85,
   "memoryUsage": 45,
   "cpuUsage": 30,
@@ -37,9 +37,9 @@
     "cpuUsage": 30
   },
   "realTimeUpdates": {
-    "lastUpdate": "2025-08-06T19:47:38.042Z",
+    "lastUpdate": "2025-08-07T14:31:10.499Z",
     "updateFrequency": "real-time",
-    "nextUpdate": "2025-08-06T19:48:08.042Z",
+    "nextUpdate": "2025-08-07T14:31:40.499Z",
     "isLive": true
   },
   "visualIndicators": {

@@ -17,6 +17,10 @@ This checklist ensures proper task tracking and progress documentation throughou
 - [ ] **IMMEDIATELY** mark the subtask as `[x]` in tasks.md
 - [ ] Add progress note with detailed description of what was accomplished
 - [ ] Include timestamp of completion
+- [ ] **RUN COMPLIANCE CHECK**: Execute `node compliance-checker.js --detailed`
+- [ ] Verify compliance score remains ≥85% after changes
+- [ ] Address any new violations before proceeding
+- [ ] Document compliance status in progress notes
 - [ ] Note any issues or challenges encountered
 - [ ] Document any dependencies or blockers discovered
 - [ ] **CAPTURE LESSONS LEARNED** if significant insights gained (see `@~/.agent-os/lessons-learned/README.md`)
@@ -26,6 +30,7 @@ This checklist ensures proper task tracking and progress documentation throughou
 - [x] 1.1 Write tests for new database entities
   - **Progress Note**: Unit tests implemented with 95% coverage for HomeAssistantEvent entity
   - **Completed**: 2025-08-03 19:45
+  - **Compliance Check**: ✅ Score 95% - No violations detected
   - **Issues**: None encountered
   - **Next**: 1.2 Create database migration script
 ```
@@ -74,6 +79,9 @@ This checklist ensures proper task tracking and progress documentation throughou
 ### Validation Checklist
 Before ending development session, verify:
 - [ ] All completed subtasks are marked with `[x]`
+- [ ] Compliance checks run after each subtask completion
+- [ ] All compliance scores remain ≥85%
+- [ ] No new violations introduced
 - [ ] Progress notes are added for completed sections
 - [ ] Session summary is documented with timestamp
 - [ ] Next priority tasks are clearly identified

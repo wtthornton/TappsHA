@@ -61,8 +61,37 @@ This document defines the mandatory enforcement rules for Agent OS compliance ac
 #### Task Update Protocol
 1. **Immediate Updates**: Mark subtasks as `[x]` immediately upon completion
 2. **Progress Notes**: Add detailed notes explaining what was accomplished
-3. **Session Summaries**: Document completed work and next priorities
-4. **Validation**: Verify all task updates before ending development sessions
+3. **Compliance Check**: Run `node compliance-checker.js --detailed` after each subtask
+4. **Session Summaries**: Document completed work and next priorities
+5. **Validation**: Verify all task updates before ending development sessions
+
+#### Automatic Compliance Checking (MANDATORY)
+**ALWAYS** run compliance check after every subtask completion:
+
+##### Compliance Check Requirements
+- **ALWAYS** execute `node compliance-checker.js --detailed` after marking subtask as `[x]`
+- **ALWAYS** verify compliance score remains ≥85% after each change
+- **ALWAYS** address any new violations before proceeding to next subtask
+- **ALWAYS** document compliance status in progress notes
+- **ALWAYS** update compliance metrics in task tracking
+
+##### Compliance Check Integration
+```bash
+# After completing any subtask:
+node compliance-checker.js --detailed
+
+# Expected output:
+# ✅ Compliance Score: 95%
+# ✅ Standards Adherence: 100%
+# ✅ Code Quality: Excellent
+# ✅ No new violations detected
+```
+
+##### Compliance Failure Protocol
+- **If compliance score drops below 85%**: Fix violations immediately
+- **If new violations detected**: Address before next subtask
+- **If standards violations found**: Document and resolve as priority
+- **If quality issues identified**: Refactor code to meet standards
 
 ### 4. Lessons Learned Capture (MANDATORY)
 **ALWAYS** capture lessons learned for significant tasks:

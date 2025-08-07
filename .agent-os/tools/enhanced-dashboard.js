@@ -5,10 +5,15 @@
  * Provides live monitoring and visualization of compliance metrics
  */
 
-const fs = require('fs');
-const path = require('path');
-const http = require('http');
-const url = require('url');
+import fs from 'fs';
+import path from 'path';
+import http from 'http';
+import url from 'url';
+import { fileURLToPath } from 'url';
+
+// Get __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class EnhancedDashboard {
   constructor() {
@@ -63,6 +68,7 @@ class EnhancedDashboard {
       this.server = http.createServer((req, res) => {
         try {
           this.totalRequests++;
+          console.log(`📥 Request received: ${req.method} ${req.url}`);
           this.handleRequest(req, res);
         } catch (error) {
           console.error('Error handling request:', error.message);
@@ -75,11 +81,18 @@ class EnhancedDashboard {
         console.error('Server error:', error.message);
         if (error.code === 'EADDRINUSE') {
           console.error(`Port ${this.port} is already in use`);
+        } else {
+          console.error('Server error details:', error);
         }
       });
 
-      this.server.listen(this.port, () => {
+      this.server.on('listening', () => {
+        console.log(`🎯 Server is listening on port ${this.port}`);
+      });
+
+      this.server.listen(this.port, '0.0.0.0', () => {
         console.log(`✅ Enhanced dashboard running on port ${this.port}`);
+        console.log(`🌐 Server bound to 0.0.0.0:${this.port}`);
         try {
           this.generateDashboardHTML();
           this.startAutoRefresh();
@@ -290,12 +303,18 @@ class EnhancedDashboard {
    */
   handleRequest(req, res) {
     const parsedUrl = url.parse(req.url, true);
-    const pathname = parsedUrl.pathname;
-
+        const pathname = parsedUrl.pathname;
+    
     // Set CORS headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    
+    // Handle user guide route
+    if (pathname === '/user-guide') {
+      this.serveUserGuide(req, res);
+      return;
+    }
 
     if (req.method === 'OPTIONS') {
       res.writeHead(200);
@@ -475,6 +494,28 @@ class EnhancedDashboard {
   }
 
   /**
+   * Serve user guide HTML
+   */
+  serveUserGuide(req, res) {
+    try {
+      const userGuidePath = path.join(__dirname, 'user-guide.html');
+      
+      if (fs.existsSync(userGuidePath)) {
+        const content = fs.readFileSync(userGuidePath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(content);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('User guide not found');
+      }
+    } catch (error) {
+      console.error('Error serving user guide:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Error loading user guide');
+    }
+  }
+
+  /**
    * Calculate performance metrics
    */
   calculatePerformanceMetrics(metrics = {}) {
@@ -538,10 +579,9 @@ class EnhancedDashboard {
     
     const baseMetrics = {
       complianceScore: latestEntry ? latestEntry.complianceScore : 44,
-      totalViolations: latestEntry ? latestEntry.violations : 14,
       criticalViolations: latestEntry ? latestEntry.criticalViolations : 14,
       warnings: latestEntry ? latestEntry.warnings : 1250,
-      filesProcessed: latestEntry ? latestEntry.totalChecks : 152,
+      totalFilesProcessed: latestEntry ? latestEntry.totalChecks : 152,
       averageProcessingTime: 150,
       timestamp: new Date().toISOString(),
       uptime: Date.now() - this.startTime,
@@ -1360,6 +1400,11 @@ class EnhancedDashboard {
                         Agent-OS Dashboard
                     </h1>
                     <p class="text-gray-600 mt-2">Live monitoring and analytics for your development standards compliance</p>
+                    <div class="mt-3">
+                        <a href="/user-guide" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold rounded-lg hover:from-indigo-600 hover:to-purple-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 shadow-lg">
+                            📚 User Guide
+                        </a>
+                    </div>
                 </div>
                 
                 <!-- Status Indicators -->
@@ -1440,7 +1485,7 @@ class EnhancedDashboard {
                 </div>
                 
                 <div class="text-center mb-4">
-                    <div class="text-3xl font-bold text-gray-800">${metrics.totalViolations}</div>
+                    <div class="text-3xl font-bold text-gray-800">${metrics.criticalViolations}</div>
                     <div class="text-sm text-gray-500">Total Violations</div>
                 </div>
                 
@@ -1462,7 +1507,7 @@ class EnhancedDashboard {
                 </div>
                 
                 <div class="text-center mb-4">
-                    <div class="text-3xl font-bold text-gray-800">${metrics.filesProcessed}</div>
+                    <div class="text-3xl font-bold text-gray-800">${metrics.totalFilesProcessed}</div>
                     <div class="text-sm text-gray-500">Total Files</div>
                 </div>
                 
@@ -1668,7 +1713,7 @@ class EnhancedDashboard {
             // Update other metrics
             const metricValues = document.querySelectorAll('.text-3xl.font-bold.text-gray-800');
             metricValues[1].textContent = metrics.totalViolations;
-            metricValues[2].textContent = metrics.filesProcessed;
+            metricValues[2].textContent = metrics.totalFilesProcessed;
             metricValues[3].textContent = metrics.averageProcessingTime + 'ms';
         }
 
@@ -1786,18 +1831,16 @@ class EnhancedDashboard {
 }
 
 // Export for use in other modules
-module.exports = EnhancedDashboard;
+export default EnhancedDashboard;
 
 // CLI execution
-if (require.main === module) {
-  const dashboard = new EnhancedDashboard();
-  
-  // Handle graceful shutdown
-  process.on('SIGINT', () => {
-    console.log('\n🛑 Stopping enhanced dashboard...');
-    dashboard.stop();
-    process.exit(0);
-  });
-  
-  dashboard.start();
-} 
+const dashboard = new EnhancedDashboard();
+
+// Handle graceful shutdown
+process.on('SIGINT', () => {
+  console.log('\n🛑 Stopping enhanced dashboard...');
+  dashboard.stop();
+  process.exit(0);
+});
+
+dashboard.start(); 

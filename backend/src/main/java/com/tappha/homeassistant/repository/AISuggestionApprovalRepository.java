@@ -110,13 +110,9 @@ public interface AISuggestionApprovalRepository extends JpaRepository<AISuggesti
     
     /**
      * Get average implementation time for approved suggestions
-     * TODO: Fix PostgreSQL-specific EXTRACT function - temporarily commented out
+     * NOTE: This functionality has been moved to AISuggestionApprovalService.getAverageImplementationTimeSeconds()
+     * to avoid PostgreSQL-specific timestamp functions
      */
-    /*
-    @Query("SELECT AVG(EXTRACT(EPOCH FROM (a.implementedAt - a.decidedAt))) FROM AISuggestionApproval a " +
-           "WHERE a.decision = 'APPROVED' AND a.implementedAt IS NOT NULL")
-    Double getAverageImplementationTimeSeconds();
-    */
     
     /**
      * Find users with most approvals in a time period
@@ -129,4 +125,9 @@ public interface AISuggestionApprovalRepository extends JpaRepository<AISuggesti
         @Param("endDate") OffsetDateTime endDate,
         Pageable pageable
     );
+    
+    /**
+     * Find approved suggestions with implementation dates for calculating average implementation time
+     */
+    List<AISuggestionApproval> findByDecisionAndImplementedAtIsNotNullAndDecidedAtIsNotNull(AISuggestionApproval.Decision decision);
 }
