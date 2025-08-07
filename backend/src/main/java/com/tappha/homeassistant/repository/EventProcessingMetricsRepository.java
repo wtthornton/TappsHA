@@ -151,7 +151,9 @@ public interface EventProcessingMetricsRepository extends JpaRepository<EventPro
     
     /**
      * Get metrics grouped by hour for charts
+     * TODO: Fix PostgreSQL-specific function call
      */
+    /*
     @Query("SELECT FUNCTION('DATE_TRUNC', 'hour', m.timestamp) as hour, " +
            "m.metricType, AVG(m.metricValue) as avgValue, COUNT(m) as count " +
            "FROM EventProcessingMetrics m " +
@@ -164,6 +166,7 @@ public interface EventProcessingMetricsRepository extends JpaRepository<EventPro
         @Param("startTime") OffsetDateTime startTime,
         @Param("endTime") OffsetDateTime endTime
     );
+    */
     
     /**
      * Get performance statistics for a connection
@@ -204,7 +207,7 @@ public interface EventProcessingMetricsRepository extends JpaRepository<EventPro
     @Query("SELECT m FROM EventProcessingMetrics m " +
            "WHERE m.connection = :connection AND m.metricType = :metricType " +
            "ORDER BY m.timestamp DESC")
-    Optional<EventProcessingMetrics> findLatestMetricByType(
+    List<EventProcessingMetrics> findLatestMetricByType(
         @Param("connection") HomeAssistantConnection connection,
         @Param("metricType") EventProcessingMetrics.MetricType metricType,
         Pageable pageable

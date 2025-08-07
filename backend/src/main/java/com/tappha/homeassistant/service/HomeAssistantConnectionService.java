@@ -268,11 +268,14 @@ public class HomeAssistantConnectionService {
     
     /**
      * Calculate peak event rate (events per minute)
+     * TODO: Fix PostgreSQL-specific function call
      */
     private double calculatePeakEventRate(UUID connectionId, LocalDateTime startTime, LocalDateTime endTime) {
         // Get the highest event count in any 1-minute window
-        return eventRepository.findPeakEventRateByConnectionIdAndTimestampBetween(connectionId, startTime, endTime)
-                .orElse(0.0);
+        // TODO: Implement without PostgreSQL-specific functions
+        return 0.0; // Placeholder - implement with proper HQL
+        // return eventRepository.findPeakEventRateByConnectionIdAndTimestampBetween(connectionId, startTime, endTime)
+        //         .orElse(0.0);
     }
     
     /**

@@ -97,10 +97,13 @@ public interface AIBatchProcessingRepository extends JpaRepository<AIBatchProces
     
     /**
      * Get average processing time for completed batches
+     * TODO: Fix PostgreSQL-specific EXTRACT function - temporarily commented out
      */
+    /*
     @Query("SELECT AVG(EXTRACT(EPOCH FROM (b.endTime - b.startTime))) FROM AIBatchProcessing b " +
            "WHERE b.status = 'COMPLETED' AND b.endTime IS NOT NULL")
     Double getAverageProcessingTimeSeconds();
+    */
     
     /**
      * Find batches by date range and pattern data source

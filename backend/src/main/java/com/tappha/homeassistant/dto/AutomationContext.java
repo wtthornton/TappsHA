@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * Context for AI automation suggestions
@@ -18,6 +20,7 @@ import java.util.List;
 public class AutomationContext {
     
     private String contextId;
+    private UUID connectionId;
     private String patternType;
     private List<String> entityIds;
     private String entityId;
@@ -32,4 +35,6 @@ public class AutomationContext {
     private String actionType;
     private String attributes;
     private String metadata;
+    private Map<String, String> currentStates;
+    private List<String> recentEvents;
 } 

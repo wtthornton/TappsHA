@@ -1,6 +1,7 @@
 package com.tappha.homeassistant.repository;
 
 import com.tappha.homeassistant.entity.HomeAssistantConnection;
+import com.tappha.homeassistant.entity.HomeAssistantConnection.ConnectionStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,11 +24,7 @@ public interface HomeAssistantConnectionRepository extends JpaRepository<HomeAss
      */
     List<HomeAssistantConnection> findByUserId(UUID userId);
     
-    /**
-     * Find all enabled connections
-     * @return list of enabled connections
-     */
-    List<HomeAssistantConnection> findByEnabledTrue();
+
     
     /**
      * Find all connections for a specific user with pagination

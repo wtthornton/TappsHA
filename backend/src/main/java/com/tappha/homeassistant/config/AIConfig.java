@@ -53,7 +53,8 @@ public class AIConfig {
     public OpenAiService openAiService() {
         if (openaiApiKey == null || openaiApiKey.trim().isEmpty()) {
             // Return a mock service when API key is not provided
-            return null;
+            // This will be handled by the AIService to use local processing only
+            return new OpenAiService("mock-key-for-local-only");
         }
         return new OpenAiService(openaiApiKey);
     }

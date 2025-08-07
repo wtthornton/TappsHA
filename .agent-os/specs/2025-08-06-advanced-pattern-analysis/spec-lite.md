@@ -1,0 +1,3 @@
+# Spec Summary (Lite)
+
+Implement a multi-dimensional time-series analysis system that detects behavioral patterns across time intervals from 1 day to 1 year, achieving 85-90% accuracy in pattern recognition. The system processes Home Assistant event data through optimized pipelines, identifies recurring behaviors and anomalies, and provides pattern insights via REST APIs with <100ms response times. This foundational analysis layer enables intelligent automation recommendations by understanding household routines across daily, weekly, monthly, seasonal, and yearly dimensions.

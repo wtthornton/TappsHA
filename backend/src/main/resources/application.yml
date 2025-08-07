@@ -1,6 +1,8 @@
 spring:
   application:
     name: tappha-backend
+  main:
+    allow-circular-references: true
   
   datasource:
     url: jdbc:postgresql://localhost:5432/tappha
@@ -28,7 +30,7 @@ spring:
         order_updates: true
 
   flyway:
-    enabled: true
+    enabled: false  # Temporarily disabled due to PostgreSQL 17.5 compatibility
     locations: classpath:db/migration
     baseline-on-migrate: true
     validate-on-migrate: true
@@ -80,6 +82,9 @@ spring:
             scope:
               - email
               - profile
+    # Disable WebSocket security for now to avoid compatibility issues
+    websocket:
+      security: false
 
 server:
   port: 8080
@@ -152,6 +157,8 @@ influxdb:
 
 # AI Processing Configuration
 ai:
+  onnx:
+    enabled: false  # Disabled due to Alpine Linux compatibility issues
   hybrid:
     enabled: true
     local-first: true

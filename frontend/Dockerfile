@@ -10,12 +10,11 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy source code (excluding test files)
+# Copy source code
 COPY . .
-RUN rm -rf src/**/__tests__ src/**/*.test.tsx src/**/*.test.ts src/test-setup.ts src/services/api/__tests__
 
 # Build the application
-RUN npm run build
+RUN chmod +x build.sh && ./build.sh
 
 # Production stage
 FROM nginx:alpine

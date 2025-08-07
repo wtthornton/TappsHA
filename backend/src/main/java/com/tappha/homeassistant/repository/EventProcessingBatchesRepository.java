@@ -209,7 +209,9 @@ public interface EventProcessingBatchesRepository extends JpaRepository<EventPro
     
     /**
      * Get processing throughput by hour
+     * TODO: Fix PostgreSQL-specific function call
      */
+    /*
     @Query("SELECT FUNCTION('DATE_TRUNC', 'hour', b.completedAt) as hour, " +
            "SUM(b.processedCount) as totalProcessed, " +
            "AVG(b.processingTimeMs) as avgProcessingTime " +
@@ -223,6 +225,7 @@ public interface EventProcessingBatchesRepository extends JpaRepository<EventPro
         @Param("startTime") OffsetDateTime startTime,
         @Param("endTime") OffsetDateTime endTime
     );
+    */
     
     /**
      * Count batches by status
@@ -243,7 +246,7 @@ public interface EventProcessingBatchesRepository extends JpaRepository<EventPro
     @Query("SELECT b FROM EventProcessingBatches b " +
            "WHERE b.status = 'PENDING' " +
            "ORDER BY b.createdAt ASC")
-    Optional<EventProcessingBatches> findOldestPendingBatch(Pageable pageable);
+    List<EventProcessingBatches> findOldestPendingBatch(Pageable pageable);
     
     /**
      * Find longest running batch
@@ -251,7 +254,7 @@ public interface EventProcessingBatchesRepository extends JpaRepository<EventPro
     @Query("SELECT b FROM EventProcessingBatches b " +
            "WHERE b.status = 'RUNNING' " +
            "ORDER BY b.startedAt ASC")
-    Optional<EventProcessingBatches> findLongestRunningBatch(Pageable pageable);
+    List<EventProcessingBatches> findLongestRunningBatch(Pageable pageable);
     
     /**
      * Delete old completed batches to prevent database bloat
@@ -271,7 +274,9 @@ public interface EventProcessingBatchesRepository extends JpaRepository<EventPro
     
     /**
      * Get daily batch summary
+     * TODO: Fix PostgreSQL-specific function call
      */
+    /*
     @Query("SELECT FUNCTION('DATE_TRUNC', 'day', b.createdAt) as day, " +
            "COUNT(b) as totalBatches, " +
            "SUM(CASE WHEN b.status = 'COMPLETED' THEN 1 ELSE 0 END) as completedBatches, " +
@@ -287,4 +292,5 @@ public interface EventProcessingBatchesRepository extends JpaRepository<EventPro
         @Param("startTime") OffsetDateTime startTime,
         @Param("endTime") OffsetDateTime endTime
     );
+    */
 }

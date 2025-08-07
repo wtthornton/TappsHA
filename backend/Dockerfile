@@ -18,11 +18,14 @@ RUN ./mvnw dependency:go-offline -B
 # Copy source code
 COPY src ./src
 
-# Build the application
+# Build the application (skip tests and test compilation)
 RUN ./mvnw clean package -DskipTests
 
 # Runtime stage
 FROM eclipse-temurin:21-jre-alpine
+
+# Install required libraries for ONNX Runtime
+RUN apk add --no-cache libstdc++ libgomp
 
 # Create app user
 RUN addgroup -g 1001 -S appgroup && \

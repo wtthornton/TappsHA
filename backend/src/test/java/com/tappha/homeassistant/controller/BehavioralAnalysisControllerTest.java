@@ -67,8 +67,8 @@ class BehavioralAnalysisControllerTest {
                 .id(UUID.randomUUID().toString())
                 .patternType("daily_routine")
                 .description("Morning routine pattern")
-                .confidence(85)
-                .frequency(7)
+                .confidence(85.0)
+                .frequency(Map.of("daily", 7, "weekly", 1))
                 .build();
 
         testResponse = BehavioralAnalysisResponse.builder()

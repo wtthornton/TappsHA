@@ -97,11 +97,13 @@ public interface HomeAssistantEventRepository extends JpaRepository<HomeAssistan
     
     /**
      * Find peak event rate by connection ID and timestamp range
+     * TODO: Fix PostgreSQL-specific function call
      * @param connectionId the connection ID
      * @param startTime the start time
      * @param endTime the end time
      * @return Optional containing the peak event rate
      */
+    /*
     @Query("SELECT MAX(event_count) FROM (" +
            "SELECT DATE_TRUNC('minute', e.timestamp) as minute, COUNT(e) as event_count " +
            "FROM HomeAssistantEvent e " +
@@ -111,6 +113,7 @@ public interface HomeAssistantEventRepository extends JpaRepository<HomeAssistan
     Optional<Double> findPeakEventRateByConnectionIdAndTimestampBetween(@Param("connectionId") UUID connectionId, 
                                                                         @Param("startTime") LocalDateTime startTime, 
                                                                         @Param("endTime") LocalDateTime endTime);
+    */
     
     /**
      * Find events by connection ID, event type, and timestamp range

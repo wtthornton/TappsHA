@@ -127,7 +127,9 @@ public interface AISuggestionFeedbackRepository extends JpaRepository<AISuggesti
     
     /**
      * Get feedback trends over time
+     * TODO: Fix PostgreSQL-specific function call
      */
+    /*
     @Query("SELECT DATE_TRUNC('month', f.feedbackDate), AVG(f.effectivenessRating) " +
            "FROM AISuggestionFeedback f WHERE f.effectivenessRating IS NOT NULL " +
            "AND f.feedbackDate BETWEEN :startDate AND :endDate " +
@@ -137,6 +139,7 @@ public interface AISuggestionFeedbackRepository extends JpaRepository<AISuggesti
         @Param("startDate") OffsetDateTime startDate,
         @Param("endDate") OffsetDateTime endDate
     );
+    */
     
     /**
      * Find feedback with specific keywords in comments

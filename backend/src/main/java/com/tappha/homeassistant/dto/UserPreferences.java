@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,4 +29,7 @@ public class UserPreferences {
     private Map<String, Object> customPreferences;
     private Boolean privacyMode; // Enable privacy-preserving features
     private Boolean localProcessing; // Prefer local processing when possible
+    private List<String> preferredAutomationTypes;
+    private String energyEfficiencyPriority;
+    private Map<String, Object> notificationPreferences;
 } 

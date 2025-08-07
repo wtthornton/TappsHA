@@ -25,6 +25,11 @@ import static org.mockito.Mockito.*;
 
 /**
  * Test class for HybridAIProcessingService
+ * 
+ * Tests the hybrid AI processing strategy with local-first approach
+ * and cloud fallback for the TappHA intelligence engine.
+ * 
+ * @see https://developers.home-assistant.io/docs/development_index
  */
 @ExtendWith(MockitoExtension.class)
 class HybridAIProcessingServiceTest {
@@ -39,6 +44,9 @@ class HybridAIProcessingServiceTest {
     private OpenAIClient openAIClient;
 
     @Mock
+    private TensorFlowLiteService tensorFlowLiteService;
+
+    @Mock
     private ObjectMapper objectMapper;
 
     private HybridAIProcessingService hybridAIProcessingService;
@@ -50,6 +58,7 @@ class HybridAIProcessingServiceTest {
         hybridAIProcessingService = new HybridAIProcessingService(
             redisTemplate,
             openAIClient,
+            tensorFlowLiteService,
             objectMapper
         );
 

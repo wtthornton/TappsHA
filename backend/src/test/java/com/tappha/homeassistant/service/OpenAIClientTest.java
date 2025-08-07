@@ -11,6 +11,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.web.client.RestTemplate;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
@@ -18,7 +22,11 @@ import java.util.concurrent.ExecutionException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 
 /**
  * Tests for OpenAI API integration with rate limiting and error handling
@@ -28,11 +36,16 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class OpenAIClientTest {
 
-    @Mock
+        @Mock
     private RateLimiter rateLimiter;
-
+    
     @Mock
     private AIErrorHandler errorHandler;
+    
+    @Mock
+    private RestTemplate restTemplate;
+    
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     private OpenAIClient openAIClient;
 
@@ -41,9 +54,14 @@ class OpenAIClientTest {
         openAIClient = new OpenAIClient(rateLimiter, errorHandler);
         ReflectionTestUtils.setField(openAIClient, "apiKey", "test-api-key");
         ReflectionTestUtils.setField(openAIClient, "baseUrl", "https://api.openai.com/v1");
-        ReflectionTestUtils.setField(openAIClient, "model", "gpt-4o-mini");
+        ReflectionTestUtils.setField(openAIClient, "primaryModel", "gpt-4o-mini");
+        ReflectionTestUtils.setField(openAIClient, "fallbackModel", "gpt-3.5-turbo");
         ReflectionTestUtils.setField(openAIClient, "maxTokens", 1000);
         ReflectionTestUtils.setField(openAIClient, "temperature", 0.7);
+        ReflectionTestUtils.setField(openAIClient, "timeout", Duration.ofSeconds(30));
+        ReflectionTestUtils.setField(openAIClient, "maxRetries", 3);
+        ReflectionTestUtils.setField(openAIClient, "restTemplate", restTemplate);
+        ReflectionTestUtils.setField(openAIClient, "objectMapper", objectMapper);
     }
 
     @Test
@@ -52,8 +70,21 @@ class OpenAIClientTest {
         AutomationContext context = createTestContext();
         UserPreferences preferences = createTestPreferences();
         
+        // Mock OpenAI API response
+        String mockResponseString = """
+            {
+                "choices": [{
+                    "message": {
+                        "content": "{\\"suggestion_type\\": \\"automation_improvement\\", \\"title\\": \\"Test Suggestion\\", \\"description\\": \\"Test description\\", \\"confidence\\": 0.85, \\"safety_score\\": 0.9, \\"automation_data\\": {}}"
+                    }
+                }]
+            }
+            """;
+        
+        JsonNode mockResponse = objectMapper.readTree(mockResponseString);
+        ResponseEntity<JsonNode> responseEntity = new ResponseEntity<>(mockResponse, HttpStatus.OK);
+        when(restTemplate.exchange(any(String.class), any(), any(), any(Class.class))).thenReturn(responseEntity);
         when(rateLimiter.acquirePermission()).thenReturn(true);
-        when(errorHandler.handleError(any(Exception.class))).thenReturn(false);
         
         // When
         CompletableFuture<AISuggestion> future = openAIClient.generateSuggestion(context, preferences);

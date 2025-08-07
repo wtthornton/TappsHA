@@ -92,6 +92,18 @@ public class LangChainAutomationService {
         try {
             log.info("Initializing LangChain 0.3 framework components");
 
+            // Check if OpenAI API key is available
+            if (openaiApiKey == null || openaiApiKey.trim().isEmpty()) {
+                log.warn("OpenAI API key not provided, LangChain will use local processing only");
+                // Initialize with mock components for local-only processing
+                chatModel = null;
+                embeddingModel = null;
+                embeddingStore = new InMemoryEmbeddingStore<>();
+                automationAssistant = null;
+                log.info("LangChain initialized in local-only mode");
+                return;
+            }
+
             // Initialize OpenAI Chat Model
             chatModel = OpenAiChatModel.builder()
                     .apiKey(openaiApiKey)

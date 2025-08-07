@@ -10,6 +10,7 @@ import com.tappha.homeassistant.repository.AISuggestionRepository;
 import com.tappha.homeassistant.repository.HomeAssistantConnectionRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -67,22 +68,11 @@ public class AIBatchProcessingService {
     private Boolean retryFailedSuggestions;
 
     private final ExecutorService batchExecutor = Executors.newCachedThreadPool();
-    private final Semaphore batchSemaphore;
+    private Semaphore batchSemaphore;
 
-    public AIBatchProcessingService(
-            HybridAIProcessingService hybridAIProcessingService,
-            AIResponseValidationService validationService,
-            PatternAnalysisService patternAnalysisService,
-            AIBatchProcessingRepository batchProcessingRepository,
-            AISuggestionRepository suggestionRepository,
-            HomeAssistantConnectionRepository connectionRepository) {
-        this.hybridAIProcessingService = hybridAIProcessingService;
-        this.validationService = validationService;
-        this.patternAnalysisService = patternAnalysisService;
-        this.batchProcessingRepository = batchProcessingRepository;
-        this.suggestionRepository = suggestionRepository;
-        this.connectionRepository = connectionRepository;
-        this.batchSemaphore = new Semaphore(3); // Default max concurrent batches
+    @PostConstruct
+    public void initialize() {
+        this.batchSemaphore = new Semaphore(maxConcurrentBatches != null ? maxConcurrentBatches : 3);
     }
 
     /**
@@ -127,7 +117,7 @@ public class AIBatchProcessingService {
             log.info("Starting batch processing: {}", batchId);
             
             // Get all active connections
-            List<HomeAssistantConnection> activeConnections = connectionRepository.findByEnabledTrue();
+            List<HomeAssistantConnection> activeConnections = connectionRepository.findByStatus(HomeAssistantConnection.ConnectionStatus.CONNECTED);
             
             if (activeConnections.isEmpty()) {
                 log.info("No active connections found for batch processing");

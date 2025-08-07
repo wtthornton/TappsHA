@@ -3,6 +3,7 @@ package com.tappha.homeassistant.service;
 import com.tappha.homeassistant.dto.AISuggestion;
 import com.tappha.homeassistant.dto.AutomationContext;
 import com.tappha.homeassistant.dto.UserPreferences;
+import com.tappha.homeassistant.entity.HomeAssistantConnection;
 import com.tappha.homeassistant.entity.HomeAssistantEvent;
 import com.tappha.homeassistant.repository.HomeAssistantEventRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,7 +52,7 @@ class LangChainAutomationServiceTest {
         // Create test context
         testContext = AutomationContext.builder()
                 .connectionId(UUID.randomUUID())
-                .userId(UUID.randomUUID())
+                .userId(UUID.randomUUID().toString())
                 .currentStates(Map.of(
                         "light.living_room", "on",
                         "sensor.temperature", "22.5",
@@ -110,7 +111,7 @@ class LangChainAutomationServiceTest {
         // Given - Rich context with multiple states and events
         AutomationContext richContext = AutomationContext.builder()
                 .connectionId(UUID.randomUUID())
-                .userId(UUID.randomUUID())
+                .userId(UUID.randomUUID().toString())
                 .currentStates(Map.of(
                         "light.bedroom", "off",
                         "light.kitchen", "on",
@@ -154,7 +155,7 @@ class LangChainAutomationServiceTest {
         // Given - Minimal context
         AutomationContext minimalContext = AutomationContext.builder()
                 .connectionId(UUID.randomUUID())
-                .userId(UUID.randomUUID())
+                .userId(UUID.randomUUID().toString())
                 .build();
 
         // When
@@ -220,21 +221,22 @@ class LangChainAutomationServiceTest {
     }
 
     private List<HomeAssistantEvent> createMockEvents() {
+        // Create mock connection for events
+        HomeAssistantConnection mockConnection = new HomeAssistantConnection();
+        mockConnection.setId(UUID.randomUUID());
+        
         return List.of(
-                HomeAssistantEvent.builder()
-                        .id(UUID.randomUUID())
-                        .eventType("state_changed")
-                        .entityId("light.kitchen")
-                        .oldState("off")
-                        .newState("on")
-                        .timestamp(OffsetDateTime.now().minusHours(1))
-                        .build(),
-                HomeAssistantEvent.builder()
-                        .id(UUID.randomUUID())
-                        .eventType("automation_triggered")
-                        .entityId("automation.morning_routine")
-                        .timestamp(OffsetDateTime.now().minusHours(2))
-                        .build()
+                createMockEvent("state_changed", "light.kitchen", "off", "on", OffsetDateTime.now().minusHours(1), mockConnection),
+                createMockEvent("automation_triggered", "automation.morning_routine", null, null, OffsetDateTime.now().minusHours(2), mockConnection)
         );
+    }
+    
+    private HomeAssistantEvent createMockEvent(String eventType, String entityId, String oldState, String newState, 
+                                             OffsetDateTime timestamp, HomeAssistantConnection connection) {
+        HomeAssistantEvent event = new HomeAssistantEvent(eventType, timestamp, connection);
+        event.setEntityId(entityId);
+        event.setOldState(oldState);
+        event.setNewState(newState);
+        return event;
     }
 }
