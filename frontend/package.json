@@ -10,7 +10,13 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:visual": "playwright test --grep @visual",
+    "test:visual:update": "playwright test --grep @visual --update-snapshots",
+    "test:snapshots": "vitest --run --reporter=verbose",
+    "test:snapshots:update": "vitest --run --reporter=verbose --update-snapshots"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.7",
@@ -28,6 +34,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
+    "@percy/cli": "^1.27.4",
+    "@playwright/test": "^1.48.0",
     "@tailwindcss/postcss": "^4.1.11",
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/react": "^16.3.0",

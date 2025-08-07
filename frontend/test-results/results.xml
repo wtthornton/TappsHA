@@ -1,0 +1,1981 @@
+<testsuites id="" name="" tests="55" failures="55" skipped="0" errors="0" time="31.791718999999997">
+<testsuite name="visual-regression.spec.ts" timestamp="2025-08-07T01:53:21.607Z" hostname="chromium" tests="11" failures="11" skipped="0" time="7.611" errors="0">
+<testcase name="Visual Regression Tests › @visual Homepage - Desktop View" classname="visual-regression.spec.ts" time="0.708">
+<failure message="visual-regression.spec.ts:10:3 @visual Homepage - Desktop View" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.ts:10:3 › Visual Regression Tests › @visual Homepage - Desktop View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+       9 |   
+      10 |   test('@visual Homepage - Desktop View', async ({ page }) => {
+    > 11 |     await page.goto('/');
+         |                ^
+      12 |     await page.waitForLoadState('networkidle');
+      13 |     
+      14 |     // Take screenshot of homepage
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:11:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Homepage - Mobile View" classname="visual-regression.spec.ts" time="0.497">
+<failure message="visual-regression.spec.ts:21:3 @visual Homepage - Mobile View" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.ts:21:3 › Visual Regression Tests › @visual Homepage - Mobile View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      21 |   test('@visual Homepage - Mobile View', async ({ page }) => {
+      22 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 23 |     await page.goto('/');
+         |                ^
+      24 |     await page.waitForLoadState('networkidle');
+      25 |     
+      26 |     // Take screenshot of homepage on mobile
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:23:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dashboard - Desktop View" classname="visual-regression.spec.ts" time="0.546">
+<failure message="visual-regression.spec.ts:33:3 @visual Dashboard - Desktop View" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.ts:33:3 › Visual Regression Tests › @visual Dashboard - Desktop View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/dashboard
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      32 |
+      33 |   test('@visual Dashboard - Desktop View', async ({ page }) => {
+    > 34 |     await page.goto('/dashboard');
+         |                ^
+      35 |     await page.waitForLoadState('networkidle');
+      36 |     
+      37 |     // Wait for dashboard components to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:34:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dashboard - Mobile View" classname="visual-regression.spec.ts" time="0.789">
+<failure message="visual-regression.spec.ts:47:3 @visual Dashboard - Mobile View" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.ts:47:3 › Visual Regression Tests › @visual Dashboard - Mobile View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/dashboard
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      47 |   test('@visual Dashboard - Mobile View', async ({ page }) => {
+      48 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 49 |     await page.goto('/dashboard');
+         |                ^
+      50 |     await page.waitForLoadState('networkidle');
+      51 |     
+      52 |     // Wait for dashboard components to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:49:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Navigation - Desktop View" classname="visual-regression.spec.ts" time="0.763">
+<failure message="visual-regression.spec.ts:62:3 @visual Navigation - Desktop View" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.ts:62:3 › Visual Regression Tests › @visual Navigation - Desktop View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      61 |
+      62 |   test('@visual Navigation - Desktop View', async ({ page }) => {
+    > 63 |     await page.goto('/');
+         |                ^
+      64 |     await page.waitForLoadState('networkidle');
+      65 |     
+      66 |     // Take screenshot of navigation
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:63:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Navigation - Mobile View" classname="visual-regression.spec.ts" time="0.849">
+<failure message="visual-regression.spec.ts:73:3 @visual Navigation - Mobile View" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.ts:73:3 › Visual Regression Tests › @visual Navigation - Mobile View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      73 |   test('@visual Navigation - Mobile View', async ({ page }) => {
+      74 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 75 |     await page.goto('/');
+         |                ^
+      76 |     await page.waitForLoadState('networkidle');
+      77 |     
+      78 |     // Take screenshot of mobile navigation
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:75:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Charts and Graphs" classname="visual-regression.spec.ts" time="0.664">
+<failure message="visual-regression.spec.ts:85:3 @visual Charts and Graphs" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.ts:85:3 › Visual Regression Tests › @visual Charts and Graphs 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/dashboard
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      84 |
+      85 |   test('@visual Charts and Graphs', async ({ page }) => {
+    > 86 |     await page.goto('/dashboard');
+         |                ^
+      87 |     await page.waitForLoadState('networkidle');
+      88 |     
+      89 |     // Wait for charts to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:86:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Forms and Inputs" classname="visual-regression.spec.ts" time="0.802">
+<failure message="visual-regression.spec.ts:99:3 @visual Forms and Inputs" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.ts:99:3 › Visual Regression Tests › @visual Forms and Inputs ─
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/settings
+    Call log:
+      - navigating to "http://localhost:5173/settings", waiting until "load"
+
+
+       98 |
+       99 |   test('@visual Forms and Inputs', async ({ page }) => {
+    > 100 |     await page.goto('/settings');
+          |                ^
+      101 |     await page.waitForLoadState('networkidle');
+      102 |     
+      103 |     // Take screenshot of forms
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:100:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Error States" classname="visual-regression.spec.ts" time="0.828">
+<failure message="visual-regression.spec.ts:110:3 @visual Error States" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.ts:110:3 › Visual Regression Tests › @visual Error States ────
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/non-existent-page
+    Call log:
+      - navigating to "http://localhost:5173/non-existent-page", waiting until "load"
+
+
+      110 |   test('@visual Error States', async ({ page }) => {
+      111 |     // Navigate to a non-existent page to trigger error state
+    > 112 |     await page.goto('/non-existent-page');
+          |                ^
+      113 |     await page.waitForLoadState('networkidle');
+      114 |     
+      115 |     // Take screenshot of error page
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:112:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Loading States" classname="visual-regression.spec.ts" time="0.701">
+<failure message="visual-regression.spec.ts:122:3 @visual Loading States" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.ts:122:3 › Visual Regression Tests › @visual Loading States ──
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/dashboard
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      121 |
+      122 |   test('@visual Loading States', async ({ page }) => {
+    > 123 |     await page.goto('/dashboard');
+          |                ^
+      124 |     
+      125 |     // Take screenshot during loading state
+      126 |     await expect(page).toHaveScreenshot('loading-state.png', {
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:123:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-020a4-Tests-visual-Loading-States-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-020a4-Tests-visual-Loading-States-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-020a4-Tests-visual-Loading-States-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-020a4-Tests-visual-Loading-States-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dark Mode Toggle" classname="visual-regression.spec.ts" time="0.464">
+<failure message="visual-regression.spec.ts:132:3 @visual Dark Mode Toggle" type="FAILURE">
+<![CDATA[  [chromium] › visual-regression.spec.ts:132:3 › Visual Regression Tests › @visual Dark Mode Toggle 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      131 |
+      132 |   test('@visual Dark Mode Toggle', async ({ page }) => {
+    > 133 |     await page.goto('/');
+          |                ^
+      134 |     await page.waitForLoadState('networkidle');
+      135 |     
+      136 |     // Toggle dark mode
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:133:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="visual-regression.spec.ts" timestamp="2025-08-07T01:53:21.607Z" hostname="firefox" tests="11" failures="11" skipped="0" time="33.696" errors="0">
+<testcase name="Visual Regression Tests › @visual Homepage - Desktop View" classname="visual-regression.spec.ts" time="4.036">
+<failure message="visual-regression.spec.ts:10:3 @visual Homepage - Desktop View" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.ts:10:3 › Visual Regression Tests › @visual Homepage - Desktop View 
+
+    Error: page.goto: NS_ERROR_NET_RESET
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+       9 |   
+      10 |   test('@visual Homepage - Desktop View', async ({ page }) => {
+    > 11 |     await page.goto('/');
+         |                ^
+      12 |     await page.waitForLoadState('networkidle');
+      13 |     
+      14 |     // Take screenshot of homepage
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:11:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-firefox\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-firefox\video.webm]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Homepage - Mobile View" classname="visual-regression.spec.ts" time="3.263">
+<failure message="visual-regression.spec.ts:21:3 @visual Homepage - Mobile View" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.ts:21:3 › Visual Regression Tests › @visual Homepage - Mobile View 
+
+    Error: page.goto: NS_ERROR_NET_RESET
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      21 |   test('@visual Homepage - Mobile View', async ({ page }) => {
+      22 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 23 |     await page.goto('/');
+         |                ^
+      24 |     await page.waitForLoadState('networkidle');
+      25 |     
+      26 |     // Take screenshot of homepage on mobile
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:23:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-firefox\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-firefox\video.webm]]
+
+[[ATTACHMENT|visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dashboard - Desktop View" classname="visual-regression.spec.ts" time="2.158">
+<failure message="visual-regression.spec.ts:33:3 @visual Dashboard - Desktop View" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.ts:33:3 › Visual Regression Tests › @visual Dashboard - Desktop View 
+
+    Error: page.goto: NS_ERROR_NET_RESET
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      32 |
+      33 |   test('@visual Dashboard - Desktop View', async ({ page }) => {
+    > 34 |     await page.goto('/dashboard');
+         |                ^
+      35 |     await page.waitForLoadState('networkidle');
+      36 |     
+      37 |     // Wait for dashboard components to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:34:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-firefox\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-firefox\video.webm]]
+
+[[ATTACHMENT|visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dashboard - Mobile View" classname="visual-regression.spec.ts" time="3.008">
+<failure message="visual-regression.spec.ts:47:3 @visual Dashboard - Mobile View" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.ts:47:3 › Visual Regression Tests › @visual Dashboard - Mobile View 
+
+    Error: page.goto: NS_ERROR_NET_RESET
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      47 |   test('@visual Dashboard - Mobile View', async ({ page }) => {
+      48 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 49 |     await page.goto('/dashboard');
+         |                ^
+      50 |     await page.waitForLoadState('networkidle');
+      51 |     
+      52 |     // Wait for dashboard components to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:49:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-firefox\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-firefox\video.webm]]
+
+[[ATTACHMENT|visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Navigation - Desktop View" classname="visual-regression.spec.ts" time="3.735">
+<failure message="visual-regression.spec.ts:62:3 @visual Navigation - Desktop View" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.ts:62:3 › Visual Regression Tests › @visual Navigation - Desktop View 
+
+    Error: page.goto: NS_ERROR_NET_RESET
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      61 |
+      62 |   test('@visual Navigation - Desktop View', async ({ page }) => {
+    > 63 |     await page.goto('/');
+         |                ^
+      64 |     await page.waitForLoadState('networkidle');
+      65 |     
+      66 |     // Take screenshot of navigation
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:63:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-firefox\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-firefox\video.webm]]
+
+[[ATTACHMENT|visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Navigation - Mobile View" classname="visual-regression.spec.ts" time="4.099">
+<failure message="visual-regression.spec.ts:73:3 @visual Navigation - Mobile View" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.ts:73:3 › Visual Regression Tests › @visual Navigation - Mobile View 
+
+    Error: page.goto: NS_ERROR_NET_RESET
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      73 |   test('@visual Navigation - Mobile View', async ({ page }) => {
+      74 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 75 |     await page.goto('/');
+         |                ^
+      76 |     await page.waitForLoadState('networkidle');
+      77 |     
+      78 |     // Take screenshot of mobile navigation
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:75:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-firefox\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-firefox\video.webm]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Charts and Graphs" classname="visual-regression.spec.ts" time="1.909">
+<failure message="visual-regression.spec.ts:85:3 @visual Charts and Graphs" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.ts:85:3 › Visual Regression Tests › @visual Charts and Graphs ─
+
+    Error: page.goto: NS_ERROR_NET_RESET
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      84 |
+      85 |   test('@visual Charts and Graphs', async ({ page }) => {
+    > 86 |     await page.goto('/dashboard');
+         |                ^
+      87 |     await page.waitForLoadState('networkidle');
+      88 |     
+      89 |     // Wait for charts to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:86:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-firefox\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-firefox\video.webm]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Forms and Inputs" classname="visual-regression.spec.ts" time="3.804">
+<failure message="visual-regression.spec.ts:99:3 @visual Forms and Inputs" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.ts:99:3 › Visual Regression Tests › @visual Forms and Inputs ──
+
+    Error: page.goto: NS_ERROR_NET_RESET
+    Call log:
+      - navigating to "http://localhost:5173/settings", waiting until "load"
+
+
+       98 |
+       99 |   test('@visual Forms and Inputs', async ({ page }) => {
+    > 100 |     await page.goto('/settings');
+          |                ^
+      101 |     await page.waitForLoadState('networkidle');
+      102 |     
+      103 |     // Take screenshot of forms
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:100:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-firefox\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-firefox\video.webm]]
+
+[[ATTACHMENT|visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Error States" classname="visual-regression.spec.ts" time="1.83">
+<failure message="visual-regression.spec.ts:110:3 @visual Error States" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.ts:110:3 › Visual Regression Tests › @visual Error States ─────
+
+    Error: page.goto: NS_ERROR_NET_RESET
+    Call log:
+      - navigating to "http://localhost:5173/non-existent-page", waiting until "load"
+
+
+      110 |   test('@visual Error States', async ({ page }) => {
+      111 |     // Navigate to a non-existent page to trigger error state
+    > 112 |     await page.goto('/non-existent-page');
+          |                ^
+      113 |     await page.waitForLoadState('networkidle');
+      114 |     
+      115 |     // Take screenshot of error page
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:112:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-firefox\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-firefox\video.webm]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Loading States" classname="visual-regression.spec.ts" time="2.189">
+<failure message="visual-regression.spec.ts:122:3 @visual Loading States" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.ts:122:3 › Visual Regression Tests › @visual Loading States ───
+
+    Error: page.goto: NS_ERROR_NET_RESET
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      121 |
+      122 |   test('@visual Loading States', async ({ page }) => {
+    > 123 |     await page.goto('/dashboard');
+          |                ^
+      124 |     
+      125 |     // Take screenshot during loading state
+      126 |     await expect(page).toHaveScreenshot('loading-state.png', {
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:123:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-020a4-Tests-visual-Loading-States-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-020a4-Tests-visual-Loading-States-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\visual-regression-Visual-R-020a4-Tests-visual-Loading-States-firefox\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-020a4-Tests-visual-Loading-States-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-020a4-Tests-visual-Loading-States-firefox\video.webm]]
+
+[[ATTACHMENT|visual-regression-Visual-R-020a4-Tests-visual-Loading-States-firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dark Mode Toggle" classname="visual-regression.spec.ts" time="3.665">
+<failure message="visual-regression.spec.ts:132:3 @visual Dark Mode Toggle" type="FAILURE">
+<![CDATA[  [firefox] › visual-regression.spec.ts:132:3 › Visual Regression Tests › @visual Dark Mode Toggle ─
+
+    Error: page.goto: NS_ERROR_NET_RESET
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      131 |
+      132 |   test('@visual Dark Mode Toggle', async ({ page }) => {
+    > 133 |     await page.goto('/');
+          |                ^
+      134 |     await page.waitForLoadState('networkidle');
+      135 |     
+      136 |     // Toggle dark mode
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:133:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-firefox\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-firefox\video.webm]]
+
+[[ATTACHMENT|visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="visual-regression.spec.ts" timestamp="2025-08-07T01:53:21.607Z" hostname="webkit" tests="11" failures="11" skipped="0" time="13.123" errors="0">
+<testcase name="Visual Regression Tests › @visual Homepage - Desktop View" classname="visual-regression.spec.ts" time="2.235">
+<failure message="visual-regression.spec.ts:10:3 @visual Homepage - Desktop View" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.ts:10:3 › Visual Regression Tests › @visual Homepage - Desktop View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+       9 |   
+      10 |   test('@visual Homepage - Desktop View', async ({ page }) => {
+    > 11 |     await page.goto('/');
+         |                ^
+      12 |     await page.waitForLoadState('networkidle');
+      13 |     
+      14 |     // Take screenshot of homepage
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:11:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-webkit\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Homepage - Mobile View" classname="visual-regression.spec.ts" time="2.059">
+<failure message="visual-regression.spec.ts:21:3 @visual Homepage - Mobile View" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.ts:21:3 › Visual Regression Tests › @visual Homepage - Mobile View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      21 |   test('@visual Homepage - Mobile View', async ({ page }) => {
+      22 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 23 |     await page.goto('/');
+         |                ^
+      24 |     await page.waitForLoadState('networkidle');
+      25 |     
+      26 |     // Take screenshot of homepage on mobile
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:23:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-webkit\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dashboard - Desktop View" classname="visual-regression.spec.ts" time="1.207">
+<failure message="visual-regression.spec.ts:33:3 @visual Dashboard - Desktop View" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.ts:33:3 › Visual Regression Tests › @visual Dashboard - Desktop View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      32 |
+      33 |   test('@visual Dashboard - Desktop View', async ({ page }) => {
+    > 34 |     await page.goto('/dashboard');
+         |                ^
+      35 |     await page.waitForLoadState('networkidle');
+      36 |     
+      37 |     // Wait for dashboard components to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:34:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-webkit\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dashboard - Mobile View" classname="visual-regression.spec.ts" time="0.607">
+<failure message="visual-regression.spec.ts:47:3 @visual Dashboard - Mobile View" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.ts:47:3 › Visual Regression Tests › @visual Dashboard - Mobile View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      47 |   test('@visual Dashboard - Mobile View', async ({ page }) => {
+      48 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 49 |     await page.goto('/dashboard');
+         |                ^
+      50 |     await page.waitForLoadState('networkidle');
+      51 |     
+      52 |     // Wait for dashboard components to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:49:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-webkit\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Navigation - Desktop View" classname="visual-regression.spec.ts" time="0.775">
+<failure message="visual-regression.spec.ts:62:3 @visual Navigation - Desktop View" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.ts:62:3 › Visual Regression Tests › @visual Navigation - Desktop View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      61 |
+      62 |   test('@visual Navigation - Desktop View', async ({ page }) => {
+    > 63 |     await page.goto('/');
+         |                ^
+      64 |     await page.waitForLoadState('networkidle');
+      65 |     
+      66 |     // Take screenshot of navigation
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:63:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-webkit\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Navigation - Mobile View" classname="visual-regression.spec.ts" time="0.627">
+<failure message="visual-regression.spec.ts:73:3 @visual Navigation - Mobile View" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.ts:73:3 › Visual Regression Tests › @visual Navigation - Mobile View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      73 |   test('@visual Navigation - Mobile View', async ({ page }) => {
+      74 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 75 |     await page.goto('/');
+         |                ^
+      76 |     await page.waitForLoadState('networkidle');
+      77 |     
+      78 |     // Take screenshot of mobile navigation
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:75:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-webkit\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Charts and Graphs" classname="visual-regression.spec.ts" time="1.12">
+<failure message="visual-regression.spec.ts:85:3 @visual Charts and Graphs" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.ts:85:3 › Visual Regression Tests › @visual Charts and Graphs ──
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      84 |
+      85 |   test('@visual Charts and Graphs', async ({ page }) => {
+    > 86 |     await page.goto('/dashboard');
+         |                ^
+      87 |     await page.waitForLoadState('networkidle');
+      88 |     
+      89 |     // Wait for charts to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:86:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-webkit\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Forms and Inputs" classname="visual-regression.spec.ts" time="1.019">
+<failure message="visual-regression.spec.ts:99:3 @visual Forms and Inputs" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.ts:99:3 › Visual Regression Tests › @visual Forms and Inputs ───
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/settings", waiting until "load"
+
+
+       98 |
+       99 |   test('@visual Forms and Inputs', async ({ page }) => {
+    > 100 |     await page.goto('/settings');
+          |                ^
+      101 |     await page.waitForLoadState('networkidle');
+      102 |     
+      103 |     // Take screenshot of forms
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:100:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-webkit\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Error States" classname="visual-regression.spec.ts" time="1.118">
+<failure message="visual-regression.spec.ts:110:3 @visual Error States" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.ts:110:3 › Visual Regression Tests › @visual Error States ──────
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/non-existent-page", waiting until "load"
+
+
+      110 |   test('@visual Error States', async ({ page }) => {
+      111 |     // Navigate to a non-existent page to trigger error state
+    > 112 |     await page.goto('/non-existent-page');
+          |                ^
+      113 |     await page.waitForLoadState('networkidle');
+      114 |     
+      115 |     // Take screenshot of error page
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:112:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-webkit\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Loading States" classname="visual-regression.spec.ts" time="1.208">
+<failure message="visual-regression.spec.ts:122:3 @visual Loading States" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.ts:122:3 › Visual Regression Tests › @visual Loading States ────
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      121 |
+      122 |   test('@visual Loading States', async ({ page }) => {
+    > 123 |     await page.goto('/dashboard');
+          |                ^
+      124 |     
+      125 |     // Take screenshot during loading state
+      126 |     await expect(page).toHaveScreenshot('loading-state.png', {
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:123:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-020a4-Tests-visual-Loading-States-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-020a4-Tests-visual-Loading-States-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-020a4-Tests-visual-Loading-States-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-020a4-Tests-visual-Loading-States-webkit\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dark Mode Toggle" classname="visual-regression.spec.ts" time="1.148">
+<failure message="visual-regression.spec.ts:132:3 @visual Dark Mode Toggle" type="FAILURE">
+<![CDATA[  [webkit] › visual-regression.spec.ts:132:3 › Visual Regression Tests › @visual Dark Mode Toggle ──
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      131 |
+      132 |   test('@visual Dark Mode Toggle', async ({ page }) => {
+    > 133 |     await page.goto('/');
+          |                ^
+      134 |     await page.waitForLoadState('networkidle');
+      135 |     
+      136 |     // Toggle dark mode
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:133:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-webkit\video.webm]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="visual-regression.spec.ts" timestamp="2025-08-07T01:53:21.607Z" hostname="Mobile Chrome" tests="11" failures="11" skipped="0" time="7.137" errors="0">
+<testcase name="Visual Regression Tests › @visual Homepage - Desktop View" classname="visual-regression.spec.ts" time="0.724">
+<failure message="visual-regression.spec.ts:10:3 @visual Homepage - Desktop View" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.ts:10:3 › Visual Regression Tests › @visual Homepage - Desktop View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+       9 |   
+      10 |   test('@visual Homepage - Desktop View', async ({ page }) => {
+    > 11 |     await page.goto('/');
+         |                ^
+      12 |     await page.waitForLoadState('networkidle');
+      13 |     
+      14 |     // Take screenshot of homepage
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:11:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-Mobile-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-Mobile-Chrome\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Homepage - Mobile View" classname="visual-regression.spec.ts" time="0.583">
+<failure message="visual-regression.spec.ts:21:3 @visual Homepage - Mobile View" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.ts:21:3 › Visual Regression Tests › @visual Homepage - Mobile View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      21 |   test('@visual Homepage - Mobile View', async ({ page }) => {
+      22 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 23 |     await page.goto('/');
+         |                ^
+      24 |     await page.waitForLoadState('networkidle');
+      25 |     
+      26 |     // Take screenshot of homepage on mobile
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:23:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-Mobile-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-Mobile-Chrome\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dashboard - Desktop View" classname="visual-regression.spec.ts" time="0.523">
+<failure message="visual-regression.spec.ts:33:3 @visual Dashboard - Desktop View" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.ts:33:3 › Visual Regression Tests › @visual Dashboard - Desktop View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/dashboard
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      32 |
+      33 |   test('@visual Dashboard - Desktop View', async ({ page }) => {
+    > 34 |     await page.goto('/dashboard');
+         |                ^
+      35 |     await page.waitForLoadState('networkidle');
+      36 |     
+      37 |     // Wait for dashboard components to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:34:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-Mobile-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-Mobile-Chrome\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dashboard - Mobile View" classname="visual-regression.spec.ts" time="0.514">
+<failure message="visual-regression.spec.ts:47:3 @visual Dashboard - Mobile View" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.ts:47:3 › Visual Regression Tests › @visual Dashboard - Mobile View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/dashboard
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      47 |   test('@visual Dashboard - Mobile View', async ({ page }) => {
+      48 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 49 |     await page.goto('/dashboard');
+         |                ^
+      50 |     await page.waitForLoadState('networkidle');
+      51 |     
+      52 |     // Wait for dashboard components to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:49:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-Mobile-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-Mobile-Chrome\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Navigation - Desktop View" classname="visual-regression.spec.ts" time="0.493">
+<failure message="visual-regression.spec.ts:62:3 @visual Navigation - Desktop View" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.ts:62:3 › Visual Regression Tests › @visual Navigation - Desktop View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      61 |
+      62 |   test('@visual Navigation - Desktop View', async ({ page }) => {
+    > 63 |     await page.goto('/');
+         |                ^
+      64 |     await page.waitForLoadState('networkidle');
+      65 |     
+      66 |     // Take screenshot of navigation
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:63:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-Mobile-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-Mobile-Chrome\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Navigation - Mobile View" classname="visual-regression.spec.ts" time="0.923">
+<failure message="visual-regression.spec.ts:73:3 @visual Navigation - Mobile View" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.ts:73:3 › Visual Regression Tests › @visual Navigation - Mobile View 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      73 |   test('@visual Navigation - Mobile View', async ({ page }) => {
+      74 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 75 |     await page.goto('/');
+         |                ^
+      76 |     await page.waitForLoadState('networkidle');
+      77 |     
+      78 |     // Take screenshot of mobile navigation
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:75:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-Mobile-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-Mobile-Chrome\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Charts and Graphs" classname="visual-regression.spec.ts" time="0.562">
+<failure message="visual-regression.spec.ts:85:3 @visual Charts and Graphs" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.ts:85:3 › Visual Regression Tests › @visual Charts and Graphs 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/dashboard
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      84 |
+      85 |   test('@visual Charts and Graphs', async ({ page }) => {
+    > 86 |     await page.goto('/dashboard');
+         |                ^
+      87 |     await page.waitForLoadState('networkidle');
+      88 |     
+      89 |     // Wait for charts to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:86:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-Mobile-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-Mobile-Chrome\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Forms and Inputs" classname="visual-regression.spec.ts" time="0.688">
+<failure message="visual-regression.spec.ts:99:3 @visual Forms and Inputs" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.ts:99:3 › Visual Regression Tests › @visual Forms and Inputs 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/settings
+    Call log:
+      - navigating to "http://localhost:5173/settings", waiting until "load"
+
+
+       98 |
+       99 |   test('@visual Forms and Inputs', async ({ page }) => {
+    > 100 |     await page.goto('/settings');
+          |                ^
+      101 |     await page.waitForLoadState('networkidle');
+      102 |     
+      103 |     // Take screenshot of forms
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:100:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-Mobile-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-Mobile-Chrome\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Error States" classname="visual-regression.spec.ts" time="0.739">
+<failure message="visual-regression.spec.ts:110:3 @visual Error States" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.ts:110:3 › Visual Regression Tests › @visual Error States 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/non-existent-page
+    Call log:
+      - navigating to "http://localhost:5173/non-existent-page", waiting until "load"
+
+
+      110 |   test('@visual Error States', async ({ page }) => {
+      111 |     // Navigate to a non-existent page to trigger error state
+    > 112 |     await page.goto('/non-existent-page');
+          |                ^
+      113 |     await page.waitForLoadState('networkidle');
+      114 |     
+      115 |     // Take screenshot of error page
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:112:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-Mobile-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-Mobile-Chrome\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Loading States" classname="visual-regression.spec.ts" time="0.68">
+<failure message="visual-regression.spec.ts:122:3 @visual Loading States" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.ts:122:3 › Visual Regression Tests › @visual Loading States 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/dashboard
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      121 |
+      122 |   test('@visual Loading States', async ({ page }) => {
+    > 123 |     await page.goto('/dashboard');
+          |                ^
+      124 |     
+      125 |     // Take screenshot during loading state
+      126 |     await expect(page).toHaveScreenshot('loading-state.png', {
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:123:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-020a4-Tests-visual-Loading-States-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-020a4-Tests-visual-Loading-States-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-020a4-Tests-visual-Loading-States-Mobile-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-020a4-Tests-visual-Loading-States-Mobile-Chrome\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dark Mode Toggle" classname="visual-regression.spec.ts" time="0.708">
+<failure message="visual-regression.spec.ts:132:3 @visual Dark Mode Toggle" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual-regression.spec.ts:132:3 › Visual Regression Tests › @visual Dark Mode Toggle 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      131 |
+      132 |   test('@visual Dark Mode Toggle', async ({ page }) => {
+    > 133 |     await page.goto('/');
+          |                ^
+      134 |     await page.waitForLoadState('networkidle');
+      135 |     
+      136 |     // Toggle dark mode
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:133:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-Mobile-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-Mobile-Chrome\video.webm]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="visual-regression.spec.ts" timestamp="2025-08-07T01:53:21.607Z" hostname="Mobile Safari" tests="11" failures="11" skipped="0" time="9.849" errors="0">
+<testcase name="Visual Regression Tests › @visual Homepage - Desktop View" classname="visual-regression.spec.ts" time="0.908">
+<failure message="visual-regression.spec.ts:10:3 @visual Homepage - Desktop View" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.ts:10:3 › Visual Regression Tests › @visual Homepage - Desktop View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+       9 |   
+      10 |   test('@visual Homepage - Desktop View', async ({ page }) => {
+    > 11 |     await page.goto('/');
+         |                ^
+      12 |     await page.waitForLoadState('networkidle');
+      13 |     
+      14 |     // Take screenshot of homepage
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:11:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-Mobile-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b909d-ual-Homepage---Desktop-View-Mobile-Safari\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Homepage - Mobile View" classname="visual-regression.spec.ts" time="0.884">
+<failure message="visual-regression.spec.ts:21:3 @visual Homepage - Mobile View" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.ts:21:3 › Visual Regression Tests › @visual Homepage - Mobile View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      21 |   test('@visual Homepage - Mobile View', async ({ page }) => {
+      22 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 23 |     await page.goto('/');
+         |                ^
+      24 |     await page.waitForLoadState('networkidle');
+      25 |     
+      26 |     // Take screenshot of homepage on mobile
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:23:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-Mobile-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-ad642-sual-Homepage---Mobile-View-Mobile-Safari\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dashboard - Desktop View" classname="visual-regression.spec.ts" time="0.747">
+<failure message="visual-regression.spec.ts:33:3 @visual Dashboard - Desktop View" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.ts:33:3 › Visual Regression Tests › @visual Dashboard - Desktop View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      32 |
+      33 |   test('@visual Dashboard - Desktop View', async ({ page }) => {
+    > 34 |     await page.goto('/dashboard');
+         |                ^
+      35 |     await page.waitForLoadState('networkidle');
+      36 |     
+      37 |     // Wait for dashboard components to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:34:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-Mobile-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-8a3a6-al-Dashboard---Desktop-View-Mobile-Safari\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dashboard - Mobile View" classname="visual-regression.spec.ts" time="0.783">
+<failure message="visual-regression.spec.ts:47:3 @visual Dashboard - Mobile View" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.ts:47:3 › Visual Regression Tests › @visual Dashboard - Mobile View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      47 |   test('@visual Dashboard - Mobile View', async ({ page }) => {
+      48 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 49 |     await page.goto('/dashboard');
+         |                ^
+      50 |     await page.waitForLoadState('networkidle');
+      51 |     
+      52 |     // Wait for dashboard components to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:49:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-Mobile-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-81a7a-ual-Dashboard---Mobile-View-Mobile-Safari\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Navigation - Desktop View" classname="visual-regression.spec.ts" time="0.863">
+<failure message="visual-regression.spec.ts:62:3 @visual Navigation - Desktop View" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.ts:62:3 › Visual Regression Tests › @visual Navigation - Desktop View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      61 |
+      62 |   test('@visual Navigation - Desktop View', async ({ page }) => {
+    > 63 |     await page.goto('/');
+         |                ^
+      64 |     await page.waitForLoadState('networkidle');
+      65 |     
+      66 |     // Take screenshot of navigation
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:63:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-Mobile-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-18f47-l-Navigation---Desktop-View-Mobile-Safari\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Navigation - Mobile View" classname="visual-regression.spec.ts" time="0.905">
+<failure message="visual-regression.spec.ts:73:3 @visual Navigation - Mobile View" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.ts:73:3 › Visual Regression Tests › @visual Navigation - Mobile View 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      73 |   test('@visual Navigation - Mobile View', async ({ page }) => {
+      74 |     await page.setViewportSize({ width: 375, height: 667 });
+    > 75 |     await page.goto('/');
+         |                ^
+      76 |     await page.waitForLoadState('networkidle');
+      77 |     
+      78 |     // Take screenshot of mobile navigation
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:75:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-Mobile-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-b3e46-al-Navigation---Mobile-View-Mobile-Safari\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Charts and Graphs" classname="visual-regression.spec.ts" time="0.922">
+<failure message="visual-regression.spec.ts:85:3 @visual Charts and Graphs" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.ts:85:3 › Visual Regression Tests › @visual Charts and Graphs 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      84 |
+      85 |   test('@visual Charts and Graphs', async ({ page }) => {
+    > 86 |     await page.goto('/dashboard');
+         |                ^
+      87 |     await page.waitForLoadState('networkidle');
+      88 |     
+      89 |     // Wait for charts to load
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:86:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-Mobile-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fb647-ts-visual-Charts-and-Graphs-Mobile-Safari\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Forms and Inputs" classname="visual-regression.spec.ts" time="1.027">
+<failure message="visual-regression.spec.ts:99:3 @visual Forms and Inputs" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.ts:99:3 › Visual Regression Tests › @visual Forms and Inputs 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/settings", waiting until "load"
+
+
+       98 |
+       99 |   test('@visual Forms and Inputs', async ({ page }) => {
+    > 100 |     await page.goto('/settings');
+          |                ^
+      101 |     await page.waitForLoadState('networkidle');
+      102 |     
+      103 |     // Take screenshot of forms
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:100:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-Mobile-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-1cb27-sts-visual-Forms-and-Inputs-Mobile-Safari\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Error States" classname="visual-regression.spec.ts" time="0.978">
+<failure message="visual-regression.spec.ts:110:3 @visual Error States" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.ts:110:3 › Visual Regression Tests › @visual Error States 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/non-existent-page", waiting until "load"
+
+
+      110 |   test('@visual Error States', async ({ page }) => {
+      111 |     // Navigate to a non-existent page to trigger error state
+    > 112 |     await page.goto('/non-existent-page');
+          |                ^
+      113 |     await page.waitForLoadState('networkidle');
+      114 |     
+      115 |     // Take screenshot of error page
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:112:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-Mobile-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-fbcc0-n-Tests-visual-Error-States-Mobile-Safari\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Loading States" classname="visual-regression.spec.ts" time="0.939">
+<failure message="visual-regression.spec.ts:122:3 @visual Loading States" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.ts:122:3 › Visual Regression Tests › @visual Loading States 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/dashboard", waiting until "load"
+
+
+      121 |
+      122 |   test('@visual Loading States', async ({ page }) => {
+    > 123 |     await page.goto('/dashboard');
+          |                ^
+      124 |     
+      125 |     // Take screenshot during loading state
+      126 |     await expect(page).toHaveScreenshot('loading-state.png', {
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:123:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-020a4-Tests-visual-Loading-States-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-020a4-Tests-visual-Loading-States-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-020a4-Tests-visual-Loading-States-Mobile-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-020a4-Tests-visual-Loading-States-Mobile-Safari\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › @visual Dark Mode Toggle" classname="visual-regression.spec.ts" time="0.893">
+<failure message="visual-regression.spec.ts:132:3 @visual Dark Mode Toggle" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual-regression.spec.ts:132:3 › Visual Regression Tests › @visual Dark Mode Toggle 
+
+    Error: page.goto: Server returned nothing (no headers, no data)
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      131 |
+      132 |   test('@visual Dark Mode Toggle', async ({ page }) => {
+    > 133 |     await page.goto('/');
+          |                ^
+      134 |     await page.waitForLoadState('networkidle');
+      135 |     
+      136 |     // Toggle dark mode
+        at C:\cursor\TappHA\frontend\tests\e2e\visual-regression.spec.ts:133:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-Mobile-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|visual-regression-Visual-R-4eec5-sts-visual-Dark-Mode-Toggle-Mobile-Safari\video.webm]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>
