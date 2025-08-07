@@ -1,0 +1,212 @@
+-- Migration: V004__create_autonomous_management_tables.sql
+-- Description: Create tables for autonomous automation management system
+-- Created: 2025-01-27
+-- Author: TappHA Development Team
+
+-- Enable UUID extension if not already enabled
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- 1. Automation Management Table
+CREATE TABLE automation_management (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    home_assistant_automation_id VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    lifecycle_state VARCHAR(50) NOT NULL DEFAULT 'ACTIVE',
+    performance_score DECIMAL(5,2),
+    last_execution_time TIMESTAMP,
+    execution_count INTEGER DEFAULT 0,
+    success_rate DECIMAL(5,2),
+    average_execution_time_ms INTEGER,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    created_by UUID,
+    modified_by UUID,
+    version INTEGER DEFAULT 1 NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE NOT NULL
+);
+
+-- 2. Automation Lifecycle History Table
+CREATE TABLE automation_lifecycle_history (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    automation_management_id UUID NOT NULL,
+    previous_state VARCHAR(50),
+    new_state VARCHAR(50) NOT NULL,
+    transition_reason TEXT,
+    transition_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    transitioned_by UUID,
+    metadata JSONB,
+    CONSTRAINT fk_automation_lifecycle_history_automation_management
+        FOREIGN KEY (automation_management_id)
+        REFERENCES automation_management(id)
+        ON DELETE CASCADE
+);
+
+-- 3. Approval Workflow Table
+CREATE TABLE approval_workflow (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    automation_management_id UUID NOT NULL,
+    workflow_type VARCHAR(50) NOT NULL, -- 'CREATION', 'MODIFICATION', 'RETIREMENT'
+    status VARCHAR(50) NOT NULL DEFAULT 'PENDING', -- 'PENDING', 'APPROVED', 'REJECTED', 'CANCELLED'
+    requested_by UUID NOT NULL,
+    approved_by UUID,
+    rejected_by UUID,
+    request_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    approval_timestamp TIMESTAMP,
+    rejection_timestamp TIMESTAMP,
+    approval_notes TEXT,
+    rejection_reason TEXT,
+    emergency_stop_triggered BOOLEAN DEFAULT FALSE,
+    emergency_stop_timestamp TIMESTAMP,
+    emergency_stop_reason TEXT,
+    CONSTRAINT fk_approval_workflow_automation_management
+        FOREIGN KEY (automation_management_id)
+        REFERENCES automation_management(id)
+        ON DELETE CASCADE
+);
+
+-- 4. Automation Performance Metrics Table
+CREATE TABLE automation_performance_metrics (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    automation_management_id UUID NOT NULL,
+    execution_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    execution_duration_ms INTEGER,
+    success BOOLEAN NOT NULL,
+    error_message TEXT,
+    trigger_source VARCHAR(100),
+    affected_entities JSONB,
+    performance_score DECIMAL(5,2),
+    resource_usage JSONB,
+    CONSTRAINT fk_automation_performance_metrics_automation_management
+        FOREIGN KEY (automation_management_id)
+        REFERENCES automation_management(id)
+        ON DELETE CASCADE
+);
+
+-- 5. Automation Backup Table
+CREATE TABLE automation_backup (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    automation_management_id UUID NOT NULL,
+    backup_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    backup_type VARCHAR(50) NOT NULL, -- 'AUTOMATIC', 'MANUAL', 'BEFORE_MODIFICATION'
+    backup_data JSONB NOT NULL,
+    backup_metadata JSONB,
+    created_by UUID,
+    CONSTRAINT fk_automation_backup_automation_management
+        FOREIGN KEY (automation_management_id)
+        REFERENCES automation_management(id)
+        ON DELETE CASCADE
+);
+
+-- 6. Emergency Stop Log Table
+CREATE TABLE emergency_stop_log (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    automation_management_id UUID,
+    triggered_by UUID NOT NULL,
+    trigger_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    trigger_reason TEXT NOT NULL,
+    trigger_source VARCHAR(100), -- 'MANUAL', 'AUTOMATIC', 'SYSTEM'
+    affected_automations JSONB,
+    recovery_actions JSONB,
+    CONSTRAINT fk_emergency_stop_log_automation_management
+        FOREIGN KEY (automation_management_id)
+        REFERENCES automation_management(id)
+        ON DELETE SET NULL
+);
+
+-- 7. Optimization Suggestions Table
+CREATE TABLE optimization_suggestions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    automation_management_id UUID NOT NULL,
+    suggestion_type VARCHAR(50) NOT NULL, -- 'PERFORMANCE', 'EFFICIENCY', 'SAFETY', 'USER_EXPERIENCE'
+    suggestion_title VARCHAR(255) NOT NULL,
+    suggestion_description TEXT NOT NULL,
+    current_value TEXT,
+    suggested_value TEXT,
+    expected_impact VARCHAR(50), -- 'LOW', 'MEDIUM', 'HIGH', 'CRITICAL'
+    confidence_score DECIMAL(5,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    reviewed_at TIMESTAMP,
+    reviewed_by UUID,
+    review_status VARCHAR(50) DEFAULT 'PENDING', -- 'PENDING', 'APPROVED', 'REJECTED', 'IMPLEMENTED'
+    implementation_notes TEXT,
+    CONSTRAINT fk_optimization_suggestions_automation_management
+        FOREIGN KEY (automation_management_id)
+        REFERENCES automation_management(id)
+        ON DELETE CASCADE
+);
+
+-- Create Indexes for Performance Optimization
+
+-- Automation Management Indexes
+CREATE INDEX idx_automation_management_lifecycle_state ON automation_management(lifecycle_state);
+CREATE INDEX idx_automation_management_performance_score ON automation_management(performance_score);
+CREATE INDEX idx_automation_management_last_execution_time ON automation_management(last_execution_time);
+CREATE INDEX idx_automation_management_created_at ON automation_management(created_at);
+CREATE INDEX idx_automation_management_updated_at ON automation_management(updated_at);
+CREATE INDEX idx_automation_management_created_by ON automation_management(created_by);
+CREATE INDEX idx_automation_management_is_active ON automation_management(is_active);
+CREATE INDEX idx_automation_management_home_assistant_id ON automation_management(home_assistant_automation_id);
+
+-- Lifecycle History Indexes
+CREATE INDEX idx_lifecycle_history_automation_id ON automation_lifecycle_history(automation_management_id);
+CREATE INDEX idx_lifecycle_history_transition_timestamp ON automation_lifecycle_history(transition_timestamp);
+CREATE INDEX idx_lifecycle_history_new_state ON automation_lifecycle_history(new_state);
+CREATE INDEX idx_lifecycle_history_transitioned_by ON automation_lifecycle_history(transitioned_by);
+
+-- Approval Workflow Indexes
+CREATE INDEX idx_approval_workflow_automation_id ON approval_workflow(automation_management_id);
+CREATE INDEX idx_approval_workflow_status ON approval_workflow(status);
+CREATE INDEX idx_approval_workflow_type ON approval_workflow(workflow_type);
+CREATE INDEX idx_approval_workflow_requested_by ON approval_workflow(requested_by);
+CREATE INDEX idx_approval_workflow_request_timestamp ON approval_workflow(request_timestamp);
+
+-- Performance Metrics Indexes
+CREATE INDEX idx_performance_metrics_automation_id ON automation_performance_metrics(automation_management_id);
+CREATE INDEX idx_performance_metrics_execution_timestamp ON automation_performance_metrics(execution_timestamp);
+CREATE INDEX idx_performance_metrics_success ON automation_performance_metrics(success);
+CREATE INDEX idx_performance_metrics_performance_score ON automation_performance_metrics(performance_score);
+
+-- Backup Indexes
+CREATE INDEX idx_backup_automation_id ON automation_backup(automation_management_id);
+CREATE INDEX idx_backup_timestamp ON automation_backup(backup_timestamp);
+CREATE INDEX idx_backup_type ON automation_backup(backup_type);
+
+-- Emergency Stop Log Indexes
+CREATE INDEX idx_emergency_stop_automation_id ON emergency_stop_log(automation_management_id);
+CREATE INDEX idx_emergency_stop_trigger_timestamp ON emergency_stop_log(trigger_timestamp);
+CREATE INDEX idx_emergency_stop_triggered_by ON emergency_stop_log(triggered_by);
+
+-- Optimization Suggestions Indexes
+CREATE INDEX idx_optimization_suggestions_automation_id ON optimization_suggestions(automation_management_id);
+CREATE INDEX idx_optimization_suggestions_type ON optimization_suggestions(suggestion_type);
+CREATE INDEX idx_optimization_suggestions_review_status ON optimization_suggestions(review_status);
+CREATE INDEX idx_optimization_suggestions_created_at ON optimization_suggestions(created_at);
+
+-- Create Composite Indexes for Common Query Patterns
+CREATE INDEX idx_automation_management_active_performance ON automation_management(is_active, performance_score) WHERE is_active = true;
+CREATE INDEX idx_automation_management_state_performance ON automation_management(lifecycle_state, performance_score);
+CREATE INDEX idx_automation_management_active_execution_time ON automation_management(is_active, last_execution_time) WHERE is_active = true;
+CREATE INDEX idx_performance_metrics_automation_timestamp ON automation_performance_metrics(automation_management_id, execution_timestamp);
+CREATE INDEX idx_approval_workflow_automation_status ON approval_workflow(automation_management_id, status);
+
+-- Add Comments for Documentation
+COMMENT ON TABLE automation_management IS 'Core table for managing autonomous automation lifecycle and performance metrics';
+COMMENT ON TABLE automation_lifecycle_history IS 'Audit trail for automation state transitions';
+COMMENT ON TABLE approval_workflow IS 'User approval system for automation changes with safety mechanisms';
+COMMENT ON TABLE automation_performance_metrics IS 'Detailed performance tracking for each automation execution';
+COMMENT ON TABLE automation_backup IS 'Backup system for automation configurations and rollback capabilities';
+COMMENT ON TABLE emergency_stop_log IS 'Emergency stop system for immediate automation termination';
+COMMENT ON TABLE optimization_suggestions IS 'AI-generated optimization recommendations for automation improvements';
+
+-- Add Column Comments
+COMMENT ON COLUMN automation_management.lifecycle_state IS 'Current state: ACTIVE, PENDING, INACTIVE, RETIRED';
+COMMENT ON COLUMN automation_management.performance_score IS 'AI-calculated performance score (0-100)';
+COMMENT ON COLUMN automation_management.success_rate IS 'Percentage of successful executions (0-100)';
+COMMENT ON COLUMN automation_management.average_execution_time_ms IS 'Average execution time in milliseconds';
+COMMENT ON COLUMN approval_workflow.workflow_type IS 'Type of approval: CREATION, MODIFICATION, RETIREMENT';
+COMMENT ON COLUMN approval_workflow.status IS 'Approval status: PENDING, APPROVED, REJECTED, CANCELLED';
+COMMENT ON COLUMN approval_workflow.emergency_stop_triggered IS 'Flag indicating if emergency stop was triggered';
+COMMENT ON COLUMN optimization_suggestions.suggestion_type IS 'Type of optimization: PERFORMANCE, EFFICIENCY, SAFETY, USER_EXPERIENCE';
+COMMENT ON COLUMN optimization_suggestions.expected_impact IS 'Expected impact level: LOW, MEDIUM, HIGH, CRITICAL';
+COMMENT ON COLUMN optimization_suggestions.confidence_score IS 'AI confidence in the suggestion (0-100)';

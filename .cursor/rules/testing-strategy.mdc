@@ -35,6 +35,10 @@ ELSE:
 ### 🤖 5. AI‑Aware & Continuous Testing
 - AI‑assisted test generation & self‑healing tests.
 - Shift‑right monitoring: observability & telemetry.
+- **AI Model Testing**: Test OpenAI API integration and rate limiting.
+- **Vector Database Testing**: Validate pgvector operations and similarity searches.
+- **LangChain Testing**: Test prompt engineering and structured output parsing.
+- **AI Safety Testing**: Verify consent workflows and emergency stop mechanisms.
 
 ### 📊 6. Prioritization & Risk‑Based Test Planning
 - Risk‑based testing: critical workflows first.

@@ -1,0 +1,333 @@
+# Performance and Monitoring Rules for TappHA
+
+## MANDATORY: Real-Time Performance Standards
+
+**ALWAYS** implement comprehensive performance monitoring and observability for TappHA's Home Assistant integration.
+
+### Real-Time Performance Requirements
+
+#### Response Time Standards
+- **ALWAYS** maintain <2 seconds response time for automation operations
+- **ALWAYS** implement <100ms real-time event processing
+- **ALWAYS** ensure <500ms for audit trail operations
+- **ALWAYS** maintain <10 seconds for backup and rollback operations
+- **ALWAYS** achieve <1.8 seconds Time to Interactive (TTI) for frontend
+
+#### Throughput Standards
+- **ALWAYS** handle 1000+ concurrent WebSocket connections
+- **ALWAYS** process 10,000+ events per minute
+- **ALWAYS** support 100+ concurrent automation operations
+- **ALWAYS** maintain 99.9% uptime for critical services
+
+### Observability Implementation
+
+#### Spring Boot Actuator Integration
+- **ALWAYS** use Spring Boot Actuator for health endpoints
+- **ALWAYS** implement custom health indicators for Home Assistant connections
+- **ALWAYS** expose metrics endpoints for Prometheus scraping
+- **ALWAYS** provide detailed application information endpoints
+- **ALWAYS** implement graceful shutdown handling
+
+#### Prometheus Metrics Collection
+- **ALWAYS** expose custom metrics for Home Assistant operations
+- **ALWAYS** track automation creation/modification response times
+- **ALWAYS** monitor WebSocket connection health and performance
+- **ALWAYS** measure AI operation latency and success rates
+- **ALWAYS** track user consent and approval workflow metrics
+
+#### Grafana Dashboard Integration
+- **ALWAYS** create real-time dashboards for system performance
+- **ALWAYS** implement alerting for performance thresholds
+- **ALWAYS** provide historical performance trend analysis
+- **ALWAYS** create user-specific performance dashboards
+- **ALWAYS** implement automated performance reporting
+
+### Performance Monitoring Code Patterns
+
+#### Backend Performance Monitoring
+```java
+@Service
+public class PerformanceMonitoringService {
+    
+    private final MeterRegistry meterRegistry;
+    private final Timer.Sample timerSample;
+    
+    @EventListener
+    public void onAutomationOperation(AutomationOperationEvent event) {
+        // ALWAYS track automation operation performance
+        Timer.Sample sample = Timer.start(meterRegistry);
+        
+        try {
+            // Track operation start
+            meterRegistry.counter("automation.operations.started", 
+                "type", event.getOperationType(),
+                "user_id", event.getUserId()).increment();
+            
+            // Measure operation duration
+            sample.stop(Timer.builder("automation.operations.duration")
+                .tag("type", event.getOperationType())
+                .tag("user_id", event.getUserId())
+                .register(meterRegistry));
+                
+        } catch (Exception e) {
+            // Track operation failures
+            meterRegistry.counter("automation.operations.failed",
+                "type", event.getOperationType(),
+                "user_id", event.getUserId(),
+                "error", e.getClass().getSimpleName()).increment();
+            throw e;
+        }
+    }
+    
+    @EventListener
+    public void onWebSocketEvent(WebSocketEvent event) {
+        // ALWAYS track WebSocket performance
+        meterRegistry.counter("websocket.events.processed",
+            "event_type", event.getEventType(),
+            "connection_id", event.getConnectionId()).increment();
+            
+        // Track event processing time
+        Timer.builder("websocket.event.processing.time")
+            .tag("event_type", event.getEventType())
+            .register(meterRegistry)
+            .record(event.getProcessingTime(), TimeUnit.MILLISECONDS);
+    }
+    
+    @EventListener
+    public void onAIOperation(AIOperationEvent event) {
+        // ALWAYS track AI operation performance
+        Timer.builder("ai.operations.duration")
+            .tag("operation_type", event.getOperationType())
+            .tag("model", event.getModel())
+            .register(meterRegistry)
+            .record(event.getDuration(), TimeUnit.MILLISECONDS);
+            
+        // Track AI operation success rate
+        meterRegistry.counter("ai.operations.result",
+            "operation_type", event.getOperationType(),
+            "success", String.valueOf(event.isSuccess())).increment();
+    }
+}
+
+@Component
+public class HomeAssistantHealthIndicator implements HealthIndicator {
+    
+    private final HomeAssistantAPIService haService;
+    
+    @Override
+    public Health health() {
+        try {
+            // ALWAYS check Home Assistant connection health
+            boolean isConnected = haService.checkConnection();
+            
+            if (isConnected) {
+                return Health.up()
+                    .withDetail("connection", "active")
+                    .withDetail("response_time", haService.getLastResponseTime())
+                    .build();
+            } else {
+                return Health.down()
+                    .withDetail("connection", "inactive")
+                    .withDetail("error", "Connection failed")
+                    .build();
+            }
+        } catch (Exception e) {
+            return Health.down()
+                .withDetail("connection", "error")
+                .withDetail("error", e.getMessage())
+                .build();
+        }
+    }
+}
+```
+
+#### Frontend Performance Monitoring
+```typescript
+// ALWAYS implement frontend performance monitoring
+const usePerformanceMonitoring = () => {
+  const trackPageLoad = (pageName: string) => {
+    const startTime = performance.now();
+    
+    return {
+      end: () => {
+        const duration = performance.now() - startTime;
+        // ALWAYS track page load performance
+        analytics.track('page_load_time', {
+          page: pageName,
+          duration: duration,
+          timestamp: new Date().toISOString()
+        });
+      }
+    };
+  };
+  
+  const trackUserInteraction = (action: string, details?: any) => {
+    const startTime = performance.now();
+    
+    return {
+      end: () => {
+        const duration = performance.now() - startTime;
+        // ALWAYS track user interaction performance
+        analytics.track('user_interaction', {
+          action: action,
+          duration: duration,
+          details: details,
+          timestamp: new Date().toISOString()
+        });
+      }
+    };
+  };
+  
+  return { trackPageLoad, trackUserInteraction };
+};
+
+// ALWAYS implement real-time performance monitoring
+const PerformanceMonitoringComponent: React.FC = () => {
+  const [performanceMetrics, setPerformanceMetrics] = useState<PerformanceMetrics>();
+  const { trackUserInteraction } = usePerformanceMonitoring();
+  
+  useEffect(() => {
+    // ALWAYS monitor real-time performance
+    const interval = setInterval(async () => {
+      const metrics = await fetchPerformanceMetrics();
+      setPerformanceMetrics(metrics);
+    }, 5000); // Update every 5 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
+  
+  const handleAutomationOperation = async (operation: string) => {
+    const tracker = trackUserInteraction(`automation_${operation}`);
+    
+    try {
+      await performAutomationOperation(operation);
+      tracker.end();
+    } catch (error) {
+      tracker.end();
+      throw error;
+    }
+  };
+  
+  return (
+    <div className="performance-dashboard">
+      <h3>Real-Time Performance</h3>
+      {performanceMetrics && (
+        <div className="metrics-grid">
+          <div className="metric-card">
+            <h4>Response Time</h4>
+            <p>{performanceMetrics.averageResponseTime}ms</p>
+          </div>
+          <div className="metric-card">
+            <h4>Throughput</h4>
+            <p>{performanceMetrics.eventsPerSecond} events/sec</p>
+          </div>
+          <div className="metric-card">
+            <h4>Error Rate</h4>
+            <p>{performanceMetrics.errorRate}%</p>
+          </div>
+          <div className="metric-card">
+            <h4>Active Connections</h4>
+            <p>{performanceMetrics.activeConnections}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+```
+
+### Performance Testing Requirements
+
+#### Load Testing
+- **ALWAYS** test with 1000+ concurrent WebSocket connections
+- **ALWAYS** validate 10,000+ events per minute processing
+- **ALWAYS** test 100+ concurrent automation operations
+- **ALWAYS** verify performance under peak load conditions
+
+#### Stress Testing
+- **ALWAYS** test system behavior under extreme load
+- **ALWAYS** validate graceful degradation under stress
+- **ALWAYS** test recovery mechanisms after stress conditions
+- **ALWAYS** verify resource cleanup after stress testing
+
+#### Endurance Testing
+- **ALWAYS** test system performance over extended periods
+- **ALWAYS** validate memory leak detection and prevention
+- **ALWAYS** test database connection pool behavior
+- **ALWAYS** verify long-running operation stability
+
+### Performance Configuration
+
+#### Application Properties
+```yaml
+# ALWAYS configure performance settings
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# ALWAYS configure performance thresholds
+performance:
+  thresholds:
+    automation-operation: 2000ms
+    websocket-processing: 100ms
+    audit-trail: 500ms
+    backup-operation: 10000ms
+    ai-operation: 5000ms
+
+# ALWAYS configure monitoring intervals
+monitoring:
+  intervals:
+    health-check: 30s
+    metrics-collection: 15s
+    performance-alert: 60s
+```
+
+#### Database Performance
+- **ALWAYS** implement proper database indexing
+- **ALWAYS** use connection pooling with appropriate limits
+- **ALWAYS** configure query timeout settings
+- **ALWAYS** implement database performance monitoring
+
+#### Caching Strategy
+- **ALWAYS** implement Redis caching for frequently accessed data
+- **ALWAYS** use appropriate cache TTL settings
+- **ALWAYS** implement cache invalidation strategies
+- **ALWAYS** monitor cache hit rates and performance
+
+### Performance Alerting
+
+#### Critical Alerts
+- **ALWAYS** alert on response time > 2 seconds
+- **ALWAYS** alert on error rate > 5%
+- **ALWAYS** alert on system memory usage > 80%
+- **ALWAYS** alert on database connection pool exhaustion
+
+#### Warning Alerts
+- **ALWAYS** warn on response time > 1 second
+- **ALWAYS** warn on error rate > 2%
+- **ALWAYS** warn on system memory usage > 60%
+- **ALWAYS** warn on slow database queries
+
+### Performance Documentation
+- **ALWAYS** document performance benchmarks and targets
+- **ALWAYS** provide performance troubleshooting guides
+- **ALWAYS** maintain performance optimization recommendations
+- **ALWAYS** document monitoring and alerting procedures
+
+description: Real-time performance monitoring and observability patterns for TappHA
+globs: ["**/*.java", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.yml", "**/*.yaml"]
+alwaysApply: false
+---
+description:
+globs:
+alwaysApply: false
+---

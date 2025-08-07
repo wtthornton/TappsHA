@@ -45,7 +45,8 @@ TappHA/
 │   └── Dockerfile
 ├── infrastructure/           # Infrastructure & observability
 │   ├── docker-compose.yml
-│   ├── prometheus/prometheus.yml
+│   ├── prometheus/promethe
+us.yml
 │   └── grafana/dashboards/
 ├── .github/workflows/        # CI/CD workflows
 └── .cursor/rules/            # Cursor AI rule files (*.mdc)

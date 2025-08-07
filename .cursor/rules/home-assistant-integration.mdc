@@ -46,18 +46,30 @@
 - **ALWAYS** document any deviations from official Home Assistant patterns
 - **ALWAYS** include Home Assistant version compatibility notes
 
+### Automation API Integration
+- **ALWAYS** use Home Assistant's official automation API endpoints
+- **ALWAYS** implement proper authentication for automation operations
+- **ALWAYS** validate automation syntax before deployment
+- **ALWAYS** implement backup snapshots before modifying automations
+- **ALWAYS** use proper error handling for automation API failures
+- **ALWAYS** implement rollback mechanisms for failed automation changes
+
 ### Testing Requirements
 - **ALWAYS** test against actual Home Assistant instances
 - **ALWAYS** validate WebSocket connection lifecycle
 - **ALWAYS** test event subscription and processing
 - **ALWAYS** verify authentication and error handling
 - **ALWAYS** test reconnection scenarios and heartbeat mechanisms
+- **ALWAYS** test automation API integration and validation
+- **ALWAYS** verify automation backup and rollback mechanisms
 
 ### Error Handling
 - **ALWAYS** handle Home Assistant specific error codes
 - **ALWAYS** implement proper logging for debugging
 - **ALWAYS** provide meaningful error messages
 - **ALWAYS** implement graceful degradation on connection failures
+- **ALWAYS** handle automation API specific error responses
+- **ALWAYS** implement proper error recovery for automation operations
 
 ## Reference Links
 - Home Assistant Developers: https://developers.home-assistant.io/
@@ -65,6 +77,7 @@
 - REST API: https://developers.home-assistant.io/docs/api/rest/
 - External APIs: https://developers.home-assistant.io/docs/api/
 - Development Index: https://developers.home-assistant.io/docs/development_index
+- Automation API: https://developers.home-assistant.io/docs/api/rest/
 description:
 globs:
 alwaysApply: false

@@ -84,6 +84,32 @@
 - Security requirements
 - Performance standards
 
+### NEW: TappHA Phase 2/3 Specific Standards
+
+#### AI/ML Development Standards
+**ALWAYS** check `@~/.cursor/rules/ai-ml-development.mdc`:
+- Privacy-first AI development patterns
+- OpenAI GPT-4o Mini integration with cost optimization
+- User consent workflows for AI-generated changes
+- Emergency stop mechanisms for all AI features
+- Comprehensive audit trails for AI decisions
+
+#### Automation Management Standards
+**ALWAYS** check `@~/.cursor/rules/automation-management.mdc`:
+- Home Assistant automation API integration
+- Approval workflows before applying automation changes
+- Backup and rollback mechanisms for automation modifications
+- Safety and compliance mechanisms for automation operations
+- Emergency stop system for automation features
+
+#### Performance Monitoring Standards
+**ALWAYS** check `@~/.cursor/rules/performance-monitoring.mdc`:
+- Real-time performance monitoring with <2s response times
+- Spring Boot Actuator integration for health endpoints
+- Prometheus metrics collection for Home Assistant operations
+- Grafana dashboard integration for performance visualization
+- Performance alerting for critical thresholds
+
 ### NEW: Advanced Governance Standards
 
 #### AI-Assisted Governance
