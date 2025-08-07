@@ -1,81 +1,391 @@
-# Development Best Practices (Enhanced for Cursor/Agent-OS)
+# Agent OS Best Practices
 
-## 1. Feature Impact Scoring (MANDATORY FIRST)
-- **Rule:** Score every feature on Business Impact, Developer Productivity, Implementation Complexity, and Adoption Likelihood (1-10 scale) before development.
-- **Actions:** Apply phase classification thresholds (Phase 1: ≥8/10 productivity, Phase 2: ≥7/10 productivity), eliminate features <6/10 productivity impact.
-- **Cursor Effect:** AI prioritizes **maximum impact features** that directly improve developer productivity and code quality.
-- **Reference:** See `@~/.agent-os/standards/feature-scoring.md` for complete framework.
+## 📋 **Document Metadata**
+- **Title**: Agent OS Best Practices Standards
+- **Created**: 2025-01-27
+- **Version**: 2.0
+- **Status**: Active
+- **Next Review**: 2025-02-03
+- **Owner**: Agent OS Development Team
+- **Framework**: Agent OS Standards + Context7 Integration
 
-## 2. Mobile‑First & Responsive Design
-- **Rule:** Start every feature at ≤400px viewport; enhance progressively to larger breakpoints.
-- **Actions:** Optimize for LCP and TTI; intuitive mobile navigation.
-- **Cursor Effect:** Generates **responsive React/Tailwind components** by default.
+## 🏗️ **Architecture Patterns**
 
-## 3. Observability by Design
-- **Rule:** Integrate logging, metrics, and tracing (OpenTelemetry + Micrometer) from the start.
-- **Actions:** Define KPIs, dashboards, and alerts early.
-- **Cursor Effect:** AI‑generated backends are **pre‑instrumented for monitoring**.
+### **Service Layer Orchestration Pattern**
 
-## 4. DRY, KISS & 12‑Factor Principles
-- **Rule:** Avoid redundant logic; follow DRY, KISS, SOLID, 12‑Factor App.
-- **Actions:** Modular and cloud‑ready microservices by design.
-- **Cursor Effect:** Scaffolds **modular, maintainable, cloud‑deployable** code.
+**Pattern**: Core service orchestrates multiple specialized services with clear separation of concerns
 
-## 5. Performance & Fail‑Fast
-- **Rule:** Validate inputs early; fail fast; add caching, async, and retries.
-- **Actions:** Implement circuit breakers and fallback logic.
-- **Cursor Effect:** Outputs **resilient, fault‑tolerant services**.
+**Implementation**:
+```java
+@Service
+@RequiredArgsConstructor
+@Transactional
+public class CoreManagementService {
+    private final SpecializedService1 service1;
+    private final SpecializedService2 service2;
+    private final SpecializedService3 service3;
+    
+    public Result orchestrateOperation(Request request) {
+        // 1. Validate and backup
+        // 2. Execute specialized operations
+        // 3. Audit and monitor
+        // 4. Return comprehensive result
+    }
+}
+```
 
-## 6. DevOps & Agile Embedded
-- **Rule:** Treat CI/CD, IaC, and environment parity as part of development.
-- **Actions:** Maintain Dockerfiles, GitHub Actions, reproducible environments.
-- **Cursor Effect:** Generates **CI/CD‑ready microservices** without manual tweaks.
+**Benefits**:
+- Maintainable and testable architecture
+- Clear separation of concerns
+- Scalable service composition
+- Comprehensive error handling
 
-## 7. Lessons Learned Integration
-- **Rule:** Capture and apply lessons learned systematically across all development phases.
-- **Actions:** Document insights, update standards, and integrate into Cursor AI rules.
-- **Cursor Effect:** AI generates **continuously improved code patterns** based on project history.
-- **Reference:** See `@~/.agent-os/lessons-learned/README.md` for complete framework.
+### **Comprehensive DTO Design Pattern**
 
-## 8. Database Query Compatibility (CRITICAL)
-- **Rule:** Write only HQL-compatible queries; avoid database-specific functions.
-- **Actions:** 
-  - NEVER use `EXTRACT(EPOCH FROM ...)`, `DATE_TRUNC`, or `FUNCTION('DATE_TRUNC')` in HQL
-  - Move complex calculations to service layer
-  - Test queries with H2 in-memory database
-- **Cursor Effect:** AI generates **portable, database-agnostic queries** that work across environments.
-- **Reference:** See `@~/.agent-os/lessons-learned/2025-01-27-deployment-fixes.md` for examples.
+**Pattern**: Complete DTO hierarchy with validation and builder patterns
 
-## 9. Repository Method Signatures
-- **Rule:** Follow Spring Data JPA constraints for repository methods.
-- **Actions:**
-  - Never return `Optional<Entity>` with `Pageable` parameter - use `List<Entity>`
-  - Add @DataJpaTest for all repositories
-  - Validate method signatures in code reviews
-- **Cursor Effect:** AI generates **Spring Data JPA compliant repository methods**.
+**Implementation**:
+```java
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class RequestDTO {
+    @NotBlank(message = "Field is required")
+    @Size(max = 100, message = "Field must be less than 100 characters")
+    private String field;
+    
+    private String optionalField;
+    private Boolean flag;
+    private LocalDateTime timestamp;
+}
+```
 
-## 10. Container Native Dependencies
-- **Rule:** Document and install all native library dependencies in containers.
-- **Actions:**
-  - For Alpine Linux: `RUN apk add --no-cache libstdc++ libgomp`
-  - Test with production base images during development
-  - Use feature flags for components with native dependencies
-- **Cursor Effect:** AI generates **container-ready Dockerfiles** with proper dependencies.
+**Benefits**:
+- Type-safe API contracts
+- Comprehensive validation
+- Builder pattern for complex objects
+- Clear error messages
 
-## 11. Spring Configuration Validation
-- **Rule:** Provide all required beans and avoid circular dependencies.
-- **Actions:**
-  - Always provide TaskScheduler for WebSocket heartbeat
-  - Never use `allow-circular-references: true` in production
-  - Test configurations with integration tests
-- **Cursor Effect:** AI generates **properly configured Spring components** without circular dependencies.
+### **Entity-Relationship Design Pattern**
 
-## 12. Pre-Deployment Validation
-- **Rule:** Run comprehensive validation before every deployment.
-- **Actions:**
-  - Execute `.agent-os/scripts/validate-deployment.sh`
-  - Check for database-specific functions
-  - Validate repository signatures
-  - Test container startup locally
-- **Cursor Effect:** AI includes **deployment validation steps** in generated CI/CD pipelines.
-- **Reference:** See `@~/.agent-os/enhancements/deployment-validation-framework.md` for framework details.
+**Pattern**: JPA entities with proper relationships and lifecycle management
+
+**Implementation**:
+```java
+@Entity
+@Table(name = "entities")
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Entity {
+    @Id
+    private String id;
+    
+    @Column(nullable = false, length = 100)
+    private String name;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status;
+    
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+    
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+}
+```
+
+**Benefits**:
+- Complete audit trail
+- Version control capabilities
+- Proper indexing and performance
+- Lifecycle management
+
+## 🔧 **Technology Stack Integration**
+
+### **Spring Boot 3.5.3 + Java 21 Standards**
+
+**Validation Pattern**:
+```java
+// Jakarta validation with proper constraint annotations
+@NotBlank(message = "Field is required")
+@Size(max = 100, message = "Field must be less than 100 characters")
+@Email(message = "Invalid email format")
+private String field;
+```
+
+**Repository Pattern**:
+```java
+@Repository
+public interface EntityRepository extends JpaRepository<Entity, String> {
+    List<Entity> findByStatus(Status status);
+    Optional<Entity> findByExternalId(String externalId);
+    
+    @Query("SELECT COUNT(e) FROM Entity e WHERE e.status = :status")
+    long countByStatus(@Param("status") Status status);
+}
+```
+
+**REST Controller Pattern**:
+```java
+@RestController
+@RequestMapping("/api/v1/entities")
+@RequiredArgsConstructor
+public class EntityController {
+    private final EntityService entityService;
+    
+    @PostMapping
+    public ResponseEntity<ResultDTO> createEntity(
+            @Valid @RequestBody RequestDTO request) {
+        try {
+            ResultDTO result = entityService.createEntity(request);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            log.error("Failed to create entity: {}", e.getMessage(), e);
+            return ResponseEntity.badRequest().build();
+        }
+    }
+}
+```
+
+## 📊 **Development Workflow Patterns**
+
+### **Agent OS Standards Compliance**
+
+**Documentation Standards**:
+```java
+/**
+ * Service for entity lifecycle management
+ * 
+ * Handles complete entity lifecycle with:
+ * - AI-assisted operations
+ * - User approval workflows
+ * - Real-time monitoring
+ * - Comprehensive audit trails
+ * 
+ * @author Development Team
+ * @version 1.0
+ * @since 2025-01-27
+ */
+```
+
+**Code Style Standards**:
+- 2 spaces indentation (never tabs)
+- 100 characters max line length
+- PascalCase for classes, camelCase for methods
+- Comprehensive JavaDoc for all public methods
+
+**Validation Standards**:
+- Jakarta validation with proper constraint messages
+- Custom validation annotations when needed
+- Comprehensive error handling with proper HTTP status codes
+
+### **Task Tracking Integration**
+
+**Real-time Updates**:
+- Immediate task completion marking with `[x]`
+- Detailed progress notes explaining accomplishments
+- Session summaries with completed tasks and next priorities
+- Comprehensive task file structure with required sections
+
+**Progress Documentation**:
+```markdown
+- [x] Task 1.1: Design Core Service Architecture ✅ **COMPLETED**
+  - [x] Design AutomationManagementService with lifecycle management ✅ (Implementation details)
+  - [x] Create Home Assistant API integration framework ✅ (Framework details)
+  - **Progress Note**: Core service architecture completed with comprehensive lifecycle management
+```
+
+## 🔒 **Security and Compliance Patterns**
+
+### **Input Validation Pattern**
+
+**Comprehensive Validation**:
+```java
+// Complete validation with proper error messages
+@NotBlank(message = "Field is required")
+@Size(max = 100, message = "Field must be less than 100 characters")
+@Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "Field must contain only alphanumeric characters")
+private String field;
+```
+
+**SQL Injection Prevention**:
+```java
+// JPA with parameterized queries
+@Query("SELECT e FROM Entity e WHERE e.status = :status AND e.createdAt > :date")
+List<Entity> findByStatusAndDate(@Param("status") Status status, @Param("date") LocalDateTime date);
+```
+
+### **Audit Trail Pattern**
+
+**Comprehensive Logging**:
+```java
+// Complete audit trail for compliance
+public void logOperation(String entityId, Object request, Object result) {
+    log.info("Logging operation: {}", entityId);
+    // TODO: Implement comprehensive audit logging
+}
+```
+
+## 🚀 **Performance and Scalability Patterns**
+
+### **Async Processing Pattern**
+
+**Background Processing**:
+```java
+@Async
+public void processOperationAsync(String entityId) {
+    log.info("Starting async processing for entity: {}", entityId);
+    // TODO: Implement background processing
+}
+```
+
+**Caching Strategy**:
+- Redis integration for caching configurations
+- Performance monitoring with real-time metrics
+- Optimization with background processing
+
+## 🧪 **Testing Strategy Patterns**
+
+### **Comprehensive Test Coverage**
+
+**Unit Test Pattern**:
+```java
+@SpringBootTest
+class EntityServiceTest {
+    @MockBean
+    private EntityRepository entityRepository;
+    
+    @Autowired
+    private EntityService entityService;
+    
+    @Test
+    void shouldCreateEntityWithValidation() {
+        // Complete test coverage with proper assertions
+    }
+}
+```
+
+**Integration Test Pattern**:
+```java
+@SpringBootTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+class EntityIntegrationTest {
+    @Test
+    void shouldCompleteEndToEndWorkflow() {
+        // End-to-end workflow testing
+    }
+}
+```
+
+## 📈 **New Patterns from Phase 3**
+
+### **Automation Lifecycle Management Pattern**
+
+**Complete Lifecycle**:
+```java
+public enum EntityStatus {
+    DRAFT,      // Initial state
+    PENDING,    // Waiting for approval
+    ACTIVE,     // Running and operational
+    PAUSED,     // Temporarily disabled
+    RETIRED     // No longer in use
+}
+```
+
+**Version Control Pattern**:
+```java
+@Entity
+@Table(name = "entity_versions")
+public class EntityVersion {
+    @Id
+    private String id;
+    
+    @Column(name = "entity_id", nullable = false)
+    private String entityId;
+    
+    @Column(name = "version_number", nullable = false)
+    private Integer versionNumber;
+    
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String configuration;
+}
+```
+
+### **AI Integration Pattern**
+
+**AI-Assisted Operations**:
+```java
+public class AISuggestion {
+    private String suggestionId;
+    private SuggestionType suggestionType;
+    private Double confidence;
+    private String reasoning;
+    private String configuration;
+    private LocalDateTime createdAt;
+    private Boolean aiGenerated;
+    private String modelVersion;
+}
+```
+
+### **Approval Workflow Pattern**
+
+**Multi-level Approval**:
+```java
+public enum ApprovalStatus {
+    PENDING,    // Waiting for approval
+    APPROVED,   // Approved by user
+    REJECTED,   // Rejected by user
+    EXPIRED,    // Approval request expired
+    CANCELLED   // Approval request cancelled
+}
+```
+
+## 🎯 **Success Metrics**
+
+### **Technical Metrics**
+- **Code Quality**: 100% Agent OS standards compliance
+- **Documentation**: Complete JavaDoc coverage
+- **Validation**: Comprehensive input validation
+- **Error Handling**: Proper exception hierarchy
+
+### **Development Metrics**
+- **Task Completion**: Real-time progress tracking
+- **Code Coverage**: Comprehensive service layer implementation
+- **Performance**: Async processing and caching ready
+- **Security**: Input validation and audit trail implemented
+
+## 📚 **Implementation Guidelines**
+
+### **Service Layer Implementation**
+1. **Orchestration**: Core service orchestrates specialized services
+2. **Dependency Injection**: Proper Spring dependency injection
+3. **Error Handling**: Comprehensive exception handling with proper logging
+4. **Validation**: Complete input validation with proper error messages
+
+### **Data Model Implementation**
+1. **DTO Pattern**: Complete DTO hierarchy with validation
+2. **Entity Design**: JPA entities with proper relationships
+3. **Repository Pattern**: Advanced query methods with proper indexing
+4. **Version Control**: Complete audit trail and version control
+
+### **API Design Implementation**
+1. **RESTful Design**: Proper HTTP methods and status codes
+2. **Validation**: Comprehensive input validation
+3. **Documentation**: Complete API documentation with examples
+4. **Error Handling**: Proper exception handling with HTTP status codes
+
+### **Development Workflow Implementation**
+1. **Agent OS Compliance**: Following all established standards
+2. **Task Tracking**: Real-time progress updates
+3. **Git Workflow**: Feature-based commits with comprehensive messages
+4. **Documentation**: Complete JavaDoc and progress notes
+
+---
+
+**Status**: Active Standards  
+**Framework**: Agent OS Standards + Context7 Integration  
+**Next Review**: Weekly during development
