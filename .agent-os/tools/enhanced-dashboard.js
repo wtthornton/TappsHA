@@ -12,44 +12,85 @@ const url = require('url');
 
 class EnhancedDashboard {
   constructor() {
-    this.port = process.env.DASHBOARD_PORT || 3001;
-    this.dashboardPath = path.join(__dirname, '../reports/dashboard');
-    this.metricsPath = path.join(__dirname, '../reports/live-metrics.json');
-    this.historyPath = path.join(__dirname, '../reports/compliance-history.json');
-    
-    // Ensure dashboard directory exists
-    if (!fs.existsSync(this.dashboardPath)) {
-      fs.mkdirSync(this.dashboardPath, { recursive: true });
+    try {
+      this.port = parseInt(process.env.DASHBOARD_PORT) || 3001;
+      
+      // Validate port number
+      if (this.port < 1024 || this.port > 65535) {
+        throw new Error('Port must be between 1024 and 65535');
+      }
+      
+      this.dashboardPath = path.join(__dirname, '../reports/dashboard');
+      this.metricsPath = path.join(__dirname, '../reports/live-metrics.json');
+      this.historyPath = path.join(__dirname, '../reports/compliance-history.json');
+      
+      // Ensure dashboard directory exists
+      try {
+        if (!fs.existsSync(this.dashboardPath)) {
+          fs.mkdirSync(this.dashboardPath, { recursive: true });
+        }
+      } catch (error) {
+        console.error('Failed to create dashboard directory:', error.message);
+        throw error;
+      }
+      
+      this.server = null;
+      this.clients = new Set();
+      this.isAutoRefreshEnabled = false;
+      this.refreshInterval = 30000; // Default to 30 seconds
+      this.lastRefreshTime = Date.now();
+      this.refreshTimer = null;
+      this.startTime = Date.now();
+      this.totalRequests = 0;
+      
+      console.log('✅ EnhancedDashboard initialized successfully');
+    } catch (error) {
+      console.error('❌ Failed to initialize EnhancedDashboard:', error.message);
+      throw error;
     }
-    
-    this.server = null;
-    this.clients = new Set();
-    this.isAutoRefreshEnabled = false;
-    this.refreshInterval = 30000; // Default to 30 seconds
-    this.lastRefreshTime = Date.now();
-    this.refreshTimer = null;
-    this.startTime = Date.now();
-    this.totalRequests = 0;
   }
 
   /**
    * Start the enhanced dashboard server with auto-refresh capabilities
    */
   start() {
-    console.log('🚀 Starting Enhanced Agent-OS Dashboard...');
-    console.log(`📊 Dashboard available at: http://localhost:${this.port}`);
-    console.log(`📈 Real-time metrics: http://localhost:${this.port}/metrics`);
-    console.log(`🔄 Auto-refresh: Enabled with configurable intervals`);
-    
-    this.server = http.createServer((req, res) => {
-      this.handleRequest(req, res);
-    });
+    try {
+      console.log('🚀 Starting Enhanced Agent-OS Dashboard...');
+      console.log(`📊 Dashboard available at: http://localhost:${this.port}`);
+      console.log(`📈 Real-time metrics: http://localhost:${this.port}/metrics`);
+      console.log(`🔄 Auto-refresh: Enabled with configurable intervals`);
+      
+      this.server = http.createServer((req, res) => {
+        try {
+          this.totalRequests++;
+          this.handleRequest(req, res);
+        } catch (error) {
+          console.error('Error handling request:', error.message);
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Internal server error' }));
+        }
+      });
 
-    this.server.listen(this.port, () => {
-      console.log(`✅ Enhanced dashboard running on port ${this.port}`);
-      this.generateDashboardHTML();
-      this.startAutoRefresh();
-    });
+      this.server.on('error', (error) => {
+        console.error('Server error:', error.message);
+        if (error.code === 'EADDRINUSE') {
+          console.error(`Port ${this.port} is already in use`);
+        }
+      });
+
+      this.server.listen(this.port, () => {
+        console.log(`✅ Enhanced dashboard running on port ${this.port}`);
+        try {
+          this.generateDashboardHTML();
+          this.startAutoRefresh();
+        } catch (error) {
+          console.error('Error during startup:', error.message);
+        }
+      });
+    } catch (error) {
+      console.error('❌ Failed to start dashboard:', error.message);
+      throw error;
+    }
   }
 
   /**
@@ -143,40 +184,59 @@ class EnhancedDashboard {
    * Handle auto-refresh configuration requests
    */
   handleAutoRefreshConfig(req, res) {
-    const parsedUrl = url.parse(req.url, true);
-    const { action, interval } = parsedUrl.query;
-    
-    switch (action) {
-      case 'enable':
-        this.isAutoRefreshEnabled = true;
-        break;
-      case 'disable':
-        this.isAutoRefreshEnabled = false;
-        break;
-      case 'setInterval':
-        if (interval) {
-          const newInterval = parseInt(interval);
-          if (newInterval >= 5000) { // Minimum 5 seconds
+    try {
+      const parsedUrl = url.parse(req.url, true);
+      const { action, interval } = parsedUrl.query;
+      
+      if (!action || typeof action !== 'string') {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Invalid action parameter' }));
+        return;
+      }
+      
+      switch (action) {
+        case 'enable':
+          this.isAutoRefreshEnabled = true;
+          break;
+        case 'disable':
+          this.isAutoRefreshEnabled = false;
+          break;
+        case 'setInterval':
+          if (interval) {
+            const newInterval = parseInt(interval);
+            if (isNaN(newInterval) || newInterval < 5000) {
+              res.writeHead(400, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ error: 'Interval must be at least 5000ms' }));
+              return;
+            }
             this.refreshInterval = newInterval;
             this.restartAutoRefresh();
           }
-        }
-        break;
-      case 'refresh':
-        this.refreshDashboard();
-        break;
+          break;
+        case 'refresh':
+          this.refreshDashboard();
+          break;
+        default:
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Invalid action' }));
+          return;
+      }
+      
+      // Return current configuration
+      const config = {
+        isEnabled: this.isAutoRefreshEnabled,
+        interval: this.refreshInterval,
+        lastRefresh: this.lastRefreshTime,
+        nextRefresh: this.lastRefreshTime + this.refreshInterval
+      };
+      
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(config));
+    } catch (error) {
+      console.error('Error handling auto-refresh config:', error.message);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Internal server error' }));
     }
-    
-    // Return current configuration
-    const config = {
-      isEnabled: this.isAutoRefreshEnabled,
-      interval: this.refreshInterval,
-      lastRefresh: this.lastRefreshTime,
-      nextRefresh: this.lastRefreshTime + this.refreshInterval
-    };
-    
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(config));
   }
 
   /**
@@ -200,14 +260,29 @@ class EnhancedDashboard {
    * Notify connected WebSocket clients
    */
   notifyClients(data) {
+    const disconnectedClients = [];
+    
     this.clients.forEach(client => {
       try {
-        client.send(JSON.stringify(data));
+        if (client.writable && !client.destroyed) {
+          client.write(`data: ${JSON.stringify(data)}\n\n`);
+        } else {
+          disconnectedClients.push(client);
+        }
       } catch (error) {
-        // Remove disconnected clients
-        this.clients.delete(client);
+        console.warn('Failed to notify client:', error.message);
+        disconnectedClients.push(client);
       }
     });
+    
+    // Clean up disconnected clients
+    disconnectedClients.forEach(client => {
+      this.clients.delete(client);
+    });
+    
+    if (disconnectedClients.length > 0) {
+      console.log(`Cleaned up ${disconnectedClients.length} disconnected clients`);
+    }
   }
 
   /**
@@ -353,36 +428,74 @@ class EnhancedDashboard {
    * Serve live metrics with Server-Sent Events
    */
   serveLiveMetrics(req, res) {
-    res.writeHead(200, {
-      'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache',
-      'Connection': 'keep-alive'
-    });
+    try {
+      res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Cache-Control'
+      });
 
-    // Add client to set
-    this.clients.add(res);
+      // Add client to set
+      this.clients.add(res);
 
-    // Send initial data
-    const metrics = this.getCurrentMetrics();
-    res.write(`data: ${JSON.stringify(metrics)}\n\n`);
+      // Send initial data
+      const metrics = this.getCurrentMetrics();
+      res.write(`data: ${JSON.stringify(metrics)}\n\n`);
 
-    // Remove client when connection closes
-    req.on('close', () => {
-      this.clients.delete(res);
-    });
+      // Send heartbeat every 30 seconds
+      const heartbeat = setInterval(() => {
+        if (res.writable && !res.destroyed) {
+          res.write(`: heartbeat\n\n`);
+        } else {
+          clearInterval(heartbeat);
+          this.clients.delete(res);
+        }
+      }, 30000);
+
+      // Remove client when connection closes
+      req.on('close', () => {
+        clearInterval(heartbeat);
+        this.clients.delete(res);
+        console.log('Client disconnected from live metrics');
+      });
+
+      req.on('error', (error) => {
+        console.error('Error in live metrics connection:', error.message);
+        clearInterval(heartbeat);
+        this.clients.delete(res);
+      });
+
+    } catch (error) {
+      console.error('Error setting up live metrics:', error.message);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Failed to setup live metrics' }));
+    }
   }
 
   /**
    * Calculate performance metrics
    */
-  calculatePerformanceMetrics() {
-    return {
-      averageProcessingTime: 150,
-      totalFilesProcessed: 152,
-      processingEfficiency: 85,
-      memoryUsage: 45,
-      cpuUsage: 30
-    };
+  calculatePerformanceMetrics(metrics = {}) {
+    try {
+      return {
+        averageProcessingTime: metrics.averageProcessingTime || 150,
+        totalFilesProcessed: metrics.filesProcessed || 152,
+        processingEfficiency: metrics.processingEfficiency || 85,
+        memoryUsage: metrics.memoryUsage || 45,
+        cpuUsage: metrics.cpuUsage || 30
+      };
+    } catch (error) {
+      console.error('Error calculating performance metrics:', error.message);
+      return {
+        averageProcessingTime: 150,
+        totalFilesProcessed: 152,
+        processingEfficiency: 85,
+        memoryUsage: 45,
+        cpuUsage: 30
+      };
+    }
   }
 
   /**
@@ -441,7 +554,7 @@ class EnhancedDashboard {
     baseMetrics.complianceTrend = complianceTrend;
     
     // Add performance metrics
-    const performanceMetrics = this.calculatePerformanceMetrics();
+    const performanceMetrics = this.calculatePerformanceMetrics(baseMetrics);
     Object.assign(baseMetrics, performanceMetrics);
     
     return this.enhanceMetrics(baseMetrics);
@@ -451,35 +564,45 @@ class EnhancedDashboard {
    * Enhance metrics with performance monitoring features
    */
   enhanceMetrics(metrics) {
-    const enhanced = {
-      ...metrics,
-      timestamp: new Date().toISOString(),
-      complianceScore: this.calculateRealTimeComplianceScore(metrics),
-      complianceTrend: this.calculateComplianceTrend(metrics),
-      compliancePrediction: this.predictComplianceScore(metrics),
-      complianceConfidence: this.calculateComplianceConfidence(metrics),
-      performance: this.calculatePerformanceMetrics(metrics),
-      realTimeUpdates: {
-        lastUpdate: new Date().toISOString(),
-        updateFrequency: 'real-time',
-        nextUpdate: new Date(Date.now() + 30000).toISOString(), // 30 seconds
-        isLive: true
-      },
-      visualIndicators: {
-        ringColor: this.getComplianceRingColor(metrics.complianceScore || 0),
-        animationState: this.getComplianceAnimationState(metrics),
-        pulseIntensity: this.calculatePulseIntensity(metrics),
-        glowEffect: this.calculateGlowEffect(metrics)
-      },
-      trendAnalysis: {
-        shortTerm: this.calculateShortTermTrend(metrics),
-        mediumTerm: this.calculateMediumTermTrend(metrics),
-        longTerm: this.calculateLongTermTrend(metrics),
-        volatility: this.calculateComplianceVolatility(metrics)
+    try {
+      if (!metrics || typeof metrics !== 'object') {
+        console.warn('Invalid metrics provided to enhanceMetrics, using defaults');
+        metrics = this.getDefaultMetrics();
       }
-    };
 
-    return enhanced;
+      const enhanced = {
+        ...metrics,
+        timestamp: new Date().toISOString(),
+        complianceScore: this.calculateRealTimeComplianceScore(metrics),
+        complianceTrend: this.calculateComplianceTrend(metrics),
+        compliancePrediction: this.predictComplianceScore(metrics),
+        complianceConfidence: this.calculateComplianceConfidence(metrics),
+        performance: this.calculatePerformanceMetrics(metrics),
+        realTimeUpdates: {
+          lastUpdate: new Date().toISOString(),
+          updateFrequency: 'real-time',
+          nextUpdate: new Date(Date.now() + 30000).toISOString(), // 30 seconds
+          isLive: true
+        },
+        visualIndicators: {
+          ringColor: this.getComplianceRingColor(metrics.complianceScore || 0),
+          animationState: this.getComplianceAnimationState(metrics),
+          pulseIntensity: this.calculatePulseIntensity(metrics),
+          glowEffect: this.calculateGlowEffect(metrics)
+        },
+        trendAnalysis: {
+          shortTerm: this.calculateShortTermTrend(metrics),
+          mediumTerm: this.calculateMediumTermTrend(metrics),
+          longTerm: this.calculateLongTermTrend(metrics),
+          volatility: this.calculateComplianceVolatility(metrics)
+        }
+      };
+
+      return enhanced;
+    } catch (error) {
+      console.error('Error enhancing metrics:', error.message);
+      return this.getDefaultMetrics();
+    }
   }
 
   /**
@@ -1592,25 +1715,72 @@ class EnhancedDashboard {
    * Update live metrics for all connected clients
    */
   updateLiveMetrics(metrics) {
-    const eventData = `data: ${JSON.stringify(metrics)}\n\n`;
-    
-    this.clients.forEach(client => {
-      try {
-        client.send(eventData);
-      } catch (error) {
-        // Remove disconnected clients
-        this.clients.delete(client);
+    try {
+      if (!metrics || typeof metrics !== 'object') {
+        console.warn('Invalid metrics provided to updateLiveMetrics');
+        return;
       }
-    });
+
+      const eventData = `data: ${JSON.stringify(metrics)}\n\n`;
+      const disconnectedClients = [];
+      
+      this.clients.forEach(client => {
+        try {
+          if (client.writable && !client.destroyed) {
+            client.write(eventData);
+          } else {
+            disconnectedClients.push(client);
+          }
+        } catch (error) {
+          console.warn('Failed to update client:', error.message);
+          disconnectedClients.push(client);
+        }
+      });
+      
+      // Clean up disconnected clients
+      disconnectedClients.forEach(client => {
+        this.clients.delete(client);
+      });
+      
+      if (disconnectedClients.length > 0) {
+        console.log(`Cleaned up ${disconnectedClients.length} disconnected clients during update`);
+      }
+    } catch (error) {
+      console.error('Error updating live metrics:', error.message);
+    }
   }
 
   /**
    * Stop the dashboard server
    */
   stop() {
-    if (this.server) {
-      this.server.close();
-      console.log('🛑 Enhanced dashboard stopped');
+    try {
+      // Clear refresh timer
+      if (this.refreshTimer) {
+        clearInterval(this.refreshTimer);
+        this.refreshTimer = null;
+      }
+      
+      // Close all client connections
+      this.clients.forEach(client => {
+        try {
+          if (client.writable && !client.destroyed) {
+            client.end();
+          }
+        } catch (error) {
+          console.warn('Error closing client connection:', error.message);
+        }
+      });
+      this.clients.clear();
+      
+      // Close server
+      if (this.server) {
+        this.server.close(() => {
+          console.log('🛑 Enhanced dashboard stopped');
+        });
+      }
+    } catch (error) {
+      console.error('Error stopping dashboard:', error.message);
     }
   }
 }
