@@ -7,8 +7,9 @@
  * Usage: node .agent-os/tools/full-compliance-check.js
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 class FullComplianceCheck {
   constructor() {
@@ -30,6 +31,8 @@ class FullComplianceCheck {
   }
 
   loadStandards() {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
     const standardsPath = path.join(__dirname, '../standards');
     const standards = {};
 
@@ -55,6 +58,8 @@ class FullComplianceCheck {
   }
 
   loadHistoricalData() {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
     const historyPath = path.join(__dirname, '../reports/compliance-history.json');
     try {
       if (fs.existsSync(historyPath)) {
@@ -67,6 +72,8 @@ class FullComplianceCheck {
   }
 
   saveHistoricalData() {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
     const historyPath = path.join(__dirname, '../reports/compliance-history.json');
     
     const historyEntry = {
@@ -343,7 +350,9 @@ class FullComplianceCheck {
     return violations;
   }
 
-  validateCodebase(codebasePath = '.') {
+  async validateCodebase(codebasePath = '.') {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
     console.log('🔍 Running comprehensive compliance check...');
     
     const patterns = [
@@ -361,7 +370,7 @@ class FullComplianceCheck {
     let totalFiles = 0;
     let totalViolations = 0;
 
-    patterns.forEach(pattern => {
+    for (const pattern of patterns) {
       const ignorePatterns = [
         'node_modules/**', 
         'target/**', 
@@ -378,10 +387,10 @@ class FullComplianceCheck {
       ];
       
       try {
-        const glob = require('glob');
-        const files = glob.sync(pattern, { cwd: codebasePath, ignore: ignorePatterns });
+        const glob = await import('glob');
+        const files = glob.globSync(pattern, { cwd: codebasePath, ignore: ignorePatterns });
         
-        files.forEach(file => {
+        for (const file of files) {
           const fullPath = path.join(codebasePath, file);
           try {
             const content = fs.readFileSync(fullPath, 'utf8');
@@ -397,11 +406,11 @@ class FullComplianceCheck {
           } catch (error) {
             console.warn(`⚠️  Could not read file: ${file}`);
           }
-        });
+        }
       } catch (error) {
         console.warn(`⚠️  Could not process pattern: ${pattern}`, error.message);
       }
-    });
+    }
 
     // Calculate compliance based on files with violations vs total files
     const filesWithViolations = this.violations.reduce((acc, violation) => {
@@ -740,7 +749,7 @@ class FullComplianceCheck {
 }
 
 // Run the compliance check if this file is executed directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   const checker = new FullComplianceCheck();
   checker.run().catch(error => {
     console.error('❌ Full compliance check failed:', error);
@@ -748,4 +757,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = FullComplianceCheck; 
+export default FullComplianceCheck; 

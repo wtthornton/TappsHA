@@ -1229,6 +1229,7 @@ class ComplianceChecker {
     // Check if we should include .agent-os files
     const includeAgentOS = process.argv.includes('--include-agent-os') || process.argv.includes('-a');
     
+    // Enhanced patterns with better coverage
     const patterns = [
       '**/*.java',
       '**/*.ts',
@@ -1239,37 +1240,131 @@ class ComplianceChecker {
       '**/*.json',
       '**/*.yml',
       '**/*.yaml',
+      '**/*.md',
+      '**/*.mdx',
     ];
+
+    // Enhanced ignore patterns for better performance
+    const ignorePatterns = [
+      'node_modules/**',
+      'target/**',
+      'dist/**',
+      'build/**',
+      '.git/**',
+      '.vscode/**',
+      '.idea/**',
+      '*.log',
+      '*.tmp',
+      '*.cache',
+      'coverage/**',
+      'test-results/**',
+      'playwright-report/**',
+      '*.webm',
+      '*.png',
+      '*.jpg',
+      '*.jpeg',
+      '*.gif',
+      '*.ico',
+      '*.svg',
+      '*.woff',
+      '*.woff2',
+      '*.ttf',
+      '*.eot',
+      'package-lock.json',
+      'yarn.lock',
+      'pnpm-lock.yaml',
+    ];
+    
+    // By default, exclude .agent-os files unless explicitly requested
+    if (!includeAgentOS) {
+      ignorePatterns.push('.agent-os/**');
+    }
+    
+    // Enhanced: Add project-specific ignore patterns
+    if (codebasePath === '.' || codebasePath === './') {
+      // When running from project root, add common project ignores
+      ignorePatterns.push(
+        'frontend/node_modules/**',
+        'backend/target/**',
+        'backend/build/**',
+        'monitoring/data/**',
+        'logs/**',
+        'temp/**',
+        'tmp/**'
+      );
+    }
 
     let totalFiles = 0;
     let totalViolations = 0;
+    const startTime = Date.now();
 
-    for (const pattern of patterns) {
-      const ignorePatterns = ['node_modules/**', 'target/**', 'dist/**'];
+    console.log(`📁 Scanning files in: ${path.resolve(codebasePath)}`);
+    console.log(`🚫 Ignoring patterns: ${ignorePatterns.slice(0, 5).join(', ')}...`);
+
+    // Enhanced: Use a single optimized file scan instead of multiple pattern scans
+    const allFiles = this.findAllFiles(codebasePath, patterns, ignorePatterns);
+    
+    console.log(`📊 Found ${allFiles.length} files to process`);
+
+    // Enhanced: Process files with parallel processing and caching
+    let processedFiles = 0;
+    const batchSize = 25; // Smaller batches for better parallel processing
+    const maxConcurrency = 4; // Limit concurrent operations
+    
+    // File content cache to avoid re-reading files
+    const fileCache = new Map();
+    
+    // Process files in parallel batches
+    for (let i = 0; i < allFiles.length; i += batchSize) {
+      const batch = allFiles.slice(i, i + batchSize);
+      const batchPromises = [];
       
-      // By default, exclude .agent-os files unless explicitly requested
-      if (!includeAgentOS) {
-        ignorePatterns.push('.agent-os/**');
+      // Process batch with controlled concurrency
+      for (let j = 0; j < batch.length; j += maxConcurrency) {
+        const concurrentBatch = batch.slice(j, j + maxConcurrency);
+        const concurrentPromises = concurrentBatch.map(async (file) => {
+          try {
+            const fullPath = path.isAbsolute(file) ? file : path.join(codebasePath, file);
+            
+            // Check cache first
+            let content;
+            const cacheKey = fullPath;
+            if (fileCache.has(cacheKey)) {
+              content = fileCache.get(cacheKey);
+            } else {
+              content = fs.readFileSync(fullPath, 'utf8');
+              fileCache.set(cacheKey, content);
+            }
+            
+            const violations = this.validateCode(file, content);
+            
+            if (violations.length > 0) {
+              this.violations.push(...violations);
+              totalViolations += violations.length;
+            }
+            
+            totalFiles++;
+            this.totalChecks++;
+            processedFiles++;
+            
+            return { file, violations: violations.length };
+          } catch (error) {
+            console.warn(`⚠️  Could not read file: ${file} - ${error.message}`);
+            return { file, error: error.message };
+          }
+        });
+        
+        batchPromises.push(...concurrentPromises);
       }
       
-      const files = this.findFiles(pattern, { cwd: codebasePath, ignore: ignorePatterns });
+      // Wait for current batch to complete
+      const batchResults = await Promise.all(batchPromises);
       
-      for (const file of files) {
-        const fullPath = path.join(codebasePath, file);
-        try {
-          const content = fs.readFileSync(fullPath, 'utf8');
-          const violations = this.validateCode(file, content);
-          
-          if (violations.length > 0) {
-            this.violations.push(...violations);
-            totalViolations += violations.length;
-          }
-          
-          totalFiles++;
-          this.totalChecks++;
-        } catch (error) {
-          console.warn(`⚠️  Could not read file: ${file}`);
-        }
+      // Progress indicator with enhanced metrics
+      if (processedFiles % 50 === 0 || processedFiles === allFiles.length) {
+        const avgTime = this.metrics.executionTime / processedFiles;
+        const estimatedRemaining = (allFiles.length - processedFiles) * avgTime;
+        console.log(`⏳ Processed ${processedFiles}/${allFiles.length} files (${Math.round(processedFiles/allFiles.length*100)}%) - Est. remaining: ${Math.round(estimatedRemaining)}ms`);
       }
     }
 
@@ -1284,8 +1379,31 @@ class ComplianceChecker {
     this.passedChecks = this.totalChecks - filesWithViolations;
     this.complianceScore = Math.max(0, Math.round((this.passedChecks / this.totalChecks) * 100));
 
-    // Enhanced: Calculate execution time
+    // Enhanced: Calculate execution time and memory usage
     this.metrics.executionTime = Date.now() - this.metrics.startTime;
+    
+    // Memory usage monitoring
+    const memUsage = process.memoryUsage();
+    this.metrics.memoryUsage = {
+      rss: Math.round(memUsage.rss / 1024 / 1024), // MB
+      heapUsed: Math.round(memUsage.heapUsed / 1024 / 1024), // MB
+      heapTotal: Math.round(memUsage.heapTotal / 1024 / 1024), // MB
+      external: Math.round(memUsage.external / 1024 / 1024), // MB
+    };
+    
+    // Cache performance metrics
+    this.metrics.cachePerformance = {
+      cacheHits: fileCache.size,
+      cacheEfficiency: Math.round((fileCache.size / totalFiles) * 100),
+    };
+
+    console.log(`✅ Processing complete: ${totalFiles} files, ${totalViolations} violations`);
+    console.log(`⏱️  Execution time: ${this.metrics.executionTime}ms`);
+    console.log(`💾 Memory usage: ${this.metrics.memoryUsage.heapUsed}MB heap, ${this.metrics.memoryUsage.rss}MB total`);
+    console.log(`📦 Cache efficiency: ${this.metrics.cachePerformance.cacheEfficiency}%`);
+    
+    // Clear cache to free memory
+    fileCache.clear();
 
     // Enhanced: Save historical data
     this.saveHistoricalData();
@@ -1300,6 +1418,71 @@ class ComplianceChecker {
       violations: this.violations,
       metrics: this.metrics,
     };
+  }
+
+  // NEW: Optimized file finding method
+  findAllFiles(codebasePath, patterns, ignorePatterns) {
+    const files = [];
+    const processedDirs = new Set();
+    
+    try {
+      const findFilesRecursive = (dir, baseDir = '') => {
+        // Skip if directory has already been processed
+        const normalizedDir = path.normalize(dir);
+        if (processedDirs.has(normalizedDir)) {
+          return;
+        }
+        processedDirs.add(normalizedDir);
+        
+        console.log(`🔍 Scanning directory: ${dir}`);
+        const items = fs.readdirSync(dir);
+        console.log(`📁 Found ${items.length} items in ${dir}`);
+        
+        for (const item of items) {
+          const fullPath = path.join(dir, item);
+          const relativePath = path.join(baseDir, item);
+          const stats = fs.statSync(fullPath);
+          
+          // Enhanced: More efficient ignore pattern checking
+          const shouldIgnore = ignorePatterns.some(ignorePattern => {
+            if (ignorePattern.includes('**')) {
+              const pattern = ignorePattern.replace(/\*\*/g, '.*').replace(/\*/g, '[^/]*').replace(/\./g, '\\.');
+              return new RegExp(pattern).test(relativePath);
+            }
+            return relativePath.includes(ignorePattern.replace('**', ''));
+          });
+          
+          if (shouldIgnore) {
+            console.log(`🚫 Ignoring: ${relativePath}`);
+            continue;
+          }
+          
+          if (stats.isDirectory()) {
+            // Skip directories that are likely to be large and uninteresting
+            if (item === 'node_modules' || item === 'target' || item === 'dist' || item === 'build') {
+              console.log(`🚫 Skipping large directory: ${relativePath}`);
+              continue;
+            }
+            findFilesRecursive(fullPath, relativePath);
+          } else if (stats.isFile()) {
+            // Check if file matches any of the patterns
+            const matchesPattern = patterns.some(pattern => this.matchesPattern(relativePath, pattern));
+            if (matchesPattern) {
+              console.log(`✅ Found matching file: ${relativePath}`);
+              files.push(relativePath);
+            } else {
+              console.log(`❌ File doesn't match patterns: ${relativePath}`);
+            }
+          }
+        }
+      };
+      
+      findFilesRecursive(codebasePath);
+    } catch (error) {
+      console.warn('⚠️ Error finding files:', error.message);
+    }
+    
+    return files;
   }
 
   // Enhanced: Generate analytics report
@@ -2541,20 +2724,23 @@ class ComplianceChecker {
   
   // Helper method to check if file matches pattern
   matchesPattern(filePath, pattern) {
+    // Normalize file path to use forward slashes for consistency
+    const normalizedPath = filePath.replace(/\\/g, '/');
+    
     if (pattern.includes('**')) {
-      // Handle glob patterns like '**/*.md'
+      // Handle glob patterns like '**/*.java'
       const regexPattern = pattern
         .replace(/\*\*/g, '.*')
         .replace(/\*/g, '[^/]*')
         .replace(/\./g, '\\.');
-      return new RegExp(regexPattern).test(filePath);
+      return new RegExp(regexPattern).test(normalizedPath);
     } else if (pattern.includes('*')) {
       // Handle simple wildcard patterns
       const regexPattern = pattern.replace(/\*/g, '.*').replace(/\./g, '\\.');
-      return new RegExp(regexPattern).test(filePath);
+      return new RegExp(regexPattern).test(normalizedPath);
     } else {
       // Exact match
-      return filePath === pattern;
+      return normalizedPath === pattern;
     }
   }
 
@@ -7818,8 +8004,6 @@ class ComplianceChecker {
       '*.ipr',
       '*.iws',
       '.settings/**',
-      '.project',
-      '.classpath',
       '*.suo',
       '*.ntvs*',
       '*.njsproj',

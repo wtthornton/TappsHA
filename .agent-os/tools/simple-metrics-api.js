@@ -23,6 +23,19 @@ class SimpleMetricsAPI {
     this.effectivenessPath = path.join(__dirname, '../reports/effectiveness-metrics.json');
     
     this.server = null;
+    
+    // Performance optimizations: Add caching
+    this.cache = new Map();
+    this.cacheTimeout = 30000; // 30 seconds
+    this.lastCacheCleanup = Date.now();
+    
+    // Performance monitoring
+    this.performanceMetrics = {
+      requestCount: 0,
+      averageResponseTime: 0,
+      cacheHits: 0,
+      cacheMisses: 0
+    };
   }
 
   /**
@@ -55,7 +68,48 @@ class SimpleMetricsAPI {
   }
 
   /**
-   * Start auto-refresh functionality
+   * Get cached data with performance monitoring
+   */
+  getCachedData(key) {
+    const cached = this.cache.get(key);
+    if (cached && Date.now() - cached.timestamp < this.cacheTimeout) {
+      this.performanceMetrics.cacheHits++;
+      return cached.data;
+    }
+    this.performanceMetrics.cacheMisses++;
+    return null;
+  }
+
+  /**
+   * Set cached data with timestamp
+   */
+  setCachedData(key, data) {
+    this.cache.set(key, {
+      data,
+      timestamp: Date.now()
+    });
+    
+    // Cleanup old cache entries periodically
+    if (Date.now() - this.lastCacheCleanup > 60000) { // Every minute
+      this.cleanupCache();
+    }
+  }
+
+  /**
+   * Cleanup expired cache entries
+   */
+  cleanupCache() {
+    const now = Date.now();
+    for (const [key, value] of this.cache.entries()) {
+      if (now - value.timestamp > this.cacheTimeout) {
+        this.cache.delete(key);
+      }
+    }
+    this.lastCacheCleanup = now;
+  }
+
+  /**
+   * Start auto-refresh functionality with cache management
    */
   startAutoRefresh() {
     this.refreshInterval = 30000; // 30 seconds
@@ -65,6 +119,7 @@ class SimpleMetricsAPI {
     this.refreshTimer = setInterval(() => {
       if (this.isAutoRefreshEnabled) {
         this.refreshMetrics();
+        this.cleanupCache(); // Cleanup cache during refresh
       }
     }, this.refreshInterval);
     
@@ -72,46 +127,89 @@ class SimpleMetricsAPI {
   }
 
   /**
-   * Refresh metrics data
+   * Refresh metrics data with performance optimizations
    */
   refreshMetrics() {
     try {
-      const metrics = this.getCurrentMetrics();
-      const history = this.getHistoricalData();
+      const startTime = Date.now();
       
-      // Add current metrics to history
-      history.push({
+      // Parallel data collection for better performance
+      const [metrics, history] = Promise.all([
+        this.getCurrentMetrics(),
+        this.getHistoricalData()
+      ]);
+      
+      // Enhanced: Add current metrics to history with validation
+      const newEntry = {
         timestamp: new Date().toISOString(),
         ...metrics
-      });
+      };
       
-      // Keep only last 100 entries
-      if (history.length > 100) {
-        history.splice(0, history.length - 100);
+      // Validate entry before adding
+      if (this.validateMetricsEntry(newEntry)) {
+        history.push(newEntry);
+        
+        // Optimized: Keep only last 100 entries with efficient array management
+        if (history.length > 100) {
+          history.splice(0, history.length - 100);
+        }
+        
+        // Parallel file operations for better performance
+        Promise.all([
+          this.saveHistoricalData(history),
+          this.saveCurrentMetrics(metrics)
+        ]).then(() => {
+          this.lastRefreshTime = Date.now();
+          const refreshTime = Date.now() - startTime;
+          console.log(`🔄 Metrics refreshed in ${refreshTime}ms at ${new Date().toLocaleTimeString()}`);
+        }).catch(error => {
+          console.error('❌ Error during metrics refresh:', error.message);
+        });
       }
-      
-      // Save updated history
-      this.saveHistoricalData(history);
-      
-      // Save current metrics
-      fs.writeFileSync(this.metricsPath, JSON.stringify(metrics, null, 2));
-      
-      this.lastRefreshTime = Date.now();
-      console.log(`🔄 Metrics refreshed at ${new Date().toLocaleTimeString()}`);
     } catch (error) {
       console.error('❌ Error refreshing metrics:', error.message);
     }
   }
 
   /**
-   * Save historical data
+   * Validate metrics entry before adding to history
+   */
+  validateMetricsEntry(entry) {
+    return entry && 
+           typeof entry.timestamp === 'string' &&
+           entry.timestamp.length > 0 &&
+           typeof entry.totalFiles === 'number' &&
+           typeof entry.totalViolations === 'number';
+  }
+
+  /**
+   * Save current metrics with performance optimization
+   */
+  saveCurrentMetrics(metrics) {
+    return new Promise((resolve, reject) => {
+      try {
+        fs.writeFileSync(this.metricsPath, JSON.stringify(metrics, null, 2));
+        resolve();
+      } catch (error) {
+        console.error('❌ Error saving current metrics:', error.message);
+        reject(error);
+      }
+    });
+  }
+
+  /**
+   * Save historical data with performance optimization
    */
   saveHistoricalData(history) {
-    try {
-      fs.writeFileSync(this.historyPath, JSON.stringify(history, null, 2));
-    } catch (error) {
-      console.error('❌ Error saving historical data:', error.message);
-    }
+    return new Promise((resolve, reject) => {
+      try {
+        fs.writeFileSync(this.historyPath, JSON.stringify(history, null, 2));
+        resolve();
+      } catch (error) {
+        console.error('❌ Error saving historical data:', error.message);
+        reject(error);
+      }
+    });
   }
 
   /**
@@ -170,11 +268,21 @@ class SimpleMetricsAPI {
   }
 
   /**
-   * Serve current metrics with enhanced data
+   * Serve current metrics with enhanced data and caching
    */
   serveCurrentMetrics(req, res) {
+    const startTime = Date.now();
+    
     try {
-      const metrics = this.getCurrentMetrics();
+      // Check cache first for better performance
+      const cacheKey = 'current_metrics';
+      let metrics = this.getCachedData(cacheKey);
+      
+      if (!metrics) {
+        metrics = this.getCurrentMetrics();
+        this.setCachedData(cacheKey, metrics);
+      }
+      
       const response = {
         timestamp: new Date().toISOString(),
         status: 'success',
@@ -184,10 +292,21 @@ class SimpleMetricsAPI {
             version: '1.0.0',
             lastRefresh: this.lastRefreshTime,
             nextRefresh: this.lastRefreshTime + this.refreshInterval,
-            autoRefresh: this.isAutoRefreshEnabled
+            autoRefresh: this.isAutoRefreshEnabled,
+            cache: {
+              hit: !!this.getCachedData(cacheKey),
+              performance: this.performanceMetrics
+            }
           }
         }
       };
+      
+      // Update performance metrics
+      this.performanceMetrics.requestCount++;
+      const responseTime = Date.now() - startTime;
+      this.performanceMetrics.averageResponseTime = 
+        (this.performanceMetrics.averageResponseTime * (this.performanceMetrics.requestCount - 1) + responseTime) / 
+        this.performanceMetrics.requestCount;
       
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(response, null, 2));
