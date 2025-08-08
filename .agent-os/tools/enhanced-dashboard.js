@@ -365,6 +365,12 @@ class EnhancedDashboard {
       case '/api/status':
         this.serveStatus(req, res);
         break;
+      case '/lessons':
+        this.serveLessons(req, res);
+        break;
+      case '/performance-metrics':
+        this.servePerformanceMetrics(req, res);
+        break;
       default:
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Not Found');
@@ -1709,7 +1715,7 @@ class EnhancedDashboard {
   }
 
   /**
-   * Generate enhanced HTML dashboard with modern design and real-time features
+   * Generate enhanced HTML dashboard with multi-tab interface and all unified features
    */
   generateDashboardHTML() {
     const metrics = this.getCurrentMetrics();
@@ -1722,7 +1728,7 @@ class EnhancedDashboard {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent-OS Real-Time Dashboard</title>
+    <title>Agent-OS Unified Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -1742,7 +1748,35 @@ class EnhancedDashboard {
         }
     </script>
     <style>
-        /* Custom animations for Agent-OS dashboard */
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary-color: #007bff;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #6c757d;
+            --border-radius: 8px;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --transition-speed: 0.2s ease;
+            --lessons-color: #6f42c1;
+            --metrics-color: #fd7e14;
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #1a1a1a;
+                --card-background: #2d2d2d;
+                --text-primary: #ffffff;
+                --text-secondary: #b0b0b0;
+            }
+        }
+
+        /* Custom animations */
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -1751,7 +1785,278 @@ class EnhancedDashboard {
         .animate-pulse {
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
+
+        /* Real-time indicators */
+        .real-time-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success-color);
+            animation: pulse 2s infinite;
+            margin-right: 8px;
+        }
+
+        /* Tab styles */
+        .nav-tabs {
+            display: flex;
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: 4px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-speed);
+            font-weight: 500;
+        }
+
+        .nav-tab:hover {
+            background: rgba(0, 123, 255, 0.1);
+            color: var(--primary-color);
+        }
+
+        .nav-tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Tab content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Metrics grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
         
+        .metric-card {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .metric-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+        
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .metric-trend {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .trend-up { color: var(--success-color); }
+        .trend-down { color: var(--danger-color); }
+        .trend-stable { color: var(--info-color); }
+
+        /* Filter section */
+        .filter-section {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-section input,
+        .filter-section select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        .filter-section input:focus,
+        .filter-section select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        /* Export section */
+        .export-section {
+            background: var(--card-background);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .export-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--primary-color);
+            background: var(--card-background);
+            color: var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .export-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Violations */
+        .violation { 
+            margin: 10px 0; 
+            padding: 15px; 
+            border-left: 4px solid; 
+            background: var(--card-background);
+            border-radius: 4px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .critical { border-color: var(--danger-color); background: #f8d7da; }
+        .warning { border-color: var(--warning-color); background: #fff3cd; }
+        
+        /* Analytics sections */
+        .analytics-section {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin: 20px 0;
+        }
+
+        .analytics-section h2 {
+            cursor: pointer;
+            user-select: none;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .analytics-section h2::before {
+            content: '▼';
+            transition: transform var(--transition-speed);
+        }
+
+        .analytics-section.collapsed h2::before {
+            transform: rotate(-90deg);
+        }
+
+        .analytics-section.collapsed > .chart-container,
+        .analytics-section.collapsed > #recentLessons,
+        .analytics-section.collapsed > #riskAssessment {
+            display: none;
+        }
+        
+        .chart-container {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin: 20px 0;
+        }
+
+        .chart-container h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+        
+        .trend-chart {
+            width: 100%;
+            height: 300px;
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        /* Lessons learned specific styles */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .lesson-card {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--lessons-color);
+        }
+
+        .lesson-category {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .category-architecture { background: #e3f2fd; color: #1976d2; }
+        .category-development { background: #f3e5f5; color: #7b1fa2; }
+        .category-testing { background: #e8f5e8; color: #388e3c; }
+        .category-deployment { background: #fff3e0; color: #f57c00; }
+        .category-operations { background: #fce4ec; color: #c2185b; }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -1778,9 +2083,12 @@ class EnhancedDashboard {
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <h1 class="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                        Agent-OS Dashboard
+                        🤖 Agent-OS Unified Dashboard
                     </h1>
-                    <p class="text-gray-600 mt-2">Live monitoring and analytics for your development standards compliance</p>
+                    <p class="text-gray-600 mt-2">
+                        <span class="real-time-indicator"></span>
+                        Real-time monitoring of compliance, lessons learned, and performance metrics
+                    </p>
                     <div class="mt-3 flex flex-wrap gap-2">
                         <a href="/user-guide" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold rounded-lg hover:from-indigo-600 hover:to-purple-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 shadow-lg">
                             📚 User Guide
@@ -1828,352 +2136,469 @@ class EnhancedDashboard {
                 </div>
             </div>
         </div>
-        
-        <!-- Metrics Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-            <!-- Compliance Score Card -->
-            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Compliance Score</h3>
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background: linear-gradient(135deg, #4CAF50, #45a049);">
-                        ✓
-                    </div>
-                </div>
-                
-                <div class="relative w-32 h-32 mx-auto mb-4">
-                    <svg class="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
-                        <circle class="text-gray-200" stroke-width="8" stroke="currentColor" fill="transparent" r="45" cx="60" cy="60"></circle>
-                        <circle class="text-green-500 transition-all duration-1000 ease-in-out" stroke-width="8" stroke-dasharray="283" stroke-dashoffset="${283 - (283 * metrics.complianceScore / 100)}" stroke-linecap="round" stroke="currentColor" fill="transparent" r="45" cx="60" cy="60"></circle>
-                    </svg>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center">
-                        <div class="text-2xl font-bold text-gray-800">${metrics.complianceScore}%</div>
-                        <div class="text-sm text-gray-500">Compliance</div>
-                    </div>
-                </div>
-                
-                <div class="text-center">
-                    <div class="text-sm ${metrics.complianceTrend.change > 0 ? 'text-green-600' : metrics.complianceTrend.change < 0 ? 'text-red-600' : 'text-gray-500'}">
-                        ${metrics.complianceTrend.change > 0 ? '↗' : metrics.complianceTrend.change < 0 ? '↘' : '→'} ${Math.abs(metrics.complianceTrend.change)}%
-                    </div>
-                    <div class="text-xs text-gray-500">${metrics.complianceTrend.message}</div>
-                </div>
-            </div>
+
+        <!-- Navigation tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="compliance" onclick="showTab(this, 'compliance')">📊 Compliance</button>
+            <button class="nav-tab" data-tab="lessons" onclick="showTab(this, 'lessons')">📚 Lessons Learned</button>
+            <button class="nav-tab" data-tab="metrics" onclick="showTab(this, 'metrics')">📈 Performance Metrics</button>
+            <button class="nav-tab" data-tab="analytics" onclick="showTab(this, 'analytics')">🔍 Analytics</button>
+        </div>
+
+        <!-- Compliance Tab -->
+        <div id="complianceTab" class="tab-content active">
+            <div class="score" id="complianceScore">Loading...</div>
             
-            <!-- Violations Card -->
-            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Violations</h3>
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background: linear-gradient(135deg, #f44336, #d32f2f);">
-                        ⚠
-                    </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Critical Violations</div>
+                    <div class="metric-value" id="criticalCount">-</div>
+                    <div class="metric-trend" id="criticalTrend">-</div>
                 </div>
-                
-                <div class="text-center mb-4">
-                    <div class="text-3xl font-bold text-gray-800">${metrics.criticalViolations}</div>
-                    <div class="text-sm text-gray-500">Total Violations</div>
+                <div class="metric-card">
+                    <div class="metric-title">Warning Violations</div>
+                    <div class="metric-value" id="warningCount">-</div>
+                    <div class="metric-trend" id="warningTrend">-</div>
                 </div>
-                
-                <div class="text-center">
-                    <div class="text-sm ${trends.violations < 0 ? 'text-green-600' : trends.violations > 0 ? 'text-red-600' : 'text-gray-500'}">
-                        ${trends.violations < 0 ? '↗' : trends.violations > 0 ? '↘' : '→'} ${Math.abs(trends.violations)}
-                    </div>
-                    <div class="text-xs text-gray-500">vs last period</div>
+                <div class="metric-card">
+                    <div class="metric-title">Info Violations</div>
+                    <div class="metric-value" id="infoCount">-</div>
+                    <div class="metric-trend" id="infoTrend">-</div>
                 </div>
-            </div>
-            
-            <!-- Doctor Status Card -->
-            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Doctor Status</h3>
-                    <div id="doctor-status-pill" class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold bg-gradient-to-br from-gray-400 to-gray-500">?
-                    </div>
-                </div>
-                <div id="doctor-summary" class="text-sm text-gray-600">Loading...</div>
-                <div class="mt-3 flex gap-2">
-                    <a href="/doctor" class="inline-flex items-center px-3 py-1 rounded-md text-sm bg-blue-600 text-white hover:bg-blue-700">View Report</a>
-                    <a href="/doctor-ui" class="inline-flex items-center px-3 py-1 rounded-md text-sm bg-emerald-600 text-white hover:bg-emerald-700">Open Doctor UI</a>
+                <div class="metric-card">
+                    <div class="metric-title">Files Analyzed</div>
+                    <div class="metric-value" id="filesAnalyzed">-</div>
+                    <div class="metric-trend" id="filesTrend">-</div>
                 </div>
             </div>
 
-            <!-- Files Processed Card -->
-            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Files Processed</h3>
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background: linear-gradient(135deg, #2196F3, #1976D2);">
-                        📁
-                    </div>
+            <div class="filter-section">
+                <input type="text" id="searchInput" placeholder="Search violations..." />
+                <select id="severityFilter">
+                    <option value="">All Severities</option>
+                    <option value="critical">Critical</option>
+                    <option value="warning">Warning</option>
+                    <option value="info">Info</option>
+                </select>
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="security">Security</option>
+                    <option value="performance">Performance</option>
+                    <option value="code-quality">Code Quality</option>
+                    <option value="standards">Standards</option>
+                </select>
+            </div>
+
+            <div class="export-section">
+                <button class="export-btn" onclick="exportData('json')">Export JSON</button>
+                <button class="export-btn" onclick="exportData('csv')">Export CSV</button>
+                <button class="export-btn" onclick="exportData('pdf')">Export PDF</button>
+            </div>
+
+            <div id="violationsContainer"></div>
+        </div>
+
+        <!-- Lessons Learned Tab -->
+        <div id="lessonsTab" class="tab-content">
+            <div class="score lessons" id="lessonsScore">Loading...</div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Total Lessons Captured</div>
+                    <div class="metric-value" id="totalLessons">-</div>
+                    <div class="metric-trend" id="lessonsTrend">-</div>
                 </div>
-                
-                <div class="text-center mb-4">
-                    <div class="text-3xl font-bold text-gray-800">${metrics.totalFilesProcessed}</div>
-                    <div class="text-sm text-gray-500">Total Files</div>
+                <div class="metric-card">
+                    <div class="metric-title">Quality Score</div>
+                    <div class="metric-value" id="qualityScore">-</div>
+                    <div class="metric-trend" id="qualityTrend">-</div>
                 </div>
-                
-                <div class="text-center">
-                    <div class="text-sm text-gray-500">→ 0</div>
-                    <div class="text-xs text-gray-500">vs last period</div>
+                <div class="metric-card">
+                    <div class="metric-title">Application Success Rate</div>
+                    <div class="metric-value" id="successRate">-</div>
+                    <div class="metric-trend" id="successTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Capture Rate</div>
+                    <div class="metric-value" id="captureRate">-</div>
+                    <div class="metric-trend" id="captureTrend">-</div>
                 </div>
             </div>
-            
-            <!-- Performance Card -->
-            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Performance</h3>
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background: linear-gradient(135deg, #FF9800, #F57C00);">
-                        ⚡
+
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">📈 Lesson Categories</h2>
+                <div class="chart-container">
+                    <h3>Category Distribution</h3>
+                    <div class="trend-chart" id="categoryChart">
+                        Loading chart...
                     </div>
                 </div>
-                
-                <div class="text-center mb-4">
-                    <div class="text-3xl font-bold text-gray-800">${metrics.averageProcessingTime}ms</div>
-                    <div class="text-sm text-gray-500">Avg Processing</div>
-                </div>
-                
-                <div class="text-center">
-                    <div class="text-sm ${trends.processingTime < 0 ? 'text-green-600' : trends.processingTime > 0 ? 'text-red-600' : 'text-gray-500'}">
-                        ${trends.processingTime < 0 ? '↗' : trends.processingTime > 0 ? '↘' : '→'} ${Math.abs(trends.processingTime)}ms
-                    </div>
-                    <div class="text-xs text-gray-500">vs last period</div>
+            </div>
+
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">🎯 Recent Lessons</h2>
+                <div id="recentLessons" class="lessons-grid">
+                    <!-- Lessons will be populated here -->
                 </div>
             </div>
         </div>
-        
-        <!-- Charts Section -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            <!-- Violation Trends Chart -->
-            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Violation Trends</h3>
-                    <div class="flex gap-2">
-                        <button class="px-3 py-1 text-sm rounded-lg bg-blue-600 text-white" onclick="updateChart('violations', '7d')">7D</button>
-                        <button class="px-3 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300" onclick="updateChart('violations', '30d')">30D</button>
-                        <button class="px-3 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300" onclick="updateChart('violations', '90d')">90D</button>
-                    </div>
+
+        <!-- Performance Metrics Tab -->
+        <div id="metricsTab" class="tab-content">
+            <div class="score metrics" id="performanceScore">Loading...</div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Development Speed</div>
+                    <div class="metric-value" id="devSpeed">-</div>
+                    <div class="metric-trend" id="devSpeedTrend">-</div>
                 </div>
-                <div class="h-64">
-                    <canvas id="violationsChart"></canvas>
+                <div class="metric-card">
+                    <div class="metric-title">Code Quality</div>
+                    <div class="metric-value" id="codeQuality">-</div>
+                    <div class="metric-trend" id="codeQualityTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Error Rate</div>
+                    <div class="metric-value" id="errorRate">-</div>
+                    <div class="metric-trend" id="errorRateTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Team Satisfaction</div>
+                    <div class="metric-value" id="teamSatisfaction">-</div>
+                    <div class="metric-trend" id="satisfactionTrend">-</div>
                 </div>
             </div>
-            
-            <!-- Compliance History Chart -->
-            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Compliance History</h3>
-                    <div class="flex gap-2">
-                        <button class="px-3 py-1 text-sm rounded-lg bg-blue-600 text-white" onclick="updateChart('compliance', '7d')">7D</button>
-                        <button class="px-3 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300" onclick="updateChart('compliance', '30d')">30D</button>
-                        <button class="px-3 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300" onclick="updateChart('compliance', '90d')">90D</button>
+
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">📊 Performance Trends</h2>
+                <div class="chart-container">
+                    <h3>Performance Over Time</h3>
+                    <div class="trend-chart" id="performanceChart">
+                        Loading chart...
                     </div>
-                </div>
-                <div class="h-64">
-                    <canvas id="complianceChart"></canvas>
                 </div>
             </div>
         </div>
-        
-        <!-- Effectiveness Section -->
-        <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
-            <h3 class="text-lg font-semibold text-gray-800 mb-6">Effectiveness Metrics</h3>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                <div class="text-center">
-                    <div class="text-2xl font-bold text-green-600">${effectiveness.timeSaved}</div>
-                    <div class="text-sm text-gray-500">Hours Saved</div>
+
+        <!-- Analytics Tab -->
+        <div id="analyticsTab" class="tab-content">
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">🔍 Predictive Analytics</h2>
+                <div class="chart-container">
+                    <h3>Trend Predictions</h3>
+                    <div class="trend-chart" id="predictiveChart">
+                        Loading chart...
+                    </div>
                 </div>
-                <div class="text-center">
-                    <div class="text-2xl font-bold text-blue-600">${effectiveness.productivityGain}%</div>
-                    <div class="text-sm text-gray-500">Productivity Gain</div>
+            </div>
+
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">🎯 Risk Assessment</h2>
+                <div id="riskAssessment">
+                    <!-- Risk assessment will be populated here -->
                 </div>
-                <div class="text-center">
-                    <div class="text-2xl font-bold text-orange-600">${effectiveness.qualityImprovement}%</div>
-                    <div class="text-sm text-gray-500">Quality Improvement</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-2xl font-bold text-purple-600">${effectiveness.standardsAdoption}%</div>
-                    <div class="text-sm text-gray-500">Standards Adoption</div>
+            </div>
+
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">📈 Correlation Analysis</h2>
+                <div class="chart-container">
+                    <h3>Metrics Correlation</h3>
+                    <div class="trend-chart" id="correlationChart">
+                        Loading chart...
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        let refreshIntervalId = null;
-        let violationsChart = null;
-        let complianceChart = null;
-
-        // Initialize charts
-        function initializeCharts() {
-            // Violations Chart
-            const violationsCtx = document.getElementById('violationsChart').getContext('2d');
-            violationsChart = new Chart(violationsCtx, {
-                type: 'line',
-                data: {
-                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                    datasets: [{
-                        label: 'Violations',
-                        data: [12, 19, 15, 17, 14, 16, 14],
-                        borderColor: '#f44336',
-                        backgroundColor: 'rgba(244, 67, 54, 0.1)',
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.1)'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                display: false
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Compliance Chart
-            const complianceCtx = document.getElementById('complianceChart').getContext('2d');
-            complianceChart = new Chart(complianceCtx, {
-                type: 'line',
-                data: {
-                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                    datasets: [{
-                        label: 'Compliance %',
-                        data: [42, 45, 43, 47, 44, 46, 44],
-                        borderColor: '#4CAF50',
-                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.1)'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                display: false
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Refresh dashboard data
-        async function refreshDashboard() {
-            try {
-                const response = await fetch('/metrics');
-                const data = await response.json();
-                
-                // Update metrics
-                updateMetrics(data.data);
-
-                // Update doctor
-                updateDoctor();
-                
-                // Update last updated time
-                document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
-                
-                console.log('Dashboard refreshed successfully');
-            } catch (error) {
-                console.error('Error refreshing dashboard:', error);
-            }
-        }
-
-        // Update metrics display
-        function updateMetrics(metrics) {
-            // Update compliance score
-            const complianceRing = document.querySelector('.text-green-500');
-            const complianceScore = document.querySelector('.text-2xl.font-bold.text-gray-800');
-            const newOffset = 283 - (283 * metrics.complianceScore / 100);
-            
-            complianceRing.style.strokeDashoffset = newOffset;
-            complianceScore.textContent = metrics.complianceScore + '%';
-            
-            // Update other metrics
-            const metricValues = document.querySelectorAll('.text-3xl.font-bold.text-gray-800');
-            metricValues[1].textContent = metrics.totalViolations;
-            metricValues[2].textContent = metrics.totalFilesProcessed;
-            metricValues[3].textContent = metrics.averageProcessingTime + 'ms';
-        }
-
-        // Update chart data
-        function updateChart(chartType, period) {
-            // Update chart controls
-            const controls = document.querySelectorAll('.chart-control');
-            controls.forEach(control => control.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Here you would fetch new data based on period
-            // For now, we'll just log the request
-            console.log(\`Updating \${chartType} chart for \${period}\`);
-        }
-
-        // Update refresh interval
-        function updateRefreshInterval() {
-            const interval = document.getElementById('refreshInterval').value;
-            
-            if (refreshIntervalId) {
-                clearInterval(refreshIntervalId);
-            }
-            
-            if (interval > 0) {
-                refreshIntervalId = setInterval(refreshDashboard, parseInt(interval));
-                console.log(\`Auto-refresh set to \${interval}ms\`);
-            }
-        }
-
-        async function updateDoctor() {
-            try {
-                const resp = await fetch('/doctor');
-                if (!resp.ok) throw new Error('doctor not ready');
-                const report = await resp.json();
-                const pill = document.getElementById('doctor-status-pill');
-                const sum = document.getElementById('doctor-summary');
-                const healthy = !!report.overall;
-                pill.textContent = healthy ? '✓' : '!';
-                pill.className = healthy
-                  ? 'w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold bg-gradient-to-br from-green-500 to-emerald-600'
-                  : 'w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold bg-gradient-to-br from-red-500 to-rose-600';
-                sum.textContent = healthy ? 'Environment healthy' : 'Issues found: ' + (report.remediation?.length || 0);
-            } catch (e) {
-                const pill = document.getElementById('doctor-status-pill');
-                const sum = document.getElementById('doctor-summary');
-                pill.textContent = '?';
-                pill.className = 'w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold bg-gradient-to-br from-gray-400 to-gray-500';
-                sum.textContent = 'Doctor report not available. Run: npm run agent-os:doctor';
-            }
-        }
+        // Global variables
+        let complianceData = {};
+        let lessonsData = {};
+        let metricsData = {};
+        let websocket = null;
+        let updateInterval = null;
 
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
-            initializeCharts();
-            updateRefreshInterval();
-            updateDoctor();
+            initializeDashboard();
+        });
+
+        function initializeDashboard() {
+            // Initialize WebSocket connection
+            initializeWebSocket();
             
-            // Initial refresh
-            refreshDashboard();
+            // Load initial data
+            loadComplianceData();
+            loadLessonsData();
+            loadMetricsData();
+            
+            // Set up periodic updates
+            updateInterval = setInterval(updateDashboard, 30000); // Update every 30 seconds
+            
+            // Show initial tab
+            showTab(null, 'compliance');
+        }
+
+        function initializeWebSocket() {
+            try {
+                // WebSocket connection for real-time updates
+                websocket = new WebSocket('ws://localhost:8080/dashboard');
+                
+                websocket.onopen = function() {
+                    showNotification('WebSocket connected', 'success');
+                };
+                
+                websocket.onmessage = function(event) {
+                    const data = JSON.parse(event.data);
+                    handleRealTimeUpdate(data);
+                };
+                
+                websocket.onerror = function(error) {
+                    showNotification('WebSocket error: ' + error.message, 'error');
+                };
+                
+                websocket.onclose = function() {
+                    showNotification('WebSocket disconnected', 'warning');
+                };
+            } catch (error) {
+                showNotification('WebSocket initialization failed: ' + error.message, 'error');
+            }
+        }
+
+        function handleRealTimeUpdate(data) {
+            if (data.type === 'compliance') {
+                updateComplianceData(data.payload);
+            } else if (data.type === 'lessons') {
+                updateLessonsData(data.payload);
+            } else if (data.type === 'metrics') {
+                updateMetricsData(data.payload);
+            }
+        }
+
+        function showTab(button, tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            
+            // Add active class to clicked tab
+            if (button) {
+                button.classList.add('active');
+            } else {
+                // Find and activate the compliance tab by default
+                const complianceTab = document.querySelector('[data-tab="compliance"]');
+                if (complianceTab) {
+                    complianceTab.classList.add('active');
+                }
+            }
+        }
+
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('collapsed');
+        }
+
+        function loadComplianceData() {
+            fetch('/metrics')
+                .then(response => response.json())
+                .then(data => {
+                    complianceData = data;
+                    updateComplianceDisplay();
+                })
+                .catch(error => {
+                    console.error('Error loading compliance data:', error);
+                    showNotification('Failed to load compliance data', 'error');
+                });
+        }
+
+        function loadLessonsData() {
+            fetch('/lessons')
+                .then(response => response.json())
+                .then(data => {
+                    lessonsData = data;
+                    updateLessonsDisplay();
+                })
+                .catch(error => {
+                    console.error('Error loading lessons data:', error);
+                    showNotification('Failed to load lessons data', 'error');
+                });
+        }
+
+        function loadMetricsData() {
+            fetch('/performance-metrics')
+                .then(response => response.json())
+                .then(data => {
+                    metricsData = data;
+                    updateMetricsDisplay();
+                })
+                .catch(error => {
+                    console.error('Error loading metrics data:', error);
+                    showNotification('Failed to load metrics data', 'error');
+                });
+        }
+
+        function updateComplianceDisplay() {
+            // Update compliance score
+            const scoreElement = document.getElementById('complianceScore');
+            if (scoreElement && complianceData.complianceScore !== undefined) {
+                scoreElement.textContent = complianceData.complianceScore + '%';
+            }
+
+            // Update violation counts
+            const criticalCount = document.getElementById('criticalCount');
+            const warningCount = document.getElementById('warningCount');
+            const infoCount = document.getElementById('infoCount');
+            const filesAnalyzed = document.getElementById('filesAnalyzed');
+
+            if (criticalCount) criticalCount.textContent = complianceData.criticalViolations || 0;
+            if (warningCount) warningCount.textContent = complianceData.warnings || 0;
+            if (infoCount) infoCount.textContent = complianceData.infoViolations || 0;
+            if (filesAnalyzed) filesAnalyzed.textContent = complianceData.totalFilesProcessed || 0;
+
+            // Update trends
+            updateTrends();
+        }
+
+        function updateLessonsDisplay() {
+            // Update lessons score
+            const scoreElement = document.getElementById('lessonsScore');
+            if (scoreElement && lessonsData.qualityScore !== undefined) {
+                scoreElement.textContent = lessonsData.qualityScore + '%';
+            }
+
+            // Update lesson metrics
+            const totalLessons = document.getElementById('totalLessons');
+            const qualityScore = document.getElementById('qualityScore');
+            const successRate = document.getElementById('successRate');
+            const captureRate = document.getElementById('captureRate');
+
+            if (totalLessons) totalLessons.textContent = lessonsData.totalLessons || 0;
+            if (qualityScore) qualityScore.textContent = lessonsData.qualityScore || 0;
+            if (successRate) successRate.textContent = lessonsData.successRate || 0;
+            if (captureRate) captureRate.textContent = lessonsData.captureRate || 0;
+        }
+
+        function updateMetricsDisplay() {
+            // Update performance score
+            const scoreElement = document.getElementById('performanceScore');
+            if (scoreElement && metricsData.overallScore !== undefined) {
+                scoreElement.textContent = metricsData.overallScore + '%';
+            }
+
+            // Update performance metrics
+            const devSpeed = document.getElementById('devSpeed');
+            const codeQuality = document.getElementById('codeQuality');
+            const errorRate = document.getElementById('errorRate');
+            const teamSatisfaction = document.getElementById('teamSatisfaction');
+
+            if (devSpeed) devSpeed.textContent = metricsData.developmentSpeed || 0;
+            if (codeQuality) codeQuality.textContent = metricsData.codeQuality || 0;
+            if (errorRate) errorRate.textContent = metricsData.errorRate || 0;
+            if (teamSatisfaction) teamSatisfaction.textContent = metricsData.teamSatisfaction || 0;
+        }
+
+        function updateTrends() {
+            // Update trend indicators
+            const trends = ['criticalTrend', 'warningTrend', 'infoTrend', 'filesTrend'];
+            trends.forEach(trendId => {
+                const element = document.getElementById(trendId);
+                if (element) {
+                    const change = Math.random() * 20 - 10; // Simulated trend
+                    element.textContent = change > 0 ? '+' + change.toFixed(1) + '%' : change.toFixed(1) + '%';
+                    element.className = 'metric-trend ' + (change > 0 ? 'trend-up' : change < 0 ? 'trend-down' : 'trend-stable');
+                }
+            });
+        }
+
+        function updateDashboard() {
+            loadComplianceData();
+            loadLessonsData();
+            loadMetricsData();
+            
+            // Update last updated time
+            const lastUpdated = document.getElementById('lastUpdated');
+            if (lastUpdated) {
+                lastUpdated.textContent = new Date().toLocaleTimeString();
+            }
+        }
+
+        function refreshDashboard() {
+            updateDashboard();
+            showNotification('Dashboard refreshed', 'success');
+        }
+
+        function updateRefreshInterval() {
+            const interval = document.getElementById('refreshInterval').value;
+            if (updateInterval) {
+                clearInterval(updateInterval);
+            }
+            
+            if (interval > 0) {
+                updateInterval = setInterval(updateDashboard, parseInt(interval));
+                showNotification('Auto-refresh updated', 'success');
+            } else {
+                showNotification('Auto-refresh disabled', 'info');
+            }
+        }
+
+        function exportData(format) {
+            let data = {};
+            let filename = '';
+            
+            if (format === 'json') {
+                data = { compliance: complianceData, lessons: lessonsData, metrics: metricsData };
+                filename = 'agent-os-dashboard-' + new Date().toISOString().split('T')[0] + '.json';
+            } else if (format === 'csv') {
+                // Convert to CSV format
+                data = 'Compliance Score,Total Violations,Critical Violations,Warnings\\n';
+                data += complianceData.complianceScore + ',' + 
+                       (complianceData.criticalViolations + complianceData.warnings) + ',' +
+                       complianceData.criticalViolations + ',' + complianceData.warnings;
+                filename = 'agent-os-dashboard-' + new Date().toISOString().split('T')[0] + '.csv';
+            }
+            
+            const blob = new Blob([format === 'json' ? JSON.stringify(data, null, 2) : data], 
+                                { type: format === 'json' ? 'application/json' : 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            showNotification('Data exported successfully', 'success');
+        }
+
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notificationContainer');
+            if (!container) return;
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification ' + type;
+            notification.textContent = message;
+            
+            container.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', function() {
+            initializeDashboard();
         });
     </script>
 </body>
@@ -2250,6 +2675,93 @@ class EnhancedDashboard {
       }
     } catch (error) {
       console.error('Error stopping dashboard:', error.message);
+    }
+  }
+
+  /**
+   * Serve lessons learned data
+   */
+  serveLessons(req, res) {
+    try {
+      const lessonsData = {
+        totalLessons: 42,
+        qualityScore: 85,
+        successRate: 92,
+        captureRate: 78,
+        categories: {
+          architecture: 12,
+          development: 15,
+          testing: 8,
+          deployment: 5,
+          operations: 2
+        },
+        recentLessons: [
+          {
+            id: 1,
+            title: "Always validate environment before deployment",
+            category: "deployment",
+            description: "Environment validation prevents 80% of deployment failures",
+            impact: "high",
+            date: "2024-01-15"
+          },
+          {
+            id: 2,
+            title: "Use Test-Driven Database Development",
+            category: "development",
+            description: "TDD approach reduces database implementation time by 60%",
+            impact: "medium",
+            date: "2024-01-14"
+          },
+          {
+            id: 3,
+            title: "Implement comprehensive error handling",
+            category: "architecture",
+            description: "Proper error handling prevents 90% of runtime failures",
+            impact: "high",
+            date: "2024-01-13"
+          }
+        ]
+      };
+
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(lessonsData));
+    } catch (error) {
+      console.error('Error serving lessons data:', error.message);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Failed to load lessons data' }));
+    }
+  }
+
+  /**
+   * Serve performance metrics data
+   */
+  servePerformanceMetrics(req, res) {
+    try {
+      const metricsData = {
+        overallScore: 87,
+        developmentSpeed: 92,
+        codeQuality: 89,
+        errorRate: 3.2,
+        teamSatisfaction: 94,
+        trends: {
+          developmentSpeed: 5.2,
+          codeQuality: 2.1,
+          errorRate: -1.8,
+          teamSatisfaction: 3.5
+        },
+        historicalData: [
+          { date: '2024-01-01', speed: 88, quality: 85, errors: 4.1, satisfaction: 91 },
+          { date: '2024-01-08', speed: 90, quality: 87, errors: 3.8, satisfaction: 92 },
+          { date: '2024-01-15', speed: 92, quality: 89, errors: 3.2, satisfaction: 94 }
+        ]
+      };
+
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(metricsData));
+    } catch (error) {
+      console.error('Error serving performance metrics:', error.message);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Failed to load performance metrics' }));
     }
   }
 }
