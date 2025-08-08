@@ -110,8 +110,13 @@ public class AssistedAutomationService {
         
         var prompt = buildAIPrompt(request, template, userPatterns);
         
-        return openAIService.generateAutomation(prompt)
-                .orElseGet(() -> langChainService.generateAutomation(prompt));
+        try {
+            com.tappha.ai.dto.AutomationSuggestion suggestion = openAIService.generateAutomation(prompt);
+            return suggestion.getAutomationConfig().get("yaml").toString();
+        } catch (Exception e) {
+            log.warn("OpenAI generation failed, falling back to LangChain: {}", e.getMessage());
+            return langChainService.generateAutomation(prompt);
+        }
     }
 
     /**
@@ -158,6 +163,7 @@ public class AssistedAutomationService {
         if (matchingTemplates.isEmpty()) {
             // Use default template if no specific match
             return templateRepository.findDefaultTemplate()
+                    .map(entity -> entity.toDto())
                     .orElseThrow(() -> new TemplateNotFoundException("No suitable template found"));
         }
         
@@ -394,6 +400,8 @@ public class AssistedAutomationService {
         // Implementation for preference matching algorithm
         return 0.9; // Placeholder implementation
     }
+    
+
 
     // Inner classes for data structures
     private static class ScoredTemplate {

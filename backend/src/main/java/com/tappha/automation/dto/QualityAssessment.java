@@ -70,4 +70,32 @@ public class QualityAssessment {
      * Overall quality score (0.0 to 1.0)
      */
     private Double overallScore;
+    
+    /**
+     * Check if syntax is valid
+     */
+    public boolean isSyntaxValid() {
+        return syntaxValid != null && syntaxValid;
+    }
+    
+    /**
+     * Check if logic is valid
+     */
+    public boolean isLogicValid() {
+        return logicValid != null && logicValid;
+    }
+    
+    /**
+     * Check if security is valid
+     */
+    public boolean isSecurityValid() {
+        return securityValid != null && securityValid;
+    }
+    
+    /**
+     * Check if performance is valid
+     */
+    public boolean isPerformanceValid() {
+        return performanceValid != null && performanceValid;
+    }
 }

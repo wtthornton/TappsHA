@@ -49,4 +49,12 @@ public interface OpenAIService {
      * @return Health status information
      */
     String getHealthStatus();
+    
+    /**
+     * Generate automation based on context
+     * 
+     * @param context The context for automation generation
+     * @return Generated automation suggestion
+     */
+    AutomationSuggestion generateAutomation(String context);
 } 

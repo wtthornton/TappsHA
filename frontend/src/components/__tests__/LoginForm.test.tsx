@@ -53,8 +53,8 @@ describe('LoginForm', () => {
   it('shows validation errors for empty fields', async () => {
     renderWithProviders(<LoginForm />);
     
-    const loginButton = screen.getByRole('button', { name: /sign in/i });
-    fireEvent.click(loginButton);
+    const form = screen.getByRole('form');
+    fireEvent.submit(form);
     
     await waitFor(() => {
       expect(screen.getByText(/username is required/i)).toBeInTheDocument();
@@ -161,10 +161,10 @@ describe('LoginForm', () => {
     renderWithProviders(<LoginForm />);
     
     const usernameInput = screen.getByLabelText(/username/i);
-    const loginButton = screen.getByRole('button', { name: /sign in/i });
+    const form = screen.getByRole('form');
     
     fireEvent.change(usernameInput, { target: { value: 'ab' } });
-    fireEvent.click(loginButton);
+    fireEvent.submit(form);
     
     await waitFor(() => {
       expect(screen.getByText(/username must be at least 3 characters/i)).toBeInTheDocument();
@@ -175,10 +175,10 @@ describe('LoginForm', () => {
     renderWithProviders(<LoginForm />);
     
     const passwordInput = screen.getByLabelText(/password/i);
-    const loginButton = screen.getByRole('button', { name: /sign in/i });
+    const form = screen.getByRole('form');
     
     fireEvent.change(passwordInput, { target: { value: '123' } });
-    fireEvent.click(loginButton);
+    fireEvent.submit(form);
     
     await waitFor(() => {
       expect(screen.getByText(/password must be at least 6 characters/i)).toBeInTheDocument();

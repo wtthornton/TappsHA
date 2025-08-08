@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.PageRequest;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -100,7 +101,7 @@ public class DecisionTrackingService {
      */
     public List<DecisionHistoryDTO> getDecisionHistory(String userId, int limit) {
         try {
-            List<Decision> decisions = decisionRepository.findByUserIdOrderByCreatedAtDesc(userId, limit);
+            List<Decision> decisions = decisionRepository.findByUserIdOrderByCreatedAtDesc(userId, PageRequest.of(0, limit));
             return decisions.stream()
                 .map(this::convertToHistoryDTO)
                 .toList();

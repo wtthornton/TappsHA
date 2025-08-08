@@ -15,6 +15,7 @@ import com.theokanning.openai.service.OpenAiService;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.ArrayList;
@@ -311,5 +312,58 @@ public class OpenAIServiceImpl implements OpenAIService {
         } catch (Exception e) {
             return 5; // Default 5 minutes
         }
+    }
+    
+    @Override
+    public AutomationSuggestion generateAutomation(String context) {
+        log.info("Generating automation for context: {}", context);
+        
+        try {
+            String prompt = "Generate a Home Assistant automation based on this context:\n\n" + context;
+            
+            ChatCompletionRequest chatRequest = ChatCompletionRequest.builder()
+                .model(openaiModel)
+                .messages(List.of(
+                    new ChatMessage("system", "You are an AI assistant for Home Assistant automation. Generate a single, practical automation configuration."),
+                    new ChatMessage("user", prompt)
+                ))
+                .maxTokens(800)
+                .temperature(0.6)
+                .build();
+
+            String response = openAiService.createChatCompletion(chatRequest)
+                .getChoices().get(0).getMessage().getContent();
+
+            return parseSingleAutomation(response);
+        } catch (Exception e) {
+            log.error("Error generating automation: {}", e.getMessage(), e);
+            return createFallbackAutomation(context);
+        }
+    }
+    
+    private AutomationSuggestion parseSingleAutomation(String response) {
+        return AutomationSuggestion.builder()
+            .suggestionId(UUID.randomUUID().toString())
+            .title("Generated Automation")
+            .description("AI-generated automation based on context")
+            .confidenceScore(0.8)
+            .reasoning("Generated based on provided context")
+            .automationConfig(Map.of("yaml", response))
+            .generatedAt(LocalDateTime.now())
+            .modelUsed("gpt-4o-mini")
+            .build();
+    }
+    
+    private AutomationSuggestion createFallbackAutomation(String context) {
+        return AutomationSuggestion.builder()
+            .suggestionId(UUID.randomUUID().toString())
+            .title("Fallback Automation")
+            .description("Basic automation suggestion")
+            .confidenceScore(0.5)
+            .reasoning("Fallback suggestion due to API error")
+            .automationConfig(Map.of("yaml", "# Basic automation\n- alias: Fallback Automation\n  trigger:\n    platform: time\n    at: '08:00:00'\n  action:\n    - service: notify.mobile_app"))
+            .generatedAt(LocalDateTime.now())
+            .modelUsed("fallback")
+            .build();
     }
 } 

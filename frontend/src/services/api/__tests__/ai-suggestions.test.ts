@@ -1,31 +1,31 @@
-import { aiSuggestionsService, AISuggestion, GenerateSuggestionRequest } from '../ai-suggestions';
+import { aiSuggestionsService } from '../ai-suggestions';
+import type { AISuggestion, GenerateSuggestionRequest } from '../ai-suggestions';
 import { apiClient } from '../api-client';
+import { vi } from 'vitest';
 
 // Mock the apiClient
-jest.mock('../api-client', () => ({
+vi.mock('../api-client', () => ({
   apiClient: {
-    post: jest.fn(),
-    get: jest.fn(),
+    post: vi.fn(),
+    get: vi.fn(),
   },
 }));
 
 describe('AISuggestionsService', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('generateSuggestion', () => {
     it('should generate a suggestion with required parameters', async () => {
       const mockResponse = {
-        data: {
-          id: '1',
-          title: 'Test Suggestion',
-          confidenceScore: 0.85,
-          approvalStatus: 'pending'
-        }
+        id: '1',
+        title: 'Test Suggestion',
+        confidenceScore: 0.85,
+        approvalStatus: 'pending'
       };
 
-      (apiClient.post as jest.Mock).mockResolvedValue(mockResponse);
+      (apiClient.post as vi.Mock).mockResolvedValue(mockResponse);
 
       const request: GenerateSuggestionRequest = {
         connectionId: 'test-connection',
@@ -36,23 +36,20 @@ describe('AISuggestionsService', () => {
       const result = await aiSuggestionsService.generateSuggestion(request);
 
       expect(apiClient.post).toHaveBeenCalledWith(
-        '/api/v1/ai-suggestions/generate?connectionId=test-connection&eventLimit=50&userContext=Test%20context',
-        undefined
+        '/api/v1/ai-suggestions/generate?connectionId=test-connection&eventLimit=50&userContext=Test+context'
       );
-      expect(result).toEqual(mockResponse.data);
+      expect(result).toEqual(mockResponse);
     });
 
     it('should generate a suggestion without optional parameters', async () => {
       const mockResponse = {
-        data: {
-          id: '1',
-          title: 'Test Suggestion',
-          confidenceScore: 0.85,
-          approvalStatus: 'pending'
-        }
+        id: '1',
+        title: 'Test Suggestion',
+        confidenceScore: 0.85,
+        approvalStatus: 'pending'
       };
 
-      (apiClient.post as jest.Mock).mockResolvedValue(mockResponse);
+      (apiClient.post as vi.Mock).mockResolvedValue(mockResponse);
 
       const request: GenerateSuggestionRequest = {
         connectionId: 'test-connection'
@@ -61,15 +58,14 @@ describe('AISuggestionsService', () => {
       const result = await aiSuggestionsService.generateSuggestion(request);
 
       expect(apiClient.post).toHaveBeenCalledWith(
-        '/api/v1/ai-suggestions/generate?connectionId=test-connection&eventLimit=100',
-        undefined
+        '/api/v1/ai-suggestions/generate?connectionId=test-connection&eventLimit=100'
       );
-      expect(result).toEqual(mockResponse.data);
+      expect(result).toEqual(mockResponse);
     });
 
     it('should handle API errors', async () => {
       const error = new Error('API Error');
-      (apiClient.post as jest.Mock).mockRejectedValue(error);
+      (apiClient.post as vi.Mock).mockRejectedValue(error);
 
       const request: GenerateSuggestionRequest = {
         connectionId: 'test-connection'
@@ -81,8 +77,8 @@ describe('AISuggestionsService', () => {
 
   describe('validateSuggestion', () => {
     it('should validate a suggestion', async () => {
-      const mockResponse = { data: true };
-      (apiClient.post as jest.Mock).mockResolvedValue(mockResponse);
+      const mockResponse = true;
+      (apiClient.post as vi.Mock).mockResolvedValue(mockResponse);
 
       const suggestion: AISuggestion = {
         id: '1',
@@ -101,7 +97,7 @@ describe('AISuggestionsService', () => {
 
     it('should handle validation errors', async () => {
       const error = new Error('Validation Error');
-      (apiClient.post as jest.Mock).mockRejectedValue(error);
+      (apiClient.post as vi.Mock).mockRejectedValue(error);
 
       const suggestion: AISuggestion = {
         id: '1',
@@ -115,13 +111,11 @@ describe('AISuggestionsService', () => {
   describe('approveSuggestion', () => {
     it('should approve a suggestion with feedback', async () => {
       const mockResponse = {
-        data: {
-          success: true,
-          message: 'Suggestion approved'
-        }
+        success: true,
+        message: 'Suggestion approved'
       };
 
-      (apiClient.post as jest.Mock).mockResolvedValue(mockResponse);
+      (apiClient.post as vi.Mock).mockResolvedValue(mockResponse);
 
       const result = await aiSuggestionsService.approveSuggestion('1', {
         feedback: 'Great suggestion!',
@@ -135,18 +129,16 @@ describe('AISuggestionsService', () => {
           implementationNotes: 'Will implement next week'
         }
       );
-      expect(result).toEqual(mockResponse.data);
+      expect(result).toEqual(mockResponse);
     });
 
     it('should approve a suggestion without optional parameters', async () => {
       const mockResponse = {
-        data: {
-          success: true,
-          message: 'Suggestion approved'
-        }
+        success: true,
+        message: 'Suggestion approved'
       };
 
-      (apiClient.post as jest.Mock).mockResolvedValue(mockResponse);
+      (apiClient.post as vi.Mock).mockResolvedValue(mockResponse);
 
       const result = await aiSuggestionsService.approveSuggestion('1');
 
@@ -154,12 +146,12 @@ describe('AISuggestionsService', () => {
         '/api/v1/ai-suggestions/1/approve',
         {}
       );
-      expect(result).toEqual(mockResponse.data);
+      expect(result).toEqual(mockResponse);
     });
 
     it('should handle approval errors', async () => {
       const error = new Error('Approval Error');
-      (apiClient.post as jest.Mock).mockRejectedValue(error);
+      (apiClient.post as vi.Mock).mockRejectedValue(error);
 
       await expect(aiSuggestionsService.approveSuggestion('1')).rejects.toThrow('Approval Error');
     });
@@ -168,13 +160,11 @@ describe('AISuggestionsService', () => {
   describe('rejectSuggestion', () => {
     it('should reject a suggestion with reason', async () => {
       const mockResponse = {
-        data: {
-          success: true,
-          message: 'Suggestion rejected'
-        }
+        success: true,
+        message: 'Suggestion rejected'
       };
 
-      (apiClient.post as jest.Mock).mockResolvedValue(mockResponse);
+      (apiClient.post as vi.Mock).mockResolvedValue(mockResponse);
 
       const result = await aiSuggestionsService.rejectSuggestion('1', {
         reason: 'Not suitable for my setup',
@@ -188,18 +178,16 @@ describe('AISuggestionsService', () => {
           alternativeSuggestion: 'Consider a different approach'
         }
       );
-      expect(result).toEqual(mockResponse.data);
+      expect(result).toEqual(mockResponse);
     });
 
     it('should reject a suggestion without optional parameters', async () => {
       const mockResponse = {
-        data: {
-          success: true,
-          message: 'Suggestion rejected'
-        }
+        success: true,
+        message: 'Suggestion rejected'
       };
 
-      (apiClient.post as jest.Mock).mockResolvedValue(mockResponse);
+      (apiClient.post as vi.Mock).mockResolvedValue(mockResponse);
 
       const result = await aiSuggestionsService.rejectSuggestion('1');
 
@@ -207,12 +195,12 @@ describe('AISuggestionsService', () => {
         '/api/v1/ai-suggestions/1/reject',
         {}
       );
-      expect(result).toEqual(mockResponse.data);
+      expect(result).toEqual(mockResponse);
     });
 
     it('should handle rejection errors', async () => {
       const error = new Error('Rejection Error');
-      (apiClient.post as jest.Mock).mockRejectedValue(error);
+      (apiClient.post as vi.Mock).mockRejectedValue(error);
 
       await expect(aiSuggestionsService.rejectSuggestion('1')).rejects.toThrow('Rejection Error');
     });
@@ -221,30 +209,28 @@ describe('AISuggestionsService', () => {
   describe('getBatchStatus', () => {
     it('should get batch status', async () => {
       const mockResponse = {
-        data: {
-          batchId: 'batch-123',
-          status: 'processing',
-          progress: 65,
-          totalItems: 100,
-          processedItems: 65,
-          errors: [],
-          createdAt: '2023-01-01T00:00:00Z'
-        }
+        batchId: 'batch-123',
+        status: 'processing',
+        progress: 65,
+        totalItems: 100,
+        processedItems: 65,
+        errors: [],
+        createdAt: '2023-01-01T00:00:00Z'
       };
 
-      (apiClient.get as jest.Mock).mockResolvedValue(mockResponse);
+      (apiClient.get as vi.Mock).mockResolvedValue(mockResponse);
 
       const result = await aiSuggestionsService.getBatchStatus('batch-123');
 
       expect(apiClient.get).toHaveBeenCalledWith(
         '/api/v1/ai-suggestions/batch/batch-123/status'
       );
-      expect(result).toEqual(mockResponse.data);
+      expect(result).toEqual(mockResponse);
     });
 
     it('should handle batch status errors', async () => {
       const error = new Error('Batch Status Error');
-      (apiClient.get as jest.Mock).mockRejectedValue(error);
+      (apiClient.get as vi.Mock).mockRejectedValue(error);
 
       await expect(aiSuggestionsService.getBatchStatus('batch-123')).rejects.toThrow('Batch Status Error');
     });
@@ -253,25 +239,23 @@ describe('AISuggestionsService', () => {
   describe('getHealth', () => {
     it('should get health status', async () => {
       const mockResponse = {
-        data: {
-          status: 'healthy',
-          timestamp: '2023-01-01T00:00:00Z'
-        }
+        status: 'healthy',
+        timestamp: '2023-01-01T00:00:00Z'
       };
 
-      (apiClient.get as jest.Mock).mockResolvedValue(mockResponse);
+      (apiClient.get as vi.Mock).mockResolvedValue(mockResponse);
 
       const result = await aiSuggestionsService.getHealth();
 
       expect(apiClient.get).toHaveBeenCalledWith(
         '/api/v1/ai-suggestions/health'
       );
-      expect(result).toEqual(mockResponse.data);
+      expect(result).toEqual(mockResponse);
     });
 
     it('should handle health check errors', async () => {
       const error = new Error('Health Check Error');
-      (apiClient.get as jest.Mock).mockRejectedValue(error);
+      (apiClient.get as vi.Mock).mockRejectedValue(error);
 
       await expect(aiSuggestionsService.getHealth()).rejects.toThrow('Health Check Error');
     });
@@ -279,7 +263,7 @@ describe('AISuggestionsService', () => {
 
   describe('storeEventEmbedding', () => {
     it('should store event embedding', async () => {
-      (apiClient.post as jest.Mock).mockResolvedValue({});
+      (apiClient.post as vi.Mock).mockResolvedValue({});
 
       await aiSuggestionsService.storeEventEmbedding('event-123');
 
@@ -290,7 +274,7 @@ describe('AISuggestionsService', () => {
 
     it('should handle embedding storage errors', async () => {
       const error = new Error('Embedding Storage Error');
-      (apiClient.post as jest.Mock).mockRejectedValue(error);
+      (apiClient.post as vi.Mock).mockRejectedValue(error);
 
       await expect(aiSuggestionsService.storeEventEmbedding('event-123')).rejects.toThrow('Embedding Storage Error');
     });
@@ -307,8 +291,8 @@ describe('AISuggestionsService', () => {
 
   describe('URL encoding', () => {
     it('should properly encode special characters in user context', async () => {
-      const mockResponse = { data: {} };
-      (apiClient.post as jest.Mock).mockResolvedValue(mockResponse);
+      const mockResponse = {};
+      (apiClient.post as vi.Mock).mockResolvedValue(mockResponse);
 
       const request: GenerateSuggestionRequest = {
         connectionId: 'test-connection',
@@ -319,16 +303,15 @@ describe('AISuggestionsService', () => {
       await aiSuggestionsService.generateSuggestion(request);
 
       expect(apiClient.post).toHaveBeenCalledWith(
-        expect.stringContaining('userContext=Test%20context%20with%20spaces%20%26%20special%20chars%3A%20%40%23%24%25'),
-        undefined
+        expect.stringContaining('userContext=Test+context+with+spaces+%26+special+chars%3A+%40%23%24%25')
       );
     });
   });
 
   describe('parameter handling', () => {
     it('should handle empty user context', async () => {
-      const mockResponse = { data: {} };
-      (apiClient.post as jest.Mock).mockResolvedValue(mockResponse);
+      const mockResponse = {};
+      (apiClient.post as vi.Mock).mockResolvedValue(mockResponse);
 
       const request: GenerateSuggestionRequest = {
         connectionId: 'test-connection',
@@ -339,14 +322,13 @@ describe('AISuggestionsService', () => {
       await aiSuggestionsService.generateSuggestion(request);
 
       expect(apiClient.post).toHaveBeenCalledWith(
-        '/api/v1/ai-suggestions/generate?connectionId=test-connection&eventLimit=50',
-        undefined
+        '/api/v1/ai-suggestions/generate?connectionId=test-connection&eventLimit=50'
       );
     });
 
     it('should handle undefined user context', async () => {
-      const mockResponse = { data: {} };
-      (apiClient.post as jest.Mock).mockResolvedValue(mockResponse);
+      const mockResponse = {};
+      (apiClient.post as vi.Mock).mockResolvedValue(mockResponse);
 
       const request: GenerateSuggestionRequest = {
         connectionId: 'test-connection',
@@ -356,8 +338,7 @@ describe('AISuggestionsService', () => {
       await aiSuggestionsService.generateSuggestion(request);
 
       expect(apiClient.post).toHaveBeenCalledWith(
-        '/api/v1/ai-suggestions/generate?connectionId=test-connection&eventLimit=50',
-        undefined
+        '/api/v1/ai-suggestions/generate?connectionId=test-connection&eventLimit=50'
       );
     });
   });

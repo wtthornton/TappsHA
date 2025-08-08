@@ -20,11 +20,10 @@ vi.mock('../../services/api/auth', () => ({
 }));
 
 const TestComponent = () => {
-  const { user, isAuthenticated, login, logout, loading } = useAuth();
+  const { user, isAuthenticated, login, logout } = useAuth();
   
   return (
     <div>
-      <div data-testid="loading">{loading ? 'Loading' : 'Not Loading'}</div>
       <div data-testid="authenticated">{isAuthenticated ? 'Authenticated' : 'Not Authenticated'}</div>
       <div data-testid="user">{user ? user.username : 'No User'}</div>
       <button onClick={() => login({ username: 'test', password: 'test' })}>Login</button>

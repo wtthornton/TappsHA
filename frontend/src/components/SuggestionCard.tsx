@@ -20,7 +20,8 @@ const SuggestionCard: React.FC<SuggestionCardProps> = ({
   onClick, 
   className = '' 
 }) => {
-  const [isProcessing, setIsProcessing] = useState(false);
+  const [isApproving, setIsApproving] = useState(false);
+  const [isRejecting, setIsRejecting] = useState(false);
   const queryClient = useQueryClient();
 
   // Approve suggestion mutation
@@ -38,11 +39,11 @@ const SuggestionCard: React.FC<SuggestionCardProps> = ({
             : s
         );
       });
-      setIsProcessing(false);
+      setIsApproving(false);
     },
     onError: (error) => {
       console.error('Failed to approve suggestion:', error);
-      setIsProcessing(false);
+      setIsApproving(false);
     }
   });
 
@@ -61,25 +62,25 @@ const SuggestionCard: React.FC<SuggestionCardProps> = ({
             : s
         );
       });
-      setIsProcessing(false);
+      setIsRejecting(false);
     },
     onError: (error) => {
       console.error('Failed to reject suggestion:', error);
-      setIsProcessing(false);
+      setIsRejecting(false);
     }
   });
 
   // Handle approve action
   const handleApprove = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsProcessing(true);
+    setIsApproving(true);
     approveMutation.mutate();
   };
 
   // Handle reject action
   const handleReject = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsProcessing(true);
+    setIsRejecting(true);
     rejectMutation.mutate();
   };
 
@@ -207,26 +208,26 @@ const SuggestionCard: React.FC<SuggestionCardProps> = ({
         <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-200">
           <button
             onClick={handleApprove}
-            disabled={isProcessing}
+            disabled={isApproving || isRejecting}
             className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-              isProcessing
+              isApproving || isRejecting
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 : 'bg-green-600 text-white hover:bg-green-700'
             }`}
           >
-            {isProcessing ? 'Processing...' : 'Approve'}
+            {isApproving ? 'Processing...' : 'Approve'}
           </button>
           
           <button
             onClick={handleReject}
-            disabled={isProcessing}
+            disabled={isApproving || isRejecting}
             className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-              isProcessing
+              isApproving || isRejecting
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 : 'bg-red-600 text-white hover:bg-red-700'
             }`}
           >
-            {isProcessing ? 'Processing...' : 'Reject'}
+            {isRejecting ? 'Processing...' : 'Reject'}
           </button>
         </div>
       )}

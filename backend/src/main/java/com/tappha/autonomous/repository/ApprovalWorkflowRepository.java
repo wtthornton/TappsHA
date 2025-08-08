@@ -21,6 +21,10 @@ public interface ApprovalWorkflowRepository extends JpaRepository<ApprovalWorkfl
     // Find by automation management
     List<ApprovalWorkflow> findByAutomationManagementOrderByRequestTimestampDesc(AutomationManagement automationManagement);
     
+    // Find by automation management ID
+    @Query("SELECT w FROM ApprovalWorkflow w WHERE w.automationManagement.id = :automationManagementId")
+    List<ApprovalWorkflow> findByAutomationManagementId(@Param("automationManagementId") UUID automationManagementId);
+    
     // Find by automation management with pagination
     Page<ApprovalWorkflow> findByAutomationManagement(AutomationManagement automationManagement, Pageable pageable);
     

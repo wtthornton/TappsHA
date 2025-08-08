@@ -184,7 +184,7 @@ const ConnectionStatusDashboard: React.FC = () => {
 
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Events:</span>
-                  <span className="text-sm text-gray-900">{connection.eventCount.toLocaleString()}</span>
+                  <span className="text-sm text-gray-900">{connection.eventCount?.toLocaleString() || '0'}</span>
                 </div>
 
                 {connection.healthMetrics && (

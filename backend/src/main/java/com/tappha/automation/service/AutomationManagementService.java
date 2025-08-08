@@ -5,6 +5,8 @@ import com.tappha.automation.entity.Automation;
 import com.tappha.automation.entity.AutomationVersion;
 import com.tappha.automation.repository.AutomationRepository;
 import com.tappha.automation.repository.AutomationVersionRepository;
+import com.tappha.automation.exception.AutomationManagementException;
+import com.tappha.automation.exception.AutomationNotFoundException;
 import com.tappha.homeassistant.service.HomeAssistantAutomationService;
 import com.tappha.approval.service.ApprovalWorkflowService;
 import com.tappha.backup.service.ConfigurationBackupService;
@@ -288,7 +290,7 @@ public class AutomationManagementService {
             .createdAt(LocalDateTime.now())
             .updatedAt(LocalDateTime.now())
             .aiGenerated(true)
-            .aiSuggestion(aiSuggestion)
+            .aiSuggestion(aiSuggestion.getSuggestionId())
             .build();
             
         return automationRepository.save(automation);

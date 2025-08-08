@@ -1,21 +1,22 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { vi } from 'vitest';
 import AISuggestionsPage from '../AISuggestionsPage';
-import { AISuggestion } from '../../services/api/ai-suggestions';
+import type { AISuggestion } from '../../services/api/ai-suggestions';
 
 // Mock the API service
-jest.mock('../../services/api/ai-suggestions', () => ({
+vi.mock('../../services/api/ai-suggestions', () => ({
   aiSuggestionsService: {
-    generateSuggestion: jest.fn(),
-    approveSuggestion: jest.fn(),
-    rejectSuggestion: jest.fn(),
-    getHealth: jest.fn(),
+    generateSuggestion: vi.fn(),
+    approveSuggestion: vi.fn(),
+    rejectSuggestion: vi.fn(),
+    getHealth: vi.fn(),
   },
 }));
 
 // Mock the WebSocket hook
-jest.mock('../../hooks/useWebSocket', () => ({
+vi.mock('../../hooks/useWebSocket', () => ({
   useWebSocket: () => ({
     isConnected: true,
     lastMessage: null,
@@ -23,7 +24,7 @@ jest.mock('../../hooks/useWebSocket', () => ({
 }));
 
 // Mock the child components
-jest.mock('../SuggestionCard', () => {
+vi.mock('../SuggestionCard', () => {
   return function MockSuggestionCard({ suggestion, onClick }: any) {
     return (
       <div data-testid={`suggestion-card-${suggestion.id}`} onClick={onClick}>
@@ -33,13 +34,13 @@ jest.mock('../SuggestionCard', () => {
   };
 });
 
-jest.mock('../SuggestionDetailsModal', () => {
+vi.mock('../SuggestionDetailsModal', () => {
   return function MockSuggestionDetailsModal({ isOpen }: any) {
     return isOpen ? <div data-testid="suggestion-modal">Modal Content</div> : null;
   };
 });
 
-jest.mock('../BatchStatusIndicator', () => {
+vi.mock('../BatchStatusIndicator', () => {
   return function MockBatchStatusIndicator() {
     return <div data-testid="batch-status-indicator">Batch Status</div>;
   };
@@ -96,7 +97,7 @@ const renderWithQueryClient = (component: React.ReactElement) => {
 
 describe('AISuggestionsPage', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders the main page with header and sections', () => {

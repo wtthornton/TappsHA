@@ -1,18 +1,14 @@
 package com.tappha.automation.exception;
 
 /**
- * Exception for automation management operations
- * 
- * @author TappHA Development Team
- * @version 1.0
- * @since 2025-01-27
+ * Exception thrown when there are issues with automation management operations
  */
 public class AutomationManagementException extends RuntimeException {
-
+    
     public AutomationManagementException(String message) {
         super(message);
     }
-
+    
     public AutomationManagementException(String message, Throwable cause) {
         super(message, cause);
     }

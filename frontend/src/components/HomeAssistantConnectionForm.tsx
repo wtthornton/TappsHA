@@ -41,10 +41,14 @@ const HomeAssistantConnectionForm: React.FC = () => {
 
     if (!formData.token) {
       newErrors.token = 'Token is required';
+    } else if (formData.token.length < 10) {
+      newErrors.token = 'Token must be at least 10 characters';
     }
 
     if (!formData.connectionName) {
       newErrors.connectionName = 'Connection name is required';
+    } else if (formData.connectionName.length < 3) {
+      newErrors.connectionName = 'Connection name must be at least 3 characters';
     }
 
     setErrors(newErrors);
@@ -144,7 +148,7 @@ const HomeAssistantConnectionForm: React.FC = () => {
 
       {isTestMode && (
         <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-md">
-          <h4 className="text-sm font-medium text-blue-900 mb-2">Test Mode</h4>
+          <h4 className="text-sm font-medium text-blue-900 mb-2">Test Mode Enabled</h4>
           <p className="text-xs text-blue-700">
             In test mode, the connection will be validated but not saved. This is useful for testing
             your Home Assistant configuration before creating a permanent connection.

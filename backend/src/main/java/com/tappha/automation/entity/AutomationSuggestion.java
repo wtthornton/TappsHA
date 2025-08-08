@@ -149,4 +149,11 @@ public class AutomationSuggestion {
      */
     @Column(name = "notes", columnDefinition = "TEXT")
     private String notes;
+    
+    /**
+     * Check if this suggestion requires approval
+     */
+    public boolean isRequiresApproval() {
+        return requiresApproval != null && requiresApproval;
+    }
 }

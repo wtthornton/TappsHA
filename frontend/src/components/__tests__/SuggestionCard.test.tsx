@@ -1,14 +1,15 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { vi } from 'vitest';
 import SuggestionCard from '../SuggestionCard';
-import { AISuggestion } from '../../services/api/ai-suggestions';
+import type { AISuggestion } from '../../services/api/ai-suggestions';
 
 // Mock the API service
-jest.mock('../../services/api/ai-suggestions', () => ({
+vi.mock('../../services/api/ai-suggestions', () => ({
   aiSuggestionsService: {
-    approveSuggestion: jest.fn(),
-    rejectSuggestion: jest.fn(),
+    approveSuggestion: vi.fn(),
+    rejectSuggestion: vi.fn(),
   },
 }));
 
@@ -48,10 +49,10 @@ const renderWithQueryClient = (component: React.ReactElement) => {
 };
 
 describe('SuggestionCard', () => {
-  const mockOnClick = jest.fn();
+  const mockOnClick = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders suggestion title and description', () => {
@@ -127,7 +128,7 @@ describe('SuggestionCard', () => {
   });
 
   it('handles approve action', async () => {
-    const { aiSuggestionsService } = require('../../services/api/ai-suggestions');
+    const { aiSuggestionsService } = await import('../../services/api/ai-suggestions');
     aiSuggestionsService.approveSuggestion.mockResolvedValue({ success: true });
 
     renderWithQueryClient(
@@ -143,7 +144,7 @@ describe('SuggestionCard', () => {
   });
 
   it('handles reject action', async () => {
-    const { aiSuggestionsService } = require('../../services/api/ai-suggestions');
+    const { aiSuggestionsService } = await import('../../services/api/ai-suggestions');
     aiSuggestionsService.rejectSuggestion.mockResolvedValue({ success: true });
 
     renderWithQueryClient(
@@ -159,7 +160,7 @@ describe('SuggestionCard', () => {
   });
 
   it('shows processing state during approve action', async () => {
-    const { aiSuggestionsService } = require('../../services/api/ai-suggestions');
+    const { aiSuggestionsService } = await import('../../services/api/ai-suggestions');
     aiSuggestionsService.approveSuggestion.mockImplementation(() => 
       new Promise(resolve => setTimeout(resolve, 100))
     );
@@ -175,7 +176,7 @@ describe('SuggestionCard', () => {
   });
 
   it('shows processing state during reject action', async () => {
-    const { aiSuggestionsService } = require('../../services/api/ai-suggestions');
+    const { aiSuggestionsService } = await import('../../services/api/ai-suggestions');
     aiSuggestionsService.rejectSuggestion.mockImplementation(() => 
       new Promise(resolve => setTimeout(resolve, 100))
     );
@@ -275,15 +276,16 @@ describe('SuggestionCard', () => {
       />
     );
     
-    const card = screen.getByText('Energy Optimization: Smart Thermostat Schedule').closest('div');
-    expect(card).toHaveClass('custom-class');
+    // Find the outermost div that contains the className
+    const outerCard = screen.getByText('Energy Optimization: Smart Thermostat Schedule').closest('div[class*="custom-class"]');
+    expect(outerCard).toHaveClass('custom-class');
   });
 
   it('handles error during approve action', async () => {
-    const { aiSuggestionsService } = require('../../services/api/ai-suggestions');
+    const { aiSuggestionsService } = await import('../../services/api/ai-suggestions');
     aiSuggestionsService.approveSuggestion.mockRejectedValue(new Error('API Error'));
 
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
     renderWithQueryClient(
       <SuggestionCard suggestion={mockSuggestion} onClick={mockOnClick} />
@@ -300,10 +302,10 @@ describe('SuggestionCard', () => {
   });
 
   it('handles error during reject action', async () => {
-    const { aiSuggestionsService } = require('../../services/api/ai-suggestions');
+    const { aiSuggestionsService } = await import('../../services/api/ai-suggestions');
     aiSuggestionsService.rejectSuggestion.mockRejectedValue(new Error('API Error'));
 
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
     renderWithQueryClient(
       <SuggestionCard suggestion={mockSuggestion} onClick={mockOnClick} />

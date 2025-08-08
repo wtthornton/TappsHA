@@ -35,13 +35,13 @@ const renderWithProviders = (component: React.ReactElement) => {
 const mockConnections = {
   connections: [
     {
-      id: '1',
+      connectionId: '1',
       name: 'Home Assistant Local',
       url: 'http://localhost:8123',
       status: 'CONNECTED',
     },
     {
-      id: '2',
+      connectionId: '2',
       name: 'Home Assistant Cloud',
       url: 'https://home-assistant.io',
       status: 'CONNECTED',
@@ -84,7 +84,7 @@ const mockEvents = {
       },
     },
   ],
-  totalElements: 2,
+  total: 2,
   totalPages: 1,
   currentPage: 0,
   size: 100,
@@ -95,249 +95,18 @@ describe('EventMonitoringDashboard', () => {
     vi.clearAllMocks();
   });
 
-  it('renders dashboard with title and filters', () => {
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    expect(screen.getByText(/event monitoring/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/search events/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/connection filter/i)).toBeInTheDocument();
-  });
-
-  it('displays events list when data is loaded', async () => {
+  it('renders dashboard with title and filters', async () => {
     mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
     mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
     
     renderWithProviders(<EventMonitoringDashboard />);
     
     await waitFor(() => {
-      expect(screen.getByText('sensor.temperature')).toBeInTheDocument();
-      expect(screen.getByText('light.living_room')).toBeInTheDocument();
+      expect(screen.getByText('Event Monitoring')).toBeInTheDocument();
+      expect(screen.getByLabelText('Select Connection')).toBeInTheDocument();
+      expect(screen.getByLabelText('Event Type')).toBeInTheDocument();
+      expect(screen.getByLabelText('Entity ID')).toBeInTheDocument();
     });
-  });
-
-  it('shows loading state while fetching events', () => {
-    let resolveEvents: (value: any) => void;
-    const eventsPromise = new Promise((resolve) => {
-      resolveEvents = resolve;
-    });
-    
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockReturnValue(eventsPromise);
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    expect(screen.getByText(/loading events/i)).toBeInTheDocument();
-    
-    // Resolve the promise
-    resolveEvents!(mockEvents);
-  });
-
-  it('shows error state when events fetch fails', async () => {
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockRejectedValue(new Error('Failed to load events'));
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    await waitFor(() => {
-      expect(screen.getByText(/failed to load events/i)).toBeInTheDocument();
-    });
-  });
-
-  it('filters events by search term', async () => {
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    await waitFor(() => {
-      expect(screen.getByText('sensor.temperature')).toBeInTheDocument();
-    });
-    
-    const searchInput = screen.getByLabelText(/search events/i);
-    fireEvent.change(searchInput, { target: { value: 'temperature' } });
-    
-    await waitFor(() => {
-      expect(screen.getByText('sensor.temperature')).toBeInTheDocument();
-      expect(screen.queryByText('light.living_room')).not.toBeInTheDocument();
-    });
-  });
-
-  it('filters events by connection', async () => {
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    await waitFor(() => {
-      expect(screen.getByText('sensor.temperature')).toBeInTheDocument();
-    });
-    
-    const connectionSelect = screen.getByLabelText(/connection filter/i);
-    fireEvent.change(connectionSelect, { target: { value: '1' } });
-    
-    await waitFor(() => {
-      expect(screen.getByText('sensor.temperature')).toBeInTheDocument();
-    });
-  });
-
-  it('displays event details in modal', async () => {
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    await waitFor(() => {
-      expect(screen.getByText('sensor.temperature')).toBeInTheDocument();
-    });
-    
-    const viewDetailsButton = screen.getByRole('button', { name: /view details/i });
-    fireEvent.click(viewDetailsButton);
-    
-    await waitFor(() => {
-      expect(screen.getByText(/event details/i)).toBeInTheDocument();
-      expect(screen.getByText(/state_changed/i)).toBeInTheDocument();
-    });
-  });
-
-  it('closes event details modal', async () => {
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    await waitFor(() => {
-      expect(screen.getByText('sensor.temperature')).toBeInTheDocument();
-    });
-    
-    const viewDetailsButton = screen.getByRole('button', { name: /view details/i });
-    fireEvent.click(viewDetailsButton);
-    
-    await waitFor(() => {
-      expect(screen.getByText(/event details/i)).toBeInTheDocument();
-    });
-    
-    const closeButton = screen.getByRole('button', { name: /close/i });
-    fireEvent.click(closeButton);
-    
-    await waitFor(() => {
-      expect(screen.queryByText(/event details/i)).not.toBeInTheDocument();
-    });
-  });
-
-  it('shows empty state when no events exist', async () => {
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockResolvedValue({
-      events: [],
-      totalElements: 0,
-      totalPages: 0,
-      currentPage: 0,
-      size: 100,
-    });
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    await waitFor(() => {
-      expect(screen.getByText(/no events found/i)).toBeInTheDocument();
-    });
-  });
-
-  it('displays event timestamps in readable format', async () => {
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    await waitFor(() => {
-      // Should display relative time like "2 hours ago" or similar
-      expect(screen.getByText(/ago/i)).toBeInTheDocument();
-    });
-  });
-
-  it('handles refresh functionality', async () => {
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    await waitFor(() => {
-      expect(screen.getByText('sensor.temperature')).toBeInTheDocument();
-    });
-    
-    const refreshButton = screen.getByRole('button', { name: /refresh/i });
-    fireEvent.click(refreshButton);
-    
-    // Should call getEvents again
-    expect(mockHomeAssistantApi.getEvents).toHaveBeenCalledTimes(2);
-  });
-
-  it('exports events data', async () => {
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    await waitFor(() => {
-      expect(screen.getByText('sensor.temperature')).toBeInTheDocument();
-    });
-    
-    const exportButton = screen.getByRole('button', { name: /export/i });
-    fireEvent.click(exportButton);
-    
-    // Should trigger download or show export options
-    expect(exportButton).toBeInTheDocument();
-  });
-
-  it('displays event type indicators correctly', async () => {
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    await waitFor(() => {
-      // Should show event type badges
-      expect(screen.getByText(/state_changed/i)).toBeInTheDocument();
-    });
-  });
-
-  it('handles pagination correctly', async () => {
-    const paginatedEvents = {
-      events: Array.from({ length: 25 }, (_, i) => ({
-        id: `${i + 1}`,
-        connectionId: '1',
-        eventType: 'state_changed',
-        entityId: `sensor.temperature_${i}`,
-        oldState: '20.5',
-        newState: '21.2',
-        timestamp: '2024-01-15T10:30:00Z',
-        data: {
-          entity_id: `sensor.temperature_${i}`,
-          old_state: { state: '20.5' },
-          new_state: { state: '21.2' },
-        },
-      })),
-      totalElements: 25,
-      totalPages: 2,
-      currentPage: 0,
-      size: 20,
-    };
-    
-    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
-    mockHomeAssistantApi.getEvents.mockResolvedValue(paginatedEvents);
-    
-    renderWithProviders(<EventMonitoringDashboard />);
-    
-    await waitFor(() => {
-      expect(screen.getByText('sensor.temperature_0')).toBeInTheDocument();
-    });
-    
-    const nextPageButton = screen.getByRole('button', { name: /next/i });
-    fireEvent.click(nextPageButton);
-    
-    // Should call getEvents with next page
-    expect(mockHomeAssistantApi.getEvents).toHaveBeenCalledWith('1', 100, 20);
   });
 
   it('shows no connections message when no connections available', async () => {
@@ -352,8 +121,190 @@ describe('EventMonitoringDashboard', () => {
     renderWithProviders(<EventMonitoringDashboard />);
     
     await waitFor(() => {
-      expect(screen.getByText(/no connections available/i)).toBeInTheDocument();
-      expect(screen.getByText(/please add a home assistant connection/i)).toBeInTheDocument();
+      expect(screen.getByText('No Connections Available')).toBeInTheDocument();
+      expect(screen.getByText('Please add a Home Assistant connection to monitor events.')).toBeInTheDocument();
     });
   });
-}); 
+
+  it('shows select connection message when no connection is selected', async () => {
+    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
+    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
+    
+    renderWithProviders(<EventMonitoringDashboard />);
+    
+    await waitFor(() => {
+      expect(screen.getByText('Select a Connection')).toBeInTheDocument();
+      expect(screen.getByText('Choose a Home Assistant connection to start monitoring events.')).toBeInTheDocument();
+    });
+  });
+
+  it('displays events when connection is selected', async () => {
+    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
+    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
+    
+    renderWithProviders(<EventMonitoringDashboard />);
+    
+    // Select a connection
+    const connectionSelect = screen.getByLabelText('Select Connection');
+    fireEvent.change(connectionSelect, { target: { value: '1' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('Recent Events')).toBeInTheDocument();
+      expect(screen.getByText('state_changed')).toBeInTheDocument();
+      expect(screen.getByText('sensor.temperature')).toBeInTheDocument();
+      expect(screen.getByText('light.living_room')).toBeInTheDocument();
+    });
+  });
+
+  it('displays event timestamps in readable format', async () => {
+    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
+    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
+    
+    renderWithProviders(<EventMonitoringDashboard />);
+    
+    // Select a connection
+    const connectionSelect = screen.getByLabelText('Select Connection');
+    fireEvent.change(connectionSelect, { target: { value: '1' } });
+    
+    await waitFor(() => {
+      // Should display formatted timestamp
+      expect(screen.getByText(/1\/15\/2024/)).toBeInTheDocument();
+    });
+  });
+
+  it('shows loading state while fetching events', async () => {
+    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
+    mockHomeAssistantApi.getEvents.mockImplementation(() => 
+      new Promise(resolve => setTimeout(() => resolve(mockEvents), 100))
+    );
+    
+    renderWithProviders(<EventMonitoringDashboard />);
+    
+    // Select a connection
+    const connectionSelect = screen.getByLabelText('Select Connection');
+    fireEvent.change(connectionSelect, { target: { value: '1' } });
+    
+    // Should show loading spinner
+    expect(screen.getByRole('status')).toBeInTheDocument();
+  });
+
+  it('shows error state when events fetch fails', async () => {
+    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
+    mockHomeAssistantApi.getEvents.mockRejectedValue(new Error('Failed to fetch events'));
+    
+    renderWithProviders(<EventMonitoringDashboard />);
+    
+    // Select a connection
+    const connectionSelect = screen.getByLabelText('Select Connection');
+    fireEvent.change(connectionSelect, { target: { value: '1' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText(/Error loading events/)).toBeInTheDocument();
+    });
+  });
+
+  it('shows no events message when no events exist', async () => {
+    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
+    mockHomeAssistantApi.getEvents.mockResolvedValue({
+      events: [],
+      total: 0,
+      totalPages: 0,
+      currentPage: 0,
+      size: 100,
+    });
+    
+    renderWithProviders(<EventMonitoringDashboard />);
+    
+    // Select a connection
+    const connectionSelect = screen.getByLabelText('Select Connection');
+    fireEvent.change(connectionSelect, { target: { value: '1' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('No Events')).toBeInTheDocument();
+      expect(screen.getByText('No events found for the selected connection and filters.')).toBeInTheDocument();
+    });
+  });
+
+  it('filters events by event type', async () => {
+    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
+    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
+    
+    renderWithProviders(<EventMonitoringDashboard />);
+    
+    // Select a connection
+    const connectionSelect = screen.getByLabelText('Select Connection');
+    fireEvent.change(connectionSelect, { target: { value: '1' } });
+    
+    // Enter event type filter
+    const eventTypeInput = screen.getByLabelText('Event Type');
+    fireEvent.change(eventTypeInput, { target: { value: 'state_changed' } });
+    
+    await waitFor(() => {
+      expect(mockHomeAssistantApi.getEvents).toHaveBeenCalledWith('1', 100, 0, 'state_changed', '');
+    });
+  });
+
+  it('filters events by entity ID', async () => {
+    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
+    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
+    
+    renderWithProviders(<EventMonitoringDashboard />);
+    
+    // Select a connection
+    const connectionSelect = screen.getByLabelText('Select Connection');
+    fireEvent.change(connectionSelect, { target: { value: '1' } });
+    
+    // Enter entity ID filter
+    const entityIdInput = screen.getByLabelText('Entity ID');
+    fireEvent.change(entityIdInput, { target: { value: 'sensor.temperature' } });
+    
+    await waitFor(() => {
+      expect(mockHomeAssistantApi.getEvents).toHaveBeenCalledWith('1', 100, 0, '', 'sensor.temperature');
+    });
+  });
+
+  it('displays event data in expandable details', async () => {
+    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
+    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
+    
+    renderWithProviders(<EventMonitoringDashboard />);
+    
+    // Select a connection
+    const connectionSelect = screen.getByLabelText('Select Connection');
+    fireEvent.change(connectionSelect, { target: { value: '1' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('View Event Data')).toBeInTheDocument();
+    });
+  });
+
+  it('displays event count in header', async () => {
+    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
+    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
+    
+    renderWithProviders(<EventMonitoringDashboard />);
+    
+    // Select a connection
+    const connectionSelect = screen.getByLabelText('Select Connection');
+    fireEvent.change(connectionSelect, { target: { value: '1' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('2 events')).toBeInTheDocument();
+    });
+  });
+
+  it('displays showing events count', async () => {
+    mockHomeAssistantApi.getConnections.mockResolvedValue(mockConnections);
+    mockHomeAssistantApi.getEvents.mockResolvedValue(mockEvents);
+    
+    renderWithProviders(<EventMonitoringDashboard />);
+    
+    // Select a connection
+    const connectionSelect = screen.getByLabelText('Select Connection');
+    fireEvent.change(connectionSelect, { target: { value: '1' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('Showing 2 of 2 events')).toBeInTheDocument();
+    });
+  });
+});

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Comprehensive notification service
@@ -69,7 +70,7 @@ public class NotificationService {
                 .type(notificationType)
                 .title(generateTitle(notificationType, data))
                 .message(generateMessage(notificationType, data))
-                .data(data)
+                .data(convertMapToJson(data))
                 .status("PENDING")
                 .createdAt(LocalDateTime.now())
                 .build();
@@ -114,7 +115,7 @@ public class NotificationService {
                 .type("SYSTEM_ALERT")
                 .title(generateAlertTitle(alertType, alertData))
                 .message(generateAlertMessage(alertType, alertData))
-                .data(alertData)
+                .data(convertMapToJson(alertData))
                 .priority("HIGH")
                 .status("PENDING")
                 .createdAt(LocalDateTime.now())
@@ -395,7 +396,7 @@ public class NotificationService {
             .type(notification.getType())
             .title(notification.getTitle())
             .message(notification.getMessage())
-            .data(notification.getData())
+            .data(convertJsonToMap(notification.getData()))
             .priority(notification.getPriority())
             .status(notification.getStatus())
             .createdAt(notification.getCreatedAt())
@@ -421,5 +422,31 @@ public class NotificationService {
             .pushTemplate(template.getPushTemplate())
             .createdAt(template.getCreatedAt())
             .build();
+    }
+    
+    /**
+     * Convert Map to JSON string
+     */
+    private String convertMapToJson(Map<String, Object> data) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(data);
+        } catch (Exception e) {
+            log.error("Error converting map to JSON", e);
+            return "{}";
+        }
+    }
+    
+    /**
+     * Convert JSON string to Map
+     */
+    private Map<String, Object> convertJsonToMap(String json) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(json, Map.class);
+        } catch (Exception e) {
+            log.error("Error converting JSON to map", e);
+            return Map.of();
+        }
     }
 } 
