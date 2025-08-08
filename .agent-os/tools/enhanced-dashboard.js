@@ -91,14 +91,17 @@ class EnhancedDashboard {
 
       this.server.on('listening', () => {
         console.log(`🎯 Server is listening on port ${this.port}`);
-      });
-
-      this.server.listen(this.port, '0.0.0.0', () => {
         console.log(`✅ Enhanced dashboard running on port ${this.port}`);
         console.log(`🌐 Server bound to 0.0.0.0:${this.port}`);
+        console.log(`🔗 Access the dashboard at: http://localhost:${this.port}`);
+      });
+
+      this.server.listen(this.port, 'localhost', () => {
         try {
+          console.log(`✅ Server started successfully on port ${this.port}`);
           this.generateDashboardHTML();
           this.startAutoRefresh();
+          console.log(`🎉 Dashboard is now ready at http://localhost:${this.port}`);
         } catch (error) {
           console.error('Error during startup:', error.message);
         }
@@ -767,8 +770,12 @@ class EnhancedDashboard {
   serveHistory(req, res) {
     try {
       const history = this.getHistoricalData();
+      
+      // Optimize performance by limiting to last 50 entries
+      const limitedHistory = history.slice(-50);
+      
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(history, null, 2));
+      res.end(JSON.stringify(limitedHistory, null, 2));
     } catch (error) {
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: error.message }));
