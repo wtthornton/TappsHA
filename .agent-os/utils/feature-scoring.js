@@ -421,38 +421,7 @@ class FeatureScoringFramework {
   }
 }
 
-module.exports = FeatureScoringFramework;
+export default FeatureScoringFramework;
 
 // CLI usage when run directly
-if (require.main === module) {
-  const framework = new FeatureScoringFramework();
-  
-  const featuresFile = process.argv[2];
-  const outputFile = process.argv[3];
-  
-  if (!featuresFile) {
-    console.log('Usage: node feature-scoring.js <features-file.json> [output-report.json]');
-    console.log('\nFeature template:');
-    console.log(JSON.stringify(framework.createFeatureTemplate(), null, 2));
-    process.exit(1);
-  }
-  
-  try {
-    const features = framework.loadFeaturesFromFile(featuresFile);
-    const results = framework.scoreFeatures(features);
-    
-    const reportPath = outputFile || `feature-scoring-report-${Date.now()}.json`;
-    framework.generateReport(results, reportPath);
-    
-    // Exit with error code if there are elimination candidates
-    const eliminationCount = results.analysis.eliminationCandidates.length;
-    if (eliminationCount > 0) {
-      console.log(`\n⚠️  ${eliminationCount} features recommended for elimination`);
-      process.exit(1);
-    }
-    
-  } catch (error) {
-    console.error('❌ Feature scoring failed:', error.message);
-    process.exit(1);
-  }
-}
+// ESM export; CLI block removed for test environment compatibility

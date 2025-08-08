@@ -1,12 +1,11 @@
 {
-  "complianceScore": 101,
+  "complianceScore": 100,
   "criticalViolations": 0,
-  "warnings": 0,
   "totalFilesProcessed": 152,
   "averageProcessingTime": 150,
-  "timestamp": "2025-08-07T18:16:44.065Z",
-  "uptime": 42101402,
-  "totalRequests": 1155,
+  "timestamp": "2025-08-08T01:33:46.499Z",
+  "uptime": 13773824,
+  "totalRequests": 278,
   "fileTypes": [
     "java",
     "ts",
@@ -19,16 +18,16 @@
     "yaml"
   ],
   "complianceTrend": {
-    "direction": "declining",
-    "change": -0.8,
-    "confidence": 0.5799999999999997,
-    "message": "Compliance is declining"
+    "direction": "improving",
+    "change": 5.2,
+    "confidence": 0.9,
+    "message": "Compliance is improving"
   },
   "processingEfficiency": 85,
   "memoryUsage": 45,
   "cpuUsage": 30,
-  "compliancePrediction": 99,
-  "complianceConfidence": 0.8964100251257867,
+  "compliancePrediction": 100,
+  "complianceConfidence": 0.8806616287983924,
   "performance": {
     "averageProcessingTime": 150,
     "totalFilesProcessed": 152,
@@ -37,30 +36,30 @@
     "cpuUsage": 30
   },
   "realTimeUpdates": {
-    "lastUpdate": "2025-08-07T18:16:44.074Z",
+    "lastUpdate": "2025-08-08T01:33:46.501Z",
     "updateFrequency": "real-time",
-    "nextUpdate": "2025-08-07T18:17:14.074Z",
+    "nextUpdate": "2025-08-08T01:34:16.501Z",
     "isLive": true
   },
   "visualIndicators": {
     "ringColor": "#4CAF50",
-    "animationState": "normal",
-    "pulseIntensity": 0.4619899748742132,
-    "glowEffect": 0.7000000000000001
+    "animationState": "pulsing",
+    "pulseIntensity": 1,
+    "glowEffect": 1
   },
   "trendAnalysis": {
     "shortTerm": {
-      "direction": "stable",
-      "magnitude": 0.5
+      "direction": "improving",
+      "magnitude": 1.5
     },
     "mediumTerm": {
-      "direction": "stable",
-      "magnitude": 0
+      "direction": "improving",
+      "magnitude": 1.3333333333333333
     },
     "longTerm": {
       "direction": "stable",
-      "magnitude": 0.07692307692307693
+      "magnitude": 0
     },
-    "volatility": 0.0066332495807108005
+    "volatility": 0.03136877428271625
   }
 }

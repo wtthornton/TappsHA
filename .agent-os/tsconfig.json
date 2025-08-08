@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "checkJs": false,
+    "strict": false,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "noFallthroughCasesInSwitch": false,
+    "noImplicitOverride": false,
+    "exactOptionalPropertyTypes": false,
+    "noUncheckedIndexedAccess": false
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules",
+    "dist",
+    "build",
+    "tools/update-cursor-init.js",
+    "tools/analysis/documentation-analyzer.js",
+    "testing/utils/render-helpers.ts",
+    "contracts/service-contract.ts",
+    "internal/test/ErrorHandler.test.ts",
+    "templates/api-client-mock.template.ts",
+    "templates/vitest.config.template.ts",
+    "testing/setup/global-mocks.ts",
+    "testing/utils/async-helpers.ts",
+    "tests/unit/dashboard-routes.unit.test.ts",
+    "vitest.config.ts"
+  ]
+}

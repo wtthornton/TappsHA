@@ -7,6 +7,13 @@ set -e
 
 echo "🔍 Running Agent-OS pre-commit checks..."
 
+# Fast checks: quick environment and repo readiness
+echo "⚡ Running Agent-OS fast checks..."
+if ! node .agent-os/tools/fast-checks.cjs; then
+  echo -e "${RED}❌ Fast checks failed${NC}"
+  exit 1
+fi
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'

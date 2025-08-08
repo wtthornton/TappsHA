@@ -7,6 +7,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const IGNORE_DIRS = new Set(['node_modules', 'target', 'dist', 'build', 'coverage', '.git']);
+
 class DocumentationAnalyzer {
   constructor() {
     this.agentOsPath = path.join(__dirname, '..');
@@ -26,9 +28,9 @@ class DocumentationAnalyzer {
           const fullPath = path.join(dir, item);
           const stat = fs.statSync(fullPath);
           
-          if (stat.isDirectory()) {
-            // Skip node_modules and other non-documentation directories
-            if (!item.startsWith('.') && item !== 'node_modules' && item !== 'target' && item !== 'dist') {
+      if (stat.isDirectory()) {
+            // Skip ignored and hidden directories
+            if (!IGNORE_DIRS.has(item)) {
               scanDirectory(fullPath);
             }
           } else if (item.endsWith('.md')) {
@@ -77,6 +79,8 @@ class DocumentationAnalyzer {
           hasLastModified: false,
           hasVersion: false,
           hasAuthor: false,
+          hasFrontMatter: false,
+          frontMatterMissing: [],
           completeness: 0,
         },
         issues: [],
@@ -127,6 +131,27 @@ class DocumentationAnalyzer {
       });
 
       analysis.metrics.wordCount = wordCount;
+
+      // Front-matter check (YAML-like)
+      if (lines[0] && lines[0].trim() === '---') {
+        let idx = 1;
+        const fm = {};
+        while (idx < lines.length && lines[idx].trim() !== '---') {
+          const line = lines[idx];
+          const m = line.match(/^(\w[\w\- ]*):\s*(.+)$/);
+          if (m) {
+            fm[m[1].toLowerCase().trim()] = m[2].trim();
+          }
+          idx++;
+        }
+        analysis.quality.hasFrontMatter = true;
+        const requiredKeys = ['title', 'created', 'version', 'status', 'next review', 'owner'];
+        const missing = requiredKeys.filter(k => !(k in fm));
+        analysis.quality.frontMatterMissing = missing;
+        if (missing.length > 0) {
+          analysis.issues.push(`Missing front-matter keys: ${missing.join(', ')}`);
+        }
+      }
 
       // Analyze quality indicators
       const contentLower = content.toLowerCase();
@@ -319,6 +344,24 @@ class DocumentationAnalyzer {
 
     return report;
   }
+
+// Allow running directly as a quick check
+// Skip direct-run block in ESM context
+try {
+  if (typeof require !== 'undefined' && require.main === module) {
+  try {
+    const analyzer = new DocumentationAnalyzer();
+    const report = analyzer.generateDocumentationReport();
+    analyzer.displaySummary();
+    process.exit(0);
+  } catch (e) {
+    console.error('Documentation analysis failed:', e.message);
+    process.exit(1);
+  }
+  }
+} catch (_e) {
+  // noop for ESM environments
+}
 
   // Display documentation analysis summary
   displaySummary() {

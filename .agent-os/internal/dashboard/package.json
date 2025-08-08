@@ -1,0 +1,37 @@
+{
+  "name": "agent-os-unified-dashboard",
+  "version": "1.0.0",
+  "description": "Agent OS Unified Dashboard - Real-time monitoring of compliance, lessons learned, and performance metrics",
+  "main": "start-dashboard.js",
+  "type": "module",
+  "scripts": {
+    "start": "node start-dashboard.js",
+    "dev": "node start-dashboard.js 3000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "agent-os",
+    "dashboard",
+    "compliance",
+    "lessons-learned",
+    "metrics",
+    "real-time",
+    "websocket"
+  ],
+  "author": "Agent OS Development Team",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.18.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agent-os/tappha.git"
+  },
+  "bugs": {
+    "url": "https://github.com/agent-os/tappha/issues"
+  },
+  "homepage": "https://github.com/agent-os/tappha#readme"
+}

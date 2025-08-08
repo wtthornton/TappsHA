@@ -9,6 +9,9 @@ import com.tappha.backup.repository.BackupRepository;
 import com.tappha.backup.repository.BackupMetadataRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -311,7 +314,8 @@ public class ConfigurationBackupService {
      */
     public List<BackupDTO> getBackupHistory(String userId, int limit) {
         try {
-            List<Backup> backups = backupRepository.findByUserIdOrderByCreatedAtDesc(userId, limit);
+            Pageable pageable = PageRequest.of(0, limit);
+            List<Backup> backups = backupRepository.findByUserIdOrderByCreatedAtDesc(userId, pageable);
             return backups.stream()
                 .map(this::convertToDTO)
                 .toList();

@@ -87,6 +87,8 @@ class SimpleComplianceCheck {
       '.agent-os/checklists',
       '.agent-os/product',
       '.agent-os/tools',
+      '.agent-os/internal',
+      '.agent-os/reports',
       'backend',
       'frontend',
       '.cursor/rules'
@@ -95,7 +97,7 @@ class SimpleComplianceCheck {
     const requiredFiles = [
       'tasks.md',
       'README.md',
-      'docker-compose.yml',
+      '.agent-os/agent-improvements/tech-stack.md',
       '.agent-os/standards/tech-stack.md',
       '.agent-os/standards/enforcement.md'
     ];

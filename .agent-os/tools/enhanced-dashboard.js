@@ -10,15 +10,17 @@ import path from 'path';
 import http from 'http';
 import url from 'url';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
 // Get __dirname equivalent for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const require = createRequire(import.meta.url);
 
 class EnhancedDashboard {
   constructor() {
     try {
-      this.port = parseInt(process.env.DASHBOARD_PORT) || 3001;
+      this.port = parseInt(process.env.DASHBOARD_PORT) || 3011;
       
       // Validate port number
       if (this.port < 1024 || this.port > 65535) {
@@ -28,6 +30,7 @@ class EnhancedDashboard {
       this.dashboardPath = path.join(__dirname, '../reports/dashboard');
       this.metricsPath = path.join(__dirname, '../reports/live-metrics.json');
       this.historyPath = path.join(__dirname, '../reports/compliance-history.json');
+      this.doctorReportPath = path.join(__dirname, '../reports/doctor-report.json');
       
       // Ensure dashboard directory exists
       try {
@@ -323,14 +326,29 @@ class EnhancedDashboard {
     }
 
     switch (pathname) {
-      case '/':
-        this.serveDashboard(req, res);
+      case '/': {
+        // Redirect to unified application UI for single-entry experience
+        res.writeHead(302, { Location: '/app' });
+        res.end();
         break;
+      }
+      case '/app':
+        this.serveUnifiedApp(req, res);
+        break;
+        case '/doctor-ui':
+          this.serveDoctorUI(req, res);
+          break;
       case '/metrics':
         this.serveMetrics(req, res);
         break;
+        case '/doctor':
+          this.serveDoctorReport(req, res);
+          break;
       case '/history':
         this.serveHistory(req, res);
+        break;
+      case '/api/standards':
+        this.serveStandards(req, res);
         break;
       case '/trends':
         this.serveTrends(req, res);
@@ -350,6 +368,26 @@ class EnhancedDashboard {
       default:
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Not Found');
+    }
+  }
+
+  /**
+   * Serve Agent OS Doctor report JSON
+   */
+  serveDoctorReport(req, res) {
+    try {
+      if (fs.existsSync(this.doctorReportPath)) {
+        const report = JSON.parse(fs.readFileSync(this.doctorReportPath, 'utf8'));
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(report, null, 2));
+      } else {
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Doctor report not found. Run npm run agent-os:doctor' }));
+      }
+    } catch (error) {
+      console.error('Error serving doctor report:', error.message);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Failed to read doctor report' }));
     }
   }
 
@@ -385,6 +423,322 @@ class EnhancedDashboard {
     const dashboardHTML = this.generateDashboardHTML();
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.end(dashboardHTML);
+  }
+
+  /**
+   * Unified single-page UI for all Agent‑OS functions
+   */
+  serveUnifiedApp(_req, res) {
+    const html = this.generateUnifiedAppHTML();
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(html);
+  }
+
+  generateUnifiedAppHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent‑OS – Control Center</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen">
+  <header class="bg-white shadow-sm sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-xl font-bold text-slate-800">Agent‑OS Control Center</h1>
+      <nav class="flex gap-2">
+        <button data-tab="overview" class="tab-btn px-3 py-1.5 rounded-md bg-slate-900 text-white text-sm">Overview</button>
+        <button data-tab="doctor" class="tab-btn px-3 py-1.5 rounded-md bg-slate-200 text-slate-800 text-sm">Doctor</button>
+        <button data-tab="reports" class="tab-btn px-3 py-1.5 rounded-md bg-slate-200 text-slate-800 text-sm">Reports</button>
+        <button data-tab="standards" class="tab-btn px-3 py-1.5 rounded-md bg-slate-200 text-slate-800 text-sm">Standards</button>
+        <button data-tab="tools" class="tab-btn px-3 py-1.5 rounded-md bg-slate-200 text-slate-800 text-sm">Tools</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6">
+    <section id="tab-overview" class="tab-panel grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-5 rounded-xl bg-white border border-slate-200">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-lg font-semibold">Compliance Snapshot</h2>
+          <span id="ov-score-pill" class="px-2 py-0.5 text-xs rounded bg-slate-200">loading</span>
+        </div>
+        <div class="text-sm text-slate-600" id="ov-summary">Fetching metrics…</div>
+      </div>
+      <div class="p-5 rounded-xl bg-white border border-slate-200">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-lg font-semibold">Doctor Status</h2>
+          <span id="ov-doc-pill" class="px-2 py-0.5 text-xs rounded bg-slate-200">loading</span>
+        </div>
+        <div class="text-sm text-slate-600" id="ov-doc-summary">Checking environment…</div>
+        <div class="mt-3"><a href="#" data-tab-link="doctor" class="inline-flex items-center px-3 py-1 rounded-md text-sm bg-emerald-600 text-white">Open Doctor</a></div>
+      </div>
+      <div class="p-5 rounded-xl bg-white border border-slate-200">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-lg font-semibold">Test Coverage</h2>
+          <span id="ov-cov-pill" class="px-2 py-0.5 text-xs rounded bg-slate-200">n/a</span>
+        </div>
+        <div class="text-sm text-slate-600" id="ov-cov-summary">Run agent-os:test:coverage to populate.</div>
+      </div>
+    </section>
+
+    <section id="tab-doctor" class="tab-panel hidden">
+      <div class="p-5 rounded-xl bg-white border border-slate-200">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-lg font-semibold">Environment Doctor</h2>
+          <button id="btn-refresh-doctor" class="px-3 py-1 rounded bg-slate-900 text-white text-sm">Refresh</button>
+        </div>
+        <div id="doctor-status" class="text-sm text-slate-700 mb-3">Loading…</div>
+        <div>
+          <h3 class="font-medium mb-2">Remediation</h3>
+          <ul id="doctor-remediation" class="list-disc pl-6 text-sm text-slate-700"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-reports" class="tab-panel hidden">
+      <div class="p-5 rounded-xl bg-white border border-slate-200">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-lg font-semibold">Compliance History</h2>
+          <a href="/history" target="_blank" class="text-sm underline text-slate-600">Open JSON</a>
+        </div>
+        <pre id="reports-json" class="text-xs bg-slate-50 p-3 rounded border border-slate-200 overflow-auto max-h-96">Loading…</pre>
+      </div>
+    </section>
+
+    <section id="tab-standards" class="tab-panel hidden">
+      <div class="p-5 rounded-xl bg-white border border-slate-200">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-lg font-semibold">Standards Analysis</h2>
+          <button id="btn-refresh-standards" class="px-3 py-1 rounded bg-slate-900 text-white text-sm">Analyze</button>
+        </div>
+        <div id="standards-summary" class="text-sm text-slate-700 mb-3">Run analysis to see documentation quality and references.</div>
+        <pre id="standards-json" class="text-xs bg-slate-50 p-3 rounded border border-slate-200 overflow-auto max-h-96"></pre>
+      </div>
+    </section>
+
+    <section id="tab-tools" class="tab-panel hidden">
+      <div class="p-5 rounded-xl bg-white border border-slate-200">
+        <h2 class="text-lg font-semibold mb-3">Quick Links</h2>
+        <div class="flex flex-wrap gap-2 text-sm">
+          <a href="/metrics" target="_blank" class="px-3 py-1 rounded bg-slate-200 text-slate-800">Metrics JSON</a>
+          <a href="/doctor" target="_blank" class="px-3 py-1 rounded bg-slate-200 text-slate-800">Doctor JSON</a>
+          <a href="/history" target="_blank" class="px-3 py-1 rounded bg-slate-200 text-slate-800">History JSON</a>
+          <a href="/api/standards" target="_blank" class="px-3 py-1 rounded bg-slate-200 text-slate-800">Standards JSON</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const tabs = ['overview','doctor','reports','standards','tools'];
+    function showTab(name){
+      tabs.forEach(t=>{
+        document.getElementById('tab-'+t).classList.toggle('hidden', t!==name);
+        document.querySelectorAll('[data-tab]')
+          .forEach(btn=>btn.classList.toggle('bg-slate-900', btn.dataset.tab===name));
+        document.querySelectorAll('[data-tab]')
+          .forEach(btn=>btn.classList.toggle('text-white', btn.dataset.tab===name));
+        document.querySelectorAll('[data-tab]')
+          .forEach(btn=>btn.classList.toggle('bg-slate-200', btn.dataset.tab!==name));
+        document.querySelectorAll('[data-tab]')
+          .forEach(btn=>btn.classList.toggle('text-slate-800', btn.dataset.tab!==name));
+      });
+    }
+    document.querySelectorAll('[data-tab]').forEach(btn=>{
+      btn.addEventListener('click', ()=>showTab(btn.dataset.tab));
+    });
+    document.querySelectorAll('[data-tab-link]').forEach(a=>{
+      a.addEventListener('click', (e)=>{ e.preventDefault(); showTab(a.dataset.tabLink); });
+    });
+    showTab('overview');
+
+    async function loadOverview(){
+      try{
+        const m = await (await fetch('/metrics')).json();
+        const d = await (await fetch('/doctor')).json();
+        const ms = m.data || m; const score = ms.complianceScore ?? 0;
+        document.getElementById('ov-score-pill').textContent = score + '%';
+        document.getElementById('ov-summary').textContent = 'Files: ' + (ms.totalFilesProcessed ?? '-') + ', Critical: ' + (ms.criticalViolations ?? '-') + ', Warnings: ' + (ms.warnings ?? '-');
+        const healthy = !!d.overall;
+        document.getElementById('ov-doc-pill').textContent = healthy ? 'healthy' : 'issues';
+        document.getElementById('ov-doc-pill').className = healthy ? 'px-2 py-0.5 text-xs rounded bg-emerald-100 text-emerald-700' : 'px-2 py-0.5 text-xs rounded bg-rose-100 text-rose-700';
+        document.getElementById('ov-doc-summary').textContent = healthy ? 'Environment healthy' : 'Issues found: ' + (d.remediation||[]).length;
+        // Coverage
+        const cov = ms.coverage?.total;
+        if (cov) {
+          const lines = cov.lines?.pct ?? cov.lines?.pct ?? null;
+          const branches = cov.branches?.pct ?? null;
+          const funcs = cov.functions?.pct ?? null;
+          const linesPct = lines ?? '-';
+          document.getElementById('ov-cov-pill').textContent = linesPct + '% lines';
+          document.getElementById('ov-cov-pill').className = 'px-2 py-0.5 text-xs rounded ' + (linesPct >= 80 ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700');
+          document.getElementById('ov-cov-summary').textContent = 'Branches: ' + (branches ?? '-') + '%, Functions: ' + (funcs ?? '-') + '%';
+        }
+      }catch(e){
+        document.getElementById('ov-summary').textContent = 'Failed to load metrics';
+        document.getElementById('ov-doc-summary').textContent = 'Failed to load doctor';
+        // leave coverage as-is
+      }
+    }
+    async function loadDoctor(){
+      try{
+        const d = await (await fetch('/doctor')).json();
+        const healthy = !!d.overall;
+        document.getElementById('doctor-status').textContent = healthy ? '✅ Environment healthy' : '❌ Issues found';
+        const ul = document.getElementById('doctor-remediation');
+        ul.innerHTML = '';
+        (d.remediation && d.remediation.length ? d.remediation : ['No remediation required']).forEach(i=>{
+          const li=document.createElement('li'); li.textContent=i; ul.appendChild(li);
+        });
+      }catch(e){
+        document.getElementById('doctor-status').textContent = 'Failed to load doctor report';
+      }
+    }
+    async function loadReports(){
+      try{
+        const h = await (await fetch('/history')).json();
+        document.getElementById('reports-json').textContent = JSON.stringify(h, null, 2);
+      }catch(e){ document.getElementById('reports-json').textContent = 'Failed to load history'; }
+    }
+    async function loadStandards(){
+      document.getElementById('standards-summary').textContent = 'Analyzing…';
+      try{
+        const s = await (await fetch('/api/standards')).json();
+        document.getElementById('standards-summary').textContent = 'Docs: ' + (s.summary?.totalFiles ?? '?') + ', Avg completeness: ' + (s.summary?.averageCompleteness ?? '?') + '%';
+        document.getElementById('standards-json').textContent = JSON.stringify(s, null, 2);
+      }catch(e){
+        document.getElementById('standards-summary').textContent = 'Failed to analyze standards';
+      }
+    }
+    document.getElementById('btn-refresh-doctor').addEventListener('click', loadDoctor);
+    document.getElementById('btn-refresh-standards').addEventListener('click', loadStandards);
+
+    // Initial loads for overview
+    loadOverview();
+  </script>
+</body>
+</html>`;
+  }
+
+  /**
+   * Serve a rich Doctor UI that renders /doctor JSON nicely with navigation
+   */
+  serveDoctorUI(_req, res) {
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent-OS Doctor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 min-h-screen text-slate-100">
+  <div class="max-w-6xl mx-auto p-4 sm:p-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl sm:text-3xl font-bold">Agent-OS Doctor</h1>
+      <div class="flex gap-2">
+        <a href="/" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500">← Back to Dashboard</a>
+        <a href="/doctor" class="px-4 py-2 rounded-lg bg-slate-700 hover:bg-slate-600">View JSON</a>
+      </div>
+    </div>
+
+    <div id="status" class="mb-6 p-4 rounded-xl bg-slate-800 border border-white/10 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div id="statusPill" class="w-10 h-10 rounded-full flex items-center justify-center bg-slate-600">?</div>
+        <div>
+          <div class="text-lg font-semibold">Environment Status</div>
+          <div id="statusText" class="text-slate-300 text-sm">Loading...</div>
+        </div>
+      </div>
+      <button id="refreshBtn" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500">Refresh</button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 space-y-6">
+        <div class="p-5 rounded-xl bg-slate-800 border border-white/10">
+          <div class="text-lg font-semibold mb-3">Remediation</div>
+          <ul id="remediationList" class="list-disc pl-6 text-slate-300 text-sm space-y-2"><li>Loading...</li></ul>
+        </div>
+
+        <div class="p-5 rounded-xl bg-slate-800 border border-white/10">
+          <div class="text-lg font-semibold mb-3">Repository</div>
+          <div class="text-sm text-slate-300">
+            <div><span class="font-semibold">Missing Files:</span> <span id="missingFiles">-</span></div>
+            <div class="mt-2">
+              <div class="font-semibold">Scripts:</div>
+              <pre id="scripts" class="mt-2 p-3 bg-slate-900 rounded-lg overflow-auto"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="p-5 rounded-xl bg-slate-800 border border-white/10">
+          <div class="text-lg font-semibold mb-3">System</div>
+          <div id="system" class="text-sm text-slate-300 space-y-1"></div>
+        </div>
+        <div class="p-5 rounded-xl bg-slate-800 border border-white/10">
+          <div class="text-lg font-semibold mb-3">Quick Links</div>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="/" class="underline hover:text-indigo-300">Dashboard Home</a>
+            <a href="/doctor" class="underline hover:text-indigo-300">Doctor JSON</a>
+            <a href="/metrics" class="underline hover:text-indigo-300">Current Metrics JSON</a>
+            <a href="/history" class="underline hover:text-indigo-300">History JSON</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadDoctor(){
+      try{
+        const r = await fetch('/doctor');
+        const j = await r.json();
+        const healthy = !!j.overall;
+        const pill = document.getElementById('statusPill');
+        const text = document.getElementById('statusText');
+        pill.textContent = healthy ? '✓' : '!';
+        pill.className = healthy
+          ? 'w-10 h-10 rounded-full flex items-center justify-center bg-emerald-600'
+          : 'w-10 h-10 rounded-full flex items-center justify-center bg-rose-600';
+        text.textContent = healthy ? 'Environment healthy' : 'Issues found';
+
+        const rem = document.getElementById('remediationList');
+        rem.innerHTML = '';
+        (j.remediation && j.remediation.length ? j.remediation : ['No remediation required']).forEach(it => {
+          const li = document.createElement('li');
+          li.textContent = it;
+          rem.appendChild(li);
+        });
+
+        // Repo
+        document.getElementById('missingFiles').textContent = (j.repository && j.repository.missingFiles && j.repository.missingFiles.length) ? j.repository.missingFiles.join(', ') : 'None';
+        document.getElementById('scripts').textContent = (j.repository && j.repository.packageScripts) ? j.repository.packageScripts.join('\n') : '-';
+
+        // System
+        const sys = document.getElementById('system');
+        sys.innerHTML = '';
+        const entries = Object.entries(j.system || {});
+        entries.forEach(([k,v]) => {
+          const div = document.createElement('div');
+          div.innerHTML = '<span class="font-semibold">' + k + ':</span> ' + v;
+          sys.appendChild(div);
+        });
+      } catch(e){
+        document.getElementById('statusText').textContent = 'Doctor report not available';
+      }
+    }
+    document.getElementById('refreshBtn').addEventListener('click', loadDoctor);
+    loadDoctor();
+  </script>
+</body>
+</html>`;
+
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(html);
   }
 
   /**
@@ -494,6 +848,22 @@ class EnhancedDashboard {
   }
 
   /**
+   * Standards JSON via documentation analyzer for unified UI
+   */
+  serveStandards(_req, res) {
+    try {
+      const Analyzer = require('./analysis/documentation-analyzer.cjs');
+      const analyzer = new Analyzer();
+      const analysis = analyzer.analyzeAllDocumentation();
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(analysis, null, 2));
+    } catch (e) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Failed to analyze documentation', message: e.message }));
+    }
+  }
+
+  /**
    * Serve user guide HTML
    */
   serveUserGuide(req, res) {
@@ -576,7 +946,15 @@ class EnhancedDashboard {
   getCurrentMetrics() {
     const history = this.getHistoricalData();
     const latestEntry = history.length > 0 ? history[history.length - 1] : null;
-    
+    // Coverage metrics from vitest summary if available
+    let coverageSummary = null;
+    const coverageSummaryPath = path.join(__dirname, '../reports/coverage/coverage-summary.json');
+    try {
+      if (fs.existsSync(coverageSummaryPath)) {
+        coverageSummary = JSON.parse(fs.readFileSync(coverageSummaryPath, 'utf8'));
+      }
+    } catch {}
+
     const baseMetrics = {
       complianceScore: latestEntry ? latestEntry.complianceScore : 44,
       criticalViolations: latestEntry ? latestEntry.criticalViolations : 14,
@@ -586,7 +964,10 @@ class EnhancedDashboard {
       timestamp: new Date().toISOString(),
       uptime: Date.now() - this.startTime,
       totalRequests: this.totalRequests,
-      fileTypes: ['java', 'ts', 'tsx', 'js', 'jsx', 'xml', 'json', 'yml', 'yaml']
+      fileTypes: ['java', 'ts', 'tsx', 'js', 'jsx', 'xml', 'json', 'yml', 'yaml'],
+      coverage: coverageSummary ? {
+        total: coverageSummary.total || {},
+      } : undefined
     };
     
     // Add trend data
@@ -1400,9 +1781,12 @@ class EnhancedDashboard {
                         Agent-OS Dashboard
                     </h1>
                     <p class="text-gray-600 mt-2">Live monitoring and analytics for your development standards compliance</p>
-                    <div class="mt-3">
+                    <div class="mt-3 flex flex-wrap gap-2">
                         <a href="/user-guide" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold rounded-lg hover:from-indigo-600 hover:to-purple-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 shadow-lg">
                             📚 User Guide
+                        </a>
+                        <a href="/doctor-ui" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-emerald-500 to-green-600 text-white text-sm font-semibold rounded-lg hover:from-emerald-600 hover:to-green-700 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all duration-200 shadow-lg">
+                            🩺 Doctor UI
                         </a>
                     </div>
                 </div>
@@ -1497,6 +1881,20 @@ class EnhancedDashboard {
                 </div>
             </div>
             
+            <!-- Doctor Status Card -->
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Doctor Status</h3>
+                    <div id="doctor-status-pill" class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold bg-gradient-to-br from-gray-400 to-gray-500">?
+                    </div>
+                </div>
+                <div id="doctor-summary" class="text-sm text-gray-600">Loading...</div>
+                <div class="mt-3 flex gap-2">
+                    <a href="/doctor" class="inline-flex items-center px-3 py-1 rounded-md text-sm bg-blue-600 text-white hover:bg-blue-700">View Report</a>
+                    <a href="/doctor-ui" class="inline-flex items-center px-3 py-1 rounded-md text-sm bg-emerald-600 text-white hover:bg-emerald-700">Open Doctor UI</a>
+                </div>
+            </div>
+
             <!-- Files Processed Card -->
             <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                 <div class="flex items-center justify-between mb-4">
@@ -1690,6 +2088,9 @@ class EnhancedDashboard {
                 
                 // Update metrics
                 updateMetrics(data.data);
+
+                // Update doctor
+                updateDoctor();
                 
                 // Update last updated time
                 document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
@@ -1743,10 +2144,33 @@ class EnhancedDashboard {
             }
         }
 
+        async function updateDoctor() {
+            try {
+                const resp = await fetch('/doctor');
+                if (!resp.ok) throw new Error('doctor not ready');
+                const report = await resp.json();
+                const pill = document.getElementById('doctor-status-pill');
+                const sum = document.getElementById('doctor-summary');
+                const healthy = !!report.overall;
+                pill.textContent = healthy ? '✓' : '!';
+                pill.className = healthy
+                  ? 'w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold bg-gradient-to-br from-green-500 to-emerald-600'
+                  : 'w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold bg-gradient-to-br from-red-500 to-rose-600';
+                sum.textContent = healthy ? 'Environment healthy' : 'Issues found: ' + (report.remediation?.length || 0);
+            } catch (e) {
+                const pill = document.getElementById('doctor-status-pill');
+                const sum = document.getElementById('doctor-summary');
+                pill.textContent = '?';
+                pill.className = 'w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold bg-gradient-to-br from-gray-400 to-gray-500';
+                sum.textContent = 'Doctor report not available. Run: npm run agent-os:doctor';
+            }
+        }
+
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
             initializeCharts();
             updateRefreshInterval();
+            updateDoctor();
             
             // Initial refresh
             refreshDashboard();
@@ -1833,14 +2257,16 @@ class EnhancedDashboard {
 // Export for use in other modules
 export default EnhancedDashboard;
 
-// CLI execution
-const dashboard = new EnhancedDashboard();
-
-// Handle graceful shutdown
-process.on('SIGINT', () => {
-  console.log('\n🛑 Stopping enhanced dashboard...');
-  dashboard.stop();
-  process.exit(0);
-});
-
-dashboard.start(); 
+// Start only when executed directly, not when imported by tests
+try {
+  const isDirect = process.argv[1] && process.argv[1].endsWith('enhanced-dashboard.js');
+  if (isDirect) {
+    const dashboard = new EnhancedDashboard();
+    process.on('SIGINT', () => {
+      console.log('\n🛑 Stopping enhanced dashboard...');
+      dashboard.stop();
+      process.exit(0);
+    });
+    dashboard.start();
+  }
+} catch {}
