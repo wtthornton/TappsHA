@@ -6,7 +6,7 @@
 
 ### Frontend
 - React 19.x + TypeScript 5.x (validate via Context7)
-- TailwindCSS 4.x (modern JIT + performance upgrades)
+- **TailwindCSS 3.x (STABLE)** - AVOID TailwindCSS 4.x in production until fully stable
 - Vite 5.x for builds (check Context7 for latest patterns)
 
 ### Backend
@@ -48,6 +48,29 @@
 - **LangChain:** `/langchain-ai/langchain`
 - **PostgreSQL:** `/postgres/postgres`
 - **Docker:** `/docker/docs`
+
+## CRITICAL LESSONS LEARNED
+
+### Tailwind CSS Version Compatibility
+**ISSUE**: Tailwind CSS 4.x caused CSS build failures (0-byte CSS files)
+**SOLUTION**: Use Tailwind CSS 3.x for production until 4.x is fully stable
+**VALIDATION**: Always verify CSS file size after build (should be >10KB, not 0 bytes)
+
+### CSS Build Validation Checklist
+1. **File Size Check**: CSS files must be >10KB, not 0 bytes
+2. **PostCSS Config**: Ensure proper PostCSS configuration for Tailwind 3.x
+3. **Build Process**: Verify CSS is generated during build process
+4. **Runtime Check**: Confirm CSS loads in browser (not default browser styles)
+
+### Docker Port Mapping Issues
+**ISSUE**: Incorrect port mapping between container and host
+**SOLUTION**: Always verify `docker-compose.yml` port mappings match container service ports
+**EXAMPLE**: Frontend serves on port 80 (Nginx), map as `"5173:80"` not `"5173:5173"`
+
+### Authentication Development Mode
+**ISSUE**: Authentication blocking development testing
+**SOLUTION**: Implement development bypass for localhost testing
+**PATTERN**: Check `window.location.hostname === 'localhost'` for dev mode
 
 ## Technology Lessons Learned
 - **Capture:** Document technology choices, performance insights, and migration experiences

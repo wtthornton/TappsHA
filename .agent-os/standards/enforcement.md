@@ -230,6 +230,41 @@ node compliance-checker.js --detailed
 - **ALWAYS** document configuration management
 - **ALWAYS** create troubleshooting guide
 
+### 11. Deployment Validation Standards (MANDATORY)
+**ALWAYS** validate deployment before considering it complete:
+
+#### Pre-Deployment Validation
+- **ALWAYS** run `.agent-os/scripts/validate-deployment.sh` before deployment
+- **ALWAYS** verify CSS file size >10KB (not 0 bytes) for frontend builds
+- **ALWAYS** check Docker port mappings match container service ports
+- **ALWAYS** validate all npm dependencies are installed and compatible
+- **ALWAYS** test database migrations in development environment first
+
+#### Technology Stack Validation
+- **ALWAYS** use Tailwind CSS 3.x (stable) - AVOID 4.x in production
+- **ALWAYS** implement development authentication bypass for localhost testing
+- **ALWAYS** verify PostCSS configuration for Tailwind 3.x
+- **ALWAYS** check TypeScript path aliases are configured correctly
+
+#### Service Accessibility Testing
+- **ALWAYS** verify frontend accessible at expected port (curl -I http://localhost:5173)
+- **ALWAYS** confirm backend health endpoint responding (curl -I http://localhost:8080/api/actuator/health)
+- **ALWAYS** validate CSS and JavaScript files are properly generated and accessible
+- **ALWAYS** test authentication flow or development bypass is working
+
+#### Common Issue Prevention
+- **ALWAYS** check for 0-byte CSS files (indicates Tailwind build failure)
+- **ALWAYS** verify port mappings: `"5173:80"` for Nginx frontend, not `"5173:5173"`
+- **ALWAYS** implement development bypass: `window.location.hostname === 'localhost'`
+- **ALWAYS** test database migrations before production deployment
+- **ALWAYS** validate all UI component dependencies are installed
+
+#### Post-Deployment Validation
+- **ALWAYS** run comprehensive accessibility tests after deployment
+- **ALWAYS** verify all services are responding correctly
+- **ALWAYS** check that proper styling is applied (not default browser styles)
+- **ALWAYS** document any issues encountered and solutions applied
+
 ## Compliance Validation
 
 ### Automated Compliance Checking

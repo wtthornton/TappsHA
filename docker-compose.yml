@@ -171,7 +171,7 @@ services:
       dockerfile: Dockerfile
     container_name: tappha-frontend
     ports:
-      - "5173:5173"
+      - "5173:80"
     environment:
       VITE_API_BASE_URL: http://localhost:8080/api
     depends_on:

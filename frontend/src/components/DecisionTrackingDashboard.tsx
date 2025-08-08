@@ -18,19 +18,7 @@ import {
   Line
 } from 'recharts';
 
-interface DecisionDTO {
-  id: string;
-  userId: string;
-  decisionType: string;
-  contextType: string;
-  contextId: string;
-  decision: string;
-  confidence: number;
-  reasoning?: string;
-  factors?: string[];
-  metadata?: Record<string, any>;
-  createdAt: string;
-}
+
 
 interface DecisionAnalyticsDTO {
   userId: string;
@@ -389,7 +377,7 @@ const DecisionTrackingDashboard: React.FC = () => {
                         {Object.entries(patterns.decisionPatterns).map(([pattern, count]) => (
                           <div key={pattern} className="flex justify-between items-center p-2 bg-gray-50 rounded">
                             <span className="text-sm">{pattern}</span>
-                            <Badge variant="secondary">{count}</Badge>
+                            <Badge variant="secondary">{count as number}</Badge>
                           </div>
                         ))}
                       </div>

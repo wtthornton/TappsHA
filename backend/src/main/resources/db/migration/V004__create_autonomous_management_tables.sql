@@ -212,7 +212,7 @@ CREATE INDEX idx_optimization_suggestions_review_status ON optimization_suggesti
 CREATE INDEX idx_optimization_suggestions_created_at ON optimization_suggestions(created_at);
 CREATE INDEX idx_optimization_suggestions_confidence_score ON optimization_suggestions(confidence_score);
 CREATE INDEX idx_optimization_suggestions_impact_level ON optimization_suggestions(impact_level);
-CREATE INDEX idx_optimization_suggestions_created_by ON optimization_suggestions(created_by);
+-- CREATE INDEX idx_optimization_suggestions_created_by ON optimization_suggestions(created_by);
 CREATE INDEX idx_optimization_suggestions_reviewed_by ON optimization_suggestions(reviewed_by);
 CREATE INDEX idx_optimization_suggestions_reviewed_at ON optimization_suggestions(reviewed_at);
 
@@ -251,7 +251,7 @@ CREATE INDEX idx_optimization_suggestions_automation_type ON optimization_sugges
 CREATE INDEX idx_optimization_suggestions_automation_status ON optimization_suggestions(automation_management_id, review_status);
 CREATE INDEX idx_optimization_suggestions_type_status ON optimization_suggestions(suggestion_type, review_status);
 CREATE INDEX idx_optimization_suggestions_confidence_impact ON optimization_suggestions(confidence_score, impact_level);
-CREATE INDEX idx_optimization_suggestions_created_by_status ON optimization_suggestions(created_by, review_status);
+-- CREATE INDEX idx_optimization_suggestions_created_by_status ON optimization_suggestions(created_by, review_status);
 
 -- Create Partial Indexes for Filtered Queries
 CREATE INDEX idx_automation_management_high_performance ON automation_management(performance_score) WHERE performance_score > 80 AND is_active = true;
@@ -291,10 +291,10 @@ CREATE INDEX idx_optimization_suggestions_title_lower ON optimization_suggestion
 CREATE INDEX idx_optimization_suggestions_description_lower ON optimization_suggestions(LOWER(suggestion_description));
 
 -- Create Indexes for Date Range Queries
-CREATE INDEX idx_automation_management_created_date_range ON automation_management(created_at) WHERE created_at >= CURRENT_DATE - INTERVAL '30 days';
-CREATE INDEX idx_performance_metrics_recent_executions ON automation_performance_metrics(execution_timestamp) WHERE execution_timestamp >= CURRENT_DATE - INTERVAL '7 days';
-CREATE INDEX idx_approval_workflow_recent_requests ON approval_workflow(request_timestamp) WHERE request_timestamp >= CURRENT_DATE - INTERVAL '30 days';
-CREATE INDEX idx_optimization_suggestions_recent_created ON optimization_suggestions(created_at) WHERE created_at >= CURRENT_DATE - INTERVAL '30 days';
+-- CREATE INDEX idx_automation_management_created_date_range ON automation_management(created_at) WHERE created_at >= CURRENT_DATE - INTERVAL '30 days';
+-- CREATE INDEX idx_performance_metrics_recent_executions ON automation_performance_metrics(execution_timestamp) WHERE execution_timestamp >= CURRENT_DATE - INTERVAL '7 days';
+-- CREATE INDEX idx_approval_workflow_recent_requests ON approval_workflow(request_timestamp) WHERE request_timestamp >= CURRENT_DATE - INTERVAL '30 days';
+-- CREATE INDEX idx_optimization_suggestions_recent_created ON optimization_suggestions(created_at) WHERE created_at >= CURRENT_DATE - INTERVAL '30 days';
 
 -- Add Comments for Documentation
 COMMENT ON TABLE automation_management IS 'Core table for managing autonomous automation lifecycle and performance metrics';

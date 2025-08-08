@@ -3,9 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import {
   BarChart,
   Bar,
@@ -16,9 +15,7 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell,
-  LineChart,
-  Line
+  Cell
 } from 'recharts';
 
 interface BackupDTO {
@@ -61,7 +58,7 @@ const ConfigurationBackupDashboard: React.FC = () => {
   const [selectedBackup, setSelectedBackup] = useState<BackupDTO | null>(null);
   const [validationResult, setValidationResult] = useState<BackupValidationDTO | null>(null);
   const [showCreateBackup, setShowCreateBackup] = useState(false);
-  const [showRestoreBackup, setShowRestoreBackup] = useState(false);
+
   const [backupDescription, setBackupDescription] = useState('');
   const [restoreReason, setRestoreReason] = useState('');
 
@@ -156,7 +153,7 @@ const ConfigurationBackupDashboard: React.FC = () => {
 
       if (response.ok) {
         alert('Configuration restored successfully!');
-        setShowRestoreBackup(false);
+
         setRestoreReason('');
         setSelectedBackup(null);
         loadDashboardData(); // Refresh data
@@ -418,7 +415,6 @@ const ConfigurationBackupDashboard: React.FC = () => {
                         size="sm"
                         onClick={() => {
                           setSelectedBackup(backup);
-                          setShowRestoreBackup(true);
                         }}
                       >
                         Restore
@@ -500,7 +496,7 @@ const ConfigurationBackupDashboard: React.FC = () => {
                     <Textarea
                       id="restoreReason"
                       value={restoreReason}
-                      onChange={(e) => setRestoreReason(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setRestoreReason(e.target.value)}
                       placeholder="Explain why you want to restore this configuration..."
                     />
                   </div>
@@ -509,7 +505,7 @@ const ConfigurationBackupDashboard: React.FC = () => {
                     <Button onClick={restoreBackup}>
                       Restore Configuration
                     </Button>
-                    <Button variant="outline" onClick={() => setShowRestoreBackup(false)}>
+                    <Button variant="outline" onClick={() => setSelectedBackup(null)}>
                       Cancel
                     </Button>
                   </div>
@@ -535,7 +531,7 @@ const ConfigurationBackupDashboard: React.FC = () => {
                 <Textarea
                   id="backupDescription"
                   value={backupDescription}
-                  onChange={(e) => setBackupDescription(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setBackupDescription(e.target.value)}
                   placeholder="Describe what this backup is for..."
                 />
               </div>
