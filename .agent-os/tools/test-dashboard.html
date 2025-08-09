@@ -63,7 +63,7 @@
         
         <button class="test-button" onclick="testDashboard()">Test Dashboard</button>
         <button class="test-button" onclick="testTheme()">Test Theme Toggle</button>
-        <button class="test-button" onclick="testCharts()">Test 3D Charts</button>
+        <button class="test-button" onclick="testCharts()">Test Chart.js Charts</button>
         
         <div id="results"></div>
         
@@ -106,16 +106,16 @@
         
         function testCharts() {
             const results = document.getElementById('results');
-            results.innerHTML = '<div class="status info">Testing 3D charts...</div>';
+            results.innerHTML = '<div class="status info">Testing Chart.js charts...</div>';
             
             // Test if charts are loading
             setTimeout(() => {
                 const frame = document.getElementById('dashboard-frame');
                 try {
                     frame.contentWindow.postMessage({ type: 'test-charts' }, '*');
-                    results.innerHTML = '<div class="status success">✅ Chart test message sent</div>';
+                    results.innerHTML = '<div class="status success">✅ Chart.js test message sent</div>';
                 } catch (error) {
-                    results.innerHTML = '<div class="status error">❌ Chart test failed: ' + error.message + '</div>';
+                    results.innerHTML = '<div class="status error">❌ Chart.js test failed: ' + error.message + '</div>';
                 }
             }, 1000);
         }

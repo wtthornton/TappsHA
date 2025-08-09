@@ -383,18 +383,11 @@ class EnhancedDashboard {
       case '/modern-dashboard/css/3d-components.css':
         this.serve3DComponentsCSS(req, res);
         break;
-      case '/modern-dashboard/js/3d/Chart3DRenderer.js':
-        this.serveChart3DRendererJS(req, res);
-        break;
-      case '/modern-dashboard/js/charts/BarChart3D.js':
-        this.serveBarChart3DJS(req, res);
-        break;
+
                   case '/modern-dashboard/data/sample-datasets.js':
               this.serveSampleDatasetsJS(req, res);
               break;
-            case '/modern-dashboard/js/charts/ScatterPlot3D.js':
-              this.serveScatterPlot3DJS(req, res);
-              break;
+
             case '/debug':
               this.serveDebugPage(req, res);
               break;
@@ -2880,47 +2873,7 @@ class EnhancedDashboard {
     }
   }
 
-  /**
-   * Serve Chart3DRenderer JavaScript
-   */
-  serveChart3DRendererJS(req, res) {
-    try {
-      const jsPath = path.join(__dirname, 'modern-dashboard/js/3d/Chart3DRenderer.js');
-      if (fs.existsSync(jsPath)) {
-        const js = fs.readFileSync(jsPath, 'utf8');
-        res.writeHead(200, { 'Content-Type': 'application/javascript' });
-        res.end(js);
-      } else {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Chart3DRenderer JS not found');
-      }
-    } catch (error) {
-      console.error('Error serving Chart3DRenderer JS:', error.message);
-      res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.end('Failed to serve Chart3DRenderer JS');
-    }
-  }
 
-  /**
-   * Serve BarChart3D JavaScript
-   */
-  serveBarChart3DJS(req, res) {
-    try {
-      const jsPath = path.join(__dirname, 'modern-dashboard/js/charts/BarChart3D.js');
-      if (fs.existsSync(jsPath)) {
-        const js = fs.readFileSync(jsPath, 'utf8');
-        res.writeHead(200, { 'Content-Type': 'application/javascript' });
-        res.end(js);
-      } else {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('BarChart3D JS not found');
-      }
-    } catch (error) {
-      console.error('Error serving BarChart3D JS:', error.message);
-      res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.end('Failed to serve BarChart3D JS');
-    }
-  }
 
   /**
    * Serve sample datasets JavaScript
@@ -2943,26 +2896,7 @@ class EnhancedDashboard {
     }
   }
 
-  /**
-   * Serve ScatterPlot3D JavaScript
-   */
-  serveScatterPlot3DJS(req, res) {
-    try {
-      const jsPath = path.join(__dirname, 'modern-dashboard/js/charts/ScatterPlot3D.js');
-      if (fs.existsSync(jsPath)) {
-        const js = fs.readFileSync(jsPath, 'utf8');
-        res.writeHead(200, { 'Content-Type': 'application/javascript' });
-        res.end(js);
-      } else {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('ScatterPlot3D JS not found');
-      }
-    } catch (error) {
-      console.error('Error serving ScatterPlot3D JS:', error.message);
-      res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.end('Failed to serve ScatterPlot3D JS');
-    }
-  }
+
 
   /**
    * Serve Debug Page

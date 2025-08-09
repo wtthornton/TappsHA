@@ -5,70 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agent-OS Enhanced Dashboard - Phase 2</title>
     <link rel="stylesheet" href="/modern-dashboard/design-system.css">
-    <link rel="stylesheet" href="/modern-dashboard/css/3d-components.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r160/three.min.js"></script>
-    <script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Verify Three.js and OrbitControls loading
+        // Verify Chart.js loading
         window.addEventListener('load', function() {
-            console.log('🔍 Checking library loading...');
+            console.log('🔍 Checking Chart.js loading...');
             
-            if (typeof THREE === 'undefined') {
-                console.error('❌ Three.js failed to load from CDN');
+            if (typeof Chart === 'undefined') {
+                console.error('❌ Chart.js failed to load from CDN');
                 // Try alternative CDN
                 const script = document.createElement('script');
-                script.src = 'https://unpkg.com/three@0.160.0/build/three.min.js';
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.min.js';
                 script.onload = function() {
-                    console.log('✅ Three.js loaded from alternative CDN');
-                                         // Load OrbitControls after Three.js
-                     const orbitScript = document.createElement('script');
-                     orbitScript.src = 'https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js';
-                    orbitScript.onload = function() {
-                        console.log('✅ OrbitControls loaded from alternative CDN');
-                    };
-                    document.head.appendChild(orbitScript);
+                    console.log('✅ Chart.js loaded from alternative CDN');
                 };
                 document.head.appendChild(script);
             } else {
-                console.log('✅ Three.js loaded successfully');
+                console.log('✅ Chart.js loaded successfully');
             }
-            
-                         // Check OrbitControls specifically with multiple attempts
-             let orbitCheckAttempts = 0;
-             const maxAttempts = 5;
-             
-             function checkOrbitControls() {
-                 orbitCheckAttempts++;
-                 if (typeof THREE !== 'undefined' && typeof THREE.OrbitControls !== 'undefined') {
-                     console.log('✅ OrbitControls loaded successfully');
-                 } else if (orbitCheckAttempts < maxAttempts) {
-                     console.log(`⏳ OrbitControls not loaded yet, attempt ${orbitCheckAttempts}/${maxAttempts}...`);
-                     setTimeout(checkOrbitControls, 500);
-                 } else {
-                     console.error('❌ OrbitControls not loaded after multiple attempts, trying alternative...');
-                     const orbitScript = document.createElement('script');
-                     orbitScript.src = 'https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js';
-                     orbitScript.onload = function() {
-                         console.log('✅ OrbitControls loaded from fallback CDN');
-                     };
-                     document.head.appendChild(orbitScript);
-                 }
-             }
-             
-             setTimeout(checkOrbitControls, 1000);
         });
     </script>
     <script>
         // Debug script loading
         window.addEventListener('load', function() {
-            console.log('Three.js loaded:', typeof THREE !== 'undefined');
-            console.log('OrbitControls loaded:', typeof THREE !== 'undefined' && typeof THREE.OrbitControls !== 'undefined');
-            console.log('GSAP loaded:', typeof gsap !== 'undefined');
-            console.log('dat.GUI loaded:', typeof dat !== 'undefined');
+            console.log('Chart.js loaded:', typeof Chart !== 'undefined');
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
 </head>
 <body>
     <div class="dashboard-container">
@@ -109,28 +71,24 @@
         <main class="dashboard-main">
             <!-- Chart Grid -->
             <div class="chart-grid">
-                <!-- 3D Bar Chart Card -->
+                <!-- Chart.js Bar Chart Card -->
                 <div class="chart-card fade-in">
                     <div class="chart-card-header">
                         <h3 class="chart-card-title">System Performance Metrics</h3>
                         <div class="chart-card-actions">
                             <button class="chart-card-action" onclick="exportChart('bar-chart')">Export</button>
-                            <button class="chart-card-action" onclick="resetCamera('bar-chart')">Reset</button>
+                            <button class="chart-card-action" onclick="updateBarChart()">Update</button>
                         </div>
                     </div>
                     <div class="chart-container" id="bar-chart-container">
-                        <div class="chart-loading" id="bar-chart-loading">
-                            <div class="chart-loading-spinner"></div>
-                            <div class="chart-loading-text">Loading 3D Bar Chart...</div>
-                        </div>
+                        <canvas id="bar-chart" width="400" height="300"></canvas>
                         <div class="chart-controls" id="bar-chart-controls">
                             <div class="control-group">
-                                <label for="bar-camera-preset">Camera View:</label>
-                                <select id="bar-camera-preset" onchange="setCameraPreset('bar-chart', this.value)">
-                                    <option value="isometric">Isometric</option>
-                                    <option value="front">Front</option>
-                                    <option value="top">Top</option>
-                                    <option value="side">Side</option>
+                                <label for="bar-chart-type">Chart Type:</label>
+                                <select id="bar-chart-type" onchange="changeBarChartType(this.value)">
+                                    <option value="bar">Bar Chart</option>
+                                    <option value="line">Line Chart</option>
+                                    <option value="doughnut">Doughnut Chart</option>
                                 </select>
                             </div>
                             <div class="control-group">
@@ -139,45 +97,41 @@
                                        onchange="setAnimationSpeed('bar-chart', this.value)">
                             </div>
                             <div class="control-group">
-                                <button class="btn btn-secondary" onclick="resetCamera('bar-chart')">Reset Camera</button>
+                                <button class="btn btn-secondary" onclick="resetBarChart()">Reset</button>
                                 <button class="btn btn-primary" onclick="exportChart('bar-chart')">Export</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 3D Scatter Plot Card -->
+                <!-- Chart.js Line Chart Card -->
                 <div class="chart-card fade-in">
                     <div class="chart-card-header">
                         <h3 class="chart-card-title">System Analysis Overview</h3>
                         <div class="chart-card-actions">
-                            <button class="chart-card-action" onclick="exportChart('scatter-chart')">Export</button>
-                            <button class="chart-card-action" onclick="resetCamera('scatter-chart')">Reset</button>
+                            <button class="chart-card-action" onclick="exportChart('line-chart')">Export</button>
+                            <button class="chart-card-action" onclick="updateLineChart()">Update</button>
                         </div>
                     </div>
-                    <div class="chart-container" id="scatter-chart-container">
-                        <div class="chart-loading" id="scatter-chart-loading">
-                            <div class="chart-loading-spinner"></div>
-                            <div class="chart-loading-text">Loading 3D Scatter Plot...</div>
-                        </div>
-                        <div class="chart-controls" id="scatter-chart-controls">
+                    <div class="chart-container" id="line-chart-container">
+                        <canvas id="line-chart" width="400" height="300"></canvas>
+                        <div class="chart-controls" id="line-chart-controls">
                             <div class="control-group">
-                                <label for="scatter-camera-preset">Camera View:</label>
-                                <select id="scatter-camera-preset" onchange="setCameraPreset('scatter-chart', this.value)">
-                                    <option value="isometric">Isometric</option>
-                                    <option value="front">Front</option>
-                                    <option value="top">Top</option>
-                                    <option value="side">Side</option>
+                                <label for="line-chart-type">Chart Type:</label>
+                                <select id="line-chart-type" onchange="changeLineChartType(this.value)">
+                                    <option value="line">Line Chart</option>
+                                    <option value="bar">Bar Chart</option>
+                                    <option value="scatter">Scatter Chart</option>
                                 </select>
                             </div>
                             <div class="control-group">
-                                <label for="scatter-point-size">Point Size:</label>
-                                <input type="range" id="scatter-point-size" min="0.5" max="2" step="0.1" value="1" 
-                                       onchange="setPointSize('scatter-chart', this.value)">
+                                <label for="line-animation-speed">Animation Speed:</label>
+                                <input type="range" id="line-animation-speed" min="0.1" max="2" step="0.1" value="1" 
+                                       onchange="setAnimationSpeed('line-chart', this.value)">
                             </div>
                             <div class="control-group">
-                                <button class="btn btn-secondary" onclick="resetCamera('scatter-chart')">Reset Camera</button>
-                                <button class="btn btn-primary" onclick="exportChart('scatter-chart')">Export</button>
+                                <button class="btn btn-secondary" onclick="resetLineChart()">Reset</button>
+                                <button class="btn btn-primary" onclick="exportChart('line-chart')">Export</button>
                             </div>
                         </div>
                     </div>
@@ -323,9 +277,6 @@
 
     <!-- Scripts -->
     <script src="/modern-dashboard/theme-manager.js"></script>
-    <script src="/modern-dashboard/js/3d/Chart3DRenderer.js"></script>
-    <script src="/modern-dashboard/js/charts/BarChart3D.js"></script>
-    <script src="/modern-dashboard/js/charts/ScatterPlot3D.js"></script>
     <script src="/modern-dashboard/data/sample-datasets.js"></script>
     
     <!-- New UI Components -->
@@ -359,18 +310,19 @@
         function initializeDashboard() {
             console.log('🚀 Initializing dashboard...');
             
-            // Check if Three.js is loaded
-            if (typeof THREE === 'undefined') {
-                console.error('❌ Three.js not loaded, retrying in 2 seconds...');
+            // Check if Chart.js is loaded
+            if (typeof Chart === 'undefined') {
+                console.error('❌ Chart.js not loaded, retrying in 2 seconds...');
                 setTimeout(() => {
                     initializeDashboard();
                 }, 2000);
                 return;
             }
             
-            // Check if OrbitControls is available
-            if (typeof THREE.OrbitControls === 'undefined') {
-                console.warn('⚠️ OrbitControls not available, will use fallback controls');
+            // Check if Chart.js is available
+            if (typeof Chart === 'undefined') {
+                console.error('❌ Chart.js not loaded');
+                return;
             }
             
             // Initialize UI Manager first
@@ -385,10 +337,10 @@
             console.log('🔘 Initializing theme toggle...');
             themeManager.initThemeToggle();
             
-            // Initialize 3D charts
-            console.log('📊 Initializing 3D charts...');
+            // Initialize Chart.js charts
+            console.log('📊 Initializing Chart.js charts...');
             initializeBarChart();
-            initializeScatterChart();
+            initializeLineChart();
             
             // Initialize data table
             console.log('📋 Initializing data table...');
@@ -412,147 +364,148 @@
             console.log('✅ Dashboard initialization complete');
         }
         
+        // Chart.js chart instances
+        let barChart, lineChart;
+        
         function initializeBarChart() {
-            const container = document.getElementById('bar-chart-container');
-            const loading = document.getElementById('bar-chart-loading');
+            const canvas = document.getElementById('bar-chart');
             
-            if (!container || !window.AgentOSDatasets) {
-                console.error('Bar chart container or datasets not found');
-                return;
-            }
-            
-            // Check if Three.js is loaded
-            if (typeof THREE === 'undefined') {
-                console.error('Three.js library not loaded');
-                if (loading) {
-                    loading.innerHTML = '<div class="chart-loading-text">Error: Three.js not loaded</div>';
-                }
+            if (!canvas || typeof Chart === 'undefined') {
+                console.error('Bar chart canvas or Chart.js not found');
                 return;
             }
             
             try {
-                console.log('Initializing BarChart3D with data:', window.AgentOSDatasets.barChartData);
-                console.log('Container element:', container);
-                console.log('Container dimensions:', container.clientWidth, 'x', container.clientHeight);
+                console.log('Initializing Chart.js Bar Chart');
                 
-                // Validate data structure
-                if (!window.AgentOSDatasets.barChartData.categories || !window.AgentOSDatasets.barChartData.series) {
-                    throw new Error('Invalid bar chart data structure - missing categories or series');
-                }
-                
-                barChart = new BarChart3D({
-                    container: container,
-                    data: window.AgentOSDatasets.barChartData
-                });
-                
-                console.log('✅ BarChart3D initialized successfully');
-                console.log('BarChart3D instance:', barChart);
-                
-                // Hide loading after chart is ready
-                setTimeout(() => {
-                    if (loading) {
-                        loading.style.display = 'none';
-                        console.log('✅ Bar chart loading hidden');
+                const ctx = canvas.getContext('2d');
+                barChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['CPU', 'Memory', 'Network', 'Disk', 'Processes'],
+                        datasets: [{
+                            label: 'System Performance',
+                            data: [75, 68, 32, 45, 23],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.8)',
+                                'rgba(54, 162, 235, 0.8)',
+                                'rgba(255, 205, 86, 0.8)',
+                                'rgba(75, 192, 192, 0.8)',
+                                'rgba(153, 102, 255, 0.8)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 205, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'System Performance Metrics'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        },
+                        onClick: (event, elements) => {
+                            if (elements.length > 0) {
+                                const index = elements[0].index;
+                                const label = barChart.data.labels[index];
+                                const value = barChart.data.datasets[0].data[index];
+                                uiManager.showNotification('info', 'Bar Selected', `${label} - ${value}%`);
+                            }
+                        }
                     }
-                }, 1000);
-                
-                // Add event listeners for interactions
-                container.addEventListener('barSelected', (event) => {
-                    console.log('Bar selected:', event.detail);
-                    uiManager.showNotification('info', 'Bar Selected', `${event.detail.category} - ${event.detail.value}%`);
                 });
                 
-                // Add mouse event listeners for 3D interactions
-                container.addEventListener('mousemove', (event) => {
-                    if (barChart && barChart.handleMouseMove) {
-                        barChart.handleMouseMove(event);
-                    }
-                });
-                
-                container.addEventListener('click', (event) => {
-                    if (barChart && barChart.handlePointClick) {
-                        barChart.handlePointClick(event);
-                    }
-                });
+                console.log('✅ Chart.js Bar Chart initialized successfully');
                 
             } catch (error) {
                 console.error('Error initializing bar chart:', error);
-                console.error('Error details:', error.stack);
-                if (loading) {
-                    loading.innerHTML = '<div class="chart-loading-text">Error loading chart: ' + error.message + '</div>';
-                }
             }
         }
         
-        function initializeScatterChart() {
-            const container = document.getElementById('scatter-chart-container');
-            const loading = document.getElementById('scatter-chart-loading');
+        function initializeLineChart() {
+            const canvas = document.getElementById('line-chart');
             
-            if (!container || !window.AgentOSDatasets) {
-                console.error('Scatter chart container or datasets not found');
-                return;
-            }
-            
-            // Check if Three.js is loaded
-            if (typeof THREE === 'undefined') {
-                console.error('Three.js library not loaded');
-                if (loading) {
-                    loading.innerHTML = '<div class="chart-loading-text">Error: Three.js not loaded</div>';
-                }
+            if (!canvas || typeof Chart === 'undefined') {
+                console.error('Line chart canvas or Chart.js not found');
                 return;
             }
             
             try {
-                console.log('Initializing ScatterPlot3D with data:', window.AgentOSDatasets.scatterData);
-                console.log('Container element:', container);
-                console.log('Container dimensions:', container.clientWidth, 'x', container.clientHeight);
+                console.log('Initializing Chart.js Line Chart');
                 
-                // Validate data structure
-                if (!window.AgentOSDatasets.scatterData.points || !Array.isArray(window.AgentOSDatasets.scatterData.points)) {
-                    throw new Error('Invalid scatter plot data structure - missing points array');
-                }
-                
-                scatterChart = new ScatterPlot3D({
-                    container: container,
-                    data: window.AgentOSDatasets.scatterData
-                });
-                
-                console.log('✅ ScatterPlot3D initialized successfully');
-                console.log('ScatterPlot3D instance:', scatterChart);
-                
-                // Hide loading after chart is ready
-                setTimeout(() => {
-                    if (loading) {
-                        loading.style.display = 'none';
-                        console.log('✅ Scatter chart loading hidden');
+                const ctx = canvas.getContext('2d');
+                lineChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                        datasets: [{
+                            label: 'CPU Usage',
+                            data: [45, 52, 78, 85, 72, 68],
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }, {
+                            label: 'Memory Usage',
+                            data: [60, 65, 72, 78, 75, 70],
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'System Analysis Overview'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        },
+                        onClick: (event, elements) => {
+                            if (elements.length > 0) {
+                                const index = elements[0].index;
+                                const label = lineChart.data.labels[index];
+                                const datasetIndex = elements[0].datasetIndex;
+                                const datasetLabel = lineChart.data.datasets[datasetIndex].label;
+                                const value = lineChart.data.datasets[datasetIndex].data[index];
+                                uiManager.showNotification('info', 'Point Selected', `${datasetLabel} at ${label} - ${value}%`);
+                            }
+                        }
                     }
-                }, 1000);
-                
-                // Add event listeners for interactions
-                container.addEventListener('pointSelected', (event) => {
-                    console.log('Point selected:', event.detail);
-                    uiManager.showNotification('info', 'Point Selected', `${event.detail.point.label || 'Data Point'} - Value: ${event.detail.point.value}`);
                 });
                 
-                // Add mouse event listeners for 3D interactions
-                container.addEventListener('mousemove', (event) => {
-                    if (scatterChart && scatterChart.handleMouseMove) {
-                        scatterChart.handleMouseMove(event);
-                    }
-                });
-                
-                container.addEventListener('click', (event) => {
-                    if (scatterChart && scatterChart.handlePointClick) {
-                        scatterChart.handlePointClick(event);
-                    }
-                });
+                console.log('✅ Chart.js Line Chart initialized successfully');
                 
             } catch (error) {
-                console.error('Error initializing scatter chart:', error);
-                console.error('Error details:', error.stack);
-                if (loading) {
-                    loading.innerHTML = '<div class="chart-loading-text">Error loading chart: ' + error.message + '</div>';
-                }
+                console.error('Error initializing line chart:', error);
             }
         }
         
@@ -744,6 +697,93 @@
             }
         }
         
+        // Chart.js utility functions
+        function updateBarChart() {
+            if (barChart) {
+                const newData = barChart.data.datasets[0].data.map(() => 
+                    Math.floor(Math.random() * 100)
+                );
+                barChart.data.datasets[0].data = newData;
+                barChart.update();
+                uiManager.showNotification('success', 'Bar Chart Updated', 'Performance metrics refreshed');
+            }
+        }
+        
+        function updateLineChart() {
+            if (lineChart) {
+                const timeLabels = lineChart.data.labels;
+                const newTime = new Date().toLocaleTimeString('en-US', { 
+                    hour12: false, 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                });
+                
+                if (timeLabels.length > 10) {
+                    timeLabels.shift();
+                    lineChart.data.datasets.forEach(dataset => dataset.data.shift());
+                }
+                
+                timeLabels.push(newTime);
+                lineChart.data.datasets[0].data.push(Math.floor(Math.random() * 100));
+                lineChart.data.datasets[1].data.push(Math.floor(Math.random() * 100));
+                lineChart.update('none');
+                uiManager.showNotification('success', 'Line Chart Updated', 'Real-time data updated');
+            }
+        }
+        
+        function changeBarChartType(type) {
+            if (barChart) {
+                barChart.config.type = type;
+                barChart.update();
+                uiManager.showNotification('info', 'Chart Type Changed', `Switched to ${type} chart`);
+            }
+        }
+        
+        function changeLineChartType(type) {
+            if (lineChart) {
+                lineChart.config.type = type;
+                lineChart.update();
+                uiManager.showNotification('info', 'Chart Type Changed', `Switched to ${type} chart`);
+            }
+        }
+        
+        function resetBarChart() {
+            if (barChart) {
+                barChart.data.datasets[0].data = [75, 68, 32, 45, 23];
+                barChart.update();
+                uiManager.showNotification('info', 'Bar Chart Reset', 'Chart data reset to default values');
+            }
+        }
+        
+        function resetLineChart() {
+            if (lineChart) {
+                lineChart.data.labels = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'];
+                lineChart.data.datasets[0].data = [45, 52, 78, 85, 72, 68];
+                lineChart.data.datasets[1].data = [60, 65, 72, 78, 75, 70];
+                lineChart.update();
+                uiManager.showNotification('info', 'Line Chart Reset', 'Chart data reset to default values');
+            }
+        }
+        
+        function setAnimationSpeed(chartId, speed) {
+            const chart = chartId === 'bar-chart' ? barChart : lineChart;
+            if (chart) {
+                chart.options.animation.duration = speed * 1000;
+                uiManager.showNotification('info', 'Animation Speed Updated', `Speed set to ${speed}x`);
+            }
+        }
+        
+        function exportChart(chartId) {
+            const chart = chartId === 'bar-chart' ? barChart : lineChart;
+            if (chart) {
+                const link = document.createElement('a');
+                link.download = `${chartId}.png`;
+                link.href = chart.toBase64Image();
+                link.click();
+                uiManager.showNotification('success', 'Chart Exported', `${chartId} exported successfully`);
+            }
+        }
+        
         // Utility functions
         function refreshMetrics() {
             updateMetrics();
@@ -761,7 +801,7 @@
             uiManager.showModal({
                 type: 'info',
                 title: 'System Information',
-                message: 'Agent-OS Enhanced Dashboard v2.0\n\nFeatures:\n• 3D Interactive Charts\n• Real-time Metrics\n• Advanced UI Components\n• Responsive Design\n• Accessibility Support',
+                message: 'Agent-OS Enhanced Dashboard v2.0\n\nFeatures:\n• Chart.js Interactive Charts\n• Real-time Metrics\n• Advanced UI Components\n• Responsive Design\n• Accessibility Support\n• Mobile Optimized',
                 buttons: [
                     { text: 'Close', type: 'primary' }
                 ]
@@ -798,7 +838,7 @@
             uiManager.showModal({
                 type: 'info',
                 title: 'Dashboard Help',
-                message: 'Keyboard Shortcuts:\n• Ctrl+K: Global Search\n• Ctrl+T: Toggle Theme\n• Ctrl+M: Quick Actions\n• Escape: Close Modals\n\nFeatures:\n• Interactive 3D Charts\n• Real-time System Monitoring\n• Advanced Data Tables\n• Notification System\n• Modal Dialogs',
+                message: 'Keyboard Shortcuts:\n• Ctrl+K: Global Search\n• Ctrl+T: Toggle Theme\n• Ctrl+M: Quick Actions\n• Escape: Close Modals\n\nFeatures:\n• Interactive Chart.js Charts\n• Real-time System Monitoring\n• Advanced Data Tables\n• Notification System\n• Modal Dialogs\n• Mobile Responsive',
                 buttons: [
                     { text: 'Got it!', type: 'primary' }
                 ]
@@ -843,3 +883,4 @@
     </script>
 </body>
 </html>
+

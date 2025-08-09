@@ -4,61 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Debug</title>
-    <!-- Load required libraries for testing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r160/three.min.js"></script>
-    <script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- Load Chart.js instead of Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Verify Three.js and OrbitControls loading with fallback
+        // Verify Chart.js loading with fallback
         window.addEventListener('load', function() {
-            console.log('🔍 Checking library loading...');
+            console.log('🔍 Checking Chart.js loading...');
             
-            if (typeof THREE === 'undefined') {
-                console.error('❌ Three.js failed to load from CDN');
+            if (typeof Chart === 'undefined') {
+                console.error('❌ Chart.js failed to load from CDN');
                 // Try alternative CDN
                 const script = document.createElement('script');
-                script.src = 'https://unpkg.com/three@0.160.0/build/three.min.js';
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.js';
                 script.onload = function() {
-                    console.log('✅ Three.js loaded from alternative CDN');
-                                         // Load OrbitControls after Three.js
-                     const orbitScript = document.createElement('script');
-                     orbitScript.src = 'https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js';
-                    orbitScript.onload = function() {
-                        console.log('✅ OrbitControls loaded from alternative CDN');
-                    };
-                    document.head.appendChild(orbitScript);
+                    console.log('✅ Chart.js loaded from alternative CDN');
                 };
                 document.head.appendChild(script);
             } else {
-                console.log('✅ Three.js loaded successfully');
+                console.log('✅ Chart.js loaded successfully');
             }
-            
-                         // Check OrbitControls specifically with multiple attempts
-             let orbitCheckAttempts = 0;
-             const maxAttempts = 5;
-             
-             function checkOrbitControls() {
-                 orbitCheckAttempts++;
-                 if (typeof THREE !== 'undefined' && typeof THREE.OrbitControls !== 'undefined') {
-                     console.log('✅ OrbitControls loaded successfully');
-                 } else if (orbitCheckAttempts < maxAttempts) {
-                     console.log(`⏳ OrbitControls not loaded yet, attempt ${orbitCheckAttempts}/${maxAttempts}...`);
-                     setTimeout(checkOrbitControls, 500);
-                 } else {
-                     console.error('❌ OrbitControls not loaded after multiple attempts, trying alternative...');
-                     const orbitScript = document.createElement('script');
-                     orbitScript.src = 'https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js';
-                     orbitScript.onload = function() {
-                         console.log('✅ OrbitControls loaded from fallback CDN');
-                     };
-                     document.head.appendChild(orbitScript);
-                 }
-             }
-             
-             setTimeout(checkOrbitControls, 1000);
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -99,30 +65,36 @@
         .status.success {
             background: #d1fae5;
             color: #065f46;
+            border: 1px solid #10b981;
         }
         .status.error {
             background: #fee2e2;
             color: #991b1b;
+            border: 1px solid #ef4444;
         }
         .status.info {
             background: #dbeafe;
             color: #1e40af;
+            border: 1px solid #3b82f6;
         }
-        .log {
-            background: #1f2937;
-            color: #f9fafb;
-            padding: 10px;
+        .chart-test-container {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ddd;
             border-radius: 4px;
-            font-family: monospace;
-            font-size: 12px;
-            max-height: 200px;
-            overflow-y: auto;
+            margin: 10px 0;
+            position: relative;
+        }
+        .chart-test-container canvas {
+            width: 100% !important;
+            height: 100% !important;
         }
     </style>
 </head>
 <body>
     <div class="debug-container">
         <h1>Agent-OS Dashboard Debug</h1>
+        <p>This page tests the dashboard components and libraries.</p>
         
         <div class="test-section">
             <h3>Library Loading Tests</h3>
@@ -131,20 +103,20 @@
         </div>
         
         <div class="test-section">
-            <h3>Theme Manager Tests</h3>
+            <h3>Theme Manager Test</h3>
             <button class="test-button" onclick="testThemeManager()">Test Theme Manager</button>
             <div id="theme-status"></div>
         </div>
         
         <div class="test-section">
-            <h3>Chart Tests</h3>
-            <button class="test-button" onclick="testCharts()">Test Charts</button>
+            <h3>Chart.js Tests</h3>
+            <button class="test-button" onclick="testCharts()">Test Chart.js</button>
             <div id="chart-status"></div>
         </div>
         
         <div class="test-section">
-            <h3>Dashboard Access</h3>
-            <button class="test-button" onclick="testDashboard()">Test Dashboard</button>
+            <h3>Dashboard Access Tests</h3>
+            <button class="test-button" onclick="testDashboard()">Test Dashboard Access</button>
             <div id="dashboard-status"></div>
         </div>
         
@@ -152,51 +124,11 @@
             <h3>Chart Functionality Test</h3>
             <button class="test-button" onclick="testChartFunctionality()">Test Chart Creation</button>
             <div id="chart-functionality-status"></div>
-            <div id="test-chart-container" style="width: 300px; height: 200px; border: 1px solid #ccc; margin-top: 10px;"></div>
-        </div>
-        
-        <div class="test-section">
-            <h3>Console Log</h3>
-            <div id="console-log" class="log"></div>
+            <div id="test-chart-container" class="chart-test-container"></div>
         </div>
     </div>
-    
-    <!-- Load dashboard scripts for testing -->
-    <script src="/modern-dashboard/theme-manager.js"></script>
-    <script src="/modern-dashboard/js/3d/Chart3DRenderer.js"></script>
-    <script src="/modern-dashboard/js/charts/BarChart3D.js"></script>
-    <script src="/modern-dashboard/js/charts/ScatterPlot3D.js"></script>
-    <script src="/modern-dashboard/data/sample-datasets.js"></script>
 
     <script>
-        // Capture console logs
-        const originalLog = console.log;
-        const originalError = console.error;
-        const originalWarn = console.warn;
-        
-        function addToLog(message, type = 'log') {
-            const logDiv = document.getElementById('console-log');
-            const timestamp = new Date().toLocaleTimeString();
-            const color = type === 'error' ? '#ef4444' : type === 'warn' ? '#f59e0b' : '#10b981';
-            logDiv.innerHTML += `<div style="color: ${color}">[${timestamp}] ${message}</div>`;
-            logDiv.scrollTop = logDiv.scrollHeight;
-        }
-        
-        console.log = function(...args) {
-            originalLog.apply(console, args);
-            addToLog(args.join(' '), 'log');
-        };
-        
-        console.error = function(...args) {
-            originalError.apply(console, args);
-            addToLog(args.join(' '), 'error');
-        };
-        
-        console.warn = function(...args) {
-            originalWarn.apply(console, args);
-            addToLog(args.join(' '), 'warn');
-        };
-        
         function testLibraries() {
             const status = document.getElementById('library-status');
             status.innerHTML = '<div class="status info">Testing library loading...</div>';
@@ -204,35 +136,11 @@
             const results = [];
             let allPassed = true;
             
-            // Test Three.js
-            if (typeof THREE !== 'undefined') {
-                results.push('✅ Three.js loaded (v' + (THREE.REVISION || 'unknown') + ')');
+            // Test Chart.js
+            if (typeof Chart !== 'undefined') {
+                results.push('✅ Chart.js loaded (v' + (Chart.version || 'unknown') + ')');
             } else {
-                results.push('❌ Three.js not loaded');
-                allPassed = false;
-            }
-            
-            // Test OrbitControls
-            if (typeof THREE !== 'undefined' && typeof THREE.OrbitControls !== 'undefined') {
-                results.push('✅ OrbitControls loaded');
-            } else {
-                results.push('❌ OrbitControls not loaded');
-                allPassed = false;
-            }
-            
-            // Test GSAP
-            if (typeof gsap !== 'undefined') {
-                results.push('✅ GSAP loaded (v' + (gsap.version || 'unknown') + ')');
-            } else {
-                results.push('❌ GSAP not loaded');
-                allPassed = false;
-            }
-            
-            // Test dat.GUI
-            if (typeof dat !== 'undefined') {
-                results.push('✅ dat.GUI loaded');
-            } else {
-                results.push('❌ dat.GUI not loaded');
+                results.push('❌ Chart.js not loaded');
                 allPassed = false;
             }
             
@@ -264,32 +172,16 @@
         
         function testCharts() {
             const status = document.getElementById('chart-status');
-            status.innerHTML = '<div class="status info">Testing chart classes...</div>';
+            status.innerHTML = '<div class="status info">Testing Chart.js...</div>';
             
             const results = [];
             let allPassed = true;
             
-            // Test Chart3DRenderer
-            if (typeof Chart3DRenderer !== 'undefined') {
-                results.push('✅ Chart3DRenderer available');
+            // Test Chart.js
+            if (typeof Chart !== 'undefined') {
+                results.push('✅ Chart.js available (v' + (Chart.version || 'unknown') + ')');
             } else {
-                results.push('❌ Chart3DRenderer not found');
-                allPassed = false;
-            }
-            
-            // Test BarChart3D
-            if (typeof BarChart3D !== 'undefined') {
-                results.push('✅ BarChart3D available');
-            } else {
-                results.push('❌ BarChart3D not found');
-                allPassed = false;
-            }
-            
-            // Test ScatterPlot3D
-            if (typeof ScatterPlot3D !== 'undefined') {
-                results.push('✅ ScatterPlot3D available');
-            } else {
-                results.push('❌ ScatterPlot3D not found');
+                results.push('❌ Chart.js not found');
                 allPassed = false;
             }
             
@@ -353,39 +245,60 @@
             const status = document.getElementById('chart-functionality-status');
             const container = document.getElementById('test-chart-container');
             
-            status.innerHTML = '<div class="status info">Testing chart creation...</div>';
+            status.innerHTML = '<div class="status info">Testing Chart.js creation...</div>';
             
             try {
-                // Test if we can create a simple chart
-                if (typeof Chart3DRenderer !== 'undefined' && typeof THREE !== 'undefined') {
-                    // Create a simple test scene
-                    const scene = new THREE.Scene();
-                    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-                    const renderer = new THREE.WebGLRenderer();
+                // Clear previous content
+                container.innerHTML = '<canvas id="test-chart" width="400" height="300"></canvas>';
+                
+                // Test if we can create a simple Chart.js chart
+                if (typeof Chart !== 'undefined') {
+                    const canvas = document.getElementById('test-chart');
+                    const ctx = canvas.getContext('2d');
                     
-                    renderer.setSize(container.clientWidth, container.clientHeight);
-                    container.appendChild(renderer.domElement);
+                    // Create a simple test chart
+                    const testChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Test 1', 'Test 2', 'Test 3', 'Test 4'],
+                            datasets: [{
+                                label: 'Test Data',
+                                data: [12, 19, 3, 5],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.8)',
+                                    'rgba(54, 162, 235, 0.8)',
+                                    'rgba(255, 205, 86, 0.8)',
+                                    'rgba(75, 192, 192, 0.8)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 205, 86, 1)',
+                                    'rgba(75, 192, 192, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Chart.js Test Chart'
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
                     
-                    // Add a simple cube
-                    const geometry = new THREE.BoxGeometry();
-                    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-                    const cube = new THREE.Mesh(geometry, material);
-                    scene.add(cube);
-                    
-                    camera.position.z = 5;
-                    
-                    // Simple animation
-                    function animate() {
-                        requestAnimationFrame(animate);
-                        cube.rotation.x += 0.01;
-                        cube.rotation.y += 0.01;
-                        renderer.render(scene, camera);
-                    }
-                    animate();
-                    
-                    status.innerHTML = '<div class="status success">✅ Chart functionality working - 3D scene created successfully</div>';
+                    status.innerHTML = '<div class="status success">✅ Chart.js functionality working - Test chart created successfully</div>';
                 } else {
-                    status.innerHTML = '<div class="status error">❌ Chart functionality not available - missing required libraries</div>';
+                    status.innerHTML = '<div class="status error">❌ Chart.js functionality not available - missing required library</div>';
                 }
             } catch (error) {
                 status.innerHTML = '<div class="status error">❌ Error testing chart functionality: ' + error.message + '</div>';
