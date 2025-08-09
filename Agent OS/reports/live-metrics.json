@@ -1,0 +1,16 @@
+{
+  "complianceScore": 92,
+  "violations": {
+    "critical": 0,
+    "warnings": 2,
+    "passed": 120
+  },
+  "performance": {
+    "fileTypePerformance": {
+      "js": { "averageTime": 12, "count": 10 },
+      "md": { "averageTime": 5, "count": 8 }
+    }
+  }
+}
+
+

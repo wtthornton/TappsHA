@@ -1,0 +1,146 @@
+{
+  "generatedAt": "2025-08-04T20:40:36.736Z",
+  "summary": {
+    "totalLessons": 5,
+    "categorizedLessons": 5,
+    "categories": 15,
+    "topCategories": [
+      {
+        "category": "frontend",
+        "count": 5
+      },
+      {
+        "category": "ai-integration",
+        "count": 5
+      },
+      {
+        "category": "analytics",
+        "count": 5
+      },
+      {
+        "category": "testing",
+        "count": 4
+      },
+      {
+        "category": "architecture",
+        "count": 4
+      }
+    ]
+  },
+  "categoryStats": {
+    "frontend": 5,
+    "devops": 3,
+    "testing": 4,
+    "security": 2,
+    "architecture": 4,
+    "ai-integration": 5,
+    "analytics": 5,
+    "documentation": 4,
+    "high-priority": 2,
+    "planning": 2,
+    "backend": 4,
+    "performance": 4,
+    "development": 3,
+    "critical": 3,
+    "database": 1
+  },
+  "lessonQuality": {
+    "averageQuality": 100,
+    "highQualityLessons": 5,
+    "lowQualityLessons": 0,
+    "totalLessons": 5
+  },
+  "topLessons": [
+    {
+      "filename": "2025-01-27-agent-os-review-summary.md",
+      "title": "Agent OS Review Summary - 2025-01-27",
+      "qualityScore": 100,
+      "categories": [
+        "frontend",
+        "devops",
+        "testing",
+        "security",
+        "architecture",
+        "ai-integration",
+        "analytics",
+        "documentation",
+        "high-priority",
+        "planning"
+      ],
+      "priority": "high"
+    },
+    {
+      "filename": "2025-01-27-step1-foundation-complete.md",
+      "title": "Step 1 Foundation Setup - Complete",
+      "qualityScore": 100,
+      "categories": [
+        "frontend",
+        "backend",
+        "devops",
+        "performance",
+        "ai-integration",
+        "analytics",
+        "documentation",
+        "high-priority",
+        "development"
+      ],
+      "priority": "high"
+    },
+    {
+      "filename": "2025-08-04-cursor-rule-optimization.md",
+      "title": "Cursor Rule Optimization Implementation - Lessons Learned",
+      "qualityScore": 100,
+      "categories": [
+        "frontend",
+        "backend",
+        "testing",
+        "performance",
+        "architecture",
+        "ai-integration",
+        "analytics",
+        "critical",
+        "development"
+      ],
+      "priority": "critical"
+    },
+    {
+      "filename": "2025-08-04-hybrid-architecture-implementation.md",
+      "title": "Hybrid Architecture Implementation - Lessons Learned",
+      "qualityScore": 100,
+      "categories": [
+        "frontend",
+        "backend",
+        "database",
+        "testing",
+        "performance",
+        "architecture",
+        "ai-integration",
+        "analytics",
+        "documentation",
+        "critical",
+        "development"
+      ],
+      "priority": "critical"
+    },
+    {
+      "filename": "README.md",
+      "title": "Agent OS Lessons Learned Framework",
+      "qualityScore": 100,
+      "categories": [
+        "frontend",
+        "backend",
+        "devops",
+        "testing",
+        "security",
+        "performance",
+        "architecture",
+        "ai-integration",
+        "analytics",
+        "documentation",
+        "critical",
+        "planning"
+      ],
+      "priority": "critical"
+    }
+  ]
+}

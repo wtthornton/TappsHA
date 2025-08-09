@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2025-08-04T20:15:57.999Z",
+  "summary": {
+    "totalRules": 189,
+    "performanceMetrics": {
+      "totalRules": 189,
+      "averagePerformance": 84,
+      "averageOptimization": 77,
+      "averageComplexity": 53,
+      "averageClarity": 86,
+      "highPerformanceRules": 102,
+      "lowPerformanceRules": 0,
+      "optimizationOpportunities": 0
+    },
+    "optimizationOpportunities": 1,
+    "recommendations": 1,
+    "priorityActions": 0
+  },
+  "topOptimizationOpportunities": [
+    {
+      "filename": "ai-ml.mdc",
+      "title": "AI/ML",
+      "type": "general",
+      "issues": [
+        "High complexity"
+      ],
+      "priority": 10
+    }
+  ],
+  "recommendations": [
+    {
+      "rule": "ai-ml.mdc",
+      "title": "AI/ML",
+      "type": "general",
+      "action": "Simplify rule complexity",
+      "description": "Break down complex concepts into simpler, more digestible parts",
+      "priority": 10,
+      "issues": [
+        "High complexity"
+      ]
+    }
+  ],
+  "priorityActions": []
+}

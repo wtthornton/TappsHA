@@ -1,0 +1,54 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { {{options.target}} } from '@/services/{{options.target}}';
+import { mockSingleton } from '@testing/patterns/singleton-mock';
+import { createApiClientMock } from '@testing/factories/api-mock';
+{{#if options.typescript}}
+import type { {{options.target}}Methods } from '@/services/{{options.target}}';
+{{/if}}
+
+// Mock the API client
+const mockApiClient = createApiClientMock();
+vi.mock('@/services/api/api-client', () => ({
+  apiClient: mockApiClient,
+}));
+
+describe('{{options.target}}', () => {
+  let service{{#if options.typescript}}: {{options.target}}{{/if}};
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    // Reset singleton instance
+    {{options.target}}['instance'] = undefined;
+    service = {{options.target}}.getInstance();
+  });
+
+  describe('getInstance', () => {
+    it('should return the same instance', () => {
+      const instance1 = {{options.target}}.getInstance();
+      const instance2 = {{options.target}}.getInstance();
+      
+      expect(instance1).toBe(instance2);
+    });
+  });
+
+  describe('exampleMethod', () => {
+    it('should successfully fetch data', async () => {
+      const mockData = { id: '1', name: 'Test' };
+      mockApiClient.get.mockResolvedValueOnce(mockData);
+
+      const result = await service.exampleMethod('test-param');
+
+      expect(mockApiClient.get).toHaveBeenCalledWith('/example/test-param');
+      expect(result).toEqual(mockData);
+    });
+
+    it('should handle API errors', async () => {
+      const error = new Error('API Error');
+      mockApiClient.get.mockRejectedValueOnce(error);
+
+      await expect(service.exampleMethod('test-param')).rejects.toThrow('API Error');
+    });
+  });
+
+  // Add more test cases for other methods
+});

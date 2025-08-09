@@ -1,0 +1,214 @@
+# Common Error Patterns and Solutions
+# Last Updated: January 27, 2025
+
+typescript_errors:
+  - pattern: "Cannot find name '(.*)'"
+    category: import_error
+    solutions:
+      - description: "Import the missing symbol"
+        action: "add_import"
+        template: "import { $1 } from './path';"
+      - description: "Check if export exists in source file"
+        action: "verify_export"
+      - description: "Add type import if it's a type"
+        action: "add_type_import"
+        template: "import type { $1 } from './path';"
+    
+  - pattern: "Property '(.*)' does not exist on type '(.*)'"
+    category: type_error
+    solutions:
+      - description: "Add property to interface/type"
+        action: "add_property"
+      - description: "Check if property name is correct"
+        action: "verify_property"
+      - description: "Use optional chaining if property might not exist"
+        action: "add_optional_chaining"
+        template: "object?.$1"
+    
+  - pattern: "Type '(.*)' is not assignable to type '(.*)'"
+    category: type_mismatch
+    solutions:
+      - description: "Check type definitions"
+        action: "verify_types"
+      - description: "Add type assertion if safe"
+        action: "add_assertion"
+        template: "value as $2"
+      - description: "Update type definition"
+        action: "update_type"
+
+  - pattern: "An import path can only end with a '\\.(ts|tsx)' extension when 'allowImportingTsExtensions' is enabled"
+    category: import_error
+    solutions:
+      - description: "Remove file extension from import"
+        action: "remove_extension"
+        template: "import { X } from './file';"
+      - description: "Enable allowImportingTsExtensions in tsconfig"
+        action: "update_tsconfig"
+
+testing_errors:
+  - pattern: "expected .* to be called with arguments"
+    category: mock_error
+    solutions:
+      - description: "Verify mock is set up correctly"
+        action: "check_mock_setup"
+      - description: "Check if method is being called"
+        action: "verify_method_call"
+      - description: "Ensure mock is cleared between tests"
+        action: "add_clear_mocks"
+        template: "beforeEach(() => { vi.clearAllMocks(); });"
+    
+  - pattern: "expected undefined to be"
+    category: assertion_error
+    solutions:
+      - description: "Check if value is being set"
+        action: "verify_value_set"
+      - description: "Add await for async operations"
+        action: "add_await"
+        template: "await waitFor(() => { expect(...).toBe(...); });"
+      - description: "Check mock return value"
+        action: "verify_mock_return"
+    
+  - pattern: "Cannot read properties of undefined"
+    category: null_reference
+    solutions:
+      - description: "Add null check"
+        action: "add_null_check"
+        template: "if (object) { object.property }"
+      - description: "Initialize object before use"
+        action: "initialize_object"
+      - description: "Use optional chaining"
+        action: "add_optional_chaining"
+        template: "object?.property"
+
+  - pattern: "No mock response for (GET|POST|PUT|DELETE) (.*)"
+    category: mock_error
+    solutions:
+      - description: "Add mock response for endpoint"
+        action: "add_mock_response"
+        template: |
+          mockApiClient.$1.mockResolvedValueOnce({
+            // response data
+          });
+      - description: "Check endpoint URL matches"
+        action: "verify_endpoint"
+
+react_errors:
+  - pattern: "React Hook .* is called conditionally"
+    category: hooks_error
+    solutions:
+      - description: "Move hook to top level of component"
+        action: "move_hook"
+      - description: "Remove conditional logic around hook"
+        action: "remove_condition"
+      - description: "Create separate component if conditional rendering needed"
+        action: "extract_component"
+    
+  - pattern: "Cannot update a component .* while rendering"
+    category: render_error
+    solutions:
+      - description: "Move state update to useEffect"
+        action: "use_effect"
+        template: |
+          useEffect(() => {
+            setState(value);
+          }, [dependency]);
+      - description: "Use callback pattern"
+        action: "use_callback"
+    
+  - pattern: "Invalid hook call"
+    category: hooks_error
+    solutions:
+      - description: "Ensure hook is called at top level"
+        action: "check_hook_location"
+      - description: "Verify component is a function component"
+        action: "verify_component_type"
+      - description: "Check React versions match"
+        action: "check_react_versions"
+
+api_errors:
+  - pattern: "Network Error"
+    category: network_error
+    solutions:
+      - description: "Check if server is running"
+        action: "verify_server"
+      - description: "Verify API endpoint URL"
+        action: "check_endpoint"
+      - description: "Check CORS configuration"
+        action: "verify_cors"
+    
+  - pattern: "401 Unauthorized"
+    category: auth_error
+    solutions:
+      - description: "Check if token is included in request"
+        action: "verify_auth_header"
+      - description: "Verify token is valid"
+        action: "check_token"
+      - description: "Refresh token if expired"
+        action: "refresh_token"
+    
+  - pattern: "429 Too Many Requests"
+    category: rate_limit
+    solutions:
+      - description: "Implement retry logic with backoff"
+        action: "add_retry"
+        template: |
+          await retry(
+            () => apiCall(),
+            { retries: 3, factor: 2 }
+          );
+      - description: "Add request throttling"
+        action: "add_throttle"
+
+dependency_errors:
+  - pattern: "Cannot find module '(.*)'"
+    category: module_error
+    solutions:
+      - description: "Install missing dependency"
+        action: "npm_install"
+        template: "npm install $1"
+      - description: "Check if path is correct"
+        action: "verify_path"
+      - description: "Update import statement"
+        action: "fix_import"
+    
+  - pattern: "Module not found: Error: Can't resolve '(.*)'"
+    category: webpack_error
+    solutions:
+      - description: "Install missing package"
+        action: "install_package"
+        template: "npm install $1"
+      - description: "Check webpack aliases"
+        action: "check_aliases"
+      - description: "Verify file exists at path"
+        action: "check_file_exists"
+
+  - pattern: "Conflicting peer dependency"
+    category: dependency_conflict
+    solutions:
+      - description: "Check compatibility matrix"
+        action: "check_compatibility"
+      - description: "Update to compatible version"
+        action: "update_version"
+      - description: "Use --force flag if safe"
+        action: "force_install"
+
+build_errors:
+  - pattern: "out of memory"
+    category: memory_error
+    solutions:
+      - description: "Increase Node memory limit"
+        action: "increase_memory"
+        template: "NODE_OPTIONS='--max-old-space-size=4096' npm run build"
+      - description: "Optimize build configuration"
+        action: "optimize_build"
+      - description: "Split into smaller chunks"
+        action: "code_splitting"
+
+  - pattern: "ENOSPC: System limit for number of file watchers reached"
+    category: system_error
+    solutions:
+      - description: "Increase file watcher limit"
+        action: "increase_watchers"
+        template: "echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf"
+      - description: "Exclude node_modules from watch"
+        action: "exclude_folders"

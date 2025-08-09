@@ -1,0 +1,113 @@
+{
+  "ruleUsage": [
+    {
+      "timestamp": "2025-08-04T20:12:34.913Z",
+      "totalRules": 189,
+      "effectivenessMetrics": {
+        "overallScore": 71,
+        "usageScore": 62,
+        "effectivenessScore": 81,
+        "totalRules": 189,
+        "highQualityRules": 183,
+        "lowQualityRules": 0
+      },
+      "typeDistribution": {
+        "lesson": 26,
+        "standard": 36,
+        "general": 93,
+        "rule": 18,
+        "quality": 3,
+        "technology": 3,
+        "script": 7,
+        "template": 3
+      },
+      "usageTrends": {
+        "recent": 189,
+        "medium": 0,
+        "old": 0
+      }
+    },
+    {
+      "timestamp": "2025-08-04T21:54:56.039Z",
+      "totalRules": 189,
+      "effectivenessMetrics": {
+        "overallScore": 71,
+        "usageScore": 62,
+        "effectivenessScore": 81,
+        "totalRules": 189,
+        "highQualityRules": 183,
+        "lowQualityRules": 0
+      },
+      "typeDistribution": {
+        "lesson": 26,
+        "standard": 36,
+        "general": 93,
+        "rule": 18,
+        "quality": 3,
+        "technology": 3,
+        "script": 7,
+        "template": 3
+      },
+      "usageTrends": {
+        "recent": 189,
+        "medium": 0,
+        "old": 0
+      }
+    },
+    {
+      "timestamp": "2025-08-04T22:38:04.755Z",
+      "totalRules": 257,
+      "effectivenessMetrics": {
+        "overallScore": 71,
+        "usageScore": 61,
+        "effectivenessScore": 81,
+        "totalRules": 257,
+        "highQualityRules": 251,
+        "lowQualityRules": 0
+      },
+      "typeDistribution": {
+        "lesson": 48,
+        "script": 14,
+        "standard": 54,
+        "general": 108,
+        "rule": 21,
+        "quality": 3,
+        "technology": 3,
+        "template": 5,
+        "technical": 1
+      },
+      "usageTrends": {
+        "recent": 257,
+        "medium": 0,
+        "old": 0
+      }
+    }
+  ],
+  "effectivenessHistory": [
+    {
+      "overallScore": 71,
+      "usageScore": 62,
+      "effectivenessScore": 81,
+      "totalRules": 189,
+      "highQualityRules": 183,
+      "lowQualityRules": 0
+    },
+    {
+      "overallScore": 71,
+      "usageScore": 62,
+      "effectivenessScore": 81,
+      "totalRules": 189,
+      "highQualityRules": 183,
+      "lowQualityRules": 0
+    },
+    {
+      "overallScore": 71,
+      "usageScore": 61,
+      "effectivenessScore": 81,
+      "totalRules": 257,
+      "highQualityRules": 251,
+      "lowQualityRules": 0
+    }
+  ],
+  "lastUpdated": "2025-08-04T22:38:04.755Z"
+}

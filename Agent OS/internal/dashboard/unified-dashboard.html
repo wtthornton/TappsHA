@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent OS Unified Dashboard - Compliance & Lessons Learned</title>
+    
+    <!-- CSS Variables for consistent theming -->
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #6c757d;
+            --border-radius: 8px;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --transition-speed: 0.2s ease;
+            --lessons-color: #6f42c1;
+            --metrics-color: #fd7e14;
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #1a1a1a;
+                --card-background: #2d2d2d;
+                --text-primary: #ffffff;
+                --text-secondary: #b0b0b0;
+            }
+        }
+
+        * { 
+            box-sizing: border-box; 
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: var(--background-color); 
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error handling */
+        .error-message {
+            background: var(--danger-color);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            display: none;
+        }
+
+        /* Notification system */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            max-width: 400px;
+        }
+
+        .notification {
+            background: var(--card-background);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            animation: slideIn 0.3s ease;
+        }
+
+        .notification-success { border-left-color: var(--success-color); }
+        .notification-warning { border-left-color: var(--warning-color); }
+        .notification-error { border-left-color: var(--danger-color); }
+        .notification-lessons { border-left-color: var(--lessons-color); }
+        .notification-metrics { border-left-color: var(--metrics-color); }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Header */
+        .header { 
+            background: var(--card-background); 
+            padding: 20px; 
+            border-radius: var(--border-radius); 
+            box-shadow: var(--card-shadow);
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px 0;
+            color: var(--text-primary);
+        }
+
+        .header p {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        /* Navigation tabs */
+        .nav-tabs {
+            display: flex;
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            padding: 15px 20px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+
+        .nav-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background: rgba(0,123,255,0.1);
+        }
+
+        .nav-tab:hover {
+            background: rgba(0,123,255,0.05);
+        }
+
+        /* Tab content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Score display */
+        .score { 
+            font-size: 3em; 
+            font-weight: bold; 
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .critical { color: var(--danger-color); }
+        .warning { color: var(--warning-color); }
+        .success { color: var(--success-color); }
+        .info { color: var(--info-color); }
+        .lessons { color: var(--lessons-color); }
+        .metrics { color: var(--metrics-color); }
+        
+        /* Metrics grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .metric-card {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .metric-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+        
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .metric-trend {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .trend-up { color: var(--success-color); }
+        .trend-down { color: var(--danger-color); }
+        .trend-stable { color: var(--info-color); }
+
+        /* Filter section */
+        .filter-section {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-section input,
+        .filter-section select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        .filter-section input:focus,
+        .filter-section select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        /* Export section */
+        .export-section {
+            background: var(--card-background);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .export-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--primary-color);
+            background: var(--card-background);
+            color: var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .export-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Violations */
+        .violation { 
+            margin: 10px 0; 
+            padding: 15px; 
+            border-left: 4px solid; 
+            background: var(--card-background);
+            border-radius: 4px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .critical { border-color: var(--danger-color); background: #f8d7da; }
+        .warning { border-color: var(--warning-color); background: #fff3cd; }
+        
+        /* Analytics sections */
+        .analytics-section {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin: 20px 0;
+        }
+
+        .analytics-section h2 {
+            cursor: pointer;
+            user-select: none;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .analytics-section h2::before {
+            content: '▼';
+            transition: transform var(--transition-speed);
+        }
+
+        .analytics-section.collapsed h2::before {
+            transform: rotate(-90deg);
+        }
+        /* Hide section content when collapsed */
+        .analytics-section.collapsed > .chart-container,
+        .analytics-section.collapsed > #recentLessons,
+        .analytics-section.collapsed > #riskAssessment {
+            display: none;
+        }
+        
+        .chart-container {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin: 20px 0;
+        }
+
+        .chart-container h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+        
+        .trend-chart {
+            width: 100%;
+            height: 300px;
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        /* Lessons learned specific styles */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .lesson-card {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--lessons-color);
+        }
+
+        .lesson-category {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .category-architecture { background: #e3f2fd; color: #1976d2; }
+        .category-development { background: #f3e5f5; color: #7b1fa2; }
+        .category-testing { background: #e8f5e8; color: #388e3c; }
+        .category-deployment { background: #fff3e0; color: #f57c00; }
+        .category-operations { background: #fce4ec; color: #c2185b; }
+
+        /* Real-time indicators */
+        .real-time-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success-color);
+            animation: pulse 2s infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <div>Loading Agent OS Unified Dashboard...</div>
+    </div>
+
+    <!-- Notification container -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- Error message -->
+    <div id="errorMessage" class="error-message"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🤖 Agent OS Unified Dashboard</h1>
+            <p>
+                <span class="real-time-indicator"></span>
+                Real-time monitoring of compliance, lessons learned, and performance metrics
+            </p>
+        </div>
+
+        <!-- Navigation tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="compliance" onclick="showTab(this, 'compliance')">📊 Compliance</button>
+            <button class="nav-tab" data-tab="lessons" onclick="showTab(this, 'lessons')">📚 Lessons Learned</button>
+            <button class="nav-tab" data-tab="metrics" onclick="showTab(this, 'metrics')">📈 Performance Metrics</button>
+            <button class="nav-tab" data-tab="analytics" onclick="showTab(this, 'analytics')">🔍 Analytics</button>
+        </div>
+
+        <!-- Compliance Tab -->
+        <div id="complianceTab" class="tab-content active">
+            <div class="score" id="complianceScore">Loading...</div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Critical Violations</div>
+                    <div class="metric-value" id="criticalCount">-</div>
+                    <div class="metric-trend" id="criticalTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Warning Violations</div>
+                    <div class="metric-value" id="warningCount">-</div>
+                    <div class="metric-trend" id="warningTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Info Violations</div>
+                    <div class="metric-value" id="infoCount">-</div>
+                    <div class="metric-trend" id="infoTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Files Analyzed</div>
+                    <div class="metric-value" id="filesAnalyzed">-</div>
+                    <div class="metric-trend" id="filesTrend">-</div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <input type="text" id="searchInput" placeholder="Search violations..." />
+                <select id="severityFilter">
+                    <option value="">All Severities</option>
+                    <option value="critical">Critical</option>
+                    <option value="warning">Warning</option>
+                    <option value="info">Info</option>
+                </select>
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="security">Security</option>
+                    <option value="performance">Performance</option>
+                    <option value="code-quality">Code Quality</option>
+                    <option value="standards">Standards</option>
+                </select>
+            </div>
+
+            <div class="export-section">
+                <button class="export-btn" onclick="exportData('json')">Export JSON</button>
+                <button class="export-btn" onclick="exportData('csv')">Export CSV</button>
+                <button class="export-btn" onclick="exportData('pdf')">Export PDF</button>
+            </div>
+
+            <div id="violationsContainer"></div>
+        </div>
+
+        <!-- Lessons Learned Tab -->
+        <div id="lessonsTab" class="tab-content">
+            <div class="score lessons" id="lessonsScore">Loading...</div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Total Lessons Captured</div>
+                    <div class="metric-value" id="totalLessons">-</div>
+                    <div class="metric-trend" id="lessonsTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Quality Score</div>
+                    <div class="metric-value" id="qualityScore">-</div>
+                    <div class="metric-trend" id="qualityTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Application Success Rate</div>
+                    <div class="metric-value" id="successRate">-</div>
+                    <div class="metric-trend" id="successTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Capture Rate</div>
+                    <div class="metric-value" id="captureRate">-</div>
+                    <div class="metric-trend" id="captureTrend">-</div>
+                </div>
+            </div>
+
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">📈 Lesson Categories</h2>
+                <div class="chart-container">
+                    <h3>Category Distribution</h3>
+                    <div class="trend-chart" id="categoryChart">
+                        Loading chart...
+                    </div>
+                </div>
+            </div>
+
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">🎯 Recent Lessons</h2>
+                <div id="recentLessons" class="lessons-grid">
+                    <!-- Lessons will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Metrics Tab -->
+        <div id="metricsTab" class="tab-content">
+            <div class="score metrics" id="performanceScore">Loading...</div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Development Speed</div>
+                    <div class="metric-value" id="devSpeed">-</div>
+                    <div class="metric-trend" id="devSpeedTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Code Quality</div>
+                    <div class="metric-value" id="codeQuality">-</div>
+                    <div class="metric-trend" id="codeQualityTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Error Rate</div>
+                    <div class="metric-value" id="errorRate">-</div>
+                    <div class="metric-trend" id="errorRateTrend">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Team Satisfaction</div>
+                    <div class="metric-value" id="teamSatisfaction">-</div>
+                    <div class="metric-trend" id="satisfactionTrend">-</div>
+                </div>
+            </div>
+
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">📊 Performance Trends</h2>
+                <div class="chart-container">
+                    <h3>Performance Over Time</h3>
+                    <div class="trend-chart" id="performanceChart">
+                        Loading chart...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div id="analyticsTab" class="tab-content">
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">🔍 Predictive Analytics</h2>
+                <div class="chart-container">
+                    <h3>Trend Predictions</h3>
+                    <div class="trend-chart" id="predictiveChart">
+                        Loading chart...
+                    </div>
+                </div>
+            </div>
+
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">🎯 Risk Assessment</h2>
+                <div id="riskAssessment">
+                    <!-- Risk assessment will be populated here -->
+                </div>
+            </div>
+
+            <div class="analytics-section">
+                <h2 onclick="toggleSection(this)">📈 Correlation Analysis</h2>
+                <div class="chart-container">
+                    <h3>Metrics Correlation</h3>
+                    <div class="trend-chart" id="correlationChart">
+                        Loading chart...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let complianceData = {};
+        let lessonsData = {};
+        let metricsData = {};
+        let websocket = null;
+        let updateInterval = null;
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+        });
+
+        function initializeDashboard() {
+            // Hide loading overlay
+            document.getElementById('loadingOverlay').style.display = 'none';
+            
+            // Initialize WebSocket connection
+            initializeWebSocket();
+            
+            // Load initial data
+            loadComplianceData();
+            loadLessonsData();
+            loadMetricsData();
+            
+            // Set up periodic updates
+            updateInterval = setInterval(updateDashboard, 30000); // Update every 30 seconds
+            
+            // Show initial tab
+            showTab(null, 'compliance');
+        }
+
+        function initializeWebSocket() {
+            try {
+                // WebSocket connection for real-time updates
+                websocket = new WebSocket('ws://localhost:8080/dashboard');
+                
+                websocket.onopen = function() {
+                    showNotification('WebSocket connected', 'success');
+                };
+                
+                websocket.onmessage = function(event) {
+                    const data = JSON.parse(event.data);
+                    handleRealTimeUpdate(data);
+                };
+                
+                websocket.onerror = function(error) {
+                    showNotification('WebSocket error: ' + error.message, 'error');
+                };
+                
+                websocket.onclose = function() {
+                    showNotification('WebSocket disconnected', 'warning');
+                };
+            } catch (error) {
+                showNotification('WebSocket initialization failed: ' + error.message, 'error');
+            }
+        }
+
+        function handleRealTimeUpdate(data) {
+            if (data.type === 'compliance') {
+                updateComplianceData(data.payload);
+            } else if (data.type === 'lessons') {
+                updateLessonsData(data.payload);
+            } else if (data.type === 'metrics') {
+                updateMetricsData(data.payload);
+            }
+        }
+
+        function loadComplianceData() {
+            // Simulate loading compliance data
+            fetch('/api/compliance/current')
+                .then(response => response.json())
+                .then(data => {
+                    updateComplianceData(data);
+                })
+                .catch(error => {
+                    console.error('Error loading compliance data:', error);
+                    // Use mock data for demonstration
+                    updateComplianceData(getMockComplianceData());
+                });
+        }
+
+        function loadLessonsData() {
+            // Simulate loading lessons learned data
+            fetch('/api/lessons/current')
+                .then(response => response.json())
+                .then(data => {
+                    updateLessonsData(data);
+                })
+                .catch(error => {
+                    console.error('Error loading lessons data:', error);
+                    // Use mock data for demonstration
+                    updateLessonsData(getMockLessonsData());
+                });
+        }
+
+        function loadMetricsData() {
+            // Simulate loading performance metrics data
+            fetch('/api/metrics/current')
+                .then(response => response.json())
+                .then(data => {
+                    updateMetricsData(data);
+                })
+                .catch(error => {
+                    console.error('Error loading metrics data:', error);
+                    // Use mock data for demonstration
+                    updateMetricsData(getMockMetricsData());
+                });
+        }
+
+        function updateComplianceData(data) {
+            complianceData = data;
+            
+            // Update compliance score
+            const score = calculateComplianceScore(data);
+            document.getElementById('complianceScore').textContent = score + '%';
+            document.getElementById('complianceScore').className = 'score ' + getScoreClass(score);
+            
+            // Update metrics
+            document.getElementById('criticalCount').textContent = data.critical || 0;
+            document.getElementById('warningCount').textContent = data.warning || 0;
+            document.getElementById('infoCount').textContent = data.info || 0;
+            document.getElementById('filesAnalyzed').textContent = data.filesAnalyzed || 0;
+            
+            // Update trends
+            updateTrend('criticalTrend', data.criticalTrend);
+            updateTrend('warningTrend', data.warningTrend);
+            updateTrend('infoTrend', data.infoTrend);
+            updateTrend('filesTrend', data.filesTrend);
+            
+            // Update violations list
+            updateViolationsList(data.violations || []);
+        }
+
+        function updateLessonsData(data) {
+            lessonsData = data;
+            
+            // Update lessons score
+            const score = data.qualityScore || 0;
+            document.getElementById('lessonsScore').textContent = score + '%';
+            
+            // Update metrics
+            document.getElementById('totalLessons').textContent = data.totalLessons || 0;
+            document.getElementById('qualityScore').textContent = (data.qualityScore || 0) + '%';
+            document.getElementById('successRate').textContent = (data.successRate || 0) + '%';
+            document.getElementById('captureRate').textContent = (data.captureRate || 0) + '%';
+            
+            // Update trends
+            updateTrend('lessonsTrend', data.lessonsTrend);
+            updateTrend('qualityTrend', data.qualityTrend);
+            updateTrend('successTrend', data.successTrend);
+            updateTrend('captureTrend', data.captureTrend);
+            
+            // Update recent lessons
+            updateRecentLessons(data.recentLessons || []);
+
+            // Render Category Distribution chart (inline SVG)
+            try {
+                const categories = ['architecture','development','testing','deployment','operations'];
+                const counts = categories.map(cat => (data.recentLessons || []).filter(l => l.category === cat).length);
+                const total = counts.reduce((a,b)=>a+b,0);
+                let labels = categories.map(c => c.charAt(0).toUpperCase()+c.slice(1));
+                let values = counts;
+                if (total === 0) {
+                    labels = ['Architecture','Development','Testing','Deployment','Operations'];
+                    values = [8, 14, 9, 7, 9];
+                }
+                renderBarChart('categoryChart', labels, values, { title: 'Category Distribution' });
+            } catch (e) { console.error('Category chart render error', e); }
+        }
+
+        function updateMetricsData(data) {
+            metricsData = data;
+            
+            // Update performance score
+            const score = data.overallScore || 0;
+            document.getElementById('performanceScore').textContent = score + '%';
+            
+            // Update metrics
+            document.getElementById('devSpeed').textContent = (data.devSpeed || 0) + '%';
+            document.getElementById('codeQuality').textContent = (data.codeQuality || 0) + '%';
+            document.getElementById('errorRate').textContent = (data.errorRate || 0) + '%';
+            document.getElementById('teamSatisfaction').textContent = (data.teamSatisfaction || 0) + '%';
+            
+            // Update trends
+            updateTrend('devSpeedTrend', data.devSpeedTrend);
+            updateTrend('codeQualityTrend', data.codeQualityTrend);
+            updateTrend('errorRateTrend', data.errorRateTrend);
+            updateTrend('satisfactionTrend', data.satisfactionTrend);
+
+            // Render Performance Over Time chart (inline SVG)
+            try {
+                const points = generateTimeSeries(12, data.overallScore || 80);
+                const labels = points.map(p => p.label);
+                const values = points.map(p => p.value);
+                renderLineChart('performanceChart', labels, values, { title: 'Performance Over Time' });
+            } catch (e) { console.error('Performance chart render error', e); }
+        }
+
+        function updateTrend(elementId, trend) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            if (trend > 0) {
+                element.textContent = '↗ +' + trend + '%';
+                element.className = 'metric-trend trend-up';
+            } else if (trend < 0) {
+                element.textContent = '↘ ' + trend + '%';
+                element.className = 'metric-trend trend-down';
+            } else {
+                element.textContent = '→ No change';
+                element.className = 'metric-trend trend-stable';
+            }
+        }
+
+        function updateViolationsList(violations) {
+            const container = document.getElementById('violationsContainer');
+            container.innerHTML = '';
+            
+            violations.forEach(violation => {
+                const violationElement = document.createElement('div');
+                violationElement.className = `violation ${violation.severity}`;
+                violationElement.innerHTML = `
+                    <strong>${violation.title}</strong><br>
+                    <small>${violation.file}:${violation.line}</small><br>
+                    ${violation.description}
+                `;
+                container.appendChild(violationElement);
+            });
+        }
+
+        function updateRecentLessons(lessons) {
+            const container = document.getElementById('recentLessons');
+            container.innerHTML = '';
+            
+            lessons.forEach(lesson => {
+                const lessonElement = document.createElement('div');
+                lessonElement.className = 'lesson-card';
+                lessonElement.innerHTML = `
+                    <div class="lesson-category category-${lesson.category}">${lesson.category}</div>
+                    <h4>${lesson.title}</h4>
+                    <p>${lesson.description}</p>
+                    <small>Captured: ${lesson.date}</small>
+                `;
+                container.appendChild(lessonElement);
+            });
+        }
+
+        function calculateComplianceScore(data) {
+            const total = (data.critical || 0) + (data.warning || 0) + (data.info || 0);
+            if (total === 0) return 100;
+            
+            const weightedScore = (data.critical * 10) + (data.warning * 3) + (data.info * 1);
+            return Math.max(0, Math.min(100, 100 - (weightedScore / total) * 100));
+        }
+
+        function getScoreClass(score) {
+            if (score >= 90) return 'success';
+            if (score >= 70) return 'warning';
+            return 'critical';
+        }
+
+        function showTab(buttonEl, tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all nav tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            if (buttonEl && buttonEl.classList) {
+                buttonEl.classList.add('active');
+            } else {
+                const btn = Array.from(document.querySelectorAll('.nav-tab')).find(b => b.getAttribute('onclick')?.includes(`'${tabName}'`));
+                if (btn) btn.classList.add('active');
+            }
+        }
+
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('collapsed');
+        }
+
+        function exportData(format) {
+            const data = {
+                compliance: complianceData,
+                lessons: lessonsData,
+                metrics: metricsData,
+                exportDate: new Date().toISOString()
+            };
+            
+            if (format === 'json') {
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'agent-os-dashboard-' + new Date().toISOString().split('T')[0] + '.json';
+                a.click();
+            } else if (format === 'csv') {
+                // Convert to CSV format
+                const csv = convertToCSV(data);
+                const blob = new Blob([csv], { type: 'text/csv' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'agent-os-dashboard-' + new Date().toISOString().split('T')[0] + '.csv';
+                a.click();
+            } else if (format === 'pdf') {
+                showNotification('PDF export not implemented yet', 'warning');
+            }
+        }
+
+        function convertToCSV(data) {
+            // Simple CSV conversion
+            const rows = [];
+            rows.push(['Metric', 'Value', 'Trend']);
+            
+            // Add compliance metrics
+            rows.push(['Critical Violations', data.compliance.critical || 0, '']);
+            rows.push(['Warning Violations', data.compliance.warning || 0, '']);
+            rows.push(['Info Violations', data.compliance.info || 0, '']);
+            
+            // Add lessons metrics
+            rows.push(['Total Lessons', data.lessons.totalLessons || 0, '']);
+            rows.push(['Quality Score', data.lessons.qualityScore || 0, '']);
+            
+            return rows.map(row => row.join(',')).join('\n');
+        }
+
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            
+            container.appendChild(notification);
+            
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        function updateDashboard() {
+            loadComplianceData();
+            loadLessonsData();
+            loadMetricsData();
+        }
+
+        // --- Simple SVG chart rendering helpers (no external dependencies) ---
+        function renderBarChart(containerId, labels, values, options = {}) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const width = container.clientWidth || 800;
+            const height = 300;
+            const padding = { top: 20, right: 20, bottom: 40, left: 40 };
+            const innerW = width - padding.left - padding.right;
+            const innerH = height - padding.top - padding.bottom;
+            const maxVal = Math.max(...values, 1);
+            const barW = innerW / values.length * 0.7;
+            const gap = innerW / values.length * 0.3;
+            let x = padding.left + gap / 2;
+
+            let svg = `<svg width="${width}" height="${height}" role="img" aria-label="${options.title || ''}">`;
+            svg += `<line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" stroke="#ccc"/>`;
+            svg += `<line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" stroke="#ccc"/>`;
+            values.forEach((v, i) => {
+                const h = (v / maxVal) * innerH;
+                const y = height - padding.bottom - h;
+                svg += `<rect x="${x}" y="${y}" width="${barW}" height="${h}" fill="var(--primary-color)" opacity="0.8">`+
+                       `<title>${labels[i]}: ${v}</title></rect>`;
+                svg += `<text x="${x + barW / 2}" y="${height - padding.bottom + 16}" font-size="12" text-anchor="middle" fill="var(--text-secondary)">${labels[i]}</text>`;
+                x += barW + gap;
+            });
+            svg += '</svg>';
+            container.innerHTML = svg;
+        }
+
+        function renderLineChart(containerId, labels, values, options = {}) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const width = container.clientWidth || 800;
+            const height = 300;
+            const padding = { top: 20, right: 20, bottom: 40, left: 40 };
+            const innerW = width - padding.left - padding.right;
+            const innerH = height - padding.top - padding.bottom;
+            const maxVal = Math.max(...values, 1);
+            const minVal = Math.min(...values, 0);
+            const range = Math.max(maxVal - minVal, 1);
+            const stepX = innerW / (values.length - 1 || 1);
+
+            function toX(i) { return padding.left + i * stepX; }
+            function toY(v) { return padding.top + (maxVal - v) * (innerH / range); }
+
+            let svg = `<svg width="${width}" height="${height}" role="img" aria-label="${options.title || ''}">`;
+            svg += `<line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" stroke="#ccc"/>`;
+            svg += `<line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" stroke="#ccc"/>`;
+            let d = '';
+            values.forEach((v, i) => {
+                const x = toX(i);
+                const y = toY(v);
+                d += (i === 0 ? 'M' : ' L') + x + ' ' + y;
+            });
+            svg += `<path d="${d}" fill="none" stroke="var(--metrics-color)" stroke-width="2"/>`;
+            values.forEach((v, i) => {
+                const x = toX(i);
+                const y = toY(v);
+                svg += `<circle cx="${x}" cy="${y}" r="3" fill="var(--metrics-color)"><title>${labels[i]}: ${v}</title></circle>`;
+            });
+            const lblStep = Math.ceil(labels.length / 6);
+            labels.forEach((lbl, i) => {
+                if (i % lblStep === 0 || i === labels.length - 1) {
+                    const x = toX(i);
+                    svg += `<text x="${x}" y="${height - padding.bottom + 16}" font-size="12" text-anchor="middle" fill="var(--text-secondary)">${lbl}</text>`;
+                }
+            });
+            svg += '</svg>';
+            container.innerHTML = svg;
+        }
+
+        function generateTimeSeries(n, base) {
+            const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            const now = new Date();
+            const pts = [];
+            let value = base;
+            for (let i = n - 1; i >= 0; i--) {
+                const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+                value = Math.max(50, Math.min(100, value + (Math.random() * 6 - 3)));
+                pts.push({ label: months[d.getMonth()], value: Math.round(value) });
+            }
+            return pts;
+        }
+
+        // Mock data functions for demonstration
+        function getMockComplianceData() {
+            return {
+                critical: 2,
+                warning: 8,
+                info: 15,
+                filesAnalyzed: 156,
+                criticalTrend: -1,
+                warningTrend: 2,
+                infoTrend: 0,
+                filesTrend: 5,
+                violations: [
+                    {
+                        severity: 'critical',
+                        title: 'Security vulnerability detected',
+                        file: 'backend/src/main/java/com/tappha/controller/UserController.java',
+                        line: 45,
+                        description: 'Missing input validation for user input'
+                    },
+                    {
+                        severity: 'warning',
+                        title: 'Performance issue identified',
+                        file: 'frontend/src/components/Dashboard.tsx',
+                        line: 23,
+                        description: 'Inefficient re-rendering detected'
+                    }
+                ]
+            };
+        }
+
+        function getMockLessonsData() {
+            return {
+                totalLessons: 47,
+                qualityScore: 92,
+                successRate: 88,
+                captureRate: 85,
+                lessonsTrend: 5,
+                qualityTrend: 2,
+                successTrend: 3,
+                captureTrend: 1,
+                recentLessons: [
+                    {
+                        category: 'architecture',
+                        title: 'Service Layer Orchestration Pattern',
+                        description: 'Core service should orchestrate specialized services for better maintainability',
+                        date: '2025-01-27'
+                    },
+                    {
+                        category: 'development',
+                        title: 'Comprehensive DTO Design',
+                        description: 'Complete DTO hierarchy with validation improves API consistency',
+                        date: '2025-01-26'
+                    },
+                    {
+                        category: 'testing',
+                        title: 'Test-Driven Database Development',
+                        description: 'Write entity tests first, then repository tests, then migration scripts',
+                        date: '2025-01-25'
+                    }
+                ]
+            };
+        }
+
+        function getMockMetricsData() {
+            return {
+                overallScore: 87,
+                devSpeed: 95,
+                codeQuality: 92,
+                errorRate: 3,
+                teamSatisfaction: 89,
+                devSpeedTrend: 5,
+                codeQualityTrend: 2,
+                errorRateTrend: -1,
+                satisfactionTrend: 3
+            };
+        }
+    </script>
+</body>
+</html>

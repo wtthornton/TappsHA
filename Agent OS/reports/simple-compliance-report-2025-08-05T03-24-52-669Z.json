@@ -1,0 +1,114 @@
+{
+  "overall": {
+    "score": 78,
+    "status": "warning",
+    "criticalViolations": 0,
+    "warnings": 6,
+    "passed": 21,
+    "total": 27
+  },
+  "categories": {
+    "technologyStack": {
+      "score": 100,
+      "violations": [],
+      "status": "pass"
+    },
+    "codeStyle": {
+      "score": 0,
+      "violations": [
+        {
+          "type": "WARNING",
+          "message": "Frontend should have ESLint configuration",
+          "file": "frontend/.eslintrc",
+          "standard": "code-style"
+        },
+        {
+          "type": "WARNING",
+          "message": "Frontend should have Prettier configuration",
+          "file": "frontend/.prettierrc",
+          "standard": "code-style"
+        },
+        {
+          "type": "WARNING",
+          "message": "Frontend should have TypeScript configuration",
+          "file": "frontend/tsconfig.json",
+          "standard": "code-style"
+        }
+      ],
+      "status": "fail"
+    },
+    "security": {
+      "score": 100,
+      "violations": [],
+      "status": "pass"
+    },
+    "architecture": {
+      "score": 33,
+      "violations": [
+        {
+          "type": "WARNING",
+          "message": "Backend should follow layered architecture (Controller/Service/Repository)",
+          "file": "backend/src/main/java",
+          "standard": "architecture"
+        },
+        {
+          "type": "WARNING",
+          "message": "Backend should have configuration package",
+          "file": "backend/src/main/java",
+          "standard": "architecture"
+        }
+      ],
+      "status": "fail"
+    },
+    "testing": {
+      "score": 50,
+      "violations": [
+        {
+          "type": "WARNING",
+          "message": "Frontend should have test files",
+          "file": "frontend/src/__tests__",
+          "standard": "testing"
+        }
+      ],
+      "status": "fail"
+    },
+    "performance": {
+      "score": 0,
+      "violations": [],
+      "status": "fail"
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "high",
+      "category": "overall",
+      "message": "Overall compliance score is 78% - target is 85%",
+      "action": "Review and fix violations to improve compliance score"
+    },
+    {
+      "priority": "high",
+      "category": "codeStyle",
+      "message": "codeStyle compliance is failing (0%)",
+      "action": "Improve codeStyle compliance to reach 85% target"
+    },
+    {
+      "priority": "high",
+      "category": "architecture",
+      "message": "architecture compliance is failing (33%)",
+      "action": "Improve architecture compliance to reach 85% target"
+    },
+    {
+      "priority": "high",
+      "category": "testing",
+      "message": "testing compliance is failing (50%)",
+      "action": "Improve testing compliance to reach 85% target"
+    },
+    {
+      "priority": "high",
+      "category": "performance",
+      "message": "performance compliance is failing (0%)",
+      "action": "Improve performance compliance to reach 85% target"
+    }
+  ],
+  "timestamp": "2025-08-05T03:24:52.654Z"
+}

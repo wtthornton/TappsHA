@@ -1,0 +1,26 @@
+# Cursor Rules Generated from Lesson: Agent OS Development Environment Setup Lessons Learned
+
+**Source**: Agent OS - 2025-01-27
+**Priority**: High
+**Tags**: development-environment, code-quality, typescript, testing, eslint, prettier, vitest, standards-compliance, CodeValidator, ComplianceChecker
+
+## Generated Rules
+
+### 1. Code Quality Standards - Agent OS Development Environment Setup Lessons Learned
+
+**Type**: quality
+**Priority**: High
+**Description**: Maintain code quality standards based on lesson: Agent OS Development Environment Setup Lessons Learned
+
+**ALWAYS** maintain code quality standards based on lesson "Agent OS Development Environment Setup Lessons Learned":
+- Follow established coding conventions
+- Ensure proper error handling
+- Maintain code readability and maintainability
+
+## Usage Guidelines
+
+- These rules were automatically generated from lesson: Agent OS Development Environment Setup Lessons Learned
+- Apply these rules consistently across the project
+- Review and update rules as needed based on new lessons
+- Report rule effectiveness to improve future generation
+

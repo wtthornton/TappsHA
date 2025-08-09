@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2025-08-04T21:54:43.097Z",
+  "summary": {
+    "totalLessons": 0,
+    "validatedLessons": 0,
+    "averageQualityScore": 0,
+    "validationErrors": 0,
+    "topQualityLessons": []
+  },
+  "qualityDistribution": {
+    "excellent": 0,
+    "good": 0,
+    "fair": 0,
+    "poor": 0,
+    "failing": 0
+  },
+  "validationErrors": [],
+  "qualityTrends": {
+    "byPhase": {},
+    "byPriority": {},
+    "bySection": {}
+  }
+}

@@ -1,0 +1,26 @@
+# Cursor Rules Generated from Lesson: Improvement Template
+
+**Source**: Agent OS - Unknown Date
+**Priority**: Medium
+**Tags**: improvement, process, technology, standards, tooling, spring-boot, react, testing, deployment, monitoring
+
+## Generated Rules
+
+### 1. Technology Stack Compliance - Improvement Template
+
+**Type**: technology
+**Priority**: Medium
+**Description**: Ensure technology stack compliance based on lesson: Improvement Template
+
+**ALWAYS** ensure technology stack compliance based on lesson "Improvement Template":
+- Use only approved technologies from .agent-os standards
+- Follow established patterns and conventions
+- Maintain consistency across the project
+
+## Usage Guidelines
+
+- These rules were automatically generated from lesson: Improvement Template
+- Apply these rules consistently across the project
+- Review and update rules as needed based on new lessons
+- Report rule effectiveness to improve future generation
+

@@ -1,0 +1,26 @@
+# Cursor Rules Generated from Lesson: Lessons Learned Capture Template
+
+**Source**: Agent OS - Unknown Date
+**Priority**: Medium
+**Tags**: technical, performance, security, ux, process, team, spring-boot, react, testing, deployment, monitoring
+
+## Generated Rules
+
+### 1. Technology Stack Compliance - Lessons Learned Capture Template
+
+**Type**: technology
+**Priority**: Medium
+**Description**: Ensure technology stack compliance based on lesson: Lessons Learned Capture Template
+
+**ALWAYS** ensure technology stack compliance based on lesson "Lessons Learned Capture Template":
+- Use only approved technologies from .agent-os standards
+- Follow established patterns and conventions
+- Maintain consistency across the project
+
+## Usage Guidelines
+
+- These rules were automatically generated from lesson: Lessons Learned Capture Template
+- Apply these rules consistently across the project
+- Review and update rules as needed based on new lessons
+- Report rule effectiveness to improve future generation
+

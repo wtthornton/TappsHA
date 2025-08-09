@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Debug</title>
+    <!-- Load Chart.js instead of Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Verify Chart.js loading with fallback
+        window.addEventListener('load', function() {
+            console.log('🔍 Checking Chart.js loading...');
+            
+            if (typeof Chart === 'undefined') {
+                console.error('❌ Chart.js failed to load from CDN');
+                // Try alternative CDN
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.js';
+                script.onload = function() {
+                    console.log('✅ Chart.js loaded from alternative CDN');
+                };
+                document.head.appendChild(script);
+            } else {
+                console.log('✅ Chart.js loaded successfully');
+            }
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        .debug-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .test-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #2563eb;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #3b82f6;
+        }
+        .chart-test-container {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .chart-test-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1>Agent-OS Dashboard Debug</h1>
+        <p>This page tests the dashboard components and libraries.</p>
+        
+        <div class="test-section">
+            <h3>Library Loading Tests</h3>
+            <button class="test-button" onclick="testLibraries()">Test Libraries</button>
+            <div id="library-status"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Theme Manager Test</h3>
+            <button class="test-button" onclick="testThemeManager()">Test Theme Manager</button>
+            <div id="theme-status"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Chart.js Tests</h3>
+            <button class="test-button" onclick="testCharts()">Test Chart.js</button>
+            <div id="chart-status"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Dashboard Access Tests</h3>
+            <button class="test-button" onclick="testDashboard()">Test Dashboard Access</button>
+            <div id="dashboard-status"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Chart Functionality Test</h3>
+            <button class="test-button" onclick="testChartFunctionality()">Test Chart Creation</button>
+            <div id="chart-functionality-status"></div>
+            <div id="test-chart-container" class="chart-test-container"></div>
+        </div>
+    </div>
+
+    <script>
+        function testLibraries() {
+            const status = document.getElementById('library-status');
+            status.innerHTML = '<div class="status info">Testing library loading...</div>';
+            
+            const results = [];
+            let allPassed = true;
+            
+            // Test Chart.js
+            if (typeof Chart !== 'undefined') {
+                results.push('✅ Chart.js loaded (v' + (Chart.version || 'unknown') + ')');
+            } else {
+                results.push('❌ Chart.js not loaded');
+                allPassed = false;
+            }
+            
+            const statusClass = allPassed ? 'success' : 'error';
+            status.innerHTML = '<div class="status ' + statusClass + '">' + results.join('<br>') + '</div>';
+        }
+        
+        function testThemeManager() {
+            const status = document.getElementById('theme-status');
+            status.innerHTML = '<div class="status info">Testing theme manager...</div>';
+            
+            try {
+                // Test if theme manager script is loaded
+                if (typeof AgentOSThemeManager !== 'undefined') {
+                    // Test creating an instance
+                    const themeManager = new AgentOSThemeManager();
+                    if (themeManager && themeManager.isInitialized) {
+                        status.innerHTML = '<div class="status success">✅ AgentOSThemeManager class available and initialized</div>';
+                    } else {
+                        status.innerHTML = '<div class="status error">❌ AgentOSThemeManager failed to initialize</div>';
+                    }
+                } else {
+                    status.innerHTML = '<div class="status error">❌ AgentOSThemeManager class not found</div>';
+                }
+            } catch (error) {
+                status.innerHTML = '<div class="status error">❌ Error testing theme manager: ' + error.message + '</div>';
+            }
+        }
+        
+        function testCharts() {
+            const status = document.getElementById('chart-status');
+            status.innerHTML = '<div class="status info">Testing Chart.js...</div>';
+            
+            const results = [];
+            let allPassed = true;
+            
+            // Test Chart.js
+            if (typeof Chart !== 'undefined') {
+                results.push('✅ Chart.js available (v' + (Chart.version || 'unknown') + ')');
+            } else {
+                results.push('❌ Chart.js not found');
+                allPassed = false;
+            }
+            
+            // Test datasets
+            if (typeof window.AgentOSDatasets !== 'undefined') {
+                results.push('✅ Sample datasets available');
+            } else {
+                results.push('❌ Sample datasets not found');
+                allPassed = false;
+            }
+            
+            const statusClass = allPassed ? 'success' : 'error';
+            status.innerHTML = '<div class="status ' + statusClass + '">' + results.join('<br>') + '</div>';
+        }
+        
+        function testDashboard() {
+            const status = document.getElementById('dashboard-status');
+            status.innerHTML = '<div class="status info">Testing dashboard access...</div>';
+            
+            // Test multiple endpoints
+            const endpoints = [
+                { url: '/app', name: 'Main Dashboard' },
+                { url: '/debug', name: 'Debug Page' },
+                { url: '/modern-dashboard/design-system.css', name: 'Design System CSS' },
+                { url: '/modern-dashboard/theme-manager.js', name: 'Theme Manager JS' }
+            ];
+            
+            let testsCompleted = 0;
+            let testsPassed = 0;
+            const results = [];
+            
+            endpoints.forEach(endpoint => {
+                fetch(endpoint.url)
+                    .then(response => {
+                        testsCompleted++;
+                        if (response.ok) {
+                            testsPassed++;
+                            results.push('✅ ' + endpoint.name + ' (Status: ' + response.status + ')');
+                        } else {
+                            results.push('❌ ' + endpoint.name + ' (Status: ' + response.status + ')');
+                        }
+                        
+                        if (testsCompleted === endpoints.length) {
+                            const statusClass = testsPassed === testsCompleted ? 'success' : 'error';
+                            status.innerHTML = '<div class="status ' + statusClass + '">' + results.join('<br>') + '</div>';
+                        }
+                    })
+                    .catch(error => {
+                        testsCompleted++;
+                        results.push('❌ ' + endpoint.name + ' (Error: ' + error.message + ')');
+                        
+                        if (testsCompleted === endpoints.length) {
+                            const statusClass = testsPassed === testsCompleted ? 'success' : 'error';
+                            status.innerHTML = '<div class="status ' + statusClass + '">' + results.join('<br>') + '</div>';
+                        }
+                    });
+            });
+        }
+        
+        function testChartFunctionality() {
+            const status = document.getElementById('chart-functionality-status');
+            const container = document.getElementById('test-chart-container');
+            
+            status.innerHTML = '<div class="status info">Testing Chart.js creation...</div>';
+            
+            try {
+                // Clear previous content
+                container.innerHTML = '<canvas id="test-chart" width="400" height="300"></canvas>';
+                
+                // Test if we can create a simple Chart.js chart
+                if (typeof Chart !== 'undefined') {
+                    const canvas = document.getElementById('test-chart');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Create a simple test chart
+                    const testChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Test 1', 'Test 2', 'Test 3', 'Test 4'],
+                            datasets: [{
+                                label: 'Test Data',
+                                data: [12, 19, 3, 5],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.8)',
+                                    'rgba(54, 162, 235, 0.8)',
+                                    'rgba(255, 205, 86, 0.8)',
+                                    'rgba(75, 192, 192, 0.8)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 205, 86, 1)',
+                                    'rgba(75, 192, 192, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Chart.js Test Chart'
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                    
+                    status.innerHTML = '<div class="status success">✅ Chart.js functionality working - Test chart created successfully</div>';
+                } else {
+                    status.innerHTML = '<div class="status error">❌ Chart.js functionality not available - missing required library</div>';
+                }
+            } catch (error) {
+                status.innerHTML = '<div class="status error">❌ Error testing chart functionality: ' + error.message + '</div>';
+            }
+        }
+        
+        // Auto-run tests on load
+        window.addEventListener('load', function() {
+            console.log('Debug page loaded');
+            setTimeout(() => {
+                testLibraries();
+                testThemeManager();
+                testCharts();
+                testDashboard();
+                testChartFunctionality();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

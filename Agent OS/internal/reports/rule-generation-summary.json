@@ -1,0 +1,119 @@
+{
+  "timestamp": "2025-08-04T19:57:21.572Z",
+  "totalLessonsProcessed": 20,
+  "totalRulesGenerated": 6,
+  "rulesByCategory": {
+    "quality": [
+      "Code Quality Standards - Agent OS Review Summary - 2025-01-27",
+      "Code Quality Standards - Agent OS Architecture Assessment Lessons Learned",
+      "Code Quality Standards - Agent OS Development Environment Setup Lessons Learned"
+    ],
+    "technology": [
+      "Technology Stack Compliance - Lessons Learned Capture Template",
+      "Technology Stack Compliance - Improvement Template",
+      "Technology Stack Compliance - Lesson Template"
+    ]
+  },
+  "processedFiles": [
+    {
+      "file": "2025-01-27-agent-os-review-summary",
+      "rulesGenerated": 1,
+      "ruleFile": "2025-01-27-agent-os-review-summary-rules.mdc"
+    },
+    {
+      "file": "2025-01-27-step1-foundation-complete",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "2025-01-27-agent-os-architecture-assessment-lessons",
+      "rulesGenerated": 1,
+      "ruleFile": "2025-01-27-agent-os-architecture-assessment-lessons-rules.mdc"
+    },
+    {
+      "file": "2025-01-27-agent-os-development-environment-lessons",
+      "rulesGenerated": 1,
+      "ruleFile": "2025-01-27-agent-os-development-environment-lessons-rules.mdc"
+    },
+    {
+      "file": "2025-01-27-simplification-lessons",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "2025-01-27-agent-os-testing-infrastructure-lessons",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "cursor-integration",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "sdlc-integration",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "standards-update-process",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "ai-enhanced-analysis",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "automation-integration",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "capture-template",
+      "rulesGenerated": 1,
+      "ruleFile": "capture-template-rules.mdc"
+    },
+    {
+      "file": "improvement-roadmap",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "integration-checklist",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "lessons-learned-process",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "metrics-dashboard",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "review-template",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "action-item-template",
+      "rulesGenerated": 0,
+      "ruleFile": null
+    },
+    {
+      "file": "improvement-template",
+      "rulesGenerated": 1,
+      "ruleFile": "improvement-template-rules.mdc"
+    },
+    {
+      "file": "lesson-template",
+      "rulesGenerated": 1,
+      "ruleFile": "lesson-template-rules.mdc"
+    }
+  ]
+}

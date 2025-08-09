@@ -1,0 +1,725 @@
+{
+  "timestamp": "2025-08-05T00:12:13.686Z",
+  "executionTime": 952,
+  "results": {
+    "compliance": {
+      "success": true,
+      "totalFiles": 72,
+      "violations": 287,
+      "score": 54
+    },
+    "cursorInit": {
+      "success": true,
+      "totalRules": 489,
+      "rulesByType": {
+        "general": 275,
+        "standard": 115,
+        "rule": 39,
+        "lesson": 55,
+        "template": 5
+      }
+    },
+    "analytics": {
+      "success": true,
+      "totalFiles": 0,
+      "totalViolations": 0,
+      "standardsEffectiveness": {
+        "effectiveness": {
+          "tech-stack": {
+            "violationRate": 0,
+            "totalChecks": 72,
+            "totalViolations": 0,
+            "priority": "LOW",
+            "lastViolation": null,
+            "complianceTrend": "stable",
+            "status": "GOOD",
+            "referenceCount": 72,
+            "lastReferenced": "2025-08-05T00:12:12.898Z",
+            "usageFrequency": "HIGH"
+          },
+          "code-style": {
+            "violationRate": 46,
+            "totalChecks": 72,
+            "totalViolations": 33,
+            "priority": "HIGH",
+            "lastViolation": "2025-08-05T00:12:12.869Z",
+            "complianceTrend": "stable",
+            "status": "CRITICAL",
+            "referenceCount": 72,
+            "lastReferenced": "2025-08-05T00:12:12.898Z",
+            "usageFrequency": "HIGH"
+          },
+          "security-compliance": {
+            "violationRate": 1,
+            "totalChecks": 72,
+            "totalViolations": 1,
+            "priority": "LOW",
+            "lastViolation": "2025-08-05T00:12:12.842Z",
+            "complianceTrend": "stable",
+            "status": "GOOD",
+            "referenceCount": 72,
+            "lastReferenced": "2025-08-05T00:12:12.898Z",
+            "usageFrequency": "HIGH"
+          },
+          "best-practices": {
+            "violationRate": 0,
+            "totalChecks": 72,
+            "totalViolations": 0,
+            "priority": "LOW",
+            "lastViolation": null,
+            "complianceTrend": "stable",
+            "status": "GOOD",
+            "referenceCount": 72,
+            "lastReferenced": "2025-08-05T00:12:12.898Z",
+            "usageFrequency": "HIGH"
+          },
+          "testing-strategy": {
+            "violationRate": 0,
+            "totalChecks": 72,
+            "totalViolations": 0,
+            "priority": "LOW",
+            "lastViolation": null,
+            "complianceTrend": "stable",
+            "status": "GOOD",
+            "referenceCount": 72,
+            "lastReferenced": "2025-08-05T00:12:12.898Z",
+            "usageFrequency": "HIGH"
+          }
+        },
+        "ranking": [
+          {
+            "name": "code-style",
+            "violationRate": 45.83333333333333,
+            "totalChecks": 72,
+            "totalViolations": 33,
+            "priority": "HIGH",
+            "status": "CRITICAL",
+            "referenceCount": 72,
+            "usageFrequency": "HIGH"
+          },
+          {
+            "name": "security-compliance",
+            "violationRate": 1.3888888888888888,
+            "totalChecks": 72,
+            "totalViolations": 1,
+            "priority": "LOW",
+            "status": "GOOD",
+            "referenceCount": 72,
+            "usageFrequency": "HIGH"
+          },
+          {
+            "name": "tech-stack",
+            "violationRate": 0,
+            "totalChecks": 72,
+            "totalViolations": 0,
+            "priority": "LOW",
+            "status": "GOOD",
+            "referenceCount": 72,
+            "usageFrequency": "HIGH"
+          },
+          {
+            "name": "best-practices",
+            "violationRate": 0,
+            "totalChecks": 72,
+            "totalViolations": 0,
+            "priority": "LOW",
+            "status": "GOOD",
+            "referenceCount": 72,
+            "usageFrequency": "HIGH"
+          },
+          {
+            "name": "testing-strategy",
+            "violationRate": 0,
+            "totalChecks": 72,
+            "totalViolations": 0,
+            "priority": "LOW",
+            "status": "GOOD",
+            "referenceCount": 72,
+            "usageFrequency": "HIGH"
+          }
+        ],
+        "referenceTracking": {
+          "mostReferenced": [
+            {
+              "name": "tech-stack",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "code-style",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "security-compliance",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "best-practices",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "testing-strategy",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            }
+          ],
+          "leastReferenced": [
+            {
+              "name": "testing-strategy",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "best-practices",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "security-compliance",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "code-style",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "tech-stack",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            }
+          ],
+          "highUsage": [
+            {
+              "name": "tech-stack",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "code-style",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "security-compliance",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "best-practices",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "testing-strategy",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            }
+          ],
+          "mediumUsage": [],
+          "lowUsage": []
+        },
+        "standardsClarification": {
+          "standardsNeedingClarification": [
+            {
+              "standard": "code-style",
+              "factors": [
+                {
+                  "type": "HIGH_VIOLATION_HIGH_USAGE",
+                  "description": "High violation rate despite frequent usage",
+                  "recommendation": "Clarify standards to reduce violations"
+                },
+                {
+                  "type": "CRITICAL_HIGH_USAGE",
+                  "description": "Critical violations in frequently used standards",
+                  "recommendation": "Immediate clarification and training required"
+                }
+              ],
+              "priority": "CRITICAL",
+              "totalFactors": 2,
+              "recommendations": [
+                "Clarify standards to reduce violations",
+                "Immediate clarification and training required"
+              ]
+            }
+          ],
+          "summary": {
+            "totalNeedingClarification": 1,
+            "criticalClarification": 1,
+            "highClarification": 0,
+            "mediumClarification": 0,
+            "lowClarification": 0
+          }
+        },
+        "unusedOrObsolete": {
+          "unusedStandards": [
+            {
+              "name": "ai-assisted-governance",
+              "type": "UNUSED",
+              "daysSinceLastReference": 999,
+              "reason": "No references in over 30 days",
+              "recommendation": "Consider removing or updating this standard",
+              "priority": "HIGH"
+            },
+            {
+              "name": "ci-cd-strategy",
+              "type": "UNUSED",
+              "daysSinceLastReference": 999,
+              "reason": "No references in over 30 days",
+              "recommendation": "Consider removing or updating this standard",
+              "priority": "HIGH"
+            },
+            {
+              "name": "cursor-rule-hierarchy",
+              "type": "UNUSED",
+              "daysSinceLastReference": 999,
+              "reason": "No references in over 30 days",
+              "recommendation": "Consider removing or updating this standard",
+              "priority": "HIGH"
+            },
+            {
+              "name": "directory-structure",
+              "type": "UNUSED",
+              "daysSinceLastReference": 999,
+              "reason": "No references in over 30 days",
+              "recommendation": "Consider removing or updating this standard",
+              "priority": "HIGH"
+            },
+            {
+              "name": "enforcement",
+              "type": "UNUSED",
+              "daysSinceLastReference": 999,
+              "reason": "No references in over 30 days",
+              "recommendation": "Consider removing or updating this standard",
+              "priority": "HIGH"
+            },
+            {
+              "name": "policy-as-code",
+              "type": "UNUSED",
+              "daysSinceLastReference": 999,
+              "reason": "No references in over 30 days",
+              "recommendation": "Consider removing or updating this standard",
+              "priority": "HIGH"
+            },
+            {
+              "name": "service-specific-rules",
+              "type": "UNUSED",
+              "daysSinceLastReference": 999,
+              "reason": "No references in over 30 days",
+              "recommendation": "Consider removing or updating this standard",
+              "priority": "HIGH"
+            },
+            {
+              "name": "visual-regression-testing",
+              "type": "UNUSED",
+              "daysSinceLastReference": 999,
+              "reason": "No references in over 30 days",
+              "recommendation": "Consider removing or updating this standard",
+              "priority": "HIGH"
+            }
+          ],
+          "obsoleteStandards": [],
+          "standardsToReview": [],
+          "summary": {
+            "totalUnused": 8,
+            "totalObsolete": 0,
+            "totalToReview": 0,
+            "highPriorityUnused": 8,
+            "highPriorityObsolete": 0,
+            "highPriorityReview": 0
+          }
+        },
+        "clarityAndUsability": {
+          "clarityMetrics": {
+            "code-style": {
+              "score": 70,
+              "factors": [
+                "High violation rate despite frequent usage"
+              ],
+              "status": "NEEDS_IMPROVEMENT",
+              "recommendation": "Clarify documentation"
+            },
+            "security-compliance": {
+              "score": 100,
+              "factors": [],
+              "status": "CLEAR",
+              "recommendation": "Standard is clear"
+            },
+            "tech-stack": {
+              "score": 100,
+              "factors": [],
+              "status": "CLEAR",
+              "recommendation": "Standard is clear"
+            },
+            "best-practices": {
+              "score": 100,
+              "factors": [],
+              "status": "CLEAR",
+              "recommendation": "Standard is clear"
+            },
+            "testing-strategy": {
+              "score": 100,
+              "factors": [],
+              "status": "CLEAR",
+              "recommendation": "Standard is clear"
+            }
+          },
+          "usabilityMetrics": {
+            "code-style": {
+              "score": 70,
+              "factors": [
+                "High violation rate"
+              ],
+              "status": "NEEDS_IMPROVEMENT",
+              "recommendation": "Improve usability"
+            },
+            "security-compliance": {
+              "score": 100,
+              "factors": [],
+              "status": "USABLE",
+              "recommendation": "Standard is usable"
+            },
+            "tech-stack": {
+              "score": 100,
+              "factors": [],
+              "status": "USABLE",
+              "recommendation": "Standard is usable"
+            },
+            "best-practices": {
+              "score": 100,
+              "factors": [],
+              "status": "USABLE",
+              "recommendation": "Standard is usable"
+            },
+            "testing-strategy": {
+              "score": 100,
+              "factors": [],
+              "status": "USABLE",
+              "recommendation": "Standard is usable"
+            }
+          },
+          "summary": {
+            "clearStandards": 4,
+            "unclearStandards": 0,
+            "usableStandards": 4,
+            "poorUsabilityStandards": 0
+          }
+        },
+        "effectivenessAnalysis": {
+          "effectivenessMetrics": {
+            "code-style": {
+              "score": 60,
+              "factors": [
+                "High violation rate (45.83333333333333%)"
+              ],
+              "status": "NEEDS_IMPROVEMENT",
+              "violationRate": 45.83333333333333,
+              "usageFrequency": "HIGH",
+              "referenceCount": 72,
+              "daysSinceLastReference": 0,
+              "recommendation": "Standard needs significant improvement"
+            },
+            "security-compliance": {
+              "score": 100,
+              "factors": [],
+              "status": "HIGHLY_EFFECTIVE",
+              "violationRate": 1.3888888888888888,
+              "usageFrequency": "HIGH",
+              "referenceCount": 72,
+              "daysSinceLastReference": 0,
+              "recommendation": "Standard is highly effective"
+            },
+            "tech-stack": {
+              "score": 100,
+              "factors": [],
+              "status": "HIGHLY_EFFECTIVE",
+              "violationRate": 0,
+              "usageFrequency": "HIGH",
+              "referenceCount": 72,
+              "daysSinceLastReference": 0,
+              "recommendation": "Standard is highly effective"
+            },
+            "best-practices": {
+              "score": 100,
+              "factors": [],
+              "status": "HIGHLY_EFFECTIVE",
+              "violationRate": 0,
+              "usageFrequency": "HIGH",
+              "referenceCount": 72,
+              "daysSinceLastReference": 0,
+              "recommendation": "Standard is highly effective"
+            },
+            "testing-strategy": {
+              "score": 100,
+              "factors": [],
+              "status": "HIGHLY_EFFECTIVE",
+              "violationRate": 0,
+              "usageFrequency": "HIGH",
+              "referenceCount": 72,
+              "daysSinceLastReference": 0,
+              "recommendation": "Standard is highly effective"
+            }
+          },
+          "optimizationOpportunities": [],
+          "summary": {
+            "highlyEffective": 4,
+            "effective": 0,
+            "needsImprovement": 1,
+            "ineffective": 0,
+            "totalOptimizationOpportunities": 0,
+            "highPriorityOptimizations": 0,
+            "averageEffectivenessScore": 92
+          }
+        },
+        "improvementSuggestions": {
+          "suggestions": [
+            {
+              "type": "REMOVE_OR_UPDATE",
+              "standard": "ai-assisted-governance",
+              "priority": "HIGH",
+              "reason": "No references in over 30 days",
+              "action": "Consider removing or updating this standard",
+              "impact": "MEDIUM",
+              "effort": "LOW"
+            },
+            {
+              "type": "REMOVE_OR_UPDATE",
+              "standard": "ci-cd-strategy",
+              "priority": "HIGH",
+              "reason": "No references in over 30 days",
+              "action": "Consider removing or updating this standard",
+              "impact": "MEDIUM",
+              "effort": "LOW"
+            },
+            {
+              "type": "REMOVE_OR_UPDATE",
+              "standard": "cursor-rule-hierarchy",
+              "priority": "HIGH",
+              "reason": "No references in over 30 days",
+              "action": "Consider removing or updating this standard",
+              "impact": "MEDIUM",
+              "effort": "LOW"
+            },
+            {
+              "type": "REMOVE_OR_UPDATE",
+              "standard": "directory-structure",
+              "priority": "HIGH",
+              "reason": "No references in over 30 days",
+              "action": "Consider removing or updating this standard",
+              "impact": "MEDIUM",
+              "effort": "LOW"
+            },
+            {
+              "type": "REMOVE_OR_UPDATE",
+              "standard": "enforcement",
+              "priority": "HIGH",
+              "reason": "No references in over 30 days",
+              "action": "Consider removing or updating this standard",
+              "impact": "MEDIUM",
+              "effort": "LOW"
+            },
+            {
+              "type": "REMOVE_OR_UPDATE",
+              "standard": "policy-as-code",
+              "priority": "HIGH",
+              "reason": "No references in over 30 days",
+              "action": "Consider removing or updating this standard",
+              "impact": "MEDIUM",
+              "effort": "LOW"
+            },
+            {
+              "type": "REMOVE_OR_UPDATE",
+              "standard": "service-specific-rules",
+              "priority": "HIGH",
+              "reason": "No references in over 30 days",
+              "action": "Consider removing or updating this standard",
+              "impact": "MEDIUM",
+              "effort": "LOW"
+            },
+            {
+              "type": "REMOVE_OR_UPDATE",
+              "standard": "visual-regression-testing",
+              "priority": "HIGH",
+              "reason": "No references in over 30 days",
+              "action": "Consider removing or updating this standard",
+              "impact": "MEDIUM",
+              "effort": "LOW"
+            }
+          ],
+          "summary": {
+            "totalSuggestions": 8,
+            "highPriority": 8,
+            "mediumPriority": 0,
+            "lowPriority": 0,
+            "removeOrUpdate": 8,
+            "updateOrDeprecate": 0,
+            "clarifyStandard": 0,
+            "improveUsability": 0
+          }
+        },
+        "optimizationSuggestions": {
+          "suggestions": [
+            {
+              "type": "IMPROVE_STANDARD",
+              "standard": "code-style",
+              "priority": "MEDIUM",
+              "reason": "Standard needs improvement (45.83333333333333% violation rate)",
+              "action": "Improve code-style documentation and provide training",
+              "impact": "MEDIUM",
+              "effort": "MEDIUM",
+              "estimatedImprovement": 90
+            }
+          ],
+          "summary": {
+            "totalSuggestions": 1,
+            "criticalPriority": 0,
+            "highPriority": 0,
+            "mediumPriority": 1,
+            "urgentOptimizations": 0,
+            "redesignStandards": 0,
+            "improveStandards": 1,
+            "enhanceStandards": 0
+          }
+        },
+        "summary": {
+          "totalStandards": 5,
+          "criticalStandards": 1,
+          "warningStandards": 0,
+          "goodStandards": 4,
+          "mostViolated": [
+            {
+              "name": "code-style",
+              "violationRate": 45.83333333333333,
+              "totalChecks": 72,
+              "totalViolations": 33,
+              "priority": "HIGH",
+              "status": "CRITICAL",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH"
+            },
+            {
+              "name": "security-compliance",
+              "violationRate": 1.3888888888888888,
+              "totalChecks": 72,
+              "totalViolations": 1,
+              "priority": "LOW",
+              "status": "GOOD",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH"
+            },
+            {
+              "name": "tech-stack",
+              "violationRate": 0,
+              "totalChecks": 72,
+              "totalViolations": 0,
+              "priority": "LOW",
+              "status": "GOOD",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH"
+            }
+          ],
+          "leastViolated": [
+            {
+              "name": "testing-strategy",
+              "violationRate": 0,
+              "totalChecks": 72,
+              "totalViolations": 0,
+              "priority": "LOW",
+              "status": "GOOD",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH"
+            },
+            {
+              "name": "best-practices",
+              "violationRate": 0,
+              "totalChecks": 72,
+              "totalViolations": 0,
+              "priority": "LOW",
+              "status": "GOOD",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH"
+            },
+            {
+              "name": "tech-stack",
+              "violationRate": 0,
+              "totalChecks": 72,
+              "totalViolations": 0,
+              "priority": "LOW",
+              "status": "GOOD",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH"
+            }
+          ],
+          "mostReferenced": [
+            {
+              "name": "tech-stack",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "code-style",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            },
+            {
+              "name": "security-compliance",
+              "referenceCount": 72,
+              "usageFrequency": "HIGH",
+              "lastReferenced": "2025-08-05T00:12:12.898Z"
+            }
+          ],
+          "totalReferences": 360,
+          "totalUnused": 8,
+          "totalObsolete": 0,
+          "clearStandards": 4,
+          "unclearStandards": 0,
+          "usableStandards": 4,
+          "poorUsabilityStandards": 0,
+          "totalImprovementSuggestions": 8,
+          "highlyEffective": 4,
+          "effective": 0,
+          "needsImprovement": 1,
+          "ineffective": 0,
+          "totalOptimizationOpportunities": 0,
+          "averageEffectivenessScore": 92,
+          "totalOptimizationSuggestions": 1
+        }
+      }
+    },
+    "dashboard": {
+      "success": true,
+      "dashboardPath": "C:\\cursor\\TappHA\\.agent-os\\dashboard\\compliance-dashboard.html",
+      "size": 34526,
+      "lastModified": "2025-08-04T16:54:22.819Z"
+    },
+    "errors": [],
+    "warnings": []
+  },
+  "summary": {
+    "compliance": "✅ PASS",
+    "cursorInit": "✅ PASS",
+    "analytics": "✅ PASS",
+    "dashboard": "✅ PASS"
+  }
+}

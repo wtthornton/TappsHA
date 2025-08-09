@@ -1,0 +1,44 @@
+{
+  "name": "agent-os-dashboard-frontend-testing",
+  "version": "1.0.0",
+  "description": "Frontend visual testing suite for Agent OS Dashboard",
+  "main": "visual-test-suite.js",
+  "type": "module",
+  "scripts": {
+    "test": "node visual-test-suite.js",
+    "test:headless": "node visual-test-suite.js --headless",
+    "test:quick": "node quick-visual-test.js",
+    "test:comprehensive": "node comprehensive-test-suite.js",
+    "test:charts": "node chart-test-suite.js",
+    "screenshot": "node screenshot-capture.js",
+    "report": "node generate-test-report.js"
+  },
+  "keywords": [
+    "frontend-testing",
+    "visual-testing",
+    "screenshot",
+    "puppeteer",
+    "dashboard",
+    "agent-os"
+  ],
+  "author": "Agent OS Development Team",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^24.9.0"
+  },
+  "devDependencies": {
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agent-os/tappha.git"
+  },
+  "bugs": {
+    "url": "https://github.com/agent-os/tappha/issues"
+  },
+  "homepage": "https://github.com/agent-os/tappha#readme"
+}

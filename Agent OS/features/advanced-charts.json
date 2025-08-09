@@ -1,0 +1,107 @@
+{
+  "name": "Advanced Charts",
+  "description": "Interactive 3D and animated chart components",
+  "charts": [
+    {
+      "type": "3d-bar-chart",
+      "title": "Performance Trends",
+      "data": [
+        {
+          "x": "Jan",
+          "y": 85,
+          "z": "Performance"
+        },
+        {
+          "x": "Feb",
+          "y": 87,
+          "z": "Performance"
+        },
+        {
+          "x": "Mar",
+          "y": 89,
+          "z": "Performance"
+        },
+        {
+          "x": "Apr",
+          "y": 91,
+          "z": "Performance"
+        },
+        {
+          "x": "May",
+          "y": 93,
+          "z": "Performance"
+        }
+      ],
+      "config": {
+        "animation": true,
+        "rotation": true,
+        "colors": [
+          "#3b82f6",
+          "#10b981",
+          "#f59e0b",
+          "#ef4444"
+        ]
+      }
+    },
+    {
+      "type": "scatter-plot-3d",
+      "title": "System Metrics Correlation",
+      "data": [
+        {
+          "x": 145,
+          "y": 98.5,
+          "z": 0.1,
+          "label": "Response Time vs Health vs Errors"
+        },
+        {
+          "x": 150,
+          "y": 97.2,
+          "z": 0.3,
+          "label": "Response Time vs Health vs Errors"
+        },
+        {
+          "x": 140,
+          "y": 99.1,
+          "z": 0.05,
+          "label": "Response Time vs Health vs Errors"
+        }
+      ],
+      "config": {
+        "animation": true,
+        "interactive": true,
+        "tooltips": true
+      }
+    },
+    {
+      "type": "animated-line-chart",
+      "title": "Real-Time Performance",
+      "data": [
+        {
+          "time": "00:00",
+          "value": 85
+        },
+        {
+          "time": "00:05",
+          "value": 87
+        },
+        {
+          "time": "00:10",
+          "value": 89
+        },
+        {
+          "time": "00:15",
+          "value": 91
+        },
+        {
+          "time": "00:20",
+          "value": 93
+        }
+      ],
+      "config": {
+        "animation": true,
+        "realTime": true,
+        "updateInterval": 5000
+      }
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2025-08-04T20:40:36.763Z",
+  "summary": {
+    "totalLessons": 5,
+    "analyzedLessons": 5,
+    "averageImpactScore": 100,
+    "topImpactLessons": [
+      {
+        "filename": "2025-01-27-agent-os-review-summary.md",
+        "title": "Agent OS Review Summary - 2025-01-27",
+        "impactScore": 100,
+        "phase": "planning",
+        "priority": "high"
+      },
+      {
+        "filename": "2025-01-27-step1-foundation-complete.md",
+        "title": "Step 1 Foundation Setup - Complete",
+        "impactScore": 100,
+        "phase": "development",
+        "priority": "high"
+      },
+      {
+        "filename": "2025-08-04-cursor-rule-optimization.md",
+        "title": "Cursor Rule Optimization Implementation - Lessons Learned",
+        "impactScore": 100,
+        "phase": "development",
+        "priority": "critical"
+      },
+      {
+        "filename": "2025-08-04-hybrid-architecture-implementation.md",
+        "title": "Hybrid Architecture Implementation - Lessons Learned",
+        "impactScore": 100,
+        "phase": "development",
+        "priority": "critical"
+      },
+      {
+        "filename": "README.md",
+        "title": "Agent OS Lessons Learned Framework",
+        "impactScore": 100,
+        "phase": "planning",
+        "priority": "critical"
+      }
+    ]
+  },
+  "impactDistribution": {
+    "high": 5,
+    "medium": 0,
+    "low": 0,
+    "minimal": 0
+  },
+  "impactMetrics": {
+    "technicalImpact": 25,
+    "processImpact": 25,
+    "projectImpact": 25,
+    "qualityImpact": 25,
+    "adoptionImpact": 25
+  },
+  "impactTrends": {
+    "byPhase": {
+      "planning": 100,
+      "development": 100
+    },
+    "byPriority": {
+      "high": 100,
+      "critical": 100
+    },
+    "byCategory": {
+      "technical": 100,
+      "process": 100,
+      "project": 100,
+      "quality": 100,
+      "adoption": 100
+    }
+  }
+}
