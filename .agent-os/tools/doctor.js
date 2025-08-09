@@ -11,10 +11,8 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import dep from '../utils/dependency-validator.js';
+import { DependencyValidator } from '../utils/dependency-validator.js';
 import CrossPlatformShell from '../utils/cross-platform-shell.js';
-
-const { DependencyValidator } = dep;
 
 function ensureDirectory(dirPath) {
   if (!fs.existsSync(dirPath)) {
@@ -68,10 +66,10 @@ function main() {
 
   // 2) Repository structure checks
   const requiredFiles = [
-    '.agent-os/instructions/create-spec.md',
-    '.agent-os/standards/tech-stack.md',
-    '.agent-os/standards/code-style.md',
-    '.agent-os/standards/best-practices.md'
+    'instructions/create-spec.md',
+    'standards/tech-stack.md',
+    'standards/code-style.md',
+    'standards/best-practices.md'
   ];
   const missingFiles = requiredFiles.filter(f => !fileExists(f));
   if (missingFiles.length > 0) {
@@ -82,7 +80,7 @@ function main() {
   const pkgPath = path.join(projectRoot, 'package.json');
   const pkg = readJsonSafe(pkgPath, {});
   const scripts = pkg.scripts || {};
-  const requiredScripts = ['agent-os:setup', 'agent-os:validate', 'agent-os:status'];
+  const requiredScripts = ['setup', 'validate', 'status'];
   const missingScripts = requiredScripts.filter(s => !scripts[s]);
   if (missingScripts.length > 0) {
     remediation.push(`Add missing npm scripts: ${missingScripts.join(', ')}`);

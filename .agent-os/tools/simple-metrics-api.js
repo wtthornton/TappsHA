@@ -9,7 +9,7 @@ import fs from 'fs';
 import path from 'path';
 import http from 'http';
 import url from 'url';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } f
 
 // Get __dirname equivalent for ES modules
 const __filename = fileURLToPath(import.meta.url);

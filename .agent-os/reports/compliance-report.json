@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-08T16:15:05.857Z",
+  "timestamp": "2025-08-09T22:47:57.433Z",
   "complianceScore": 100,
   "criticalViolations": 0,
   "warnings": 0,
@@ -14,7 +14,7 @@
     {
       "name": "best-practices.md",
       "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\best-practices.md",
-      "size": 11090
+      "size": 13177
     },
     {
       "name": "ci-cd-strategy.md",
@@ -109,7 +109,7 @@
     {
       "name": "testing-strategy.md",
       "path": "C:\\cursor\\TappHA\\.agent-os\\standards\\testing-strategy.md",
-      "size": 908
+      "size": 1371
     },
     {
       "name": "visual-regression-testing.md",

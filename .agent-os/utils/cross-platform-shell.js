@@ -8,8 +8,8 @@
  * with proper command chaining and error handling.
  */
 
-const { execSync, exec } = require('child_process');
-const os = require('os');
+import { execSync, exec } from 'child_process';
+import os from 'os';
 
 class CrossPlatformShell {
   constructor() {
@@ -114,9 +114,17 @@ class CrossPlatformShell {
    */
   commandExists(command) {
     try {
-      const checkCmd = this.isWindows ? `Get-Command ${command}` : `which ${command}`;
-      this.executeCommand(checkCmd, { silent: true, throwOnError: false });
-      return true;
+      if (this.isWindows) {
+        // On Windows, use where command which is more reliable than Get-Command
+        const checkCmd = `where ${command}`;
+        const result = this.executeCommand(checkCmd, { silent: true, throwOnError: false });
+        return result.trim().length > 0;
+      } else {
+        // On Unix-like systems, use which
+        const checkCmd = `which ${command}`;
+        const result = this.executeCommand(checkCmd, { silent: true, throwOnError: false });
+        return result.trim().length > 0;
+      }
     } catch (error) {
       return false;
     }
@@ -227,10 +235,10 @@ class CrossPlatformShell {
   }
 }
 
-module.exports = CrossPlatformShell;
+export default CrossPlatformShell;
 
 // CLI usage when run directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   const shell = new CrossPlatformShell();
   
   // Print system info

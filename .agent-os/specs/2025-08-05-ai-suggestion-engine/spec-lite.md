@@ -1,3 +1,0 @@
-# Spec Summary (Lite)
-
-Implement an intelligent AI suggestion engine that generates automation improvement recommendations based on Home Assistant behavioral patterns using a hybrid local-cloud AI strategy with OpenAI GPT-4o Mini. The engine provides batched suggestion generation with simple approve/reject workflows, enabling users to improve home automation efficiency through AI-driven insights while maintaining full control over their systems.

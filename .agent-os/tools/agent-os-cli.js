@@ -138,12 +138,23 @@ class AgentOSCLI {
         return;
       }
       
-      // Start dashboard process
-      console.log('📊 Dashboard starting on http://localhost:3001');
+      // Start dashboard process on port 3011
+      console.log('📊 Dashboard starting on http://localhost:3011');
       console.log('🔄 Auto-refresh enabled');
       
-      // Note: In a real implementation, this would spawn the dashboard process
-      console.log('✅ Dashboard command executed');
+      // Actually start the dashboard process
+      const { spawn } = await import('child_process');
+      const env = { ...process.env, DASHBOARD_PORT: '3011' };
+      const child = spawn('node', [dashboardPath], {
+        env,
+        stdio: 'inherit',
+        windowsHide: true,
+        detached: true
+      });
+      
+      child.unref();
+      console.log('✅ Dashboard process started on port 3011');
+      console.log('🌐 Access at: http://localhost:3011');
       
     } catch (error) {
       console.error('❌ Error starting dashboard:', error.message);

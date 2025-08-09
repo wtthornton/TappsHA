@@ -8,8 +8,8 @@
  * that can be used across all Agent OS tools and scripts.
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 class DependencyValidator {
   constructor(projectRoot = process.cwd()) {
@@ -31,8 +31,14 @@ class DependencyValidator {
     
     for (const module of allRequired) {
       try {
-        require.resolve(module);
-        console.log(`✅ ${module} - Found`);
+        // Check if package exists in node_modules
+        const modulePath = path.join(process.cwd(), 'node_modules', module);
+        if (fs.existsSync(modulePath)) {
+          console.log(`✅ ${module} - Found`);
+        } else {
+          missing.push(module);
+          console.log(`❌ ${module} - Missing`);
+        }
       } catch (e) {
         missing.push(module);
         console.log(`❌ ${module} - Missing`);
@@ -103,14 +109,14 @@ class DependencyValidator {
   }
 
   /**
-   * Safe module require with fallback
-   * @param {string} moduleName - Module to require
+   * Safe module import with fallback
+   * @param {string} moduleName - Module to import
    * @param {*} fallback - Fallback value if module not found
    * @returns {*} module or fallback
    */
-  static safeRequire(moduleName, fallback = null) {
+  static async safeImport(moduleName, fallback = null) {
     try {
-      return require(moduleName);
+      return await import(moduleName);
     } catch (e) {
       console.warn(`⚠️  Module ${moduleName} not found, using fallback`);
       return fallback;
@@ -130,24 +136,23 @@ class DependencyValidator {
     } = options;
 
     console.log('🚀 Starting comprehensive environment validation...');
-    
-    const results = {
+
+    const result = {
       timestamp: new Date().toISOString(),
       nodeVersion: this.verifyNodeVersion(minNodeVersion),
       dependencies: checkPackageJson ? this.verifyDependencies(additionalModules) : { passed: true },
       overall: false
     };
-    
-    results.overall = results.nodeVersion.passed && results.dependencies.passed;
-    
-    if (results.overall) {
-      console.log('\n🎉 Environment validation passed! Ready to proceed.');
-    } else {
-      console.log('\n❌ Environment validation failed. Please fix issues before continuing.');
+
+    result.overall = result.nodeVersion.passed && result.dependencies.passed;
+
+    if (!result.overall) {
+      console.error('\n❌ Environment validation failed. Please fix issues before continuing.');
       process.exit(1);
     }
-    
-    return results;
+
+    console.log('\n✅ Environment validation passed!');
+    return result;
   }
 }
 
@@ -181,13 +186,10 @@ class CircularDependencyDetector {
   }
 }
 
-module.exports = {
-  DependencyValidator,
-  CircularDependencyDetector
-};
+export { DependencyValidator, CircularDependencyDetector };
 
 // CLI usage when run directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   const validator = new DependencyValidator();
   validator.validateEnvironment({
     minNodeVersion: 18,

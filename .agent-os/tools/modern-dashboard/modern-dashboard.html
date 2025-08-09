@@ -312,6 +312,83 @@
                 </div>
             </section>
 
+            <!-- Cache Performance & Analytics Section -->
+            <section class="enhanced-data-section">
+                <h2 class="section-title">Cache Performance & Analytics</h2>
+                <div class="data-grid">
+                    <!-- Cache Performance Card -->
+                    <div class="chart-card fade-in">
+                        <div class="chart-card-header">
+                            <h3 class="chart-card-title">Cache Performance Metrics</h3>
+                            <div class="chart-card-actions">
+                                <button class="chart-card-action" onclick="refreshCacheMetrics()">Refresh</button>
+                            </div>
+                        </div>
+                        <div class="cache-metrics">
+                            <div class="metric-row">
+                                <span class="metric-label">Cache Hit Rate:</span>
+                                <span class="metric-value" id="cache-hit-rate">92.5%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Cache Miss Rate:</span>
+                                <span class="metric-value" id="cache-miss-rate">7.5%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Cache Size:</span>
+                                <span class="metric-value" id="cache-size">256MB</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Cache Evictions:</span>
+                                <span class="metric-value" id="cache-evictions">12</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Average Response Time:</span>
+                                <span class="metric-value" id="avg-cache-response">45ms</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Cache Efficiency:</span>
+                                <span class="metric-value" id="cache-efficiency">94.2%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- AI Processing Analytics Card -->
+                    <div class="chart-card fade-in">
+                        <div class="chart-card-header">
+                            <h3 class="chart-card-title">AI Processing Analytics</h3>
+                            <div class="chart-card-actions">
+                                <button class="chart-card-action" onclick="refreshAIProcessingMetrics()">Refresh</button>
+                            </div>
+                        </div>
+                        <div class="ai-processing-metrics">
+                            <div class="metric-row">
+                                <span class="metric-label">AI Requests/sec:</span>
+                                <span class="metric-value" id="ai-requests-per-sec">15.3</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Average AI Response Time:</span>
+                                <span class="metric-value" id="avg-ai-response">125ms</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">AI Cache Hit Rate:</span>
+                                <span class="metric-value" id="ai-cache-hit-rate">78.4%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Model Loading Time:</span>
+                                <span class="metric-value" id="model-loading-time">2.1s</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Memory Usage (AI):</span>
+                                <span class="metric-value" id="ai-memory-usage">1.2GB</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">GPU Utilization:</span>
+                                <span class="metric-value" id="gpu-utilization">45%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- System Health & Performance Section -->
             <section class="enhanced-data-section">
                 <h2 class="section-title">System Health & Performance</h2>
@@ -473,6 +550,83 @@
                                 <div class="velocity-label">Test Coverage</div>
                                 <div class="velocity-value" id="test-coverage">87%</div>
                                 <div class="velocity-trend trend-stable">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Database & Storage Analytics Section -->
+            <section class="enhanced-data-section">
+                <h2 class="section-title">Database & Storage Analytics</h2>
+                <div class="data-grid">
+                    <!-- Database Performance Card -->
+                    <div class="chart-card fade-in">
+                        <div class="chart-card-header">
+                            <h3 class="chart-card-title">Database Performance</h3>
+                            <div class="chart-card-actions">
+                                <button class="chart-card-action" onclick="refreshDatabaseMetrics()">Refresh</button>
+                            </div>
+                        </div>
+                        <div class="database-metrics">
+                            <div class="metric-row">
+                                <span class="metric-label">Query Response Time:</span>
+                                <span class="metric-value" id="query-response-time">23ms</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Connection Pool Usage:</span>
+                                <span class="metric-value" id="connection-pool-usage">67%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Active Connections:</span>
+                                <span class="metric-value" id="active-connections">8/12</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Slow Queries (>100ms):</span>
+                                <span class="metric-value" id="slow-queries">3</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Index Hit Rate:</span>
+                                <span class="metric-value" id="index-hit-rate">96.8%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Database Size:</span>
+                                <span class="metric-value" id="database-size">2.4GB</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Storage Analytics Card -->
+                    <div class="chart-card fade-in">
+                        <div class="chart-card-header">
+                            <h3 class="chart-card-title">Storage Analytics</h3>
+                            <div class="chart-card-actions">
+                                <button class="chart-card-action" onclick="refreshStorageMetrics()">Refresh</button>
+                            </div>
+                        </div>
+                        <div class="storage-metrics">
+                            <div class="metric-row">
+                                <span class="metric-label">Disk Usage:</span>
+                                <span class="metric-value" id="disk-usage">34.2%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Available Space:</span>
+                                <span class="metric-value" id="available-space">156GB</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">I/O Operations/sec:</span>
+                                <span class="metric-value" id="io-operations">1,247</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Read Speed:</span>
+                                <span class="metric-value" id="read-speed">245MB/s</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Write Speed:</span>
+                                <span class="metric-value" id="write-speed">189MB/s</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Storage Efficiency:</span>
+                                <span class="metric-value" id="storage-efficiency">87.3%</span>
                             </div>
                         </div>
                     </div>
@@ -1191,6 +1345,110 @@
             document.getElementById('processing-efficiency').textContent = data.processingEfficiency + '%';
         }
         
+        // Cache Performance Functions
+        function refreshCacheMetrics() {
+            console.log('Refreshing cache metrics...');
+            // Simulate loading real cache performance data
+            const cacheData = {
+                hitRate: 92.5,
+                missRate: 7.5,
+                cacheSize: '256MB',
+                evictions: 12,
+                avgResponseTime: '45ms',
+                efficiency: 94.2
+            };
+            
+            updateCacheMetricsDisplay(cacheData);
+            uiManager.showNotification('success', 'Cache Metrics Updated', 'Cache performance refreshed');
+        }
+        
+        function updateCacheMetricsDisplay(data) {
+            document.getElementById('cache-hit-rate').textContent = data.hitRate + '%';
+            document.getElementById('cache-miss-rate').textContent = data.missRate + '%';
+            document.getElementById('cache-size').textContent = data.cacheSize;
+            document.getElementById('cache-evictions').textContent = data.evictions;
+            document.getElementById('avg-cache-response').textContent = data.avgResponseTime;
+            document.getElementById('cache-efficiency').textContent = data.efficiency + '%';
+        }
+        
+        // AI Processing Functions
+        function refreshAIProcessingMetrics() {
+            console.log('Refreshing AI processing metrics...');
+            // Simulate loading real AI processing data
+            const aiData = {
+                requestsPerSec: 15.3,
+                avgResponseTime: '125ms',
+                cacheHitRate: 78.4,
+                modelLoadingTime: '2.1s',
+                memoryUsage: '1.2GB',
+                gpuUtilization: 45
+            };
+            
+            updateAIProcessingMetricsDisplay(aiData);
+            uiManager.showNotification('success', 'AI Metrics Updated', 'AI processing analytics refreshed');
+        }
+        
+        function updateAIProcessingMetricsDisplay(data) {
+            document.getElementById('ai-requests-per-sec').textContent = data.requestsPerSec;
+            document.getElementById('avg-ai-response').textContent = data.avgResponseTime;
+            document.getElementById('ai-cache-hit-rate').textContent = data.cacheHitRate + '%';
+            document.getElementById('model-loading-time').textContent = data.modelLoadingTime;
+            document.getElementById('ai-memory-usage').textContent = data.memoryUsage;
+            document.getElementById('gpu-utilization').textContent = data.gpuUtilization + '%';
+        }
+        
+        // Database Performance Functions
+        function refreshDatabaseMetrics() {
+            console.log('Refreshing database metrics...');
+            // Simulate loading real database performance data
+            const dbData = {
+                queryResponseTime: '23ms',
+                connectionPoolUsage: 67,
+                activeConnections: '8/12',
+                slowQueries: 3,
+                indexHitRate: 96.8,
+                databaseSize: '2.4GB'
+            };
+            
+            updateDatabaseMetricsDisplay(dbData);
+            uiManager.showNotification('success', 'Database Metrics Updated', 'Database performance refreshed');
+        }
+        
+        function updateDatabaseMetricsDisplay(data) {
+            document.getElementById('query-response-time').textContent = data.queryResponseTime;
+            document.getElementById('connection-pool-usage').textContent = data.connectionPoolUsage + '%';
+            document.getElementById('active-connections').textContent = data.activeConnections;
+            document.getElementById('slow-queries').textContent = data.slowQueries;
+            document.getElementById('index-hit-rate').textContent = data.indexHitRate + '%';
+            document.getElementById('database-size').textContent = data.databaseSize;
+        }
+        
+        // Storage Analytics Functions
+        function refreshStorageMetrics() {
+            console.log('Refreshing storage metrics...');
+            // Simulate loading real storage analytics data
+            const storageData = {
+                diskUsage: 34.2,
+                availableSpace: '156GB',
+                ioOperations: '1,247',
+                readSpeed: '245MB/s',
+                writeSpeed: '189MB/s',
+                storageEfficiency: 87.3
+            };
+            
+            updateStorageMetricsDisplay(storageData);
+            uiManager.showNotification('success', 'Storage Metrics Updated', 'Storage analytics refreshed');
+        }
+        
+        function updateStorageMetricsDisplay(data) {
+            document.getElementById('disk-usage').textContent = data.diskUsage + '%';
+            document.getElementById('available-space').textContent = data.availableSpace;
+            document.getElementById('io-operations').textContent = data.ioOperations;
+            document.getElementById('read-speed').textContent = data.readSpeed;
+            document.getElementById('write-speed').textContent = data.writeSpeed;
+            document.getElementById('storage-efficiency').textContent = data.storageEfficiency + '%';
+        }
+        
         function runSystemDiagnostics() {
             console.log('Running system diagnostics...');
             uiManager.showNotification('info', 'Diagnostics Started', 'System health check in progress...');
@@ -1303,6 +1561,26 @@
                 refreshComplianceMetrics();
             }, 15000);
             
+            // Update cache metrics every 10 seconds
+            setInterval(() => {
+                refreshCacheMetrics();
+            }, 10000);
+            
+            // Update AI processing metrics every 12 seconds
+            setInterval(() => {
+                refreshAIProcessingMetrics();
+            }, 12000);
+            
+            // Update database metrics every 8 seconds
+            setInterval(() => {
+                refreshDatabaseMetrics();
+            }, 8000);
+            
+            // Update storage metrics every 20 seconds
+            setInterval(() => {
+                refreshStorageMetrics();
+            }, 20000);
+            
             // Update performance metrics every 20 seconds
             setInterval(() => {
                 refreshPerformanceMetrics();
@@ -1405,4 +1683,5 @@
     </script>
 </body>
 </html>
+
 
