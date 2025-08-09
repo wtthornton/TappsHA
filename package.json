@@ -19,7 +19,7 @@
     "agent-os:status": "cd .agent-os && npm run status",
     "agent-os:doctor": "node .agent-os/tools/doctor.cjs",
     "agent-os:fast": "node .agent-os/tools/fast-checks.cjs",
-    "agent-os:dashboard": "node .agent-os/tools/start-dashboard.cjs",
+    "agent-os:dashboard": "node .agent-os/tools/start-dashboard.js",
     "agent-os:hooks": "node .agent-os/tools/install-git-hooks.cjs",
     "agent-os:test": "cd .agent-os && npm run test",
     "agent-os:test:coverage": "cd .agent-os && npm run test:coverage",

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 // Start Enhanced Dashboard on first available port (3001+)
-const http = require('http');
-const { spawn } = require('child_process');
+import http from 'http';
+import { spawn } from 'child_process';
 
 function findFreePort(start = 3001, max = 3020) {
   return new Promise((resolve, reject) => {
@@ -25,7 +25,7 @@ async function main() {
   const port = await findFreePort(3001, 3020);
   const env = { ...process.env, DASHBOARD_PORT: String(port) };
   console.log(`Starting Agent-OS Dashboard on port ${port}...`);
-  const child = spawn('node', ['--experimental-modules', '.agent-os/tools/enhanced-dashboard.js'], {
+  const child = spawn('node', ['.agent-os/tools/enhanced-dashboard.js'], {
     env,
     stdio: 'inherit',
     windowsHide: true,
@@ -40,5 +40,3 @@ main().catch((e) => {
   console.error('Failed to start dashboard:', e.message);
   process.exit(1);
 });
-
-

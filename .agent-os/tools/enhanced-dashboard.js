@@ -387,9 +387,27 @@ class EnhancedDashboard {
                   case '/modern-dashboard/data/sample-datasets.js':
               this.serveSampleDatasetsJS(req, res);
               break;
+            case '/modern-dashboard/js/components/NotificationSystem.js':
+              this.serveNotificationSystemJS(req, res);
+              break;
+            case '/modern-dashboard/js/components/ModalSystem.js':
+              this.serveModalSystemJS(req, res);
+              break;
+            case '/modern-dashboard/js/components/DataTable.js':
+              this.serveDataTableJS(req, res);
+              break;
+            case '/modern-dashboard/js/components/UIManager.js':
+              this.serveUIManagerJS(req, res);
+              break;
 
             case '/debug':
               this.serveDebugPage(req, res);
+              break;
+            case '/chart-debug':
+              this.serveChartDebugPage(req, res);
+              break;
+            case '/simple-charts':
+              this.serveSimpleChartsPage(req, res);
               break;
       default:
         res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -2897,6 +2915,132 @@ class EnhancedDashboard {
   }
 
 
+
+  /**
+   * Serve NotificationSystem.js
+   */
+  serveNotificationSystemJS(req, res) {
+    try {
+      const jsPath = path.join(__dirname, 'modern-dashboard/js/components/NotificationSystem.js');
+      if (fs.existsSync(jsPath)) {
+        const js = fs.readFileSync(jsPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+        res.end(js);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('NotificationSystem.js not found');
+      }
+    } catch (error) {
+      console.error('Error serving NotificationSystem.js:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve NotificationSystem.js');
+    }
+  }
+
+  /**
+   * Serve ModalSystem.js
+   */
+  serveModalSystemJS(req, res) {
+    try {
+      const jsPath = path.join(__dirname, 'modern-dashboard/js/components/ModalSystem.js');
+      if (fs.existsSync(jsPath)) {
+        const js = fs.readFileSync(jsPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+        res.end(js);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('ModalSystem.js not found');
+      }
+    } catch (error) {
+      console.error('Error serving ModalSystem.js:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve ModalSystem.js');
+    }
+  }
+
+  /**
+   * Serve DataTable.js
+   */
+  serveDataTableJS(req, res) {
+    try {
+      const jsPath = path.join(__dirname, 'modern-dashboard/js/components/DataTable.js');
+      if (fs.existsSync(jsPath)) {
+        const js = fs.readFileSync(jsPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+        res.end(js);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('DataTable.js not found');
+      }
+    } catch (error) {
+      console.error('Error serving DataTable.js:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve DataTable.js');
+    }
+  }
+
+  /**
+   * Serve UIManager.js
+   */
+  serveUIManagerJS(req, res) {
+    try {
+      const jsPath = path.join(__dirname, 'modern-dashboard/js/components/UIManager.js');
+      if (fs.existsSync(jsPath)) {
+        const js = fs.readFileSync(jsPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+        res.end(js);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('UIManager.js not found');
+      }
+    } catch (error) {
+      console.error('Error serving UIManager.js:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve UIManager.js');
+    }
+  }
+
+  /**
+   * Serve Chart Debug Page
+   */
+  serveChartDebugPage(req, res) {
+    try {
+      const debugPath = path.join(__dirname, 'modern-dashboard/chart-debug.html');
+      if (fs.existsSync(debugPath)) {
+        const html = fs.readFileSync(debugPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(html);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Chart debug page not found');
+      }
+    } catch (error) {
+      console.error('Error serving chart debug page:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve chart debug page');
+    }
+  }
+
+  /**
+   * Serve Simple Charts Page
+   */
+  serveSimpleChartsPage(req, res) {
+    try {
+      const chartsPath = path.join(__dirname, 'modern-dashboard/simple-charts.html');
+      if (fs.existsSync(chartsPath)) {
+        const html = fs.readFileSync(chartsPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(html);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Simple charts page not found');
+      }
+    } catch (error) {
+      console.error('Error serving simple charts page:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve simple charts page');
+    }
+  }
 
   /**
    * Serve Debug Page

@@ -319,61 +319,104 @@
                 return;
             }
             
-            // Check if Chart.js is available
-            if (typeof Chart === 'undefined') {
-                console.error('❌ Chart.js not loaded');
-                return;
+            console.log('✅ Chart.js is available');
+            
+            // Initialize Chart.js charts FIRST (before UI components)
+            console.log('📊 Initializing Chart.js charts...');
+            try {
+                initializeBarChart();
+                initializeLineChart();
+                console.log('✅ Charts initialized successfully');
+            } catch (error) {
+                console.error('❌ Error initializing charts:', error);
             }
             
-            // Initialize UI Manager first
-            console.log('🎛️ Initializing UI Manager...');
-            uiManager = new AgentOSUIManager();
-            
-            // Use global theme manager instance
-            console.log('🎨 Using global theme manager...');
-            const themeManager = window.agentOSThemeManager || new AgentOSThemeManager();
-            
-            // Initialize theme toggle button
-            console.log('🔘 Initializing theme toggle...');
-            themeManager.initThemeToggle();
-            
-            // Initialize Chart.js charts
-            console.log('📊 Initializing Chart.js charts...');
-            initializeBarChart();
-            initializeLineChart();
-            
-            // Initialize data table
-            console.log('📋 Initializing data table...');
-            initializeDataTable();
-            
-            // Start real-time updates
-            console.log('🔄 Starting real-time updates...');
-            startRealTimeUpdates();
-            
-            // Add event listeners
-            console.log('🎧 Setting up event listeners...');
-            setupEventListeners();
-            
-            // Show welcome notification
-            setTimeout(() => {
-                uiManager.showNotification('success', 'Dashboard Ready', 'Agent-OS Enhanced Dashboard is now fully operational!', {
-                    duration: 4000
-                });
-            }, 1000);
+            // Try to initialize UI components (but don't fail if they don't work)
+            try {
+                // Initialize UI Manager
+                console.log('🎛️ Attempting to initialize UI Manager...');
+                if (typeof AgentOSUIManager !== 'undefined') {
+                    uiManager = new AgentOSUIManager();
+                    console.log('✅ UI Manager initialized');
+                    
+                    // Initialize data table
+                    console.log('📋 Initializing data table...');
+                    initializeDataTable();
+                    
+                    // Start real-time updates
+                    console.log('🔄 Starting real-time updates...');
+                    startRealTimeUpdates();
+                    
+                    // Add event listeners
+                    console.log('🎧 Setting up event listeners...');
+                    setupEventListeners();
+                    
+                    // Show welcome notification
+                    setTimeout(() => {
+                        if (uiManager && uiManager.showNotification) {
+                            uiManager.showNotification('success', 'Dashboard Ready', 'Agent-OS Enhanced Dashboard is now fully operational!', {
+                                duration: 4000
+                            });
+                        }
+                    }, 1000);
+                } else {
+                    console.warn('⚠️ AgentOSUIManager not available, continuing without UI components');
+                }
+                
+                // Try to initialize theme manager
+                console.log('🎨 Attempting to initialize theme manager...');
+                if (typeof AgentOSThemeManager !== 'undefined') {
+                    const themeManager = window.agentOSThemeManager || new AgentOSThemeManager();
+                    themeManager.initThemeToggle();
+                    console.log('✅ Theme manager initialized');
+                } else {
+                    console.warn('⚠️ AgentOSThemeManager not available');
+                }
+                
+            } catch (error) {
+                console.error('❌ Error during UI component initialization:', error);
+                console.error('Error stack:', error.stack);
+                console.log('🔄 Continuing with charts only...');
+            }
             
             console.log('✅ Dashboard initialization complete');
         }
         
-        // Chart.js chart instances
-        let barChart, lineChart;
+        function initializeChartsOnly() {
+            console.log('📊 Initializing charts only (fallback mode)...');
+            
+            try {
+                // Initialize Chart.js charts
+                console.log('📊 Initializing Chart.js charts...');
+                initializeBarChart();
+                initializeLineChart();
+                
+                console.log('✅ Charts-only initialization complete');
+                
+            } catch (error) {
+                console.error('❌ Error during charts-only initialization:', error);
+                console.error('Error stack:', error.stack);
+            }
+        }
+        
+        // Chart.js chart instances (lineChart is declared here, barChart is declared above)
+        let lineChart;
         
         function initializeBarChart() {
+            console.log('🔍 Looking for bar chart canvas...');
             const canvas = document.getElementById('bar-chart');
             
-            if (!canvas || typeof Chart === 'undefined') {
-                console.error('Bar chart canvas or Chart.js not found');
+            if (!canvas) {
+                console.error('❌ Bar chart canvas not found');
                 return;
             }
+            
+            if (typeof Chart === 'undefined') {
+                console.error('❌ Chart.js not available for bar chart');
+                return;
+            }
+            
+            console.log('✅ Bar chart canvas found:', canvas);
             
             try {
                 console.log('Initializing Chart.js Bar Chart');
@@ -440,12 +483,20 @@
         }
         
         function initializeLineChart() {
+            console.log('🔍 Looking for line chart canvas...');
             const canvas = document.getElementById('line-chart');
             
-            if (!canvas || typeof Chart === 'undefined') {
-                console.error('Line chart canvas or Chart.js not found');
+            if (!canvas) {
+                console.error('❌ Line chart canvas not found');
                 return;
             }
+            
+            if (typeof Chart === 'undefined') {
+                console.error('❌ Chart.js not available for line chart');
+                return;
+            }
+            
+            console.log('✅ Line chart canvas found:', canvas);
             
             try {
                 console.log('Initializing Chart.js Line Chart');

@@ -4,9 +4,9 @@
   "warnings": 0,
   "totalFilesProcessed": 152,
   "averageProcessingTime": 150,
-  "timestamp": "2025-08-09T00:32:31.623Z",
-  "uptime": 6091730,
-  "totalRequests": 265,
+  "timestamp": "2025-08-09T00:52:36.449Z",
+  "uptime": 420178,
+  "totalRequests": 25,
   "fileTypes": [
     "java",
     "ts",
@@ -37,9 +37,9 @@
     "cpuUsage": 30
   },
   "realTimeUpdates": {
-    "lastUpdate": "2025-08-09T00:32:31.629Z",
+    "lastUpdate": "2025-08-09T00:52:36.454Z",
     "updateFrequency": "real-time",
-    "nextUpdate": "2025-08-09T00:33:01.629Z",
+    "nextUpdate": "2025-08-09T00:53:06.454Z",
     "isLive": true
   },
   "visualIndicators": {
