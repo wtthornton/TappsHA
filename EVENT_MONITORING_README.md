@@ -356,3 +356,184 @@ For support and questions:
 - Create an issue in the repository
 - Check the documentation
 - Review the troubleshooting guide 
+
+## 🔍 **Troubleshooting Steps**
+
+### **1. Check if the Backend Application is Running**
+
+First, let's verify if the Spring Boot application is actually running:
+
+```bash
+# Check if any Java processes are running on port 8080
+netstat -an | grep 8080
+# or
+lsof -i :8080
+```
+
+### **2. Check Application Startup**
+
+The most common issues are:
+
+#### **A. Database Connection Issues**
+Looking at your `application.yml`, the database configuration is:
+```yaml
+datasource:
+  url: jdbc:postgresql://localhost:5432/tappha
+  username: ${DB_USERNAME:tappha}
+  password: ${DB_PASSWORD:tappha}
+```
+
+**Check if PostgreSQL is running:**
+```bash
+# Check if PostgreSQL is running
+docker ps | grep postgres
+# or if running locally
+pg_isready -h localhost -p 5432
+```
+
+#### **B. Missing Dependencies**
+The application requires several services to start properly. Let's check:
+
+```bash
+# Start the required services
+docker-compose up -d postgres influxdb kafka
+```
+
+### **3. Start the Backend Application**
+
+#### **Option A: Using Docker Compose (Recommended)**
+```bash
+# Start all services including backend
+docker-compose up -d
+
+# Check backend logs
+docker-compose logs -f backend
+```
+
+#### **Option B: Local Development**
+```bash
+# Navigate to backend directory
+cd backend
+
+# Start the application
+./mvnw spring-boot:run
+```
+
+### **4. Verify Configuration**
+
+The health endpoint should be available at:
+- **URL**: `http://localhost:8080/api/actuator/health`
+- **Expected Response**: JSON with application status
+
+### **5. Common Issues and Solutions**
+
+#### **Issue 1: Database Not Running**
+```bash
+# Start PostgreSQL
+docker-compose up -d postgres
+
+# Wait for it to be healthy
+docker-compose ps postgres
+```
+
+#### **Issue 2: Application Failed to Start**
+Check the logs for specific errors:
+```bash
+# If using Docker
+docker-compose logs backend
+
+# If running locally
+cd backend && ./mvnw spring-boot:run
+```
+
+#### **Issue 3: Port Already in Use**
+```bash
+# Check what's using port 8080
+lsof -i :8080
+
+# Kill the process if needed
+kill -9 <PID>
+```
+
+#### **Issue 4: Missing Environment Variables**
+Set the required environment variables:
+```bash
+export DB_USERNAME=tappha
+export DB_PASSWORD=tappha
+export SPRING_PROFILES_ACTIVE=dev
+```
+
+### **6. Quick Diagnostic Commands**
+
+```bash
+# 1. Check if services are running
+docker-compose ps
+
+# 2. Check backend logs
+docker-compose logs backend
+
+# 3. Test database connection
+docker-compose exec postgres psql -U tappha -d tappha -c "SELECT 1;"
+
+# 4. Test health endpoint
+curl -v http://localhost:8080/api/actuator/health
+```
+
+### **7. Expected Health Response**
+
+When working correctly, you should see:
+```json
+{
+  "status": "UP",
+  "components": {
+    "db": {
+      "status": "UP",
+      "details": {
+        "database": "PostgreSQL",
+        "validationQuery": "isValid()"
+      }
+    },
+    "diskSpace": {
+      "status": "UP",
+      "details": {
+        "total": 499963174912,
+        "free": 419430400000,
+        "threshold": 10485760
+      }
+    }
+  }
+}
+```
+
+### **8. Alternative Health Check URLs**
+
+Try these alternative endpoints:
+- `http://localhost:8080/api/actuator/info`
+- `http://localhost:8080/api/actuator/metrics`
+- `http://localhost:8080/api/health` (if custom endpoint exists)
+
+### **9. Development vs Production**
+
+For **development**:
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+For **production**:
+```bash
+docker-compose up -d
+```
+
+### **10. Debug Mode**
+
+To get more detailed logs, add this to your `application.yml`:
+```yaml
+logging:
+  level:
+    com.tappha: DEBUG
+    org.springframework.boot: DEBUG
+    org.springframework.web: DEBUG
+```
+
+**What specific error are you seeing when you try to access the health endpoint?** This will help me provide more targeted troubleshooting steps. 

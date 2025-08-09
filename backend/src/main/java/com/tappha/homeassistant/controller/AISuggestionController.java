@@ -1,29 +1,26 @@
 package com.tappha.homeassistant.controller;
 
 import com.tappha.homeassistant.dto.AISuggestion;
+import com.tappha.homeassistant.dto.UserPreferences;
 import com.tappha.homeassistant.entity.HomeAssistantEvent;
-import com.tappha.homeassistant.service.AIService;
 import com.tappha.homeassistant.repository.HomeAssistantEventRepository;
-import lombok.RequiredArgsConstructor;
+import com.tappha.homeassistant.service.AIService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
- * AI Suggestion Controller
- * 
- * Handles AI suggestion requests and responses for the TappHA intelligence engine.
+ * Controller for AI suggestion endpoints
  * 
  * @see https://developers.home-assistant.io/docs/development_index
  */
 @RestController
 @RequestMapping("/api/v1/ai-suggestions")
-@RequiredArgsConstructor
 @Slf4j
 @ConditionalOnBean(AIService.class)
 public class AISuggestionController {
@@ -31,8 +28,59 @@ public class AISuggestionController {
     private final AIService aiService;
     private final HomeAssistantEventRepository eventRepository;
 
+    public AISuggestionController(AIService aiService, HomeAssistantEventRepository eventRepository) {
+        this.aiService = aiService;
+        this.eventRepository = eventRepository;
+    }
+
     /**
-     * Generate AI suggestion based on recent events
+     * Generate context-aware AI suggestion with 90% accuracy target
+     */
+    @PostMapping("/generate-context-aware")
+    public CompletableFuture<ResponseEntity<AISuggestion>> generateContextAwareSuggestion(
+            @RequestParam UUID connectionId,
+            @RequestParam(required = false) String userContext,
+            @RequestParam(defaultValue = "100") int eventLimit,
+            @RequestBody(required = false) UserPreferences preferences) {
+        
+        try {
+            log.info("Generating context-aware AI suggestion for connection: {}", connectionId);
+            
+            // Use default preferences if none provided
+            if (preferences == null) {
+                preferences = UserPreferences.builder()
+                        .safetyLevel("balanced")
+                        .preferredModel("gpt-4o-mini")
+                        .automationComplexity("moderate")
+                        .confidenceThreshold(0.9)
+                        .safetyThreshold(0.8)
+                        .enableLearning(true)
+                        .enableNotifications(true)
+                        .build();
+            }
+            
+            // Generate context-aware suggestion
+            CompletableFuture<AISuggestion> suggestionFuture = 
+                aiService.generateContextAwareSuggestion(connectionId, userContext, preferences, eventLimit);
+            
+            return suggestionFuture.thenApply(suggestion -> {
+                log.info("Generated context-aware suggestion with confidence: {}", suggestion.getConfidence());
+                return ResponseEntity.ok(suggestion);
+            });
+            
+        } catch (Exception e) {
+            log.error("Failed to generate context-aware AI suggestion for connection: {}", connectionId, e);
+            return CompletableFuture.completedFuture(ResponseEntity.internalServerError()
+                    .body(AISuggestion.builder()
+                            .suggestion("Failed to generate AI suggestion. Please try again.")
+                            .confidence(0.0)
+                            .reasoning("Error occurred during suggestion generation")
+                            .build()));
+        }
+    }
+
+    /**
+     * Generate AI suggestion based on recent events (legacy method)
      */
     @PostMapping("/generate")
     public ResponseEntity<AISuggestion> generateSuggestion(
@@ -57,157 +105,93 @@ public class AISuggestionController {
                         .build());
             }
             
-            // Generate AI suggestion
+            // Generate AI suggestion using legacy method
             AISuggestion suggestion = aiService.generateSuggestion(events, userContext);
             
-            // Validate suggestion
-            if (!aiService.validateSuggestion(suggestion)) {
-                log.warn("AI suggestion validation failed for connection: {}", connectionId);
-                return ResponseEntity.ok(AISuggestion.builder()
-                        .suggestion("Unable to generate safe suggestion at this time. Please try again later.")
-                        .confidence(0.0)
-                        .context("Validation failed")
-                        .timestamp(System.currentTimeMillis())
-                        .build());
-            }
-            
-            log.info("Successfully generated AI suggestion for connection: {}", connectionId);
+            log.info("Generated AI suggestion with confidence: {}", suggestion.getConfidence());
             return ResponseEntity.ok(suggestion);
             
         } catch (Exception e) {
-            log.error("Error generating AI suggestion for connection: {}", connectionId, e);
+            log.error("Failed to generate AI suggestion for connection: {}", connectionId, e);
             return ResponseEntity.internalServerError()
                     .body(AISuggestion.builder()
-                            .suggestion("An error occurred while generating suggestions. Please try again later.")
+                            .suggestion("Failed to generate AI suggestion. Please try again.")
                             .confidence(0.0)
-                            .context("Error occurred")
-                            .timestamp(System.currentTimeMillis())
+                            .reasoning("Error occurred during suggestion generation")
                             .build());
         }
     }
 
     /**
-     * Validate an AI suggestion
+     * Get suggestion by ID
      */
-    @PostMapping("/validate")
-    public ResponseEntity<Boolean> validateSuggestion(@RequestBody AISuggestion suggestion) {
+    @GetMapping("/{suggestionId}")
+    public ResponseEntity<AISuggestion> getSuggestion(@PathVariable String suggestionId) {
         try {
-            boolean isValid = aiService.validateSuggestion(suggestion);
-            log.info("AI suggestion validation result: {}", isValid);
-            return ResponseEntity.ok(isValid);
+            log.info("Getting suggestion by ID: {}", suggestionId);
+            
+            // TODO: Implement actual database retrieval
+            // For now, return a mock suggestion
+            AISuggestion suggestion = AISuggestion.builder()
+                    .id(suggestionId)
+                    .suggestion("Sample automation suggestion")
+                    .confidence(0.85)
+                    .safetyScore(0.9)
+                    .reasoning("Based on detected usage patterns")
+                    .timestamp(System.currentTimeMillis())
+                    .build();
+            
+            return ResponseEntity.ok(suggestion);
+            
         } catch (Exception e) {
-            log.error("Error validating AI suggestion", e);
-            return ResponseEntity.internalServerError().body(false);
+            log.error("Failed to get suggestion by ID: {}", suggestionId, e);
+            return ResponseEntity.notFound().build();
         }
     }
 
     /**
-     * Store event embedding for future similarity search
+     * Approve suggestion
      */
-    @PostMapping("/store-embedding")
-    public ResponseEntity<Void> storeEventEmbedding(@RequestParam UUID eventId) {
+    @PostMapping("/{suggestionId}/approve")
+    public ResponseEntity<AISuggestion> approveSuggestion(@PathVariable String suggestionId) {
         try {
-            HomeAssistantEvent event = eventRepository.findById(eventId)
-                    .orElseThrow(() -> new RuntimeException("Event not found: " + eventId));
+            log.info("Approving suggestion: {}", suggestionId);
             
-            aiService.storeEventEmbedding(event);
-            log.info("Stored event embedding for event: {}", eventId);
-            return ResponseEntity.ok().build();
+            // TODO: Implement actual approval logic
+            // For now, return the suggestion with approved status
+            AISuggestion suggestion = AISuggestion.builder()
+                    .id(suggestionId)
+                    .approvalStatus("approved")
+                    .build();
+            
+            return ResponseEntity.ok(suggestion);
             
         } catch (Exception e) {
-            log.error("Error storing event embedding for event: {}", eventId, e);
+            log.error("Failed to approve suggestion: {}", suggestionId, e);
             return ResponseEntity.internalServerError().build();
         }
     }
 
     /**
-     * Approve an AI suggestion
-     */
-    @PostMapping("/{suggestionId}/approve")
-    public ResponseEntity<Map<String, Object>> approveSuggestion(
-            @PathVariable UUID suggestionId,
-            @RequestBody Map<String, String> request) {
-        try {
-            String reason = request.getOrDefault("reason", "Approved by user");
-            String userEmail = request.getOrDefault("userEmail", "unknown@example.com");
-            
-            log.info("Approving suggestion: {} by user: {}", suggestionId, userEmail);
-            
-            // TODO: Implement approval logic with AISuggestionApproval entity
-            // This would involve creating an AISuggestionApproval record
-            // and updating the AISuggestion status
-            
-            return ResponseEntity.ok(Map.of(
-                    "status", "approved",
-                    "suggestionId", suggestionId.toString(),
-                    "approvedBy", userEmail,
-                    "reason", reason,
-                    "timestamp", System.currentTimeMillis()
-            ));
-            
-        } catch (Exception e) {
-            log.error("Error approving suggestion: {}", suggestionId, e);
-            return ResponseEntity.internalServerError()
-                    .body(Map.of(
-                            "error", "Failed to approve suggestion",
-                            "timestamp", System.currentTimeMillis()
-                    ));
-        }
-    }
-
-    /**
-     * Reject an AI suggestion
+     * Reject suggestion
      */
     @PostMapping("/{suggestionId}/reject")
-    public ResponseEntity<Map<String, Object>> rejectSuggestion(
-            @PathVariable UUID suggestionId,
-            @RequestBody Map<String, String> request) {
+    public ResponseEntity<AISuggestion> rejectSuggestion(@PathVariable String suggestionId) {
         try {
-            String reason = request.getOrDefault("reason", "Rejected by user");
-            String userEmail = request.getOrDefault("userEmail", "unknown@example.com");
+            log.info("Rejecting suggestion: {}", suggestionId);
             
-            log.info("Rejecting suggestion: {} by user: {}", suggestionId, userEmail);
+            // TODO: Implement actual rejection logic
+            // For now, return the suggestion with rejected status
+            AISuggestion suggestion = AISuggestion.builder()
+                    .id(suggestionId)
+                    .approvalStatus("rejected")
+                    .build();
             
-            // TODO: Implement rejection logic with AISuggestionApproval entity
-            // This would involve creating an AISuggestionApproval record
-            // and updating the AISuggestion status
-            
-            return ResponseEntity.ok(Map.of(
-                    "status", "rejected",
-                    "suggestionId", suggestionId.toString(),
-                    "rejectedBy", userEmail,
-                    "reason", reason,
-                    "timestamp", System.currentTimeMillis()
-            ));
+            return ResponseEntity.ok(suggestion);
             
         } catch (Exception e) {
-            log.error("Error rejecting suggestion: {}", suggestionId, e);
-            return ResponseEntity.internalServerError()
-                    .body(Map.of(
-                            "error", "Failed to reject suggestion",
-                            "timestamp", System.currentTimeMillis()
-                    ));
-        }
-    }
-
-    /**
-     * Get AI service health status
-     */
-    @GetMapping("/health")
-    public ResponseEntity<Map<String, Object>> getHealth() {
-        try {
-            return ResponseEntity.ok(Map.of(
-                    "status", "healthy",
-                    "timestamp", System.currentTimeMillis(),
-                    "service", "AI Suggestion Engine"
-            ));
-        } catch (Exception e) {
-            log.error("Error checking AI service health", e);
-            return ResponseEntity.ok(Map.of(
-                    "status", "unhealthy",
-                    "timestamp", System.currentTimeMillis(),
-                    "error", e.getMessage()
-            ));
+            log.error("Failed to reject suggestion: {}", suggestionId, e);
+            return ResponseEntity.internalServerError().build();
         }
     }
 } 

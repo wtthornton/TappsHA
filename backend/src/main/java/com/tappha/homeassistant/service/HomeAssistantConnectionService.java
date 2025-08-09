@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.oauth2.core.user.OAuth2User;
+import com.tappha.homeassistant.security.CustomUserPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,9 +55,9 @@ public class HomeAssistantConnectionService {
     /**
      * Create a new Home Assistant connection
      */
-    public ConnectionResponse createConnection(ConnectRequest request, OAuth2User principal) {
+    public ConnectionResponse createConnection(ConnectRequest request, CustomUserPrincipal principal) {
         try {
-            String userEmail = principal.getAttribute("email");
+            String userEmail = principal.getEmail();
             User user = userRepository.findByEmail(userEmail)
                     .orElseThrow(() -> new RuntimeException("User not found: " + userEmail));
             
@@ -101,8 +101,8 @@ public class HomeAssistantConnectionService {
     /**
      * Get connections for a user
      */
-    public Page<HomeAssistantConnection> getConnections(OAuth2User principal, Pageable pageable) {
-        String userEmail = principal.getAttribute("email");
+    public Page<HomeAssistantConnection> getConnections(CustomUserPrincipal principal, Pageable pageable) {
+        String userEmail = principal.getEmail();
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("User not found: " + userEmail));
         
@@ -110,11 +110,18 @@ public class HomeAssistantConnectionService {
     }
     
     /**
-     * Get connection by ID
+     * Get a connection by ID
      */
     public HomeAssistantConnection getConnectionById(UUID connectionId) {
         return connectionRepository.findById(connectionId)
-                .orElseThrow(() -> new RuntimeException("Connection not found"));
+                .orElseThrow(() -> new RuntimeException("Connection not found: " + connectionId));
+    }
+    
+    /**
+     * Get a connection by ID (returns Optional)
+     */
+    public Optional<HomeAssistantConnection> getConnection(UUID connectionId) {
+        return connectionRepository.findById(connectionId);
     }
     
     /**

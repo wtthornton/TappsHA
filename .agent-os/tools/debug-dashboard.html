@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Debug</title>
+    <!-- Load required libraries for testing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r160/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        // Verify Three.js and OrbitControls loading with fallback
+        window.addEventListener('load', function() {
+            console.log('🔍 Checking library loading...');
+            
+            if (typeof THREE === 'undefined') {
+                console.error('❌ Three.js failed to load from CDN');
+                // Try alternative CDN
+                const script = document.createElement('script');
+                script.src = 'https://unpkg.com/three@0.160.0/build/three.min.js';
+                script.onload = function() {
+                    console.log('✅ Three.js loaded from alternative CDN');
+                                         // Load OrbitControls after Three.js
+                     const orbitScript = document.createElement('script');
+                     orbitScript.src = 'https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js';
+                    orbitScript.onload = function() {
+                        console.log('✅ OrbitControls loaded from alternative CDN');
+                    };
+                    document.head.appendChild(orbitScript);
+                };
+                document.head.appendChild(script);
+            } else {
+                console.log('✅ Three.js loaded successfully');
+            }
+            
+                         // Check OrbitControls specifically with multiple attempts
+             let orbitCheckAttempts = 0;
+             const maxAttempts = 5;
+             
+             function checkOrbitControls() {
+                 orbitCheckAttempts++;
+                 if (typeof THREE !== 'undefined' && typeof THREE.OrbitControls !== 'undefined') {
+                     console.log('✅ OrbitControls loaded successfully');
+                 } else if (orbitCheckAttempts < maxAttempts) {
+                     console.log(`⏳ OrbitControls not loaded yet, attempt ${orbitCheckAttempts}/${maxAttempts}...`);
+                     setTimeout(checkOrbitControls, 500);
+                 } else {
+                     console.error('❌ OrbitControls not loaded after multiple attempts, trying alternative...');
+                     const orbitScript = document.createElement('script');
+                     orbitScript.src = 'https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js';
+                     orbitScript.onload = function() {
+                         console.log('✅ OrbitControls loaded from fallback CDN');
+                     };
+                     document.head.appendChild(orbitScript);
+                 }
+             }
+             
+             setTimeout(checkOrbitControls, 1000);
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        .debug-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .test-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #2563eb;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .log {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1>Agent-OS Dashboard Debug</h1>
+        
+        <div class="test-section">
+            <h3>Library Loading Tests</h3>
+            <button class="test-button" onclick="testLibraries()">Test Libraries</button>
+            <div id="library-status"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Theme Manager Tests</h3>
+            <button class="test-button" onclick="testThemeManager()">Test Theme Manager</button>
+            <div id="theme-status"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Chart Tests</h3>
+            <button class="test-button" onclick="testCharts()">Test Charts</button>
+            <div id="chart-status"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Dashboard Access</h3>
+            <button class="test-button" onclick="testDashboard()">Test Dashboard</button>
+            <div id="dashboard-status"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Chart Functionality Test</h3>
+            <button class="test-button" onclick="testChartFunctionality()">Test Chart Creation</button>
+            <div id="chart-functionality-status"></div>
+            <div id="test-chart-container" style="width: 300px; height: 200px; border: 1px solid #ccc; margin-top: 10px;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Console Log</h3>
+            <div id="console-log" class="log"></div>
+        </div>
+    </div>
+    
+    <!-- Load dashboard scripts for testing -->
+    <script src="/modern-dashboard/theme-manager.js"></script>
+    <script src="/modern-dashboard/js/3d/Chart3DRenderer.js"></script>
+    <script src="/modern-dashboard/js/charts/BarChart3D.js"></script>
+    <script src="/modern-dashboard/js/charts/ScatterPlot3D.js"></script>
+    <script src="/modern-dashboard/data/sample-datasets.js"></script>
+
+    <script>
+        // Capture console logs
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        
+        function addToLog(message, type = 'log') {
+            const logDiv = document.getElementById('console-log');
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#ef4444' : type === 'warn' ? '#f59e0b' : '#10b981';
+            logDiv.innerHTML += `<div style="color: ${color}">[${timestamp}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToLog(args.join(' '), 'log');
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToLog(args.join(' '), 'error');
+        };
+        
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addToLog(args.join(' '), 'warn');
+        };
+        
+        function testLibraries() {
+            const status = document.getElementById('library-status');
+            status.innerHTML = '<div class="status info">Testing library loading...</div>';
+            
+            const results = [];
+            let allPassed = true;
+            
+            // Test Three.js
+            if (typeof THREE !== 'undefined') {
+                results.push('✅ Three.js loaded (v' + (THREE.REVISION || 'unknown') + ')');
+            } else {
+                results.push('❌ Three.js not loaded');
+                allPassed = false;
+            }
+            
+            // Test OrbitControls
+            if (typeof THREE !== 'undefined' && typeof THREE.OrbitControls !== 'undefined') {
+                results.push('✅ OrbitControls loaded');
+            } else {
+                results.push('❌ OrbitControls not loaded');
+                allPassed = false;
+            }
+            
+            // Test GSAP
+            if (typeof gsap !== 'undefined') {
+                results.push('✅ GSAP loaded (v' + (gsap.version || 'unknown') + ')');
+            } else {
+                results.push('❌ GSAP not loaded');
+                allPassed = false;
+            }
+            
+            // Test dat.GUI
+            if (typeof dat !== 'undefined') {
+                results.push('✅ dat.GUI loaded');
+            } else {
+                results.push('❌ dat.GUI not loaded');
+                allPassed = false;
+            }
+            
+            const statusClass = allPassed ? 'success' : 'error';
+            status.innerHTML = '<div class="status ' + statusClass + '">' + results.join('<br>') + '</div>';
+        }
+        
+        function testThemeManager() {
+            const status = document.getElementById('theme-status');
+            status.innerHTML = '<div class="status info">Testing theme manager...</div>';
+            
+            try {
+                // Test if theme manager script is loaded
+                if (typeof AgentOSThemeManager !== 'undefined') {
+                    // Test creating an instance
+                    const themeManager = new AgentOSThemeManager();
+                    if (themeManager && themeManager.isInitialized) {
+                        status.innerHTML = '<div class="status success">✅ AgentOSThemeManager class available and initialized</div>';
+                    } else {
+                        status.innerHTML = '<div class="status error">❌ AgentOSThemeManager failed to initialize</div>';
+                    }
+                } else {
+                    status.innerHTML = '<div class="status error">❌ AgentOSThemeManager class not found</div>';
+                }
+            } catch (error) {
+                status.innerHTML = '<div class="status error">❌ Error testing theme manager: ' + error.message + '</div>';
+            }
+        }
+        
+        function testCharts() {
+            const status = document.getElementById('chart-status');
+            status.innerHTML = '<div class="status info">Testing chart classes...</div>';
+            
+            const results = [];
+            let allPassed = true;
+            
+            // Test Chart3DRenderer
+            if (typeof Chart3DRenderer !== 'undefined') {
+                results.push('✅ Chart3DRenderer available');
+            } else {
+                results.push('❌ Chart3DRenderer not found');
+                allPassed = false;
+            }
+            
+            // Test BarChart3D
+            if (typeof BarChart3D !== 'undefined') {
+                results.push('✅ BarChart3D available');
+            } else {
+                results.push('❌ BarChart3D not found');
+                allPassed = false;
+            }
+            
+            // Test ScatterPlot3D
+            if (typeof ScatterPlot3D !== 'undefined') {
+                results.push('✅ ScatterPlot3D available');
+            } else {
+                results.push('❌ ScatterPlot3D not found');
+                allPassed = false;
+            }
+            
+            // Test datasets
+            if (typeof window.AgentOSDatasets !== 'undefined') {
+                results.push('✅ Sample datasets available');
+            } else {
+                results.push('❌ Sample datasets not found');
+                allPassed = false;
+            }
+            
+            const statusClass = allPassed ? 'success' : 'error';
+            status.innerHTML = '<div class="status ' + statusClass + '">' + results.join('<br>') + '</div>';
+        }
+        
+        function testDashboard() {
+            const status = document.getElementById('dashboard-status');
+            status.innerHTML = '<div class="status info">Testing dashboard access...</div>';
+            
+            // Test multiple endpoints
+            const endpoints = [
+                { url: '/app', name: 'Main Dashboard' },
+                { url: '/debug', name: 'Debug Page' },
+                { url: '/modern-dashboard/design-system.css', name: 'Design System CSS' },
+                { url: '/modern-dashboard/theme-manager.js', name: 'Theme Manager JS' }
+            ];
+            
+            let testsCompleted = 0;
+            let testsPassed = 0;
+            const results = [];
+            
+            endpoints.forEach(endpoint => {
+                fetch(endpoint.url)
+                    .then(response => {
+                        testsCompleted++;
+                        if (response.ok) {
+                            testsPassed++;
+                            results.push('✅ ' + endpoint.name + ' (Status: ' + response.status + ')');
+                        } else {
+                            results.push('❌ ' + endpoint.name + ' (Status: ' + response.status + ')');
+                        }
+                        
+                        if (testsCompleted === endpoints.length) {
+                            const statusClass = testsPassed === testsCompleted ? 'success' : 'error';
+                            status.innerHTML = '<div class="status ' + statusClass + '">' + results.join('<br>') + '</div>';
+                        }
+                    })
+                    .catch(error => {
+                        testsCompleted++;
+                        results.push('❌ ' + endpoint.name + ' (Error: ' + error.message + ')');
+                        
+                        if (testsCompleted === endpoints.length) {
+                            const statusClass = testsPassed === testsCompleted ? 'success' : 'error';
+                            status.innerHTML = '<div class="status ' + statusClass + '">' + results.join('<br>') + '</div>';
+                        }
+                    });
+            });
+        }
+        
+        function testChartFunctionality() {
+            const status = document.getElementById('chart-functionality-status');
+            const container = document.getElementById('test-chart-container');
+            
+            status.innerHTML = '<div class="status info">Testing chart creation...</div>';
+            
+            try {
+                // Test if we can create a simple chart
+                if (typeof Chart3DRenderer !== 'undefined' && typeof THREE !== 'undefined') {
+                    // Create a simple test scene
+                    const scene = new THREE.Scene();
+                    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+                    const renderer = new THREE.WebGLRenderer();
+                    
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                    container.appendChild(renderer.domElement);
+                    
+                    // Add a simple cube
+                    const geometry = new THREE.BoxGeometry();
+                    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+                    const cube = new THREE.Mesh(geometry, material);
+                    scene.add(cube);
+                    
+                    camera.position.z = 5;
+                    
+                    // Simple animation
+                    function animate() {
+                        requestAnimationFrame(animate);
+                        cube.rotation.x += 0.01;
+                        cube.rotation.y += 0.01;
+                        renderer.render(scene, camera);
+                    }
+                    animate();
+                    
+                    status.innerHTML = '<div class="status success">✅ Chart functionality working - 3D scene created successfully</div>';
+                } else {
+                    status.innerHTML = '<div class="status error">❌ Chart functionality not available - missing required libraries</div>';
+                }
+            } catch (error) {
+                status.innerHTML = '<div class="status error">❌ Error testing chart functionality: ' + error.message + '</div>';
+            }
+        }
+        
+        // Auto-run tests on load
+        window.addEventListener('load', function() {
+            console.log('Debug page loaded');
+            setTimeout(() => {
+                testLibraries();
+                testThemeManager();
+                testCharts();
+                testDashboard();
+                testChartFunctionality();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

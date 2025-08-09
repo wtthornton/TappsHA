@@ -1,0 +1,46 @@
+{
+  "name": "API Extensions",
+  "description": "Enhanced API endpoints for advanced functionality",
+  "endpoints": [
+    {
+      "path": "/api/v2/metrics/realtime",
+      "method": "GET",
+      "description": "Real-time metrics with WebSocket support",
+      "features": [
+        "live-updates",
+        "compression",
+        "caching"
+      ]
+    },
+    {
+      "path": "/api/v2/analytics/predictions",
+      "method": "POST",
+      "description": "Predictive analytics endpoint",
+      "features": [
+        "ml-models",
+        "batch-processing",
+        "async-results"
+      ]
+    },
+    {
+      "path": "/api/v2/alerts/smart",
+      "method": "GET",
+      "description": "Smart alerting system",
+      "features": [
+        "intelligent-filtering",
+        "priority-sorting",
+        "action-suggestions"
+      ]
+    },
+    {
+      "path": "/api/v2/charts/3d",
+      "method": "POST",
+      "description": "3D chart rendering",
+      "features": [
+        "webgl-rendering",
+        "interactive-controls",
+        "export-capabilities"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 package com.tappha.homeassistant.dto;
 
+import com.tappha.homeassistant.entity.HomeAssistantEvent;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,4 +38,10 @@ public class AutomationContext {
     private String metadata;
     private Map<String, String> currentStates;
     private List<String> recentEvents;
+    
+    // Enhanced fields for context-aware suggestion generation
+    private List<HomeAssistantEvent> events;
+    private String userContext;
+    private Map<String, Object> patternData;
+    private Map<String, Object> userSettings;
 } 

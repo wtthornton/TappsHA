@@ -12,8 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import com.tappha.homeassistant.security.CustomUserPrincipal;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -299,8 +299,8 @@ public class EventFilteringRulesController {
      */
     private String getUserEmail(Principal principal) {
         if (principal instanceof Authentication auth) {
-            if (auth.getPrincipal() instanceof OAuth2User oauth2User) {
-                return oauth2User.getAttribute("email");
+                    if (auth.getPrincipal() instanceof CustomUserPrincipal userPrincipal) {
+            return userPrincipal.getEmail();
             }
         }
         return principal.getName();

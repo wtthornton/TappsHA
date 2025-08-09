@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -271,7 +272,7 @@ class OpenAIClientTest {
             .aiEnabled(true)
             .safetyLevel("medium")
             .approvalRequired(true)
-            .maxSuggestionsPerDay(10)
+            .customPreferences(Map.of("maxSuggestionsPerDay", 10))
             .build();
     }
 } 

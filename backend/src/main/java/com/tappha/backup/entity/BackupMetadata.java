@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -29,10 +31,8 @@ public class BackupMetadata {
     @Column(name = "backup_id", nullable = false)
     private String backupId;
 
-    @ElementCollection
-    @CollectionTable(name = "backup_metadata_values", joinColumns = @JoinColumn(name = "metadata_id"))
-    @MapKeyColumn(name = "metadata_key")
-    @Column(name = "metadata_value", columnDefinition = "TEXT")
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "metadata", columnDefinition = "jsonb")
     private Map<String, Object> metadata;
 
     @Column(name = "created_at", nullable = false)

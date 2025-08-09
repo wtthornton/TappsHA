@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: #2563eb;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Agent-OS Dashboard Test</h1>
+        
+        <div class="status info">
+            <strong>Test Status:</strong> Checking dashboard functionality
+        </div>
+        
+        <button class="test-button" onclick="testDashboard()">Test Dashboard</button>
+        <button class="test-button" onclick="testTheme()">Test Theme Toggle</button>
+        <button class="test-button" onclick="testCharts()">Test 3D Charts</button>
+        
+        <div id="results"></div>
+        
+        <iframe id="dashboard-frame" src="http://localhost:3011/app" style="width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 4px; margin-top: 20px;"></iframe>
+    </div>
+
+    <script>
+        function testDashboard() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<div class="status info">Testing dashboard accessibility...</div>';
+            
+            fetch('http://localhost:3011/app')
+                .then(response => {
+                    if (response.ok) {
+                        results.innerHTML = '<div class="status success">✅ Dashboard is accessible (Status: ' + response.status + ')</div>';
+                    } else {
+                        results.innerHTML = '<div class="status error">❌ Dashboard returned status: ' + response.status + '</div>';
+                    }
+                })
+                .catch(error => {
+                    results.innerHTML = '<div class="status error">❌ Error accessing dashboard: ' + error.message + '</div>';
+                });
+        }
+        
+        function testTheme() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<div class="status info">Testing theme functionality...</div>';
+            
+            // Test if theme manager is available
+            setTimeout(() => {
+                const frame = document.getElementById('dashboard-frame');
+                try {
+                    frame.contentWindow.postMessage({ type: 'test-theme' }, '*');
+                    results.innerHTML = '<div class="status success">✅ Theme test message sent</div>';
+                } catch (error) {
+                    results.innerHTML = '<div class="status error">❌ Theme test failed: ' + error.message + '</div>';
+                }
+            }, 1000);
+        }
+        
+        function testCharts() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<div class="status info">Testing 3D charts...</div>';
+            
+            // Test if charts are loading
+            setTimeout(() => {
+                const frame = document.getElementById('dashboard-frame');
+                try {
+                    frame.contentWindow.postMessage({ type: 'test-charts' }, '*');
+                    results.innerHTML = '<div class="status success">✅ Chart test message sent</div>';
+                } catch (error) {
+                    results.innerHTML = '<div class="status error">❌ Chart test failed: ' + error.message + '</div>';
+                }
+            }, 1000);
+        }
+        
+        // Listen for messages from the dashboard
+        window.addEventListener('message', function(event) {
+            if (event.origin !== 'http://localhost:3011') return;
+            
+            const results = document.getElementById('results');
+            if (event.data.type === 'dashboard-ready') {
+                results.innerHTML = '<div class="status success">✅ Dashboard is ready and functional</div>';
+            } else if (event.data.type === 'dashboard-error') {
+                results.innerHTML = '<div class="status error">❌ Dashboard error: ' + event.data.message + '</div>';
+            }
+        });
+    </script>
+</body>
+</html>

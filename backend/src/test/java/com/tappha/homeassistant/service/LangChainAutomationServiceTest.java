@@ -68,8 +68,7 @@ class LangChainAutomationServiceTest {
         // Create test preferences
         testPreferences = UserPreferences.builder()
                 .preferredAutomationTypes(List.of("lighting", "climate"))
-                .energyEfficiencyPriority("high")
-                .notificationPreferences(Map.of("automation_suggestions", true))
+                .customPreferences(Map.of("energyEfficiencyPriority", "high", "notificationPreferences", Map.of("automation_suggestions", true)))
                 .build();
     }
 
@@ -191,8 +190,8 @@ class LangChainAutomationServiceTest {
     void formatPreferences_WithCompletePreferences() {
         // Test preference formatting indirectly
         assertNotNull(testPreferences.getPreferredAutomationTypes());
-        assertNotNull(testPreferences.getEnergyEfficiencyPriority());
-        assertNotNull(testPreferences.getNotificationPreferences());
+        assertNotNull(testPreferences.getCustomPreferences());
+        // Note: energyEfficiencyPriority and notificationPreferences are now in customPreferences
     }
 
     @Test

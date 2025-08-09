@@ -13,8 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import com.tappha.homeassistant.security.CustomUserPrincipal;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,7 +46,7 @@ public class HomeAssistantConnectionController {
      */
     @PostMapping("/connect")
     public ResponseEntity<ConnectionResponse> connect(@Valid @RequestBody ConnectRequest request,
-                                                   @AuthenticationPrincipal OAuth2User principal) {
+                                                   @AuthenticationPrincipal CustomUserPrincipal principal) {
         try {
             logger.info("Connecting to Home Assistant: {}", request.getUrl());
             
@@ -88,7 +88,7 @@ public class HomeAssistantConnectionController {
      * Get all connections for the current user
      */
     @GetMapping("/connections")
-    public ResponseEntity<ConnectionsResponse> getConnections(@AuthenticationPrincipal OAuth2User principal,
+    public ResponseEntity<ConnectionsResponse> getConnections(@AuthenticationPrincipal CustomUserPrincipal principal,
                                                            Pageable pageable) {
         try {
             Page<HomeAssistantConnection> connections = connectionService.getConnections(principal, pageable);
@@ -115,12 +115,12 @@ public class HomeAssistantConnectionController {
      */
     @GetMapping("/connections/{connectionId}/status")
     public ResponseEntity<ConnectionStatusResponse> getConnectionStatus(@PathVariable UUID connectionId,
-                                                                     @AuthenticationPrincipal OAuth2User principal) {
+                                                                     @AuthenticationPrincipal CustomUserPrincipal principal) {
         try {
             HomeAssistantConnection connection = connectionService.getConnectionById(connectionId);
             
             // Verify user owns this connection
-            if (!connection.getUser().getEmail().equals(principal.getAttribute("email"))) {
+            if (!connection.getUser().getEmail().equals(principal.getEmail())) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
             }
             
@@ -144,12 +144,12 @@ public class HomeAssistantConnectionController {
      */
     @PostMapping("/connections/{connectionId}/test")
     public ResponseEntity<ConnectionTestResponse> testConnection(@PathVariable UUID connectionId,
-                                                              @AuthenticationPrincipal OAuth2User principal) {
+                                                              @AuthenticationPrincipal CustomUserPrincipal principal) {
         try {
             HomeAssistantConnection connection = connectionService.getConnectionById(connectionId);
             
             // Verify user owns this connection
-            if (!connection.getUser().getEmail().equals(principal.getAttribute("email"))) {
+            if (!connection.getUser().getEmail().equals(principal.getEmail())) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
             }
             
@@ -180,12 +180,12 @@ public class HomeAssistantConnectionController {
      */
     @DeleteMapping("/connections/{connectionId}")
     public ResponseEntity<DisconnectResponse> disconnect(@PathVariable UUID connectionId,
-                                                      @AuthenticationPrincipal OAuth2User principal) {
+                                                      @AuthenticationPrincipal CustomUserPrincipal principal) {
         try {
             HomeAssistantConnection connection = connectionService.getConnectionById(connectionId);
             
             // Verify user owns this connection
-            if (!connection.getUser().getEmail().equals(principal.getAttribute("email"))) {
+            if (!connection.getUser().getEmail().equals(principal.getEmail())) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
             }
             
@@ -212,7 +212,7 @@ public class HomeAssistantConnectionController {
      */
     @GetMapping("/connections/{connectionId}/events")
     public ResponseEntity<EventsResponse> getEvents(@PathVariable UUID connectionId,
-                                                  @AuthenticationPrincipal OAuth2User principal,
+                                                  @AuthenticationPrincipal CustomUserPrincipal principal,
                                                   @RequestParam(defaultValue = "100") int limit,
                                                   @RequestParam(defaultValue = "0") int offset,
                                                   @RequestParam(required = false) String eventType,
@@ -221,7 +221,7 @@ public class HomeAssistantConnectionController {
             HomeAssistantConnection connection = connectionService.getConnectionById(connectionId);
             
             // Verify user owns this connection
-            if (!connection.getUser().getEmail().equals(principal.getAttribute("email"))) {
+            if (!connection.getUser().getEmail().equals(principal.getEmail())) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
             }
             
@@ -239,13 +239,13 @@ public class HomeAssistantConnectionController {
      */
     @GetMapping("/connections/{connectionId}/metrics")
     public ResponseEntity<MetricsResponse> getMetrics(@PathVariable UUID connectionId,
-                                                   @AuthenticationPrincipal OAuth2User principal,
+                                                   @AuthenticationPrincipal CustomUserPrincipal principal,
                                                    @RequestParam(defaultValue = "24h") String timeRange) {
         try {
             HomeAssistantConnection connection = connectionService.getConnectionById(connectionId);
             
             // Verify user owns this connection
-            if (!connection.getUser().getEmail().equals(principal.getAttribute("email"))) {
+            if (!connection.getUser().getEmail().equals(principal.getEmail())) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
             }
             

@@ -72,19 +72,7 @@ spring:
       compression-type: snappy
       linger-ms: 10
 
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: ${GOOGLE_CLIENT_ID}
-            client-secret: ${GOOGLE_CLIENT_SECRET}
-            scope:
-              - email
-              - profile
-    # Disable WebSocket security for now to avoid compatibility issues
-    websocket:
-      security: false
+
 
 server:
   port: 8080

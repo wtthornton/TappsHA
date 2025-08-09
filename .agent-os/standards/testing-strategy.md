@@ -21,4 +21,11 @@
 - **Apply:** Update test strategies based on lessons learned
 - **Reference:** See `@~/.agent-os/lessons-learned/categories/testing/README.md` for testing lessons
 
+## Debugging Tools Integration
+- **Dashboard Debug Page**: Custom debug interface for complex frontend features
+- **Library Testing**: Automated library availability and functionality tests
+- **Console Capture**: Real-time console log monitoring and analysis
+- **Component Isolation**: Isolated testing environments for complex features
+- **Reference**: See `.agent-os/agent-improvements/dashboard-modernization-lessons-learned.md` for debugging insights
+
 **Cursor Effect:** Can auto‑generate **unit and integration tests** following project coverage & style.

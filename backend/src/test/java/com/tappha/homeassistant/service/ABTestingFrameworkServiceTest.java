@@ -78,7 +78,7 @@ class ABTestingFrameworkServiceTest {
                 .safetyLevel("high")
                 .approvalRequired(true)
                 .confidenceThreshold(0.7)
-                .privacyMode(true)
+                .privacyMode("strict")
                 .build();
 
         // Create mock suggestion

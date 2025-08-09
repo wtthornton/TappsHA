@@ -374,6 +374,30 @@ class EnhancedDashboard {
       case '/performance-metrics':
         this.servePerformanceMetrics(req, res);
         break;
+      case '/modern-dashboard/design-system.css':
+        this.serveDesignSystemCSS(req, res);
+        break;
+      case '/modern-dashboard/theme-manager.js':
+        this.serveThemeManagerJS(req, res);
+        break;
+      case '/modern-dashboard/css/3d-components.css':
+        this.serve3DComponentsCSS(req, res);
+        break;
+      case '/modern-dashboard/js/3d/Chart3DRenderer.js':
+        this.serveChart3DRendererJS(req, res);
+        break;
+      case '/modern-dashboard/js/charts/BarChart3D.js':
+        this.serveBarChart3DJS(req, res);
+        break;
+                  case '/modern-dashboard/data/sample-datasets.js':
+              this.serveSampleDatasetsJS(req, res);
+              break;
+            case '/modern-dashboard/js/charts/ScatterPlot3D.js':
+              this.serveScatterPlot3DJS(req, res);
+              break;
+            case '/debug':
+              this.serveDebugPage(req, res);
+              break;
       default:
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Not Found');
@@ -438,9 +462,30 @@ class EnhancedDashboard {
    * Unified single-page UI for all Agent‑OS functions
    */
   serveUnifiedApp(_req, res) {
-    const html = this.generateUnifiedAppHTML();
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end(html);
+    // Serve the modern dashboard
+    const modernDashboardPath = path.join(__dirname, 'modern-dashboard/modern-dashboard.html');
+    const designSystemPath = path.join(__dirname, 'modern-dashboard/design-system.css');
+    const themeManagerPath = path.join(__dirname, 'modern-dashboard/theme-manager.js');
+    
+    try {
+      // Check if modern dashboard files exist
+      if (fs.existsSync(modernDashboardPath)) {
+        const html = fs.readFileSync(modernDashboardPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(html);
+      } else {
+        // Fallback to original unified app
+        const html = this.generateUnifiedAppHTML();
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(html);
+      }
+    } catch (error) {
+      console.error('Error serving modern dashboard:', error);
+      // Fallback to original unified app
+      const html = this.generateUnifiedAppHTML();
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(html);
+    }
   }
 
   generateUnifiedAppHTML() {
@@ -2769,6 +2814,174 @@ class EnhancedDashboard {
       console.error('Error serving performance metrics:', error.message);
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Failed to load performance metrics' }));
+    }
+  }
+
+  /**
+   * Serve design system CSS
+   */
+  serveDesignSystemCSS(req, res) {
+    try {
+      const cssPath = path.join(__dirname, 'modern-dashboard/design-system.css');
+      if (fs.existsSync(cssPath)) {
+        const css = fs.readFileSync(cssPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'text/css' });
+        res.end(css);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Design system CSS not found');
+      }
+    } catch (error) {
+      console.error('Error serving design system CSS:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve design system CSS');
+    }
+  }
+
+  /**
+   * Serve theme manager JavaScript
+   */
+  serveThemeManagerJS(req, res) {
+    try {
+      const jsPath = path.join(__dirname, 'modern-dashboard/theme-manager.js');
+      if (fs.existsSync(jsPath)) {
+        const js = fs.readFileSync(jsPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+        res.end(js);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Theme manager JS not found');
+      }
+    } catch (error) {
+      console.error('Error serving theme manager JS:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve theme manager JS');
+    }
+  }
+
+  /**
+   * Serve 3D components CSS
+   */
+  serve3DComponentsCSS(req, res) {
+    try {
+      const cssPath = path.join(__dirname, 'modern-dashboard/css/3d-components.css');
+      if (fs.existsSync(cssPath)) {
+        const css = fs.readFileSync(cssPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'text/css' });
+        res.end(css);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('3D components CSS not found');
+      }
+    } catch (error) {
+      console.error('Error serving 3D components CSS:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve 3D components CSS');
+    }
+  }
+
+  /**
+   * Serve Chart3DRenderer JavaScript
+   */
+  serveChart3DRendererJS(req, res) {
+    try {
+      const jsPath = path.join(__dirname, 'modern-dashboard/js/3d/Chart3DRenderer.js');
+      if (fs.existsSync(jsPath)) {
+        const js = fs.readFileSync(jsPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+        res.end(js);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Chart3DRenderer JS not found');
+      }
+    } catch (error) {
+      console.error('Error serving Chart3DRenderer JS:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve Chart3DRenderer JS');
+    }
+  }
+
+  /**
+   * Serve BarChart3D JavaScript
+   */
+  serveBarChart3DJS(req, res) {
+    try {
+      const jsPath = path.join(__dirname, 'modern-dashboard/js/charts/BarChart3D.js');
+      if (fs.existsSync(jsPath)) {
+        const js = fs.readFileSync(jsPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+        res.end(js);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('BarChart3D JS not found');
+      }
+    } catch (error) {
+      console.error('Error serving BarChart3D JS:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve BarChart3D JS');
+    }
+  }
+
+  /**
+   * Serve sample datasets JavaScript
+   */
+  serveSampleDatasetsJS(req, res) {
+    try {
+      const jsPath = path.join(__dirname, 'modern-dashboard/data/sample-datasets.js');
+      if (fs.existsSync(jsPath)) {
+        const js = fs.readFileSync(jsPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+        res.end(js);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Sample datasets JS not found');
+      }
+    } catch (error) {
+      console.error('Error serving sample datasets JS:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve sample datasets JS');
+    }
+  }
+
+  /**
+   * Serve ScatterPlot3D JavaScript
+   */
+  serveScatterPlot3DJS(req, res) {
+    try {
+      const jsPath = path.join(__dirname, 'modern-dashboard/js/charts/ScatterPlot3D.js');
+      if (fs.existsSync(jsPath)) {
+        const js = fs.readFileSync(jsPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+        res.end(js);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('ScatterPlot3D JS not found');
+      }
+    } catch (error) {
+      console.error('Error serving ScatterPlot3D JS:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve ScatterPlot3D JS');
+    }
+  }
+
+  /**
+   * Serve Debug Page
+   */
+  serveDebugPage(req, res) {
+    try {
+      const debugPath = path.join(__dirname, 'debug-dashboard.html');
+      if (fs.existsSync(debugPath)) {
+        const html = fs.readFileSync(debugPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(html);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Debug page not found');
+      }
+    } catch (error) {
+      console.error('Error serving debug page:', error.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Failed to serve debug page');
     }
   }
 }

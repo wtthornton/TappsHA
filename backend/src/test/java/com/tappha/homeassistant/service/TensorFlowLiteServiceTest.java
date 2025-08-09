@@ -68,7 +68,7 @@ class TensorFlowLiteServiceTest {
                 .safetyLevel("high")
                 .approvalRequired(true)
                 .confidenceThreshold(0.7)
-                .privacyMode(true)
+                .privacyMode("strict")
                 .localProcessing(true)
                 .build();
 

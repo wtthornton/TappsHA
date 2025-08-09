@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent-OS Enhanced Dashboard - Phase 2</title>
+    <link rel="stylesheet" href="/modern-dashboard/design-system.css">
+    <link rel="stylesheet" href="/modern-dashboard/css/3d-components.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r160/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        // Verify Three.js and OrbitControls loading
+        window.addEventListener('load', function() {
+            console.log('🔍 Checking library loading...');
+            
+            if (typeof THREE === 'undefined') {
+                console.error('❌ Three.js failed to load from CDN');
+                // Try alternative CDN
+                const script = document.createElement('script');
+                script.src = 'https://unpkg.com/three@0.160.0/build/three.min.js';
+                script.onload = function() {
+                    console.log('✅ Three.js loaded from alternative CDN');
+                                         // Load OrbitControls after Three.js
+                     const orbitScript = document.createElement('script');
+                     orbitScript.src = 'https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js';
+                    orbitScript.onload = function() {
+                        console.log('✅ OrbitControls loaded from alternative CDN');
+                    };
+                    document.head.appendChild(orbitScript);
+                };
+                document.head.appendChild(script);
+            } else {
+                console.log('✅ Three.js loaded successfully');
+            }
+            
+                         // Check OrbitControls specifically with multiple attempts
+             let orbitCheckAttempts = 0;
+             const maxAttempts = 5;
+             
+             function checkOrbitControls() {
+                 orbitCheckAttempts++;
+                 if (typeof THREE !== 'undefined' && typeof THREE.OrbitControls !== 'undefined') {
+                     console.log('✅ OrbitControls loaded successfully');
+                 } else if (orbitCheckAttempts < maxAttempts) {
+                     console.log(`⏳ OrbitControls not loaded yet, attempt ${orbitCheckAttempts}/${maxAttempts}...`);
+                     setTimeout(checkOrbitControls, 500);
+                 } else {
+                     console.error('❌ OrbitControls not loaded after multiple attempts, trying alternative...');
+                     const orbitScript = document.createElement('script');
+                     orbitScript.src = 'https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js';
+                     orbitScript.onload = function() {
+                         console.log('✅ OrbitControls loaded from fallback CDN');
+                     };
+                     document.head.appendChild(orbitScript);
+                 }
+             }
+             
+             setTimeout(checkOrbitControls, 1000);
+        });
+    </script>
+    <script>
+        // Debug script loading
+        window.addEventListener('load', function() {
+            console.log('Three.js loaded:', typeof THREE !== 'undefined');
+            console.log('OrbitControls loaded:', typeof THREE !== 'undefined' && typeof THREE.OrbitControls !== 'undefined');
+            console.log('GSAP loaded:', typeof gsap !== 'undefined');
+            console.log('dat.GUI loaded:', typeof dat !== 'undefined');
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 class="dashboard-title">
+                        <span class="title-icon">🚀</span>
+                        Agent-OS Enhanced Dashboard
+                        <span class="version-badge">Phase 2</span>
+                    </h1>
+                    <p class="dashboard-subtitle">Advanced 3D Visualizations & Interactive Analytics</p>
+                </div>
+                <div class="header-right">
+                    <div id="theme-toggle-container"></div>
+                    <div class="status-indicator">
+                        <span class="status-dot status-online"></span>
+                        <span class="status-text">System Online</span>
+                    </div>
+                    <!-- Quick Actions Menu -->
+                    <div class="quick-actions-menu">
+                        <button class="quick-action-btn" onclick="uiManager.openGlobalSearch()" title="Search (Ctrl+K)">
+                            <span class="action-icon">🔍</span>
+                        </button>
+                        <button class="quick-action-btn" onclick="uiManager.openQuickActionsModal()" title="Quick Actions (Ctrl+M)">
+                            <span class="action-icon">⚡</span>
+                        </button>
+                        <button class="quick-action-btn" onclick="uiManager.showSystemInfo()" title="System Info">
+                            <span class="action-icon">ℹ️</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Chart Grid -->
+            <div class="chart-grid">
+                <!-- 3D Bar Chart Card -->
+                <div class="chart-card fade-in">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">System Performance Metrics</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-card-action" onclick="exportChart('bar-chart')">Export</button>
+                            <button class="chart-card-action" onclick="resetCamera('bar-chart')">Reset</button>
+                        </div>
+                    </div>
+                    <div class="chart-container" id="bar-chart-container">
+                        <div class="chart-loading" id="bar-chart-loading">
+                            <div class="chart-loading-spinner"></div>
+                            <div class="chart-loading-text">Loading 3D Bar Chart...</div>
+                        </div>
+                        <div class="chart-controls" id="bar-chart-controls">
+                            <div class="control-group">
+                                <label for="bar-camera-preset">Camera View:</label>
+                                <select id="bar-camera-preset" onchange="setCameraPreset('bar-chart', this.value)">
+                                    <option value="isometric">Isometric</option>
+                                    <option value="front">Front</option>
+                                    <option value="top">Top</option>
+                                    <option value="side">Side</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="bar-animation-speed">Animation Speed:</label>
+                                <input type="range" id="bar-animation-speed" min="0.1" max="2" step="0.1" value="1" 
+                                       onchange="setAnimationSpeed('bar-chart', this.value)">
+                            </div>
+                            <div class="control-group">
+                                <button class="btn btn-secondary" onclick="resetCamera('bar-chart')">Reset Camera</button>
+                                <button class="btn btn-primary" onclick="exportChart('bar-chart')">Export</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Scatter Plot Card -->
+                <div class="chart-card fade-in">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">System Analysis Overview</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-card-action" onclick="exportChart('scatter-chart')">Export</button>
+                            <button class="chart-card-action" onclick="resetCamera('scatter-chart')">Reset</button>
+                        </div>
+                    </div>
+                    <div class="chart-container" id="scatter-chart-container">
+                        <div class="chart-loading" id="scatter-chart-loading">
+                            <div class="chart-loading-spinner"></div>
+                            <div class="chart-loading-text">Loading 3D Scatter Plot...</div>
+                        </div>
+                        <div class="chart-controls" id="scatter-chart-controls">
+                            <div class="control-group">
+                                <label for="scatter-camera-preset">Camera View:</label>
+                                <select id="scatter-camera-preset" onchange="setCameraPreset('scatter-chart', this.value)">
+                                    <option value="isometric">Isometric</option>
+                                    <option value="front">Front</option>
+                                    <option value="top">Top</option>
+                                    <option value="side">Side</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="scatter-point-size">Point Size:</label>
+                                <input type="range" id="scatter-point-size" min="0.5" max="2" step="0.1" value="1" 
+                                       onchange="setPointSize('scatter-chart', this.value)">
+                            </div>
+                            <div class="control-group">
+                                <button class="btn btn-secondary" onclick="resetCamera('scatter-chart')">Reset Camera</button>
+                                <button class="btn btn-primary" onclick="exportChart('scatter-chart')">Export</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Metrics Card -->
+                <div class="chart-card fade-in">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">Real-time System Health</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-card-action" onclick="refreshMetrics()">Refresh</button>
+                        </div>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-icon">🖥️</span>
+                                <span class="metric-label">CPU Usage</span>
+                            </div>
+                            <div class="metric-value" id="cpu-usage">75%</div>
+                            <div class="metric-progress">
+                                <div class="progress-bar" style="width: 75%"></div>
+                            </div>
+                            <div class="metric-trend trend-stable">Stable</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-icon">💾</span>
+                                <span class="metric-label">Memory</span>
+                            </div>
+                            <div class="metric-value" id="memory-usage">68%</div>
+                            <div class="metric-progress">
+                                <div class="progress-bar" style="width: 68%"></div>
+                            </div>
+                            <div class="metric-trend trend-increasing">Increasing</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-icon">🌐</span>
+                                <span class="metric-label">Network</span>
+                            </div>
+                            <div class="metric-value" id="network-usage">32%</div>
+                            <div class="metric-progress">
+                                <div class="progress-bar" style="width: 32%"></div>
+                            </div>
+                            <div class="metric-trend trend-decreasing">Decreasing</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-icon">💿</span>
+                                <span class="metric-label">Disk I/O</span>
+                            </div>
+                            <div class="metric-value" id="disk-usage">45%</div>
+                            <div class="metric-progress">
+                                <div class="progress-bar" style="width: 45%"></div>
+                            </div>
+                            <div class="metric-trend trend-stable">Stable</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Analytics Card -->
+                <div class="chart-card fade-in">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">Performance Analytics</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-card-action" onclick="toggleAnalytics()">Toggle</button>
+                        </div>
+                    </div>
+                    <div class="analytics-grid">
+                        <div class="analytics-item">
+                            <div class="analytics-label">Response Time</div>
+                            <div class="analytics-value" id="response-time">125ms</div>
+                            <div class="analytics-target">Target: 200ms</div>
+                        </div>
+                        <div class="analytics-item">
+                            <div class="analytics-label">Throughput</div>
+                            <div class="analytics-value" id="throughput">1,500 req/s</div>
+                            <div class="analytics-target">Target: 2,000 req/s</div>
+                        </div>
+                        <div class="analytics-item">
+                            <div class="analytics-label">Error Rate</div>
+                            <div class="analytics-value" id="error-rate">0.5%</div>
+                            <div class="analytics-target">Target: 1.0%</div>
+                        </div>
+                        <div class="analytics-item">
+                            <div class="analytics-label">Availability</div>
+                            <div class="analytics-value" id="availability">99.8%</div>
+                            <div class="analytics-target">Target: 99.9%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Table Section -->
+            <section class="data-table-section">
+                <div class="chart-card fade-in">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">System Events & Logs</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-card-action" onclick="refreshDataTable()">Refresh</button>
+                            <button class="chart-card-action" onclick="exportDataTable()">Export</button>
+                        </div>
+                    </div>
+                    <div class="data-table-container" id="system-events-table">
+                        <!-- Data table will be initialized here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="actions-grid">
+                    <button class="action-button" onclick="showSystemInfo()">
+                        <span class="action-icon">ℹ️</span>
+                        <span class="action-text">System Info</span>
+                    </button>
+                    <button class="action-button" onclick="exportDashboard()">
+                        <span class="action-icon">📊</span>
+                        <span class="action-text">Export Data</span>
+                    </button>
+                    <button class="action-button" onclick="showSettings()">
+                        <span class="action-icon">⚙️</span>
+                        <span class="action-text">Settings</span>
+                    </button>
+                    <button class="action-button" onclick="showHelp()">
+                        <span class="action-icon">❓</span>
+                        <span class="action-text">Help</span>
+                    </button>
+                    <button class="action-button" onclick="showNotifications()">
+                        <span class="action-icon">🔔</span>
+                        <span class="action-text">Notifications</span>
+                    </button>
+                    <button class="action-button" onclick="showDataTable()">
+                        <span class="action-icon">📋</span>
+                        <span class="action-text">Data Table</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/modern-dashboard/theme-manager.js"></script>
+    <script src="/modern-dashboard/js/3d/Chart3DRenderer.js"></script>
+    <script src="/modern-dashboard/js/charts/BarChart3D.js"></script>
+    <script src="/modern-dashboard/js/charts/ScatterPlot3D.js"></script>
+    <script src="/modern-dashboard/data/sample-datasets.js"></script>
+    
+    <!-- New UI Components -->
+    <script src="/modern-dashboard/js/components/NotificationSystem.js"></script>
+    <script src="/modern-dashboard/js/components/ModalSystem.js"></script>
+    <script src="/modern-dashboard/js/components/DataTable.js"></script>
+    <script src="/modern-dashboard/js/components/UIManager.js"></script>
+    
+    <script>
+        // Global chart instances
+        let barChart = null;
+        let scatterChart = null;
+        let uiManager = null;
+        let systemEventsTable = null;
+        
+        // Global error handler
+        window.addEventListener('error', function(event) {
+            console.error('🚨 Global error caught:', event.error);
+            console.error('Error details:', event.error.stack);
+        });
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📄 DOM Content Loaded');
+            // Wait longer for CDN libraries to load
+            setTimeout(() => {
+                initializeDashboard();
+            }, 3000);
+        });
+        
+        function initializeDashboard() {
+            console.log('🚀 Initializing dashboard...');
+            
+            // Check if Three.js is loaded
+            if (typeof THREE === 'undefined') {
+                console.error('❌ Three.js not loaded, retrying in 2 seconds...');
+                setTimeout(() => {
+                    initializeDashboard();
+                }, 2000);
+                return;
+            }
+            
+            // Check if OrbitControls is available
+            if (typeof THREE.OrbitControls === 'undefined') {
+                console.warn('⚠️ OrbitControls not available, will use fallback controls');
+            }
+            
+            // Initialize UI Manager first
+            console.log('🎛️ Initializing UI Manager...');
+            uiManager = new AgentOSUIManager();
+            
+            // Use global theme manager instance
+            console.log('🎨 Using global theme manager...');
+            const themeManager = window.agentOSThemeManager || new AgentOSThemeManager();
+            
+            // Initialize theme toggle button
+            console.log('🔘 Initializing theme toggle...');
+            themeManager.initThemeToggle();
+            
+            // Initialize 3D charts
+            console.log('📊 Initializing 3D charts...');
+            initializeBarChart();
+            initializeScatterChart();
+            
+            // Initialize data table
+            console.log('📋 Initializing data table...');
+            initializeDataTable();
+            
+            // Start real-time updates
+            console.log('🔄 Starting real-time updates...');
+            startRealTimeUpdates();
+            
+            // Add event listeners
+            console.log('🎧 Setting up event listeners...');
+            setupEventListeners();
+            
+            // Show welcome notification
+            setTimeout(() => {
+                uiManager.showNotification('success', 'Dashboard Ready', 'Agent-OS Enhanced Dashboard is now fully operational!', {
+                    duration: 4000
+                });
+            }, 1000);
+            
+            console.log('✅ Dashboard initialization complete');
+        }
+        
+        function initializeBarChart() {
+            const container = document.getElementById('bar-chart-container');
+            const loading = document.getElementById('bar-chart-loading');
+            
+            if (!container || !window.AgentOSDatasets) {
+                console.error('Bar chart container or datasets not found');
+                return;
+            }
+            
+            // Check if Three.js is loaded
+            if (typeof THREE === 'undefined') {
+                console.error('Three.js library not loaded');
+                if (loading) {
+                    loading.innerHTML = '<div class="chart-loading-text">Error: Three.js not loaded</div>';
+                }
+                return;
+            }
+            
+            try {
+                console.log('Initializing BarChart3D with data:', window.AgentOSDatasets.barChartData);
+                console.log('Container element:', container);
+                console.log('Container dimensions:', container.clientWidth, 'x', container.clientHeight);
+                
+                // Validate data structure
+                if (!window.AgentOSDatasets.barChartData.categories || !window.AgentOSDatasets.barChartData.series) {
+                    throw new Error('Invalid bar chart data structure - missing categories or series');
+                }
+                
+                barChart = new BarChart3D({
+                    container: container,
+                    data: window.AgentOSDatasets.barChartData
+                });
+                
+                console.log('✅ BarChart3D initialized successfully');
+                console.log('BarChart3D instance:', barChart);
+                
+                // Hide loading after chart is ready
+                setTimeout(() => {
+                    if (loading) {
+                        loading.style.display = 'none';
+                        console.log('✅ Bar chart loading hidden');
+                    }
+                }, 1000);
+                
+                // Add event listeners for interactions
+                container.addEventListener('barSelected', (event) => {
+                    console.log('Bar selected:', event.detail);
+                    uiManager.showNotification('info', 'Bar Selected', `${event.detail.category} - ${event.detail.value}%`);
+                });
+                
+                // Add mouse event listeners for 3D interactions
+                container.addEventListener('mousemove', (event) => {
+                    if (barChart && barChart.handleMouseMove) {
+                        barChart.handleMouseMove(event);
+                    }
+                });
+                
+                container.addEventListener('click', (event) => {
+                    if (barChart && barChart.handlePointClick) {
+                        barChart.handlePointClick(event);
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error initializing bar chart:', error);
+                console.error('Error details:', error.stack);
+                if (loading) {
+                    loading.innerHTML = '<div class="chart-loading-text">Error loading chart: ' + error.message + '</div>';
+                }
+            }
+        }
+        
+        function initializeScatterChart() {
+            const container = document.getElementById('scatter-chart-container');
+            const loading = document.getElementById('scatter-chart-loading');
+            
+            if (!container || !window.AgentOSDatasets) {
+                console.error('Scatter chart container or datasets not found');
+                return;
+            }
+            
+            // Check if Three.js is loaded
+            if (typeof THREE === 'undefined') {
+                console.error('Three.js library not loaded');
+                if (loading) {
+                    loading.innerHTML = '<div class="chart-loading-text">Error: Three.js not loaded</div>';
+                }
+                return;
+            }
+            
+            try {
+                console.log('Initializing ScatterPlot3D with data:', window.AgentOSDatasets.scatterData);
+                console.log('Container element:', container);
+                console.log('Container dimensions:', container.clientWidth, 'x', container.clientHeight);
+                
+                // Validate data structure
+                if (!window.AgentOSDatasets.scatterData.points || !Array.isArray(window.AgentOSDatasets.scatterData.points)) {
+                    throw new Error('Invalid scatter plot data structure - missing points array');
+                }
+                
+                scatterChart = new ScatterPlot3D({
+                    container: container,
+                    data: window.AgentOSDatasets.scatterData
+                });
+                
+                console.log('✅ ScatterPlot3D initialized successfully');
+                console.log('ScatterPlot3D instance:', scatterChart);
+                
+                // Hide loading after chart is ready
+                setTimeout(() => {
+                    if (loading) {
+                        loading.style.display = 'none';
+                        console.log('✅ Scatter chart loading hidden');
+                    }
+                }, 1000);
+                
+                // Add event listeners for interactions
+                container.addEventListener('pointSelected', (event) => {
+                    console.log('Point selected:', event.detail);
+                    uiManager.showNotification('info', 'Point Selected', `${event.detail.point.label || 'Data Point'} - Value: ${event.detail.point.value}`);
+                });
+                
+                // Add mouse event listeners for 3D interactions
+                container.addEventListener('mousemove', (event) => {
+                    if (scatterChart && scatterChart.handleMouseMove) {
+                        scatterChart.handleMouseMove(event);
+                    }
+                });
+                
+                container.addEventListener('click', (event) => {
+                    if (scatterChart && scatterChart.handlePointClick) {
+                        scatterChart.handlePointClick(event);
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error initializing scatter chart:', error);
+                console.error('Error details:', error.stack);
+                if (loading) {
+                    loading.innerHTML = '<div class="chart-loading-text">Error loading chart: ' + error.message + '</div>';
+                }
+            }
+        }
+        
+        function initializeDataTable() {
+            const container = document.getElementById('system-events-table');
+            if (!container) {
+                console.error('Data table container not found');
+                return;
+            }
+            
+            try {
+                // Sample system events data
+                const systemEventsData = [
+                    { id: 1, timestamp: '2024-01-15 10:30:15', level: 'INFO', component: 'Dashboard', message: 'Dashboard initialized successfully', status: 'Active' },
+                    { id: 2, timestamp: '2024-01-15 10:29:45', level: 'WARNING', component: 'Memory', message: 'Memory usage approaching threshold', status: 'Warning' },
+                    { id: 3, timestamp: '2024-01-15 10:28:30', level: 'ERROR', component: 'Network', message: 'Connection timeout to external service', status: 'Error' },
+                    { id: 4, timestamp: '2024-01-15 10:27:15', level: 'INFO', component: 'CPU', message: 'CPU usage normalized', status: 'Active' },
+                    { id: 5, timestamp: '2024-01-15 10:26:00', level: 'SUCCESS', component: 'Backup', message: 'System backup completed', status: 'Success' },
+                    { id: 6, timestamp: '2024-01-15 10:25:30', level: 'INFO', component: 'Security', message: 'Security scan completed', status: 'Active' },
+                    { id: 7, timestamp: '2024-01-15 10:24:45', level: 'WARNING', component: 'Disk', message: 'Disk space running low', status: 'Warning' },
+                    { id: 8, timestamp: '2024-01-15 10:23:20', level: 'INFO', component: 'Database', message: 'Database connection established', status: 'Active' }
+                ];
+                
+                systemEventsTable = uiManager.createDataTable('system-events-table', {
+                    columns: [
+                        { key: 'id', label: 'ID', sortable: true, width: '60px' },
+                        { key: 'timestamp', label: 'Timestamp', sortable: true, width: '150px' },
+                        { key: 'level', label: 'Level', sortable: true, width: '100px' },
+                        { key: 'component', label: 'Component', sortable: true, width: '120px' },
+                        { key: 'message', label: 'Message', sortable: false, width: 'auto' },
+                        { key: 'status', label: 'Status', sortable: true, width: '100px' }
+                    ],
+                    data: systemEventsData,
+                    pageSize: 5,
+                    sortable: true,
+                    searchable: true,
+                    selectable: true
+                });
+                
+                console.log('✅ Data table initialized successfully');
+                
+            } catch (error) {
+                console.error('Error initializing data table:', error);
+                console.error('Error details:', error.stack);
+            }
+        }
+        
+        function startRealTimeUpdates() {
+            // Update metrics every 5 seconds
+            setInterval(() => {
+                updateMetrics();
+            }, 5000);
+            
+            // Update data table every 10 seconds
+            setInterval(() => {
+                updateDataTable();
+            }, 10000);
+        }
+        
+        function updateMetrics() {
+            // Simulate real-time metric updates
+            const metrics = window.AgentOSDatasets?.realtimeMetrics?.systemHealth;
+            if (metrics) {
+                document.getElementById('cpu-usage').textContent = metrics.cpu.current + '%';
+                document.getElementById('memory-usage').textContent = metrics.memory.current + '%';
+                document.getElementById('network-usage').textContent = metrics.network.current + '%';
+                document.getElementById('disk-usage').textContent = metrics.disk.current + '%';
+                
+                // Update progress bars
+                updateProgressBars();
+            }
+        }
+        
+        function updateDataTable() {
+            if (systemEventsTable) {
+                // Add a new event to the table
+                const newEvent = {
+                    id: Date.now(),
+                    timestamp: new Date().toLocaleString(),
+                    level: ['INFO', 'WARNING', 'ERROR', 'SUCCESS'][Math.floor(Math.random() * 4)],
+                    component: ['Dashboard', 'Memory', 'Network', 'CPU', 'Security', 'Database'][Math.floor(Math.random() * 6)],
+                    message: 'Real-time system event update',
+                    status: 'Active'
+                };
+                
+                const currentData = systemEventsTable.getData();
+                currentData.unshift(newEvent);
+                
+                // Keep only last 20 events
+                if (currentData.length > 20) {
+                    currentData.splice(20);
+                }
+                
+                systemEventsTable.setData(currentData);
+            }
+        }
+        
+        function updateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                const targetWidth = parseInt(width) + (Math.random() - 0.5) * 10;
+                const newWidth = Math.max(0, Math.min(100, targetWidth));
+                bar.style.width = newWidth + '%';
+            });
+        }
+        
+        function setupEventListeners() {
+            // Chart control event listeners
+            document.addEventListener('click', function(event) {
+                if (event.target.classList.contains('chart-card-action')) {
+                    event.preventDefault();
+                }
+            });
+        }
+        
+        // Chart control functions
+        function setCameraPreset(chartId, preset) {
+            if (chartId === 'bar-chart' && barChart) {
+                barChart.setCameraPreset(preset);
+            } else if (chartId === 'scatter-chart' && scatterChart) {
+                scatterChart.setCameraPreset(preset);
+            }
+        }
+        
+        function resetCamera(chartId) {
+            if (chartId === 'bar-chart' && barChart) {
+                barChart.resetCamera();
+            } else if (chartId === 'scatter-chart' && scatterChart) {
+                scatterChart.resetCamera();
+            }
+        }
+        
+        function exportChart(chartId) {
+            if (chartId === 'bar-chart' && barChart) {
+                const dataUrl = barChart.exportAsImage();
+                const link = document.createElement('a');
+                link.download = 'agent-os-bar-chart.png';
+                link.href = dataUrl;
+                link.click();
+                uiManager.showNotification('success', 'Export Complete', 'Bar chart exported successfully');
+            } else if (chartId === 'scatter-chart' && scatterChart) {
+                const dataUrl = scatterChart.exportAsImage();
+                const link = document.createElement('a');
+                link.download = 'agent-os-scatter-chart.png';
+                link.href = dataUrl;
+                link.click();
+                uiManager.showNotification('success', 'Export Complete', 'Scatter chart exported successfully');
+            }
+        }
+        
+        function setAnimationSpeed(chartId, speed) {
+            // This would be implemented in the chart classes
+            console.log(`Setting animation speed for ${chartId}: ${speed}`);
+        }
+        
+        function setPointSize(chartId, size) {
+            // This would be implemented in the scatter chart
+            console.log(`Setting point size for ${chartId}: ${size}`);
+        }
+        
+        // Data table functions
+        function refreshDataTable() {
+            if (systemEventsTable) {
+                systemEventsTable.setLoading(true);
+                setTimeout(() => {
+                    updateDataTable();
+                    systemEventsTable.setLoading(false);
+                    uiManager.showNotification('success', 'Data Refreshed', 'System events table updated');
+                }, 1000);
+            }
+        }
+        
+        function exportDataTable() {
+            if (systemEventsTable) {
+                const selectedRows = systemEventsTable.getSelectedRows();
+                const data = selectedRows.length > 0 ? selectedRows : systemEventsTable.getData();
+                
+                const csvContent = 'data:text/csv;charset=utf-8,' + 
+                    'ID,Timestamp,Level,Component,Message,Status\n' +
+                    data.map(row => `${row.id},"${row.timestamp}","${row.level}","${row.component}","${row.message}","${row.status}"`).join('\n');
+                
+                const link = document.createElement('a');
+                link.download = 'system-events.csv';
+                link.href = encodeURI(csvContent);
+                link.click();
+                
+                uiManager.showNotification('success', 'Export Complete', `${data.length} events exported to CSV`);
+            }
+        }
+        
+        // Utility functions
+        function refreshMetrics() {
+            updateMetrics();
+            uiManager.showNotification('success', 'Metrics Refreshed', 'System metrics updated');
+        }
+        
+        function toggleAnalytics() {
+            const analyticsGrid = document.querySelector('.analytics-grid');
+            if (analyticsGrid) {
+                analyticsGrid.style.display = analyticsGrid.style.display === 'none' ? 'grid' : 'none';
+            }
+        }
+        
+        function showSystemInfo() {
+            uiManager.showModal({
+                type: 'info',
+                title: 'System Information',
+                message: 'Agent-OS Enhanced Dashboard v2.0\n\nFeatures:\n• 3D Interactive Charts\n• Real-time Metrics\n• Advanced UI Components\n• Responsive Design\n• Accessibility Support',
+                buttons: [
+                    { text: 'Close', type: 'primary' }
+                ]
+            });
+        }
+        
+        function exportDashboard() {
+            uiManager.showNotification('info', 'Export Started', 'Dashboard export in progress...');
+            setTimeout(() => {
+                uiManager.showNotification('success', 'Export Complete', 'Dashboard data exported successfully');
+            }, 2000);
+        }
+        
+        function showSettings() {
+            uiManager.showModal({
+                type: 'form',
+                title: 'Dashboard Settings',
+                formConfig: {
+                    fields: [
+                        { name: 'theme', label: 'Theme', type: 'select', options: ['light', 'dark', 'system'], value: 'dark' },
+                        { name: 'refreshInterval', label: 'Refresh Interval (seconds)', type: 'number', value: 5, min: 1, max: 60 },
+                        { name: 'animations', label: 'Enable Animations', type: 'checkbox', value: true },
+                        { name: 'notifications', label: 'Show Notifications', type: 'checkbox', value: true }
+                    ]
+                },
+                buttons: [
+                    { text: 'Save', type: 'primary', action: 'save' },
+                    { text: 'Cancel', type: 'secondary', action: 'cancel' }
+                ]
+            });
+        }
+        
+        function showHelp() {
+            uiManager.showModal({
+                type: 'info',
+                title: 'Dashboard Help',
+                message: 'Keyboard Shortcuts:\n• Ctrl+K: Global Search\n• Ctrl+T: Toggle Theme\n• Ctrl+M: Quick Actions\n• Escape: Close Modals\n\nFeatures:\n• Interactive 3D Charts\n• Real-time System Monitoring\n• Advanced Data Tables\n• Notification System\n• Modal Dialogs',
+                buttons: [
+                    { text: 'Got it!', type: 'primary' }
+                ]
+            });
+        }
+        
+        function showNotifications() {
+            uiManager.showTestNotifications();
+        }
+        
+        function showDataTable() {
+            uiManager.showModal({
+                type: 'custom',
+                title: 'System Events Data Table',
+                customContent: '<div id="modal-data-table"></div>',
+                buttons: [
+                    { text: 'Close', type: 'secondary' }
+                ]
+            });
+            
+            // Initialize data table in modal
+            setTimeout(() => {
+                const modalContainer = document.getElementById('modal-data-table');
+                if (modalContainer) {
+                    uiManager.createDataTable('modal-data-table', {
+                        columns: [
+                            { key: 'id', label: 'ID', sortable: true },
+                            { key: 'timestamp', label: 'Timestamp', sortable: true },
+                            { key: 'level', label: 'Level', sortable: true },
+                            { key: 'component', label: 'Component', sortable: true },
+                            { key: 'message', label: 'Message', sortable: false },
+                            { key: 'status', label: 'Status', sortable: true }
+                        ],
+                        data: systemEventsTable ? systemEventsTable.getData() : [],
+                        pageSize: 10,
+                        sortable: true,
+                        searchable: true
+                    });
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -47,10 +49,8 @@ public class Decision {
     @Column(name = "reasoning", columnDefinition = "TEXT")
     private String reasoning;
     
-    @ElementCollection
-    @CollectionTable(name = "decision_metadata", joinColumns = @JoinColumn(name = "decision_id"))
-    @MapKeyColumn(name = "metadata_key")
-    @Column(name = "metadata_value", columnDefinition = "TEXT")
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "metadata", columnDefinition = "jsonb")
     private Map<String, Object> metadata;
     
     @Column(name = "created_at", nullable = false)

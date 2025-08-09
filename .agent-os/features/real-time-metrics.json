@@ -1,0 +1,38 @@
+{
+  "name": "Real-Time Metrics",
+  "description": "Live monitoring of system performance and compliance metrics",
+  "components": [
+    {
+      "type": "metric-card",
+      "title": "System Health",
+      "value": "98.5%",
+      "trend": "up",
+      "change": "+2.3%",
+      "color": "green"
+    },
+    {
+      "type": "metric-card",
+      "title": "Response Time",
+      "value": "145ms",
+      "trend": "down",
+      "change": "-12ms",
+      "color": "blue"
+    },
+    {
+      "type": "metric-card",
+      "title": "Error Rate",
+      "value": "0.1%",
+      "trend": "stable",
+      "change": "0%",
+      "color": "green"
+    },
+    {
+      "type": "metric-card",
+      "title": "Active Connections",
+      "value": "24",
+      "trend": "up",
+      "change": "+3",
+      "color": "purple"
+    }
+  ]
+}
