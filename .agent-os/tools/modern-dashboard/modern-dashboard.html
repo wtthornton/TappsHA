@@ -71,124 +71,130 @@
         <main class="dashboard-main">
             <!-- Chart Grid -->
             <div class="chart-grid">
-                <!-- Chart.js Bar Chart Card -->
-                <div class="chart-card fade-in">
-                    <div class="chart-card-header">
-                        <h3 class="chart-card-title">System Performance Metrics</h3>
-                        <div class="chart-card-actions">
-                            <button class="chart-card-action" onclick="exportChart('bar-chart')">Export</button>
-                            <button class="chart-card-action" onclick="updateBarChart()">Update</button>
+                <!-- Left Column: Stacked Charts -->
+                <div class="chart-column">
+                    <!-- Chart.js Bar Chart Card -->
+                    <div class="chart-card fade-in">
+                        <div class="chart-card-header">
+                            <h3 class="chart-card-title">System Performance Metrics</h3>
+                            <div class="chart-card-actions">
+                                <button class="chart-card-action" onclick="exportChart('bar-chart')">Export</button>
+                                <button class="chart-card-action" onclick="updateBarChart()">Update</button>
+                            </div>
+                        </div>
+                        <div class="chart-container" id="bar-chart-container">
+                            <canvas id="bar-chart" width="400" height="300"></canvas>
+                            <div class="chart-controls" id="bar-chart-controls">
+                                <div class="control-group">
+                                    <label for="bar-chart-type">Chart Type:</label>
+                                    <select id="bar-chart-type" onchange="changeBarChartType(this.value)">
+                                        <option value="bar">Bar Chart</option>
+                                        <option value="line">Line Chart</option>
+                                        <option value="doughnut">Doughnut Chart</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="bar-animation-speed">Animation Speed:</label>
+                                    <input type="range" id="bar-animation-speed" min="0.1" max="2" step="0.1" value="1" 
+                                           onchange="setAnimationSpeed('bar-chart', this.value)">
+                                </div>
+                                <div class="control-group">
+                                    <button class="btn btn-secondary" onclick="resetBarChart()">Reset</button>
+                                    <button class="btn btn-primary" onclick="exportChart('bar-chart')">Export</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="chart-container" id="bar-chart-container">
-                        <canvas id="bar-chart" width="400" height="300"></canvas>
-                        <div class="chart-controls" id="bar-chart-controls">
-                            <div class="control-group">
-                                <label for="bar-chart-type">Chart Type:</label>
-                                <select id="bar-chart-type" onchange="changeBarChartType(this.value)">
-                                    <option value="bar">Bar Chart</option>
-                                    <option value="line">Line Chart</option>
-                                    <option value="doughnut">Doughnut Chart</option>
-                                </select>
+
+                    <!-- Chart.js Line Chart Card -->
+                    <div class="chart-card fade-in">
+                        <div class="chart-card-header">
+                            <h3 class="chart-card-title">System Analysis Overview</h3>
+                            <div class="chart-card-actions">
+                                <button class="chart-card-action" onclick="exportChart('line-chart')">Export</button>
+                                <button class="chart-card-action" onclick="updateLineChart()">Update</button>
                             </div>
-                            <div class="control-group">
-                                <label for="bar-animation-speed">Animation Speed:</label>
-                                <input type="range" id="bar-animation-speed" min="0.1" max="2" step="0.1" value="1" 
-                                       onchange="setAnimationSpeed('bar-chart', this.value)">
-                            </div>
-                            <div class="control-group">
-                                <button class="btn btn-secondary" onclick="resetBarChart()">Reset</button>
-                                <button class="btn btn-primary" onclick="exportChart('bar-chart')">Export</button>
+                        </div>
+                        <div class="chart-container" id="line-chart-container">
+                            <canvas id="line-chart" width="400" height="300"></canvas>
+                            <div class="chart-controls" id="line-chart-controls">
+                                <div class="control-group">
+                                    <label for="line-chart-type">Chart Type:</label>
+                                    <select id="line-chart-type" onchange="changeLineChartType(this.value)">
+                                        <option value="line">Line Chart</option>
+                                        <option value="bar">Bar Chart</option>
+                                        <option value="scatter">Scatter Chart</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="line-animation-speed">Animation Speed:</label>
+                                    <input type="range" id="line-animation-speed" min="0.1" max="2" step="0.1" value="1" 
+                                           onchange="setAnimationSpeed('line-chart', this.value)">
+                                </div>
+                                <div class="control-group">
+                                    <button class="btn btn-secondary" onclick="resetLineChart()">Reset</button>
+                                    <button class="btn btn-primary" onclick="exportChart('line-chart')">Export</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Chart.js Line Chart Card -->
-                <div class="chart-card fade-in">
-                    <div class="chart-card-header">
-                        <h3 class="chart-card-title">System Analysis Overview</h3>
-                        <div class="chart-card-actions">
-                            <button class="chart-card-action" onclick="exportChart('line-chart')">Export</button>
-                            <button class="chart-card-action" onclick="updateLineChart()">Update</button>
-                        </div>
-                    </div>
-                    <div class="chart-container" id="line-chart-container">
-                        <canvas id="line-chart" width="400" height="300"></canvas>
-                        <div class="chart-controls" id="line-chart-controls">
-                            <div class="control-group">
-                                <label for="line-chart-type">Chart Type:</label>
-                                <select id="line-chart-type" onchange="changeLineChartType(this.value)">
-                                    <option value="line">Line Chart</option>
-                                    <option value="bar">Bar Chart</option>
-                                    <option value="scatter">Scatter Chart</option>
-                                </select>
-                            </div>
-                            <div class="control-group">
-                                <label for="line-animation-speed">Animation Speed:</label>
-                                <input type="range" id="line-animation-speed" min="0.1" max="2" step="0.1" value="1" 
-                                       onchange="setAnimationSpeed('line-chart', this.value)">
-                            </div>
-                            <div class="control-group">
-                                <button class="btn btn-secondary" onclick="resetLineChart()">Reset</button>
-                                <button class="btn btn-primary" onclick="exportChart('line-chart')">Export</button>
+                <!-- Right Column: Real-time Metrics Card -->
+                <div class="chart-column">
+                    <!-- Real-time Metrics Card -->
+                    <div class="chart-card fade-in">
+                        <div class="chart-card-header">
+                            <h3 class="chart-card-title">Real-time System Health</h3>
+                            <div class="chart-card-actions">
+                                <button class="chart-card-action" onclick="refreshMetrics()">Refresh</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Real-time Metrics Card -->
-                <div class="chart-card fade-in">
-                    <div class="chart-card-header">
-                        <h3 class="chart-card-title">Real-time System Health</h3>
-                        <div class="chart-card-actions">
-                            <button class="chart-card-action" onclick="refreshMetrics()">Refresh</button>
-                        </div>
-                    </div>
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-header">
-                                <span class="metric-icon">🖥️</span>
-                                <span class="metric-label">CPU Usage</span>
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-header">
+                                    <span class="metric-icon">🖥️</span>
+                                    <span class="metric-label">CPU Usage</span>
+                                </div>
+                                <div class="metric-value" id="cpu-usage">75%</div>
+                                <div class="metric-progress">
+                                    <div class="progress-bar" style="width: 75%"></div>
+                                </div>
+                                <div class="metric-trend trend-stable">Stable</div>
                             </div>
-                            <div class="metric-value" id="cpu-usage">75%</div>
-                            <div class="metric-progress">
-                                <div class="progress-bar" style="width: 75%"></div>
+                            <div class="metric-card">
+                                <div class="metric-header">
+                                    <span class="metric-icon">💾</span>
+                                    <span class="metric-label">Memory</span>
+                                </div>
+                                <div class="metric-value" id="memory-usage">68%</div>
+                                <div class="metric-progress">
+                                    <div class="progress-bar" style="width: 68%"></div>
+                                </div>
+                                <div class="metric-trend trend-increasing">Increasing</div>
                             </div>
-                            <div class="metric-trend trend-stable">Stable</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-header">
-                                <span class="metric-icon">💾</span>
-                                <span class="metric-label">Memory</span>
+                            <div class="metric-card">
+                                <div class="metric-header">
+                                    <span class="metric-icon">🌐</span>
+                                    <span class="metric-label">Network</span>
+                                </div>
+                                <div class="metric-value" id="network-usage">32%</div>
+                                <div class="metric-progress">
+                                    <div class="progress-bar" style="width: 32%"></div>
+                                </div>
+                                <div class="metric-trend trend-decreasing">Decreasing</div>
                             </div>
-                            <div class="metric-value" id="memory-usage">68%</div>
-                            <div class="metric-progress">
-                                <div class="progress-bar" style="width: 68%"></div>
+                            <div class="metric-card">
+                                <div class="metric-header">
+                                    <span class="metric-icon">💿</span>
+                                    <span class="metric-label">Disk I/O</span>
+                                </div>
+                                <div class="metric-value" id="disk-usage">45%</div>
+                                <div class="metric-progress">
+                                    <div class="progress-bar" style="width: 45%"></div>
+                                </div>
+                                <div class="metric-trend trend-stable">Stable</div>
                             </div>
-                            <div class="metric-trend trend-increasing">Increasing</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-header">
-                                <span class="metric-icon">🌐</span>
-                                <span class="metric-label">Network</span>
-                            </div>
-                            <div class="metric-value" id="network-usage">32%</div>
-                            <div class="metric-progress">
-                                <div class="progress-bar" style="width: 32%"></div>
-                            </div>
-                            <div class="metric-trend trend-decreasing">Decreasing</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-header">
-                                <span class="metric-icon">💿</span>
-                                <span class="metric-label">Disk I/O</span>
-                            </div>
-                            <div class="metric-value" id="disk-usage">45%</div>
-                            <div class="metric-progress">
-                                <div class="progress-bar" style="width: 45%"></div>
-                            </div>
-                            <div class="metric-trend trend-stable">Stable</div>
                         </div>
                     </div>
                 </div>

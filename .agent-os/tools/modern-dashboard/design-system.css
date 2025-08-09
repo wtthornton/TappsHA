@@ -616,9 +616,15 @@ body {
 /* Chart Grid */
 .chart-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: 2fr 1fr;
   gap: var(--spacing-6);
   margin-bottom: var(--spacing-8);
+}
+
+.chart-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
 }
 
 .chart-card {
@@ -939,6 +945,14 @@ body {
   
   .dashboard-main {
     padding: var(--spacing-4);
+  }
+  
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-column {
+    gap: var(--spacing-4);
   }
   
   .metrics-grid {
