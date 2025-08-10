@@ -1,636 +1,623 @@
 #!/usr/bin/env node
 
 /**
- * Enhanced Real-Time Cursor Integration for Agent OS
- * Leverages all Agent OS utilities, standards, and lessons learned for maximum early issue detection
+ * Real-Time Cursor Enhancement for Agent OS
+ * Provides immediate feedback, validation, and guidance during development
  */
 
 const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
+const { spawn } = require('child_process');
 
-// Import all Agent OS utilities
-const { DependencyValidator, CircularDependencyDetector } = require('../utils/dependency-validator.js');
-const CrossPlatformShell = require('../utils/cross-platform-shell.js');
-const InfrastructureRecovery = require('../utils/infrastructure-recovery.js');
-const FeatureScoringFramework = require('../utils/feature-scoring.js');
-const ComplianceChecker = require('../tools/compliance-checker.js');
-
-class EnhancedCursorIntegration {
+class RealTimeCursorEnhancement {
   constructor() {
-    this.dependencyValidator = new DependencyValidator();
-    this.circularDetector = new CircularDependencyDetector();
-    this.shell = new CrossPlatformShell();
-    this.infrastructureRecovery = new InfrastructureRecovery();
-    this.featureScoring = new FeatureScoringFramework();
-    this.complianceChecker = new ComplianceChecker();
+    this.projectRoot = process.cwd();
+    this.agentOsPath = path.join(this.projectRoot, '.agent-os');
+    this.watcher = null;
+    this.isActive = false;
+    this.lastValidation = new Map();
+    this.validationQueue = [];
+    this.isProcessing = false;
     
-    this.realTimeState = {
-      lastEnvironmentCheck: 0,
-      lastInfrastructureCheck: 0,
-      activeFeatures: new Map(),
-      complianceHistory: [],
-      currentPhase: this.detectCurrentPhase(),
-      issuePreventionActive: true
+    // Configuration
+    this.config = {
+      watchPatterns: [
+        '**/*.{js,ts,jsx,tsx,java,kt,py,go,rs,php}',
+        '**/*.{md,yml,yaml,json,xml}',
+        '**/Dockerfile*',
+        '**/package.json',
+        '**/pom.xml',
+        '**/build.gradle'
+      ],
+      ignorePatterns: [
+        '**/node_modules/**',
+        '**/.git/**',
+        '**/dist/**',
+        '**/build/**',
+        '**/target/**',
+        '**/.agent-os/internal/**'
+      ],
+      validationDelay: 1000, // ms
+      maxConcurrentValidations: 3
     };
     
-    this.initializeWatchers();
+    this.loadConfiguration();
   }
 
-  /**
-   * Initialize file watchers for real-time monitoring
-   */
-  initializeWatchers() {
-    console.log('🚀 Initializing enhanced real-time monitoring...');
-    
-    // Watch for new features being planned
-    this.watchFeaturePlanning();
-    
-    // Watch for package.json changes
-    this.watchDependencyChanges();
-    
-    // Watch for infrastructure configuration changes
-    this.watchInfrastructureChanges();
-    
-    // Watch for code changes with comprehensive validation
-    this.watchCodeChanges();
-    
-    console.log('✅ Real-time monitoring active');
+  loadConfiguration() {
+    try {
+      const configPath = path.join(this.agentOsPath, 'config', 'real-time.json');
+      if (fs.existsSync(configPath)) {
+        const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        this.config = { ...this.config, ...config };
+      }
+    } catch (error) {
+      console.warn('⚠️  Could not load real-time configuration, using defaults');
+    }
   }
 
-  /**
-   * Watch for feature planning files to apply scoring immediately
-   */
-  watchFeaturePlanning() {
-    const featurePaths = [
-      'specs/**/*.md',
-      '.agent-os/product/**/*.md',
-      'roadmap*.md',
-      'backlog*.json',
-      'features*.json'
-    ];
+  async start() {
+    if (this.isActive) {
+      console.log('🔄 Real-time enhancement already active');
+      return;
+    }
 
-    featurePaths.forEach(pattern => {
-      chokidar.watch(pattern, { ignoreInitial: true }).on('change', (filePath) => {
-        this.onFeaturePlanningChange(filePath);
-      });
-    });
-  }
-
-  /**
-   * Handle feature planning file changes
-   */
-  async onFeaturePlanningChange(filePath) {
-    console.log(`📋 Feature planning detected: ${filePath}`);
+    console.log('🚀 Starting Real-Time Cursor Enhancement...');
+    console.log(`📁 Watching: ${this.projectRoot}`);
     
     try {
-      const content = fs.readFileSync(filePath, 'utf8');
+      await this.initializeWatcher();
+      await this.startBackgroundValidation();
+      this.isActive = true;
       
-      // Extract features from markdown or JSON
-      const features = this.extractFeaturesFromContent(content, filePath);
+      console.log('✅ Real-time enhancement active');
+      console.log('💡 Start coding to receive immediate feedback and validation!');
       
-      if (features.length > 0) {
-        console.log(`🎯 Scoring ${features.length} features for early scope management...`);
-        
-        const results = this.featureScoring.scoreFeatures(features);
-        
-        // Immediate feedback on feature quality
-        if (results.analysis.eliminationCandidates.length > 0) {
-          console.log(`⚠️  WARNING: ${results.analysis.eliminationCandidates.length} features recommended for elimination:`);
-          results.analysis.eliminationCandidates.forEach(feature => {
-            console.log(`  ❌ ${feature.name} (Score: ${feature.scores.weighted}/10)`);
-          });
-        }
-
-        // Highlight quick wins
-        if (results.analysis.quickWins.length > 0) {
-          console.log(`⚡ QUICK WINS identified: ${results.analysis.quickWins.length} high-impact, low-complexity features`);
-          results.analysis.quickWins.slice(0, 3).forEach(feature => {
-            console.log(`  ✨ ${feature.name} (Impact: ${feature.scores.impact}, Complexity: ${feature.scores.complexity})`);
-          });
-        }
-
-        // Save feature scoring report
-        const reportPath = path.join(path.dirname(filePath), `feature-scoring-${Date.now()}.json`);
-        this.featureScoring.generateReport(results, reportPath);
-        
-        console.log(`📊 Feature scoring report saved: ${reportPath}`);
-      }
+      // Keep the process alive
+      process.on('SIGINT', () => this.stop());
+      process.on('SIGTERM', () => this.stop());
       
     } catch (error) {
-      console.error(`❌ Error processing feature planning file: ${error.message}`);
+      console.error('❌ Failed to start real-time enhancement:', error.message);
+      throw error;
     }
   }
 
-  /**
-   * Watch for package.json changes to validate dependencies immediately
-   */
-  watchDependencyChanges() {
-    const packageFiles = ['package.json', 'package-lock.json', 'pom.xml', 'build.gradle'];
-    
-    packageFiles.forEach(file => {
-      if (fs.existsSync(file)) {
-        chokidar.watch(file, { ignoreInitial: true }).on('change', () => {
-          this.onDependencyChange(file);
-        });
-      }
-    });
-  }
-
-  /**
-   * Handle dependency file changes
-   */
-  async onDependencyChange(filePath) {
-    console.log(`📦 Dependency change detected: ${filePath}`);
-    
-    // Immediate environment validation
-    const envResult = this.dependencyValidator.validateEnvironment({
-      minNodeVersion: 18,
-      checkPackageJson: true
-    });
-
-    if (!envResult.overall) {
-      console.log('🚨 CRITICAL: Environment validation failed after dependency change!');
-      console.log('💡 Suggestion: Run npm install or fix dependency issues before continuing');
-      
-      // Suggest fixes
-      if (envResult.dependencies && !envResult.dependencies.passed) {
-        console.log(`   Missing dependencies: ${envResult.dependencies.missingModules.join(', ')}`);
-        console.log(`   Run: npm install`);
-      }
-    } else {
-      console.log('✅ Environment validation passed');
-    }
-
-    // Check for technology stack compliance
-    this.validateTechnologyStackCompliance(filePath);
-  }
-
-  /**
-   * Watch for infrastructure configuration changes
-   */
-  watchInfrastructureChanges() {
-    const infraFiles = [
-      'docker-compose.yml',
-      'docker-compose.*.yml',
-      'Dockerfile',
-      '.env',
-      'application.yml',
-      'application.properties'
-    ];
-
-    infraFiles.forEach(pattern => {
-      chokidar.watch(pattern, { ignoreInitial: true }).on('change', (filePath) => {
-        this.onInfrastructureChange(filePath);
-      });
-    });
-  }
-
-  /**
-   * Handle infrastructure configuration changes
-   */
-  async onInfrastructureChange(filePath) {
-    console.log(`🏗️  Infrastructure change detected: ${filePath}`);
-    
-    // Run immediate infrastructure health check
-    try {
-      const healthResults = await this.infrastructureRecovery.assessInfrastructureHealth({
-        runRecovery: false, // Don't auto-recover on config changes
-        includeChecks: ['containers', 'ports', 'dependencies']
-      });
-
-      if (healthResults.overall !== 'healthy') {
-        console.log('⚠️  Infrastructure health issues detected after configuration change:');
-        healthResults.issues.forEach(issue => {
-          console.log(`   ❌ ${issue}`);
-        });
-        
-        console.log('💡 Recommendations:');
-        healthResults.recommendations.forEach(rec => {
-          console.log(`   📝 ${rec}`);
-        });
-      } else {
-        console.log('✅ Infrastructure health check passed');
-      }
-      
-    } catch (error) {
-      console.error(`❌ Infrastructure health check failed: ${error.message}`);
-    }
-  }
-
-  /**
-   * Watch for code changes with enhanced validation
-   */
-  watchCodeChanges() {
-    const codePatterns = [
-      'src/**/*.{js,ts,tsx,java}',
-      'backend/**/*.{java,yml}',
-      'frontend/**/*.{ts,tsx}',
-      'test/**/*.{js,ts,java}'
-    ];
-
-    codePatterns.forEach(pattern => {
-      chokidar.watch(pattern, { ignoreInitial: true }).on('change', (filePath) => {
-        this.onCodeChange(filePath);
-      });
-    });
-  }
-
-  /**
-   * Handle code file changes with comprehensive validation
-   */
-  async onCodeChange(filePath) {
-    console.log(`💻 Code change detected: ${filePath}`);
-    
-    try {
-      const content = fs.readFileSync(filePath, 'utf8');
-      
-      // 1. Immediate compliance check
-      const violations = await this.complianceChecker.validateCode(filePath, content);
-      
-      // 2. Circular dependency detection for JavaScript/TypeScript
-      if (filePath.match(/\.(js|ts|tsx)$/)) {
-        this.detectCircularDependencies(filePath, content);
-      }
-      
-      // 3. Security validation
-      this.performSecurityValidation(filePath, content);
-      
-      // 4. Architecture pattern validation
-      this.validateArchitecturePatterns(filePath, content);
-      
-      // 5. Testing requirement check
-      this.checkTestingRequirements(filePath);
-      
-      // 6. Real-time suggestions
-      this.provideRealTimeSuggestions(filePath, content, violations);
-      
-    } catch (error) {
-      console.error(`❌ Error processing code change: ${error.message}`);
-    }
-  }
-
-  /**
-   * Detect circular dependencies in real-time
-   */
-  detectCircularDependencies(filePath, content) {
-    try {
-      // Extract imports/requires
-      const imports = this.extractImports(content);
-      
-      imports.forEach(importPath => {
-        this.circularDetector.trackCall(`${filePath}->${importPath}`);
-      });
-      
-      this.circularDetector.endCall();
-      
-    } catch (error) {
-      if (error.message.includes('Circular dependency detected')) {
-        console.log('🚨 CRITICAL: Circular dependency detected!');
-        console.log(`   ${error.message}`);
-        console.log('💡 Suggestion: Refactor to break the circular dependency');
-      }
-    }
-  }
-
-  /**
-   * Perform real-time security validation
-   */
-  performSecurityValidation(filePath, content) {
-    const securityIssues = [];
-    
-    // Check for hardcoded secrets
-    const secretPatterns = [
-      /password\s*=\s*["'][^"']+["']/gi,
-      /token\s*=\s*["'][^"']+["']/gi,
-      /secret\s*=\s*["'][^"']+["']/gi,
-      /api_key\s*=\s*["'][^"']+["']/gi
-    ];
-
-    secretPatterns.forEach(pattern => {
-      const matches = content.match(pattern);
-      if (matches) {
-        securityIssues.push(`Potential hardcoded secret detected: ${matches[0]}`);
-      }
-    });
-
-    // Check for SQL injection vulnerabilities
-    if (content.includes('SELECT') || content.includes('INSERT') || content.includes('UPDATE')) {
-      if (!content.includes('@Param') && !content.includes('PreparedStatement')) {
-        securityIssues.push('Potential SQL injection vulnerability - use @Param or PreparedStatement');
-      }
-    }
-
-    if (securityIssues.length > 0) {
-      console.log('🔒 SECURITY ISSUES detected:');
-      securityIssues.forEach(issue => {
-        console.log(`   🚨 ${issue}`);
-      });
-    }
-  }
-
-  /**
-   * Validate architecture patterns in real-time
-   */
-  validateArchitecturePatterns(filePath, content) {
-    const issues = [];
-    
-    // Check Controller -> Service -> Repository pattern for Java files
-    if (filePath.includes('controller') && filePath.endsWith('.java')) {
-      if (!content.includes('@RestController') && !content.includes('@Controller')) {
-        issues.push('Controller class should have @RestController or @Controller annotation');
-      }
-      if (content.includes('repository.') && !content.includes('service.')) {
-        issues.push('Controller should not directly access Repository - use Service layer');
-      }
-    }
-
-    // Check Service layer patterns
-    if (filePath.includes('service') && filePath.endsWith('.java')) {
-      if (!content.includes('@Service')) {
-        issues.push('Service class should have @Service annotation');
-      }
-    }
-
-    // Check Repository patterns
-    if (filePath.includes('repository') && filePath.endsWith('.java')) {
-      if (!content.includes('@Repository')) {
-        issues.push('Repository class should have @Repository annotation');
-      }
-    }
-
-    // Check React component patterns
-    if (filePath.endsWith('.tsx') || filePath.endsWith('.jsx')) {
-      if (content.includes('class ') && content.includes('extends Component')) {
-        issues.push('Use functional components with hooks instead of class components');
-      }
-    }
-
-    if (issues.length > 0) {
-      console.log('🏗️  ARCHITECTURE ISSUES detected:');
-      issues.forEach(issue => {
-        console.log(`   ⚠️  ${issue}`);
-      });
-    }
-  }
-
-  /**
-   * Check testing requirements in real-time
-   */
-  checkTestingRequirements(filePath) {
-    // Skip test files themselves
-    if (filePath.includes('test') || filePath.includes('spec')) return;
-    
-    const testPatterns = [
-      filePath.replace(/\.(js|ts|tsx|java)$/, '.test.$1'),
-      filePath.replace(/\.(js|ts|tsx|java)$/, '.spec.$1'),
-      filePath.replace('/src/', '/test/').replace(/\.(js|ts|tsx)$/, '.test.$1'),
-      filePath.replace('/main/', '/test/')
-    ];
-
-    const hasTest = testPatterns.some(testPath => fs.existsSync(testPath));
-    
-    if (!hasTest) {
-      console.log('🧪 TEST MISSING:');
-      console.log(`   ⚠️  No test file found for ${filePath}`);
-      console.log(`   💡 Suggestion: Create test file at one of these locations:`);
-      testPatterns.slice(0, 2).forEach(testPath => {
-        console.log(`      📄 ${testPath}`);
-      });
-    }
-  }
-
-  /**
-   * Provide real-time suggestions based on current context
-   */
-  provideRealTimeSuggestions(filePath, content, violations) {
-    const suggestions = [];
-    
-    // Phase-specific suggestions
-    const currentPhase = this.realTimeState.currentPhase;
-    
-    if (currentPhase === 'foundation' && !this.hasSecurityImplementation(content)) {
-      suggestions.push('Foundation Phase: Add security validation and encryption for sensitive data');
-    }
-    
-    if (currentPhase === 'integration' && !this.hasProperLogging(content)) {
-      suggestions.push('Integration Phase: Add structured logging with proper levels');
-    }
-    
-    // Utility usage suggestions
-    if (content.includes('execSync') || content.includes('exec(')) {
-      suggestions.push('Use CrossPlatformShell from Agent OS utilities for better cross-platform compatibility');
-    }
-    
-    if (content.includes('require.resolve') || content.includes('import(')) {
-      suggestions.push('Use DependencyValidator from Agent OS utilities for safer dependency checking');
-    }
-
-    // Mock factory suggestions for test files
-    if ((filePath.includes('test') || filePath.includes('spec')) && content.includes('vi.fn()')) {
-      suggestions.push('Use standardized mock factories from .agent-os/testing/mock-factories.js');
-    }
-
-    if (suggestions.length > 0) {
-      console.log('💡 REAL-TIME SUGGESTIONS:');
-      suggestions.forEach(suggestion => {
-        console.log(`   ✨ ${suggestion}`);
-      });
-    }
-  }
-
-  /**
-   * Extract features from content (markdown or JSON)
-   */
-  extractFeaturesFromContent(content, filePath) {
-    const features = [];
-    
-    if (filePath.endsWith('.json')) {
+  async initializeWatcher() {
+    return new Promise((resolve, reject) => {
       try {
-        const data = JSON.parse(content);
-        if (Array.isArray(data)) {
-          return data.filter(item => item.name && item.description);
-        } else if (data.features) {
-          return data.features;
-        }
-      } catch (error) {
-        console.warn('Could not parse JSON for feature extraction');
-      }
-    }
-    
-    // Extract from markdown (basic pattern matching)
-    const featurePattern = /(?:^|\n)(?:#+\s+|[-*]\s+)(.+)/g;
-    let match;
-    
-    while ((match = featurePattern.exec(content)) !== null) {
-      const name = match[1].trim();
-      if (name.length > 5) { // Basic filter for meaningful feature names
-        features.push({
-          name,
-          description: `Feature extracted from ${path.basename(filePath)}`,
-          importance: 5,
-          complexity: 5,
-          impact: 5,
-          category: 'extracted'
+        this.watcher = chokidar.watch(this.config.watchPatterns, {
+          ignored: this.config.ignorePatterns,
+          persistent: true,
+          ignoreInitial: true,
+          awaitWriteFinish: {
+            stabilityThreshold: 300,
+            pollInterval: 100
+          }
         });
+
+        this.watcher
+          .on('ready', () => {
+            console.log('   ✅ File watcher initialized');
+            resolve();
+          })
+          .on('add', (filePath) => this.handleFileChange(filePath, 'add'))
+          .on('change', (filePath) => this.handleFileChange(filePath, 'change'))
+          .on('unlink', (filePath) => this.handleFileChange(filePath, 'delete'))
+          .on('error', (error) => {
+            console.error('   ❌ File watcher error:', error.message);
+            reject(error);
+          });
+
+      } catch (error) {
+        reject(error);
       }
-    }
-    
-    return features.slice(0, 10); // Limit to prevent noise
+    });
   }
 
-  /**
-   * Extract imports from code content
-   */
-  extractImports(content) {
-    const imports = [];
+  handleFileChange(filePath, eventType) {
+    const relativePath = path.relative(this.projectRoot, filePath);
     
-    // JavaScript/TypeScript imports
-    const importPattern = /import\s+.*?\s+from\s+['"]([^'"]+)['"]/g;
-    const requirePattern = /require\(['"]([^'"]+)['"]\)/g;
-    
-    let match;
-    while ((match = importPattern.exec(content)) !== null) {
-      imports.push(match[1]);
+    // Skip if it's an Agent OS internal file
+    if (relativePath.startsWith('.agent-os/internal/')) {
+      return;
     }
+
+    console.log(`📝 ${eventType.toUpperCase()}: ${relativePath}`);
     
-    while ((match = requirePattern.exec(content)) !== null) {
-      imports.push(match[1]);
-    }
-    
-    return imports;
+    // Queue validation with debouncing
+    this.queueValidation(filePath, eventType);
   }
 
-  /**
-   * Detect current development phase
-   */
-  detectCurrentPhase() {
-    // Check for phase indicators in the codebase
-    if (fs.existsSync('.agent-os/product/phase1-completion-status.md')) {
-      const content = fs.readFileSync('.agent-os/product/phase1-completion-status.md', 'utf8');
-      if (content.includes('COMPLETE')) return 'integration';
+  queueValidation(filePath, eventType) {
+    const relativePath = path.relative(this.projectRoot, filePath);
+    const now = Date.now();
+    
+    // Clear existing timeout for this file
+    if (this.lastValidation.has(relativePath)) {
+      clearTimeout(this.lastValidation.get(relativePath).timeout);
     }
     
-    if (fs.existsSync('src') || fs.existsSync('backend')) {
-      return 'foundation';
+    // Set new timeout
+    const timeout = setTimeout(() => {
+      this.processValidation(filePath, eventType);
+    }, this.config.validationDelay);
+    
+    this.lastValidation.set(relativePath, {
+      timeout,
+      timestamp: now,
+      eventType
+    });
+  }
+
+  async processValidation(filePath, eventType) {
+    const relativePath = path.relative(this.projectRoot, filePath);
+    
+    // Remove from lastValidation map
+    this.lastValidation.delete(relativePath);
+    
+    // Add to validation queue
+    this.validationQueue.push({
+      filePath,
+      relativePath,
+      eventType,
+      timestamp: Date.now()
+    });
+    
+    // Process queue if not already processing
+    if (!this.isProcessing) {
+      this.processValidationQueue();
     }
-    
-    return 'planning';
   }
 
-  /**
-   * Check if content has security implementation
-   */
-  hasSecurityImplementation(content) {
-    const securityPatterns = [
-      /@Secured/,
-      /@PreAuthorize/,
-      /SecurityConfig/,
-      /encryptionService/,
-      /validateInput/
-    ];
-    
-    return securityPatterns.some(pattern => pattern.test(content));
-  }
+  async processValidationQueue() {
+    if (this.isProcessing || this.validationQueue.length === 0) {
+      return;
+    }
 
-  /**
-   * Check if content has proper logging
-   */
-  hasProperLogging(content) {
-    const loggingPatterns = [
-      /private static final Logger/,
-      /logger\.(info|debug|warn|error)/,
-      /console\.log/
-    ];
+    this.isProcessing = true;
     
-    return loggingPatterns.some(pattern => pattern.test(content));
-  }
-
-  /**
-   * Validate technology stack compliance
-   */
-  validateTechnologyStackCompliance(filePath) {
     try {
-      const content = fs.readFileSync(filePath, 'utf8');
-      const issues = [];
-      
-      if (filePath === 'package.json') {
-        const packageData = JSON.parse(content);
+      while (this.validationQueue.length > 0) {
+        const batch = this.validationQueue.splice(0, this.config.maxConcurrentValidations);
         
-        // Check React version
-        if (packageData.dependencies?.react && !packageData.dependencies.react.includes('19')) {
-          issues.push('React version should be 19.x according to tech stack standards');
-        }
+        // Process batch concurrently
+        const promises = batch.map(item => this.validateFile(item));
+        await Promise.allSettled(promises);
         
-        // Check TypeScript version
-        if (packageData.devDependencies?.typescript && !packageData.devDependencies.typescript.includes('5')) {
-          issues.push('TypeScript version should be 5.x according to tech stack standards');
+        // Small delay between batches
+        if (this.validationQueue.length > 0) {
+          await new Promise(resolve => setTimeout(resolve, 100));
         }
       }
+    } catch (error) {
+      console.error('❌ Validation queue processing error:', error.message);
+    } finally {
+      this.isProcessing = false;
       
-      if (filePath === 'pom.xml') {
-        // Check Spring Boot version
-        if (!content.includes('3.3') && !content.includes('3.4') && !content.includes('3.5')) {
-          issues.push('Spring Boot version should be 3.3+ according to tech stack standards');
-        }
-        
-        // Check Java version
-        if (!content.includes('<java.version>21</java.version>')) {
-          issues.push('Java version should be 21 LTS according to tech stack standards');
-        }
+      // Process any new items that arrived while processing
+      if (this.validationQueue.length > 0) {
+        setImmediate(() => this.processValidationQueue());
+      }
+    }
+  }
+
+  async validateFile(validationItem) {
+    const { filePath, relativePath, eventType } = validationItem;
+    
+    try {
+      console.log(`🔍 Validating: ${relativePath}`);
+      
+      // Determine validation type based on file extension
+      const validationType = this.getValidationType(filePath);
+      
+      // Run appropriate validation
+      const result = await this.runValidation(filePath, validationType);
+      
+      // Process validation results
+      await this.processValidationResults(filePath, result, validationType);
+      
+      console.log(`✅ Validation complete: ${relativePath}`);
+      
+    } catch (error) {
+      console.error(`❌ Validation failed for ${relativePath}:`, error.message);
+    }
+  }
+
+  getValidationType(filePath) {
+    const ext = path.extname(filePath).toLowerCase();
+    
+    if (['.js', '.ts', '.jsx', '.tsx'].includes(ext)) {
+      return 'frontend';
+    } else if (['.java', '.kt'].includes(ext)) {
+      return 'backend';
+    } else if (['.py'].includes(ext)) {
+      return 'python';
+    } else if (['.go'].includes(ext)) {
+      return 'golang';
+    } else if (['.rs'].includes(ext)) {
+      return 'rust';
+    } else if (['.php'].includes(ext)) {
+      return 'php';
+    } else if (['.yml', '.yaml'].includes(ext)) {
+      return 'configuration';
+    } else if (['.md'].includes(ext)) {
+      return 'documentation';
+    } else {
+      return 'general';
+    }
+  }
+
+  async runValidation(filePath, validationType) {
+    const relativePath = path.relative(this.projectRoot, filePath);
+    
+    try {
+      switch (validationType) {
+        case 'frontend':
+          return await this.validateFrontendFile(filePath);
+        case 'backend':
+          return await this.validateBackendFile(filePath);
+        case 'configuration':
+          return await this.validateConfigurationFile(filePath);
+        case 'documentation':
+          return await this.validateDocumentationFile(filePath);
+        default:
+          return await this.validateGeneralFile(filePath);
+      }
+    } catch (error) {
+      return {
+        valid: false,
+        errors: [`Validation error: ${error.message}`],
+        warnings: [],
+        suggestions: []
+      };
+    }
+  }
+
+  async validateFrontendFile(filePath) {
+    const relativePath = path.relative(this.projectRoot, filePath);
+    const content = fs.readFileSync(filePath, 'utf8');
+    const results = {
+      valid: true,
+      errors: [],
+      warnings: [],
+      suggestions: []
+    };
+
+    // Security validation
+    if (content.includes('process.env.API_KEY') || content.includes('sk-')) {
+      results.errors.push('🚨 SECURITY: Potential hardcoded API key detected');
+      results.valid = false;
+    }
+
+    // Code quality validation
+    if (content.includes('TODO') || content.includes('FIXME')) {
+      results.warnings.push('⚠️  Code contains TODO/FIXME items');
+    }
+
+    if (content.includes('console.log(') && !content.includes('// DEBUG')) {
+      results.warnings.push('⚠️  Console.log statements should be removed in production');
+    }
+
+    // Architecture validation
+    if (content.includes('document.getElementById') && !content.includes('useEffect')) {
+      results.suggestions.push('💡 Consider using React hooks instead of direct DOM manipulation');
+    }
+
+    // Testing validation
+    if (content.includes('export') && !content.includes('test') && !content.includes('spec')) {
+      results.suggestions.push('💡 Consider adding tests for exported functions');
+    }
+
+    return results;
+  }
+
+  async validateBackendFile(filePath) {
+    const relativePath = path.relative(this.projectRoot, filePath);
+    const content = fs.readFileSync(filePath, 'utf8');
+    const results = {
+      valid: true,
+      errors: [],
+      warnings: [],
+      suggestions: []
+    };
+
+    // Security validation
+    if (content.includes('password = "') || content.includes('token = "') || content.includes('secret = "')) {
+      results.errors.push('🚨 SECURITY: Hardcoded credentials detected');
+      results.valid = false;
+    }
+
+    // Architecture validation
+    if (content.includes('@Controller') && content.includes('@Repository')) {
+      results.errors.push('🚨 ARCHITECTURE: Controller should not directly use Repository');
+      results.valid = false;
+    }
+
+    if (content.includes('@Service') && !content.includes('@Autowired')) {
+      results.warnings.push('⚠️  Service should use dependency injection');
+    }
+
+    // Validation annotations
+    if (content.includes('@RequestBody') && !content.includes('@Valid')) {
+      results.warnings.push('⚠️  Request body should include @Valid annotation');
+    }
+
+    // Testing validation
+    if (content.includes('@Test') && !content.includes('@DataJpaTest')) {
+      results.suggestions.push('💡 Consider using @DataJpaTest for repository tests');
+    }
+
+    return results;
+  }
+
+  async validateConfigurationFile(filePath) {
+    const relativePath = path.relative(this.projectRoot, filePath);
+    const content = fs.readFileSync(filePath, 'utf8');
+    const results = {
+      valid: true,
+      errors: [],
+      warnings: [],
+      suggestions: []
+    };
+
+    // Security validation
+    if (content.includes('password:') || content.includes('secret:') || content.includes('key:')) {
+      results.warnings.push('⚠️  Configuration contains sensitive fields - ensure they use environment variables');
+    }
+
+    // YAML validation
+    if (filePath.endsWith('.yml') || filePath.endsWith('.yaml')) {
+      try {
+        const yaml = require('js-yaml');
+        yaml.load(content);
+      } catch (error) {
+        results.errors.push('🚨 YAML syntax error: ' + error.message);
+        results.valid = false;
+      }
+    }
+
+    return results;
+  }
+
+  async validateDocumentationFile(filePath) {
+    const relativePath = path.relative(this.projectRoot, filePath);
+    const content = fs.readFileSync(filePath, 'utf8');
+    const results = {
+      valid: true,
+      errors: [],
+      warnings: [],
+      suggestions: []
+    };
+
+    // Documentation quality
+    if (content.length < 100) {
+      results.warnings.push('⚠️  Documentation file is very short - consider adding more details');
+    }
+
+    if (content.includes('TODO') || content.includes('FIXME')) {
+      results.warnings.push('⚠️  Documentation contains incomplete sections');
+    }
+
+    return results;
+  }
+
+  async validateGeneralFile(filePath) {
+    const relativePath = path.relative(this.projectRoot, filePath);
+    const results = {
+      valid: true,
+      errors: [],
+      warnings: [],
+      suggestions: []
+    };
+
+    // General file size validation
+    const stats = fs.statSync(filePath);
+    if (stats.size > 1024 * 1024) { // 1MB
+      results.warnings.push('⚠️  File is very large - consider splitting into smaller files');
+    }
+
+    return results;
+  }
+
+  async processValidationResults(filePath, result, validationType) {
+    const relativePath = path.relative(this.projectRoot, filePath);
+    
+    // Display results
+    if (result.errors.length > 0) {
+      console.log(`❌ ${relativePath} - ${result.errors.length} errors:`);
+      result.errors.forEach(error => console.log(`   ${error}`));
+    }
+    
+    if (result.warnings.length > 0) {
+      console.log(`⚠️  ${relativePath} - ${result.warnings.length} warnings:`);
+      result.warnings.forEach(warning => console.log(`   ${warning}`));
+    }
+    
+    if (result.suggestions.length > 0) {
+      console.log(`💡 ${relativePath} - ${result.suggestions.length} suggestions:`);
+      result.suggestions.forEach(suggestion => console.log(`   ${suggestion}`));
+    }
+    
+    // Save results for reporting
+    await this.saveValidationResults(filePath, result, validationType);
+    
+    // Trigger compliance check if critical errors found
+    if (result.errors.length > 0) {
+      await this.triggerComplianceCheck();
+    }
+  }
+
+  async saveValidationResults(filePath, result, validationType) {
+    try {
+      const resultsDir = path.join(this.agentOsPath, 'validation-results');
+      if (!fs.existsSync(resultsDir)) {
+        fs.mkdirSync(resultsDir, { recursive: true });
       }
       
-      if (issues.length > 0) {
-        console.log('📚 TECHNOLOGY STACK COMPLIANCE ISSUES:');
-        issues.forEach(issue => {
-          console.log(`   ⚠️  ${issue}`);
+      const resultFile = path.join(resultsDir, `${path.basename(filePath)}.validation.json`);
+      const resultData = {
+        filePath,
+        validationType,
+        timestamp: new Date().toISOString(),
+        ...result
+      };
+      
+      fs.writeFileSync(resultFile, JSON.stringify(resultData, null, 2));
+      
+    } catch (error) {
+      console.warn('⚠️  Could not save validation results:', error.message);
+    }
+  }
+
+  async triggerComplianceCheck() {
+    try {
+      const compliancePath = path.join(this.agentOsPath, 'tools', 'compliance-checker.js');
+      
+      if (fs.existsSync(compliancePath)) {
+        console.log('🔍 Triggering compliance check...');
+        
+        const child = spawn('node', [compliancePath, '--quick'], {
+          stdio: 'pipe',
+          cwd: this.agentOsPath
+        });
+        
+        child.stdout.on('data', (data) => {
+          console.log(`📊 Compliance: ${data.toString().trim()}`);
+        });
+        
+        child.stderr.on('data', (data) => {
+          console.error(`❌ Compliance error: ${data.toString().trim()}`);
+        });
+        
+      }
+    } catch (error) {
+      console.warn('⚠️  Could not trigger compliance check:', error.message);
+    }
+  }
+
+  async startBackgroundValidation() {
+    // Start periodic full project validation
+    setInterval(async () => {
+      if (this.isActive) {
+        await this.runFullProjectValidation();
+      }
+    }, 5 * 60 * 1000); // Every 5 minutes
+    
+    console.log('   ✅ Background validation scheduled');
+  }
+
+  async runFullProjectValidation() {
+    try {
+      console.log('🔍 Running full project validation...');
+      
+      const compliancePath = path.join(this.agentOsPath, 'tools', 'compliance-checker.js');
+      if (fs.existsSync(compliancePath)) {
+        const child = spawn('node', [compliancePath, '--silent'], {
+          stdio: 'pipe',
+          cwd: this.agentOsPath
+        });
+        
+        child.on('close', (code) => {
+          if (code === 0) {
+            console.log('✅ Full project validation completed successfully');
+          } else {
+            console.log('⚠️  Full project validation found issues');
+          }
         });
       }
       
     } catch (error) {
-      console.warn(`Could not validate tech stack compliance for ${filePath}: ${error.message}`);
+      console.warn('⚠️  Full project validation failed:', error.message);
     }
   }
 
-  /**
-   * Start real-time monitoring
-   */
-  start() {
-    console.log('🚀 Enhanced Agent OS real-time integration started');
-    console.log('📊 Monitoring:');
-    console.log('   📦 Dependencies & Environment');
-    console.log('   🏗️  Infrastructure Configuration');
-    console.log('   💻 Code Changes & Compliance');
-    console.log('   📋 Feature Planning & Scoring');
-    console.log('   🔒 Security & Architecture');
-    console.log('   🧪 Testing Requirements');
-    
-    // Run initial environment check
-    this.dependencyValidator.validateEnvironment({
-      minNodeVersion: 18,
-      checkPackageJson: true
-    });
-    
-    // Run initial infrastructure check
-    this.infrastructureRecovery.assessInfrastructureHealth({
-      runRecovery: false,
-      includeChecks: ['containers', 'ports']
-    }).then(results => {
-      if (results.overall === 'healthy') {
-        console.log('✅ Initial infrastructure health check passed');
-      } else {
-        console.log('⚠️  Infrastructure health issues detected. Run with --recover to attempt fixes.');
-      }
-    });
+  async stop() {
+    if (!this.isActive) {
+      return;
+    }
 
-    console.log('\n🎯 Real-time Agent OS integration active. Start coding to see immediate feedback!');
+    console.log('🔄 Stopping Real-Time Cursor Enhancement...');
+    
+    try {
+      if (this.watcher) {
+        await this.watcher.close();
+        this.watcher = null;
+      }
+      
+      this.isActive = false;
+      console.log('✅ Real-time enhancement stopped');
+      
+    } catch (error) {
+      console.error('❌ Error stopping real-time enhancement:', error.message);
+    }
+  }
+
+  getStatus() {
+    return {
+      active: this.isActive,
+      watchedFiles: this.watcher ? this.watcher.getWatched() : {},
+      validationQueue: this.validationQueue.length,
+      lastValidations: Array.from(this.lastValidation.entries()).map(([file, data]) => ({
+        file,
+        timestamp: data.timestamp,
+        eventType: data.eventType
+      }))
+    };
   }
 }
 
-module.exports = EnhancedCursorIntegration;
+// CLI interface
+async function main() {
+  const enhancement = new RealTimeCursorEnhancement();
+  
+  const command = process.argv[2];
+  
+  switch (command) {
+    case 'start':
+      await enhancement.start();
+      break;
+      
+    case 'stop':
+      await enhancement.stop();
+      break;
+      
+    case 'status':
+      const status = enhancement.getStatus();
+      console.log('📊 Real-Time Enhancement Status:', JSON.stringify(status, null, 2));
+      break;
+      
+    case 'help':
+      console.log(`
+🚀 Real-Time Cursor Enhancement
 
-// CLI usage
-if (require.main === module) {
-  const integration = new EnhancedCursorIntegration();
-  integration.start();
+Usage: node real-time-cursor-enhancement.js [command]
+
+Commands:
+  start     Start real-time enhancement (default)
+  stop      Stop real-time enhancement
+  status    Show enhancement status
+  help      Show this help message
+
+Examples:
+  node real-time-cursor-enhancement.js start    # Start enhancement
+  node real-time-cursor-enhancement.js status   # Check status
+  node real-time-cursor-enhancement.js stop     # Stop enhancement
+      `);
+      break;
+      
+    default:
+      await enhancement.start();
+  }
 }
+
+// Run if called directly
+if (require.main === module) {
+  main().catch(error => {
+    console.error('❌ Fatal error:', error.message);
+    process.exit(1);
+  });
+}
+
+module.exports = RealTimeCursorEnhancement;

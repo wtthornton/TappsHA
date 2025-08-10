@@ -1,752 +1,866 @@
 #!/usr/bin/env node
 
 /**
- * Template Trigger Automation for Agent OS
- * Automatically triggers the right task templates at the right development phases
- * to catch issues as early as possible in the development lifecycle.
+ * Enhanced Template Trigger Automation for Agent OS
+ * Provides intelligent, context-aware template suggestions and automatic checklist generation
  */
 
 const fs = require('fs');
 const path = require('path');
-const chokidar = require('chokidar');
-
-// Import Agent OS utilities for validation
-const { DependencyValidator } = require('../utils/dependency-validator.js');
-const FeatureScoringFramework = require('../utils/feature-scoring.js');
-const InfrastructureRecovery = require('../utils/infrastructure-recovery.js');
+const { spawn } = require('child_process');
 
 class TemplateTriggerAutomation {
   constructor() {
     this.projectRoot = process.cwd();
-    this.templatesPath = path.join(__dirname, '../templates');
-    this.triggeredTemplates = new Set();
-    this.currentPhase = this.detectCurrentPhase();
+    this.agentOsPath = path.join(this.projectRoot, '.agent-os');
+    this.templatesPath = path.join(this.agentOsPath, 'templates');
+    this.workflowsPath = path.join(this.agentOsPath, 'workflows');
+    this.standardsPath = path.join(this.agentOsPath, 'standards');
     
-    // Validation utilities
-    this.dependencyValidator = new DependencyValidator();
-    this.featureScoring = new FeatureScoringFramework();
-    this.infrastructureRecovery = new InfrastructureRecovery();
+    // Template registry
+    this.templateRegistry = new Map();
+    this.contextTriggers = new Map();
+    this.automationRules = [];
     
-    this.initializeWatchers();
-    this.runInitialValidation();
+    this.loadTemplates();
+    this.loadAutomationRules();
   }
 
-  /**
-   * Detect current development phase
-   */
-  detectCurrentPhase() {
-    // Check for phase indicators
-    if (fs.existsSync('.agent-os/product/phase1-completion-status.md')) {
-      const content = fs.readFileSync('.agent-os/product/phase1-completion-status.md', 'utf8');
-      if (content.includes('COMPLETE')) {
-        if (fs.existsSync('.agent-os/product/phase2-completion-status.md')) {
-          return 'advanced-features';
-        }
-        return 'integration';
+  loadTemplates() {
+    try {
+      if (!fs.existsSync(this.templatesPath)) {
+        console.warn('⚠️  Templates directory not found');
+        return;
       }
+
+      const templateFiles = fs.readdirSync(this.templatesPath, { recursive: true });
+      
+      templateFiles.forEach(file => {
+        if (file.endsWith('.md') || file.endsWith('.js')) {
+          const templatePath = path.join(this.templatesPath, file);
+          const template = this.parseTemplate(templatePath);
+          
+          if (template) {
+            this.templateRegistry.set(template.name, template);
+            
+            // Register context triggers
+            if (template.triggers) {
+              template.triggers.forEach(trigger => {
+                if (!this.contextTriggers.has(trigger)) {
+                  this.contextTriggers.set(trigger, []);
+                }
+                this.contextTriggers.get(trigger).push(template.name);
+              });
+            }
+          }
+        }
+      });
+      
+      console.log(`📚 Loaded ${this.templateRegistry.size} templates`);
+      
+    } catch (error) {
+      console.error('❌ Error loading templates:', error.message);
+    }
+  }
+
+  parseTemplate(templatePath) {
+    try {
+      const content = fs.readFileSync(templatePath, 'utf8');
+      const fileName = path.basename(templatePath, path.extname(templatePath));
+      
+      // Extract template metadata
+      const metadata = this.extractTemplateMetadata(content);
+      
+      return {
+        name: fileName,
+        path: templatePath,
+        content: content,
+        type: path.extname(templatePath).substring(1),
+        triggers: metadata.triggers || [],
+        context: metadata.context || [],
+        priority: metadata.priority || 5,
+        dependencies: metadata.dependencies || [],
+        ...metadata
+      };
+      
+    } catch (error) {
+      console.warn(`⚠️  Could not parse template ${templatePath}:`, error.message);
+      return null;
+    }
+  }
+
+  extractTemplateMetadata(content) {
+    const metadata = {};
+    
+    // Extract triggers from comments
+    const triggerMatch = content.match(/@triggers?\s*:\s*(.+)/i);
+    if (triggerMatch) {
+      metadata.triggers = triggerMatch[1].split(',').map(t => t.trim());
     }
     
-    if (fs.existsSync('src') || fs.existsSync('backend') || fs.existsSync('frontend')) {
-      return 'foundation';
+    // Extract context from comments
+    const contextMatch = content.match(/@context\s*:\s*(.+)/i);
+    if (contextMatch) {
+      metadata.context = contextMatch[1].split(',').map(c => c.trim());
+    }
+    
+    // Extract priority from comments
+    const priorityMatch = content.match(/@priority\s*:\s*(\d+)/i);
+    if (priorityMatch) {
+      metadata.priority = parseInt(priorityMatch[1]);
+    }
+    
+    // Extract dependencies from comments
+    const depsMatch = content.match(/@dependencies?\s*:\s*(.+)/i);
+    if (depsMatch) {
+      metadata.dependencies = depsMatch[1].split(',').map(d => d.trim());
+    }
+    
+    return metadata;
+  }
+
+  loadAutomationRules() {
+    try {
+      const rulesPath = path.join(this.agentOsPath, 'config', 'automation-rules.json');
+      
+      if (fs.existsSync(rulesPath)) {
+        const rules = JSON.parse(fs.readFileSync(rulesPath, 'utf8'));
+        this.automationRules = rules;
+      } else {
+        // Default automation rules
+        this.automationRules = this.getDefaultAutomationRules();
+      }
+      
+      console.log(`⚙️  Loaded ${this.automationRules.length} automation rules`);
+      
+    } catch (error) {
+      console.warn('⚠️  Could not load automation rules, using defaults');
+      this.automationRules = this.getDefaultAutomationRules();
+    }
+  }
+
+  getDefaultAutomationRules() {
+    return [
+      {
+        name: 'new-feature-trigger',
+        condition: 'file_created',
+        pattern: '**/features/**/*.md',
+        action: 'suggest-template',
+        template: 'feature-specification',
+        priority: 'high'
+      },
+      {
+        name: 'api-endpoint-trigger',
+        condition: 'file_created',
+        pattern: '**/src/**/*Controller.java',
+        action: 'suggest-template',
+        template: 'api-endpoint-checklist',
+        priority: 'high'
+      },
+      {
+        name: 'database-change-trigger',
+        condition: 'file_modified',
+        pattern: '**/src/**/*Entity.java',
+        action: 'suggest-template',
+        template: 'database-migration-checklist',
+        priority: 'medium'
+      },
+      {
+        name: 'test-file-trigger',
+        condition: 'file_created',
+        pattern: '**/test/**/*.java',
+        action: 'suggest-template',
+        template: 'test-coverage-checklist',
+        priority: 'medium'
+      },
+      {
+        name: 'security-implementation-trigger',
+        condition: 'file_modified',
+        pattern: '**/src/**/*Security*.java',
+        action: 'suggest-template',
+        template: 'security-checklist',
+        priority: 'critical'
+      }
+    ];
+  }
+
+  async analyzeContext(contextData) {
+    const suggestions = [];
+    const checklists = [];
+    
+    try {
+      console.log('🔍 Analyzing development context...');
+      
+      // Analyze current project state
+      const projectState = await this.analyzeProjectState();
+      
+      // Check for template triggers
+      const triggeredTemplates = this.checkTemplateTriggers(contextData, projectState);
+      
+      // Generate suggestions
+      triggeredTemplates.forEach(template => {
+        suggestions.push({
+          type: 'template',
+          template: template,
+          reason: `Triggered by ${template.triggers.join(', ')}`,
+          priority: template.priority
+        });
+      });
+      
+      // Check for automation rule triggers
+      const ruleTriggers = this.checkAutomationRules(contextData, projectState);
+      
+      ruleTriggers.forEach(rule => {
+        const template = this.templateRegistry.get(rule.template);
+        if (template) {
+          suggestions.push({
+            type: 'automation',
+            template: template,
+            rule: rule,
+            reason: `Automated by rule: ${rule.name}`,
+            priority: rule.priority === 'critical' ? 10 : 
+                     rule.priority === 'high' ? 8 : 
+                     rule.priority === 'medium' ? 6 : 4
+          });
+        }
+      });
+      
+      // Generate context-aware checklists
+      const contextChecklists = await this.generateContextChecklists(contextData, projectState);
+      checklists.push(...contextChecklists);
+      
+      // Sort by priority
+      suggestions.sort((a, b) => b.priority - a.priority);
+      
+      console.log(`✅ Context analysis complete: ${suggestions.length} suggestions, ${checklists.length} checklists`);
+      
+      return { suggestions, checklists, projectState };
+      
+    } catch (error) {
+      console.error('❌ Context analysis failed:', error.message);
+      return { suggestions: [], checklists: [], projectState: {} };
+    }
+  }
+
+  async analyzeProjectState() {
+    const state = {
+      phase: this.detectCurrentPhase(),
+      technologies: this.detectTechnologies(),
+      structure: this.analyzeProjectStructure(),
+      compliance: await this.checkComplianceStatus(),
+      recentChanges: this.getRecentChanges()
+    };
+    
+    return state;
+  }
+
+  detectCurrentPhase() {
+    // Check for phase indicators
+    const phaseIndicators = [
+      { file: '.agent-os/product/phase1-completion-status.md', phase: 'phase1' },
+      { file: '.agent-os/product/phase2-completion-status.md', phase: 'phase2' },
+      { file: '.agent-os/product/phase3-completion-status.md', phase: 'phase3' },
+      { file: 'src', phase: 'development' },
+      { file: 'backend', phase: 'development' },
+      { file: 'frontend', phase: 'development' }
+    ];
+    
+    for (const indicator of phaseIndicators) {
+      if (fs.existsSync(indicator.file)) {
+        return indicator.phase;
+      }
     }
     
     return 'planning';
   }
 
-  /**
-   * Initialize file watchers for automatic template triggering
-   */
-  initializeWatchers() {
-    console.log('🤖 Initializing template trigger automation...');
+  detectTechnologies() {
+    const technologies = [];
     
-    // Watch for new developer setup
-    this.watchForNewDeveloperSetup();
-    
-    // Watch for new service/controller creation
-    this.watchForServiceCreation();
-    
-    // Watch for API endpoint creation
-    this.watchForApiEndpointCreation();
-    
-    // Watch for feature planning
-    this.watchForFeaturePlanning();
-    
-    // Watch for deployment preparation
-    this.watchForDeploymentPreparation();
-    
-    // Watch for dependency changes
-    this.watchForDependencyChanges();
-    
-    // Watch for infrastructure changes
-    this.watchForInfrastructureChanges();
-    
-    console.log('✅ Template trigger automation active');
-  }
-
-  /**
-   * Run initial validation when automation starts
-   */
-  async runInitialValidation() {
-    console.log('🚀 Running initial development session validation...');
-    
-    // Trigger daily health check template
-    await this.triggerTemplate('daily-development-health-check', {
-      trigger: 'session-start',
-      phase: this.currentPhase,
-      auto: true
-    });
-  }
-
-  /**
-   * Watch for new developer setup indicators
-   */
-  watchForNewDeveloperSetup() {
-    // Watch for package.json creation or major changes
-    chokidar.watch('package.json', { ignoreInitial: true })
-      .on('add', () => this.onNewDeveloperSetup('package.json created'))
-      .on('change', () => this.onPackageJsonChange());
-    
-    // Watch for Docker setup
-    chokidar.watch('docker-compose.yml', { ignoreInitial: true })
-      .on('add', () => this.onNewDeveloperSetup('Docker configuration added'));
-    
-    // Watch for first code files
-    chokidar.watch('src/**/*', { ignoreInitial: true })
-      .on('add', (filePath) => {
-        if (this.isFirstCodeFile(filePath)) {
-          this.onNewDeveloperSetup('First code file created');
-        }
-      });
-  }
-
-  /**
-   * Watch for new service/controller creation
-   */
-  watchForServiceCreation() {
-    const servicePatterns = [
-      'src/**/*Service.java',
-      'src/**/*Controller.java', 
-      'src/**/*Repository.java',
-      'backend/**/*Service.java',
-      'backend/**/*Controller.java'
-    ];
-
-    servicePatterns.forEach(pattern => {
-      chokidar.watch(pattern, { ignoreInitial: true }).on('add', (filePath) => {
-        this.onServiceCreation(filePath);
-      });
-    });
-  }
-
-  /**
-   * Watch for API endpoint creation
-   */
-  watchForApiEndpointCreation() {
-    const apiPatterns = [
-      'src/**/*Controller.java',
-      'backend/**/*Controller.java',
-      'src/api/**/*.ts',
-      'frontend/src/api/**/*.ts'
-    ];
-
-    apiPatterns.forEach(pattern => {
-      chokidar.watch(pattern, { ignoreInitial: true })
-        .on('add', (filePath) => this.onApiEndpointCreation(filePath, 'new'))
-        .on('change', (filePath) => {
-          // Check if new endpoints were added
-          if (this.hasNewApiEndpoints(filePath)) {
-            this.onApiEndpointCreation(filePath, 'modified');
-          }
-        });
-    });
-  }
-
-  /**
-   * Watch for feature planning activities
-   */
-  watchForFeaturePlanning() {
-    const featurePlanningPatterns = [
-      'specs/**/*.md',
-      '.agent-os/product/**/*.md',
-      'features/**/*.md',
-      '**/*roadmap*.md',
-      '**/*backlog*.json',
-      '**/*features*.json'
-    ];
-
-    featurePlanningPatterns.forEach(pattern => {
-      chokidar.watch(pattern, { ignoreInitial: true })
-        .on('add', (filePath) => this.onFeaturePlanning(filePath, 'new'))
-        .on('change', (filePath) => this.onFeaturePlanning(filePath, 'modified'));
-    });
-  }
-
-  /**
-   * Watch for deployment preparation
-   */
-  watchForDeploymentPreparation() {
-    const deploymentPatterns = [
-      '.github/workflows/**/*.yml',
-      'Dockerfile',
-      'docker-compose.prod.yml',
-      'k8s/**/*.yml',
-      'helm/**/*.yml'
-    ];
-
-    deploymentPatterns.forEach(pattern => {
-      chokidar.watch(pattern, { ignoreInitial: true })
-        .on('add', (filePath) => this.onDeploymentPreparation(filePath))
-        .on('change', (filePath) => this.onDeploymentPreparation(filePath));
-    });
-  }
-
-  /**
-   * Watch for dependency changes
-   */
-  watchForDependencyChanges() {
-    const dependencyFiles = ['package.json', 'package-lock.json', 'pom.xml', 'build.gradle'];
-    
-    dependencyFiles.forEach(file => {
-      if (fs.existsSync(file)) {
-        chokidar.watch(file, { ignoreInitial: true }).on('change', () => {
-          this.onDependencyChange(file);
-        });
+    // Check for technology indicators
+    if (fs.existsSync('package.json')) {
+      try {
+        const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+        if (pkg.dependencies?.react) technologies.push('react');
+        if (pkg.dependencies?.vue) technologies.push('vue');
+        if (pkg.dependencies?.angular) technologies.push('angular');
+        if (pkg.devDependencies?.typescript) technologies.push('typescript');
+      } catch (error) {
+        // Ignore parsing errors
       }
-    });
-  }
-
-  /**
-   * Watch for infrastructure changes
-   */
-  watchForInfrastructureChanges() {
-    const infraFiles = [
-      'docker-compose*.yml',
-      'application.yml',
-      'application.properties',
-      '.env*'
-    ];
-
-    infraFiles.forEach(pattern => {
-      chokidar.watch(pattern, { ignoreInitial: true }).on('change', (filePath) => {
-        this.onInfrastructureChange(filePath);
-      });
-    });
-  }
-
-  /**
-   * Handle new developer setup
-   */
-  async onNewDeveloperSetup(trigger) {
-    console.log(`👋 New developer setup detected: ${trigger}`);
-    
-    await this.triggerTemplate('environment-setup-validation', {
-      trigger,
-      phase: 'foundation',
-      priority: 'critical',
-      description: 'Validate development environment setup and Agent OS integration'
-    });
-  }
-
-  /**
-   * Handle package.json changes
-   */
-  async onPackageJsonChange() {
-    console.log('📦 Package.json change detected');
-    
-    // Run immediate dependency validation
-    const result = this.dependencyValidator.validateEnvironment();
-    
-    if (!result.overall) {
-      await this.triggerTemplate('dependency-validation-failure', {
-        trigger: 'package.json-change',
-        issues: result.issues || ['Environment validation failed'],
-        priority: 'critical'
-      });
     }
-  }
-
-  /**
-   * Handle new service creation
-   */
-  async onServiceCreation(filePath) {
-    console.log(`🏗️  New service/controller detected: ${filePath}`);
     
-    const serviceType = this.determineServiceType(filePath);
-    
-    if (this.currentPhase === 'foundation') {
-      await this.triggerTemplate('security-first-development', {
-        trigger: `new-${serviceType}`,
-        filePath,
-        phase: 'foundation',
-        priority: 'high',
-        description: `Apply security-first patterns to new ${serviceType}`
-      });
-    } else if (this.currentPhase === 'integration') {
-      await this.triggerTemplate('service-architecture-validation', {
-        trigger: `new-${serviceType}`,
-        filePath,
-        phase: 'integration',
-        priority: 'high',
-        description: `Validate architecture patterns for new ${serviceType}`
-      });
+    if (fs.existsSync('pom.xml')) {
+      technologies.push('java', 'spring');
     }
+    
+    if (fs.existsSync('build.gradle')) {
+      technologies.push('java', 'gradle');
+    }
+    
+    if (fs.existsSync('requirements.txt')) {
+      technologies.push('python');
+    }
+    
+    if (fs.existsSync('go.mod')) {
+      technologies.push('golang');
+    }
+    
+    return technologies;
   }
 
-  /**
-   * Handle API endpoint creation
-   */
-  async onApiEndpointCreation(filePath, changeType) {
-    console.log(`🌐 API endpoint ${changeType}: ${filePath}`);
+  analyzeProjectStructure() {
+    const structure = {
+      hasSrc: fs.existsSync('src'),
+      hasBackend: fs.existsSync('backend'),
+      hasFrontend: fs.existsSync('frontend'),
+      hasTests: fs.existsSync('test') || fs.existsSync('tests'),
+      hasDocs: fs.existsSync('docs') || fs.existsSync('documentation'),
+      hasConfig: fs.existsSync('config') || fs.existsSync('configuration')
+    };
     
-    await this.triggerTemplate('api-integration-validation', {
-      trigger: `api-${changeType}`,
-      filePath,
-      phase: this.currentPhase,
-      priority: 'high',
-      description: 'Validate API design and integration patterns'
-    });
+    return structure;
   }
 
-  /**
-   * Handle feature planning
-   */
-  async onFeaturePlanning(filePath, changeType) {
-    console.log(`📋 Feature planning ${changeType}: ${filePath}`);
-    
-    // Run feature scoring if possible
+  async checkComplianceStatus() {
     try {
-      const features = await this.extractFeaturesFromFile(filePath);
-      if (features.length > 0) {
-        const results = this.featureScoring.scoreFeatures(features);
-        
-        if (results.analysis.eliminationCandidates.length > 0) {
-          await this.triggerTemplate('feature-elimination-warning', {
-            trigger: 'low-value-features-detected',
-            filePath,
-            eliminationCandidates: results.analysis.eliminationCandidates,
-            priority: 'medium'
+      const compliancePath = path.join(this.agentOsPath, 'tools', 'compliance-checker.js');
+      
+      if (fs.existsSync(compliancePath)) {
+        return new Promise((resolve) => {
+          const child = spawn('node', [compliancePath, '--quick', '--json'], {
+            stdio: 'pipe',
+            cwd: this.agentOsPath
           });
-        }
-      }
-    } catch (error) {
-      console.warn('Could not analyze features for scoring:', error.message);
-    }
-
-    await this.triggerTemplate('feature-value-validation', {
-      trigger: `feature-planning-${changeType}`,
-      filePath,
-      phase: 'advanced-features',
-      priority: 'medium',
-      description: 'Validate feature value and prioritization'
-    });
-  }
-
-  /**
-   * Handle deployment preparation
-   */
-  async onDeploymentPreparation(filePath) {
-    console.log(`🚀 Deployment preparation detected: ${filePath}`);
-    
-    await this.triggerTemplate('performance-optimization-validation', {
-      trigger: 'deployment-preparation',
-      filePath,
-      phase: 'advanced-features',
-      priority: 'critical',
-      description: 'Validate performance and optimization before deployment'
-    });
-  }
-
-  /**
-   * Handle dependency changes
-   */
-  async onDependencyChange(filePath) {
-    console.log(`📦 Dependency change: ${filePath}`);
-    
-    // Run immediate validation
-    const result = this.dependencyValidator.validateEnvironment();
-    
-    if (!result.overall) {
-      console.log('⚠️  Dependency validation failed after change');
-      console.log('💡 Run: npm install or fix dependency issues');
-    }
-  }
-
-  /**
-   * Handle infrastructure changes
-   */
-  async onInfrastructureChange(filePath) {
-    console.log(`🏗️  Infrastructure change: ${filePath}`);
-    
-    // Run infrastructure health check
-    try {
-      const health = await this.infrastructureRecovery.assessInfrastructureHealth({
-        runRecovery: false,
-        includeChecks: ['containers', 'ports', 'dependencies']
-      });
-
-      if (health.overall !== 'healthy') {
-        console.log('⚠️  Infrastructure health issues after configuration change');
-        health.recommendations.forEach(rec => {
-          console.log(`💡 ${rec}`);
+          
+          let output = '';
+          child.stdout.on('data', (data) => {
+            output += data.toString();
+          });
+          
+          child.on('close', () => {
+            try {
+              const result = JSON.parse(output);
+              resolve({
+                score: result.overallScore || 0,
+                status: result.overallStatus || 'unknown',
+                violations: result.violations || []
+              });
+            } catch (error) {
+              resolve({ score: 0, status: 'unknown', violations: [] });
+            }
+          });
         });
       }
     } catch (error) {
-      console.warn('Could not check infrastructure health:', error.message);
+      // Ignore errors
     }
-  }
-
-  /**
-   * Trigger a specific template with context
-   */
-  async triggerTemplate(templateName, context) {
-    const templateKey = `${templateName}-${context.trigger}`;
     
-    // Avoid duplicate triggers within short time windows
-    if (this.triggeredTemplates.has(templateKey)) {
-      console.log(`⏭️  Template ${templateName} already triggered recently`);
-      return;
-    }
-
-    console.log(`\n📋 TRIGGERING TEMPLATE: ${templateName}`);
-    console.log(`🎯 Context: ${context.description || context.trigger}`);
-    console.log(`⭐ Priority: ${context.priority || 'normal'}`);
-    console.log(`📍 Phase: ${context.phase || this.currentPhase}`);
-    
-    if (context.filePath) {
-      console.log(`📄 File: ${context.filePath}`);
-    }
-
-    // Show template checklist based on template name
-    this.displayTemplateChecklist(templateName, context);
-    
-    // Mark as triggered
-    this.triggeredTemplates.add(templateKey);
-    
-    // Clear trigger after 5 minutes to allow re-triggering
-    setTimeout(() => {
-      this.triggeredTemplates.delete(templateKey);
-    }, 5 * 60 * 1000);
+    return { score: 0, status: 'unknown', violations: [] };
   }
 
-  /**
-   * Display template checklist
-   */
-  displayTemplateChecklist(templateName, context) {
-    switch (templateName) {
-      case 'environment-setup-validation':
-        this.displayEnvironmentSetupChecklist();
-        break;
-      case 'security-first-development':
-        this.displaySecurityFirstChecklist(context);
-        break;
-      case 'service-architecture-validation':
-        this.displayArchitectureValidationChecklist(context);
-        break;
-      case 'api-integration-validation':
-        this.displayApiIntegrationChecklist(context);
-        break;
-      case 'feature-value-validation':
-        this.displayFeatureValueChecklist(context);
-        break;
-      case 'performance-optimization-validation':
-        this.displayPerformanceValidationChecklist(context);
-        break;
-      case 'daily-development-health-check':
-        this.displayDailyHealthCheckChecklist();
-        break;
-      default:
-        console.log(`📋 Template checklist for ${templateName} not yet implemented`);
-    }
-  }
-
-  /**
-   * Display environment setup checklist
-   */
-  displayEnvironmentSetupChecklist() {
-    console.log(`
-📋 ENVIRONMENT SETUP VALIDATION CHECKLIST:
-
-□ Node.js Version Check (≥18)
-  Run: node .agent-os/utils/dependency-validator.js
-
-□ Technology Stack Validation
-  • Spring Boot 3.3+ configured
-  • React 19 with TypeScript 5
-  • PostgreSQL 17 with pgvector
-  • Docker 24 with Compose V2
-
-□ Infrastructure Health Check
-  Run: node .agent-os/utils/infrastructure-recovery.js
-
-□ Agent OS Utilities Integration
-  • Verify .agent-os/utils/ available
-  • Test dependency validator
-  • Test cross-platform shell
-  • Test mock factories
-
-□ Security Foundation Setup
-  • Environment variables configured
-  • Input validation framework ready
-  • Authentication framework prepared
-
-□ Testing Foundation Setup
-  • Mock factories configured
-  • Vitest + jsdom setup
-  • Coverage reporting ≥85% requirement
-`);
-  }
-
-  /**
-   * Display security-first development checklist
-   */
-  displaySecurityFirstChecklist(context) {
-    console.log(`
-🔒 SECURITY-FIRST DEVELOPMENT CHECKLIST:
-📄 File: ${context.filePath}
-
-□ Data Classification
-  • Identify sensitive data (PII, credentials, tokens)
-  • Define encryption requirements
-  • Plan secure storage strategy
-
-□ Input Validation Implementation
-  @PostMapping("/api/endpoint")
-  public ResponseEntity<?> processData(@Valid @RequestBody DataRequest request)
-
-□ Security Validation
-  Run: node .agent-os/tools/compliance-checker.js --security
-  • No hardcoded secrets ✓
-  • Input validation present ✓
-  • SQL injection prevention ✓
-  • Proper error handling ✓
-
-□ Authentication & Authorization
-  • OAuth 2.1 implementation
-  • Role-based access control
-  • Token management strategy
-`);
-  }
-
-  /**
-   * Display architecture validation checklist
-   */
-  displayArchitectureValidationChecklist(context) {
-    console.log(`
-🏗️  SERVICE ARCHITECTURE VALIDATION CHECKLIST:
-📄 File: ${context.filePath}
-
-□ Controller → Service → Repository Pattern
-  @RestController (Controller only calls Service)
-  @Service @Transactional (Service handles business logic)
-  @Repository (Repository handles data access)
-
-□ Dependency Injection Validation
-  • Constructor injection used
-  • No circular dependencies
-  • Proper Spring annotations
-
-□ Architecture Compliance Check
-  Run: node .agent-os/tools/compliance-checker.js --architecture
-
-□ Observability Setup
-  • Spring Boot Actuator endpoints
-  • Prometheus metrics configured
-  • Structured logging implemented
-  • Health checks implemented
-`);
-  }
-
-  /**
-   * Display API integration checklist
-   */
-  displayApiIntegrationChecklist(context) {
-    console.log(`
-🌐 API INTEGRATION VALIDATION CHECKLIST:
-📄 File: ${context.filePath}
-
-□ RESTful API Standards
-  • Proper HTTP verbs (GET, POST, PUT, DELETE)
-  • Consistent URL patterns (/api/v1/resources)
-  • Proper HTTP status codes
-  • Standardized error responses
-
-□ Request/Response Validation
-  @Valid @RequestBody for all POST/PUT endpoints
-
-□ Integration Testing
-  import { createApiClientMock } from '.agent-os/testing/mock-factories.js';
-
-□ Testing Coverage
-  • Happy path tests
-  • Error condition tests
-  • Authentication tests
-  • Rate limiting tests
-`);
-  }
-
-  /**
-   * Display feature value checklist
-   */
-  displayFeatureValueChecklist(context) {
-    console.log(`
-🎯 FEATURE VALUE VALIDATION CHECKLIST:
-📄 File: ${context.filePath}
-
-□ Feature Impact Assessment
-  const feature = {
-    name: '[FEATURE_NAME]',
-    importance: [1-10], // Business value
-    complexity: [1-10], // Development effort
-    impact: [1-10]      // Developer productivity impact
-  };
-
-□ Scoring Validation
-  • Weighted score ≥ 6.0 (minimum threshold)
-  • Impact score ≥ 6 (meaningful improvement)
-  • ROI ratio ≥ 1.0 (impact/complexity)
-
-□ Implementation Decision
-  • High Priority (≥8.0): Implement immediately
-  • Medium Priority (6.0-7.9): Standard process
-  • Low Priority (4.0-5.9): Defer to later phase
-  • Eliminate (<4.0): Remove from backlog
-`);
-  }
-
-  /**
-   * Display performance validation checklist
-   */
-  displayPerformanceValidationChecklist(context) {
-    console.log(`
-⚡ PERFORMANCE & OPTIMIZATION VALIDATION CHECKLIST:
-📄 File: ${context.filePath}
-
-□ Performance Benchmarks
-  • Backend P95 ≤ 200ms
-  • Frontend TTI ≤ 2s
-  • Memory usage within limits
-  • Database queries optimized
-
-□ Infrastructure Health
-  Run: node .agent-os/utils/infrastructure-recovery.js --comprehensive
-
-□ Code Quality Final Check
-  Run: node .agent-os/tools/compliance-checker.js --comprehensive
-  • Overall compliance ≥ 85%
-  • No critical violations
-  • All TODO/FIXME addressed
-
-□ Deployment Readiness
-  • Rollback procedures tested
-  • Health checks configured
-  • Monitoring alerts active
-`);
-  }
-
-  /**
-   * Display daily health check checklist
-   */
-  displayDailyHealthCheckChecklist() {
-    console.log(`
-🌅 DAILY DEVELOPMENT HEALTH CHECK:
-
-□ Quick Environment Check
-  Run: node .agent-os/utils/dependency-validator.js --quick
-
-□ Infrastructure Status
-  Run: node .agent-os/utils/infrastructure-recovery.js --quick
-
-□ Task Priority Review
-  • Review tasks.md current priorities
-  • Validate task compliance requirements
-  • Confirm resource availability
-
-□ Standards Awareness
-  • Current phase requirements reviewed
-  • Agent OS utilities ready
-  • Testing patterns confirmed
-`);
-  }
-
-  /**
-   * Helper methods
-   */
-  isFirstCodeFile(filePath) {
-    // Simple heuristic: if there are very few files in src
-    const srcFiles = fs.readdirSync('src', { recursive: true });
-    return srcFiles.length <= 3;
-  }
-
-  determineServiceType(filePath) {
-    if (filePath.includes('Controller')) return 'controller';
-    if (filePath.includes('Service')) return 'service';
-    if (filePath.includes('Repository')) return 'repository';
-    return 'component';
-  }
-
-  hasNewApiEndpoints(filePath) {
-    // Simple check: look for @RequestMapping, @GetMapping, etc.
+  getRecentChanges() {
     try {
-      const content = fs.readFileSync(filePath, 'utf8');
-      const apiAnnotations = /@(RequestMapping|GetMapping|PostMapping|PutMapping|DeleteMapping)/g;
-      const matches = content.match(apiAnnotations);
-      return matches && matches.length > 0;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  async extractFeaturesFromFile(filePath) {
-    // Basic feature extraction from markdown or JSON files
-    try {
-      const content = fs.readFileSync(filePath, 'utf8');
+      // Get recent file changes (last 24 hours)
+      const changes = [];
+      const now = Date.now();
+      const oneDay = 24 * 60 * 60 * 1000;
       
-      if (filePath.endsWith('.json')) {
-        const data = JSON.parse(content);
-        return Array.isArray(data) ? data : data.features || [];
-      }
-      
-      // Extract from markdown (basic pattern)
-      const features = [];
-      const lines = content.split('\n');
-      
-      lines.forEach(line => {
-        if (line.match(/^#+\s+/) || line.match(/^[-*]\s+\w/)) {
-          const name = line.replace(/^#+\s+/, '').replace(/^[-*]\s+/, '').trim();
-          if (name.length > 5) {
-            features.push({
-              name,
-              description: `Feature from ${path.basename(filePath)}`,
-              importance: 5,
-              complexity: 5,
-              impact: 5
+      const walkDir = (dir) => {
+        const files = fs.readdirSync(dir);
+        files.forEach(file => {
+          const filePath = path.join(dir, file);
+          const stats = fs.statSync(filePath);
+          
+          if (stats.isDirectory() && !file.startsWith('.') && file !== 'node_modules') {
+            walkDir(filePath);
+          } else if (stats.isFile() && (now - stats.mtime.getTime()) < oneDay) {
+            changes.push({
+              file: filePath,
+              modified: stats.mtime,
+              size: stats.size
             });
           }
-        }
-      });
+        });
+      };
       
-      return features.slice(0, 10); // Limit to prevent noise
+      walkDir(this.projectRoot);
+      
+      return changes.slice(0, 20); // Limit to 20 most recent
+      
     } catch (error) {
       return [];
     }
   }
 
-  /**
-   * Start the automation
-   */
-  start() {
-    console.log('🤖 Template Trigger Automation Started');
-    console.log(`📍 Current Phase: ${this.currentPhase}`);
-    console.log('🎯 Watching for development activities...');
-    console.log('📋 Templates will trigger automatically based on file changes and development patterns');
-    console.log('\n✨ Start coding to see automatic template triggers!\n');
+  checkTemplateTriggers(contextData, projectState) {
+    const triggered = [];
+    
+    this.templateRegistry.forEach((template, name) => {
+      if (this.shouldTriggerTemplate(template, contextData, projectState)) {
+        triggered.push(template);
+      }
+    });
+    
+    return triggered;
+  }
+
+  shouldTriggerTemplate(template, contextData, projectState) {
+    if (!template.triggers || template.triggers.length === 0) {
+      return false;
+    }
+    
+    return template.triggers.some(trigger => {
+      switch (trigger) {
+        case 'new-feature':
+          return contextData.action === 'feature_planning';
+        case 'api-development':
+          return projectState.technologies.includes('spring') && contextData.context === 'backend';
+        case 'frontend-component':
+          return projectState.technologies.includes('react') && contextData.context === 'frontend';
+        case 'database-change':
+          return contextData.action === 'database_modification';
+        case 'security-implementation':
+          return contextData.action === 'security_work';
+        case 'testing':
+          return contextData.action === 'test_creation';
+        case 'deployment':
+          return contextData.action === 'deployment_preparation';
+        default:
+          return false;
+      }
+    });
+  }
+
+  checkAutomationRules(contextData, projectState) {
+    const triggered = [];
+    
+    this.automationRules.forEach(rule => {
+      if (this.shouldTriggerRule(rule, contextData, projectState)) {
+        triggered.push(rule);
+      }
+    });
+    
+    return triggered;
+  }
+
+  shouldTriggerRule(rule, contextData, projectState) {
+    // Check file pattern matches
+    if (rule.pattern && contextData.filePath) {
+      const minimatch = require('minimatch');
+      if (!minimatch(contextData.filePath, rule.pattern)) {
+        return false;
+      }
+    }
+    
+    // Check condition matches
+    if (rule.condition && contextData.action) {
+      if (rule.condition !== contextData.action) {
+        return false;
+      }
+    }
+    
+    return true;
+  }
+
+  async generateContextChecklists(contextData, projectState) {
+    const checklists = [];
+    
+    try {
+      // Generate phase-specific checklists
+      const phaseChecklist = await this.generatePhaseChecklist(projectState.phase);
+      if (phaseChecklist) {
+        checklists.push(phaseChecklist);
+      }
+      
+      // Generate technology-specific checklists
+      const techChecklists = await this.generateTechnologyChecklists(projectState.technologies);
+      checklists.push(...techChecklists);
+      
+      // Generate compliance checklists
+      if (projectState.compliance.score < 85) {
+        const complianceChecklist = await this.generateComplianceChecklist(projectState.compliance);
+        if (complianceChecklist) {
+          checklists.push(complianceChecklist);
+        }
+      }
+      
+      // Generate context-specific checklists
+      const contextChecklist = await this.generateContextSpecificChecklist(contextData, projectState);
+      if (contextChecklist) {
+        checklists.push(contextChecklist);
+      }
+      
+    } catch (error) {
+      console.warn('⚠️  Could not generate context checklists:', error.message);
+    }
+    
+    return checklists;
+  }
+
+  async generatePhaseChecklist(phase) {
+    const phaseChecklists = {
+      planning: {
+        title: '📋 Planning Phase Checklist',
+        items: [
+          '✅ Project requirements documented',
+          '✅ Technology stack selected',
+          '✅ Architecture designed',
+          '✅ Development phases planned',
+          '✅ Success metrics defined',
+          '✅ Risk assessment completed'
+        ]
+      },
+      phase1: {
+        title: '🚀 Phase 1: Foundation Checklist',
+        items: [
+          '✅ Project structure created',
+          '✅ Basic dependencies configured',
+          '✅ Development environment setup',
+          '✅ CI/CD pipeline configured',
+          '✅ Basic testing framework setup',
+          '✅ Documentation structure created'
+        ]
+      },
+      phase2: {
+        title: '🔗 Phase 2: Integration Checklist',
+        items: [
+          '✅ Core services implemented',
+          '✅ Database schema designed',
+          '✅ API endpoints created',
+          '✅ Frontend components built',
+          '✅ Integration tests written',
+          '✅ Performance benchmarks established'
+        ]
+      },
+      phase3: {
+        title: '🎯 Phase 3: Enhancement Checklist',
+        items: [
+          '✅ Advanced features implemented',
+          '✅ Security measures enhanced',
+          '✅ Performance optimized',
+          '✅ User experience refined',
+          '✅ Comprehensive testing completed',
+          '✅ Production deployment ready'
+        ]
+      }
+    };
+    
+    return phaseChecklists[phase] || null;
+  }
+
+  async generateTechnologyChecklists(technologies) {
+    const checklists = [];
+    
+    technologies.forEach(tech => {
+      const checklist = this.getTechnologyChecklist(tech);
+      if (checklist) {
+        checklists.push(checklist);
+      }
+    });
+    
+    return checklists;
+  }
+
+  getTechnologyChecklist(technology) {
+    const techChecklists = {
+      react: {
+        title: '⚛️ React Development Checklist',
+        items: [
+          '✅ Functional components used',
+          '✅ Hooks implemented properly',
+          '✅ Props validation added',
+          '✅ Error boundaries implemented',
+          '✅ Performance optimization applied',
+          '✅ Accessibility features included'
+        ]
+      },
+      spring: {
+        title: '🍃 Spring Boot Checklist',
+        items: [
+          '✅ Controller-Service-Repository pattern followed',
+          '✅ Input validation implemented',
+          '✅ Exception handling configured',
+          '✅ Security measures implemented',
+          '✅ Database transactions managed',
+          '✅ API documentation generated'
+        ]
+      },
+      typescript: {
+        title: '📘 TypeScript Checklist',
+        items: [
+          '✅ Strict mode enabled',
+          '✅ Proper types defined',
+          '✅ Interfaces used consistently',
+          '✅ Generics implemented where appropriate',
+          '✅ Error handling typed properly',
+          '✅ No any types used'
+        ]
+      }
+    };
+    
+    return techChecklists[technology] || null;
+  }
+
+  async generateComplianceChecklist(compliance) {
+    return {
+      title: '📊 Compliance Improvement Checklist',
+      priority: 'high',
+      items: [
+        '✅ Review and fix security violations',
+        '✅ Address code quality issues',
+        '✅ Fix architecture violations',
+        '✅ Update documentation',
+        '✅ Improve test coverage',
+        '✅ Run compliance check again'
+      ],
+      details: {
+        currentScore: compliance.score,
+        targetScore: 85,
+        violations: compliance.violations.length
+      }
+    };
+  }
+
+  async generateContextSpecificChecklist(contextData, projectState) {
+    if (contextData.action === 'feature_planning') {
+      return {
+        title: '🎯 Feature Planning Checklist',
+        items: [
+          '✅ Feature requirements documented',
+          '✅ User stories written',
+          '✅ Acceptance criteria defined',
+          '✅ Technical approach planned',
+          '✅ Dependencies identified',
+          '✅ Success metrics defined'
+        ]
+      };
+    }
+    
+    if (contextData.action === 'security_work') {
+      return {
+        title: '🔒 Security Implementation Checklist',
+        items: [
+          '✅ Input validation implemented',
+          '✅ Authentication configured',
+          '✅ Authorization rules defined',
+          '✅ Data encryption applied',
+          '✅ Security headers set',
+          '✅ Vulnerability scan completed'
+        ]
+      };
+    }
+    
+    return null;
+  }
+
+  async suggestTemplates(contextData) {
+    const analysis = await this.analyzeContext(contextData);
+    
+    if (analysis.suggestions.length === 0) {
+      console.log('💡 No template suggestions for current context');
+      return [];
+    }
+    
+    console.log('\n🎯 Template Suggestions:');
+    analysis.suggestions.forEach((suggestion, index) => {
+      console.log(`\n${index + 1}. ${suggestion.template.name} (${suggestion.type})`);
+      console.log(`   Priority: ${suggestion.priority}/10`);
+      console.log(`   Reason: ${suggestion.reason}`);
+      
+      if (suggestion.template.description) {
+        console.log(`   Description: ${suggestion.template.description}`);
+      }
+    });
+    
+    return analysis.suggestions;
+  }
+
+  async generateChecklist(contextData) {
+    const analysis = await this.analyzeContext(contextData);
+    
+    if (analysis.checklists.length === 0) {
+      console.log('📋 No checklists generated for current context');
+      return [];
+    }
+    
+    console.log('\n📋 Generated Checklists:');
+    analysis.checklists.forEach((checklist, index) => {
+      console.log(`\n${index + 1}. ${checklist.title}`);
+      if (checklist.priority) {
+        console.log(`   Priority: ${checklist.priority}`);
+      }
+      
+      checklist.items.forEach(item => {
+        console.log(`   ${item}`);
+      });
+      
+      if (checklist.details) {
+        console.log(`   Details: ${JSON.stringify(checklist.details)}`);
+      }
+    });
+    
+    return analysis.checklists;
+  }
+
+  async applyTemplate(templateName, targetPath, context = {}) {
+    try {
+      const template = this.templateRegistry.get(templateName);
+      
+      if (!template) {
+        throw new Error(`Template '${templateName}' not found`);
+      }
+      
+      console.log(`📝 Applying template: ${template.name}`);
+      
+      // Process template content
+      const processedContent = this.processTemplateContent(template.content, context);
+      
+      // Write to target path
+      const targetDir = path.dirname(targetPath);
+      if (!fs.existsSync(targetDir)) {
+        fs.mkdirSync(targetDir, { recursive: true });
+      }
+      
+      fs.writeFileSync(targetPath, processedContent);
+      
+      console.log(`✅ Template applied to: ${targetPath}`);
+      
+      return { success: true, path: targetPath };
+      
+    } catch (error) {
+      console.error(`❌ Failed to apply template: ${error.message}`);
+      return { success: false, error: error.message };
+    }
+  }
+
+  processTemplateContent(content, context) {
+    let processed = content;
+    
+    // Replace placeholders with context values
+    Object.entries(context).forEach(([key, value]) => {
+      const placeholder = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
+      processed = processed.replace(placeholder, value);
+    });
+    
+    // Replace common placeholders
+    processed = processed
+      .replace(/\{\{timestamp\}\}/g, new Date().toISOString())
+      .replace(/\{\{projectName\}\}/g, path.basename(this.projectRoot))
+      .replace(/\{\{agentOsVersion\}\}/g, this.getAgentOsVersion());
+    
+    return processed;
+  }
+
+  getAgentOsVersion() {
+    try {
+      const packagePath = path.join(this.agentOsPath, 'package.json');
+      if (fs.existsSync(packagePath)) {
+        const pkg = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
+        return pkg.version || '1.0.0';
+      }
+    } catch (error) {
+      // Ignore errors
+    }
+    return '1.0.0';
+  }
+
+  getStatus() {
+    return {
+      templatesLoaded: this.templateRegistry.size,
+      automationRules: this.automationRules.length,
+      contextTriggers: this.contextTriggers.size,
+      projectRoot: this.projectRoot
+    };
   }
 }
 
-module.exports = TemplateTriggerAutomation;
-
-// CLI usage
-if (require.main === module) {
+// CLI interface
+async function main() {
   const automation = new TemplateTriggerAutomation();
-  automation.start();
+  
+  const command = process.argv[2];
+  
+  switch (command) {
+    case 'analyze':
+      const contextData = {
+        action: process.argv[3] || 'general',
+        context: process.argv[4] || 'development',
+        filePath: process.argv[5] || null
+      };
+      
+      const analysis = await automation.analyzeContext(contextData);
+      console.log('\n📊 Analysis Results:', JSON.stringify(analysis, null, 2));
+      break;
+      
+    case 'suggest':
+      const contextData2 = {
+        action: process.argv[3] || 'general',
+        context: process.argv[4] || 'development'
+      };
+      
+      await automation.suggestTemplates(contextData2);
+      break;
+      
+    case 'checklist':
+      const contextData3 = {
+        action: process.argv[3] || 'general',
+        context: process.argv[4] || 'development'
+      };
+      
+      await automation.generateChecklist(contextData3);
+      break;
+      
+    case 'apply':
+      const templateName = process.argv[3];
+      const targetPath = process.argv[4];
+      
+      if (!templateName || !targetPath) {
+        console.error('❌ Usage: node template-trigger-automation.js apply <template> <target-path>');
+        process.exit(1);
+      }
+      
+      await automation.applyTemplate(templateName, targetPath);
+      break;
+      
+    case 'status':
+      const status = automation.getStatus();
+      console.log('📊 Template Automation Status:', JSON.stringify(status, null, 2));
+      break;
+      
+    case 'help':
+      console.log(`
+🚀 Template Trigger Automation
+
+Usage: node template-trigger-automation.js [command] [options]
+
+Commands:
+  analyze <action> [context] [file]    Analyze development context
+  suggest <action> [context]            Suggest relevant templates
+  checklist <action> [context]          Generate context checklists
+  apply <template> <target-path>        Apply template to target path
+  status                               Show automation status
+  help                                 Show this help message
+
+Examples:
+  node template-trigger-automation.js analyze feature_planning
+  node template-trigger-automation.js suggest api_development backend
+  node template-trigger-automation.js checklist security_work
+  node template-trigger-automation.js apply feature-specification ./features/new-feature.md
+      `);
+      break;
+      
+    default:
+      console.log('💡 Run "node template-trigger-automation.js help" for usage information');
+  }
 }
+
+// Run if called directly
+if (require.main === module) {
+  main().catch(error => {
+    console.error('❌ Fatal error:', error.message);
+    process.exit(1);
+  });
+}
+
+module.exports = TemplateTriggerAutomation;
